@@ -1,0 +1,59 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "dragonmounts:dragon_pearl",
+			"runtime_identifier": "minecraft:ender_pearl",
+			"is_spawnable": false,
+			"is_summonable": false,
+			"is_experimental": false
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"width": 0.08,
+				"height": 0.08
+			},
+			"minecraft:projectile": {
+				"on_hit": {
+					"teleport_owner": {},
+					"spawn_chance": {
+						"first_spawn_percent_chance": 50.0,
+						"first_spawn_count": 1,
+						"spawn_definition": "minecraft:enderman"
+					},
+					"spawn_aoe_cloud": {
+						"radius": 3.0,
+						"radius_on_use": 0,
+						"potion": 24,
+						"particle": "dragonbreath",
+						"duration": 8,
+						"color": [
+							220,
+							0,
+							239
+						],
+						"affect_owner": false
+					},
+					"remove_on_hit": {}
+				},
+				"power": 4.8,
+				"gravity": 0.00,
+				"inertia": 1,
+				"offset": [
+					0.0,
+					0.0,
+					0.0
+				],
+				"semi_random_diff_damage": true,
+				"uncertainty_base": 10.0,
+				"reflect_on_hurt": true,
+				"hit_sound": "explode"
+			}
+		},
+		"minecraft:physics": {},
+		"minecraft:pushable": {
+			"is_pushable": true,
+			"is_pushable_by_piston": true
+		}
+	}
+}

@@ -1,0 +1,110 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "minecraft:item",
+			"is_spawnable": true,
+			"is_summonable": false,
+			"is_experimental": false,
+			"scripts": {
+				"animate": [
+					"root"
+				]
+			},
+			"animations": {
+				"root": "animation.items.root"
+			}
+		},
+		"component_groups": {
+			"dragonmounts:items_support": {
+				"minecraft:addrider": {
+					"entity_type": "dragonmounts:items_support"
+				}
+			},
+			"minecraft:player_item": {}
+		},
+		"components": {
+			"minecraft:tick_world": {},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [
+					{
+						"filters": {
+							"test": "in_lava",
+							"subject": "self",
+							"operator": "==",
+							"value": true
+						},
+						"cause": "lava",
+						"damage_per_tick": 4
+					}
+				]
+			},
+			"minecraft:rideable": {
+				"seat_count": 1,
+				"family_types": [
+					"item"
+				],
+				"seats": {
+					"position": [
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			},
+			"minecraft:physics": {},
+			"minecraft:environment_sensor": {
+				"triggers": [
+					{
+						"filters": {
+							"any_of": [
+								{
+									"test": "has_tag",
+									"subject": "self",
+									"operator": "==",
+									"value": "double_edged_axe_item"
+								}
+							]
+						},
+						"event": "dragonmounts:items_support"
+					}
+				]
+			},
+			"minecraft:is_hidden_when_invisible": {},
+			"minecraft:pushable": {
+				"is_pushable": false,
+				"is_pushable_by_piston": true
+			}
+		},
+		"events": {
+			"dragonmounts:items_support": {
+				"add": {
+					"component_groups": [
+						"dragonmounts:items_support"
+					]
+				}
+			},
+			"minecraft:entity_spawned": {
+				"sequence": [
+					{
+						"filters": {
+							"all_of": [
+								{
+									"test": "is_family",
+									"subject": "other",
+									"operator": "==",
+									"value": "player"
+								}
+							]
+						},
+						"add": {
+							"component_groups": [
+								"minecraft:player_item"
+							]
+						}
+					}
+				]
+			}
+		}
+	}
+}
