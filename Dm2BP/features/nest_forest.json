@@ -1,0 +1,14 @@
+{
+   "format_version":"1.13.0",
+   "minecraft:structure_template_feature":{
+      "description":{
+         "identifier":"minecraft:nest_forest"
+      },
+      "structure_name":"mystructure:nest_forest",
+      "adjustment_radius":12,
+      "facing_direction":"random",
+      "constraints":{
+         "grounded":{}
+      }
+   }
+}
