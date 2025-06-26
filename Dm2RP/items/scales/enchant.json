@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts:enchant_dragonscales",
+      "category": "Nature"
+    },
+    "components": {
+      "minecraft:icon": "enchant_dragonscales",
+      "minecraft:render_offsets": "miscellaneous"
+    }
+  }
+}

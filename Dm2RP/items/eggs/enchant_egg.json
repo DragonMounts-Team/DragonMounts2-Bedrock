@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts:enchant_dragon_egg",
+      "category": "items"
+    },
+    "components": {
+      "minecraft:icon": "enchantdragon_egg_item",
+      "minecraft:render_offsets": "miscellaneous"
+    }
+  }
+}

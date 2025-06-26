@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts:water_dragonscales",
+      "category": "Nature"
+    },
+    "components": {
+      "minecraft:icon": "water_dragonscales",
+      "minecraft:render_offsets": "miscellaneous"
+    }
+  }
+}

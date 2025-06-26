@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts:ender_dragonscales",
+      "category": "Nature"
+    },
+    "components": {
+      "minecraft:icon": "ender_dragonscales",
+      "minecraft:render_offsets": "miscellaneous"
+    }
+  }
+}

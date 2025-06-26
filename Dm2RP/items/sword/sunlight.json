@@ -1,0 +1,13 @@
+{
+	"format_version": "1.10",
+	"minecraft:item": {
+		"description": {
+			"identifier": "dragonmounts:sunlight_dragon_sword",
+			"category": "Equipment"
+		},
+		"components": {
+			"minecraft:icon": "sunlight_dragon_sword",
+			"minecraft:render_offsets": "miscellaneous"
+		}
+	}
+}

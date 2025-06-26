@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts:ender_dragon_egg",
+      "category": "items"
+    },
+    "components": {
+      "minecraft:icon": "enderdragon_egg_item",
+      "minecraft:render_offsets": "miscellaneous"
+    }
+  }
+}

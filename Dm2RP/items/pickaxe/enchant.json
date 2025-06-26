@@ -1,0 +1,13 @@
+{
+	"format_version": "1.10",
+	"minecraft:item": {
+		"description": {
+			"identifier": "dragonmounts:enchant_dragon_pickaxe",
+			"category": "Equipment"
+		},
+		"components": {
+			"minecraft:icon": "enchant_dragon_pickaxe",
+			"minecraft:render_offsets": "miscellaneous"
+		}
+	}
+}
