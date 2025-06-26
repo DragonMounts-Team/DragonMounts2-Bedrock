@@ -1,0 +1,64 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:item": {
+    "components": {
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:creative_category": {
+        "parent": "itemGroup.name.hoe"
+      },
+      "minecraft:custom_components": [
+        "tool:can_be_damaged",
+        "tool:act_as_hoe"
+      ],
+      "minecraft:damage": 7,
+      "minecraft:digger": {
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "q.any_tag('minecraft:is_hoe_item_destructible')"
+            },
+            "speed": 16
+          }
+        ],
+       "use_efficiency": true
+      },
+      "minecraft:display_name": {
+        "value": "%item.dragonmounts.dragon_hoe\n%tooltip.dragonmounts.water"
+      },
+      "minecraft:durability": {
+        "max_durability": 2068
+      },
+      "minecraft:enchantable": {
+        "slot": "hoe",
+        "value": 32
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:icon": "water_dragon_hoe",
+      
+      "minecraft:max_stack_size": 1, 
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmounts:water_dragonscales"
+            ],
+            "repair_amount": "query.max_durability * 0.25"
+          },
+          {
+            "items": [
+              "dragonmounts:water_dragon_hoe"
+            ],
+            "repair_amount": "context.other->query.remaining_durability + query.max_durability * 0.05"
+          }
+        ]
+      }
+    },
+    "description": {
+      "identifier": "dragonmounts:water_dragon_hoe",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.hoe"
+      }
+    }
+  }
+}
