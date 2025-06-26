@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "tags": [
+      "campfire",
+      "soul_campfire"
+    ],
+    "output": {
+      "item": "dragonmounts:cooked_dragon_meat",
+      "data": 0
+    },
+    "input": {
+      "item": "dragonmounts:raw_dragon_meat",
+      "data": 0
+    },
+    "description": {
+      "identifier": "recipes_43bd5936"
+    }
+  }
+}
