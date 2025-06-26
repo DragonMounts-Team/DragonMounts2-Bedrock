@@ -1,0 +1,40 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Dragon Mounts 2: Bedrock Edition-ver3.5.x",
+    "name": "Dragon Mounts 2 - Resource Pack",
+    "uuid": "77968600-b721-4f95-ad8c-d4f936ace3ef",
+    "version": [
+      0,
+      0,
+      1
+    ],
+    "min_engine_version": [
+      1,
+      17,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "description": "Dragon Mounts 2: Bedrock Edition",
+      "type": "resources",
+      "uuid": "e7dcad0a-a877-4414-a16d-4ea644d70d3d",
+      "version": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "24b454d6-d9bb-4327-968b-79000bbe8fc8",
+      "version": [
+        0,
+        0,
+        1
+      ]
+    }
+  ]
+}
