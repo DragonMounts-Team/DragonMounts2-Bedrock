@@ -1,0 +1,244 @@
+{
+	"pools": [ // 战利品池（设定可生成的所有战利品及抽取次数设定）
+		{
+			"rolls": { // 在战利品池中生成战利品的次数（后面的生成不会影响之前的生成，例如第二次的生成不会影响第一次已经生成出来的物品）
+				"min": 2,
+				"max": 4
+			},
+			"entries": [ // 条目（列出所有的可生成物品及其相关属性，例如数量、随机性给予附魔及附魔等级 等）
+				{
+					"type": "item", // 类型（一般填item）
+					"name": "minecraft:record_far", // 具体物品ID，确定生成的对应物品
+					"weight": 15 // 权重（与其他物品权重相比数值越大生成几率越高）
+				},
+				{
+					"type": "item",
+					"name": "minecraft:record_chirp",
+					"weight": 15
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond",
+					"functions": [ // 设定生成出物品的属性
+						{
+							"function": "set_count", // 设定的属性类型：一次所生成的数量设定
+							"count": { // 数量范围（若设定为范围则min对应生成数量最小值，max对应生成数量最大值，若设定为定值则直接在count：后面输入对应数量）
+								"min": 1,
+								"max": 3
+							}
+						}
+					],
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_ingot",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 5
+							}
+						}
+					],
+					"weight": 15
+				},
+				{
+					"type": "item",
+					"name": "minecraft:gold_ingot",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 2,
+								"max": 7
+							}
+						}
+					],
+					"weight": 15
+				},
+				{
+					"type": "item",
+					"name": "minecraft:emerald",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 3
+							}
+						}
+					],
+					"weight": 15
+				},
+				{
+					"type": "item",
+					"name": "minecraft:bone",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 4,
+								"max": 6
+							}
+						}
+					],
+					"weight": 25
+				},
+				{
+					"type": "item",
+					"name": "minecraft:spider_eye",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 3
+							}
+						}
+					],
+					"weight": 25
+				},
+				{
+					"type": "item",
+					"name": "minecraft:rotten_flesh",
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 3,
+								"max": 7
+							}
+						}
+					],
+					"weight": 25
+				},
+				{
+					"type": "item",
+					"name": "minecraft:saddle",
+					"weight": 20
+				},
+				{
+					"type": "item",
+					"name": "minecraft:horsearmoriron",
+					"weight": 15
+				},
+				{
+					"type": "item",
+					"name": "minecraft:horsearmorgold",
+					"weight": 10
+				},
+				{
+					"type": "item",
+					"name": "minecraft:horsearmordiamond",
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "minecraft:book",
+					"weight": 20,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:golden_apple",
+					"weight": 20
+				},
+				{
+					"type": "item",
+					"name": "minecraft:appleEnchanted",
+					"weight": 2
+				},
+				{
+					"type": "empty",
+					"weight": 15
+				}
+			]
+		},
+		{
+			"rolls": 4,
+			"entries": [
+				{
+					"type": "item",
+					"name": "minecraft:bone",
+					"weight": 10,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 8
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:gunpowder",
+					"weight": 10,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 8
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:rotten_flesh",
+					"weight": 10,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 8
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:string",
+					"weight": 10,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 8
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:sand",
+					"weight": 10,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 8
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

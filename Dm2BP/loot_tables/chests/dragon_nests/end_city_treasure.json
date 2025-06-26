@@ -1,0 +1,322 @@
+{
+	"pools": [
+		{
+			"rolls": {
+				"min": 2,
+				"max": 8
+			},
+			"entries": [
+				{
+					"type": "item",
+					"name": "minecraft:book",
+					"weight": 20,
+					"functions": [
+						{
+							"function": "enchant_randomly" // 生成物品时随机进行附魔
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 2,
+								"max": 7
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_ingot",
+					"weight": 10,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 4,
+								"max": 8
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:gold_ingot",
+					"weight": 15,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 2,
+								"max": 7
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:emerald",
+					"weight": 2,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 2,
+								"max": 6
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:beetroot_seeds",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 10
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:saddle",
+					"weight": 3
+				},
+				{
+					"type": "item",
+					"name": "minecraft:horsearmoriron",
+					"weight": 1
+				},
+				{
+					"type": "item",
+					"name": "minecraft:horsearmorgold",
+					"weight": 1
+				},
+				{
+					"type": "item",
+					"name": "minecraft:horsearmordiamond",
+					"weight": 1
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond_sword",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond_boots",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels", // 设定附魔级别（一般最高级附魔台可支持的最高级别附魔为30级）
+							"treasure": true, // 宝藏附魔（例如经验修补等）
+							"levels": { // 附魔级别（若设定为范围则min对应生成数量最小值，max对应生成数量最大值，若设定为定值则直接在count：后面输入对应数量）
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond_chestplate",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond_leggings",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond_helmet",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond_pickaxe",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:diamond_shovel",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_sword",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_boots",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_chestplate",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_leggings",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_helmet",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_pickaxe",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:iron_shovel",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "enchant_with_levels",
+							"treasure": true,
+							"levels": {
+								"min": 20,
+								"max": 39
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
