@@ -1,0 +1,90 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon_attack_type": {
+			"initial_state": "none",
+			"states": {
+				"none": {
+					"transitions": [
+						{
+							"breath": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item == 'dragon_breath';"
+						},
+						{
+							"fireball": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item == 'blaze_rod';"
+						},
+						{
+							"up": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item != 'blaze_rod' && t.item != 'dragon_breath';"
+						}
+					],
+					"on_entry": [
+						"/effect @s levitation 0 0 true"
+					]
+				},
+				"breath": {
+					"transitions": [
+						{
+							"none": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return !(t.launch && t.item == 'dragon_breath');"
+						},
+						{
+							"fireball": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item == 'blaze_rod';"
+						}
+					],
+					"on_entry": [
+						"/effect @s levitation 1 8 true"//{{sic}}
+					],
+					"on_exit": [
+						"@s dragonmounts:breath_attack"
+					]
+				},
+				"fireball": {
+					"transitions": [
+						{
+							"none": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return !(t.launch && t.item == 'blaze_rod');"
+						},
+						{
+							"breath": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item == 'dragon_breath';"
+						}
+					],
+					"on_entry": [
+						"/effect @s levitation 1 16 true"//{{sic}}
+					],
+					"on_exit": [
+						"@s dragonmounts:fireball_attack"
+					]
+				},
+				"up": {
+					"transitions": [
+						{
+							"none": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return !(t.launch && t.item == 'blaze_rod' && t.item == 'dragon_breath' && query.get_equipped_item_name == 'feather');"
+						},
+						{
+							"up_back": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item != 'blaze_rod' && t.item != 'dragon_breath' && query.get_equipped_item_name == 'feather';"
+						}
+					],
+					"on_entry": [
+						"/effect @s levitation 1 16 true"//{{sic}}
+					],
+					"on_exit": [
+						"/effect @s levitation 1 16 true"
+					]
+				},
+				"up_back": {
+					"transitions": [
+						{
+							"none": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return !(t.launch && t.item == 'blaze_rod' && t.item == 'dragon_breath' && query.get_equipped_item_name == 'feather');"
+						},
+						{
+							"up": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item != 'blaze_rod' && t.item != 'dragon_breath' && query.get_equipped_item_name == 'feather';"
+						}
+					],
+					"on_entry": [
+						"/effect @s levitation 1 16 true"//{{sic}}
+					],
+					"on_exit": [
+						"/effect @s levitation 1 16 true"
+					]
+				}
+			}
+		}
+	}
+}
