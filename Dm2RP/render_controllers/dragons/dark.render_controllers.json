@@ -1,0 +1,103 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.dark_dragon_death_pre_pass": {
+			"geometry": "Geometry.dragon_default",
+			"materials": [
+				{
+					"*": "Material.dissolve_0"
+				}
+			],
+			"textures": [
+				"Texture.exploding"
+			],
+			"part_visibility": [
+				{
+					"*": "query.death_ticks > 1.0"
+				}
+			],
+			"is_hurt_color": {
+				"r": "this",
+				"g": "this",
+				"b": "this",
+				"a": "query.death_ticks > 1.0 ? variable.death_alpha : this"
+			}
+		},
+		"controller.render.dark_dragon_death_main_pass": {
+			"geometry": "Geometry.dragon_default",
+			"materials": [
+				{
+					"*": "Material.dissolve_1"
+				}
+			],
+			"textures": [
+				"Texture.dark_dragon"
+			]
+		},
+		"controller.render.dark_dragon.default": {
+			"arrays": {
+				"textures": {
+					"Array.base": [
+						"Texture.f_dark_dragon",
+						"Texture.dark_dragon"
+					],
+					"Array.saddled": [
+						"Texture.dragon_none",
+						"Texture.dragon_saddled"
+					],
+					"Array.armor": [
+						"Texture.dragon_none",
+						"Texture.dragon_armor_iron",
+						"Texture.dragon_armor_gold",
+						"Texture.dragon_armor_diamond",
+						"Texture.dragon_armor_emerald"
+					]
+				}
+			},
+			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+			"geometry": "Geometry.dragon_default",
+			"materials": [
+				{
+					"*": "Material.dragon_default"
+				}
+			],
+			"textures": [
+				"Array.base[query.variant]",
+				"Array.saddled[query.is_saddled]",
+				"Array.armor[query.mark_variant]"
+			]
+		},
+		"controller.render.dark_dragon_egg": {
+			"geometry": "Geometry.dragon_egg",
+			"materials": [
+				{
+					"*": "Material.dragon_egg"
+				}
+			],
+			"textures": [
+				"Texture.dragon_egg"
+			],
+			"is_hurt_color": {
+				"r": 1,
+				"g": 1,
+				"b": 1,
+				"a": 0.1
+			}
+		},
+		"controller.render.dark_dragon_egg_death": {
+			"geometry": "Geometry.dragon_egg",
+			"materials": [
+				{
+					"*": "Material.death"
+				}
+			],
+			"textures": [
+				"Texture.dragon_egg"
+			]
+		}
+	}
+}

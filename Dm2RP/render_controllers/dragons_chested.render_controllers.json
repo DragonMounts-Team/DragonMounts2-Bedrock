@@ -1,0 +1,23 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.dragons.is_chested": {
+			"geometry": "Geometry.dragon_chested",
+			"part_visibility": [
+				{
+					"*": "query.is_chested"
+				}
+			],
+			"materials": [
+				{
+					"*": "Material.dragon_default"
+				}
+			],
+			"textures": [
+				"Texture.dragon_chested",
+				"Texture.dragon_chested",
+				"Texture.dragon_chested"
+			]
+		}
+	}
+}

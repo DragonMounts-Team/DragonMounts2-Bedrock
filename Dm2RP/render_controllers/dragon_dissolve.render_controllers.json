@@ -1,0 +1,118 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.dragon_death_pre_pass": {
+			"geometry": "Geometry.dragon_default",
+			"materials": [
+				{
+					"*": "Material.dissolve_0"
+				}
+			],
+			"textures": [
+				"Texture.exploding"
+			],
+			"part_visibility": [
+				{
+					"*": "query.death_ticks > 1.0"
+				}
+			],
+			"is_hurt_color": {
+				"r": "this",
+				"g": "this",
+				"b": "this",
+				"a": "query.death_ticks > 1.0 ? variable.death_alpha : this"
+			}
+		},
+		"controller.render.dragon_death_main_pass": {
+			"arrays": {
+				"textures": {
+					"Array.dragons": [
+						"Texture.aether_dragon",
+						"Texture.enchant_dragon",
+						"Texture.ender_dragon",
+						"Texture.fire_dragon",
+						"Texture.forest_dragon",
+						"Texture.ice_dragon",
+						"Texture.moonlight_dragon",
+						"Texture.nether_dragon",
+						"Texture.skeleton_dragon",
+						"Texture.storm_dragon",
+						"Texture.sunlight_dragon",
+						"Texture.terra_dragon",
+						"Texture.water_dragon",
+						"Texture.wither_dragon",
+						"Texture.zombie_dragon"
+					]
+				}
+			},
+			"geometry": "Geometry.dragon_default",
+			"materials": [
+				{
+					"*": "Material.dissolve_1"
+				}
+			],
+			"textures": [
+				"Array.dragons[query.variant]"
+			]
+		},
+		"controller.render.dragon.default": {
+			"arrays": {
+				"textures": {
+					"Array.base": [
+						"Texture.aether_dragon",
+						"Texture.enchant_dragon",
+						"Texture.ender_dragon",
+						"Texture.fire_dragon",
+						"Texture.forest_dragon",
+						"Texture.ice_dragon",
+						"Texture.moonlight_dragon",
+						"Texture.nether_dragon",
+						"Texture.skeleton_dragon",
+						"Texture.storm_dragon",
+						"Texture.sunlight_dragon",
+						"Texture.terra_dragon",
+						"Texture.water_dragon",
+						"Texture.wither_dragon",
+						"Texture.zombie_dragon"
+					],
+					"Array.saddled": [
+						"Texture.dragon_none",
+						"Texture.dragon_saddled"
+					],
+					"Array.armor": [
+						"Texture.dragon_none",
+						"Texture.dragon_armor_iron",
+						"Texture.dragon_armor_gold",
+						"Texture.dragon_armor_diamond",
+						"Texture.dragon_armor_emerald"
+					]
+				}
+			},
+			"part_visibility": [
+				{
+					"chest*": "query.is_chested"
+				},
+				{
+					"saddle*": "query.is_saddled"
+				}
+			],
+			"geometry": "Geometry.dragon_default",
+			"materials": [
+				{
+					"*": "Material.dragon"
+				}
+			],
+			"textures": [
+				"Array.base[query.variant]",
+				"Array.saddled[query.is_saddled]",
+				"Array.armor[query.mark_variant]"
+			],
+			"is_hurt_color": {
+				"r": 0.0,
+				"g": 0.0,
+				"b": 0.0,
+				"a": 0.0
+			}
+		}
+	}
+}

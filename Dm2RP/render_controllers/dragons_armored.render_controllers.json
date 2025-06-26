@@ -1,0 +1,34 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.dragons.is_armored": {
+			"arrays": {
+				"textures": {
+					"Array.armor": [
+						"Texture.dragon_none",
+						"Texture.dragon_armor_iron",
+						"Texture.dragon_armor_gold",
+						"Texture.dragon_armor_diamond",
+						"Texture.dragon_armor_emerald"
+					]
+				}
+			},
+			"geometry": "Geometry.dragon_default",
+			"part_visibility": [
+				{
+					"*": "query.mark_variant >= 0"
+				}
+			],
+			"materials": [
+				{
+					"*": "Material.dragon_default"
+				}
+			],
+			"textures": [
+				"Array.armor[query.mark_variant]",
+				"Array.armor[query.mark_variant]",
+				"Array.armor[query.mark_variant]"
+			]
+		}
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.dragons.is_saddled": {
+			"geometry": "Geometry.dragon_saddled",
+			"part_visibility": [
+				{
+					"*": "query.is_saddled"
+				}
+			],
+			"materials": [
+				{
+					"*": "Material.dragon_default"
+				}
+			],
+			"textures": [
+				"Texture.dragon_saddled",
+				"Texture.dragon_saddled",
+				"Texture.dragon_saddled"
+			]
+		}
+	}
+}
