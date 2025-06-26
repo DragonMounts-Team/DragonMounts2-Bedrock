@@ -1,0 +1,72 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.dragon_carriage",
+				"texture_width": 128,
+				"texture_height": 32,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 1,
+				"visible_bounds_offset": [0, 0.5, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "field_78154_a1",
+					"parent": "root",
+					"pivot": [0, 0, -2],
+					"cubes": [
+						{"origin": [-10, 0, -6], "size": [20, 1, 12], "uv": [0, 18]}
+					]
+				},
+				{
+					"name": "field_78154_a2",
+					"parent": "root",
+					"pivot": [-4, 0, 0],
+					"rotation": [0, 90, 0],
+					"cubes": [
+						{"origin": [-10, 1, -6], "size": [12, 3, 2], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "field_78154_a3",
+					"parent": "root",
+					"pivot": [9, 0, 0],
+					"rotation": [0, 90, 0],
+					"cubes": [
+						{"origin": [3, 1, -1], "size": [12, 3, 2], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "field_78154_a4",
+					"parent": "root",
+					"pivot": [0, 0, -7],
+					"rotation": [0, 180, 0],
+					"cubes": [
+						{"origin": [-8, 1, -9.9], "size": [16, 4, 2], "uv": [40, 0]}
+					]
+				},
+				{
+					"name": "field_78154_a5",
+					"parent": "root",
+					"pivot": [0, 0, 7],
+					"cubes": [
+						{"origin": [-8, 1, 4.1], "size": [16, 4, 2], "uv": [40, 0]}
+					]
+				},
+				{
+					"name": "field_78154_a6",
+					"parent": "root",
+					"pivot": [0, 1.5, 0],
+					"cubes": [
+						{"origin": [-8, 1.5, -6], "size": [16, 1, 12], "uv": [68, 18]}
+					]
+				}
+			]
+		}
+	]
+}
