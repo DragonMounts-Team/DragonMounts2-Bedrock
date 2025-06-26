@@ -1,0 +1,28 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "dragonmounts:dragon_pearl",
+			"materials": {
+				"default": "dragon_breath"
+			},
+			"geometry": {
+				"default": "geometry.dragon_breath"
+			},
+			"animations": {
+				"default": "animation.dragon_breath.default"
+			},
+			"particle_effects": {
+				"default": "dragonmounts:dragon_pearl_flying"
+			},
+			"scripts": {
+				"animate": [
+					"default"
+				]
+			},
+			"render_controllers": [
+				"controller.render.dragon_breath"
+			]
+		}
+	}
+}

@@ -1,0 +1,29 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "dragonmounts:items_support",
+			"textures": {
+				"double_edged_axe": "textures/items/super_weapon/double_edged_axe"
+			},
+			"materials": {
+				"default": "entity_alphatest",
+				"light": "entity_dragon"
+			},
+			"geometry": {
+				"double_edged_axe_item": "geometry.double_edged_axe"
+			},
+			"scripts": {
+				"animate": [ 
+					"floating"
+				]
+			},
+			"animations": {
+				"floating": "animation.items.float"
+			},
+			"render_controllers": [ 
+				"controller.render.items_support"
+			]
+		}
+	}
+}

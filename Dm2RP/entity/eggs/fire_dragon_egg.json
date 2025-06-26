@@ -1,0 +1,45 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "dragonmounts:fire_dragon_egg",
+			"materials": {
+				"dragon_egg": "dragon_egg",
+				"death": "entity_dissolve_layer1.skinning"
+			},
+			"textures": {
+				"dragon_egg": "textures/entity/dragon_eggs/fire"
+			},
+			"geometry": {
+				"dragon_egg": "geometry.dragon_egg"
+			},
+			"animations": {
+				"dragon_egg_hatching": "animation.dragon_egg.hatching",
+				"dragon_egg_bs": "animation.dragon_egg.bs",
+				"dragon_egg_ani": "controller.animation.dragon_egg.action"
+			},
+			"scripts": {
+				"animate": [
+					"dragon_egg_hatching",
+					"dragon_egg_ani"
+				]
+			},
+			"sound_effects": {
+				"dragonegg_bs0_sou": "mob.mountdragon_egg.bs0",
+				"dragonegg_bs1_sou": "mob.mountdragon_egg.bs1"
+			},
+			"particle_effects": {
+				"dragon_egg_hatching": "dragonmounts:fire_dragon_egg_hatching",
+				"dragon_egg_hatchings": "dragonmounts:dragon_egg_hatchings",
+				"dragon_egg_bs": "dragonmounts:fire_dragon_egg_bs"
+			},
+			"render_controllers": [
+				{ "controller.render.fire_dragon_egg": "query.death_ticks < 1.0" },
+				{ "controller.render.fire_dragon_egg_death": "query.death_ticks >= 1.0" }
+			],
+			"spawn_egg": {
+				"texture": "firedragon_egg_item"
+			}
+		}
+	}
+}
