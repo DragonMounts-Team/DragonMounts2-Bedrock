@@ -1,0 +1,23 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:aether_dragonscale_helmet"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"###",
+			"# #"
+		],
+		"key": {
+			"#": {
+				"item": "dragonmounts:aether_dragonscales"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:aether_dragonscale_helmet"
+		}
+	}
+}

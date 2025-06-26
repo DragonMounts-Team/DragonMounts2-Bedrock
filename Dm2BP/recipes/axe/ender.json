@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:ender_dragon_axe"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"XX",
+			"X#",
+			" #"
+		],
+		"key": {
+			"X": {
+				"item": "dragonmounts:ender_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:ender_dragon_axe"
+		}
+	}
+}
