@@ -1,0 +1,1 @@
+effect @s strength 16 2 true

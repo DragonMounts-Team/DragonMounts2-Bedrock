@@ -1,0 +1,1 @@
+effect @e[r=4] levitation 1 30 true
