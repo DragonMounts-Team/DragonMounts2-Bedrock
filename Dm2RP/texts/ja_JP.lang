@@ -1,0 +1,392 @@
+﻿pack.name=Dragon Mounts 2: Bedrock Edition	#
+pack.description=Dragon Mounts 2: Bedrock Edition	#
+
+entity.dragonmounts:ender_dragon.name=エンダードラゴン #
+entity.dragonmounts:dark_dragon.name=ダークドラゴン	#
+action.interact.start_hatching=幼生
+entity.dragonmounts:aether_dragon.name=エーテルドラゴン	#
+entity.dragonmounts:water_dragon.name=ウォータードラゴン	#
+entity.dragonmounts:ice_dragon.name=アイスドラゴン	#
+entity.dragonmounts:forest_dragon.name=フォレストドラゴン	#
+entity.dragonmounts:fire_dragon.name=ファイヤドラゴン	#
+entity.dragonmounts:nether_dragon.name=ネザードラゴン	#
+entity.dragonmounts:skeleton_dragon.name=スケルトンドラゴン	#
+entity.dragonmounts:enchant_dragon.name=エンチャンテッドドラゴン	#
+entity.dragonmounts:moonlight_dragon.name=ムーンライトドラゴン	#
+entity.dragonmounts:storm_dragon.name=ストームドラゴン	#
+entity.dragonmounts:sunlight_dragon.name=サンライトドラゴン	#
+entity.dragonmounts:terra_dragon.name=テラドラゴン	#
+entity.dragonmounts:wither_dragon.name=ウィザードラゴン	#
+entity.dragonmounts:zombie_dragon.name=ゾンビドラゴン	#
+
+entity.dragonmounts:dragon_dissolve.name=ドラゴンは死んだ	#
+
+entity.dragonmounts:ender_dragon_egg.name=エンダードラゴンの卵 #
+entity.dragonmounts:aether_dragon_egg.name=エーテルドラゴンの卵	#
+entity.dragonmounts:water_dragon_egg.name=ウォータードラゴンの卵 	#
+entity.dragonmounts:ice_dragon_egg.name=アイスドラゴンの卵	#
+entity.dragonmounts:forest_dragon_egg.name=フォレストドラゴンの卵	#
+entity.dragonmounts:fire_dragon_egg.name=ファイヤドラゴンの卵	#
+entity.dragonmounts:nether_dragon_egg.name=ネザードラゴンの卵	#
+entity.dragonmounts:skeleton_dragon_egg.name=スケルトンドラゴンの卵	#
+entity.dragonmounts:enchant_dragon_egg.name=エンチャンテッドドラゴンの卵	#
+entity.dragonmounts:moonlight_dragon_egg.name=ムーンライトドラゴンの卵	#
+entity.dragonmounts:storm_dragon_egg.name=ストームドラゴンの卵	#
+entity.dragonmounts:sunlight_dragon_egg.name=サンライトドラゴンの卵	#
+entity.dragonmounts:terra_dragon_egg.name=テラドラゴンの卵	#
+entity.dragonmounts:wither_dragon_egg.name=ウィザードラゴンの卵	#
+entity.dragonmounts:zombie_dragon_egg.name=ゾンビドラゴンの卵	#
+
+item.dragonmounts:diamond_shears.name=ダイヤモンドのハサミ	#
+
+item.dragonmounts:ender_dragonscales.name=エンダードラゴンの鱗
+item.dragonmounts:aether_dragonscales.name=エーテルドラゴンの鱗	#
+item.dragonmounts:dark_dragonscales.name=ダークドラゴンの鱗	#
+item.dragonmounts:water_dragonscales.name=ウォータードラゴンの鱗	#
+item.dragonmounts:ice_dragonscales.name= アイスドラゴンの鱗	#
+item.dragonmounts:forest_dragonscales.name=フォレストドラゴンの鱗	#
+item.dragonmounts:fire_dragonscales.name=ファイヤドラゴンの鱗	#
+item.dragonmounts:nether_dragonscales.name=ネザードラゴンの鱗	#
+item.dragonmounts:enchant_dragonscales.name=エンチャンテッドドラゴンの鱗	#
+item.dragonmounts:moonlight_dragonscales.name=ムーンライトドラゴンの鱗	#
+item.dragonmounts:storm_dragonscales.name=ストームドラゴンの鱗	#
+item.dragonmounts:sunlight_dragonscales.name=サンライトドラゴンの鱗	#
+item.dragonmounts:terra_dragonscales.name=テラドラゴンの鱗	#
+item.dragonmounts:zombie_dragonscales.name=ゾンビドラゴンの鱗	#
+
+item.dragonmounts:dragonarmor_iron.name=鉄のドラゴンアーマー	#
+item.dragonmounts:dragonarmor_gold.name=金のドラゴンアーマー	#
+item.dragonmounts:dragonarmor_diamond.name=ダイヤモンドのドラゴンアーマー	#
+item.dragonmounts:dragonarmor_emerald.name=エメラルドのドラゴンアーマー	#
+
+
+
+
+item.dragonmounts:aether_dragonscale_helmet.name=エーテルドラゴンのヘルメット	#
+item.dragonmounts:dark_dragonscale_helmet.name=ダークドラゴンのヘルメット	#
+item.dragonmounts:enchant_dragonscale_helmet.name=エンチャンテッドドラゴンのヘルメット	#
+item.dragonmounts:ender_dragonscale_helmet.name=エンダードラゴンのヘルメット #
+item.dragonmounts:fire_dragonscale_helmet.name=ファイヤドラゴンのヘルメット	#
+item.dragonmounts:forest_dragonscale_helmet.name=フォレストドラゴンのヘルメット	#
+item.dragonmounts:ice_dragonscale_helmet.name=アイスドラゴンのヘルメット	#
+item.dragonmounts:moonlight_dragonscale_helmet.name=ムーンライトドラゴンのヘルメット	#
+item.dragonmounts:nether_dragonscale_helmet.name=ネザードラゴンのヘルメット	#
+item.dragonmounts:storm_dragonscale_helmet.name=ストームドラゴンのヘルメット	#
+item.dragonmounts:sunlight_dragonscale_helmet.name=サンライトドラゴンのヘルメット	#
+item.dragonmounts:terra_dragonscale_helmet.name=テラドラゴンのヘルメット	#
+item.dragonmounts:water_dragonscale_helmet.name=ウォータードラゴンのヘルメット	#
+item.dragonmounts:zombie_dragonscale_helmet.name=ゾンビドラゴンのヘルメット	#
+
+item.dragonmounts:aether_dragonscale_chestplate.name=エーテルドラゴンのチェストプレート	#
+item.dragonmounts:dark_dragonscale_chestplate.name=ダークドラゴンのチェストプレート	#
+item.dragonmounts:enchant_dragonscale_chestplate.name=エンチャンテッドドラゴンのチェストプレート	#
+item.dragonmounts:ender_dragonscale_chestplate.name=エンダードラゴンのチェストプレート	#
+item.dragonmounts:fire_dragonscale_chestplate.name=ファイヤドラゴンのチェストプレート	#
+item.dragonmounts:forest_dragonscale_chestplate.name=フォレストドラゴンのチェストプレート	#
+item.dragonmounts:ice_dragonscale_chestplate.name=アイスドラゴンのチェストプレート	#
+item.dragonmounts:moonlight_dragonscale_chestplate.name=ムーンライトドラゴンのチェストプレート	#
+item.dragonmounts:nether_dragonscale_chestplate.name=ネザードラゴンのチェストプレート	#
+item.dragonmounts:storm_dragonscale_chestplate.name=ストームドラゴンのチェストプレート	#
+item.dragonmounts:sunlight_dragonscale_chestplate.name=サンライトドラゴンのチェストプレート	#
+item.dragonmounts:terra_dragonscale_chestplate.name=テラドラゴンのチェストプレート	#
+item.dragonmounts:water_dragonscale_chestplate.name=ウォータードラゴンのチェストプレート	#
+item.dragonmounts:zombie_dragonscale_chestplate.name=ゾンビドラゴンのチェストプレート	#
+
+item.dragonmounts:aether_dragonscale_leggings.name=エーテルドラゴンのレギンス	#
+item.dragonmounts:dark_dragonscale_leggings.name=ダークドラゴンのレギンス	#
+item.dragonmounts:enchant_dragonscale_leggings.name=エンチャンテッドドラゴンのレギンス	#
+item.dragonmounts:ender_dragonscale_leggings.name=エンダードラゴンのレギンス 	#
+item.dragonmounts:fire_dragonscale_leggings.name=ファイヤドラゴンのレギンス	#
+item.dragonmounts:forest_dragonscale_leggings.name=フォレストドラゴンのレギンス	#
+item.dragonmounts:ice_dragonscale_leggings.name=アイスドラゴンのレギンス	#
+item.dragonmounts:moonlight_dragonscale_leggings.name=ムーンライトドラゴンのレギンス	#
+item.dragonmounts:nether_dragonscale_leggings.name=ネザードラゴンのレギンス	#
+item.dragonmounts:storm_dragonscale_leggings.name=ストームドラゴンのレギンス	#
+item.dragonmounts:sunlight_dragonscale_leggings.name=サンライトドラゴンのレギンス	#
+item.dragonmounts:terra_dragonscale_leggings.name=テラドラゴンのレギンス	#
+item.dragonmounts:water_dragonscale_leggings.name=ウォータードラゴンのレギンス	#
+item.dragonmounts:zombie_dragonscale_leggings.name=ゾンビドラゴンのレギンス	#
+
+item.dragonmounts:dark_dragonscale_boots.name=ダークドラゴンのブーツ	#
+item.dragonmounts:aether_dragonscale_boots.name=エーテルドラゴンのブーツ	#
+item.dragonmounts:enchant_dragonscale_boots.name=エンチャンテッドドラゴンのブーツ	#
+item.dragonmounts:ender_dragonscale_boots.name=エンダードラゴンのブーツ #
+item.dragonmounts:fire_dragonscale_boots.name=ファイヤドラゴンのブーツ	#
+item.dragonmounts:forest_dragonscale_boots.name=フォレストドラゴンのブーツ	#
+item.dragonmounts:ice_dragonscale_boots.name=アイスドラゴンのブーツ	#
+item.dragonmounts:moonlight_dragonscale_boots.name=ムーンライトドラゴンのブーツ	#
+item.dragonmounts:nether_dragonscale_boots.name=ネザードラゴンのブーツ	#
+item.dragonmounts:storm_dragonscale_boots.name=ストームドラゴンのブーツ	#
+item.dragonmounts:sunlight_dragonscale_boots.name=サンライトドラゴンのブーツ	#
+item.dragonmounts:terra_dragonscale_boots.name=テラドラゴンのブーツ	#
+item.dragonmounts:water_dragonscale_boots.name=ウォータードラゴンのブーツ	#
+item.dragonmounts:zombie_dragonscale_boots.name=ゾンビドラゴンのブーツ	#
+
+item.spawn_egg.entity.dm2:ender_dragon.name=エンダードラゴンのスポーン エッグ	#
+item.spawn_egg.entity.dm2:aether_dragon.name=エーテルドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:water_dragon.name=ウォータードラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:ice_dragon.name=アイスドラゴン (M) のスポン エッグ	#
+item.spawn_egg.entity.dm2:forest_dragon.name=フォレストドラゴン (T) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:fire_dragon.name=ファイヤドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:nether_dragon.name=ネザードラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:skeleton_dragon.name=スケルトンドラゴンのスポーン エッグ	#
+item.spawn_egg.entity.dm2:enchant_dragon.name=エンチャンテッドドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:moonlight_dragon.name=ムーンライトドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:storm_dragon.name=ストームドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:sunlight_dragon.name=サンライトドラゴン (M) のスポーンエッグ	#
+item.spawn_egg.entity.dm2:terra_dragon.name=テラドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:wither_dragon.name=ウィザードラゴンのスポーン エッグ	#
+item.spawn_egg.entity.dm2:zombie_dragon.name=ゾンビドラゴンのスポーン エッグ	#
+
+item.spawn_egg.entity.dm2:ender_dragon_egg.name=エンダードラゴンのスポーン エッグ	#
+item.spawn_egg.entity.dm2:aether_dragon_egg.name=エーテルドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:water_dragon_egg.name=ウォータードラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:ice_dragon_egg.name=アイスドラゴン Spawn (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:forest_dragon_egg.name=フォレストドラゴン (T) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:fire_dragon_egg.name=ファイヤドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:nether_dragon_egg.name=ネザードラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:skeleton_dragon_egg.name=スケルトンドラゴンのスポーン エッグ	#
+item.spawn_egg.entity.dm2:enchant_dragon_egg.name=エンチャンテッドドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:moonlight_dragon_egg.name=ムーンライトドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:storm_dragon_egg.name=ストームドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:sunlight_dragon_egg.name=サンライトドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:terra_dragon_egg.name=テラドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:wither_dragon_egg.name=ウィザードラゴンのスポーン エッグ	#
+item.spawn_egg.entity.dm2:zombie_dragon_egg.name=ゾンビドラゴンのスポーン エッグ	#
+
+
+
+item.dragonmounts:ender_dragon_egg_spawn.name=エンダードラゴンの卵
+item.dragonmounts:aether_dragon_egg_spawn.name=エーテルドラゴンの卵	#
+item.dragonmounts:water_dragon_egg_spawn.name=ウォータードラゴンの卵	#
+item.dragonmounts:ice_dragon_egg_spawn.name=アイスドラゴンの卵	#
+item.dragonmounts:forest_dragon_egg_spawn.name=フォレストドラゴンの卵	#
+item.dragonmounts:fire_dragon_egg_spawn.name=ファイヤドラゴンの卵	#
+item.dragonmounts:nether_dragon_egg_spawn.name=ネザードラゴンの卵	#
+item.dragonmounts:skeleton_dragon_egg_spawn.name=スケルトンドラゴンの卵	#
+item.dragonmounts:enchant_dragon_egg_spawn.name=エンチャンテッドドラゴンの卵	#
+item.dragonmounts:moonlight_dragon_egg_spawn.name=ムーンライトドラゴンの卵	#
+item.dragonmounts:storm_dragon_egg_spawn.name=ストームドラゴンの卵	#
+item.dragonmounts:sunlight_dragon_egg_spawn.name=サンライトドラゴンの卵	#
+item.dragonmounts:terra_dragon_egg_spawn.name=テラドラゴンの卵	#
+item.dragonmounts:wither_dragon_egg_spawn.name=ウィザードラゴンの卵	#
+item.dragonmounts:zombie_dragon_egg_spawn.name=ゾンビドラゴンの卵	#
+
+tile.dragonmounts:dragon_nest_block.name=ネストブロック	#
+tile.dragonmounts:aether_dragon_egg.name=エーテルドラゴンの卵	#
+tile.dragonmounts:dark_dragon_egg.name=ダークドラゴンの卵	#
+tile.dragonmounts:enchant_dragon_egg.name=エンチャンテッドドラゴンの卵	#
+tile.dragonmounts:ender_dragon_egg.name=エンダードラゴンの卵 #
+tile.dragonmounts:fire_dragon_egg.name=ファイヤドラゴンの卵	#
+tile.dragonmounts:forest_dragon_egg.name=フォレストドラゴンの卵	#
+tile.dragonmounts:ice_dragon_egg.name=アイスドラゴンの卵	#
+tile.dragonmounts:moonlight_dragon_egg.name=ムーンライトドラゴンの卵	#
+tile.dragonmounts:nether_dragon_egg.name=ネザードラゴンの卵	#
+tile.dragonmounts:skeleton_dragon_egg.name=スケルトンドラゴンの卵	#
+tile.dragonmounts:storm_dragon_egg.name=ストームドラゴンの卵	#
+tile.dragonmounts:sunlight_dragon_egg.name=サンライトドラゴンの卵	#
+tile.dragonmounts:terra_dragon_egg.name=テラドラゴンの卵	#
+tile.dragonmounts:water_dragon_egg.name=ウォータードラゴンの卵	#
+tile.dragonmounts:wither_dragon_egg.name=ウィザードラゴンの卵	#
+tile.dragonmounts:zombie_dragon_egg.name=ゾンビドラゴンの卵	#
+
+
+action.interact.hatch_egg=孵化	#
+action.interact.fasthatching.dragonmounts=孵化時間を早めます	#
+action.interact.chested.dragonmounts=装備	#
+action.interact.breath.dragonmounts=呼び寄せる	#
+action.interact.ride.dragonmounts=乗る	#
+action.interact.speed.dragonmounts=上昇	#
+action.interact.shear.dragonmounts=剪断	#
+action.interact.transform_block_dragon_eggs.dragonmounts=ブロック化	#
+
+bj1:itemGroup.name.shield_items=ドラゴンの盾
+bj:itemGroup.name.bow_items=ドラゴンの弓
+bj5:itemGroup.name.whistle_items=ドラゴンの笛
+dm:itemGroup.name.dragon_eggs=ドラゴンの卵
+dm:itemGroup.name.dragon_scale=ドラゴンの鱗ブロック
+dm:itemGroup.name.scales=ドラゴンの鱗
+item.dragonmounts:dragonarmor_diamond=ダイヤモンドのドラゴンアーマー 
+item.dragonmounts:dragonarmor_gold=金のドラゴンアーマー 
+item.dragonmounts:dragonarmor_iron=鉄のドラゴンアーマー 
+item.dragonmounts:dragonarmor_emerald=エメラルドのドラゴンアーマー 
+item.dragonmounts:raw_dragon_meat.name=生のドラゴン肉
+item.dragonmounts:raw_dragon_meat=生のドラゴン肉
+item.dragonmounts:cooked_dragon_meat.name=焼きドラゴン肉
+item.dragonmounts:cooked_dragon_meat=焼きドラゴン肉
+item.spawn_egg.entity.dragonmounts:dark_dragon.name=ダークドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:dark_dragon.name=ダークドラゴン (M) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_water_dragon.name=ウォータードラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_aether_dragon.name=エーテルドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_sunlight_dragon.name=サンライトドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_moonlight_dragon.name=ムーンライトドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_enchant_dragon.name=エンチャンテッドドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:m_ender_dragon.name=エンダードラゴンのスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_terra_dragon.name=テラドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_dark_dragon.name=ダークドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_storm_dragon.name=ストームドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_forest_dragon.name=フォレストドラゴン (W) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_fire_dragon.name=ファイヤドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:r_fire_dragon.name=ファイヤドラゴン (R) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_ice_dragon.name=アイスドラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:f_nether_dragon.name=ネザードラゴン (F) のスポーン エッグ	#
+item.spawn_egg.entity.dm2:wither_dragon.name=ウィザードラゴンのスポーン エッグ	#
+
+
+
+
+
+tile.dragonmounts:aether_scale.name=エーテルドラゴンの鱗ブロック
+tile.dragonmounts:aether_scale=エーテルドラゴンの鱗ブロック
+
+tile.dragonmounts:nether_scale.name=ネザードラゴンの鱗ブロック
+tile.dragonmounts:nether_scale=ネザードラゴンの鱗ブロック
+
+tile.dragonmounts:enchant_scale.name=エンチャンテッドドラゴンの鱗ブロック
+tile.dragonmounts:enchant_scale=エンチャンテッドドラゴンの鱗ブロック
+
+tile.dragonmounts:ender_scale.name=エンダードラゴン ock
+tile.dragonmounts:ender_scale=エンダードラゴン ock
+
+tile.dragonmounts:fire_scale.name=ファイヤドラゴンの鱗ブロック
+tile.dragonmounts:fire_scale=ファイヤドラゴンの鱗ブロック
+
+tile.dragonmounts:forest_scale.name=フォレストドラゴンの鱗ブロック
+tile.dragonmounts:forest_scale=フォレストドラゴンの鱗ブロック
+
+tile.dragonmounts:moonlight_scale.name=ムーンライトドラゴンの鱗ブロック
+tile.dragonmounts:moonlight_scale=ムーンライトドラゴンの鱗ブロック
+
+tile.dragonmounts:sunlight_scale.name=サンライトドラゴンの鱗ブロック
+tile.dragonmounts:sunlight_scale=サンライトドラゴンの鱗ブロック
+
+tile.dragonmounts:dark_scale.name=ダークドラゴンの鱗ブロック
+tile.dragonmounts:dark_scale=ダークドラゴンの鱗ブロック
+
+tile.dragonmounts:storm_scale.name=ストームドラゴンの鱗ブロック
+tile.dragonmounts:storm_scale=ストームドラゴンの鱗ブロック
+
+tile.dragonmounts:ice_scale.name=アイスドラゴンの鱗ブロック
+tile.dragonmounts:ice_scale=アイスドラゴンの鱗ブロック
+
+tile.dragonmounts:water_scale.name=ウォータードラゴンの鱗ブロック
+tile.dragonmounts:water_scale=ウォータードラゴンの鱗ブロック
+
+tile.dragonmounts:zombie_scale.name=ゾンビドラゴンの鱗ブロック
+tile.dragonmounts:zombie_scale=zombie_dragon Dragonの鱗ブロック
+
+tile.dragonmounts:terra_scale.name=テラドラゴンの鱗ブロック
+tile.dragonmounts:Terra=テラドラゴンの鱗ブロック
+
+
+
+tooltip.dragonmounts.ender=エンダー
+tooltip.dragonmounts.dark=ダーク
+tooltip.dragonmounts.aether=エーテル
+tooltip.dragonmounts.water=ウォーター
+tooltip.dragonmounts.ice=アイス
+tooltip.dragonmounts.forest=フォレスト
+tooltip.dragonmounts.fire=ファイヤ
+tooltip.dragonmounts.fire2=ファイヤ２
+tooltip.dragonmounts.nether=ネザー
+tooltip.dragonmounts.nether2=ネザー２
+tooltip.dragonmounts.skeleton=スケルトン
+tooltip.dragonmounts.enchant=エンチャンテッド
+tooltip.dragonmounts.moonlight=ムーンライト
+tooltip.dragonmounts.moonlight2=ムーンライト２
+tooltip.dragonmounts.storm=ストーム
+tooltip.dragonmounts.sunlight=サンライト
+tooltip.dragonmounts.sunlight2=サンライト２
+tooltip.dragonmounts.terra=テラ
+tooltip.dragonmounts.terra2=テラ２
+tooltip.dragonmounts.wither=ウィザー
+tooltip.dragonmounts.zombie=ゾンビ
+
+
+item.dragonmounts.shield=ドラゴンの鱗の盾
+item.dragonmounts.bow=ドラゴンの鱗の弓
+item.dragonmounts.dragon_hoe=ドラゴンの鱗のクワ
+item.dragonmounts.dragon_axe=ドラゴンの鱗の斧
+item.dragonmounts.dragon_shovel=ドラゴンの鱗のシャベル
+item.dragonmounts.dragon_pickaxe=ドラゴンの鱗のツルハシ
+item.dragonmounts.dragon_sword=ドラゴンの鱗の剣 
+
+action.hint.exit.unknown=降りる時はここをタップしてください	#
+action.hint.exit.dm2:ender_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:aether_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:water_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:ice_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:forest_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:fire_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:nether_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:skeleton_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:enchant_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:moonlight_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:storm_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:sunlight_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:terra_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:wither_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:zombie_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:dark_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_nether_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_water_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_dark_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_enchant_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:m_ender_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_fire_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:r_fire_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_ice_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_forest_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_storm_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_sunlight_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_moonlignht_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_terra_dragon=降りる時はここをタップしてください	#
+action.hint.exit.dm2:f_aether_dragon=降りる時はここをタップしてください	#
+
+#whistle
+
+item.dragonmounts.whistle=ドラゴンの笛
+
+tip.dragonmounts.default=笛
+tip.dragonmounts.red=赤
+tip.dragonmounts.orange=オレンジ色
+tip.dragonmounts.magenta=赤紫色
+tip.dragonmounts.lightblue=水色
+tip.dragonmounts.yellow=黄色
+tip.dragonmounts.lime=黄緑色
+tip.dragonmounts.pink=ピンク色
+tip.dragonmounts.gray=灰色
+tip.dragonmounts.lightgray=薄灰色
+tip.dragonmounts.cyan=青緑色
+tip.dragonmounts.purple=紫色
+tip.dragonmounts.blue=青色
+tip.dragonmounts.brown=茶色
+tip.dragonmounts.green=緑色
+tip.dragonmounts.red=赤色
+tip.dragonmounts.black=黒色
+
+#Dragon Wand
+
+item.dragon.wand=ドラゴンの杖
+tip.dragon.wand=(エメラルド)火炎ブレスを吐く
+tip.dragon.wand1=(ダイヤモンド)火球を撃つ
+tip.dragon.wand2=(ルビー)噛みつき攻撃
+
+
+#Amulet
+item.dragon.amulet=ドラゴンのお守り
+
+item.spawn_egg.entity.dm2:spawn_storm.name= ストームドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_sunlight.name=サンライトドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_moonlight.name=ムーンライトドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_enchant.name=エンチャントドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_ender.name=エンダードラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_water.name=ウォータードラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_ice.name=アイスドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_fire.name=ファイヤドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_forest.name=フォレストドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_nether.name=ネザードラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_aether.name=エーテルドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_terra.name=テラドラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_wither.name=ウィザードラゴンのスポーン エッグ
+item.spawn_egg.entity.dm2:spawn_dark.name=ダークドラゴンのスポーン エッグ 
