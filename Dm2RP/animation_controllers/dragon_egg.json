@@ -1,0 +1,32 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.dragon_egg.action": {
+            "initial_state": "dragon_egg_hatching",
+            "states": {
+                "dragon_egg_hatching": {
+                    "animations": [
+                        "dragon_egg_hatching"
+                    ],
+                    "blend_transition": 0.08,
+                    "blend_via_shortest_path": true,
+                    "transitions": [
+                        {
+                            "dragon_egg_bs": "query.is_transforming"
+                        }
+                    ]
+                },
+                "dragon_egg_bs": {
+                    "animations": [
+                        "dragon_egg_bs"
+                    ],
+                    "transitions": [
+                        {
+                            "dragon_egg_hatching": "!query.is_transforming"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

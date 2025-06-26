@@ -1,0 +1,41 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.weapons.bow_and_arrow": {
+      "loop": true,
+      "bones": {
+        "leftArm": {
+          "rotation": [
+            "!v.is_first_person ? (query.target_x_rotation - 90.0 - math.sin(query.life_time * 76.8) * 2.865 - this) : 0",
+            "!v.is_first_person ? (query.target_y_rotation + 28.65) : 0",
+            "!v.is_first_person ? (-(math.cos(query.life_time * 103.2) * 2.865) - 2.865) : 0"
+          ]
+        },
+        "rightArm": {
+          "rotation": [
+            "!v.is_first_person ? (query.target_x_rotation - 90.0 + math.sin(query.life_time * 76.8) * 2.865 - this) : 0",
+            "!v.is_first_person ? (query.target_y_rotation - 5.73) : 0",
+            "!v.is_first_person ? ((math.cos(query.life_time * 103.2) * 2.865) + 2.865) : 0"
+          ]
+        }
+      }
+    },
+    "animation.player.bow_custom.first_person": {
+      "loop": true,
+      "bones": {
+        "rightitem": {
+          "rotation": [ "c.is_first_person ? 30 : 0", "c.is_first_person ? -120 : 0", "c.is_first_person ? -60 : 0" ],
+          "position": [ " c.is_first_person ? -6 : 0", "c.is_first_person ? -5 : 0", "c.is_first_person ? -2 : 0" ]
+        }
+      }
+    },
+    "animation.player.bow_custom": {
+      "loop": true,
+      "bones": {
+        "rightitem": {
+          "position": [ 0.5, -2, 0 ]
+        }
+      }
+    }
+  }
+}
