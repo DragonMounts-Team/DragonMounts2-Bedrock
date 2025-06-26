@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:dragonarmor_iron"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X #",
+			" XX",
+			"## "
+		],
+		"key": {
+			"#": {
+				"item": "minecraft:iron_ingot"
+			},
+			"X": {
+				"item": "minecraft:iron_block"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:dragonarmor_iron"
+		}
+	}
+}

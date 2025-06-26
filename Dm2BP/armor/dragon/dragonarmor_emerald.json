@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:dragonarmor_emerald"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X #",
+			" XX",
+			"## "
+		],
+		"key": {
+			"#": {
+				"item": "minecraft:emerald"
+			},
+			"X": {
+				"item": "minecraft:emerald_block"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:dragonarmor_emerald"
+		}
+	}
+}
