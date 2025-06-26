@@ -1,0 +1,258 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts:dark_dragon_egg",
+      "is_spawnable": false,
+      "is_summonable": true,
+                "scripts": {
+        "animate": [
+          "eggs_default_ani"
+          ]
+          },
+        "animations": {
+        "eggs_default_ani": "controller.animation.eggs.default"
+                }
+    },
+    "component_groups": {
+      "dragonmounts:cb0": {
+        "minecraft:addrider": {
+          "entity_type": "dragonmounts:dm",
+          "spawn_event": "dragonmounts:cb_0625_00625"
+        }
+      },
+      "dragonmounts:cb1": {
+        "minecraft:addrider": {
+          "entity_type": "dragonmounts:dm",
+          "spawn_event": "dragonmounts:cb_075_0125"
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 0.1,
+          "time_down_event": {
+            "event": "dragonmounts:cb0",
+            "target": "self"
+          }
+        }
+      },
+      "dragonmounts:cb2": {
+        "minecraft:addrider": {
+          "entity_type": "dragonmounts:dm",
+          "spawn_event": "dragonmounts:cb_0875_03125"
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 0.1,
+          "time_down_event": {
+            "event": "dragonmounts:cb1",
+            "target": "self"
+          }
+        }
+      },
+      "dragonmounts:cb3": {
+        "minecraft:addrider": {
+          "entity_type": "dragonmounts:dm",
+          "spawn_event": "dragonmounts:cb_075_01875"
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 0.1,
+          "time_down_event": {
+            "event": "dragonmounts:cb2",
+            "target": "self"
+          }
+        }
+      },
+      "dragonmounts:cb4": {
+        "minecraft:addrider": {
+          "entity_type": "dragonmounts:dm",
+          "spawn_event": "dragonmounts:cb_0625_0125"
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 0.1,
+          "time_down_event": {
+            "event": "dragonmounts:cb3",
+            "target": "self"
+          }
+        }
+      },
+      "dragonmounts:cb5": {
+        "minecraft:addrider": {
+          "entity_type": "dragonmounts:dm",
+          "spawn_event": "dragonmounts:cb_0375_0125"
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 0.1,
+          "time_down_event": {
+            "event": "dragonmounts:cb4",
+            "target": "self"
+          }
+        }
+      },
+      "dragonmounts:cb6": {
+        "minecraft:addrider": {
+          "entity_type": "dragonmounts:dm",
+          "spawn_event": "dragonmounts:cb_025_00625"
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 0.1,
+          "time_down_event": {
+            "event": "dragonmounts:cb5",
+            "target": "self"
+          }
+        }
+      },
+      "dragonmounts:dragon_hatched": {
+        "minecraft:is_shaking": {},
+        "minecraft:transformation": {
+          "into": "dm2:dark_dragon",
+          "begin_transform_sound": "block.turtle_egg.crack",
+          "transformation_sound": "block.turtle_egg.crack",
+          "delay": { "value": 60 }
+        }
+      },
+      "dragonmounts:dragon_hatched_1": {
+        "minecraft:is_shaking": {},
+        "minecraft:transformation": {
+          "into": "dm2:f_dark_dragon",
+          "begin_transform_sound": "block.turtle_egg.crack",
+          "transformation_sound": "block.turtle_egg.crack",
+          "delay": { "value": 60 }
+        }
+      }
+    },
+    "components": {
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+             "minecraft:interact": {
+				"interactions": [
+					{
+						"cooldown": 0.0,
+						"use_item": false,
+						"play_sounds": "unfect",
+						"interact_text": "action.interact.transform_block_dragon_eggs.dragonmounts",
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{
+										"test": "is_sneaking",
+										"subject": "player",
+										"operator": "equals",
+										"value": true
+									}
+								]
+							},
+							"event": "dragonmounts:back_to_block",
+							"target": "self"
+						}
+					}
+				]
+			},
+            "minecraft:damage_sensor": {
+  "triggers": [
+    {
+      "cause": "lava",
+      "deals_damage": false
+    },
+    {
+      "cause": "fire",
+      "deals_damage": false
+    },
+    {
+      "cause": "fire_tick",
+      "deals_damage": false
+    }
+  ]
+},
+      "minecraft:loot": {
+  "table": "loot_tables/eggs/dark.json"
+},
+      "minecraft:knockback_resistance": {
+  "value": 1.0
+},
+      "minecraft:collision_box": {
+        "width": 0.8,
+        "height": 1.0
+      },
+      "minecraft:breathable": {
+        "total_supply": 240,
+        "suffocate_time": 0,
+        "breathes_lava": true,
+        "breathes_solids": true,
+        "generates_bubbles": false
+      },
+      "minecraft:movement": {
+        "value": 0.0
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:physics": {
+        "has_gravity": true
+      },
+      "minecraft:type_family": {
+        "family": [
+          "player",
+          "dragon",
+          "dragon_egg",
+          "dragonmounts",
+          "dark_dragon_egg"
+        ]
+      },
+      "minecraft:ageable": {
+        "duration": 1200,
+        "feed_items": [
+          {
+            "item": "dm:item",
+            "growth": 0.03125
+          }
+        ],
+        "grow_up": {
+          "event": "dragonmounts:dark_dragon_egg_hatched",
+          "target": "self"
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "dragonmounts:cb6"
+          ]
+        }
+      },
+      "dragonmounts:cb0": { "add": { "component_groups": ["dragonmounts:cb0"] } },
+      "dragonmounts:cb1": { "add": { "component_groups": ["dragonmounts:cb1"] } },
+      "dragonmounts:cb2": { "add": { "component_groups": ["dragonmounts:cb2"] } },
+      "dragonmounts:cb3": { "add": { "component_groups": ["dragonmounts:cb3"] } },
+      "dragonmounts:cb4": { "add": { "component_groups": ["dragonmounts:cb4"] } },
+      "dragonmounts:cb5": { "add": { "component_groups": ["dragonmounts:cb5"] } },
+      "dragonmounts:cb6": { "add": { "component_groups": ["dragonmounts:cb6"] } },
+      "dragonmounts:back_to_block": {
+        "queue_command": {
+          "command": [
+            "execute @e[type=dragonmounts:dark_dragon_egg,r=0.1] ~ ~ ~ function block/dark"
+          ]
+        }
+      },
+      "dragonmounts:dark_dragon_egg_hatched": {
+        "randomize": [
+          {
+            "weight": 1,
+            "add": { "component_groups": ["dragonmounts:dragon_hatched"] }
+          },
+          {
+            "weight": 0,
+            "add": { "component_groups": ["dragonmounts:dragon_hatched_1"] }
+          }
+        ]
+      }
+    }
+  }
+}

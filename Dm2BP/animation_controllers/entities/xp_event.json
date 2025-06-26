@@ -1,0 +1,35 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "dragonmounts:xp_event",
+			"is_spawnable": false,
+			"is_summonable": false,
+			"is_experimental": false
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"width": 0.25,
+				"height": 0.25
+			},
+			"minecraft:projectile": {
+				"on_hit": {
+					"grant_xp": {
+						"minXP": 25500,
+						"maxXP": 25500
+					},
+					"remove_on_hit": {}
+				},
+				"power": 0.0,
+				"gravity": 0.0,
+				"inertia": 1,
+				"liquid_inertia": 1
+			},
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			}
+		}
+	}
+}
