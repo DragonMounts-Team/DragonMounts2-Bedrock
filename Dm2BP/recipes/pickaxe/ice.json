@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:ice_dragon_pickaxe"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"XXX",
+			" # ",
+			" # "
+		],
+		"key": {
+			"X": {
+				"item": "dragonmounts:ice_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:ice_dragon_pickaxe"
+		}
+	}
+}

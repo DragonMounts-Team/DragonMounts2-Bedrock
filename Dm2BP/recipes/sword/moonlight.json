@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:moonlight_dragon_sword"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X",
+			"X",
+			"#"
+		],
+		"key": {
+			"X": {
+				"item": "dragonmounts:moonlight_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:moonlight_dragon_sword"
+		}
+	}
+}

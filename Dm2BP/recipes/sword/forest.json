@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:forest_dragon_sword"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X",
+			"X",
+			"#"
+		],
+		"key": {
+			"X": {
+				"item": "dragonmounts:forest_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:forest_dragon_sword"
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmounts:water_dragon_shovel"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X",
+			"#",
+			"#"
+		],
+		"key": {
+			"X": {
+				"item": "dragonmounts:water_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmounts:water_dragon_shovel"
+		}
+	}
+}
