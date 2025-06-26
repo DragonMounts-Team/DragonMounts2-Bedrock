@@ -1,0 +1,27 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon_is_sheared": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"sheared": "query.is_sheared"
+						}
+					]
+				},
+				"sheared": {
+					"transitions": [
+						{
+							"default": "!query.is_sheared"
+						}
+					],
+					"on_entry": [
+						// "/effect @s instant_damage 1 4 true"
+						"/summon dragonmounts:dragon_damage"
+					]
+				}
+			}
+		}
+	}
+}
