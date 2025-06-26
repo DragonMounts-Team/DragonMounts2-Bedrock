@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "ice_scale_1df638a5"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "AAA",
+      "AAA",
+      "AAA"
+    ],
+    "key": {
+      "A": {
+        "item": "dragonmounts:ice_dragonscales",
+        "data": 0
+      }
+    },
+    "result": {
+      "item": "dragonmounts:ice_scale",
+      "count": 1
+    }
+  }
+}

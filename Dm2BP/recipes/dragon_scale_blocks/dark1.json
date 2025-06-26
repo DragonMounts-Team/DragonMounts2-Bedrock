@@ -1,0 +1,21 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "block:dark"
+    },
+    "tags": [ "crafting_table" ],
+  "pattern": [
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "dragonmounts:dark_scale"
+    }
+  },
+    "result": {
+      "item": "dragonmounts:dark_dragonscales",
+            "count": 9
+    }
+  }
+}

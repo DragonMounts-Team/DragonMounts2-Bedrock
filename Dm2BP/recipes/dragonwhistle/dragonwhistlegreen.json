@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "recipes_fdc53be1"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:green_dye",
+        "data": 0
+      },
+      {
+        "item": "bj:whistle",
+        "data": 0
+      }
+    ],
+    "result": {
+      "item": "bj:whistle_green",
+      "count": 1
+    }
+  }
+}

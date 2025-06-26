@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "bj:whistle"
+    },
+    "tags": [ "crafting_table" ],
+  "pattern": [
+    "P#",
+    "#X"
+	
+  ], 
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+     "item": "minecraft:ender_pearl"
+	},
+    "X": {
+     "item": "minecraft:string"
+	}
+  },
+    "result": {
+      "item": "bj:whistle"
+    }
+  }
+}

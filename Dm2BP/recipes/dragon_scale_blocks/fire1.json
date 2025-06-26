@@ -1,0 +1,21 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "block:fire"
+    },
+    "tags": [ "crafting_table" ],
+  "pattern": [
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "dragonmounts:fire_scale"
+    }
+  },
+    "result": {
+      "item": "dragonmounts:fire_dragonscales",
+            "count": 9
+    }
+  }
+}
