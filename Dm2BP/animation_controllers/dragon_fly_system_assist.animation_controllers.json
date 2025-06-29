@@ -1,0 +1,30 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon_fly_system_assist": {
+			"initial_state": "none",
+			"states": {
+				"none": {
+					"transitions": [
+						{
+							"up": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return t.launch && t.item != 'blaze_rod' && t.item != 'dragon_breath';"
+						}
+					],
+					"on_entry": [
+						"/replaceitem entity @s slot.weapon.mainhand 0 air 1"
+					]
+				},
+				"up": {
+					"transitions": [
+						{
+							"none": "t.launch=0;t.item='';for_each(t.rider,q.get_riders,{t.launch=t.rider->q.is_jumping;t.item=t.rider->q.get_equipped_item_name});return !t.launch && t.item != 'blaze_rod' && t.item != 'dragon_breath';"
+						}
+					],
+					"on_entry": [
+						"/replaceitem entity @s slot.weapon.mainhand 0 feather 1"
+					]
+				}
+			}
+		}
+	}
+}

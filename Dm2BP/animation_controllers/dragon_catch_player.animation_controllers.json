@@ -1,0 +1,28 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon.catch_player": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"catch": "!query.has_rider && !query.is_sitting"
+						}
+					]
+				},
+				"catch": {
+					"transitions": [
+						{
+							"default": "!query.has_rider && !query.is_sitting"
+						}
+					],
+					"on_entry": [
+						"/execute @p[r=64] ~ ~ ~ detect ~ ~-12 ~ air 0 execute @s ~ ~ ~ detect ~ ~-11 ~ air 0 execute @s ~ ~ ~ detect ~ ~-10 ~ air 0 execute @s ~ ~ ~ detect ~ ~-9 ~ air 0 execute @s ~ ~ ~ detect ~ ~-8 ~ air 0 execute @s ~ ~ ~ detect ~ ~-7 ~ air 0 execute @s ~ ~ ~ detect ~ ~-6 ~ air 0 execute @s ~ ~ ~ detect ~ ~-5 ~ air 0 execute @s ~ ~ ~ detect ~ ~-4 ~ air 0 execute @s ~ ~ ~ detect ~ ~-3 ~ air 0 execute @s ~ ~ ~ detect ~ ~-2 ~ air 0 execute @s ~ ~ ~ detect ~ ~-1 ~ air 0 execute @s ~ ~ ~ detect ~ ~ ~ air 0 tag @s add can_catch",
+						"/execute @p[r=64] ~ ~ ~ detect ~ ~-12 ~ air 0 execute @s ~ ~ ~ detect ~ ~-11 ~ air 0 execute @s ~ ~ ~ detect ~ ~-10 ~ air 0 execute @s ~ ~ ~ detect ~ ~-9 ~ air 0 execute @s ~ ~ ~ detect ~ ~-8 ~ air 0 execute @s ~ ~ ~ detect ~ ~-7 ~ air 0 execute @s ~ ~ ~ detect ~ ~-6 ~ air 0 execute @s ~ ~ ~ detect ~ ~-5 ~ air 0 execute @s ~ ~ ~ detect ~ ~-4 ~ air 0 execute @s ~ ~ ~ detect ~ ~-3 ~ air 0 execute @s ~ ~ ~ detect ~ ~-2 ~ air 0 execute @s ~ ~ ~ detect ~ ~-1 ~ air 0 execute @s ~ ~ ~ detect ~ ~ ~ air 0 tag @s remove cannot_catch",
+						"/execute @p[r=64] ~ ~ ~ detect ~ ~-12 ~ air 0 execute @s ~ ~ ~ detect ~ ~-11 ~ air 0 execute @s ~ ~ ~ detect ~ ~-10 ~ air 0 execute @s ~ ~ ~ detect ~ ~-9 ~ air 0 execute @s ~ ~ ~ detect ~ ~-8 ~ air 0 execute @s ~ ~ ~ detect ~ ~-7 ~ air 0 execute @s ~ ~ ~ detect ~ ~-6 ~ air 0 execute @s ~ ~ ~ detect ~ ~-5 ~ air 0 execute @s ~ ~ ~ detect ~ ~-4 ~ air 0 execute @s ~ ~ ~ detect ~ ~-3 ~ air 0 execute @s ~ ~ ~ detect ~ ~-2 ~ air 0 execute @s ~ ~ ~ detect ~ ~-1 ~ air 0 execute @s ~ ~ ~ detect ~ ~ ~ air 0 ride @s[m=!c] start_riding @e[tag=dragonmounts,c=1] teleport_ride"
+					]
+				}
+			}
+		}
+	}
+}

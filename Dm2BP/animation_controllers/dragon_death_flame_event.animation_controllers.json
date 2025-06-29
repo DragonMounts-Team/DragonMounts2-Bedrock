@@ -1,0 +1,21 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon_death_flame_event": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"doing": "(1.0)"
+						}
+					]
+				},
+				"doing": {
+					"on_entry": [
+						"@s dragonmounts:frame_a"
+					]
+				}
+			}
+		}
+	}
+}

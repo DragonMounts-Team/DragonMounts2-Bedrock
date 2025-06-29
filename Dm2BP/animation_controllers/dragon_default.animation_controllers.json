@@ -1,0 +1,30 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon.default": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"default_back": "(1)"
+						}
+					],
+					"on_entry": [
+						"/tag @s add dm2",
+						"/function dragon",
+						"/execute @s ~ ~ ~ detect ~ ~-6 ~ air 0 execute @s ~ ~ ~ detect ~ ~-5 ~ air 0 execute @s ~ ~ ~ detect ~ ~-4 ~ air 0 execute @s ~ ~ ~ detect ~ ~-3 ~ air 0 execute @s ~ ~ ~ detect ~ ~-2 ~ air 0 execute @s ~ ~ ~ detect ~ ~-1 ~ air 0 execute @s ~ ~ ~ detect ~ ~ ~ air 0 tag @s add flying",
+						"@s dm2:dragon_hasarmor",
+						"@s dm2:dragon_flying_b"
+					]
+				},
+				"default_back": {
+					"transitions": [
+						{
+							"default": "(1)"
+						}
+					]
+				}
+			}
+		}
+	}
+}

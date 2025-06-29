@@ -1,0 +1,28 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.eggs.default": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"default_back": "(1)"
+						}
+					],
+					"on_entry": [
+						"/function eggdragon",
+						"/function eggstag"
+					]
+				},
+				"default_back": {
+					"transitions": [
+						{
+							"default": "(1)"
+						}
+					]
+				}
+			}
+		}
+	}
+}
+  

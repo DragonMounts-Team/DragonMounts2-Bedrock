@@ -1,0 +1,26 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon_fly_system_stopped": {
+			"states": {
+				"flys": {
+					"transitions": [
+						{
+							"flys_back": "!query.has_rider"
+						}
+					]
+				},
+				"flys_back": {
+					"transitions": [
+						{
+							"flys": "query.has_rider"
+						}
+					],
+					"on_entry": [
+						"/tag @s remove has_rider_liuny"
+					]
+				}
+			}
+		}
+	}
+}
