@@ -391,5 +391,5 @@ item.spawn_egg.entity.dm2:spawn_terra.name=テラドラゴンのスポーン エ
 item.spawn_egg.entity.dm2:spawn_wither.name=ウィザードラゴンのスポーン エッグ
 item.spawn_egg.entity.dm2:spawn_dark.name=ダークドラゴンのスポーン エッグ 
 
-item.dragonmounts:variation_orb.name=Variant Orb
-interaction.text.change_variation=Change Variant
+item.dragonmounts:variation_orb.name=バリアントオーブ
+interaction.text.change_variation=ドラゴンのバリエーションを変更
