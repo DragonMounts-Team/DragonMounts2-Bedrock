@@ -243,7 +243,31 @@
                 "event": "dm2:dragon_sheared",
                 "target": "self"
               }
-            }
+            },
+                     {
+              "on_interact": {
+                "event": "change_variation",
+                "target": "self",
+                "filters": {
+                  "all_of": [
+                    { 
+                      "test": "is_family", 
+                      "subject" : "other", 
+                      "value" :  "player"
+                    },
+                    { 
+                      "test": "has_equipment", 
+                      "domain": "hand", 
+                      "subject": "other", 
+                      "value": "dm2:variation_orb"
+                    }
+                  ]
+                }
+              },
+              "play_sounds": "mob.mountdragon.variant",
+              "interact_text": "interaction.text.change_variation",
+              "use_item": true
+           }
           ]
         }
       },   
@@ -1164,6 +1188,44 @@
           ]
         }
       },
+"change_variation": {
+  "sequence": [
+    {
+      "filters": {
+        "all_of": [
+          {
+            "test": "is_variant",
+            "operator": "==",
+            "value": 0
+          }
+        ]
+      },
+      "add": {
+        "component_groups": [ "dm2:m" ]
+      },
+      "remove": {
+        "component_groups": [ "dm2:f" ]
+      }
+    },
+    {
+      "filters": {
+        "all_of": [
+          {
+            "test": "is_variant",
+            "operator": "==",
+            "value": 1
+          }
+        ]
+      },
+      "add": {
+        "component_groups": [ "dm2:f" ]
+      },
+      "remove": {
+        "component_groups": [ "dm2:m" ]
+      }
+    }
+  ]
+},
       "dm2:dragon_hasarmor": {
         "sequence": [
           {
