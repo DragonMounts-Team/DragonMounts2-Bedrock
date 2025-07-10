@@ -1202,7 +1202,12 @@
       },
       "remove": {
         "component_groups": [ "dm2:f" ]
-      }
+      },
+      "queue_command": {
+       "command": [
+        "playsound mob.mountdragon.variant @a ~ ~ ~ 1 1"
+         ]
+       }
     },
     {
       "filters": {
@@ -1219,7 +1224,12 @@
       },
       "remove": {
         "component_groups": [ "dm2:m" ]
-      }
+      },
+      "queue_command": {
+       "command": [
+        "playsound mob.mountdragon.variant @a ~ ~ ~ 1 1"
+         ]
+       }
     }
   ]
 },
