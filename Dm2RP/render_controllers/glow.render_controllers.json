@@ -6,14 +6,21 @@
       "materials": [ { "*": "Material.dragon" } ],
       "textures": [ "Texture.glow" ],
       "light_color_multiplier": 1.2,
-      "ignore_lighting" : true
+      "ignore_lighting": true
     },
     "controller.render.glow1": {
       "geometry": "Geometry.glow", 
-      "materials": [ { "*": "Material.default" } ],
-      "textures": [ "Texture.glow","Texture.glow","Texture.f_glow"],
+      "materials": [ { "*": "Material.dragon" } ],
+      "textures": [ "Texture.glow" ],
       "light_color_multiplier": 1.2,
-      "ignore_lighting" : true
+      "ignore_lighting": true
+    },
+        "controller.render.glow2": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      "textures": [ "Texture.f_glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
     }
   }
 }
