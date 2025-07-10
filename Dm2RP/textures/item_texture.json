@@ -35,7 +35,9 @@
 		"f_water_dragon_head":{"textures": "textures/items/eggs/water_f"},
 // 其他 
 		"diamond_shears": {
-			"textures": "textures/items/diamond_shears"
+			"textures": "textures/items/diamond_shears"},
+		"variation_orb": {
+			"textures": "textures/items/variation_orb"
 		},
 // 高级武器
 		"double_edged_axe": {
