@@ -34,7 +34,7 @@
 			"minecraft:particle_motion_dynamic": {
 				"linear_acceleration": [
 					0.0,
-					-19.6,
+					-0.8,
 					0
 				],
 				"linear_drag_coefficient": "variable.stuck_time = 2.0; return variable.particle_age < variable.stuck_time ? 277 : 0.01;"
