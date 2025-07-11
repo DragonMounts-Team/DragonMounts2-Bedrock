@@ -391,3 +391,6 @@ item.spawn_egg.entity.dm2:spawn_aether.name=Яйцо Призыва Эфирно
 item.spawn_egg.entity.dm2:spawn_terra.name=Яйцо Призыва Земляного Дракона
 item.spawn_egg.entity.dm2:spawn_wither.name=Яйцо Призыва Дракона Иссушителя
 item.spawn_egg.entity.dm2:spawn_dark.name=Яйцо Призыва Тёмного Дракона
+
+item.dragonmounts:variation_orb.name=Сфера вариации
+interaction.text.change_variation=Изменение вариации
