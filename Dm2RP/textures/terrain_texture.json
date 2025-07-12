@@ -11,55 +11,52 @@
 			"textures": [ "textures/blocks/dragon_nest_block" ]
 		},
 		"aether_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/aether" ]
+			"textures": [ "textures/blocks/eggs/aether" ]
 		},
 			"dark_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/dark" ]
+			"textures": [ "textures/blocks/eggs/dark" ]
 		},
 		"enchant_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/enchant" ]
+			"textures": [ "textures/blocks/eggs/enchant" ]
 		},
 		"ender_dragon_egg": {
 			"textures": [ "textures/blocks/dragon_egg" ]
 		},
 		"fire_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/fire" ]
+			"textures": [ "textures/blocks/eggs/fire" ]
 		},
 		"forest_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/forest" ]
+			"textures": [ "textures/blocks/eggs/forest" ]
 		},
 		"ice_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/ice" ]
+			"textures": [ "textures/blocks/eggs/ice" ]
 		},
 		"moonlight_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/moonlight" ]
+			"textures": [ "textures/blocks/eggs/moonlight" ]
 		},
 		"nether_dragon_egg": {
 			"textures": [ "textures/blocks/magma" ]
 		},
-		"sculk_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/sculk" ]
-		},
 		"skeleton_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/skeleton" ]
+			"textures": [ "textures/blocks/eggs/skeleton" ]
 		},
 		"storm_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/storm" ]
+			"textures": [ "textures/blocks/eggs/storm" ]
 		},
 		"sunlight_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/sunlight" ]
+			"textures": [ "textures/blocks/eggs/sunlight" ]
 		},
 		"terra_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/terra" ]
+			"textures": [ "textures/blocks/eggs/terra" ]
 		},
 		"water_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/water" ]
+			"textures": [ "textures/blocks/eggs/water" ]
 		},
 		"wither_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/wither" ]
+			"textures": [ "textures/blocks/eggs/wither" ]
 		},
 		"zombie_dragon_egg": {
-			"textures": [ "textures/entity/dragon_eggs/zombie" ]
+			"textures": [ "textures/blocks/eggs/zombie" ]
 		},
 		    "dragonmounts_aether_scale": {
       "textures": [
