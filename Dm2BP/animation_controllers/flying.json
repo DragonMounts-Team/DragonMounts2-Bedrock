@@ -1,0 +1,31 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon.fly":{
+    "states":{
+        "default":{
+            "transitions":[
+                {
+                    "jumping":"!query.is_on_ground && query.has_rider && query.is_saddled"
+                }
+            ]
+        },
+        "jumping":{
+            "transitions":[
+                {
+                    "default":"query.is_on_ground || !query.has_rider ||  !query.is_saddled"
+                }
+            ],
+            "on_entry":[
+                "/effect @s slow_falling 20000 4 true",
+                "/effect @s speed 20000 4 true"
+            ],
+            "on_exit":[
+                "/effect @s slow_falling 0 5 true",
+                "/effect @s speed 0 5 true"
+            ]
+        }
+    }
+}
+}
+}
