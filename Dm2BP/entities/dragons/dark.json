@@ -8,29 +8,15 @@
       "is_experimental": false,
       "scripts": {
         "animate": [
-          "dragon_default_ani",
           "dragon_effect",
-          "dragon_fly",
           "dragon_fly_up",
-          "dragon_fly_st",
-          "dragon_fly_conend",
-          "dragon_is_sheared",
-          "dragon_catch_player",
-          "dragon_attack_type",
-          "dragon_fly_system_assist"
-        ]
+          "dragon_fly"
+          ]
       },
       "animations": {
-        "dragon_default_ani": "animation.dragon.default",
         "dragon_effect": "controller.animation.dragon.default",
-        "dragon_fly": "controller.animation.dragon_fly_system",
-        "dragon_fly_up": "controller.animation.dragon_fly_system_up",
-        "dragon_fly_st": "controller.animation.dragon_fly_system_stopped",
-        "dragon_fly_conend": "controller.animation.dragon_fly_conend",
-        "dragon_is_sheared": "controller.animation.dragon_is_sheared",
-        "dragon_catch_player": "controller.animation.dragon.catch_player",
-        "dragon_attack_type": "controller.animation.dragon_attack_type",
-        "dragon_fly_system_assist": "controller.animation.dragon_fly_system_assist"
+        "dragon_fly_up": "controller.animation.dragon.float",
+        "dragon_fly": "controller.animation.dragon.fly"
       }
     },
     "component_groups": {
@@ -814,61 +800,6 @@
             "y": 1,
             "z": 0
           }
-        }
-      },
-      "dm2:breath_attack": {
-        "add": {
-          "component_groups": [
-            "breath_attack"
-          ]
-        }
-      },
-      "dm2:breath_attack_remove": {
-        "remove": {
-          "component_groups": [
-            "breath_attack"
-          ]
-        }
-      },
-      "dm2:fireball_attack": {
-        "add": {
-          "component_groups": [
-            "fireball_attack"
-          ]
-        }
-      },
-      "dm2:fireball_attack_remove": {
-        "remove": {
-          "component_groups": [
-            "fireball_attack"
-          ]
-        }
-      },
-      "dm2:dragon_sheared": {
-        "add": {
-          "component_groups": [
-            "dm2:dragon_sheared"
-          ]
-        }
-      },
-      "dm2:dragon_sheared_remove": {
-        "remove": {
-          "component_groups": [
-            "dm2:dragon_sheared"
-          ]
-        }
-      },
-      "dm2:death_ani": {
-        "add": {
-          "component_groups": [
-            "dm2:death_ani"
-          ]
-        },
-        "queue_command": {
-          "command": [
-            "gamerule mobgriefing false",
-            "kill @s"
-          ]
         }
       },
       "minecraft:entity_spawned": {
