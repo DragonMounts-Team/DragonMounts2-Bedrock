@@ -398,3 +398,74 @@ item.spawn_egg.entity.dm2:spawn_dark.name=Dark Dragon Spawn Egg
 
 item.dragonmounts:variation_orb.name=Variant Orb
 interaction.text.change_variation=Change Variant
+dm:itemGroup.name.head_items=Dragon Head
+dm:itemGroup.name.essence_items=Essences
+item.essence.name=Essence
+
+#Head
+
+item.dragonmountsplus:wither_head=Wither Dragon Head
+item.dragonmountsplus:sunlight_head=Sunlight Dragon Head
+item.dragonmountsplus:moonlight_head=Moonlight Dragon Head
+item.dragonmountsplus:ender_head=Ender Dragon Head
+item.dragonmountsplus:aether_head=Aether Dragon Head
+item.dragonmountsplus:nether_head=Nether Dragon Head
+item.dragonmountsplus:skeleton_head=Skeleton Dragon Head
+item.dragonmountsplus:water_head=Water Dragon Head
+item.dragonmountsplus:fire_head=Fire Dragon Head
+item.dragonmountsplus:ice_head=Ice Dragon Head
+item.dragonmountsplus:forest_head=Forest Dragon Head
+item.dragonmountsplus:zombie_head=Zombie Dragon Head
+item.dragonmountsplus:storm_head=Storm Dragon Head
+item.dragonmountsplus:terra_head=Terra Dragon Head
+item.dragonmountsplus:enchant_head=Enchanted Dragon Head
+item.dragonmountsplus:dark_head=Dark Dragon Head
+
+item.dragonmountsplus:sunlight1_head=Sunlight
+item.dragonmountsplus:moonlight1_head=Moonlight Dragon Head
+item.dragonmountsplus:ender1_head=Ender Dragon Head
+item.dragonmountsplus:aether1_head=Aether Dragon Head
+item.dragonmountsplus:nether1_head=Nether Dragon Head
+item.dragonmountsplus:water1_head=Water Dragon Head
+item.dragonmountsplus:fire1_head=Fire Dragon Head
+item.dragonmountsplus:ice1_head=Ice Dragon Head
+item.dragonmountsplus:forest1_head=Forest Dragon Head
+item.dragonmountsplus:forest2_head=Forest Dragon Head
+item.dragonmountsplus:storm1_head=Storm Dragon Head
+item.dragonmountsplus:terra1_head=Terra Dragon Head
+item.dragonmountsplus:enchant1_head=Enchanted
+item.dragonmountsplus:dark1_head=Dark Dragon Head
+
+tile.dragonmountsplus:wither_head_block.name=Wither Dragon Head
+tile.dragonmountsplus:sunlight_head_block.name=Sunlight Dragon Head
+tile.dragonmountsplus:moonlight_head_block.name=Moonlight Dragon Head
+tile.dragonmountsplus:ender_head_block.name=Ender Dragon Head
+tile.dragonmountsplus:aether_head_block.name=Aether Dragon Head
+tile.dragonmountsplus:nether_head_block.name=Nether Dragon Head
+tile.dragonmountsplus:skeleton_head_block.name=Skeleton Dragon Head
+tile.dragonmountsplus:water_head_block.name=Water Dragon Head
+tile.dragonmountsplus:fire_head_block.name=Fire Dragon Head
+tile.dragonmountsplus:ice_head_block.name=Ice Dragon Head
+tile.dragonmountsplus:forest_head_block.name=Forest Dragon Head
+tile.dragonmountsplus:zombie_head_block.name=Zombie Dragon Head
+tile.dragonmountsplus:storm_head_block.name=Storm Dragon Head
+tile.dragonmountsplus:terra_head_block.name=Terra Dragon Head
+tile.dragonmountsplus:enchant_head_block.name=Enchanted Dragon Head
+tile.dragonmountsplus:dark_head_block.name=Dark Dragon Head
+
+tile.dragonmountsplus:sunlight1_head_block.name=Sunlight
+tile.dragonmountsplus:moonlight1_head_block.name=Moonlight Dragon Head
+tile.dragonmountsplus:ender1_head_block.name=Ender Dragon Head
+tile.dragonmountsplus:aether1_head_block.name=Aether Dragon Head
+tile.dragonmountsplus:nether1_head_block.name=Nether Dragon Head
+tile.dragonmountsplus:water1_head_block.name=Water Dragon Head
+tile.dragonmountsplus:fire1_head_block.name=Fire Dragon Head
+tile.dragonmountsplus:ice1_head_block.name=Ice Dragon Head
+tile.dragonmountsplus:forest1_head_block.name=Forest Dragon Head
+tile.dragonmountsplus:forest2_head_block.name=Forest Dragon Head
+tile.dragonmountsplus:storm1_head_block.name=Storm Dragon Head
+tile.dragonmountsplus:terra1_head_block.name=Terra Dragon Head
+tile.dragonmountsplus:enchant1_head_block.name=Enchanted
+tile.dragonmountsplus:dark1_head_block.name=Dark Dragon Head
+
+tile.dragonmounts:dragon_core.name=Dragon Core
