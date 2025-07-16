@@ -712,6 +712,54 @@
     },
     "dragonmounts:cooked_dragon_meat": {
       "textures": "textures/items/meat/dragonmounts_cooked_dragon_meat"
+    },
+        "essence_aether": {
+      "textures": "textures/items/essence/essence_aether"
+    },
+            "essence_nether": {
+      "textures": "textures/items/essence/essence_nether"
+    },
+            "essence_fire": {
+      "textures": "textures/items/essence/essence_fire"
+    },
+            "essence_ice": {
+      "textures": "textures/items/essence/essence_ice"
+    },
+            "essence_forest": {
+      "textures": "textures/items/essence/essence_forest"
+    },
+            "essence_dark": {
+      "textures": "textures/items/essence/essence_dark"
+    },
+            "essence_skeleton": {
+      "textures": "textures/items/essence/essence_skeleton"
+    },
+            "essence_sunlight": {
+      "textures": "textures/items/essence/essence_sunlight"
+    },
+            "essence_moonlight": {
+      "textures": "textures/items/essence/essence_moonlight"
+    },
+            "essence_enchant": {
+      "textures": "textures/items/essence/essence_enchant"
+    },
+            "essence_terra": {
+      "textures": "textures/items/essence/essence_terra"
+    },
+            "essence_zombie": {
+      "textures": "textures/items/essence/essence_zombie"
+    },
+            "essence_wither": {
+      "textures": "textures/items/essence/essence_wither"
+    },
+            "essence_storm": {
+      "textures": "textures/items/essence/essence_storm"
+    },
+            "essence_ender": {
+      "textures": "textures/items/essence/essence_ender"
+    },
+            "essence_water": {
+      "textures": "textures/items/essence/essence_water"
     }
 	}
 }    
