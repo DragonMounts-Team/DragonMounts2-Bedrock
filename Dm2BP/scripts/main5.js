@@ -1,7 +1,7 @@
 import { world, ItemStack } from '@minecraft/server';
 
 const tools = [
-   'dragonmounts:diamond_shears'
+   'dm2:diamond_shears'
 ];
 world.afterEvents.playerBreakBlock.subscribe(event => {
     const { itemStackBeforeBreak, player } = event;

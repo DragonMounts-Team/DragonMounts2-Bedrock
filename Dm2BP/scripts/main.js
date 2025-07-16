@@ -43,3 +43,4 @@ import "./breath/airbreath";
 import "./breath/netherbreath";
 import "./breath/poisonbreath";
 import "./attack";
+import "./dragoncore";
