@@ -138,7 +138,7 @@
       },
       "dm2:dragon_wild": {
         "minecraft:equipment": {
-          "table": "loot_tables/entities/dm2/forest.json"
+          "table": "loot_tables/loot/forest.json"
         },
         "minecraft:tameable": {
           "probability": 0.2,
@@ -154,6 +154,10 @@
         }
       },
       "dm2:dragon_tame": {
+      "minecraft:on_death": {
+        "event": "dm2:death",
+        "target": "self"
+      },
         "minecraft:is_tamed": {},
         "minecraft:health": {
           "value": 200,
@@ -340,10 +344,15 @@
         }
       },
       "dm2:death_ani": {
-        "minecraft:transformation": {
-          "into": "dm2:dragon_dissolve<dm2:forest_dragon>",
-          "table": "loot_tables/empty.json",
-          "delay": 0.0
+      "minecraft:spawn_entity": {
+          "entities": {
+            "min_wait_time": 0,
+            "max_wait_time": 0,
+            "single_use": true,
+            "num_to_spawn": 1,
+            "spawn_sound": "plop",
+            "spawn_item": "dm2:essence_forest"
+          }
         }
       },
       "dm2:dragon_conup_end": {
@@ -387,17 +396,20 @@
       "dm2:f": {
         "minecraft:variant": {
           "value": 0
-        }
+        },
+        "minecraft:loot": { "table": "loot_tables/head1/forest.json" }
       },
             "dm2:t": {
         "minecraft:variant": {
           "value": 1
-        }
+        },
+        "minecraft:loot": { "table": "loot_tables/head1/forest2.json" }
       },
         "dm2:d": {
         "minecraft:variant": {
           "value": 2
-        }
+        },
+        "minecraft:loot": { "table": "loot_tables/head1/forest1.json" }
       }
     },    
     "components": {
@@ -435,10 +447,6 @@
           "dm2",
           "forest_dragon"
         ]
-      }, 
-      "minecraft:on_death": {
-        "event": "dm2:death_ani",
-        "target": "self"
       },
       "minecraft:behavior.mount_pathing": {
         "priority": 2,
@@ -1203,6 +1211,18 @@
           ]
         }
       },
+  "dm2:death": {
+      "add": {
+      "component_groups": [
+          "dm2:death_ani" 
+        ]
+      },
+      "queue_command": {
+       "command": [
+        "setblock ~~~ dragonmounts:dragon_core"
+         ]
+       }
+    },
       "dm2:dragon_hasarmor": {
         "sequence": [
           {

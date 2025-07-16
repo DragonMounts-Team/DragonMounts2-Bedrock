@@ -141,7 +141,7 @@
       },
       "dm2:dragon_wild": {
         "minecraft:equipment": {
-          "table": "loot_tables/entities/dm2/enchant.json"
+          "table": "loot_tables/loot/enchant.json"
         },
         "minecraft:tameable": {
           "probability": 0.2,
@@ -157,6 +157,10 @@
         }
       },
       "dm2:dragon_tame": {
+      "minecraft:on_death": {
+        "event": "dm2:death",
+        "target": "self"
+      },
         "minecraft:is_tamed": {},
         "minecraft:health": {
           "value": 200,
@@ -367,10 +371,15 @@
         }
       },
       "dm2:death_ani": {
-        "minecraft:transformation": {
-          "into": "dm2:dragon_dissolve<dm2:enchant_dragon>",
-          "table": "loot_tables/empty.json",
-          "delay": 0.0
+      "minecraft:spawn_entity": {
+          "entities": {
+            "min_wait_time": 0,
+            "max_wait_time": 0,
+            "single_use": true,
+            "num_to_spawn": 1,
+            "spawn_sound": "plop",
+            "spawn_item": "dm2:essence_enchant"
+          }
         }
       },
       "dm2:dragon_conup_end": {
@@ -414,12 +423,14 @@
       "dm2:f": {
         "minecraft:variant": {
           "value": 0
-        }
+        },
+        "minecraft:loot": { "table": "loot_tables/head1/enchant.json" }
       },
         "dm2:m": {
         "minecraft:variant": {
           "value": 1
-        }
+        },
+        "minecraft:loot": { "table": "loot_tables/head1/enchant1.json" }
       }
     },    
     "components": {
@@ -457,10 +468,6 @@
           "dm2",
           "enchant_dragon"
         ]
-      }, 
-      "minecraft:on_death": {
-        "event": "dm2:death_ani",
-        "target": "self"
       },
       "minecraft:behavior.mount_pathing": {
         "priority": 2,
@@ -1119,6 +1126,18 @@
           ]
         }
       },
+  "dm2:death": {
+      "add": {
+      "component_groups": [
+          "dm2:death_ani" 
+        ]
+      },
+      "queue_command": {
+       "command": [
+        "setblock ~~~ dragonmounts:dragon_core"
+         ]
+       }
+    },
 "change_variation": {
   "sequence": [
     {
