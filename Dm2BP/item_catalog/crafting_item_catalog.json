@@ -13,6 +13,20 @@
                         "items": []
                     },
                     {
+                        "group_identifier": {
+                            "icon": "dragonmountsplus:aether_head",
+                            "name": "dm:itemGroup.name.head_items"
+                        },
+                        "items": []
+                    },
+                    {
+                        "group_identifier": {
+                            "icon": "dm2:essence_aether",
+                            "name": "dm:itemGroup.name.essence_items"
+                        },
+                        "items": []
+                    },
+                    {
                        
                         "group_identifier": {
                             "icon": "aether:shield",
