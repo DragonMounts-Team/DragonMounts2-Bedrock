@@ -16,10 +16,10 @@
         "rise":{
             "transitions":[
                 {
-                    "float":"!query.is_on_ground && query.has_rider && query.is_saddled && query.head_x_rotation(0) < 0.2 && query.head_x_rotation(0) > -1"
+                    "float":"!query.is_on_ground && query.has_rider && query.is_saddled && !query.is_in_water && query.head_x_rotation(0) < 0.2 && query.head_x_rotation(0) > -1"
                 },
                 {
-                    "default":"query.is_on_ground || !query.has_rider || !query.is_saddled || query.head_x_rotation(0) > 0.2"
+                    "default":"query.is_on_ground || !query.has_rider || !query.is_saddled || query.is_in_water || query.head_x_rotation(0) > 0.2"
                 }
             ],
             "on_entry":[
@@ -32,10 +32,10 @@
         "float":{
             "transitions":[
                 {
-                    "default":"query.is_on_ground || !query.has_rider || !query.is_saddled || query.head_x_rotation(0) > 0.2"
+                    "default":"query.is_on_ground || query.is_in_water || !query.has_rider || !query.is_saddled || query.head_x_rotation(0) > 0.2"
                 },
                 {
-                   "rise":"!query.is_on_ground && query.has_rider && query.is_saddled && query.head_x_rotation(0) < -1"
+                   "rise":"!query.is_on_ground && !query.is_in_water && query.has_rider && query.is_saddled && query.head_x_rotation(0) < -1"
                 }
             ],
             "on_entry":[
