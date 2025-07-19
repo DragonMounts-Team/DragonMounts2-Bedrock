@@ -18,11 +18,11 @@
             ],
             "on_entry":[
                 "/effect @s slow_falling 20000 4 true",
-                "/effect @s speed 20000 3 true"
+                "/effect @s speed 20000 2 true"
             ],
             "on_exit":[
                 "/effect @s slow_falling 0 5 true",
-                "/effect @s speed 0 4 true"
+                "/effect @s speed 0 3 true"
             ]
         }
     }
