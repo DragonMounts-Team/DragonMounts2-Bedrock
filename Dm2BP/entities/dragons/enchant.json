@@ -89,7 +89,7 @@
           "breeds_with": [
               {
             "mate_type": "dm2:f_enchant_dragon",
-            "baby_type": "dm2:enchant_dragon_egg",
+            "baby_type": "dragonmounts:enchant_dragon_egg",
             "breed_event": {
               "event": "dm2:enchant_dragon_egg_born",
               "target": "self"
@@ -97,7 +97,7 @@
           },
           {
           "mate_type": "dm2:enchant_dragon",
-            "baby_type": "dm2:enchant_dragon_egg",
+            "baby_type": "dragonmounts:enchant_dragon_egg",
             "breed_event": {
               "event": "dm2:enchant_dragon_egg_born",
               "target": "self"
