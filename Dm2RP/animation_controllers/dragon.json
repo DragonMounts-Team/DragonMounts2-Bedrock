@@ -15,19 +15,19 @@
 					"blend_via_shortest_path": true,
 					"transitions": [
 						{
-							"on_ground": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed <= 0.2"
+							"on_ground": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed <= 0.2 && query.is_on_ground"
 						},
 						{
 							"walk": "!query.is_stunned && query.modified_move_speed > 0.2"
 						},
 						{
-							"subduction": "query.is_stunned && query.target_x_rotation > 0.2 && query.modified_move_speed > 0.5 && query.get_equipped_item_name != 'feather'"
+							"subduction": "query.is_stunned && query.target_x_rotation > 0.2 && query.modified_move_speed > 0.5 && query.get_equipped_item_name != 'feather' && !query.is_on_ground"
 						},
 						{
 							"sit": "query.is_sitting && !query.is_stunned && !query.has_rider"
 						},
 						{
-							"hover": "query.is_stunned && query.modified_move_speed <= 0.5"
+							"hover": "query.is_stunned && query.modified_move_speed <= 0.5 && !query.is_on_ground"
 						}
 					]
 				},
@@ -42,19 +42,19 @@
 					"blend_via_shortest_path": true,
 					"transitions": [
 						{
-							"on_ground": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed <= 0.2"
+							"on_ground": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed <= 0.2 && query.is_on_ground"
 						},
 						{
-							"walk": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed > 0.2"
+							"walk": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed > 0.2 && query.is_on_ground"
 						},
 						{
-							"fly": "(query.is_stunned && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5) || (query.get_equipped_item_name == 'feather')"
+							"fly": "(query.is_stunned && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5) || (query.get_equipped_item_name == 'feather') && !query.is_on_ground"
 						},
 						{
 							"sit": "query.is_sitting && !query.is_stunned && query.modified_move_speed > 0.2 && !query.has_rider"
 						},
 						{
-							"hover": "query.is_stunned && query.modified_move_speed <= 0.5"
+							"hover": "query.is_stunned && query.modified_move_speed <= 0.5 && !query.is_on_ground"
 						}
 					]
 				},
@@ -69,19 +69,19 @@
 					"blend_via_shortest_path": true,
 					"transitions": [
 						{
-							"on_ground": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed <= 0.2"
+							"on_ground": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed <= 0.2 && query.is_on_ground"
 						},
 						{
 							"walk": "!query.is_stunned && query.modified_move_speed > 0.2"
 						},
 						{
-							"fly": "query.is_stunned && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5"
+							"fly": "query.is_stunned && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5 && !query.is_on_ground"
 						},
 						{
 							"sit": "query.is_sitting && !query.is_stunned && !query.has_rider"
 						},
 						{
-							"subduction": "query.is_stunned && query.target_x_rotation > 0.2 && query.modified_move_speed > 0.5"
+							"subduction": "query.is_stunned && query.target_x_rotation > 0.2 && query.modified_move_speed > 0.5 && !query.is_on_ground"
 						}
 					]
 				},
@@ -117,7 +117,7 @@
 					"blend_via_shortest_path": true,
 					"transitions": [
 						{
-							"fly": "query.is_stunned && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5"
+							"fly": "query.is_stunned && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5 && !query.is_on_ground"
 						},
 						{
 							"walk": "!query.is_stunned && query.modified_move_speed > 0.25"
@@ -129,10 +129,10 @@
 							"attack": "query.is_delayed_attacking == 1"
 						},
 						{
-							"subduction": "query.is_stunned && query.target_x_rotation > 0.2 && query.modified_move_speed > 0.5"
+							"subduction": "query.is_stunned && query.target_x_rotation > 0.2 && query.modified_move_speed > 0.5 && !query.is_on_ground"
 						},
 						{
-							"hover": "query.is_stunned && query.modified_move_speed <= 0.5"
+							"hover": "query.is_stunned && query.modified_move_speed <= 0.5 && !query.is_on_ground"
 						}
 					]
 				},
@@ -145,7 +145,7 @@
 					"blend_via_shortest_path": true,
 					"transitions": [
 						{
-							"fly": "query.is_stunned && query.anim_time > 2 && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5" // 这个检测动画开始执行的时间在这里没用，所以由行走瞬间转变为飞行状态无法切换成飞行动画的bug暂时鸽掉修复
+							"fly": "query.is_stunned && query.anim_time > 2 && query.target_x_rotation <= 0.2 && query.modified_move_speed > 0.5 && !query.is_on_ground" // 这个检测动画开始执行的时间在这里没用，所以由行走瞬间转变为飞行状态无法切换成飞行动画的bug暂时鸽掉修复
 						},
 						{
 							"on_ground": "(!query.is_sitting || query.has_rider) && !query.is_stunned && query.modified_move_speed <= 0.25"
