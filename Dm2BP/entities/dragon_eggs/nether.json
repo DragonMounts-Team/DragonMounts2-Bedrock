@@ -15,96 +15,6 @@
                 }
     },
     "component_groups": {
-      "dragonmounts:cb0": {
-        "minecraft:addrider": {
-          "entity_type": "dragonmounts:dm",
-          "spawn_event": "dragonmounts:cb_0625_00625"
-        }
-      },
-      "dragonmounts:cb1": {
-        "minecraft:addrider": {
-          "entity_type": "dragonmounts:dm",
-          "spawn_event": "dragonmounts:cb_075_0125"
-        },
-        "minecraft:timer": {
-          "looping": false,
-          "time": 0.1,
-          "time_down_event": {
-            "event": "dragonmounts:cb0",
-            "target": "self"
-          }
-        }
-      },
-      "dragonmounts:cb2": {
-        "minecraft:addrider": {
-          "entity_type": "dragonmounts:dm",
-          "spawn_event": "dragonmounts:cb_0875_03125"
-        },
-        "minecraft:timer": {
-          "looping": false,
-          "time": 0.1,
-          "time_down_event": {
-            "event": "dragonmounts:cb1",
-            "target": "self"
-          }
-        }
-      },
-      "dragonmounts:cb3": {
-        "minecraft:addrider": {
-          "entity_type": "dragonmounts:dm",
-          "spawn_event": "dragonmounts:cb_075_01875"
-        },
-        "minecraft:timer": {
-          "looping": false,
-          "time": 0.1,
-          "time_down_event": {
-            "event": "dragonmounts:cb2",
-            "target": "self"
-          }
-        }
-      },
-      "dragonmounts:cb4": {
-        "minecraft:addrider": {
-          "entity_type": "dragonmounts:dm",
-          "spawn_event": "dragonmounts:cb_0625_0125"
-        },
-        "minecraft:timer": {
-          "looping": false,
-          "time": 0.1,
-          "time_down_event": {
-            "event": "dragonmounts:cb3",
-            "target": "self"
-          }
-        }
-      },
-      "dragonmounts:cb5": {
-        "minecraft:addrider": {
-          "entity_type": "dragonmounts:dm",
-          "spawn_event": "dragonmounts:cb_0375_0125"
-        },
-        "minecraft:timer": {
-          "looping": false,
-          "time": 0.1,
-          "time_down_event": {
-            "event": "dragonmounts:cb4",
-            "target": "self"
-          }
-        }
-      },
-      "dragonmounts:cb6": {
-        "minecraft:addrider": {
-          "entity_type": "dragonmounts:dm",
-          "spawn_event": "dragonmounts:cb_025_00625"
-        },
-        "minecraft:timer": {
-          "looping": false,
-          "time": 0.1,
-          "time_down_event": {
-            "event": "dragonmounts:cb5",
-            "target": "self"
-          }
-        }
-      },
       "dragonmounts:dragon_hatched": {
         "minecraft:is_shaking": {},
         "minecraft:transformation": {
@@ -227,13 +137,6 @@
           ]
         }
       },
-      "dragonmounts:cb0": { "add": { "component_groups": ["dragonmounts:cb0"] } },
-      "dragonmounts:cb1": { "add": { "component_groups": ["dragonmounts:cb1"] } },
-      "dragonmounts:cb2": { "add": { "component_groups": ["dragonmounts:cb2"] } },
-      "dragonmounts:cb3": { "add": { "component_groups": ["dragonmounts:cb3"] } },
-      "dragonmounts:cb4": { "add": { "component_groups": ["dragonmounts:cb4"] } },
-      "dragonmounts:cb5": { "add": { "component_groups": ["dragonmounts:cb5"] } },
-      "dragonmounts:cb6": { "add": { "component_groups": ["dragonmounts:cb6"] } },
       "dragonmounts:back_to_block": {
         "queue_command": {
           "command": [
@@ -248,7 +151,7 @@
             "add": { "component_groups": ["dragonmounts:dragon_hatched"] }
           },
           {
-            "weight": 1,
+            "weight": 0,
             "add": { "component_groups": ["dragonmounts:dragon_hatched_1"] }
           }
         ]
