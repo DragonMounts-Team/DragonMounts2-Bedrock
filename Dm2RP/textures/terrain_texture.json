@@ -143,11 +143,17 @@
 				    "nether1_head_block": {
 			"textures": "textures/entity/nether_dragon/f_nether_dragon"
 		},
+		    "nether2_head_block": {
+			"textures": "textures/entity/nether_dragon/r_nether_dragon"
+		},
 		    "ender_head_block": {
 			"textures": "textures/entity/ender_dragon/ender_dragon"
 		},
 				    "ender1_head_block": {
 			"textures": "textures/entity/ender_dragon/m_ender_dragon"
+	},
+		    "ender2_head_block": {
+			"textures": "textures/entity/ender_dragon/r_ender_dragon"
 		},
 		    "dark_head_block": {
 			"textures": "textures/entity/dark_dragon/dark_dragon"
@@ -160,6 +166,9 @@
 		},
 				    "storm1_head_block": {
 			"textures": "textures/entity/storm_dragon/f_storm_dragon"
+	  },
+		    "storm2_head_block": {
+			"textures": "textures/entity/storm_dragon/r_storm_dragon"
 		},
 		    "sunlight_head_block": {
 			"textures": "textures/entity/sunlight_dragon/sunlight_dragon"
@@ -184,6 +193,9 @@
 		},
 				    "fire1_head_block": {
 			"textures": "textures/entity/fire_dragon/f_fire_dragon"
+		},
+		    "fire2_head_block": {
+			"textures": "textures/entity/fire_dragon/r_fire_dragon"
 		},
 		    "ice_head_block": {
 			"textures": "textures/entity/ice_dragon/ice_dragon"

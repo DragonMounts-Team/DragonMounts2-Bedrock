@@ -82,5 +82,11 @@
     "atlas_tile": "storm_dragon_egg",
     "frames": [ 0, 1, 2, 3, 4, 5, 6 ],
     "ticks_per_frame": 5
+  },
+        {
+    "flipbook_texture": "textures/blocks/core/dragon_core",
+    "atlas_tile": "dragon_core",
+    "frames": [ 0, 1, 2, 3, 4, 5, 6, 7 ],
+    "ticks_per_frame": 2
   }
 ]  
