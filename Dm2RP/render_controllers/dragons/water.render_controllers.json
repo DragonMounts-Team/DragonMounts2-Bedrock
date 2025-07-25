@@ -48,6 +48,7 @@
 					"Array.armor": [
 						"Texture.dragon_none",
 						"Texture.dragon_armor_iron",
+						"Texture.dragon_armor_copper",
 						"Texture.dragon_armor_gold",
 						"Texture.dragon_armor_diamond",
 						"Texture.dragon_armor_emerald"

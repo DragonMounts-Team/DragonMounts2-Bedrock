@@ -39,7 +39,8 @@
 				"textures": {
 					"Array.base": [
 						"Texture.f_nether_dragon",
-						"Texture.nether_dragon"
+						"Texture.nether_dragon",
+						"Texture.r_nether_dragon"
 					],
 					"Array.saddled": [
 						"Texture.dragon_none",
