@@ -41,9 +41,7 @@ const validDragonIds = [
   "dm2:f_terra_dragon",
   "dm2:f_storm_dragon",
   "dm2:f_dark_dragon",
-  "dm2:r_fire_dragon",
-  "dm2:f_phantom_dragon",
-  "dm2:phantom_dragon"
+  "dm2:r_fire_dragon"
 ];
 
 world.afterEvents.itemUse.subscribe(e => {
@@ -57,5 +55,5 @@ world.afterEvents.itemUse.subscribe(e => {
   if (!validDragonIds.includes(riding.typeId)) return;
 
   player.runCommandAsync("function attack");
-  setCooldown(player, 40);
+  setCooldown(player, 10);
 });
