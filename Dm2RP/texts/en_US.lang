@@ -1,67 +1,6 @@
 ﻿pack.name=Dragon Mounts 2: Bedrock Edition	#
 pack.description=Dragon Mounts 2: Bedrock Edition	#
 
-entity.dragonmounts:ender_dragon.name=Ender Dragon	#
-entity.dragonmounts:dark_dragon.name=Dark Dragon	#
-action.interact.start_hatching=Hatch
-entity.dragonmounts:aether_dragon.name=Aether Dragon	#
-entity.dragonmounts:water_dragon.name=Water Dragon	#
-entity.dragonmounts:ice_dragon.name=Ice Dragon	#
-entity.dragonmounts:forest_dragon.name=Forest Dragon	#
-entity.dragonmounts:fire_dragon.name=Fire Dragon	#
-entity.dragonmounts:nether_dragon.name=Nether Dragon	#
-entity.dragonmounts:skeleton_dragon.name=Skeleton Dragon	#
-entity.dragonmounts:enchant_dragon.name=Enchanted Dragon	#
-entity.dragonmounts:moonlight_dragon.name=Moonlight Dragon	#
-entity.dragonmounts:storm_dragon.name=Storm Dragon	#
-entity.dragonmounts:sunlight_dragon.name=Sunlight Dragon	#
-entity.dragonmounts:terra_dragon.name=Terra Dragon	#
-entity.dragonmounts:wither_dragon.name=Wither Dragon	#
-entity.dragonmounts:zombie_dragon.name=Zombie Dragon	#
-
-entity.dragonmounts:dragon_dissolve.name=Dead Dragon	#
-
-entity.dragonmounts:ender_dragon_egg.name=Ender Dragon Egg	#
-entity.dragonmounts:aether_dragon_egg.name=Aether Dragon Egg	#
-entity.dragonmounts:water_dragon_egg.name=Water Dragon Egg	#
-entity.dragonmounts:ice_dragon_egg.name=Ice Dragon Egg	#
-entity.dragonmounts:forest_dragon_egg.name=Forest Dragon Egg	#
-entity.dragonmounts:fire_dragon_egg.name=Fire Dragon Egg	#
-entity.dragonmounts:nether_dragon_egg.name=Nether Dragon Egg	#
-entity.dragonmounts:skeleton_dragon_egg.name=Skeleton Dragon Egg	#
-entity.dragonmounts:enchant_dragon_egg.name=Enchanted Dragon Egg	#
-entity.dragonmounts:moonlight_dragon_egg.name=Moonlight Dragon Egg	#
-entity.dragonmounts:storm_dragon_egg.name=Storm Dragon Egg	#
-entity.dragonmounts:sunlight_dragon_egg.name=Sunlight Dragon Egg	#
-entity.dragonmounts:terra_dragon_egg.name=Terra Dragon Egg	#
-entity.dragonmounts:wither_dragon_egg.name=Wither Dragon Egg	#
-entity.dragonmounts:zombie_dragon_egg.name=Zombie Dragon Egg	#
-
-item.dragonmounts:diamond_shears.name=Diamond Shears	#
-
-item.dragonmounts:ender_dragonscales.name=Ender Dragon Scales	#
-item.dragonmounts:aether_dragonscales.name=Aether Dragon Scales	#
-item.dragonmounts:dark_dragonscales.name=Dark Dragon Scales	#
-item.dragonmounts:water_dragonscales.name=Water Dragon Scales	#
-item.dragonmounts:ice_dragonscales.name= Ice Dragon Scales	#
-item.dragonmounts:forest_dragonscales.name=Forest Dragon Scales	#
-item.dragonmounts:fire_dragonscales.name=Fire Dragon Scales	#
-item.dragonmounts:nether_dragonscales.name=Nether Dragon Scales	#
-item.dragonmounts:enchant_dragonscales.name=Enchanted Dragon Scales	#
-item.dragonmounts:moonlight_dragonscales.name=Moonlight Dragon Scales	#
-item.dragonmounts:storm_dragonscales.name=Storm Dragon Scales	#
-item.dragonmounts:sunlight_dragonscales.name=Sunlight Dragon Scales	#
-item.dragonmounts:terra_dragonscales.name=Terra Dragon Scales	#
-item.dragonmounts:zombie_dragonscales.name=Zombie Dragon Scales	#
-
-item.dm2:dragonarmor_iron.name=Iron Dragon Armor	#
-item.dm2:dragonarmor_gold.name=Gold Dragon Armor	#
-item.dm2:dragonarmor_diamond.name=Diamond Dragon Armor	#
-item.dm2:dragonarmor_emerald.name=Emerald Dragon Armor	#
-
-
-
-
 item.dragonmounts:aether_dragonscale_helmet.name=Aether Dragon Helmet	#
 item.dragonmounts:dark_dragonscale_helmet.name=Dark Dragon Helmet	#
 item.dragonmounts:enchant_dragonscale_helmet.name=Enchanted Dragon Helmet	#
@@ -122,55 +61,20 @@ item.dragonmounts:terra_dragonscale_boots.name=Terra Dragon Boots	#
 item.dragonmounts:water_dragonscale_boots.name=Water Dragon Boots	#
 item.dragonmounts:zombie_dragonscale_boots.name=Zombie Dragon Boots	#
 
-item.spawn_egg.entity.dm2:ender_dragon.name=Ender Dragon (F) Spawn Egg	#
-item.spawn_egg.entity.dm2:aether_dragon.name=Aether Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:water_dragon.name=Water Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:ice_dragon.name=Ice Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:forest_dragon.name=Forest Dragon (T) Spawn Egg	#
-item.spawn_egg.entity.dm2:fire_dragon.name=Fire Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:nether_dragon.name=Nether Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:skeleton_dragon.name=Skeleton Dragon Spawn Egg	#
-item.spawn_egg.entity.dm2:enchant_dragon.name=Enchanted Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:moonlight_dragon.name=Moonlight Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:storm_dragon.name=Storm Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:sunlight_dragon.name=Sunlight Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:terra_dragon.name=Terra Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:wither_dragon.name=Wither Dragon Spawn Egg	#
-item.spawn_egg.entity.dm2:zombie_dragon.name=Zombie Dragon Spawn Egg	#
-
-item.spawn_egg.entity.dm2:ender_dragon_egg.name=Ender Dragon (F) Spawn Egg	#
-item.spawn_egg.entity.dm2:aether_dragon_egg.name=Aether Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:water_dragon_egg.name=Water Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:ice_dragon_egg.name=Ice Dragon Spawn (M) Egg	#
-item.spawn_egg.entity.dm2:forest_dragon_egg.name=Forest Dragon (T) Spawn Egg	#
-item.spawn_egg.entity.dm2:fire_dragon_egg.name=Fire Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:nether_dragon_egg.name=Nether Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:skeleton_dragon_egg.name=Skeleton Dragon Spawn Egg	#
-item.spawn_egg.entity.dm2:enchant_dragon_egg.name=Enchanted Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:moonlight_dragon_egg.name=Moonlight Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:storm_dragon_egg.name=Storm Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:sunlight_dragon_egg.name=Sunlight Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:terra_dragon_egg.name=Terra Dragon (M) Spawn Egg	#
-item.spawn_egg.entity.dm2:wither_dragon_egg.name=Wither Dragon Spawn Egg	#
-item.spawn_egg.entity.dm2:zombie_dragon_egg.name=Zombie Dragon Spawn Egg	#
-
-
-
-item.dragonmounts:ender_dragon_egg_spawn.name=Ender Dragon Egg	#
-item.dragonmounts:aether_dragon_egg_spawn.name=Aether Dragon Egg	#
-item.dragonmounts:water_dragon_egg_spawn.name=Water Dragon Egg	#
-item.dragonmounts:ice_dragon_egg_spawn.name=Ice Dragon Egg	#
-item.dragonmounts:forest_dragon_egg_spawn.name=Forest Dragon Egg	#
-item.dragonmounts:fire_dragon_egg_spawn.name=Fire Dragon Egg	#
-item.dragonmounts:nether_dragon_egg_spawn.name=Nether Dragon Egg	#
-item.dragonmounts:skeleton_dragon_egg_spawn.name=Skeleton Dragon Egg	#
-item.dragonmounts:enchant_dragon_egg_spawn.name=Enchanted Dragon Egg	#
-item.dragonmounts:moonlight_dragon_egg_spawn.name=Moonlight Dragon Egg	#
-item.dragonmounts:storm_dragon_egg_spawn.name=Storm Dragon Egg	#
-item.dragonmounts:sunlight_dragon_egg_spawn.name=Sunlight Dragon Egg	#
-item.dragonmounts:terra_dragon_egg_spawn.name=Terra Dragon Egg	#
-item.dragonmounts:wither_dragon_egg_spawn.name=Wither Dragon Egg	#
-item.dragonmounts:zombie_dragon_egg_spawn.name=Zombie Dragon Egg	#
+item.dragonmounts:ender_dragonscales.name=Ender Dragon Scales	#
+item.dragonmounts:aether_dragonscales.name=Aether Dragon Scales	#
+item.dragonmounts:dark_dragonscales.name=Dark Dragon Scales	#
+item.dragonmounts:water_dragonscales.name=Water Dragon Scales	#
+item.dragonmounts:ice_dragonscales.name= Ice Dragon Scales	#
+item.dragonmounts:forest_dragonscales.name=Forest Dragon Scales	#
+item.dragonmounts:fire_dragonscales.name=Fire Dragon Scales	#
+item.dragonmounts:nether_dragonscales.name=Nether Dragon Scales	#
+item.dragonmounts:enchant_dragonscales.name=Enchanted Dragon Scales	#
+item.dragonmounts:moonlight_dragonscales.name=Moonlight Dragon Scales	#
+item.dragonmounts:storm_dragonscales.name=Storm Dragon Scales	#
+item.dragonmounts:sunlight_dragonscales.name=Sunlight Dragon Scales	#
+item.dragonmounts:terra_dragonscales.name=Terra Dragon Scales	#
+item.dragonmounts:zombie_dragonscales.name=Zombie Dragon Scales	#
 
 tile.dragonmounts:dragon_nest_block.name=Nest Block	#
 tile.dragonmounts:aether_dragon_egg.name=Aether Dragon Egg	#
@@ -191,6 +95,98 @@ tile.dragonmounts:wither_dragon_egg.name=Wither Dragon Egg	#
 tile.dragonmounts:zombie_dragon_egg.name=Zombie Dragon Egg	#
 
 
+entity.dragonmounts:ender_dragon.name=Ender Dragon	#
+entity.dragonmounts:dark_dragon.name=Dark Dragon	#
+action.interact.start_hatching=Hatch
+entity.dragonmounts:aether_dragon.name=Aether Dragon	#
+entity.dragonmounts:water_dragon.name=Water Dragon	#
+entity.dragonmounts:ice_dragon.name=Ice Dragon	#
+entity.dragonmounts:forest_dragon.name=Forest Dragon	#
+entity.dragonmounts:fire_dragon.name=Fire Dragon	#
+entity.dragonmounts:nether_dragon.name=Nether Dragon	#
+entity.dragonmounts:skeleton_dragon.name=Skeleton Dragon	#
+entity.dragonmounts:enchant_dragon.name=Enchanted Dragon	#
+entity.dragonmounts:moonlight_dragon.name=Moonlight Dragon	#
+entity.dragonmounts:storm_dragon.name=Storm Dragon	#
+entity.dragonmounts:sunlight_dragon.name=Sunlight Dragon	#
+entity.dragonmounts:terra_dragon.name=Terra Dragon	#
+entity.dragonmounts:wither_dragon.name=Wither Dragon	#
+entity.dragonmounts:zombie_dragon.name=Zombie Dragon	#
+
+entity.dragonmounts:dragon_dissolve.name=Dead Dragon	#
+
+entity.dragonmounts:ender_dragon_egg.name=Ender Dragon Egg	#
+entity.dragonmounts:aether_dragon_egg.name=Aether Dragon Egg	#
+entity.dragonmounts:water_dragon_egg.name=Water Dragon Egg	#
+entity.dragonmounts:ice_dragon_egg.name=Ice Dragon Egg	#
+entity.dragonmounts:forest_dragon_egg.name=Forest Dragon Egg	#
+entity.dragonmounts:fire_dragon_egg.name=Fire Dragon Egg	#
+entity.dragonmounts:nether_dragon_egg.name=Nether Dragon Egg	#
+entity.dragonmounts:skeleton_dragon_egg.name=Skeleton Dragon Egg	#
+entity.dragonmounts:enchant_dragon_egg.name=Enchanted Dragon Egg	#
+entity.dragonmounts:moonlight_dragon_egg.name=Moonlight Dragon Egg	#
+entity.dragonmounts:storm_dragon_egg.name=Storm Dragon Egg	#
+entity.dragonmounts:sunlight_dragon_egg.name=Sunlight Dragon Egg	#
+entity.dragonmounts:terra_dragon_egg.name=Terra Dragon Egg	#
+entity.dragonmounts:wither_dragon_egg.name=Wither Dragon Egg	#
+entity.dragonmounts:zombie_dragon_egg.name=Zombie Dragon Egg	#
+
+item.dragonmounts:diamond_shears.name=Diamond Shears	#
+
+item.dm2:dragonarmor_iron.name=Iron Dragon Armor	#
+item.dm2:dragonarmor_copper.name=Copper Dragon Armor	#
+item.dm2:dragonarmor_gold.name=Gold Dragon Armor	#
+item.dm2:dragonarmor_diamond.name=Diamond Dragon Armor	#
+item.dm2:dragonarmor_emerald.name=Emerald Dragon Armor	#
+
+item.spawn_egg.entity.dm2:ender_dragon.name=Ender Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:aether_dragon.name=Aether Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:water_dragon.name=Water Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:ice_dragon.name=Ice Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:forest_dragon.name=Forest Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:fire_dragon.name=Fire Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:nether_dragon.name=Nether Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:skeleton_dragon.name=Skeleton Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:enchant_dragon.name=Enchanted Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:moonlight_dragon.name=Moonlight Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:storm_dragon.name=Storm Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:sunlight_dragon.name=Sunlight Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:terra_dragon.name=Terra Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:wither_dragon.name=Wither Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:zombie_dragon.name=Zombie Dragon Spawn Egg	#
+
+item.spawn_egg.entity.dm2:ender_dragon_egg.name=Ender Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:aether_dragon_egg.name=Aether Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:water_dragon_egg.name=Water Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:ice_dragon_egg.name=Ice Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:forest_dragon_egg.name=Forest Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:fire_dragon_egg.name=Fire Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:nether_dragon_egg.name=Nether Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:skeleton_dragon_egg.name=Skeleton Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:enchant_dragon_egg.name=Enchanted Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:moonlight_dragon_egg.name=Moonlight Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:storm_dragon_egg.name=Storm Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:sunlight_dragon_egg.name=Sunlight Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:terra_dragon_egg.name=Terra Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:wither_dragon_egg.name=Wither Dragon Spawn Egg	#
+item.spawn_egg.entity.dm2:zombie_dragon_egg.name=Zombie Dragon Spawn Egg	#
+
+item.dragonmounts:ender_dragon_egg_spawn.name=Ender Dragon Egg	#
+item.dragonmounts:aether_dragon_egg_spawn.name=Aether Dragon Egg	#
+item.dragonmounts:water_dragon_egg_spawn.name=Water Dragon Egg	#
+item.dragonmounts:ice_dragon_egg_spawn.name=Ice Dragon Egg	#
+item.dragonmounts:forest_dragon_egg_spawn.name=Forest Dragon Egg	#
+item.dragonmounts:fire_dragon_egg_spawn.name=Fire Dragon Egg	#
+item.dragonmounts:nether_dragon_egg_spawn.name=Nether Dragon Egg	#
+item.dragonmounts:skeleton_dragon_egg_spawn.name=Skeleton Dragon Egg	#
+item.dragonmounts:enchant_dragon_egg_spawn.name=Enchanted Dragon Egg	#
+item.dragonmounts:moonlight_dragon_egg_spawn.name=Moonlight Dragon Egg	#
+item.dragonmounts:storm_dragon_egg_spawn.name=Storm Dragon Egg	#
+item.dragonmounts:sunlight_dragon_egg_spawn.name=Sunlight Dragon Egg	#
+item.dragonmounts:terra_dragon_egg_spawn.name=Terra Dragon Egg	#
+item.dragonmounts:wither_dragon_egg_spawn.name=Wither Dragon Egg	#
+item.dragonmounts:zombie_dragon_egg_spawn.name=Zombie Dragon Egg	#
+
 action.interact.hatch_egg=Hatch	#
 action.interact.fasthatching.dragonmounts=Speed up hatching time	#
 action.interact.chested.dragonmounts=Equip	#
@@ -202,12 +198,13 @@ action.interact.transform_block_dragon_eggs.dragonmounts=Blockify	#
 
 bj1:itemGroup.name.shield_items=Dragon Shields
 bj:itemGroup.name.bow_items=Dragon Bows
-bj5:itemGroup.name.whistle_items=Dragon Whistles
+bj5:itemGroup.name.whistle_items=Dragon Flutes
 dm:itemGroup.name.dragon_eggs=Dragon Eggs
 dm:itemGroup.name.dragon_scale=Dragon Scale Blocks
 dm:itemGroup.name.scales=Dragon Scales
 item.dm2:dragonarmor_diamond=Diamond Dragon Armor 
 item.dm2:dragonarmor_gold=Gold Dragon Armor 
+item.dm2:dragonarmor_copper=Copper Dragon Armor 
 item.dm2:dragonarmor_iron=Iron Dragon Armor 
 item.dm2:dragonarmor_emerald=Emerald Dragon Armor 
 item.dragonmounts:raw_dragon_meat.name=Raw Dragon Meat
@@ -233,10 +230,6 @@ item.spawn_egg.entity.dm2:f_nether_dragon.name=Nether Dragon Spawn Egg	#
 item.spawn_egg.entity.dm2:skeleton_dragon.name=Skeleton Dragon Spawn Egg	#
 item.spawn_egg.entity.dm2:wither_dragon.name=Wither Dragon Spawn Egg	#
 item.spawn_egg.entity.dm2:zombie_dragon.name=Zombie Dragon Spawn Egg	#
-
-
-
-
 
 tile.dragonmounts:aether_scale.name=Aether Dragon Scale Block
 tile.dragonmounts:aether_scale=Aether Dragon Scale Block
@@ -282,37 +275,76 @@ tile.dragonmounts:Terra=Terra Dragon Scale Block
 
 
 
-tooltip.dragonmounts.ender=Ender
-tooltip.dragonmounts.dark=Dark
-tooltip.dragonmounts.aether=Aether
-tooltip.dragonmounts.water=Water
-tooltip.dragonmounts.ice=Ice
-tooltip.dragonmounts.forest=Forest
-tooltip.dragonmounts.fire=Fire
-tooltip.dragonmounts.fire2=Fire2
-tooltip.dragonmounts.nether=Nether
-tooltip.dragonmounts.nether2=Nether2
-tooltip.dragonmounts.skeleton=Skeleton
-tooltip.dragonmounts.enchant=Enchanted
-tooltip.dragonmounts.moonlight=Moonlight
-tooltip.dragonmounts.moonlight2=Moonlight2
-tooltip.dragonmounts.storm=Storm
-tooltip.dragonmounts.storm2=Storm2
-tooltip.dragonmounts.sunlight=Sunlight
-tooltip.dragonmounts.sunlight2=Sunlight2
-tooltip.dragonmounts.terra=Terra
-tooltip.dragonmounts.terra2=Terra2
-tooltip.dragonmounts.wither=Wither
-tooltip.dragonmounts.zombie=Zombie
-
+tooltip.dragonmounts.ender=§5Ender
+tooltip.dragonmounts.dark=§8Dark
+tooltip.dragonmounts.aether=§3Aether
+tooltip.dragonmounts.water=§sWater
+tooltip.dragonmounts.ice=§bIce
+tooltip.dragonmounts.forest=§2Forest
+tooltip.dragonmounts.fire=§mFire
+tooltip.dragonmounts.fire2=§mFire2
+tooltip.dragonmounts.nether=§pNether
+tooltip.dragonmounts.nether2=§pNether2
+tooltip.dragonmounts.skeleton=§7Skeleton
+tooltip.dragonmounts.enchant=§uEnchanted
+tooltip.dragonmounts.moonlight=§tMoonlight
+tooltip.dragonmounts.moonlight2=§tMoonlight2
+tooltip.dragonmounts.storm=§eStorm
+tooltip.dragonmounts.storm2=§eStorm2
+tooltip.dragonmounts.sunlight=§eSunlight
+tooltip.dragonmounts.sunlight2=§eSunlight2
+tooltip.dragonmounts.terra=§jTerra
+tooltip.dragonmounts.terra2=§jTerra2
+tooltip.dragonmounts.wither=§0Wither
+tooltip.dragonmounts.zombie=§qZombie
 
 item.dragonmounts.shield=Dragon Scale Shield
+item.scales=Dragon Scales
+item.dragon_egg=Dragon Egg
 item.dragonmounts.bow=Dragon Scale Bow
 item.dragonmounts.dragon_hoe=Dragon Scale Hoe
 item.dragonmounts.dragon_axe=Dragon Scale Axe
 item.dragonmounts.dragon_shovel=Dragon Scale Shovel
 item.dragonmounts.dragon_pickaxe=Dragon Scale Pickaxe
 item.dragonmounts.dragon_sword=Dragon Scale Sword 
+item.dragon_helmet=Dragon Scale Helmet
+item.dragon_chestplate=Dragon Scale Chestplate
+item.dragon_leggings=Dragon Scale Leggings
+item.dragon_boots=Dragon Scale Boots
+item.dragon_head=Dragon Head
+
+#whistle
+
+item.dragonmounts.whistle=Dragon Flute
+
+tip.dragonmounts.default=White
+tip.dragonmounts.red=Red
+tip.dragonmounts.orange=Orange
+tip.dragonmounts.magenta=Magenta
+tip.dragonmounts.lightblue=Light Blue
+tip.dragonmounts.yellow=Yellow
+tip.dragonmounts.lime=Lime
+tip.dragonmounts.pink=Pink
+tip.dragonmounts.gray=Gray
+tip.dragonmounts.lightgray=Light Gray
+tip.dragonmounts.cyan=Cyan
+tip.dragonmounts.purple=Purple
+tip.dragonmounts.blue=Blue
+tip.dragonmounts.brown=Brown
+tip.dragonmounts.green=Green
+tip.dragonmounts.red=Red
+tip.dragonmounts.black=Black
+
+#Dragon Wand
+
+item.dragon.wand=Dragon Wand
+tip.dragon.wand=(Emerald)Shoot Fire Breaths
+tip.dragon.wand1=(Diamond)Shoot Fireballs
+tip.dragon.wand2=(Ruby)Bite Attack
+
+
+#Amulet
+item.dragon.amulet=Dragon Amulet
 
 action.hint.exit.unknown=Tap dismount to dismount	#
 action.hint.exit.dm2:ender_dragon=Tap dismount to dismount	#
@@ -346,39 +378,6 @@ action.hint.exit.dm2:f_moonlignht_dragon=Tap dismount to dismount	#
 action.hint.exit.dm2:f_terra_dragon=Tap dismount to dismount	#
 action.hint.exit.dm2:f_aether_dragon=Tap dismount to dismount	#
 
-#whistle
-
-item.dragonmounts.whistle=Dragon Whistle
-
-tip.dragonmounts.default=White
-tip.dragonmounts.red=Red
-tip.dragonmounts.orange=Orange
-tip.dragonmounts.magenta=Magenta
-tip.dragonmounts.lightblue=Light Blue
-tip.dragonmounts.yellow=Yellow
-tip.dragonmounts.lime=Lime
-tip.dragonmounts.pink=Pink
-tip.dragonmounts.gray=Gray
-tip.dragonmounts.lightgray=Light Gray
-tip.dragonmounts.cyan=Cyan
-tip.dragonmounts.purple=Purple
-tip.dragonmounts.blue=Blue
-tip.dragonmounts.brown=Brown
-tip.dragonmounts.green=Green
-tip.dragonmounts.red=Red
-tip.dragonmounts.black=Black
-
-#Dragon Wand
-
-item.dragon.wand=Dragon Wand
-tip.dragon.wand=(Emerald)Shoot Fire Breaths
-tip.dragon.wand1=(Diamond)Shoot Fireballs
-tip.dragon.wand2=(Ruby)Bite Attack
-
-
-#Amulet
-item.dragon.amulet=Dragon Amulet
-
 item.spawn_egg.entity.dm2:spawn_storm.name= Storm Dragon Spawn Egg
 item.spawn_egg.entity.dm2:spawn_sunlight.name=Sunlight Dragon Spawn Egg
 item.spawn_egg.entity.dm2:spawn_moonlight.name=Moonlight Dragon Spawn Egg
@@ -395,12 +394,6 @@ item.spawn_egg.entity.dm2:spawn_skeleton.name=Skeleton Dragon Spawn Egg
 item.spawn_egg.entity.dm2:spawn_wither.name=Wither Dragon Spawn Egg
 item.spawn_egg.entity.dm2:spawn_zombie.name=Zombie Dragon Spawn Egg
 item.spawn_egg.entity.dm2:spawn_dark.name=Dark Dragon Spawn Egg  
-
-item.dragonmounts:variation_orb.name=Variant Orb
-interaction.text.change_variation=Change Variant
-dm:itemGroup.name.head_items=Dragon Head
-dm:itemGroup.name.essence_items=Essences
-item.essence.name=Essence
 
 #Head
 
@@ -421,19 +414,23 @@ item.dragonmountsplus:terra_head=Terra Dragon Head
 item.dragonmountsplus:enchant_head=Enchanted Dragon Head
 item.dragonmountsplus:dark_head=Dark Dragon Head
 
-item.dragonmountsplus:sunlight1_head=Sunlight
+item.dragonmountsplus:sunlight1_head=Sunlight Dragon Head
 item.dragonmountsplus:moonlight1_head=Moonlight Dragon Head
 item.dragonmountsplus:ender1_head=Ender Dragon Head
+item.dragonmountsplus:ender2_head=Ender Dragon Head
 item.dragonmountsplus:aether1_head=Aether Dragon Head
 item.dragonmountsplus:nether1_head=Nether Dragon Head
+item.dragonmountsplus:nether2_head=Nether Dragon Head
 item.dragonmountsplus:water1_head=Water Dragon Head
 item.dragonmountsplus:fire1_head=Fire Dragon Head
+item.dragonmountsplus:fire2_head=Fire Dragon Head
 item.dragonmountsplus:ice1_head=Ice Dragon Head
 item.dragonmountsplus:forest1_head=Forest Dragon Head
 item.dragonmountsplus:forest2_head=Forest Dragon Head
 item.dragonmountsplus:storm1_head=Storm Dragon Head
+item.dragonmountsplus:storm2_head=Storm Dragon Head
 item.dragonmountsplus:terra1_head=Terra Dragon Head
-item.dragonmountsplus:enchant1_head=Enchanted
+item.dragonmountsplus:enchant1_head=Enchanted Dragon Head
 item.dragonmountsplus:dark1_head=Dark Dragon Head
 
 tile.dragonmountsplus:wither_head_block.name=Wither Dragon Head
@@ -453,19 +450,29 @@ tile.dragonmountsplus:terra_head_block.name=Terra Dragon Head
 tile.dragonmountsplus:enchant_head_block.name=Enchanted Dragon Head
 tile.dragonmountsplus:dark_head_block.name=Dark Dragon Head
 
-tile.dragonmountsplus:sunlight1_head_block.name=Sunlight
+tile.dragonmountsplus:sunlight1_head_block.name=Sunlight Dragon Head
 tile.dragonmountsplus:moonlight1_head_block.name=Moonlight Dragon Head
 tile.dragonmountsplus:ender1_head_block.name=Ender Dragon Head
+tile.dragonmountsplus:ender2_head_block.name=Ender Dragon Head
 tile.dragonmountsplus:aether1_head_block.name=Aether Dragon Head
 tile.dragonmountsplus:nether1_head_block.name=Nether Dragon Head
+tile.dragonmountsplus:nether2_head_block.name=Nether Dragon Head
 tile.dragonmountsplus:water1_head_block.name=Water Dragon Head
 tile.dragonmountsplus:fire1_head_block.name=Fire Dragon Head
+tile.dragonmountsplus:fire2_head_block.name=Fire Dragon Head
 tile.dragonmountsplus:ice1_head_block.name=Ice Dragon Head
 tile.dragonmountsplus:forest1_head_block.name=Forest Dragon Head
 tile.dragonmountsplus:forest2_head_block.name=Forest Dragon Head
 tile.dragonmountsplus:storm1_head_block.name=Storm Dragon Head
+tile.dragonmountsplus:storm2_head_block.name=Storm Dragon Head
 tile.dragonmountsplus:terra1_head_block.name=Terra Dragon Head
-tile.dragonmountsplus:enchant1_head_block.name=Enchanted
+tile.dragonmountsplus:enchant1_head_block.name=Enchanted Dragon Head
 tile.dragonmountsplus:dark1_head_block.name=Dark Dragon Head
+
+item.dragonmounts:variation_orb.name=Variant Orb
+interaction.text.change_variation=Change Variant
+dm:itemGroup.name.head_items=Dragon Head
+dm:itemGroup.name.essence_items=Essences
+item.essence.name=Essence
 
 tile.dragonmounts:dragon_core.name=Dragon Core
