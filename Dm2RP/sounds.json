@@ -35,7 +35,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+                     "ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -48,12 +52,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -66,7 +70,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -79,12 +87,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -97,7 +105,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -110,12 +122,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -128,7 +140,11 @@
 				],
 				"events": {
 					"ambient": "mob.waterdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -141,12 +157,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -159,7 +175,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -172,12 +192,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -190,7 +210,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -203,12 +227,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -221,7 +245,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -234,12 +262,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -252,7 +280,11 @@
 				],
 				"events": {
 					"ambient": "mob.netherdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -265,12 +297,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -283,7 +315,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -296,12 +332,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -314,7 +350,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -327,12 +367,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -345,7 +385,11 @@
 				],
 				"events": {
 					"ambient": "mob.skeletondragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -358,12 +402,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -376,7 +420,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -389,12 +437,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -407,7 +455,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -420,12 +472,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -438,7 +490,11 @@
 				],
 				"events": {
 					"ambient": "mob.mountdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -451,12 +507,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -469,7 +525,11 @@
 				],
 				"events": {
 					"ambient": "mob.skeletondragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.mountdragon.death",
 					"saddle": "armor.equip_chain",
@@ -482,12 +542,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -500,7 +560,11 @@
 				],
 				"events": {
 					"ambient": "mob.zombiedragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.mountdragon.hit",
 					"death": "mob.zombiedragon.death",
 					"saddle": "armor.equip_chain",
@@ -513,12 +577,12 @@
 					"eat": {
 						"sound": "mob.mountdragon.attack.eat",
 						"volume": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						],
 						"pitch": [
-							0.1,
-							0.3
+							1.0,
+							1.0
 						]
 					}
 				}
@@ -787,7 +851,11 @@
 				],
 				"events": {
 					"mad": "mob.renderdragon.growl",
-					 "ambient.baby" : "mob.baby.growl",
+"ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
 					"hurt": "mob.renderdragon.hit",
 					"death": "mob.renderdragon.death",
 					"flap": "mob.renderdragon.flap"
