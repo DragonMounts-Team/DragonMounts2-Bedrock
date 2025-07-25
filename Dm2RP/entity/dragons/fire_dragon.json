@@ -12,12 +12,15 @@
 				"dissolve_1": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-			   "f_fire_dragon": "textures/entity/fire_dragon/f_fire_dragon",
+			  "f_fire_dragon": "textures/entity/fire_dragon/f_fire_dragon",
 				"fire_dragon": "textures/entity/fire_dragon/fire_dragon",
+				"r_fire_dragon": "textures/entity/fire_dragon/r_fire_dragon",
 				"glow": "textures/entity/fire_dragon/glow",
+				"r_glow": "textures/entity/fire_dragon/r_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
 				"dragon_armor_iron": "textures/entity/dragon_armor/armor_iron",
+				"dragon_armor_copper": "textures/entity/dragon_armor/armor_copper",
 				"dragon_armor_gold": "textures/entity/dragon_armor/armor_gold",
 				"dragon_armor_emerald": "textures/entity/dragon_armor/armor_emerald",
 				"dragon_armor_diamond": "textures/entity/dragon_armor/armor_diamond",
@@ -72,7 +75,9 @@
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",
-				"controller.render.glow",
+				{"controller.render.glow1": "query.variant == 1" },
+				{"controller.render.glow1": "query.variant == 0" },
+			  {"controller.render.glow3": "query.variant == 2" },
 				"controller.render.dragons.is_armored",
 				"controller.render.dragons.is_chested",
 				{ "controller.render.fire_dragon_death_pre_pass": "query.death_ticks > 1.0" },

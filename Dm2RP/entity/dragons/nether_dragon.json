@@ -12,13 +12,15 @@
 				"dissolve_1": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-			   "f_nether_dragon": "textures/entity/nether_dragon/f_nether_dragon",
+			  "f_nether_dragon": "textures/entity/nether_dragon/f_nether_dragon",
 				"nether_dragon": "textures/entity/nether_dragon/nether_dragon",
+				"r_nether_dragon": "textures/entity/nether_dragon/r_nether_dragon",
 				"glow": "textures/entity/nether_dragon/glow",
-				"f_glow": "textures/entity/nether_dragon/f_glow",
+				"r_glow": "textures/entity/nether_dragon/r_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
 				"dragon_armor_iron": "textures/entity/dragon_armor/armor_iron",
+				"dragon_armor_copper": "textures/entity/dragon_armor/armor_copper",
 				"dragon_armor_gold": "textures/entity/dragon_armor/armor_gold",
 				"dragon_armor_emerald": "textures/entity/dragon_armor/armor_emerald",
 				"dragon_armor_diamond": "textures/entity/dragon_armor/armor_diamond",
@@ -27,7 +29,7 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default2",	"glow": "geometry.mountdragon_default",
+				"dragon_default": "geometry.mountdragon_default5",							"glow": "geometry.mountdragon_default5",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
 			},
@@ -69,15 +71,15 @@
 				"null": "mob.mountdragon.null"
 			},
 			"particle_effects": {
-				"default": "dragonmounts:lava_drip_particle_sr"
+				"default": "dragonmounts:endering_table_particle"
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",
-
+				{"controller.render.glow1": "query.variant == 1" },
+				{"controller.render.glow1": "query.variant == 0" },
+			  {"controller.render.glow3": "query.variant == 2" },
 				"controller.render.dragons.is_armored",
 				"controller.render.dragons.is_chested",
-			   {"controller.render.glow1": "query.variant == 1" },
-			   {"controller.render.glow2": "query.variant == 0" },
 				{ "controller.render.nether_dragon_death_pre_pass": "query.death_ticks > 1.0" },
 				{ "controller.render.nether_dragon_death_main_pass": "query.death_ticks > 1.0" },
 				{ "controller.render.nether_dragon.default": "query.death_ticks <= 1.0" }
