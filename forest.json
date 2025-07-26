@@ -1,0 +1,161 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts:forest_dragon_egg",
+      "is_spawnable": false,
+      "is_summonable": true,
+                "scripts": {
+        "animate": [
+          "eggs_default_ani"
+          ]
+          },
+        "animations": {
+        "eggs_default_ani": "controller.animation.eggs.default"
+                }
+    },
+    "component_groups": {
+      "dragonmounts:dragon_hatched": {
+        "minecraft:is_shaking": {},
+        "minecraft:transformation": {
+          "into": "dm2:forest_dragon",
+          "begin_transform_sound": "block.turtle_egg.crack",
+          "transformation_sound": "block.turtle_egg.crack",
+          "delay": { "value": 60 }
+        }
+      },
+      "dragonmounts:dragon_hatched_1": {
+        "minecraft:is_shaking": {},
+        "minecraft:transformation": {
+          "into": "dm2:f_forest_dragon",
+          "begin_transform_sound": "block.turtle_egg.crack",
+          "transformation_sound": "block.turtle_egg.crack",
+          "delay": { "value": 60 }
+        }
+      }
+    },
+    "components": {
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+             "minecraft:interact": {
+				"interactions": [
+					{
+						"cooldown": 0.0,
+						"use_item": false,
+						"play_sounds": "unfect",
+						"interact_text": "action.interact.transform_block_dragon_eggs.dragonmounts",
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{
+										"test": "is_sneaking",
+										"subject": "player",
+										"operator": "equals",
+										"value": true
+									}
+								]
+							},
+							"event": "dragonmounts:back_to_block",
+							"target": "self"
+						}
+					}
+				]
+			},
+            "minecraft:damage_sensor": {
+  "triggers": [
+    {
+      "cause": "lava",
+      "deals_damage": false
+    },
+    {
+      "cause": "fire",
+      "deals_damage": false
+    },
+    {
+      "cause": "fire_tick",
+      "deals_damage": false
+    }
+  ]
+},
+      "minecraft:loot": {
+  "table": "loot_tables/eggs/forest.json"
+},
+      "minecraft:knockback_resistance": {
+  "value": 1.0
+},
+      "minecraft:collision_box": {
+        "width": 0.8,
+        "height": 1.0
+      },
+      "minecraft:breathable": {
+        "total_supply": 240,
+        "suffocate_time": 0,
+        "breathes_lava": true,
+        "breathes_solids": true,
+        "generates_bubbles": false
+      },
+      "minecraft:movement": {
+        "value": 0.0
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:physics": {
+        "has_gravity": true
+      },
+      "minecraft:type_family": {
+        "family": [
+          "player",
+          "dragon",
+          "dragon_egg",
+          "dragonmounts",
+          "forest_dragon_egg"
+        ]
+      },
+      "minecraft:ageable": {
+        "duration": 1200,
+        "feed_items": [
+          {
+            "item": "minecraft:emerald",
+            "growth": 0.03125
+          }
+        ],
+        "grow_up": {
+          "event": "dragonmounts:forest_dragon_egg_hatched",
+          "target": "self"
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "dragonmounts:cb6"
+          ]
+        }
+      },
+      "dragonmounts:back_to_block": {
+        "queue_command": {
+          "command": [
+            "execute @e[type=dragonmounts:forest_dragon_egg,r=0.1] ~ ~ ~ function block/forest"
+          ]
+        }
+      },
+      "dragonmounts:forest_dragon_egg_hatched": {
+        "randomize": [
+          {
+            "weight": 1,
+            "add": { "component_groups": ["dragonmounts:dragon_hatched"] }
+          },
+          {
+            "weight": 0,
+            "add": { "component_groups": ["dragonmounts:dragon_hatched_1"] }
+          }
+        ]
+      }
+    }
+  }
+}
