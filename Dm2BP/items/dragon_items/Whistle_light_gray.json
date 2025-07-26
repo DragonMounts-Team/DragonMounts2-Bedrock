@@ -17,7 +17,7 @@
         "use_duration": 0
       },
       "minecraft:allow_off_hand": false,
-      "minecraft:icon": "dragon_whistle_gray",
+      "minecraft:icon": "dragon_whistle_light_gray",
       "minecraft:display_name": {
         "value": "%item.dragonmounts.whistle\n%tip.dragonmounts.lightgray"
       },
