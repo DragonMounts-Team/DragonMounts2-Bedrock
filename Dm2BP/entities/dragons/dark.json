@@ -257,7 +257,7 @@
            }
           ]
         }
-      },   
+      },    
       "dm2:dragon_sitable": {
         "minecraft:sittable": {
           "priority": 0
@@ -312,10 +312,11 @@
         }
       },
       "dm2:dragon_flying": {
-        "minecraft:movement": {
+     "minecraft:movement": {
           "value": 1
         }
-      },
+
+     },
       "dm2:dragon_launch": {
         "minecraft:spell_effects": {
           "add_effects": [
@@ -393,41 +394,112 @@
         }
       },
       "dm2:dragon_noarmor": {
+      "minecraft:damage_sensor": {
+          "triggers": [				
+            {
+              "damage_multiplier": 1.0
+            },
+            {
+              "cause": "fall",
+              "deals_damage": false
+            }
+          ]
+        },
         "minecraft:mark_variant": {
           "value": 0
         }
       },
       "dm2:dragon_armor_iron": {
+         "minecraft:damage_sensor": {
+          "triggers": [				
+            {
+              "damage_multiplier": 0.60
+            },
+            {
+              "cause": "fall",
+              "deals_damage": false
+            }
+          ]
+        },
         "minecraft:mark_variant": {
           "value": 1
         }
       },
-      "dm2:dragon_armor_gold": {
+      "dm2:dragon_armor_copper": {
+                  "minecraft:damage_sensor": {
+          "triggers": [				
+            {
+              "damage_multiplier": 0.70
+            },
+            {
+              "cause": "fall",
+              "deals_damage": false
+            }
+          ]
+        },
         "minecraft:mark_variant": {
           "value": 2
         }
       },
-      "dm2:dragon_armor_diamond": {
+      "dm2:dragon_armor_gold": {
+                  "minecraft:damage_sensor": {
+          "triggers": [				
+            {
+              "damage_multiplier": 0.80
+            },
+            {
+              "cause": "fall",
+              "deals_damage": false
+            }
+          ]
+        },
         "minecraft:mark_variant": {
           "value": 3
         }
       },
-      "dm2:dragon_armor_emerald": {
+      "dm2:dragon_armor_diamond": {
+                  "minecraft:damage_sensor": {
+          "triggers": [				
+            {
+              "damage_multiplier": 0.40
+            },
+            {
+              "cause": "fall",
+              "deals_damage": false
+            }
+          ]
+        },
         "minecraft:mark_variant": {
           "value": 4
+        }
+      },
+      "dm2:dragon_armor_emerald": {
+                  "minecraft:damage_sensor": {
+          "triggers": [				
+            {
+              "damage_multiplier": 0.50
+            },
+            {
+              "cause": "fall",
+              "deals_damage": false
+            }
+          ]
+        },
+        "minecraft:mark_variant": {
+          "value": 5
         }
       }, 
       "dm2:f": {
         "minecraft:variant": {
           "value": 0
         },
-        "minecraft:loot": { "table": "loot_tables/head/dark.json" }
+        "minecraft:loot": { "table": "loot_tables/head1/dark1.json" }
       },
         "dm2:m": {
         "minecraft:variant": {
           "value": 1
         },
-        "minecraft:loot": { "table": "loot_tables/head/dark1.json" }
+        "minecraft:loot": { "table": "loot_tables/head1/dark.json" }
       }
     },    
     "components": {
@@ -620,7 +692,7 @@
 							"event": "dm2:dragon_temp_unsit_start"
 						}
 					}
-        ] 
+        ]
       },
       "minecraft:equippable": {
         "slots": [
@@ -643,6 +715,7 @@
             "accepted_items": [
               "dm2:dragonarmor_emerald",
               "dm2:dragonarmor_iron",
+              "dm2:dragonarmor_copper",
               "dm2:dragonarmor_gold",
               "dm2:dragonarmor_diamond"
             ],
@@ -1198,6 +1271,12 @@
                   "test": "has_equipment",
                   "domain": "armor",
                   "operator": "!=",
+                  "value": "dm2:dragonarmor_copper"
+                },
+                {
+                  "test": "has_equipment",
+                  "domain": "armor",
+                  "operator": "!=",
                   "value": "dm2:dragonarmor_gold"
                 },
                 {
@@ -1273,12 +1352,33 @@
                 {
                   "test": "has_equipment",
                   "domain": "armor",
-                  "value": "dm2:dragonarmor_diamond"
+                  "value": "dm2:dragonarmor_copper"
                 },
                 {
                   "test": "is_mark_variant",
                   "operator": "!=",
                   "value": 3
+                }
+              ]
+            },
+            "add": {
+              "component_groups": [
+                "dm2:dragon_armor_copper"
+              ]
+            }
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "has_equipment",
+                  "domain": "armor",
+                  "value": "dm2:dragonarmor_diamond"
+                },
+                {
+                  "test": "is_mark_variant",
+                  "operator": "!=",
+                  "value": 4
                 }
               ]
             },
@@ -1299,7 +1399,7 @@
                 {
                   "test": "is_mark_variant",
                   "operator": "!=",
-                  "value": 4
+                  "value": 5
                 }
               ]
             },
