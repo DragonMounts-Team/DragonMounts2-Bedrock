@@ -44,3 +44,4 @@ import "./breath/poisonbreath";
 import "./attack";
 import "./dragoncore";
 import "./customComponents/blocks.js";
+import "./main5";
