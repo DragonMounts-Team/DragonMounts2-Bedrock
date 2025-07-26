@@ -2,7 +2,7 @@
   "format_version": "1.13.0",
   "minecraft:entity": {
     "description": {
-      "identifier": "dm2:moonlight_dragon",
+      "identifier": "dm2:dark_dragon",
       "is_spawnable": true,
       "is_summonable": true,
       "is_experimental": false,
@@ -85,18 +85,18 @@
           "inherit_tamed": true,
           "breeds_with": [
               {
-            "mate_type": "dm2:f_moonlight_dragon",
-            "baby_type": "dm2:moonlight_dragon_egg",
+            "mate_type": "dm2:f_dark_dragon",
+            "baby_type": "dm2:dark_dragon_egg",
             "breed_event": {
-              "event": "dragonmounts:moonlight_dragon_egg_born",
+              "event": "dragonmounts:dark_dragon_egg_born",
               "target": "self"
             }
           },
           {
-          "mate_type": "dm2:moonlight_dragon",
-            "baby_type": "dragonmounts:moonlight_dragon_egg",
+          "mate_type": "dm2:dark_dragon",
+            "baby_type": "dragonmounts:dark_dragon_egg",
             "breed_event": {
-              "event": "dm2:moonlight_dragon_egg_born",
+              "event": "dm2:dark_dragon_egg_born",
               "target": "self"
             }
           }
@@ -138,7 +138,7 @@
       },
       "dm2:dragon_wild": {
         "minecraft:equipment": {
-          "table": "loot_tables/loot/moonlight.json"
+          "table": "loot_tables/loot/dark.json"
         },
         "minecraft:tameable": {
           "probability": 0.2,
@@ -202,7 +202,7 @@
               "use_item": false,
               "hurt_item": 16,
               "spawn_items": {
-                "table": "loot_tables/entities/dm2/moonlight.json"
+                "table": "loot_tables/entities/dm2/dark.json"
               },
               "play_sounds": "shear",
               "interact_text": "action.interact.shear.dm2",
@@ -376,7 +376,7 @@
             "single_use": true,
             "num_to_spawn": 1,
             "spawn_sound": "plop",
-            "spawn_item": "dm2:essence_moonlight"
+            "spawn_item": "dm2:essence_dark"
           }
         }
       },
@@ -493,13 +493,13 @@
         "minecraft:variant": {
           "value": 0
         },
-        "minecraft:loot": { "table": "loot_tables/head1/moonlight1.json" }
+        "minecraft:loot": { "table": "loot_tables/head1/dark1.json" }
       },
         "dm2:m": {
         "minecraft:variant": {
           "value": 1
         },
-        "minecraft:loot": { "table": "loot_tables/head1/moonlight.json" }
+        "minecraft:loot": { "table": "loot_tables/head1/dark.json" }
       }
     },    
     "components": {
@@ -516,7 +516,7 @@
         "damage": 24
       },
                   "minecraft:loot": {
-        "table": "loot_tables/loot/moonlight.json"
+        "table": "loot_tables/loot/dark.json"
       },
       "minecraft:behavior.delayed_attack": {
         "priority": 0,
@@ -535,7 +535,7 @@
         "family": [
           "dragon",
           "dm2",
-          "moonlight_dragon"
+          "dark_dragon"
         ]
       },
       "minecraft:behavior.mount_pathing": {
@@ -872,9 +872,9 @@
       }
     },
     "events": {
-      "dm2:moonlight_dragon_egg_born":{
+      "dm2:dark_dragon_egg_born":{
         "spawn_entity": {
-          "entity": "dragonmounts:moonlight_dragon_egg",
+          "entity": "dragonmounts:dark_dragon_egg",
           "spawn_pos": {
             "x": 0,
             "y": 1,
