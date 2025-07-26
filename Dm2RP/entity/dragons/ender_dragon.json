@@ -1,7 +1,8 @@
 {
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
-		"description": {			"identifier": "dm2:ender_dragon",
+		"description": {			
+		"identifier": "dm2:ender_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",

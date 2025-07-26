@@ -1,7 +1,8 @@
 {
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
-		"description": {			"identifier": "dm2:skeleton_dragon",
+		"description": {			
+		"identifier": "dm2:skeleton_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -27,7 +28,8 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default3",							"glow": "geometry.mountdragon_default",
+				"dragon_default": "geometry.mountdragon_default3",							
+				"glow": "geometry.mountdragon_default",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
 			},

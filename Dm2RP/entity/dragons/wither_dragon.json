@@ -1,7 +1,8 @@
 {
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
-		"description": {			"identifier": "dm2:wither_dragon",
+		"description": {			
+		"identifier": "dm2:wither_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -12,7 +13,7 @@
 				"dissolve_1": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-			   "f_wither_dragon": "textures/entity/wither_dragon/wither_dragon",
+			  "f_wither_dragon": "textures/entity/wither_dragon/wither_dragon",
 				"wither_dragon": "textures/entity/wither_dragon/wither_dragon",
 				"glow": "textures/entity/wither_dragon/glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
@@ -27,7 +28,8 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default3",							"glow": "geometry.mountdragon_default",
+				"dragon_default": "geometry.mountdragon_default3",							
+				"glow": "geometry.mountdragon_default",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
 			},

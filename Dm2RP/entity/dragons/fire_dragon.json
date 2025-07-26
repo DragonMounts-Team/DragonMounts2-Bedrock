@@ -1,7 +1,8 @@
 {
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
-		"description": {			"identifier": "dm2:fire_dragon",
+		"description": {			
+		"identifier": "dm2:fire_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -16,6 +17,7 @@
 				"fire_dragon": "textures/entity/fire_dragon/fire_dragon",
 				"r_fire_dragon": "textures/entity/fire_dragon/r_fire_dragon",
 				"glow": "textures/entity/fire_dragon/glow",
+				"f_glow": "textures/entity/fire_dragon/f_glow",
 				"r_glow": "textures/entity/fire_dragon/r_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
@@ -29,7 +31,8 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default1",							"glow": "geometry.mountdragon_default1",
+				"dragon_default": "geometry.mountdragon_default1",							
+				"glow": "geometry.mountdragon_default1",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
 			},
@@ -76,7 +79,7 @@
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",
 				{"controller.render.glow1": "query.variant == 1" },
-				{"controller.render.glow1": "query.variant == 0" },
+				{"controller.render.glow2": "query.variant == 0" },
 			  {"controller.render.glow3": "query.variant == 2" },
 				"controller.render.dragons.is_armored",
 				"controller.render.dragons.is_chested",

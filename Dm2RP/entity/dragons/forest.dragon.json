@@ -1,7 +1,8 @@
 {
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
-		"description": {			"identifier": "dm2:forest_dragon",
+		"description": {			
+		"identifier": "dm2:forest_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -12,7 +13,7 @@
 				"dissolve_1": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-			   "taiga_dragon": "textures/entity/forest_dragon/taiga_dragon",
+			  "taiga_dragon": "textures/entity/forest_dragon/taiga_dragon",
 				"forest_dragon": "textures/entity/forest_dragon/forest_dragon",
 				"dry_dragon": "textures/entity/forest_dragon/dry_dragon",
 				"glow": "textures/entity/forest_dragon/glow",
@@ -28,7 +29,8 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default",							"glow": "geometry.mountdragon_default",
+				"dragon_default": "geometry.mountdragon_default",							
+				"glow": "geometry.mountdragon_default",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
 			},

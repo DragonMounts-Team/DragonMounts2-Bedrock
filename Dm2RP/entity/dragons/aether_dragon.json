@@ -13,7 +13,7 @@
 				"dissolve_1": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-			   "f_aether_dragon": "textures/entity/aether_dragon/f_aether_dragon",
+			  "f_aether_dragon": "textures/entity/aether_dragon/f_aether_dragon",
 				"aether_dragon": "textures/entity/aether_dragon/aether_dragon",
 				"glow": "textures/entity/aether_dragon/glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
@@ -28,7 +28,8 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default",							"glow": "geometry.mountdragon_default",
+				"dragon_default": "geometry.mountdragon_default",							
+				"glow": "geometry.mountdragon_default",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
 			},

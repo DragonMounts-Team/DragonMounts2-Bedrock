@@ -1,7 +1,8 @@
 {
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
-		"description": {			"identifier": "dm2:moonlight_dragon",
+		"description": {			
+		"identifier": "dm2:moonlight_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -12,9 +13,10 @@
 				"dissolve_1": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-			   "f_moonlight_dragon": "textures/entity/moonlight_dragon/f_moonlight_dragon",
+			  "f_moonlight_dragon": "textures/entity/moonlight_dragon/f_moonlight_dragon",
 				"moonlight_dragon": "textures/entity/moonlight_dragon/moonlight_dragon",
 				"glow": "textures/entity/moonlight_dragon/glow",
+				"f_glow": "textures/entity/moonlight_dragon/f_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
 				"dragon_armor_iron": "textures/entity/dragon_armor/armor_iron",
@@ -27,7 +29,8 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default",							"glow": "geometry.mountdragon_default",
+				"dragon_default": "geometry.mountdragon_default",							
+				"glow": "geometry.mountdragon_default",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
 			},
@@ -73,7 +76,8 @@
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",
-				"controller.render.glow",
+				{"controller.render.glow1": "query.variant == 1" },
+				{"controller.render.glow2": "query.variant == 0" },
 				"controller.render.dragons.is_armored",
 				"controller.render.dragons.is_chested",
 				{ "controller.render.moonlight_dragon_death_pre_pass": "query.death_ticks > 1.0" },
