@@ -93,8 +93,6 @@ tag @a[hasitem={item=ender:shield,location=slot.weapon.mainhand}] add shield_mai
 tag @a[hasitem={item=fire:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=fire:shield,location=slot.weapon.mainhand}] add shield_mainhand
 
-tag @a[hasitem={item=fire2:shield,location=slot.weapon.offhand}] add shield_offhand
-tag @a[hasitem={item=fire2:shield,location=slot.weapon.mainhand}] add shield_mainhand
 
 tag @a[hasitem={item=storm:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=storm:shield,location=slot.weapon.mainhand}] add shield_mainhand
@@ -108,14 +106,11 @@ tag @a[hasitem={item=ice:shield,location=slot.weapon.mainhand}] add shield_mainh
 tag @a[hasitem={item=nether:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=nether:shield,location=slot.weapon.mainhand}] add shield_mainhand
 
-tag @a[hasitem={item=nether2:shield,location=slot.weapon.offhand}] add shield_offhand
-tag @a[hasitem={item=nether2:shield,location=slot.weapon.mainhand}] add shield_mainhand
+
 
 tag @a[hasitem={item=sunlight:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=sunlight:shield,location=slot.weapon.mainhand}] add shield_mainhand
 
-tag @a[hasitem={item=sunlight2:shield,location=slot.weapon.offhand}] add shield_offhand
-tag @a[hasitem={item=sunlight2:shield,location=slot.weapon.mainhand}] add shield_mainhand
 
 tag @a[hasitem={item=aether:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=aether:shield,location=slot.weapon.mainhand}] add shield_mainhand
@@ -129,8 +124,7 @@ tag @a[hasitem={item=zombie:shield,location=slot.weapon.mainhand}] add shield_ma
 tag @a[hasitem={item=moonlight:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=moonlight:shield,location=slot.weapon.mainhand}] add shield_mainhand
 
-tag @a[hasitem={item=moonlight2:shield,location=slot.weapon.offhand}] add shield_offhand
-tag @a[hasitem={item=moonlight2:shield,location=slot.weapon.mainhand}] add shield_mainhand
+
 
 tag @a[hasitem={item=water:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=water:shield,location=slot.weapon.mainhand}] add shield_mainhand
@@ -138,10 +132,6 @@ tag @a[hasitem={item=water:shield,location=slot.weapon.mainhand}] add shield_mai
 tag @a[hasitem={item=terra:shield,location=slot.weapon.offhand}] add shield_offhand
 tag @a[hasitem={item=terra:shield,location=slot.weapon.mainhand}] add shield_mainhand
 
-tag @a[hasitem={item=terra2:shield,location=slot.weapon.offhand}] add shield_offhand
-tag @a[hasitem={item=terra2:shield,location=slot.weapon.mainhand}] add shield_mainhand
-tag @a[hasitem={item=terra2:shield,location=slot.weapon.mainhand}] add broken
-tag @a remove broken
 
 effect @a[hasitem={item=dm:amulet,location=slot.weapon.mainhand}] weakness 1 255 true
 
