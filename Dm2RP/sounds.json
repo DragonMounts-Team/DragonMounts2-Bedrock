@@ -27,7 +27,7 @@
 	},
 	"entity_sounds": {
 		"entities": {
-			"dm2:ender_dragon": {
+			"dragonmountsplus:ender_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -62,7 +62,7 @@
 					}
 				}
 			},
-			"dm2:dark_dragon": {
+			"dragonmountsplus:dark_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -97,7 +97,7 @@
 					}
 				}
 			},
-			"dm2:aether_dragon": {
+			"dragonmountsplus:aether_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -132,7 +132,7 @@
 					}
 				}
 			},
-			"dm2:water_dragon": {
+			"dragonmountsplus:water_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -167,7 +167,7 @@
 					}
 				}
 			},
-			"dm2:ice_dragon": {
+			"dragonmountsplus:ice_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -202,7 +202,7 @@
 					}
 				}
 			},
-			"dm2:forest_dragon": {
+			"dragonmountsplus:forest_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -237,7 +237,7 @@
 					}
 				}
 			},
-			"dm2:fire_dragon": {
+			"dragonmountsplus:fire_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -272,7 +272,7 @@
 					}
 				}
 			},
-			"dm2:nether_dragon": {
+			"dragonmountsplus:nether_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -307,7 +307,7 @@
 					}
 				}
 			},
-			"dm2:enchant_dragon": {
+			"dragonmountsplus:enchant_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -342,7 +342,7 @@
 					}
 				}
 			},
-			"dm2:moonlight_dragon": {
+			"dragonmountsplus:moonlight_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -377,7 +377,7 @@
 					}
 				}
 			},
-			"dm2:skeleton_dragon": {
+			"dragonmountsplus:skeleton_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -412,7 +412,7 @@
 					}
 				}
 			},
-			"dm2:storm_dragon": {
+			"dragonmountsplus:storm_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -447,7 +447,7 @@
 					}
 				}
 			},
-			"dm2:sunlight_dragon": {
+			"dragonmountsplus:sunlight_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -482,7 +482,7 @@
 					}
 				}
 			},
-			"dm2:terra_dragon": {
+			"dragonmountsplus:terra_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -517,7 +517,7 @@
 					}
 				}
 			},
-			"dm2:wither_dragon": {
+			"dragonmountsplus:wither_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -552,7 +552,7 @@
 					}
 				}
 			},
-			"dm2:zombie_dragon": {
+			"dragonmountsplus:zombie_dragon": {
 				"volume": 24.0,
 				"pitch": [
 					0.8,
@@ -587,7 +587,7 @@
 					}
 				}
 			},
-			"dragonmounts:ender_dragon_egg": {
+			"dragonmountsplus:ender_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -602,7 +602,7 @@
 					}
 				}
 			},
-			"dragonmounts:dark_dragon_egg": {
+			"dragonmountsplus:dark_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -617,7 +617,7 @@
 					}
 				}
 			},
-			"dragonmounts:aether_dragon_egg": {
+			"dragonmountsplus:aether_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -632,7 +632,7 @@
 					}
 				}
 			},
-			"dragonmounts:water_dragon_egg": {
+			"dragonmountsplus:water_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -647,7 +647,7 @@
 					}
 				}
 			},
-			"dragonmounts:ice_dragon_egg": {
+			"dragonmountsplus:ice_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -662,7 +662,7 @@
 					}
 				}
 			},
-			"dragonmounts:forest_dragon_egg": {
+			"dragonmountsplus:forest_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -677,7 +677,7 @@
 					}
 				}
 			},
-			"dragonmounts:fire_dragon_egg": {
+			"dragonmountsplus:fire_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -692,7 +692,7 @@
 					}
 				}
 			},
-			"dragonmounts:nether_dragon_egg": {
+			"dragonmountsplus:nether_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -707,7 +707,7 @@
 					}
 				}
 			},
-			"dragonmounts:enchant_dragon_egg": {
+			"dragonmountsplus:enchant_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -722,7 +722,7 @@
 					}
 				}
 			},
-			"dragonmounts:moonlight_dragon_egg": {
+			"dragonmountsplus:moonlight_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -737,7 +737,7 @@
 					}
 				}
 			},
-			"dragonmounts:skeleton_dragon_egg": {
+			"dragonmountsplus:skeleton_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -752,7 +752,7 @@
 					}
 				}
 			},
-			"dragonmounts:storm_dragon_egg": {
+			"dragonmountsplus:storm_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -767,7 +767,7 @@
 					}
 				}
 			},
-			"dragonmounts:sunlight_dragon_egg": {
+			"dragonmountsplus:sunlight_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -782,7 +782,7 @@
 					}
 				}
 			},
-			"dragonmounts:terra_dragon_egg": {
+			"dragonmountsplus:terra_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -797,7 +797,7 @@
 					}
 				}
 			},
-			"dragonmounts:wither_dragon_egg": {
+			"dragonmountsplus:wither_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -812,7 +812,7 @@
 					}
 				}
 			},
-			"dragonmounts:zombie_dragon_egg": {
+			"dragonmountsplus:zombie_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
@@ -827,7 +827,7 @@
 					}
 				}
 			},
-			"dragonmounts:dragon_dissolve": {
+			"dragonmountsplus:dragon_dissolve": {
 				"volume": 1.0,
 				"pitch": 1.0,
 				"events": {
@@ -835,7 +835,7 @@
 					"death": "mob.mountdragon.null"
 				}
 			},
-			"dragonmounts:block_entity0": {
+			"dragonmountsplus:block_entity0": {
 				"volume": 1.0,
 				"pitch": 1.0,
 				"events": {
@@ -843,7 +843,7 @@
 					"death": "mob.mountdragon.null"
 				}
 			},
-			"dragonmounts:render_dragon": {
+			"dragonmountsplus:render_dragon": {
 				"volume": 8.0,
 				"pitch": [
 					1.1,

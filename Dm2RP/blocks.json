@@ -4,113 +4,113 @@
 		1,
 		0
 	],
-	"dragonmounts:dragon_nest_block": {
+	"dragonmountsplus:dragon_nest_block": {
 		"textures": "dragon_nest_block",
 		"sound": "wood"
 	},
-	"dragonmounts:aether_dragon_egg": {
+	"dragonmountsplus:aether_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:dark_dragon_egg": {
+	"dragonmountsplus:dark_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:enchant_dragon_egg": {
+	"dragonmountsplus:enchant_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:ender_dragon_egg": {
+	"dragonmountsplus:ender_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:fire_dragon_egg": {
+	"dragonmountsplus:fire_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:forest_dragon_egg": {
+	"dragonmountsplus:forest_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:ice_dragon_egg": {
+	"dragonmountsplus:ice_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:moonlight_dragon_egg": {
+	"dragonmountsplus:moonlight_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:nether_dragon_egg": {
+	"dragonmountsplus:nether_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:skeleton_dragon_egg": {
+	"dragonmountsplus:skeleton_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:storm_dragon_egg": {
+	"dragonmountsplus:storm_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:sunlight_dragon_egg": {
+	"dragonmountsplus:sunlight_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:terra_dragon_egg": {
+	"dragonmountsplus:terra_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:water_dragon_egg": {
+	"dragonmountsplus:water_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:wither_dragon_egg": {
+	"dragonmountsplus:wither_dragon_egg": {
 		"sound": "stone"
 	},
-	"dragonmounts:zombie_dragon_egg": {
+	"dragonmountsplus:zombie_dragon_egg": {
 		"sound": "stone"
 	},
-	  "dragonmounts:aether_scale": {
-    "textures": "dragonmounts_aether_scale",
+	  "dragonmountsplus:aether_scale": {
+    "textures": "dragonmountsplus_aether_scale",
     "sound": "netherite"
   },
-    "dragonmounts:nether_scale": {
-    "textures": "dragonmounts_nether_scale",
+    "dragonmountsplus:nether_scale": {
+    "textures": "dragonmountsplus_nether_scale",
     "sound": "netherite"
   },
-    "dragonmounts:ender_scale": {
-    "textures": "dragonmounts_ender_scale",
+    "dragonmountsplus:ender_scale": {
+    "textures": "dragonmountsplus_ender_scale",
     "sound": "netherite"
   },
-    "dragonmounts:enchant_scale": {
-    "textures": "dragonmounts_enchant_scale",
+    "dragonmountsplus:enchant_scale": {
+    "textures": "dragonmountsplus_enchant_scale",
     "sound": "netherite"
   },
-    "dragonmounts:moonlight_scale": {
-    "textures": "dragonmounts_moonlight_scale",
+    "dragonmountsplus:moonlight_scale": {
+    "textures": "dragonmountsplus_moonlight_scale",
     "sound": "netherite"
   },
-    "dragonmounts:sunlight_scale": {
-    "textures": "dragonmounts_sunlight_scale",
+    "dragonmountsplus:sunlight_scale": {
+    "textures": "dragonmountsplus_sunlight_scale",
     "sound": "netherite"
   },
-    "dragonmounts:water_scale": {
-    "textures": "dragonmounts_water_scale",
+    "dragonmountsplus:water_scale": {
+    "textures": "dragonmountsplus_water_scale",
     "sound": "netherite"
   },
-    "dragonmounts:ice_scale": {
-    "textures": "dragonmounts_ice_scale",
+    "dragonmountsplus:ice_scale": {
+    "textures": "dragonmountsplus_ice_scale",
     "sound": "netherite"
   },
-    "dragonmounts:dark_scale": {
-    "textures": "dragonmounts_dark_scale",
+    "dragonmountsplus:dark_scale": {
+    "textures": "dragonmountsplus_dark_scale",
     "sound": "netherite"
   },
-    "dragonmounts:zombie_scale": {
-    "textures": "dragonmounts_zombie_scale",
+    "dragonmountsplus:zombie_scale": {
+    "textures": "dragonmountsplus_zombie_scale",
     "sound": "netherite"
   },
-    "dragonmounts:terra_scale": {
-    "textures": "dragonmounts_terra_scale",
+    "dragonmountsplus:terra_scale": {
+    "textures": "dragonmountsplus_terra_scale",
     "sound": "netherite"
   },
-    "dragonmounts:storm_scale": {
-    "textures": "dragonmounts_storm_scale",
+    "dragonmountsplus:storm_scale": {
+    "textures": "dragonmountsplus_storm_scale",
     "sound": "netherite"
   },
 
-    "dragonmounts:forest_scale": {
-    "textures": "dragonmounts_forest_scale",
+    "dragonmountsplus:forest_scale": {
+    "textures": "dragonmountsplus_forest_scale",
     "sound": "netherite"
   },
-      "dragonmounts:fire_scale": {
-    "textures": "dragonmounts_fire_scale",
+      "dragonmountsplus:fire_scale": {
+    "textures": "dragonmountsplus_fire_scale",
     "sound": "netherite"
   }
 }   
