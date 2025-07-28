@@ -2,7 +2,7 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {			
-		"identifier": "dm2:enchant_dragon",
+		"identifier": "dragonmountsplus:enchant_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -73,7 +73,7 @@
 				"null": "mob.mountdragon.null"
 			},
 			"particle_effects": {
-				"default": "dragonmounts:enchanting_table_particle"
+				"default": "dragonmountsplus:enchanting_table_particle"
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",

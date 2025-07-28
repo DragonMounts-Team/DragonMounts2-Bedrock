@@ -2,7 +2,7 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {			
-		"identifier": "dm2:storm_dragon",
+		"identifier": "dragonmountsplus:storm_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -74,7 +74,7 @@
 				"null": "mob.mountdragon.null"
 			},
 			"particle_effects": {
-				"default": "dragonmounts:water_drip_particle"
+				"default": "dragonmountsplus:water_drip_particle"
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",

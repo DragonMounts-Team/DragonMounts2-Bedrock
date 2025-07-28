@@ -1,8 +1,8 @@
 {
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
-		"description": {
-			"identifier": "dragonmountsplus:dark_dragon",
+		"description": {			
+		"identifier": "dragonmountsplus:moonlight_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -13,10 +13,10 @@
 				"dissolve_1": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-			  "f_dark_dragon": "textures/entity/dark_dragon/f_dark_dragon",
-				"dark_dragon": "textures/entity/dark_dragon/dark_dragon",
-				"glow": "textures/entity/dark_dragon/glow",
-				"f_glow": "textures/entity/dark_dragon/f_glow",
+			  "f_moonlight_dragon": "textures/entity/moonlight_dragon/f_moonlight_dragon",
+				"moonlight_dragon": "textures/entity/moonlight_dragon/moonlight_dragon",
+				"glow": "textures/entity/moonlight_dragon/glow",
+				"f_glow": "textures/entity/moonlight_dragon/f_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
 				"dragon_armor_iron": "textures/entity/dragon_armor/armor_iron",
@@ -80,12 +80,12 @@
 				{"controller.render.glow2": "query.variant == 0" },
 				"controller.render.dragons.is_armored",
 				"controller.render.dragons.is_chested",
-				{ "controller.render.dark_dragon_death_pre_pass": "query.death_ticks > 1.0" },
-				{ "controller.render.dark_dragon_death_main_pass": "query.death_ticks > 1.0" },
-				{ "controller.render.dark_dragon.default": "query.death_ticks <= 1.0" }
+				{ "controller.render.moonlight_dragon_death_pre_pass": "query.death_ticks > 1.0" },
+				{ "controller.render.moonlight_dragon_death_main_pass": "query.death_ticks > 1.0" },
+				{ "controller.render.moonlight_dragon.default": "query.death_ticks <= 1.0" }
 			],
 			"spawn_egg": {
-				"texture": "dark_dragon_head"
+				"texture": "moonlight_dragon_head"
 			}
 		}
 	}

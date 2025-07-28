@@ -2,7 +2,7 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {			
-		"identifier": "dm2:zombie_dragon",
+		"identifier": "dragonmountsplus:zombie_dragon",
 			"materials": {
 				"dragon": "dragon",
 				"dragon_default": "dragon_default",
@@ -71,7 +71,7 @@
 				"null": "mob.mountdragon.null"
 			},
 			"particle_effects": {
-				"default": "dragonmounts:endering_table_particle"
+				"default": "dragonmountsplus:endering_table_particle"
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",
