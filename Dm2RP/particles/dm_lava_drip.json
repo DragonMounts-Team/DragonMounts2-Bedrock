@@ -2,7 +2,7 @@
   "format_version": "1.10.0",
   "particle_effect": {
     "description": {
-      "identifier": "dragonmounts:lava_drip_particle_sr",
+      "identifier": "dragonmountsplus:lava_drip_particle_sr",
       "basic_render_parameters": {
         "material": "particles_alpha",
         "texture": "textures/particle/dmp"
