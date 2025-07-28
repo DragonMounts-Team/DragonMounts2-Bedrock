@@ -2,7 +2,7 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {
-			"identifier": "dragonmounts:forest_dragon_egg",
+			"identifier": "dragonmountsplus:forest_dragon_egg",
 			"materials": {
 				"dragon_egg": "dragon_egg",
 				"death": "entity_dissolve_layer1.skinning"
@@ -29,9 +29,9 @@
 				"dragonegg_bs1_sou": "mob.mountdragon_egg.bs1"
 			},
 			"particle_effects": {
-				"dragon_egg_hatching": "dragonmounts:forest_dragon_egg_hatching",
-				"dragon_egg_hatchings": "dragonmounts:dragon_egg_hatchings",
-				"dragon_egg_bs": "dragonmounts:forest_dragon_egg_bs"
+				"dragon_egg_hatching": "dragonmountsplus:forest_dragon_egg_hatching",
+				"dragon_egg_hatchings": "dragonmountsplus:dragon_egg_hatchings",
+				"dragon_egg_bs": "dragonmountsplus:forest_dragon_egg_bs"
 			},
 			"render_controllers": [
 				{ "controller.render.forest_dragon_egg": "query.death_ticks < 1.0" },

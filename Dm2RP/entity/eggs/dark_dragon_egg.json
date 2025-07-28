@@ -2,13 +2,13 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {
-			"identifier": "dragonmountsplus:zombie_dragon_egg",
+			"identifier": "dragonmountsplus:dark_dragon_egg",
 			"materials": {
 				"dragon_egg": "dragon_egg",
 				"death": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-				"dragon_egg": "textures/entity/dragon_eggs/zombie"
+				"dragon_egg": "textures/entity/dragon_eggs/dark"
 			},
 			"geometry": {
 				"dragon_egg": "geometry.dragon_egg"
@@ -29,16 +29,16 @@
 				"dragonegg_bs1_sou": "mob.mountdragon_egg.bs1"
 			},
 			"particle_effects": {
-				"dragon_egg_hatching": "dragonmountsplus:zombie_dragon_egg_hatching",
+				"dragon_egg_hatching": "dragonmountsplus:dark_dragon_egg_hatching",
 				"dragon_egg_hatchings": "dragonmountsplus:dragon_egg_hatchings",
-				"dragon_egg_bs": "dragonmountsplus:zombie_dragon_egg_bs"
+				"dragon_egg_bs": "dragonmountsplus:dark_dragon_egg_bs"
 			},
 			"render_controllers": [
-				{ "controller.render.zombie_dragon_egg": "query.death_ticks < 1.0" },
-				{ "controller.render.zombie_dragon_egg_death": "query.death_ticks >= 1.0" }
+				{ "controller.render.dark_dragon_egg": "query.death_ticks < 1.0" },
+				{ "controller.render.dark_dragon_egg_death": "query.death_ticks >= 1.0" }
 			],
 			"spawn_egg": {
-				"texture": "zombiedragon_egg_item"
+				"texture": "darkdragon_egg_item"
 			}
 		}
 	}
