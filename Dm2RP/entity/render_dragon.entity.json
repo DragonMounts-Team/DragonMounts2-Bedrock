@@ -2,7 +2,7 @@
   "format_version": "1.10.0",
   "minecraft:client_entity": {
     "description": {
-      "identifier": "dragonmounts:render_dragon",
+      "identifier": "dragonmountsplus:render_dragon",
       "materials": {
         "default": "ender_dragon",
         "beam_material": "entity_beam",
