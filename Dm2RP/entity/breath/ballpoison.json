@@ -2,7 +2,7 @@
   "format_version": "1.10.0",
   "minecraft:client_entity": {
     "description": {
-      "identifier": "bj:poisonbreath1",
+      "identifier": "dragonmountsplus:poisonbreath1",
       "materials": {
         "default": "entity_alphatest"
       },

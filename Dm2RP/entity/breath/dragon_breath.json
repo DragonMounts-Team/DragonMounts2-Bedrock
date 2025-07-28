@@ -2,7 +2,7 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {
-			"identifier": "dragonmounts:dragon_breath1",
+			"identifier": "dragonmountsplus:dragon_breath1",
 			"materials": {
 				"default": "dragon_breath"
 			},
@@ -16,7 +16,7 @@
 				"default": "animation.dragon_breath.default"
 			},
 			"particle_effects": {
-				"default": "dragonmounts:dragon_breath_default"
+				"default": "dragonmountsplus:dragon_breath_default"
 			},
 			"scripts": {
 				"animate": [

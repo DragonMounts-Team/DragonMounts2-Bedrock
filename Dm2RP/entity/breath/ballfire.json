@@ -2,7 +2,7 @@
   "format_version": "1.10.0",
   "minecraft:client_entity": {
     "description": {
-      "identifier": "bj:firebreath1",
+      "identifier": "dragonmountsplus:firebreath1",
       "materials": {
         "default": "entity_alphatest"
       },
