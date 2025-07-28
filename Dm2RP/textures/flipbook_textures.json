@@ -21,13 +21,13 @@
     "flipbook_texture": "textures/blocks/eggs/forest",
     "atlas_tile": "forest_dragon_egg",
     "frames": [ 0, 1, 2 ], 
-    "ticks_per_frame": 8
+    "ticks_per_frame": 64
   },
    {
     "flipbook_texture": "textures/blocks/eggs/ice",
     "atlas_tile": "ice_dragon_egg",
     "frames": [ 0, 1, 2, 3 ],
-    "ticks_per_frame": 5
+    "ticks_per_frame": 10
   },
       {
     "flipbook_texture": "textures/blocks/eggs/fire",

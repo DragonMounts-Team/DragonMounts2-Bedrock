@@ -47,6 +47,9 @@
 		"dragonarmor_iron": {
 			"textures": "textures/items/armor/dragon/dragonarmor_iron"
 		},
+		"dragonarmor_copper": {
+			"textures": "textures/items/armor/dragon/dragonarmor_copper"
+		},
 		"dragonarmor_gold": {
 			"textures": "textures/items/armor/dragon/dragonarmor_gold"
 		},

@@ -61,72 +61,72 @@
 		"zombie_dragon_egg": {
 			"textures": [ "textures/blocks/eggs/zombie" ]
 		},
-		    "dragonmounts_aether_scale": {
+		    "dragonmountsplus_aether_scale": {
       "textures": [
         "textures/blocks/scale_block/aether"
       ]
     },
-    		    "dragonmounts_nether_scale": {
+    		    "dragonmountsplus_nether_scale": {
       "textures": [
         "textures/blocks/scale_block/nether"
       ]
     },
-    		    "dragonmounts_ender_scale": {
+    		    "dragonmountsplus_ender_scale": {
       "textures": [
         "textures/blocks/scale_block/ender"
       ]
     },
-    		    "dragonmounts_enchant_scale": {
+    		    "dragonmountsplus_enchant_scale": {
       "textures": [
         "textures/blocks/scale_block/enchant"
       ]
     },
-    		    "dragonmounts_moonlight_scale": {
+    		    "dragonmountsplus_moonlight_scale": {
       "textures": [
         "textures/blocks/scale_block/moonlight"
       ]
     },
-    		    "dragonmounts_sunlight_scale": {
+    		    "dragonmountsplus_sunlight_scale": {
       "textures": [
         "textures/blocks/scale_block/sunlight"
       ]
     },
-    		    "dragonmounts_dark_scale": {
+    		    "dragonmountsplus_dark_scale": {
       "textures": [
         "textures/blocks/scale_block/dark"
       ]
     },
-    		    "dragonmounts_water_scale": {
+    		    "dragonmountsplus_water_scale": {
       "textures": [
         "textures/blocks/scale_block/water"
       ]
     },
-    		    "dragonmounts_zombie_scale": {
+    		    "dragonmountsplus_zombie_scale": {
       "textures": [
         "textures/blocks/scale_block/zombie"
       ]
     },
-    		    "dragonmounts_terra_scale": {
+    		    "dragonmountsplus_terra_scale": {
       "textures": [
         "textures/blocks/scale_block/terra"
       ]
     },
-    		    "dragonmounts_fire_scale": {
+    		    "dragonmountsplus_fire_scale": {
       "textures": [
         "textures/blocks/scale_block/fire"
       ]
     },
-    		    "dragonmounts_forest_scale": {
+    		    "dragonmountsplus_forest_scale": {
       "textures": [
         "textures/blocks/scale_block/forest"
       ]
     },
-    		    "dragonmounts_ice_scale": {
+    		    "dragonmountsplus_ice_scale": {
       "textures": [
         "textures/blocks/scale_block/ice"
       ]
     },
-    		    "dragonmounts_storm_scale": {
+    		    "dragonmountsplus_storm_scale": {
       "textures": [
         "textures/blocks/scale_block/storm"
       ]
