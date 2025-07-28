@@ -38,7 +38,7 @@
 			"arrays": {
 				"textures": {
 					"Array.base": [
-  					    						"Texture.forest_dragon",
+  					"Texture.forest_dragon",
 						"Texture.taiga_dragon",
 						"Texture.dry_dragon"
 					],
