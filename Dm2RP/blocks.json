@@ -35,6 +35,9 @@
 	"dragonmountsplus:nether_dragon_egg": {
 		"sound": "stone"
 	},
+	"dragonmountsplus:sculk_dragon_egg": {
+		"sound": "stone"
+	},
 	"dragonmountsplus:skeleton_dragon_egg": {
 		"sound": "stone"
 	},
@@ -74,6 +77,10 @@
   },
     "dragonmountsplus:moonlight_scale": {
     "textures": "dragonmountsplus_moonlight_scale",
+    "sound": "netherite"
+  },
+    "dragonmountsplus:sculk_scale": {
+    "textures": "dragonmountsplus_sculk_scale",
     "sound": "netherite"
   },
     "dragonmountsplus:sunlight_scale": {

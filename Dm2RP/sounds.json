@@ -447,6 +447,41 @@
 					}
 				}
 			},
+			"dragonmountsplus:sculk_dragon": {
+				"volume": 24.0,
+				"pitch": [
+					0.8,
+					1.2
+				],
+				"events": {
+					"ambient": "mob.mountdragon.growl",
+                     "ambient.baby": {
+    "sound": "mob.baby.growl",
+    "volume": [1.0, 1.0],
+    "pitch": [1.0, 1.0]
+},
+					"hurt": "mob.mountdragon.hit",
+					"death": "mob.mountdragon.death",
+					"saddle": "armor.equip_chain",
+					"attack": "mob.mountdragon.attack.eat",
+					"step": {
+						"sound": "mob.mountdragon.step",
+						"volume": 64,
+						"pitch": 1.0
+					},
+					"eat": {
+						"sound": "mob.mountdragon.attack.eat",
+						"volume": [
+							1.0,
+							1.0
+						],
+						"pitch": [
+							1.0,
+							1.0
+						]
+					}
+				}
+			},
 			"dragonmountsplus:sunlight_dragon": {
 				"volume": 24.0,
 				"pitch": [
@@ -723,6 +758,21 @@
 				}
 			},
 			"dragonmountsplus:moonlight_dragon_egg": {
+				"volume": 8.0,
+				"pitch": [
+					0.8,
+					1.2
+				],
+				"events": {
+					"hurt": "mob.mountdragon_egg.hit",
+					"death": {
+						"sound": "block.turtle_egg.break",
+						"volume": 5.0,
+						"pitch": 0.5
+					}
+				}
+			},
+			"dragonmountsplus:sculk_dragon_egg": {
 				"volume": 8.0,
 				"pitch": [
 					0.8,
