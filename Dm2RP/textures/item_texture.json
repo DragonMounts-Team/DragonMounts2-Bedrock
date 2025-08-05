@@ -4,7 +4,7 @@
 	"texture_data": {
 //spawneggs
 		"aether_dragon_head":{"textures": "textures/items/eggs/aether"},
-				"dark_dragon_head":{"textures": "textures/items/eggs/dark"},
+		"dark_dragon_head":{"textures": "textures/items/eggs/dark"},
 		"enchant_dragon_head":{"textures": "textures/items/eggs/enchant"},
 		"ender_dragon_head":{"textures": "textures/items/eggs/ender"},
 		"fire_dragon_head":{"textures": "textures/items/eggs/fire"},
@@ -19,8 +19,8 @@
 		"water_dragon_head":{"textures": "textures/items/eggs/water"},
 		"wither_dragon_head":{"textures": "textures/items/eggs/wither"},
 		"zombie_dragon_head":{"textures": "textures/items/eggs/zombie"},
-				"f_aether_dragon_head":{"textures": "textures/items/eggs/aether_f"},
-				"f_dark_dragon_head":{"textures": "textures/items/eggs/dark_f"},
+		"f_aether_dragon_head":{"textures": "textures/items/eggs/aether_f"},
+		"f_dark_dragon_head":{"textures": "textures/items/eggs/dark_f"},
 		"f_enchant_dragon_head":{"textures": "textures/items/eggs/enchant_f"},
 		"m_ender_dragon_head":{"textures": "textures/items/eggs/m_ender"},
 		"f_fire_dragon_head":{"textures": "textures/items/eggs/fire_f"},
@@ -33,9 +33,10 @@
 		"f_sunlight_dragon_head":{"textures": "textures/items/eggs/sunlight_f"},
 		"f_terra_dragon_head":{"textures": "textures/items/eggs/terra_f"},
 		"f_water_dragon_head":{"textures": "textures/items/eggs/water_f"},
+		"sculk_dragon_head": {"textures": "textures/items/eggs/sculk"},
 // 其他 
 		"diamond_shears": {
-			"textures": "textures/items/diamond_shears"},
+			"textures": "textures/items/diamond_pliers"},
 		"variation_orb": {
 			"textures": "textures/items/variation_orb"
 		},
@@ -575,6 +576,7 @@
     "fire2_shield": { "textures": "textures/items/shield/fire2" },
     "ice_shield": { "textures": "textures/items/shield/ice" },
     "zombie_shield": { "textures": "textures/items/shield/zombie" },
+    "sculk_shield": { "textures": "textures/items/shield/sculk" },
     "storm_shield": { "textures": "textures/items/shield/storm" },
     "storm2_shield": { "textures": "textures/items/shield/storm2" },
     "sunlight_shield": { "textures": "textures/items/shield/sunlight" },
@@ -613,6 +615,9 @@
 		},
 		"nether2_bow": {
 			"textures": "textures/items/bow/nether2_bow.png"
+	  },
+		"sculk_bow": {
+			"textures": "textures/items/bow/sculk_bow.png"
 		},
 		"storm_bow": {
 			"textures": "textures/items/bow/storm_bow.png"
@@ -654,13 +659,13 @@
 			"textures": "textures/items/bow/dark_bow.png"
 		},
 		         "dragon_wand": {
-      "textures": "textures/items/dragon_items/dragon_wand"
+      "textures": "textures/items/dragon_items/dragon_wand_emerald"
     },
     		         "dragon_wand1": {
-      "textures": "textures/items/dragon_items/dragon_wand_3"
+      "textures": "textures/items/dragon_items/dragon_wand_diamond"
     },
         		         "dragon_wand2": {
-      "textures": "textures/items/dragon_items/dragon_wand_2"
+      "textures": "textures/items/dragon_items/dragon_wand_amethyst"
     },
            "dragon_whistle_red": {
       "textures": "textures/items/dragon_items/dragon_whistle_red"
@@ -710,11 +715,11 @@
              "dragon_whistle": {
       "textures": "textures/items/dragon_items/dragon_whistle"
     },
-        "dragonmounts:raw_dragon_meat": {
-      "textures": "textures/items/meat/dragonmounts_raw_dragon_meat"
+        "raw_dragon_meat": {
+      "textures": "textures/items/meat/dragon_meat_raw"
     },
-    "dragonmounts:cooked_dragon_meat": {
-      "textures": "textures/items/meat/dragonmounts_cooked_dragon_meat"
+    "cooked_dragon_meat": {
+      "textures": "textures/items/meat/dragon_meat_cooked"
     },
         "essence_aether": {
       "textures": "textures/items/essence/essence_aether"

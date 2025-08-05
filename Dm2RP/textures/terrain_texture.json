@@ -40,6 +40,9 @@
 		"nether_dragon_egg": {
 			"textures": [ "textures/blocks/magma" ]
 		},
+    "sculk_dragon_egg": {
+      "textures": ["textures/entity/dragon_eggs/sculk"]
+		},
 		"skeleton_dragon_egg": {
 			"textures": [ "textures/blocks/eggs/skeleton" ]
 		},
@@ -131,11 +134,19 @@
         "textures/blocks/scale_block/storm"
       ]
     },
+    		    "dragonmountsplus_sculk_scale": {
+      "textures": [
+        "textures/blocks/scale_block/sculk"
+      ]
+    },
     "aether_head_block": {
 			"textures": "textures/entity/aether_dragon/aether_dragon"
 		},
 		    "aether1_head_block": {
 			"textures": "textures/entity/aether_dragon/f_aether_dragon"
+		},
+    "aether2_head_block": {
+			"textures": "textures/entity/aether_dragon/r_aether_dragon"
 		},
 		    "nether_head_block": {
 			"textures": "textures/entity/nether_dragon/nether_dragon"
@@ -160,6 +171,12 @@
 		},
 				    "dark1_head_block": {
 			"textures": "textures/entity/dark_dragon/f_dark_dragon"
+		},
+    "sculk_head_block": {
+      "textures": "textures/entity/sculk_dragon/sculk_dragon"
+    },
+    "sculk1_head_block": {
+      "textures": "textures/entity/sculk_dragon/f_sculk_dragon"
 		},
 		    "storm_head_block": {
 			"textures": "textures/entity/storm_dragon/storm_dragon"
