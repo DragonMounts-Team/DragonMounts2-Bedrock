@@ -10,11 +10,11 @@
 						}
 					],
 					"on_entry": [
-						"/tag @s add dm2",
+						"/tag @s add dragonmountsplus",
 						"/function dragon",
 						"/execute @s ~ ~ ~ detect ~ ~-6 ~ air 0 execute @s ~ ~ ~ detect ~ ~-5 ~ air 0 execute @s ~ ~ ~ detect ~ ~-4 ~ air 0 execute @s ~ ~ ~ detect ~ ~-3 ~ air 0 execute @s ~ ~ ~ detect ~ ~-2 ~ air 0 execute @s ~ ~ ~ detect ~ ~-1 ~ air 0 execute @s ~ ~ ~ detect ~ ~ ~ air 0 tag @s add flying",
-						"@s dm2:dragon_hasarmor",
-						"@s dm2:dragon_flying_b"
+						"@s dragonmountsplus:dragon_hasarmor",
+						"@s dragonmountsplus:dragon_flying_b"
 					]
 				},
 				"default_back": {
