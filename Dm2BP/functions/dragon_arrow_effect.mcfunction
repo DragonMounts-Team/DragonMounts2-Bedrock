@@ -12,6 +12,12 @@ execute @a[tag=zombie_1,tag=zombie_2,tag=zombie_3,tag=zombie_4] ~ ~ ~ function a
 execute @a[tag=storm_1,tag=storm_2,tag=storm_3,tag=storm_4] ~ ~ ~ function armor/storm_effect 
 execute @a[tag=dark_1,tag=dark_2,tag=dark_3,tag=dark_4] ~ ~ ~ function armor/dark_effect 
 execute @a[tag=sunlight_1,tag=sunlight_2,tag=sunlight_3,tag=sunlight_4] ~ ~ ~ function armor/sunlight_effect
+execute @a[tag=sculk_1,tag=sculk_2,tag=sculk_3,tag=sculk_4] ~ ~ ~ function armor/sculk_effect
+
+tag @a remove sculk_1
+tag @a remove sculk_2
+tag @a remove sculk_3
+tag @a remove sculk_4
 tag @a remove aether_1
 tag @a remove aether_2
 tag @a remove aether_3
