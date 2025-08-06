@@ -8,7 +8,7 @@
 			"entries": [
 				{
 					"type": "item",
-					"name": "dragonmountsplus:ice",
+					"name": "dragonmountsplus:sculk",
 					"weight": 1,
 					"functions": [
 						{
@@ -22,7 +22,7 @@
 				}
 			]
 		},
-				{
+		{
 			"rolls": 1,
 			"entries": [
 				{
@@ -42,4 +42,4 @@
 			]
 		}
 	]
-}
+}     
