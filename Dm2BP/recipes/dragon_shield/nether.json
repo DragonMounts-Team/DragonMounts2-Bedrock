@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:nether_shield"
+      "identifier": "dragonmountsplus:nether_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:nether_dragonscales",
+        "item": "dragonmountsplus:nether_dragonscales",
         "data": 0
       },
       "B": {

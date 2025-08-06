@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:ice_shield"
+      "identifier": "dragonmountsplus:ice_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:ice_dragonscales",
+        "item": "dragonmountsplus:ice_dragonscales",
         "data": 0
       },
       "B": {

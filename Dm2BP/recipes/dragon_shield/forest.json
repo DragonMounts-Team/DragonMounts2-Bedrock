@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:forest_shield"
+      "identifier": "dragonmountsplus:forest_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:forest_dragonscales",
+        "item": "dragonmountsplus:forest_dragonscales",
         "data": 0
       },
       "B": {

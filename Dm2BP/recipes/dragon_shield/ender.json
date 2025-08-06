@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:ender_shield"
+      "identifier": "dragonmountsplus:ender_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:ender_dragonscales",
+        "item": "dragonmountsplus:ender_dragonscales",
         "data": 0
       },
       "B": {

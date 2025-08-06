@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:moonlight_shield"
+      "identifier": "dragonmountsplus:moonlight_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:moonlight_dragonscales",
+        "item": "dragonmountsplus:moonlight_dragonscales",
         "data": 0
       },
       "B": {

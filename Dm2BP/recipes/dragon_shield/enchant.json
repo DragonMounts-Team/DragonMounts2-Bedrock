@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:enchant_shield"
+      "identifier": "dragonmountsplus:enchant_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:enchant_dragonscales",
+        "item": "dragonmountsplus:enchant_dragonscales",
         "data": 0
       },
       "B": {

@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:dark_shield"
+      "identifier": "dragonmountsplus:dark_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:dark_dragonscales",
+        "item": "dragonmountsplus:dark_dragonscales",
         "data": 0
       },
       "B": {

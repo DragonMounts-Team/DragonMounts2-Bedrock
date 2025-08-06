@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmountsplus:sunlight_shield"
+      "identifier": "dragonmountsplus:sculk_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmountsplus:sunlight_dragonscales",
+        "item": "dragonmountsplus:sculk_dragonscales",
         "data": 0
       },
       "B": {
@@ -23,7 +23,7 @@
       }
     },
     "result": {
-      "item": "sunlight:shield",
+      "item": "sculk:shield",
       "count": 1
     }
   }

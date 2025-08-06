@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:storm_shield"
+      "identifier": "dragonmountsplus:storm_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:storm_dragonscales",
+        "item": "dragonmountsplus:storm_dragonscales",
         "data": 0
       },
       "B": {

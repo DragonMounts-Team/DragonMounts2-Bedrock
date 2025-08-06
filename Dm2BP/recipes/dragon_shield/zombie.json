@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "dragonmounts:zombie_shield"
+      "identifier": "dragonmountsplus:zombie_shield"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:zombie_dragonscales",
+        "item": "dragonmountsplus:zombie_dragonscales",
         "data": 0
       },
       "B": {
