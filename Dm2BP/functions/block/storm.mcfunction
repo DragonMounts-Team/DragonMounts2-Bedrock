@@ -1,2 +1,2 @@
 tp @e[r=0.1,family=dragon_egg] ~ -70 ~
-setblock ~~~ dragonmounts:storm_dragon_egg
+setblock ~~~ dragonmountsplus:storm_dragon_egg
