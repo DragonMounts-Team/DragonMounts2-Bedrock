@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:ender_dragon_hoe"
+			"identifier": "dragonmountsplus:ender_dragon_hoe"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmounts:ender_dragonscales"
+				"item": "dragonmountsplus:ender_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:ender_dragon_hoe"
+			"item": "dragonmountsplus:ender_dragon_hoe"
 		}
 	}
 }
