@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:terra_dragonscale_leggings"
+			"identifier": "dragonmountsplus:terra_dragonscale_leggings"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,11 +14,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:terra_dragonscales"
+				"item": "dragonmountsplus:terra_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:terra_dragonscale_leggings"
+			"item": "dragonmountsplus:terra_dragonscale_leggings"
 		}
 	}
 }

@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:aether_dragonscale_leggings"
+			"identifier": "dragonmountsplus:aether_dragonscale_leggings"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,11 +14,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:aether_dragonscales"
+				"item": "dragonmountsplus:aether_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:aether_dragonscale_leggings"
+			"item": "dragonmountsplus:aether_dragonscale_leggings"
 		}
 	}
 }
