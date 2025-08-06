@@ -2,7 +2,7 @@
   "format_version": "1.13.0",
   "minecraft:entity": {
     "description": {
-      "identifier": "dm2:water_dragon",
+      "identifier": "dragonmountsplus:water_dragon",
       "is_spawnable": true,
       "is_summonable": true,
       "is_experimental": false,
@@ -20,31 +20,31 @@
       }
     },
     "component_groups": {
-      "dm2:dragon_temp_unsit": {
+      "dragonmountsplus:dragon_temp_unsit": {
         "minecraft:timer": {
           "time": 0.0,
           "looping": false,
           "time_down_event": {
-            "event": "dm2:dragon_temp_unsit_end",
+            "event": "dragonmountsplus:dragon_temp_unsit_end",
             "target": "self"
           }
         }
       },
-      "dm2:flying": {
+      "dragonmountsplus:flying": {
         "minecraft:is_stunned": {}
       },
-      "dm2:dragon_sheared": {
+      "dragonmountsplus:dragon_sheared": {
         "minecraft:is_sheared": {},
         "minecraft:timer": {
           "time": 0.2,
           "looping": false,
           "time_down_event": {
-            "event": "dm2:dragon_sheared_remove",
+            "event": "dragonmountsplus:dragon_sheared_remove",
             "target": "self"
           }
         }
       },
-      "dm2:dragon_baby": {
+      "dragonmountsplus:dragon_baby": {
         "minecraft:is_baby": {},
         "minecraft:behavior.follow_parent": {
           "speed_multiplier": 2.0
@@ -70,12 +70,12 @@
             }
           ],
           "grow_up": {
-            "event": "dm2:dragon_grow_up",
+            "event": "dragonmountsplus:dragon_grow_up",
             "target": "self"
           }
         }
       },
-      "dm2:dragon_adult": {
+      "dragonmountsplus:dragon_adult": {
         "minecraft:scale": {
           "value": 1.0
         },
@@ -85,18 +85,18 @@
           "inherit_tamed": true,
           "breeds_with": [
               {
-            "mate_type": "dm2:f_water_dragon",
-            "baby_type": "dm2:water_dragon_egg",
+            "mate_type": "dragonmountsplus:f_water_dragon",
+            "baby_type": "dragonmountsplus:water_dragon_egg",
             "breed_event": {
-              "event": "dragonmounts:water_dragon_egg_born",
+              "event": "dragonmountsplus:water_dragon_egg_born",
               "target": "self"
             }
           },
           {
-          "mate_type": "dm2:water_dragon",
-            "baby_type": "dragonmounts:water_dragon_egg",
+          "mate_type": "dragonmountsplus:water_dragon",
+            "baby_type": "dragonmountsplus:water_dragon_egg",
             "breed_event": {
-              "event": "dm2:water_dragon_egg_born",
+              "event": "dragonmountsplus:water_dragon_egg_born",
               "target": "self"
             }
           }
@@ -136,7 +136,7 @@
           ]
         }
       },
-      "dm2:dragon_wild": {
+      "dragonmountsplus:dragon_wild": {
         "minecraft:equipment": {
           "table": "loot_tables/loot/water.json"
         },
@@ -148,14 +148,14 @@
             "clownfish"
           ],
           "tame_event": {
-            "event": "dm2:dragon_tame",
+            "event": "dragonmountsplus:dragon_tame",
             "target": "self"
           }
         }
       },
-      "dm2:dragon_tame": {
+      "dragonmountsplus:dragon_tame": {
       "minecraft:on_death": {
-        "event": "dm2:death",
+        "event": "dragonmountsplus:death",
         "target": "self"
       },
         "minecraft:is_tamed": {},
@@ -168,11 +168,11 @@
           "hard_distance": 24.0,
           "max_distance": 12.0,
           "on_leash": {
-            "event": "dm2:dragon_on_leash",
+            "event": "dragonmountsplus:dragon_on_leash",
             "target": "self"
           },
           "on_unleash": {
-            "event": "dm2:dragon_on_unleash",
+            "event": "dragonmountsplus:dragon_on_unleash",
             "target": "self"
           }
         },
@@ -213,7 +213,7 @@
                       "test": "has_equipment",
                       "subject": "other",
                       "domain": "hand",
-                      "value": "dm2:diamond_shears"
+                      "value": "dragonmountsplus:diamond_shears"
                     },
                     {
                       "test": "is_family",
@@ -227,7 +227,7 @@
                     }
                   ]
                 },
-                "event": "dm2:dragon_sheared",
+                "event": "dragonmountsplus:dragon_sheared",
                 "target": "self"
               }
             },
@@ -246,7 +246,7 @@
                       "test": "has_equipment", 
                       "domain": "hand", 
                       "subject": "other", 
-                      "value": "dm2:variation_orb"
+                      "value": "dragonmountsplus:variation_orb"
                     }
                   ]
                 }
@@ -258,7 +258,7 @@
           ]
         }
       },    
-      "dm2:dragon_sitable": {
+      "dragonmountsplus:dragon_sitable": {
         "minecraft:sittable": {
           "priority": 0
         },
@@ -266,7 +266,7 @@
           "priority": 0
         }
       },
-      "dm2:dragon_rideable": {
+      "dragonmountsplus:dragon_rideable": {
         "minecraft:rideable": {
           "priority": 0,
           "seat_count": 1,
@@ -291,7 +291,7 @@
           ]
         }
       },
-      "dm2:dragon_saddled": {
+      "dragonmountsplus:dragon_saddled": {
         "minecraft:is_saddled": {},
         "minecraft:input_ground_controlled": {},
         "minecraft:can_power_jump": {},
@@ -303,21 +303,21 @@
           }
         }
       },
-      "dm2:dragon_chested": {
+      "dragonmountsplus:dragon_chested": {
         "minecraft:is_chested": {}
       },
-      "dm2:dragon_onground": {
+      "dragonmountsplus:dragon_onground": {
         "minecraft:movement": {
           "value": 0.24
         }
       },
-      "dm2:dragon_flying": {
+      "dragonmountsplus:dragon_flying": {
      "minecraft:movement": {
           "value": 1
         }
 
      },
-      "dm2:dragon_launch": {
+      "dragonmountsplus:dragon_launch": {
         "minecraft:spell_effects": {
           "add_effects": [
             {
@@ -334,19 +334,19 @@
           "randomInterval": false,
           "time": 0.1,
           "time_down_event": {
-            "event": "dm2:dragon_is_launch_end",
+            "event": "dragonmountsplus:dragon_is_launch_end",
             "target": "self"
           }
         }
       },
-      "dm2:dragon_launch_end": {
+      "dragonmountsplus:dragon_launch_end": {
         "minecraft:spell_effects": {
           "remove_effects": [
             "levitation"
           ]
         }
       },
-      "dm2:dragon_conup": {
+      "dragonmountsplus:dragon_conup": {
         "minecraft:spell_effects": {
           "add_effects": [
             {
@@ -363,12 +363,12 @@
           "randomInterval": false,
           "time": 0.2,
           "time_down_event": {
-            "event": "dm2:dragon_is_conup_end",
+            "event": "dragonmountsplus:dragon_is_conup_end",
             "target": "self"
           }
         }
       },
-      "dm2:death_ani": {
+      "dragonmountsplus:death_ani": {
       "minecraft:spawn_entity": {
           "entities": {
             "min_wait_time": 0,
@@ -376,11 +376,11 @@
             "single_use": true,
             "num_to_spawn": 1,
             "spawn_sound": "plop",
-            "spawn_item": "dm2:essence_water"
+            "spawn_item": "dragonmountsplus:essence_water"
           }
         }
       },
-      "dm2:dragon_conup_end": {
+      "dragonmountsplus:dragon_conup_end": {
         "minecraft:spell_effects": {
           "remove_effects": [
             "speed",
@@ -388,12 +388,12 @@
           ]
         }
       },
-      "dm2:dragon_leashed": {
+      "dragonmountsplus:dragon_leashed": {
         "minecraft:behavior.move_towards_restriction": {
           "priority": 2
         }
       },
-      "dm2:dragon_noarmor": {
+      "dragonmountsplus:dragon_noarmor": {
       "minecraft:damage_sensor": {
           "triggers": [				
             {
@@ -409,7 +409,7 @@
           "value": 0
         }
       },
-      "dm2:dragon_armor_iron": {
+      "dragonmountsplus:dragon_armor_iron": {
          "minecraft:damage_sensor": {
           "triggers": [				
             {
@@ -425,7 +425,7 @@
           "value": 1
         }
       },
-      "dm2:dragon_armor_copper": {
+      "dragonmountsplus:dragon_armor_copper": {
                   "minecraft:damage_sensor": {
           "triggers": [				
             {
@@ -441,7 +441,7 @@
           "value": 2
         }
       },
-      "dm2:dragon_armor_gold": {
+      "dragonmountsplus:dragon_armor_gold": {
                   "minecraft:damage_sensor": {
           "triggers": [				
             {
@@ -457,7 +457,7 @@
           "value": 3
         }
       },
-      "dm2:dragon_armor_diamond": {
+      "dragonmountsplus:dragon_armor_diamond": {
                   "minecraft:damage_sensor": {
           "triggers": [				
             {
@@ -473,7 +473,7 @@
           "value": 4
         }
       },
-      "dm2:dragon_armor_emerald": {
+      "dragonmountsplus:dragon_armor_emerald": {
                   "minecraft:damage_sensor": {
           "triggers": [				
             {
@@ -489,13 +489,13 @@
           "value": 5
         }
       }, 
-      "dm2:f": {
+      "dragonmountsplus:f": {
         "minecraft:variant": {
           "value": 0
         },
         "minecraft:loot": { "table": "loot_tables/head1/water1.json" }
       },
-        "dm2:m": {
+        "dragonmountsplus:m": {
         "minecraft:variant": {
           "value": 1
         },
@@ -689,7 +689,7 @@
 									}
 								]
 							},
-							"event": "dm2:dragon_temp_unsit_start"
+							"event": "dragonmountsplus:dragon_temp_unsit_start"
 						}
 					}
         ]
@@ -703,27 +703,27 @@
               "saddle"
             ],
             "on_equip": {
-              "event": "dm2:dragon_saddled"
+              "event": "dragonmountsplus:dragon_saddled"
             },
             "on_unequip": {
-              "event": "dm2:dragon_unsaddled"
+              "event": "dragonmountsplus:dragon_unsaddled"
             }
           },
           {
             "slot": 1,
             "item": "horsearmoriron",
             "accepted_items": [
-              "dm2:dragonarmor_emerald",
-              "dm2:dragonarmor_iron",
-              "dm2:dragonarmor_copper",
-              "dm2:dragonarmor_gold",
-              "dm2:dragonarmor_diamond"
+              "dragonmountsplus:dragonarmor_emerald",
+              "dragonmountsplus:dragonarmor_iron",
+              "dragonmountsplus:dragonarmor_copper",
+              "dragonmountsplus:dragonarmor_gold",
+              "dragonmountsplus:dragonarmor_diamond"
             ],
             "on_equip": {
-              "event": "dm2:dragon_hasarmor"
+              "event": "dragonmountsplus:dragon_hasarmor"
             },
             "on_unequip": {
-              "event": "dm2:dragon_hasarmor"
+              "event": "dragonmountsplus:dragon_hasarmor"
             }
           },
           {
@@ -733,10 +733,10 @@
               "chest"
             ],
             "on_equip": {
-              "event": "dm2:dragon_on_chest"
+              "event": "dragonmountsplus:dragon_on_chest"
             },
             "on_unequip": {
-              "event": "dm2:dragon_deon_chest"
+              "event": "dragonmountsplus:dragon_deon_chest"
             }
           }
         ]
@@ -769,7 +769,7 @@
                 }
               ]
             },
-            "event": "dm2:dragon_is_onground"
+            "event": "dragonmountsplus:dragon_is_onground"
           },
           {
             "filters": {
@@ -780,7 +780,7 @@
                 }
               ]
             },
-            "event": "dm2:dragon_is_flying"
+            "event": "dragonmountsplus:dragon_is_flying"
           }
         ]
       },
@@ -872,9 +872,9 @@
       }
     },
     "events": {
-      "dm2:water_dragon_egg_born":{
+      "dragonmountsplus:water_dragon_egg_born":{
         "spawn_entity": {
-          "entity": "dragonmounts:water_dragon_egg",
+          "entity": "dragonmountsplus:water_dragon_egg",
           "spawn_pos": {
             "x": 0,
             "y": 1,
@@ -889,9 +889,9 @@
             "remove": {},
             "add": {
               "component_groups": [
-                "dm2:dragon_adult",
-                "dm2:dragon_wild",
-                "dm2:f"
+                "dragonmountsplus:dragon_adult",
+                "dragonmountsplus:dragon_wild",
+                "dragonmountsplus:f"
               ]
             }
           },
@@ -900,9 +900,9 @@
             "remove": {},
             "add": {
               "component_groups": [
-                "dm2:dragon_adult",
-                "dm2:dragon_wild",
-                "dm2:m"
+                "dragonmountsplus:dragon_adult",
+                "dragonmountsplus:dragon_wild",
+                "dragonmountsplus:m"
               ]
             }
           }
@@ -915,9 +915,9 @@
             "remove": {},
             "add": {
               "component_groups": [
-                "dm2:dragon_baby",
-                "dm2:dragon_wild",
-                "dm2:f"
+                "dragonmountsplus:dragon_baby",
+                "dragonmountsplus:dragon_wild",
+                "dragonmountsplus:f"
               ]
             }
           },
@@ -926,15 +926,15 @@
             "remove": {},
             "add": {
               "component_groups": [
-                "dm2:dragon_baby",
-                "dm2:dragon_wild",
-                "dm2:m"
+                "dragonmountsplus:dragon_baby",
+                "dragonmountsplus:dragon_wild",
+                "dragonmountsplus:m"
               ]
             }
           }
         ]
       },
-      "dm2:dragon_grow_up": {
+      "dragonmountsplus:dragon_grow_up": {
         "sequence": [
           {
             "filters": {
@@ -943,9 +943,9 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_interact",
-                "dm2:dragon_rideable",
-                "dm2:dragon_onground"
+                "dragonmountsplus:dragon_interact",
+                "dragonmountsplus:dragon_rideable",
+                "dragonmountsplus:dragon_onground"
               ]
             }
           },
@@ -956,28 +956,28 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_interact",
-                "dm2:dragon_rideable",
-                "dm2:dragon_onground"
+                "dragonmountsplus:dragon_interact",
+                "dragonmountsplus:dragon_rideable",
+                "dragonmountsplus:dragon_onground"
               ]
             }
           },
           {
             "remove": {
               "component_groups": [
-                "dm2:dragon_baby"
+                "dragonmountsplus:dragon_baby"
               ]
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_adult",
-                "dm2:dragon_wild"
+                "dragonmountsplus:dragon_adult",
+                "dragonmountsplus:dragon_wild"
               ]
             }
           }
         ]
       },
-      "dm2:dragon_flying_b": {
+      "dragonmountsplus:dragon_flying_b": {
         "sequence": [
           {
             "filters": {
@@ -988,7 +988,7 @@
             },
             "add": {
               "component_groups": [
-                "dm2:flying"
+                "dragonmountsplus:flying"
               ]
             }
           },
@@ -1001,18 +1001,18 @@
             },
             "remove": {
               "component_groups": [
-                "dm2:flying"
+                "dragonmountsplus:flying"
               ]
             }
           }
         ]
       },
-      "dm2:dragon_tame": {
+      "dragonmountsplus:dragon_tame": {
         "sequence": [
           {
             "add": {
               "component_groups": [
-                "dm2:dragon_sitable"
+                "dragonmountsplus:dragon_sitable"
               ]
             }
           },
@@ -1024,187 +1024,187 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_interact",
-                "dm2:dragon_rideable",
-                "dm2:dragon_onground"
+                "dragonmountsplus:dragon_interact",
+                "dragonmountsplus:dragon_rideable",
+                "dragonmountsplus:dragon_onground"
               ]
             }
           },
           {
             "remove": {
               "component_groups": [
-                "dm2:dragon_wild"
+                "dragonmountsplus:dragon_wild"
               ]
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_tame"
+                "dragonmountsplus:dragon_tame"
               ]
             }
           }
         ]
       },
-      "dm2:dragon_sit": {
+      "dragonmountsplus:dragon_sit": {
         "add": {
           "component_groups": [
-            "dm2:dragon_sitable"
+            "dragonmountsplus:dragon_sitable"
           ]
         }
       },
-      "dm2:dragon_temp_unsit_start": {
+      "dragonmountsplus:dragon_temp_unsit_start": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_sitable"
+            "dragonmountsplus:dragon_sitable"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_temp_unsit"
+            "dragonmountsplus:dragon_temp_unsit"
           ]
         }
       },
-      "dm2:dragon_temp_unsit_end": {
+      "dragonmountsplus:dragon_temp_unsit_end": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_temp_unsit"
+            "dragonmountsplus:dragon_temp_unsit"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_sitable"
+            "dragonmountsplus:dragon_sitable"
           ]
         }
       },
-      "dm2:dragon_unsit": {
+      "dragonmountsplus:dragon_unsit": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_sitable"
+            "dragonmountsplus:dragon_sitable"
           ]
         }
       },
-      "dm2:dragon_saddled": {
+      "dragonmountsplus:dragon_saddled": {
         "add": {
           "component_groups": [
-            "dm2:dragon_saddled"
+            "dragonmountsplus:dragon_saddled"
           ]
         }
       },
-      "dm2:dragon_unsaddled": {
+      "dragonmountsplus:dragon_unsaddled": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_saddled"
+            "dragonmountsplus:dragon_saddled"
           ]
         }
       },
-      "dm2:dragon_on_chest": {
+      "dragonmountsplus:dragon_on_chest": {
         "add": {
           "component_groups": [
-            "dm2:dragon_chested"
+            "dragonmountsplus:dragon_chested"
           ]
         }
       },
-      "dm2:dragon_deon_chest": {
+      "dragonmountsplus:dragon_deon_chest": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_chested"
+            "dragonmountsplus:dragon_chested"
           ]
         }
       },
-      "dm2:dragon_is_onground": {
+      "dragonmountsplus:dragon_is_onground": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_flying"
+            "dragonmountsplus:dragon_flying"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_onground"
+            "dragonmountsplus:dragon_onground"
           ]
         }
       },
-      "dm2:dragon_is_flying": {
+      "dragonmountsplus:dragon_is_flying": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_onground"
+            "dragonmountsplus:dragon_onground"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_flying"
+            "dragonmountsplus:dragon_flying"
           ]
         }
       },
-      "dm2:dragon_is_launch": {
+      "dragonmountsplus:dragon_is_launch": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_launch_end"
+            "dragonmountsplus:dragon_launch_end"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_launch"
+            "dragonmountsplus:dragon_launch"
           ]
         }
       },
-      "dm2:dragon_is_launch_end": {
+      "dragonmountsplus:dragon_is_launch_end": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_launch"
+            "dragonmountsplus:dragon_launch"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_launch_end"
+            "dragonmountsplus:dragon_launch_end"
           ]
         }
       },
-      "dm2:dragon_is_conup": {
+      "dragonmountsplus:dragon_is_conup": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_conup_end"
+            "dragonmountsplus:dragon_conup_end"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_conup"
+            "dragonmountsplus:dragon_conup"
           ]
         }
       },
-      "dm2:dragon_is_conup_end": {
+      "dragonmountsplus:dragon_is_conup_end": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_conup"
+            "dragonmountsplus:dragon_conup"
           ]
         },
         "add": {
           "component_groups": [
-            "dm2:dragon_conup_end"
+            "dragonmountsplus:dragon_conup_end"
           ]
         }
       },
-      "dm2:dragon_on_leash": {
+      "dragonmountsplus:dragon_on_leash": {
         "add": {
           "component_groups": [
-            "dm2:dragon_leashed"
+            "dragonmountsplus:dragon_leashed"
           ]
         }
       },
-      "dm2:dragon_on_unleash": {
+      "dragonmountsplus:dragon_on_unleash": {
         "remove": {
           "component_groups": [
-            "dm2:dragon_leashed"
+            "dragonmountsplus:dragon_leashed"
           ]
         }
       },
-  "dm2:death": {
+  "dragonmountsplus:death": {
       "add": {
       "component_groups": [
-          "dm2:death_ani" 
+          "dragonmountsplus:death_ani" 
         ]
       },
       "queue_command": {
        "command": [
-        "setblock ~~~ dragonmounts:dragon_core"
+        "setblock ~~~ dragonmountsplus:dragon_core"
          ]
        }
     },
@@ -1221,10 +1221,10 @@
         ]
       },
       "add": {
-        "component_groups": [ "dm2:m" ]
+        "component_groups": [ "dragonmountsplus:m" ]
       },
       "remove": {
-        "component_groups": [ "dm2:f" ]
+        "component_groups": [ "dragonmountsplus:f" ]
       },
       "queue_command": {
        "command": [
@@ -1243,10 +1243,10 @@
         ]
       },
       "add": {
-        "component_groups": [ "dm2:f" ]
+        "component_groups": [ "dragonmountsplus:f" ]
       },
       "remove": {
-        "component_groups": [ "dm2:m" ]
+        "component_groups": [ "dragonmountsplus:m" ]
       },
       "queue_command": {
        "command": [
@@ -1256,7 +1256,7 @@
     }
   ]
 },
-      "dm2:dragon_hasarmor": {
+      "dragonmountsplus:dragon_hasarmor": {
         "sequence": [
           {
             "filters": {
@@ -1265,31 +1265,31 @@
                   "test": "has_equipment",
                   "domain": "armor",
                   "operator": "!=",
-                  "value": "dm2:dragonarmor_iron"
+                  "value": "dragonmountsplus:dragonarmor_iron"
                 },
                 {
                   "test": "has_equipment",
                   "domain": "armor",
                   "operator": "!=",
-                  "value": "dm2:dragonarmor_copper"
+                  "value": "dragonmountsplus:dragonarmor_copper"
                 },
                 {
                   "test": "has_equipment",
                   "domain": "armor",
                   "operator": "!=",
-                  "value": "dm2:dragonarmor_gold"
+                  "value": "dragonmountsplus:dragonarmor_gold"
                 },
                 {
                   "test": "has_equipment",
                   "domain": "armor",
                   "operator": "!=",
-                  "value": "dm2:dragonarmor_diamond"
+                  "value": "dragonmountsplus:dragonarmor_diamond"
                 },
                 {
                   "test": "has_equipment",
                   "domain": "armor",
                   "operator": "!=",
-                  "value": "dm2:dragonarmor_emerald"
+                  "value": "dragonmountsplus:dragonarmor_emerald"
                 },
                 {
                   "test": "is_mark_variant",
@@ -1300,7 +1300,7 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_noarmor"
+                "dragonmountsplus:dragon_noarmor"
               ]
             }
           },
@@ -1310,7 +1310,7 @@
                 {
                   "test": "has_equipment",
                   "domain": "armor",
-                  "value": "dm2:dragonarmor_iron"
+                  "value": "dragonmountsplus:dragonarmor_iron"
                 },
                 {
                   "test": "is_mark_variant",
@@ -1321,7 +1321,7 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_armor_iron"
+                "dragonmountsplus:dragon_armor_iron"
               ]
             }
           },
@@ -1331,7 +1331,7 @@
                 {
                   "test": "has_equipment",
                   "domain": "armor",
-                  "value": "dm2:dragonarmor_gold"
+                  "value": "dragonmountsplus:dragonarmor_gold"
                 },
                 {
                   "test": "is_mark_variant",
@@ -1342,7 +1342,7 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_armor_gold"
+                "dragonmountsplus:dragon_armor_gold"
               ]
             }
           },
@@ -1352,7 +1352,7 @@
                 {
                   "test": "has_equipment",
                   "domain": "armor",
-                  "value": "dm2:dragonarmor_copper"
+                  "value": "dragonmountsplus:dragonarmor_copper"
                 },
                 {
                   "test": "is_mark_variant",
@@ -1363,7 +1363,7 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_armor_copper"
+                "dragonmountsplus:dragon_armor_copper"
               ]
             }
           },
@@ -1373,7 +1373,7 @@
                 {
                   "test": "has_equipment",
                   "domain": "armor",
-                  "value": "dm2:dragonarmor_diamond"
+                  "value": "dragonmountsplus:dragonarmor_diamond"
                 },
                 {
                   "test": "is_mark_variant",
@@ -1384,7 +1384,7 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_armor_diamond"
+                "dragonmountsplus:dragon_armor_diamond"
               ]
             }
           },
@@ -1394,7 +1394,7 @@
                 {
                   "test": "has_equipment",
                   "domain": "armor",
-                  "value": "dm2:dragonarmor_emerald"
+                  "value": "dragonmountsplus:dragonarmor_emerald"
                 },
                 {
                   "test": "is_mark_variant",
@@ -1405,7 +1405,7 @@
             },
             "add": {
               "component_groups": [
-                "dm2:dragon_armor_emerald"
+                "dragonmountsplus:dragon_armor_emerald"
               ]
             }
           }

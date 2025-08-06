@@ -2,7 +2,7 @@
   "format_version": "1.13.0",
   "minecraft:entity": {
     "description": {
-      "identifier": "dragonmountsplus:ender_dragon",
+      "identifier": "dragonmountsplus:sculk_dragon",
       "is_spawnable": true,
       "is_summonable": true,
       "is_experimental": false,
@@ -85,18 +85,18 @@
           "inherit_tamed": true,
           "breeds_with": [
               {
-            "mate_type": "dragonmountsplus:f_ender_dragon",
-            "baby_type": "dragonmountsplus:ender_dragon_egg",
+            "mate_type": "dragonmountsplus:f_sculk_dragon",
+            "baby_type": "dragonmountsplus:sculk_dragon_egg",
             "breed_event": {
-              "event": "dragonmountsplus:ender_dragon_egg_born",
+              "event": "dragonmountsplus:sculk_dragon_egg_born",
               "target": "self"
             }
           },
           {
-          "mate_type": "dragonmountsplus:ender_dragon",
-            "baby_type": "dragonmountsplus:ender_dragon_egg",
+          "mate_type": "dragonmountsplus:sculk_dragon",
+            "baby_type": "dragonmountsplus:sculk_dragon_egg",
             "breed_event": {
-              "event": "dragonmountsplus:ender_dragon_egg_born",
+              "event": "dragonmountsplus:sculk_dragon_egg_born",
               "target": "self"
             }
           }
@@ -138,7 +138,7 @@
       },
       "dragonmountsplus:dragon_wild": {
         "minecraft:equipment": {
-          "table": "loot_tables/loot/ender.json"
+          "table": "loot_tables/loot/sculk.json"
         },
         "minecraft:tameable": {
           "probability": 0.2,
@@ -202,7 +202,7 @@
               "use_item": false,
               "hurt_item": 16,
               "spawn_items": {
-                "table": "loot_tables/entities/dm2/ender.json"
+                "table": "loot_tables/entities/dm2/sculk.json"
               },
               "play_sounds": "shear",
               "interact_text": "action.interact.shear.dm2",
@@ -376,7 +376,7 @@
             "single_use": true,
             "num_to_spawn": 1,
             "spawn_sound": "plop",
-            "spawn_item": "dragonmountsplus:essence_ender"
+            "spawn_item": "dragonmountsplus:essence_sculk"
           }
         }
       },
@@ -493,19 +493,13 @@
         "minecraft:variant": {
           "value": 0
         },
-        "minecraft:loot": { "table": "loot_tables/head1/ender1.json" }
+        "minecraft:loot": { "table": "loot_tables/head1/sculk1.json" }
       },
         "dragonmountsplus:m": {
         "minecraft:variant": {
           "value": 1
         },
-        "minecraft:loot": { "table": "loot_tables/head1/ender.json" }
-      },
-        "dragonmountsplus:r": {
-        "minecraft:variant": {
-          "value": 2
-        },
-        "minecraft:loot": { "table": "loot_tables/head1/ender2.json" }
+        "minecraft:loot": { "table": "loot_tables/head1/sculk.json" }
       }
     },    
     "components": {
@@ -522,7 +516,7 @@
         "damage": 24
       },
                   "minecraft:loot": {
-        "table": "loot_tables/loot/ender.json"
+        "table": "loot_tables/loot/sculk.json"
       },
       "minecraft:behavior.delayed_attack": {
         "priority": 0,
@@ -541,7 +535,7 @@
         "family": [
           "dragon",
           "dm2",
-          "ender_dragon"
+          "sculk_dragon"
         ]
       },
       "minecraft:behavior.mount_pathing": {
@@ -878,9 +872,9 @@
       }
     },
     "events": {
-      "dragonmountsplus:ender_dragon_egg_born":{
+      "dragonmountsplus:sculk_dragon_egg_born":{
         "spawn_entity": {
-          "entity": "dragonmountsplus:ender_dragon_egg",
+          "entity": "dragonmountsplus:sculk_dragon_egg",
           "spawn_pos": {
             "x": 0,
             "y": 1,
@@ -911,17 +905,6 @@
                 "dragonmountsplus:m"
               ]
             }
-          },
-          {
-            "weight": 0.05,
-            "remove": {},
-            "add": {
-              "component_groups": [
-                "dragonmountsplus:dragon_adult",
-                "dragonmountsplus:dragon_wild",
-                "dragonmountsplus:r"
-              ]
-            }
           }
         ]
       },
@@ -946,17 +929,6 @@
                 "dragonmountsplus:dragon_baby",
                 "dragonmountsplus:dragon_wild",
                 "dragonmountsplus:m"
-              ]
-            }
-          },
-          {
-            "weight": 0.05,
-            "remove": {},
-            "add": {
-              "component_groups": [
-                "dragonmountsplus:dragon_baby",
-                "dragonmountsplus:dragon_wild",
-                "dragonmountsplus:r"
               ]
             }
           }
