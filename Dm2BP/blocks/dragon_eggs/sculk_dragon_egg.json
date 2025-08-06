@@ -2,7 +2,7 @@
   "format_version": "1.20.60",
   "minecraft:block": {
     "description": {
-      "identifier": "dragonmountsplus:nether_dragon_egg",
+      "identifier": "dragonmountsplus:sculk_dragon_egg",
       "menu_category": {
         "category": "nature"
       },
@@ -15,7 +15,7 @@
       }
     },
     "components": {
-      "minecraft:loot": "loot_tables/blocks/nether.json",
+      "minecraft:loot": "loot_tables/blocks/sculk.json",
       "minecraft:destructible_by_mining": {
         "seconds_to_destroy": 1.0
       },
@@ -52,14 +52,14 @@
       },
       "minecraft:material_instances": {
         "*": {
-          "texture": "nether_dragon_egg",
+          "texture": "sculk_dragon_egg",
           "render_method": "opaque"
         }
       },
       "minecraft:geometry": "geometry.dragon_egg",
       "tag:stone": {},
       "minecraft:custom_components": [
-        "dragonmountsplus_nether_egg_block:trigger"
+        "dragonmountsplus_sculk_egg_block:trigger"
       ]
     },
     "permutations": [

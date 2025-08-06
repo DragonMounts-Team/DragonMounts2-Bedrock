@@ -2,7 +2,7 @@
   "format_version": "1.20.60",
   "minecraft:block": {
     "description": {
-      "identifier": "dragonmounts:wither_dragon_egg",
+      "identifier": "dragonmountsplus:wither_dragon_egg",
       "menu_category": {
         "category": "nature"
       },
@@ -59,7 +59,7 @@
       "minecraft:geometry": "geometry.dragon_egg",
       "tag:stone": {},
       "minecraft:custom_components": [
-        "bj_wither_egg_block:trigger"
+        "dragonmountsplus_wither_egg_block:trigger"
       ]
     },
     "permutations": [
