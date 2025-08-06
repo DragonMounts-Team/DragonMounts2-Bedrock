@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:enchant_dragonscale_helmet"
+			"identifier": "dragonmountsplus:enchant_dragonscale_helmet"
 		},
 		"tags": [
 			"crafting_table"
@@ -13,11 +13,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:enchant_dragonscales"
+				"item": "dragonmountsplus:enchant_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:enchant_dragonscale_helmet"
+			"item": "dragonmountsplus:enchant_dragonscale_helmet"
 		}
 	}
 }

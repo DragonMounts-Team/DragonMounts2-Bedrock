@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:storm_dragonscale_helmet"
+			"identifier": "dragonmountsplus:storm_dragonscale_helmet"
 		},
 		"tags": [
 			"crafting_table"
@@ -13,11 +13,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:storm_dragonscales"
+				"item": "dragonmountsplus:storm_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:storm_dragonscale_helmet"
+			"item": "dragonmountsplus:storm_dragonscale_helmet"
 		}
 	}
 }
