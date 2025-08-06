@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:sunlight_dragonscale_boots"
+			"identifier": "dragonmountsplus:sunlight_dragonscale_boots"
 		},
 		"tags": [
 			"crafting_table"
@@ -13,11 +13,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:sunlight_dragonscales"
+				"item": "dragonmountsplus:sunlight_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:sunlight_dragonscale_boots"
+			"item": "dragonmountsplus:sunlight_dragonscale_boots"
 		}
 	}
 }

@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:water_dragonscale_boots"
+			"identifier": "dragonmountsplus:water_dragonscale_boots"
 		},
 		"tags": [
 			"crafting_table"
@@ -13,11 +13,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:water_dragonscales"
+				"item": "dragonmountsplus:water_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:water_dragonscale_boots"
+			"item": "dragonmountsplus:water_dragonscale_boots"
 		}
 	}
 }

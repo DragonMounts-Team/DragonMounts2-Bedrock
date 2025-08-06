@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:nether_dragonscale_boots"
+			"identifier": "dragonmountsplus:nether_dragonscale_boots"
 		},
 		"tags": [
 			"crafting_table"
@@ -13,11 +13,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:nether_dragonscales"
+				"item": "dragonmountsplus:nether_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:nether_dragonscale_boots"
+			"item": "dragonmountsplus:nether_dragonscale_boots"
 		}
 	}
 }
