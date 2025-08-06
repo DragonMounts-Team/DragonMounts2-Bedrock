@@ -12,10 +12,10 @@ function isOnCooldown(player) {
 }
 
 world.beforeEvents.worldInitialize.subscribe((event) => {
-  event.itemComponentRegistry.registerCustomComponent('bj_whistle_yellow:trigger', {
+  event.itemComponentRegistry.registerCustomComponent('dragonmountsplus_whistle_yellow:trigger', {
     onUse: ({ itemStack, source }) => {
       if (!(source instanceof Player)) return;
-      if (itemStack.typeId !== 'bj:whistle_yellow') return;
+      if (itemStack.typeId !== 'dragonmountsplus:whistle_yellow') return;
       if (isOnCooldown(source)) return;
       source.runCommandAsync("function item/itemyellow");
       setCooldown(source, 40);
@@ -26,7 +26,7 @@ world.beforeEvents.worldInitialize.subscribe((event) => {
 world.afterEvents.itemUse.subscribe((event) => {
   const { itemStack, source } = event;
   if (!(source instanceof Player)) return;
-  if (itemStack?.typeId !== "bj:whistle_yellow") return;
+  if (itemStack?.typeId !== "dragonmountsplus:whistle_yellow") return;
   if (isOnCooldown(source)) return;
   source.runCommandAsync("function item/itemyellow");
   setCooldown(source, 40);
