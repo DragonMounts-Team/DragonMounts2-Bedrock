@@ -1,8 +1,8 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.60",
   "minecraft:block": {
     "description": {
-      "identifier": "dragonmounts:dark_scale",
+      "identifier": "dragonmountsplus:dark_scale",
       "menu_category": {
         "category": "construction"
       }
@@ -49,13 +49,13 @@
       },
       "minecraft:material_instances": {
         "*": {
-          "texture": "dragonmounts_dark_scale",
-          "render_method": "opaque"
+          "texture": "dragonmountsplus_dark_scale",
+          "render_method": "blend"
         }
       },
 
       "minecraft:custom_components": [
-        "dragonmounts_dark_scale:trigger"
+        "dragonmountsplus_dark_scale:trigger"
       ]
     },
           "tags": [
@@ -70,3 +70,4 @@
     "permutations": []
   }
 }
+

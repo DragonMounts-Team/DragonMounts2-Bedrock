@@ -1,8 +1,8 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.60",
   "minecraft:block": {
     "description": {
-      "identifier": "dragonmounts:fire_scale",
+      "identifier": "dragonmountsplus:fire_scale",
       "menu_category": {
         "category": "construction"
       }
@@ -48,13 +48,13 @@
       },
       "minecraft:material_instances": {
         "*": {
-          "texture": "dragonmounts_fire_scale",
-          "render_method": "opaque"
+          "texture": "dragonmountsplus_fire_scale",
+          "render_method": "blend"
         }
       },
 
       "minecraft:custom_components": [
-        "dragonmounts_fire_scale:trigger"
+        "dragonmountsplus_fire_scale:trigger"
       ]
     },
           "tags": [
@@ -69,3 +69,4 @@
     "permutations": []
   }
 }
+

@@ -2,7 +2,7 @@
   "format_version": "1.21.60",
   "minecraft:block": {
     "description": {
-      "identifier": "dragonmountsplus:moonlight_scale",
+      "identifier": "dragonmountsplus:sculk_scale",
       "menu_category": {
         "category": "construction"
       }
@@ -14,7 +14,7 @@
       "minecraft:destructible_by_explosion": {
         "explosion_resistance": 1.0
       },
-      "minecraft:friction": 0.0,
+
       "minecraft:flammable": {
         "catch_chance_modifier": 0,
         "destroy_chance_modifier": 0
@@ -22,7 +22,7 @@
       "minecraft:map_color": "#FFFFFF",
       "minecraft:light_dampening": 15,
       "minecraft:light_emission": 0,
-      "minecraft:loot": "loot_tables/dragon_scales/moonlight_scale.json",
+      "minecraft:loot": "loot_tables/dragon_scales/sculk_scale.json",
       "minecraft:collision_box": {
         "origin": [
           -8.0,
@@ -49,13 +49,13 @@
       },
       "minecraft:material_instances": {
         "*": {
-          "texture": "dragonmountsplus_moonlight_scale",
+          "texture": "dragonmountsplus_sculk_scale",
           "render_method": "blend"
         }
       },
 
       "minecraft:custom_components": [
-        "dragonmountsplus_moonlight_scale:trigger"
+        "dragonmountsplus_sculk_scale:trigger"
       ]
     },
           "tags": [

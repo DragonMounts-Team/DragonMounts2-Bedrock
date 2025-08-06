@@ -1,8 +1,8 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.60",
   "minecraft:block": {
     "description": {
-      "identifier": "dragonmounts:ice_scale",
+      "identifier": "dragonmountsplus:ice_scale",
       "menu_category": {
         "category": "construction"
       }
@@ -49,13 +49,13 @@
       },
       "minecraft:material_instances": {
         "*": {
-          "texture": "dragonmounts_ice_scale",
-          "render_method": "opaque"
+          "texture": "dragonmountsplus_ice_scale",
+          "render_method": "blend"
         }
       },
 
       "minecraft:custom_components": [
-        "dragonmounts_ice_scale:trigger"
+        "dragonmountsplus_ice_scale:trigger"
       ]
     },
           "tags": [
@@ -70,3 +70,4 @@
     "permutations": []
   }
 }
+

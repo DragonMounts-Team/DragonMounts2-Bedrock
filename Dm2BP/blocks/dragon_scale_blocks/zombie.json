@@ -1,8 +1,8 @@
 {
-  "format_version": "1.20.60",
+  "format_version": "1.21.60",
   "minecraft:block": {
     "description": {
-      "identifier": "dragonmounts:zombie_scale",
+      "identifier": "dragonmountsplus:zombie_scale",
       "menu_category": {
         "category": "construction"
       }
@@ -56,13 +56,13 @@
       },
       "minecraft:material_instances": {
         "*": {
-          "texture": "dragonmounts_zombie_scale",
-          "render_method": "opaque"
+          "texture": "dragonmountsplus_zombie_scale",
+          "render_method": "blend"
         }
       },
 
       "minecraft:custom_components": [
-        "dragonmounts_zombie_scale:trigger"
+        "dragonmountsplus_zombie_scale:trigger"
       ]
     },
           "tags": [
@@ -77,3 +77,4 @@
     "permutations": []
   }
 }
+
