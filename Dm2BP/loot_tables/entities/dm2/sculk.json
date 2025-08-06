@@ -8,13 +8,13 @@
 			"entries": [
 				{
 					"type": "item",
-					"name": "dragonmountsplus:zombie_dragonscales",
+					"name": "dragonmountsplus:sculk_dragonscales",
 					"weight": 1,
 					"functions": [
 						{
 							"function": "minecraft:set_count",
 							"count": {
-								"min": 4,
+								"min": 3,
 								"max": 7
 							}
 						}

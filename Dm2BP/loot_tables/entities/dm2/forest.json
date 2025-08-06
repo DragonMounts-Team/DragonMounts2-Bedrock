@@ -8,7 +8,7 @@
 			"entries": [
 				{
 					"type": "item",
-					"name": "dragonmounts:forest_dragonscales",
+					"name": "dragonmountsplus:forest_dragonscales",
 					"weight": 1,
 					"functions": [
 						{
