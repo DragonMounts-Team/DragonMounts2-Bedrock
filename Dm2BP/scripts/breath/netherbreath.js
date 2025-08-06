@@ -1,13 +1,13 @@
 import { world, system } from "@minecraft/server";
 
 const breath = {
-  "nether_dragon": "bj:netherbreath",
-  "f_nether_dragon": "bj:netherbreath"
+  "nether_dragon": "dragonmountsplus:netherbreath",
+  "f_nether_dragon": "dragonmountsplus:netherbreath"
 };
 
 world.afterEvents.itemUse.subscribe(e => {
   const p = e.source;
-  if (e.itemStack.typeId !== "bj:dg_whistle") return;
+  if (e.itemStack.typeId !== "dragonmountsplus:emerald_wand") return;
 
   const r = p.getComponent("minecraft:riding")?.entityRidingOn;
   if (!r) return;
@@ -37,6 +37,6 @@ const spawnPos = {
   }, 0.1);
 }
 
-  p.playSound("dm2.dragon.netherbreath", { location: p.location, volume: 0.8 });
+  p.playSound("dragonmountsplus.dragon.netherbreath", { location: p.location, volume: 0.8 });
   r.playAnimation("animation.dragon.shoot");
 });

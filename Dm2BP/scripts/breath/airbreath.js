@@ -1,15 +1,15 @@
 import { world, system } from "@minecraft/server";
 
 const breath = {
-  "aether_dragon": "bj:air1breath",
-  "storm_dragon": "bj:airbreath",
-  "f_aether_dragon": "bj:air1breath",
-  "f_storm_dragon": "bj:airbreath"
+  "aether_dragon": "dragonmountsplus:air1breath",
+  "storm_dragon": "dragonmountsplus:airbreath",
+  "f_aether_dragon": "dragonmountsplus:air1breath",
+  "f_storm_dragon": "dragonmountsplus:airbreath"
 };
 
 world.afterEvents.itemUse.subscribe(e => {
   const p = e.source;
-  if (e.itemStack.typeId !== "bj:dg_whistle") return;
+  if (e.itemStack.typeId !== "dragonmountsplus:emerald_wand") return;
 
   const r = p.getComponent("minecraft:riding")?.entityRidingOn;
   if (!r) return;
@@ -39,6 +39,6 @@ const spawnPos = {
   }, 0.1);
 }
 
-  p.playSound("dm2.dragon.airbreath", { location: p.location, volume: 0.8 });
+  p.playSound("dragonmountsplus.dragon.airbreath", { location: p.location, volume: 0.8 });
   r.playAnimation("animation.dragon.shoot");
 });

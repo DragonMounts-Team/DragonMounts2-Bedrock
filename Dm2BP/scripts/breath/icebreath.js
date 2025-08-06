@@ -1,15 +1,15 @@
 import { world, system } from "@minecraft/server";
 
 const breath = {
-  "ice_dragon": "bj:icebreath",
-  "moonlight_dragon": "bj:icebreath",
-  "f_moonlight_dragon": "bj:icebreath",
-  "f_ice_dragon": "bj:icebreath"
+  "ice_dragon": "dragonmountsplus:icebreath",
+  "moonlight_dragon": "dragonmountsplus:icebreath",
+  "f_moonlight_dragon": "dragonmountsplus:icebreath",
+  "f_ice_dragon": "dragonmountsplus:icebreath"
 };    
 
 world.afterEvents.itemUse.subscribe(e => {
   const p = e.source;
-  if (e.itemStack.typeId !== "bj:dg_whistle") return;
+  if (e.itemStack.typeId !== "dragonmountsplus:emerald_wand") return;
 
   const r = p.getComponent("minecraft:riding")?.entityRidingOn;
   if (!r) return;
@@ -39,6 +39,6 @@ const spawnPos = {
   }, 0.1);
 }
 
-  p.playSound("dm2.dragon.icebreath", { location: p.location, volume: 0.8 });
+  p.playSound("dragonmountsplus.dragon.icebreath", { location: p.location, volume: 0.8 });
   r.playAnimation("animation.dragon.shoot");
 });

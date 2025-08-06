@@ -1,27 +1,19 @@
 import { world, system } from "@minecraft/server";
 
 const breath = {   
-  "sunlight_dragon": "bj:firebreath",
-  "wither_dragon": "bj:witherbreath",
-  "enchant_dragon": "bj:firebreath",
-  "phantom_dragon": "bj:airbreath",
-  "fire_dragon": "bj:firebreath",
-  "ender_dragon": "bj:enderbreath",
-  "terra_dragon": "bj:firebreath",
-  "dark_dragon": "bj:darkbreath",
-  "f_dark_dragon": "bj:darkbreath",
-  "f_sunlight_dragon": "bj:firebreath",
-  "f_fire_dragon": "bj:firebreath",
-  "f_terra_dragon": "bj:firebreath",
-  "f_enchant_dragon": "bj:firebreath",
-  "m_ender_dragon": "bj:enderbreath",
-  "r_fire_dragon": "bj:firebreath",
-  "f_phantom_dragon": "bj:airbreath"
+  "sunlight_dragon": "dragonmountsplus:firebreath",
+  "wither_dragon": "dragonmountsplus:witherbreath",
+  "sculk_dragon": "dragonmountsplus:witherbreath",
+  "enchant_dragon": "dragonmountsplus:firebreath",
+  "fire_dragon": "dragonmountsplus:firebreath",
+  "ender_dragon": "dragonmountsplus:enderbreath",
+  "terra_dragon": "dragonmountsplus:firebreath",
+  "dark_dragon": "dragonmountsplus:darkbreath",
 };  
 
 world.afterEvents.itemUse.subscribe(e => {
   const p = e.source;
-  if (e.itemStack.typeId !== "bj:dg_whistle") return;
+  if (e.itemStack.typeId !== "dragonmountsplus:emerald_wand") return;
 
   const r = p.getComponent("minecraft:riding")?.entityRidingOn;
   if (!r) return;
@@ -51,6 +43,6 @@ const spawnPos = {
   }, 0.1);
 }
 
-  p.playSound("dm2.dragon.firebreath", { location: p.location, volume: 0.8 });
+  p.playSound("dragonmountsplus.dragon.firebreath", { location: p.location, volume: 0.8 });
   r.playAnimation("animation.dragon.shoot");
 });

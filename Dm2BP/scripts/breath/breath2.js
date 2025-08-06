@@ -1,42 +1,28 @@
 import { world, system } from "@minecraft/server";
 
 const breath = {
-  "aether_dragon": "bj:air1breath1",
-  "nether_dragon": "bj:netherbreath1",
-  "ice_dragon": "bj:icebreath1",
-  "moonlight_dragon": "bj:icebreath1",
-  "water_dragon": "bj:waterbreath1",
-  "sunlight_dragon": "bj:firebreath1",
-  "storm_dragon": "bj:airbreath1",
-  "forest_dragon": "bj:poisonbreath1",
-  "zombie_dragon": "bj:poisonbreath1",
-  "wither_dragon": "bj:witherbreath1",
-  "enchant_dragon": "bj:firebreath1",
-  "phantom_dragon": "bj:airbreath1",
-  "fire_dragon": "bj:firebreath1",
-  "ender_dragon": "bj:enderbreath1",
-  "terra_dragon": "bj:firebreath1",
-  "dark_dragon": "bj:firebreath1",
-  "f_aether_dragon": "bj:air1breath1",
-  "f_nether_dragon": "bj:netherbreath1",
-  "f_water_dragon": "bj:waterbreath1",
-  "f_moonlight_dragon": "bj:icebreath1",
-  "f_dark_dragon": "bj:firebreath1",
-  "f_ice_dragon": "bj:icebreath1",
-  "f_forest_dragon": "bj:poisonbreath1",
-  "f_sunlight_dragon": "bj:firebreath1",
-  "f_fire_dragon": "bj:firebreath1",
-  "f_terra_dragon": "bj:firebreath1",
-  "f_storm_dragon": "bj:airbreath1",
-  "f_enchant_dragon": "bj:firebreath1",
-  "m_ender_dragon": "bj:enderbreath1",
-  "r_fire_dragon": "bj:firebreath1",
-  "f_phantom_dragon": "bj:airbreath1"
+  "aether_dragon": "dragonmountsplus:air1breath1",
+  "nether_dragon": "dragonmountsplus:netherbreath1",
+  "ice_dragon": "dragonmountsplus:icebreath1",
+  "moonlight_dragon": "dragonmountsplus:icebreath1",
+  "water_dragon": "dragonmountsplus:waterbreath1",
+  "sunlight_dragon": "dragonmountsplus:firebreath1",
+  "storm_dragon": "dragonmountsplus:airbreath1",
+  "forest_dragon": "dragonmountsplus:poisonbreath1",
+  "zombie_dragon": "dragonmountsplus:poisonbreath1",
+  "wither_dragon": "dragonmountsplus:witherbreath1",
+  "sculk_dragon": "dragonmountsplus:witherbreath1",
+  "enchant_dragon": "dragonmountsplus:firebreath1",
+  "phantom_dragon": "dragonmountsplus:airbreath1",
+  "fire_dragon": "dragonmountsplus:firebreath1",
+  "ender_dragon": "dragonmountsplus:enderbreath1",
+  "terra_dragon": "dragonmountsplus:firebreath1",
+  "dark_dragon": "dragonmountsplus:firebreath1",
 };
 
 world.afterEvents.itemUse.subscribe(e => {
   const p = e.source;
-  if (e.itemStack.typeId !== "bj:dg_wand") return;
+  if (e.itemStack.typeId !== "dragonmountsplus:diamond_wand") return;
 
   const r = p.getComponent("minecraft:riding")?.entityRidingOn;
   if (!r) return;
@@ -66,6 +52,6 @@ const spawnPos = {
   }, 0.1);
 }
 
-  p.playSound("bj.dragon.firebreath", { location: p.location, volume: 1 });
+  p.playSound("dragonmountsplus.dragon.fireball", { location: p.location, volume: 1 });
   r.playAnimation("animation.dragon.shoot");
 });
