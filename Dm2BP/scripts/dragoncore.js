@@ -2,22 +2,23 @@ import { world } from "@minecraft/server";
 
 // Cấu hình: mỗi key ứng với một entity
 const summonMap = {
-  "dm2:essence_aether": "dm2:aether_dragon",
-  "dm2:essence_nether": "dm2:nether_dragon",
-  "dm2:essence_ender": "dm2:ender_dragon",
-  "dm2:essence_enchant": "dm2:enchant_dragon",
-  "dm2:essence_sunlight": "dm2:sunlight_dragon",
-  "dm2:essence_moonlight": "dm2:moonlight_dragon",
-  "dm2:essence_storm": "dm2:storm_dragon",
-  "dm2:essence_dark": "dm2:dark_dragon",
-  "dm2:essence_skeleton": "dm2:skeleton_dragon",
-  "dm2:essence_wither": "dm2:wither_dragon",
-  "dm2:essence_zombie": "dm2:zombie_dragon",
-  "dm2:essence_terra": "dm2:terra_dragon",
-  "dm2:essence_water": "dm2:water_dragon",
-  "dm2:essence_fire": "dm2:fire_dragon",
-  "dm2:essence_forest": "dm2:forest_dragon",
-  "dm2:essence_ice": "dm2:ice_dragon"
+  "dragonmountsplus:essence_aether": "dragonmountsplus:aether_dragon",
+  "dragonmountsplus:essence_nether": "dragonmountsplus:nether_dragon",
+  "dragonmountsplus:essence_ender": "dragonmountsplus:ender_dragon",
+  "dragonmountsplus:essence_enchant": "dragonmountsplus:enchant_dragon",
+  "dragonmountsplus:essence_sunlight": "dragonmountsplus:sunlight_dragon",
+  "dragonmountsplus:essence_moonlight": "dragonmountsplus:moonlight_dragon",
+  "dragonmountsplus:essence_storm": "dragonmountsplus:storm_dragon",
+  "dragonmountsplus:essence_dark": "dragonmountsplus:dark_dragon",
+  "dragonmountsplus:essence_sculk": "dragonmountsplus:sculk_dragon",
+  "dragonmountsplus:essence_skeleton": "dragonmountsplus:skeleton_dragon",
+  "dragonmountsplus:essence_wither": "dragonmountsplus:wither_dragon",
+  "dragonmountsplus:essence_zombie": "dragonmountsplus:zombie_dragon",
+  "dragonmountsplus:essence_terra": "dragonmountsplus:terra_dragon",
+  "dragonmountsplus:essence_water": "dragonmountsplus:water_dragon",
+  "dragonmountsplus:essence_fire": "dragonmountsplus:fire_dragon",
+  "dragonmountsplus:essence_forest": "dragonmountsplus:forest_dragon",
+  "dragonmountsplus:essence_ice": "dragonmountsplus:ice_dragon"
 };
 
 world.beforeEvents.itemUseOn.subscribe(event => {
@@ -28,7 +29,7 @@ world.beforeEvents.itemUseOn.subscribe(event => {
   if (!player || !item || !block) return;
 
   const entityId = summonMap[item.typeId];
-  if (!entityId || block.typeId !== "dragonmounts:dragon_core") return;
+  if (!entityId || block.typeId !== "dragonmountsplus:dragon_core") return;
 
   const { x, y, z } = block.location;
 
@@ -37,4 +38,3 @@ world.beforeEvents.itemUseOn.subscribe(event => {
   player.runCommandAsync(`setblock ${x} ${y} ${z} air`);
   player.runCommandAsync(`summon ${entityId} ${x} ${y} ${z} minecraft:entity_transformed`);
 });
-//hi grummboy ping me if you read this code
