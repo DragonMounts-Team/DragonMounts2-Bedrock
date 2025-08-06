@@ -60,18 +60,6 @@
       "module_name": "@minecraft/common"
     }
   ],
-    "subpacks": [
-    {
-      "folder_name": "rare",
-      "name": "Nest Rare",
-      "memory_tier": 0
-    },
-    {
-      "folder_name": "not_rare",
-      "name": "Nest Not Rare",
-      "memory_tier": 1
-    }
-  ],
 "metadata": {
         "product_type": "addon"
     }
