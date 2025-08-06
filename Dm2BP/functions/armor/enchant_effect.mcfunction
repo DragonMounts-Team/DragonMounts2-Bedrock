@@ -1,1 +1,1 @@
-effect @s jump_boost 16 5 true
+effect @s jump_boost 1 5 true
