@@ -21,7 +21,7 @@
                     },
                     {
                         "group_identifier": {
-                            "icon": "dm2:essence_aether",
+                            "icon": "dragonmountsplus:essence_aether",
                             "name": "dm:itemGroup.name.essence_items"
                         },
                         "items": []
@@ -37,7 +37,7 @@
                     {
                        
                         "group_identifier": {
-                            "icon": "bj:aether_dragon_egg",
+                            "icon": "dragonmountsplus:aether_dragon_egg",
                             "name": "bj9:itemGroup.name.egg_dragon_items"
                         },
                         "items": [] 
@@ -53,7 +53,7 @@
                     {
                        
                         "group_identifier": {
-                            "icon": "bj:whistle",
+                            "icon": "dragonmountsplus:whistle",
                             "name": "bj5:itemGroup.name.whistle_items"
                         },
                         "items": []
@@ -65,22 +65,23 @@
                 "groups": [
                     {
                         "group_identifier": {
-                            "icon": "dragonmounts:aether_dragonscales",
+                            "icon": "dragonmountsplus:aether_dragonscales",
                             "name": "dm:itemGroup.name.scales"
                         },
-                        "items": ["dragonmounts:aether_dragonscales","dragonmounts:ender_dragonscales",
-"dragonmounts:enchant_dragonscales",
-"dragonmounts:fire_dragonscales",
-"dragonmounts:ice_dragonscales",
-"dragonmounts:forest_dragonscales",
-"dragonmounts:sunlight_dragonscales",
-"dragonmounts:zombie_dragonscales",
-"dragonmounts:terra_dragonscales",
-"dragonmounts:moonlight_dragonscales",
-"dragonmounts:dark_dragonscales",
-"dragonmounts:water_dragonscales",
-"dragonmounts:nether_dragonscales",
-"dragonmounts:storm_dragonscales"]
+                        "items": ["dragonmountsplus:aether_dragonscales","dragonmountsplus:ender_dragonscales",
+"dragonmountsplus:enchant_dragonscales",
+"dragonmountsplus:fire_dragonscales",
+"dragonmountsplus:ice_dragonscales",
+"dragonmountsplus:forest_dragonscales",
+"dragonmountsplus:sunlight_dragonscales",
+"dragonmountsplus:zombie_dragonscales",
+"dragonmountsplus:terra_dragonscales",
+"dragonmountsplus:moonlight_dragonscales",
+"dragonmountsplus:dark_dragonscales",
+"dragonmountsplus:water_dragonscales",
+"dragonmountsplus:nether_dragonscales",
+"dragonmountsplus:storm_dragonscales",
+"dragonmountsplus:sculk_dragonscales"]
                     }
                 ]
             },
@@ -89,11 +90,11 @@
         "groups": [
           {
             "group_identifier": {
-              "icon": "dragonmounts:aether_dragon_egg",
+              "icon": "dragonmountsplus:aether_dragon_egg",
               "name": "dm:itemGroup.name.dragon_eggs"
             },
             "items": [
-              "dragonmounts:aether_dragon_egg","dragonmounts:nether_dragon_egg","dragonmounts:fire_dragon_egg","dragonmounts:ice_dragon_egg","dragonmounts:moonlight_dragon_egg","dragonmounts:sunlight_dragon_egg","dragonmounts:water_dragon_egg","dragonmounts:wither_dragon_egg","dragonmounts:skeleton_dragon_egg","dragonmounts:terra_dragon_egg","dragonmounts:zombie_dragon_egg","dragonmounts:storm_dragon_egg","dragonmounts:forest_dragon_egg","dragonmounts:enchant_dragon_egg","dragonmounts:ender_dragon_egg","dragonmounts:dark_dragon_egg"
+              "dragonmountsplus:aether_dragon_egg","dragonmountsplus:nether_dragon_egg","dragonmountsplus:fire_dragon_egg","dragonmountsplus:ice_dragon_egg","dragonmountsplus:moonlight_dragon_egg","dragonmountsplus:sunlight_dragon_egg","dragonmountsplus:water_dragon_egg","dragonmountsplus:wither_dragon_egg","dragonmountsplus:skeleton_dragon_egg","dragonmountsplus:terra_dragon_egg","dragonmountsplus:zombie_dragon_egg","dragonmountsplus:storm_dragon_egg","dragonmountsplus:forest_dragon_egg","dragonmountsplus:enchant_dragon_egg","dragonmountsplus:ender_dragon_egg","dragonmountsplus:dark_dragon_egg","dragonmountsplus:sculk_dragon_egg"
             ]
           }
         ]
@@ -103,11 +104,11 @@
         "groups": [
           {
             "group_identifier": {
-              "icon": "dragonmounts:aether_scale",
+              "icon": "dragonmountsplus:aether_scale",
               "name": "dm:itemGroup.name.dragon_scale"
             },
             "items": [
-              "dragonmounts:aether_scale","dragonmounts:nether_scale","dragonmounts:fire_scale","dragonmounts:ice_scale","dragonmounts:moonlight_scale","dragonmounts:sunlight_scale","dragonmounts:water_scale","dragonmounts:terra_scale","dragonmounts:zombie_scale","dragonmounts:storm_scale","dragonmounts:forest_scale","dragonmounts:enchant_scale","dragonmounts:ender_scale","dragonmounts:dark_scale"
+              "dragonmountsplus:aether_scale","dragonmountsplus:nether_scale","dragonmountsplus:fire_scale","dragonmountsplus:ice_scale","dragonmountsplus:moonlight_scale","dragonmountsplus:sunlight_scale","dragonmountsplus:water_scale","dragonmountsplus:terra_scale","dragonmountsplus:zombie_scale","dragonmountsplus:storm_scale","dragonmountsplus:forest_scale","dragonmountsplus:enchant_scale","dragonmountsplus:ender_scale","dragonmountsplus:dark_scale","dragonmountsplus:sculk_scale"
             ]
           }
         ]
