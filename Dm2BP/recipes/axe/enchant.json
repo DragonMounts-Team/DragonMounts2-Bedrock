@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:enchant_dragon_axe"
+			"identifier": "dragonmountsplus:enchant_dragon_axe"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmounts:enchant_dragonscales"
+				"item": "dragonmountsplus:enchant_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:enchant_dragon_axe"
+			"item": "dragonmountsplus:enchant_dragon_axe"
 		}
 	}
 }

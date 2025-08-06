@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:dark_dragon_axe"
+			"identifier": "dragonmountsplus:dark_dragon_axe"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmounts:dark_dragonscales"
+				"item": "dragonmountsplus:dark_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:dark_dragon_axe"
+			"item": "dragonmountsplus:dark_dragon_axe"
 		}
 	}
 }
