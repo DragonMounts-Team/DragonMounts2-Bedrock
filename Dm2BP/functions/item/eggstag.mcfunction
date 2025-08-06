@@ -21,6 +21,8 @@ scoreboard players add @e[type=dragonmounts:forest_dragon_egg] Timer 1
 
 scoreboard players add @e[type=dragonmounts:zombie_dragon_egg] Timer 1
 
+scoreboard players add @e[type=dragonmounts:sculk_dragon_egg] Timer 1
+
 scoreboard players add @e[type=dragonmounts:storm_dragon_egg] Timer 1
 
 scoreboard players add @e[type=dragonmounts:sunlight_dragon_egg] Timer 1
@@ -35,3 +37,4 @@ tag @e[family=dragon] remove flying
 tag @e[family=dragon] remove to_catch_player
 tag @a remove can_catch
 execute @e[tag=flying,family=dragon] ~ ~ ~ effect @s slow_falling 1 1 true
+ 
