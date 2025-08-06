@@ -1,10 +1,11 @@
 import { system, world } from '@minecraft/server';
 
 world.beforeEvents.worldInitialize.subscribe(initEvent => {
-  initEvent.blockComponentRegistry.registerCustomComponent('bj_dark_egg_block:trigger', {
+  initEvent.blockComponentRegistry.registerCustomComponent('dragonmountsplus_dark_egg_block:trigger', 
+  {
     onPlayerInteract: e => {
       const { x, y, z } = e.block.location;
-      e.player.runCommandAsync(`summon dragonmounts:dark_dragon_egg ${x} ${y + 1} ${z}`);
+      e.player.runCommandAsync(`summon dragonmountsplus:dark_dragon_egg ${x} ${y + 1} ${z}`);
       e.player.runCommandAsync(`setblock ${x} ${y} ${z} air`);
     },
   });
