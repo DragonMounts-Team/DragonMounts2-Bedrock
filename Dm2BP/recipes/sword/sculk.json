@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmountsplus:forest_dragon_sword"
+			"identifier": "dragonmountsplus:sculk_dragon_sword"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmountsplus:forest_dragonscales"
+				"item": "dragonmountsplus:sculk_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmountsplus:forest_dragon_sword"
+			"item": "dragonmountsplus:sculk_dragon_sword"
 		}
 	}
 }

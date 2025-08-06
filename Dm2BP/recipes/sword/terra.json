@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:terra_dragon_sword"
+			"identifier": "dragonmountsplus:terra_dragon_sword"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmounts:terra_dragonscales"
+				"item": "dragonmountsplus:terra_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:terra_dragon_sword"
+			"item": "dragonmountsplus:terra_dragon_sword"
 		}
 	}
 }

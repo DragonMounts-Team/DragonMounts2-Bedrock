@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:nether_dragon_sword"
+			"identifier": "dragonmountsplus:nether_dragon_sword"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmounts:nether_dragonscales"
+				"item": "dragonmountsplus:nether_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:nether_dragon_sword"
+			"item": "dragonmountsplus:nether_dragon_sword"
 		}
 	}
 }
