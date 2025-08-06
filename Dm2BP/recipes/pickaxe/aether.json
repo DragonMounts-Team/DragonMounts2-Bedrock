@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:aether_dragon_pickaxe"
+			"identifier": "dragonmountsplus:aether_dragon_pickaxe"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmounts:aether_dragonscales"
+				"item": "dragonmountsplus:aether_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:aether_dragon_pickaxe"
+			"item": "dragonmountsplus:aether_dragon_pickaxe"
 		}
 	}
 }

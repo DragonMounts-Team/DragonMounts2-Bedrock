@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:zombie_dragon_pickaxe"
+			"identifier": "dragonmountsplus:zombie_dragon_pickaxe"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"X": {
-				"item": "dragonmounts:zombie_dragonscales"
+				"item": "dragonmountsplus:zombie_dragonscales"
 			},
 			"#": {
 				"item": "minecraft:stick"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:zombie_dragon_pickaxe"
+			"item": "dragonmountsplus:zombie_dragon_pickaxe"
 		}
 	}
 }
