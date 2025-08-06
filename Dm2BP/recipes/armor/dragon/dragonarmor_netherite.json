@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmountsplus:dragonarmor_diamond"
+			"identifier": "dragonmountsplus:dragonarmor_netherite"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,14 +14,14 @@
 		],
 		"key": {
 			"#": {
-				"item": "minecraft:diamond"
+				"item": "minecraft:netherite_ingot"
 			},
 			"X": {
-				"item": "minecraft:diamond_block"
+				"item": "minecraft:netherite_block"
 			}
 		},
 		"result": {
-			"item": "dragonmountsplus:dragonarmor_diamond"
+			"item": "dragonmountsplus:dragonarmor_netherite"
 		}
 	}
 }
