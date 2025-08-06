@@ -39,7 +39,8 @@
 				"textures": {
 					"Array.base": [
 						"Texture.f_aether_dragon",
-						"Texture.aether_dragon"
+						"Texture.aether_dragon",
+						"Texture.r_aether_dragon"
 					],
 					"Array.saddled": [
 						"Texture.dragon_none",

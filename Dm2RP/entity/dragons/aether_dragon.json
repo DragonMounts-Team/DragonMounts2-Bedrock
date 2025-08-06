@@ -15,7 +15,9 @@
 			"textures": {
 			  "f_aether_dragon": "textures/entity/aether_dragon/f_aether_dragon",
 				"aether_dragon": "textures/entity/aether_dragon/aether_dragon",
+				"r_aether_dragon": "textures/entity/aether_dragon/r_aether_dragon",
 				"glow": "textures/entity/aether_dragon/glow",
+				"r_glow": "textures/entity/aether_dragon/r_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
 				"dragon_armor_iron": "textures/entity/dragon_armor/armor_iron",
@@ -75,7 +77,9 @@
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",
-				"controller.render.glow",
+				{"controller.render.glow1": "query.variant == 1" },
+				{"controller.render.glow1": "query.variant == 0" },
+			  {"controller.render.glow3": "query.variant == 2" },
 				"controller.render.dragons.is_armored",
 				"controller.render.dragons.is_chested",
 				{ "controller.render.aether_dragon_death_pre_pass": "query.death_ticks > 1.0" },

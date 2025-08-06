@@ -2,7 +2,7 @@
   "format_version": "1.10",
   "minecraft:item": {
     "description": {
-      "identifier": "dragonmounts:zombie_dragonscales",
+      "identifier": "dragonmountsplus:zombie_dragonscales",
       "category": "Nature"
     },
     "components": {

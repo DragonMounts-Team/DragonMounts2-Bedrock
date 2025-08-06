@@ -74,7 +74,7 @@
 				"null": "mob.mountdragon.null"
 			},
 			"particle_effects": {
-				"default": "dragonmountsplus:water_drip_particle"
+				"default": "dragonmountsplus:storm_particle"
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",

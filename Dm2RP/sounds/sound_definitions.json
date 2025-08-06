@@ -45,33 +45,6 @@
 			}
 		]
 	},
-	   "random.sweep": {
-      "__use_legacy_max_distance": "true",
-      "category": "player",
-      "sounds": [
-        {
-          "name": "sounds/random/sweep1"
-        },
-        {
-          "name": "sounds/random/sweep2"
-        },
-        {
-          "name": "sounds/random/sweep3"
-        },
-        {
-          "name": "sounds/random/sweep4"
-        },
-        {
-          "name": "sounds/random/sweep5"
-        },
-        {
-          "name": "sounds/random/sweep6"
-        },
-        {
-          "name": "sounds/random/sweep7"
-        }
-      ]
-    },
 	"mob.mountdragon.step": {
 		"category": "neutral",
 		"sounds": [
@@ -419,19 +392,19 @@
 	  "sounds": [
 		{
 		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl1",
-		  "volume": 0.8
+		  "volume": 0.4
 		},
 		{
 		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl2",
-		  "volume": 0.8
+		  "volume": 0.4
 		},
 		{
 		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl3",
-		  "volume": 0.8
+		  "volume": 0.4
 		},
 		{
 		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl4",
-		  "volume": 0.8
+		  "volume": 0.4
 		}
 	  ]
 	},
@@ -486,16 +459,16 @@
 		}
 	  ]
 	},
-	"bj.whistle": {
+	"dragonmountsplus.whistle": {
     "category": "hostile",
    "min_distance": 10.0,
     "sounds": [
      {
-        "name": "sounds/whistle"
+        "name": "sounds/flute"
       }
     ]
   },
-        "bj.dragon.firebreath": {
+        "dragonmountsplus.dragon.fireball": {
     "category": "nuetral",
    "min_distance": 10.0,
     "sounds": [
@@ -505,7 +478,7 @@
       }
     ]
   },
-          "dm2.dragon.firebreath": {
+          "dragonmountsplus.dragon.firebreath": {
     "category": "nuetral",
    "min_distance": 10.0,
     "sounds": [
@@ -515,7 +488,7 @@
       }
     ]
   },
-          "dm2.dragon.waterbreath": {
+          "dragonmountsplus.dragon.waterbreath": {
     "category": "nuetral",
    "min_distance": 10.0,
     "sounds": [
@@ -525,7 +498,7 @@
       }
     ]
   },
-          "dm2.dragon.icebreath": {
+          "dragonmountsplus.dragon.icebreath": {
     "category": "nuetral",
    "min_distance": 10.0,
     "sounds": [
@@ -535,7 +508,7 @@
       }
     ]
   },
-          "dm2.dragon.airbreath": {
+          "dragonmountsplus.dragon.airbreath": {
     "category": "nuetral",
    "min_distance": 10.0,
     "sounds": [
@@ -545,7 +518,7 @@
       }
     ]
   },
-          "dm2.dragon.netherbreath": {
+          "dragonmountsplus.dragon.netherbreath": {
     "category": "nuetral",
    "min_distance": 10.0,
     "sounds": [
@@ -555,7 +528,7 @@
       }
     ]
   },
-            "dm2.dragon.forestbreath": {
+            "dragonmountsplus.dragon.forestbreath": {
     "category": "nuetral",
    "min_distance": 10.0,
     "sounds": [

@@ -33,6 +33,8 @@
 				"nether_dragon": "textures/entity/nether_dragon/nether_dragon",
 				"r_nether_dragon": "textures/entity/nether_dragon/r_nether_dragon",
 				"f_nether_dragon": "textures/entity/nether_dragon/f_nether_dragon",
+				"sculk_dragon": "textures/entity/sculk_dragon/sculk_dragon",
+				"f_sculk_dragon": "textures/entity/sculk_dragon/sculk_dragon",
 				"skeleton_dragon": "textures/entity/skeleton_dragon/skeleton_dragon",
 				"storm_dragon": "textures/entity/storm_dragon/storm_dragon",
 				"r_storm_dragon": "textures/entity/storm_dragon/r_storm_dragon",

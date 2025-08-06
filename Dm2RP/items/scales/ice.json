@@ -2,7 +2,7 @@
   "format_version": "1.10",
   "minecraft:item": {
     "description": {
-      "identifier": "dragonmounts:ice_dragonscales",
+      "identifier": "dragonmountsplus:ice_dragonscales",
       "category": "Nature"
     },
     "components": {

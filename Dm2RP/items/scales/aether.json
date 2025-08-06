@@ -2,7 +2,7 @@
   "format_version": "1.10",
   "minecraft:item": {
     "description": {
-      "identifier": "dragonmounts:aether_dragonscales",
+      "identifier": "dragonmountsplus:aether_dragonscales",
       "category": "Nature"
     },
     "components": {

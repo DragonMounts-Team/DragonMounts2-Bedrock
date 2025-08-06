@@ -1,0 +1,7 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wither_dragon",
+        "metalness_emissive_roughness": "wither_dragon_mer"
+    }
+}

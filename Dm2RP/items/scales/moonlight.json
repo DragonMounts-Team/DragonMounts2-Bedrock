@@ -2,7 +2,7 @@
   "format_version": "1.10",
   "minecraft:item": {
     "description": {
-      "identifier": "dragonmounts:moonlight_dragonscales",
+      "identifier": "dragonmountsplus:moonlight_dragonscales",
       "category": "Nature"
     },
     "components": {
