@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:zombie_dragonscale_chestplate"
+			"identifier": "dragonmountsplus:zombie_dragonscale_chestplate"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,11 +14,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:zombie_dragonscales"
+				"item": "dragonmountsplus:zombie_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:zombie_dragonscale_chestplate"
+			"item": "dragonmountsplus:zombie_dragonscale_chestplate"
 		}
 	}
 }

@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dragonmounts:fire_dragonscale_chestplate"
+			"identifier": "dragonmountsplus:fire_dragonscale_chestplate"
 		},
 		"tags": [
 			"crafting_table"
@@ -14,11 +14,11 @@
 		],
 		"key": {
 			"#": {
-				"item": "dragonmounts:fire_dragonscales"
+				"item": "dragonmountsplus:fire_dragonscales"
 			}
 		},
 		"result": {
-			"item": "dragonmounts:fire_dragonscale_chestplate"
+			"item": "dragonmountsplus:fire_dragonscale_chestplate"
 		}
 	}
 }
