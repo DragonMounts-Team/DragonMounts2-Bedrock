@@ -2,7 +2,7 @@
 	"format_version": "1.12",
 	"minecraft:recipe_shaped": {
 		"description": {
-			"identifier": "dm2:diamond_shears"
+			"identifier": "dragonmountsplus:diamond_shears"
 		},
 		"tags": [
 			"crafting_table"
@@ -17,7 +17,7 @@
 			}
 		},
 		"result": {
-			"item": "dm2:diamond_shears"
+			"item": "dragonmountsplus:diamond_shears"
 		}
 	}
 }
