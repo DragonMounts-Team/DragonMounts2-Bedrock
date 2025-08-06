@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:terra_scale"
+      "item": "dragonmountsplus:terra_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:terra_dragonscales",
+      "item": "dragonmountsplus:terra_dragonscales",
             "count": 9
     }
   }

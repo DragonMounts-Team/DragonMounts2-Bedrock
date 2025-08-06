@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:forest_dragonscales",
+        "item": "dragonmountsplus:forest_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:forest_scale",
+      "item": "dragonmountsplus:forest_scale",
       "count": 1
     }
   }

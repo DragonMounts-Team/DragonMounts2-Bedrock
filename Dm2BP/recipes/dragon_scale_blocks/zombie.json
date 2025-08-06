@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:zombie_dragonscales",
+        "item": "dragonmountsplus:zombie_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:zombie_scale",
+      "item": "dragonmountsplus:zombie_scale",
       "count": 1
     }
   }

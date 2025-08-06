@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:aether_scale"
+      "item": "dragonmountsplus:aether_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:aether_dragonscales",
+      "item": "dragonmountsplus:aether_dragonscales",
             "count": 9
     }
   }

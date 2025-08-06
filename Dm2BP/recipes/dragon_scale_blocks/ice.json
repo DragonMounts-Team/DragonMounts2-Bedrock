@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:ice_dragonscales",
+        "item": "dragonmountsplus:ice_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:ice_scale",
+      "item": "dragonmountsplus:ice_scale",
       "count": 1
     }
   }

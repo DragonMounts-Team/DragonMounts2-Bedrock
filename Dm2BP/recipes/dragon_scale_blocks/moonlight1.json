@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:moonlight_scale"
+      "item": "dragonmountsplus:moonlight_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:moonlight_dragonscales",
+      "item": "dragonmountsplus:moonlight_dragonscales",
             "count": 9
     }
   }

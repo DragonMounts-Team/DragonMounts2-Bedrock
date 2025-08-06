@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:enchant_scale"
+      "item": "dragonmountsplus:enchant_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:enchant_dragonscales",
+      "item": "dragonmountsplus:enchant_dragonscales",
             "count": 9
     }
   }

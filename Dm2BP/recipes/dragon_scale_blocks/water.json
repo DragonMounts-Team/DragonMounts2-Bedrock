@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:water_dragonscales",
+        "item": "dragonmountsplus:water_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:water_scale",
+      "item": "dragonmountsplus:water_scale",
       "count": 1
     }
   }

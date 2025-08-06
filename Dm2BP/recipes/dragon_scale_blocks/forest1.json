@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:forest_scale"
+      "item": "dragonmountsplus:forest_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:forest_dragonscales",
+      "item": "dragonmountsplus:forest_dragonscales",
             "count": 9
     }
   }

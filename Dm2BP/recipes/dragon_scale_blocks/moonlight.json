@@ -14,13 +14,13 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:moonlight_dragonscales",
+        "item": "dragonmountsplus:moonlight_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:moonlight_scale",
+      "item": "dragonmountsplus:moonlight_scale",
       "count": 1
     }
   }
-}
+}}

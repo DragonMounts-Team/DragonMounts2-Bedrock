@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:sunlight_dragonscales",
+        "item": "dragonmountsplus:sunlight_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:sunlight_scale",
+      "item": "dragonmountsplus:sunlight_scale",
       "count": 1
     }
   }

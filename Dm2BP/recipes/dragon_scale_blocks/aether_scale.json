@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:aether_dragonscales",
+        "item": "dragonmountsplus:aether_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:aether_scale",
+      "item": "dragonmountsplus:aether_scale",
       "count": 1
     }
   }

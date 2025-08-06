@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:storm_dragonscales",
+        "item": "dragonmountsplus:storm_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:storm_scale",
+      "item": "dragonmountsplus:storm_scale",
       "count": 1
     }
   }

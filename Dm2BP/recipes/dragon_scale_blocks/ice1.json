@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:ice_scale"
+      "item": "dragonmountsplus:ice_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:ice_dragonscales",
+      "item": "dragonmountsplus:ice_dragonscales",
             "count": 9
     }
   }

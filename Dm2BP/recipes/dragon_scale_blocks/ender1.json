@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:ender_scale"
+      "item": "dragonmountsplus:ender_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:ender_dragonscales",
+      "item": "dragonmountsplus:ender_dragonscales",
             "count": 9
     }
   }

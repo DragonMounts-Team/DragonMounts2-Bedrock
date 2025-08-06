@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:terra_dragonscales",
+        "item": "dragonmountsplus:terra_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:terra_scale",
+      "item": "dragonmountsplus:terra_scale",
       "count": 1
     }
   }

@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:fire_scale"
+      "item": "dragonmountsplus:fire_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:fire_dragonscales",
+      "item": "dragonmountsplus:fire_dragonscales",
             "count": 9
     }
   }

@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:dark_dragonscales",
+        "item": "dragonmountsplus:dark_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:dark_scale",
+      "item": "dragonmountsplus:dark_scale",
       "count": 1
     }
   }

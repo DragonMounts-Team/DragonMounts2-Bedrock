@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:fire_dragonscales",
+        "item": "dragonmountsplus:fire_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:fire_scale",
+      "item": "dragonmountsplus:fire_scale",
       "count": 1
     }
   }

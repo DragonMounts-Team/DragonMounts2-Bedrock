@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:dark_scale"
+      "item": "dragonmountsplus:dark_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:dark_dragonscales",
+      "item": "dragonmountsplus:dark_dragonscales",
             "count": 9
     }
   }

@@ -10,11 +10,11 @@
   ],
   "key": {
     "X": {
-      "item": "dragonmounts:zombie_scale"
+      "item": "dragonmountsplus:zombie_scale"
     }
   },
     "result": {
-      "item": "dragonmounts:zombie_dragonscales",
+      "item": "dragonmountsplus:zombie_dragonscales",
             "count": 9
     }
   }

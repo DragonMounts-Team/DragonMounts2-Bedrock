@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:ender_dragonscales",
+        "item": "dragonmountsplus:ender_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:ender_scale",
+      "item": "dragonmountsplus:ender_scale",
       "count": 1
     }
   }

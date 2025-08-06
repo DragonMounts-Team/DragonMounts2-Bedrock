@@ -14,12 +14,12 @@
     ],
     "key": {
       "A": {
-        "item": "dragonmounts:enchant_dragonscales",
+        "item": "dragonmountsplus:enchant_dragonscales",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmounts:enchant_scale",
+      "item": "dragonmountsplus:enchant_scale",
       "count": 1
     }
   }
