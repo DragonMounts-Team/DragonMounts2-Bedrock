@@ -2,7 +2,7 @@
 	"format_version": "1.21.30",
 	"minecraft:block": {
 		"description": {
-			"identifier": "dragonmountsplus:moonlight_head_block",
+			"identifier": "dragonmountsplus:nether2_head_block",
 			"traits": {
 				"minecraft:placement_position": {
 					"enabled_states": [
@@ -55,7 +55,7 @@
 			"minecraft:map_color": "#FFFFFF",
 			"minecraft:material_instances": {
       "*": {
-       "texture": "moonlight_head_block",
+       "texture": "nether2_head_block",
        "render_method": "opaque",
        "face_dimming": false,
        "ambient_occlusion": false
