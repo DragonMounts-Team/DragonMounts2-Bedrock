@@ -1,0 +1,63 @@
+{
+	"format_version": "1.21.10",
+	"minecraft:item": {
+		"description": {
+			"identifier": "dragonmountsplus:diamond_shears",
+			"menu_category": {
+				"category": "equipment"
+			}
+		},
+		"components": {
+			"minecraft:max_stack_size": 1,
+			"tag:minecraft:shears": {},
+			"minecraft:icon":"diamond_shears",
+			"minecraft:display_name":{
+				"value": "item.dragonmountsplus:diamond_shears.name"
+			},
+			"minecraft:durability": {
+				"max_durability": 256
+			},
+			"minecraft:enchantable": {
+				"value": 32,
+				"slot": "shears"
+			},
+			"minecraft:repairable": {
+				"repair_items": [
+					{
+						"items": [
+							"minecraft:diamond"
+						],
+						"repair_amount": "256 * 0.25"
+					},
+					{
+						"items": [
+							"dragonmounts:diamond_shears"
+						],
+						"repair_amount": "context.other->query.remaining_durability + context.other->query.max_durability * 0.05"
+					}
+				]
+			},
+			"minecraft:digger": {
+				"use_efficiency": true,
+				"destroy_speeds": [
+					{
+						"block": "minecraft:web",
+						"speed": 32
+					},
+					{
+						"block": "minecraft:wool",
+						"speed": 24
+					},
+					{
+						"block": "minecraft:leaves",
+						"speed": 24
+					},
+					{
+						"block": "minecraft:leaves2",
+						"speed": 24
+					}
+				]
+			}
+		}
+	}
+}
