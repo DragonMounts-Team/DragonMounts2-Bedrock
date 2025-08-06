@@ -2,7 +2,7 @@
   "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
-      "identifier": "bj:icebreath1",
+      "identifier": "dragonmountsplus:icebreath1",
       "is_spawnable": false,
       "is_summonable": true,
       "is_experimental": false,

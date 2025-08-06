@@ -2,11 +2,11 @@
   "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
-      "identifier": "dragonmountsplus:netherbreath1",
+      "identifier": "dragonmountsplus:air1breath",
       "is_spawnable": false,
       "is_summonable": true,
       "is_experimental": false,
-      "runtime_identifier": "minecraft:snowball"
+      "runtime_identifier": "minecraft:arrow"
     },
     "components": {
       "minecraft:collision_box": {
@@ -40,7 +40,7 @@
         },
         "hit_sound": "bow.hit",
         "power": 3,
-        "gravity": 0.5,
+        "gravity": 0.6,
         "inertia": 1,
         "anchor": 2,
         "angle_offset": 0,
@@ -72,7 +72,7 @@
           {
             "queue_command": {
               "command": [
-                "function breath/ballnether"
+                "function breath/air1"
               ]
             }
           },
@@ -94,11 +94,11 @@
     "component_groups": {
       "exploding": {
         "minecraft:explode": {
-          "power": 3.5,
+          "power": 1.4,
           "fuse_length": 0.0,
           "max_resistance": 1000,
-          "breaks_blocks": true,
-          "causes_fire": true,
+          "breaks_blocks": false,
+          "causes_fire": false,
           "destroy_affected_by_griefing": false,
           "fire_affected_by_griefing": false,
           "fuse_lit": true
