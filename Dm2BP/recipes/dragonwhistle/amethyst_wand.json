@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "recipes_48ac89e4"
+      "identifier": "recipes_48ac89o9"
     },
     "tags": [
       "crafting_table"
@@ -14,16 +14,16 @@
     ],
     "key": {
       "A": {
-        "item": "minecraft:diamond",
+        "item": "minecraft:amethyst_shard",
         "data": 0
       },
       "B": {
-        "item": "minecraft:blaze_rod",
+        "item": "minecraft:stick",
         "data": 0
       }
     },
     "result": {
-      "item": "dragonmountsplus:diamond_wand",
+      "item": "dragonmountsplus:amethyst_wand",
       "count": 1
     }
   }

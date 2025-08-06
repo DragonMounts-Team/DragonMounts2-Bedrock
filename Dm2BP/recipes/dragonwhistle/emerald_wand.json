@@ -2,7 +2,7 @@
   "format_version": "1.12",
   "minecraft:recipe_shaped": {
     "description": {
-      "identifier": "recipes_48ac89e4"
+      "identifier": "recipes_48ac89ed"
     },
     "tags": [
       "crafting_table"
@@ -14,7 +14,7 @@
     ],
     "key": {
       "A": {
-        "item": "minecraft:diamond",
+        "item": "minecraft:emerald",
         "data": 0
       },
       "B": {
@@ -23,7 +23,7 @@
       }
     },
     "result": {
-      "item": "dragonmountsplus:diamond_wand",
+      "item": "dragonmountsplus:emerald_wand",
       "count": 1
     }
   }

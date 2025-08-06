@@ -13,12 +13,12 @@
         "data": 0
       },
       {
-        "item": "bj:whistle",
+        "item": "dragonmountsplus:whistle",
         "data": 0
       }
     ],
     "result": {
-      "item": "bj:whistle_pink",
+      "item": "dragonmountsplus:whistle_pink",
       "count": 1
     }
   }
