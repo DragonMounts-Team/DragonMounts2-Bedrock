@@ -1,1 +1,1 @@
-effect @s regeneration 1 0 true
+effect @s regeneration 2 0 true

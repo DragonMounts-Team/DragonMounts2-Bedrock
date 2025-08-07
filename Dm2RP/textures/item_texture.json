@@ -36,7 +36,7 @@
 		"sculk_dragon_head": {"textures": "textures/items/eggs/sculk"},
 // 其他 
 		"diamond_shears": {
-			"textures": "textures/items/diamond_pliers"},
+			"textures": "textures/items/diamond_shears"},
 		"variation_orb": {
 			"textures": "textures/items/variation_orb"
 		},
@@ -768,6 +768,9 @@
     },
             "essence_water": {
       "textures": "textures/items/essence/essence_water"
+    },
+            "essence_sculk": {
+      "textures": "textures/items/essence/essence_sculk"
     }
 	}
 }    

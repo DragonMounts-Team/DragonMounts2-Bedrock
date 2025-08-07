@@ -1,1 +1,1 @@
-effect @s slow_falling 1 0 true
+effect @s slow_falling 2 0 true

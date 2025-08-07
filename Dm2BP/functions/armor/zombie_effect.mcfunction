@@ -1,1 +1,1 @@
-effect @s strength 1 2 true
+effect @s strength 2 2 true

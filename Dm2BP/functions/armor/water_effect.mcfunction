@@ -1,1 +1,1 @@
-effect @s water_breathing 1 0 true
+effect @s water_breathing 2 0 true

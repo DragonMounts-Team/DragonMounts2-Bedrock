@@ -1,1 +1,1 @@
-effect @a[r=2] regeneration 16 0 true
+effect @a[r=2] regeneration 2 0 true

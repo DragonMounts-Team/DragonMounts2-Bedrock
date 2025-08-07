@@ -1,1 +1,1 @@
-effect @s haste 1 1 true
+effect @s haste 2 1 true

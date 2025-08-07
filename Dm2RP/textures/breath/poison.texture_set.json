@@ -1,7 +1,7 @@
 {
     "format_version": "1.16.100",
     "minecraft:texture_set": {
-        "color": "poisom",
+        "color": "poison",
         "metalness_emissive_roughness": "ball_mer"
     }
 }
