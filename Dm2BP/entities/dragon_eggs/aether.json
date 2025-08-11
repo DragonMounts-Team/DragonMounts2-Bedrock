@@ -45,7 +45,7 @@
 						"cooldown": 0.0,
 						"use_item": false,
 						"play_sounds": "unfect",
-						"interact_text": "action.interact.transform_block_dragon_eggs.dragonmounts",
+						"interact_text": "action.interact.transform_block_dragon_eggs.dragonmountsplus",
 						"on_interact": {
 							"filters": {
 								"all_of": [

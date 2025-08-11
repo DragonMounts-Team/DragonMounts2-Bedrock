@@ -53,7 +53,7 @@
       "minecraft:material_instances": {
         "*": {
           "texture": "dragon_core",
-          "render_method": "blend"
+          "render_method": "opaque"
         }
       },
       "minecraft:geometry": "geometry.dragoncore",

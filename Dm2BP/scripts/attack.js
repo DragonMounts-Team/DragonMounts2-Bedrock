@@ -28,7 +28,7 @@ const validDragonIds = [
   "dragonmountsplus:skeleton_dragon",
   "dragonmountsplus:wither_dragon",
   "dragonmountsplus:storm_dragon",
-  "dragonmountsplus:dark_dragon",
+  "dragonmountsplus:dark_dragon"
 ];
 
 world.afterEvents.itemUse.subscribe(e => {
@@ -42,5 +42,6 @@ world.afterEvents.itemUse.subscribe(e => {
   if (!validDragonIds.includes(riding.typeId)) return;
 
   player.runCommandAsync("function attack");
+  riding.playAnimation("animation.dragon.attack");
   setCooldown(player, 10);
 });

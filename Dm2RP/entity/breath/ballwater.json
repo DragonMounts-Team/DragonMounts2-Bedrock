@@ -16,7 +16,7 @@
 				"default": "animation.dragon_breath.default"
 			},
 	   "particle_effects": {
-				"default": "dm2:breathwater1"
+				"default": "dragonmountsplus:breathwater1"
 			},
 						"scripts": {
 				"animate": [

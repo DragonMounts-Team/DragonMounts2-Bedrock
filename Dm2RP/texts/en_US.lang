@@ -204,7 +204,7 @@ action.interact.breath.dragonmounts=Collect	#
 action.interact.ride.dm2=Ride	#
 action.interact.speed.dragonmounts=Up	#
 action.interact.shear.dm2=Shear	#
-action.interact.transform_block_dragon_eggs.dragonmounts=Blockify	#
+action.interact.transform_block_dragon_eggs.dragonmountsplus=Blockify	#
 
 bj1:itemGroup.name.shield_items=Dragon Shields
 bj:itemGroup.name.bow_items=Dragon Bows

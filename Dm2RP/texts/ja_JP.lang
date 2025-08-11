@@ -204,7 +204,7 @@ action.interact.breath.dragonmounts=呼び寄せる	#
 action.interact.ride.dragonmounts=乗る	#
 action.interact.speed.dragonmounts=上昇	#
 action.interact.shear.dragonmounts=剪断	#
-action.interact.transform_block_dragon_eggs.dragonmounts=ブロック化	#
+action.interact.transform_block_dragon_eggs.dragonmountsplus=ブロック化	#
 
 bj1:itemGroup.name.shield_items=ドラゴンの盾
 bj:itemGroup.name.bow_items=ドラゴンの弓

@@ -1075,6 +1075,19 @@
             }
           },
           {
+            "filters": {
+              "test": "is_variant",
+              "value": 2
+            },
+            "add": {
+              "component_groups": [
+                "dragonmountsplus:dragon_interact",
+                "dragonmountsplus:dragon_rideable",
+                "dragonmountsplus:dragon_onground"
+              ]
+            }
+          },
+          {
             "remove": {
               "component_groups": [
                 "dragonmountsplus:dragon_baby"
