@@ -1,0 +1,156 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "dragonmountsplus:storm2_head_block",
+			"traits": {
+				"minecraft:placement_position": {
+					"enabled_states": [
+						"minecraft:block_face"
+					]
+				}
+			},
+			"states": {
+				"dragonmountsplus:rotation": {
+					"values": {
+						"min": 0,
+						"max": 15
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"origin": [
+					-4,
+					0,
+					-4
+				],
+				"size": [
+					8,
+					8,
+					8
+				]
+			},
+			"minecraft:custom_components": [
+				"dragonmountsplus:precise_rotation"
+			],
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 4
+			},
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 1.0
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.dragonbase_head1",
+				"bone_visibility": {
+					"bone": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('dragonmountsplus:rotation'), 4)",
+					"rotate_22_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('dragonmountsplus:rotation') - 1, 4)",
+					"rotate_45": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('dragonmountsplus:rotation') - 2, 4)",
+					"rotate_67_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('dragonmountsplus:rotation') - 3, 4)",
+					"back": "q.block_state('minecraft:block_face') != 'up'"
+				}
+			},
+			"minecraft:light_dampening": 0,
+			"minecraft:map_color": "#FFFFFF",
+			"minecraft:material_instances": {
+      "*": {
+       "texture": "storm2_head_block",
+       "render_method": "opaque",
+       "face_dimming": false,
+       "ambient_occlusion": false
+				}
+			},
+			"minecraft:placement_filter": {
+				"conditions": [
+					{
+						"allowed_faces": [
+							"up",
+							"side"
+						]
+					}
+				]
+			},
+			"minecraft:selection_box": {
+				"origin": [
+					-4,
+					0,
+					-4
+				],
+				"size": [
+					8,
+					8,
+					8
+				]
+			}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('dragonmountsplus:rotation') >= 4 || q.block_state('minecraft:block_face') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('dragonmountsplus:rotation') >= 8 || q.block_state('minecraft:block_face') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('dragonmountsplus:rotation') >= 12 || q.block_state('minecraft:block_face') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:block_face') != 'up'",
+				"components": {
+					"minecraft:collision_box": {
+						"origin": [
+							-4,
+							4,
+							0
+						],
+						"size": [
+							8,
+							8,
+							8
+						]
+					},
+					"minecraft:selection_box": {
+						"origin": [
+							-4,
+							4,
+							0
+						],
+						"size": [
+							8,
+							8,
+							8
+						]
+					}
+				}
+			}
+		]
+	}
+}
+
