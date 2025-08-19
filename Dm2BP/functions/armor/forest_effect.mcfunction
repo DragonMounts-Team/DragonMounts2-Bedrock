@@ -1,1 +1,0 @@
-effect @s regeneration 16 0 true

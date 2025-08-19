@@ -1,1 +1,0 @@
-effect @e[r=6] slowness 5 1

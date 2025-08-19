@@ -1,1 +1,0 @@
-effect @s fire_resistance 16 0 true
