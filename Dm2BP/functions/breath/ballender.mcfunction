@@ -1,0 +1,1 @@
+execute as @e[r=4] at @s run damage @s 5 none
