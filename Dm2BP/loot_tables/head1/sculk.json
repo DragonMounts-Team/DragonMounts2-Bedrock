@@ -1,0 +1,18 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+        {
+          "type": "item",
+          "name": "dragonmountsplus:sculk_head",
+          "weight": 5
+        },
+        {
+          "type": "empty",
+          "weight": 5
+        }
+			]
+		}
+	]
+}

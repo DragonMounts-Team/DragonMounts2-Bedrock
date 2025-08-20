@@ -1,0 +1,30 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmountsplus:zombie_shield"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "ABA",
+      "AAA",
+      " A "
+    ],
+    "key": {
+      "A": {
+        "item": "dragonmountsplus:zombie_dragonscales",
+        "data": 0
+      },
+      "B": {
+        "item": "minecraft:iron_ingot",
+        "data": 0
+      }
+    },
+    "result": {
+      "item": "zombie:shield",
+      "count": 1
+    }
+  }
+}

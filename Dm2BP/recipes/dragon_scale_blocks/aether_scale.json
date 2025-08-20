@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "aether_scale_1df638a5"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "AAA",
+      "AAA",
+      "AAA"
+    ],
+    "key": {
+      "A": {
+        "item": "dragonmountsplus:aether_dragonscales",
+        "data": 0
+      }
+    },
+    "result": {
+      "item": "dragonmountsplus:aether_scale",
+      "count": 1
+    }
+  }
+}
