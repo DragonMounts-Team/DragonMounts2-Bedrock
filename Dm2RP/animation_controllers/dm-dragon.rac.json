@@ -1,0 +1,131 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.dm-dragon.ac": {
+			"initial_state": "idle",
+			"states": {
+				"idle": {
+					"animations": [
+						{"idle": "query.is_on_ground"}
+					],
+					"transitions": [
+						{"walk": "q.ground_speed > 1.0"}
+					],
+					"blend_transition": 0.2
+				},
+				"walk": {
+					"animations": [
+						{"walk": "query.is_moving"}
+					],
+					"transitions": [
+						{"idle": "q.ground_speed < 0.5"}
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		"controller.animation.dm-dragon.base": {
+			"initial_state": "sitting",
+			"states": {
+				"sitting": {
+					"animations": ["sit"],
+					"transitions": [
+						{"default": "!q.is_sitting"},
+						{"walking": "!q.is_sitting&&q.is_on_ground&&q.is_moving"},
+						{"hovering": "!q.is_sitting&&!q.is_on_ground&&q.vertical_speed==0"},
+						{"flying": "!q.is_sitting&&!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
+						{"gliding": "!q.is_sitting&&!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
+					]
+				},
+				"default": {
+					"animations": ["idle"],
+					"transitions": [
+						{"sitting": "q.is_sitting"},
+						{"walking": "q.is_on_ground&&q.is_moving"},
+						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
+						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
+						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
+					]
+				},
+				"walking": {
+					"animations": ["walk"],
+					"transitions": [
+						{"default": "q.is_on_ground&&!q.is_moving"},
+						{"sitting": "q.is_sitting"},
+						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
+						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
+						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
+					]
+				},
+				"hovering": {
+					"animations": ["hover"],
+					"transitions": [
+						{"default": "q.is_on_ground&&!q.is_moving"},
+						{"sitting": "q.is_sitting"},
+						{"walking": "q.is_on_ground&&q.is_moving"},
+						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=1"},
+						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
+					]
+				},
+				"flying": {
+					"animations": ["fly"],
+					"transitions": [
+						{"default": "q.is_on_ground&&!q.is_moving"},
+						{"sitting": "q.is_sitting"},
+						{"walking": "q.is_on_ground&&q.is_moving"},
+						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
+						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
+					]
+				},
+				"gliding": {
+					"animations": ["glide"],
+					"transitions": [
+						{"default": "q.is_on_ground&&!q.is_moving"},
+						{"sitting": "q.is_sitting"},
+						{"walking": "q.is_on_ground&&q.is_moving"},
+						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
+						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"}
+					]
+				}
+			}
+		},
+		"controller.animation.dm-dragon.mouth": {
+			"initial_state": "roaring-pause",
+			"states": {
+				"roaring-pause": {
+					"animations": ["roar-pause"],
+					"transitions": [
+						{"roaring": "q.any_animation_finished"},
+						{"biting": "q.is_delayed_attacking"},
+						{"breathing": "q.facing_target_to_range_attack"},
+						{"flying": "!q.is_on_ground"}
+					]
+				},
+				"roaring": {
+					"animations": ["roar"],
+					"transitions": [
+						{"roaring-pause": "q.any_animation_finished"}
+					]
+				},
+				"biting": {
+					"animations": ["bite"],
+					"transitions": [
+						{"roaring-pause": "q.any_animation_finished"}
+					]
+				},
+				"breathing": {
+					"animations": ["breath"],
+					"transitions": [
+						{"roaring-pause": "!q.facing_target_to_range_attack"}
+					]
+				},
+				"flying": {
+					"animations": [""],
+					"transitions": [
+						{"roaring-pause": "q.is_on_ground"}
+					]
+				}
+			}
+		}
+	}
+}

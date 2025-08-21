@@ -14,9 +14,9 @@
 			},
 			"textures": {
 			   "f_ender_dragon": "textures/entity/ender_dragon/m_ender_dragon",
-				"ender_dragon": "textures/entity/ender_dragon/ender_dragon",
+				"ender_dragon": "textures/entity/ender_dragon/ender_dragon_redo",
 				"r_ender_dragon": "textures/entity/ender_dragon/r_ender_dragon",
-				"glow": "textures/entity/ender_dragon/glow",
+				"glow": "textures/entity/ender_dragon/ender_glow_redo",
 				"r_glow": "textures/entity/ender_dragon/r_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
@@ -30,30 +30,31 @@
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default",							"glow": "geometry.mountdragon_default",
-				"dragon_saddled": "geometry.mountdragon_saddled",
-				"dragon_chested": "geometry.mountdragon_chested"
+				"dragon_default": "geometry.dm-dragon",							"glow": "geometry.dm-dragon",
+				"dragon_saddled": "geometry.dm-dragon",
+				"dragon_chested": "geometry.dm-dragon"
 			},
 			"animations": {
-				"dragon_default": "animation.dragon.default",
-				"dragon_default_b": "animation.dragon.default_b",
-				"dragon_default_walk": "animation.dragon.default_walk",
-				"dragon_fly": "animation.dragon.fly",
-				"dragon_subduction": "animation.dragon.subduction",
-				"dragon_hover": "animation.dragon.hover",
-				"dragon_on_ground": "animation.dragon.on_ground",
-				"dragon_sit": "animation.dragon.sit",
-				"dragon_walk": "animation.dragon.walk",
-				"dragon_ani": "controller.animation.dragon.action",
-				"dragon_attack": "animation.dragon.attack",
-				"dragon_shoot": "animation.dragon.shoot"
+				"idle": "animation.dm-dragon.idle",
+				"sit": "animation.dm-dragon.sit",
+				"walk": "animation.dm-dragon.walk",
+				"hover": "animation.dm-dragon.hover",
+				"fly": "animation.dm-dragon.fly",
+				"glide": "animation.dm-dragon.glide",
+				"breath": "animation.dm-dragon.breath",
+				"bite": "animation.dm-dragon.bite",
+				"roar": "animation.dm-dragon.roar",
+				"roar-pause": "animation.dm-dragon.roar-pause",
+				"base_controller": "controller.animation.dm-dragon.base"
+//				"mouth_controller": "controller.animation.dm-dragon.mouth"
 			},
 			"scripts": {
 				"animate": [
-					"dragon_default",
-					"dragon_ani",
+					"idle",
+					"base_controller",
+					"mouth_controller",
 					{
-						"dragon_attack": "query.is_delayed_attacking == 1"
+						"bite": "query.is_delayed_attacking == 1"
 					}
 				],
 				"pre_animation": [
