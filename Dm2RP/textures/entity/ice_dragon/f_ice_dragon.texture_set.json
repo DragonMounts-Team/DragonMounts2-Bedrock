@@ -1,0 +1,7 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "f_ice_dragon",
+        "metalness_emissive_roughness": "f_ice_dragon_mer"
+    }
+}
