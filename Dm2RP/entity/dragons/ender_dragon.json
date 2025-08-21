@@ -45,12 +45,11 @@
 				"bite": "animation.dm-dragon.bite",
 				"roar": "animation.dm-dragon.roar",
 				"roar-pause": "animation.dm-dragon.roar-pause",
-				"base_controller": "controller.animation.dm-dragon.base"
-//				"mouth_controller": "controller.animation.dm-dragon.mouth"
+				"base_controller": "controller.animation.dm-dragon.base",
+				"mouth_controller": "controller.animation.dm-dragon.mouth"
 			},
 			"scripts": {
 				"animate": [
-					"idle",
 					"base_controller",
 					"mouth_controller",
 					{

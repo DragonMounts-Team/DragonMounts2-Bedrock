@@ -25,16 +25,14 @@
 			}
 		},
 		"controller.animation.dm-dragon.base": {
-			"initial_state": "sitting",
 			"states": {
 				"sitting": {
 					"animations": ["sit"],
 					"transitions": [
 						{"default": "!q.is_sitting"},
-						{"walking": "!q.is_sitting&&q.is_on_ground&&q.is_moving"},
-						{"hovering": "!q.is_sitting&&!q.is_on_ground&&q.vertical_speed==0"},
-						{"flying": "!q.is_sitting&&!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
-						{"gliding": "!q.is_sitting&&!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
+						{"walking": "q.is_on_ground&&q.is_moving"},
+						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
+						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
 					]
 				},
 				"default": {
@@ -42,7 +40,7 @@
 					"transitions": [
 						{"sitting": "q.is_sitting"},
 						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
+						{"hovering": "!q.is_on_ground&&!q.vertical_speed>=2"},
 						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
 						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
 					]
@@ -52,7 +50,6 @@
 					"transitions": [
 						{"default": "q.is_on_ground&&!q.is_moving"},
 						{"sitting": "q.is_sitting"},
-						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
 						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
 						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
 					]
@@ -73,7 +70,6 @@
 						{"default": "q.is_on_ground&&!q.is_moving"},
 						{"sitting": "q.is_sitting"},
 						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
 						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
 					]
 				},
@@ -83,7 +79,6 @@
 						{"default": "q.is_on_ground&&!q.is_moving"},
 						{"sitting": "q.is_sitting"},
 						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"hovering": "!q.is_on_ground&&q.vertical_speed==0"},
 						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"}
 					]
 				}
