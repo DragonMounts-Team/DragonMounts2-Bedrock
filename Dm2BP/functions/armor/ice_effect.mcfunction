@@ -1,1 +1,0 @@
-effect @e[family=monster,r=5] slowness 1 1 true

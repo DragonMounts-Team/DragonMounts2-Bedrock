@@ -1,7 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "aether_dragon",
-        "metalness_emissive_roughness": "aether_dragon_mer"
-    }
-}

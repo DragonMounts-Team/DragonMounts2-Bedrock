@@ -1,7 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "f_terra_dragon",
-        "metalness_emissive_roughness": "f_terra_dragon_mer"
-    }
-}

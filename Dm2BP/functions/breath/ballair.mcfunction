@@ -1,1 +1,0 @@
-summon lightning_bolt ~ ~ ~
