@@ -1,0 +1,1 @@
+effect @e[r=5] poison 4 3

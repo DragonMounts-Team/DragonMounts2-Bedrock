@@ -1,0 +1,77 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.glow": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+    },
+    "controller.render.glow1": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+    },
+        "controller.render.glow2": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.f_glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+      },
+        "controller.render.glow3": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.r_glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+      },
+        "controller.render.glow4": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.stray_glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+      },
+        "controller.render.glow5": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.bogged_glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+    }
+  }
+}

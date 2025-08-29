@@ -1,0 +1,96 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {			
+		"identifier": "dragonmountsplus:nether_dragon",
+			"materials": {
+				"dragon": "dragon",
+				"dragon_default": "dragon_default",
+				"wing": "dragon_wings",
+				"beam_material": "entity_beam",
+				"death_material": "entity_beam_additive",
+				"dissolve_0": "entity_dissolve_layer0.skinning",
+				"dissolve_1": "entity_dissolve_layer1.skinning"
+			},
+			"textures": {
+			  "f_nether_dragon": "textures/entity/nether_dragon/f_nether_dragon",
+				"nether_dragon": "textures/entity/nether_dragon/nether_dragon",
+				"r_nether_dragon": "textures/entity/nether_dragon/r_nether_dragon",
+				"glow": "textures/entity/nether_dragon/glow",
+				"f_glow": "textures/entity/nether_dragon/f_glow",
+				"r_glow": "textures/entity/nether_dragon/r_glow",
+				"dragon_saddled": "textures/entity/dragon_saddled",
+				"dragon_chested": "textures/entity/dragon_chested",
+				"dragon_armor_iron": "textures/entity/dragon_armor/armor_iron",
+				"dragon_armor_copper": "textures/entity/dragon_armor/armor_copper",
+				"dragon_armor_gold": "textures/entity/dragon_armor/armor_gold",
+				"dragon_armor_emerald": "textures/entity/dragon_armor/armor_emerald",
+				"dragon_armor_diamond": "textures/entity/dragon_armor/armor_diamond",
+				"dragon_armor_netherite": "textures/entity/dragon_armor/armor_netherite",
+				"dragon_none": "textures/entity/none",
+				"exploding": "textures/entity/dragon_dissolve",
+				"beam": "textures/entity/endercrystal/endercrystal_beam"
+			},
+			"geometry": {
+				"dragon_default": "geometry.mountdragon_default5",							
+				"glow": "geometry.mountdragon_default5",
+				"dragon_saddled": "geometry.mountdragon_saddled",
+				"dragon_chested": "geometry.mountdragon_chested"
+			},
+			"animations": {
+				"dragon_default": "animation.dragon.default",
+				"dragon_default_b": "animation.dragon.default_b",
+				"dragon_default_walk": "animation.dragon.default_walk",
+				"dragon_fly": "animation.dragon.fly",
+				"dragon_subduction": "animation.dragon.subduction",
+				"dragon_hover": "animation.dragon.hover",
+				"dragon_on_ground": "animation.dragon.on_ground",
+				"dragon_sit": "animation.dragon.sit",
+				"dragon_walk": "animation.dragon.walk",
+				"dragon_ani": "controller.animation.dragon.action",
+				"dragon_attack": "animation.dragon.attack",
+				"dragon_shoot": "animation.dragon.shoot"
+			},
+			"scripts": {
+				"animate": [
+					"dragon_default",
+					"dragon_ani",
+					{
+						"dragon_attack": "query.is_delayed_attacking == 1"
+					}
+				],
+				"pre_animation": [
+					"variable.death_effect_duration = 200.0;",
+					"variable.death_alpha = (1.0 - (query.death_ticks + query.frame_alpha) / variable.death_effect_duration) * 2.0 + 0.3;",
+					"variable.script_ride = query.has_rider;",
+					"variable.bite_anim_duration = 0.75f;"
+				]
+			},
+			"sound_effects": {
+				"dragon_fly_sou": "mob.mountdragon.flap",
+				"dragon_step_sou": "mob.mountdragon.step",
+				"dragon_subduction": "mob.mountdragon.subduction",
+				"attack_eat": "mob.mountdragon.attack.eat",
+				"attack_shoot": "mob.mountdragon.shoot",
+				"null": "mob.mountdragon.null"
+			},
+			"particle_effects": {
+				"default": "dragonmountsplus:endering_table_particle"
+			},
+			"render_controllers": [
+				"controller.render.dragons.is_saddled",
+				{"controller.render.glow1": "query.variant == 1" },
+				{"controller.render.glow2": "query.variant == 0" },
+			  {"controller.render.glow3": "query.variant == 2" },
+				"controller.render.dragons.is_armored",
+				"controller.render.dragons.is_chested",
+				{ "controller.render.nether_dragon_death_pre_pass": "query.death_ticks > 1.0" },
+				{ "controller.render.nether_dragon_death_main_pass": "query.death_ticks > 1.0" },
+				{ "controller.render.nether_dragon.default": "query.death_ticks <= 1.0" }
+			],
+			"spawn_egg": {
+				"texture": "nether_dragon_head"
+			}
+		}
+	}
+}

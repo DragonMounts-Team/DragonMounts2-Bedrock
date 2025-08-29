@@ -1,0 +1,23 @@
+{
+	"format_version": "1.21.90",
+	"minecraft:item": {
+		"description": {
+			"identifier": "dragonmountsplus:sculk_head",
+			"menu_category": {
+				"category": "equipment",
+			"group": "dm:itemGroup.name.head_items"
+			}
+		},
+		"components": {
+			"minecraft:max_stack_size": 1,
+			"minecraft:wearable": {
+				"slot": "slot.armor.head",
+				"protection": 0
+			},
+			"minecraft:block_placer": {
+				"block": "dragonmountsplus:sculk_head_block",
+                "replace_block_item": true
+			}
+		}
+	}
+}

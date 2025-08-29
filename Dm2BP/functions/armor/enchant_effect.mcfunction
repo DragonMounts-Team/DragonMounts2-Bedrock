@@ -1,0 +1,1 @@
+ execute at @s if entity @e[type=xp_orb,r=2] run xp 200 @p 

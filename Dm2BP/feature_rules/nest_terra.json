@@ -1,0 +1,65 @@
+{
+  "format_version":"1.13.0",
+  "minecraft:feature_rules":{
+    "description":{
+      "identifier":"minecraft:nest_terra",
+      "places_feature":"minecraft:nest_terra"
+    },
+    "conditions":{
+      "placement_pass":"surface_pass",
+      "minecraft:biome_filter": [
+        {
+          "all_of": [
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "river"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "lakes"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "savana"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "planis"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "beach"
+              },
+              {
+                  "any_of": [
+                      {
+                          "test": "has_biome_tag",
+                          "operator": "==",
+                          "value": "mesa"
+                      },
+                      {
+                          "test": "has_biome_tag",
+                          "operator": "==",
+                          "value": "mesa_bryce"
+                      }
+                  ]
+              }
+          ]
+        }
+      ]
+    },
+    "distribution": {
+			"iterations": 1,
+			"scatter_chance": 0.05,
+			"x": 0,
+			"y": "query.heightmap(variable.worldx, variable.worldz) + -1",
+			"z": 0
+		}
+  }
+}
+// thêm bất cứ thứ gì bạn muốn ở đây nhá ko cần ngại

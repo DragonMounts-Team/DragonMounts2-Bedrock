@@ -1,0 +1,29 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragon.default": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"default_back": "(1)"
+						}
+					],
+					"on_entry": [
+						"/tag @s add dragonmountsplus",
+						"/function dragon",
+						"/execute at @s if block ~ ~-3 ~ air if block ~ ~-2 ~ air if block ~ ~-1 ~ air if block ~ ~ ~ air run tag @s add flying",
+						"@s dragonmountsplus:dragon_hasarmor"
+					]
+				},
+				"default_back": {
+					"transitions": [
+						{
+							"default": "(1)"
+						}
+					]
+				}
+			}
+		}
+	}
+}

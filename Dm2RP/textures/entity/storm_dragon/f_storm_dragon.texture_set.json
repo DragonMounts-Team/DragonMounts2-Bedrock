@@ -1,0 +1,7 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "f_storm_dragon",
+        "metalness_emissive_roughness": "f_storm_dragon_mer"
+    }
+}

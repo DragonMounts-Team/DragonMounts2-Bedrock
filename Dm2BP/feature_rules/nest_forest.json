@@ -1,0 +1,70 @@
+{
+  "format_version":"1.13.0",
+  "minecraft:feature_rules":{
+    "description":{
+      "identifier":"minecraft:nest_forest",
+      "places_feature":"minecraft:nest_forest"
+    },
+    "conditions":{
+      "placement_pass":"surface_pass",
+      "minecraft:biome_filter": [
+        {
+          "all_of": [
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "river"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "lakes"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "savana"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "mesa"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "beach"
+              },
+              {
+                  "any_of": [
+                      {
+                          "test": "has_biome_tag",
+                          "operator": "==",
+                          "value": "forest"
+                      },
+                      {
+                          "test": "has_biome_tag",
+                          "operator": "==",
+                          "value": "bee_habitat"
+                      },
+                      {
+                          "test": "has_biome_tag",
+                          "operator": "==",
+                          "value": "jungle"
+                      }
+                  ]
+              }
+          ]
+        }
+      ]
+    },
+    "distribution": {
+			"iterations": 1,
+			"scatter_chance": 0.1,
+			"x": 0,
+			"y": "query.heightmap(variable.worldx, variable.worldz) + -2",
+			"z": 0
+		}
+  }
+}
+// thêm bất cứ thứ gì bạn muốn ở đây nhá ko cần ngại

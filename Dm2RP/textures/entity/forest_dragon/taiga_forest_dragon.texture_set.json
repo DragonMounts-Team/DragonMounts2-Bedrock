@@ -1,0 +1,7 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "taiga_forest_dragon",
+        "metalness_emissive_roughness": "taiga_forest_dragon_mer"
+    }
+}

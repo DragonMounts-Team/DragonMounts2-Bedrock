@@ -1,0 +1,12 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmountsplus:aether_dragon_egg.entity",
+      "materials": { "default": "entity_alphablend" },
+      "geometry": { "default": "geometry.dragon_egg" },
+      "textures": { "default": "textures/entity/dragon_eggs/aether" },
+      "render_controllers": ["controller.render.custom_falling_block"]
+    }
+  }
+}

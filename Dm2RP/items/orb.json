@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmountsplus:variation_orb",
+      "category": "Nature"
+    },
+    "components": {
+      "minecraft:icon": "variation_orb",
+      "minecraft:render_offsets": "miscellaneous"
+    }
+  }
+}

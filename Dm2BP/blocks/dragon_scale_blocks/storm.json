@@ -1,0 +1,35 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "dragonmountsplus:storm_scale",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 4.0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 1.0
+      },
+      "minecraft:map_color": "#FFFFFF",
+      "minecraft:loot": "loot_tables/dragon_scales/storm_scale.json",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "dragonmountsplus_storm_scale"
+        }
+      }
+    },
+    "tags": [
+    "diamond_pick_diggable",
+    "gold_pick_diggable",
+    "iron_pick_diggable",
+    "stone_pick_diggable",
+    "wood_pick_diggable",
+    "nsb:fireproof",
+    "nsb:blastproof"
+    ]
+  }
+}

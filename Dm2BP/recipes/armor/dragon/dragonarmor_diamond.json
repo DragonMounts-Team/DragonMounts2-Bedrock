@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmountsplus:dragonarmor_diamond"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X #",
+			" XX",
+			"## "
+		],
+		"key": {
+			"#": {
+				"item": "minecraft:diamond"
+			},
+			"X": {
+				"item": "minecraft:diamond_block"
+			}
+		},
+		"result": {
+			"item": "dragonmountsplus:dragonarmor_diamond"
+		}
+	}
+}

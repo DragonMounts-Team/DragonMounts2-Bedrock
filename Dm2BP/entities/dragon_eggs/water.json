@@ -1,0 +1,207 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmountsplus:water_dragon_egg",
+      "is_spawnable": false,
+      "is_summonable": true,
+                      "scripts": {
+        "animate": [
+          "eggs_default_ani"
+          ]
+          },
+        "animations": {
+        "eggs_default_ani": "controller.animation.eggs.default"
+                }
+    },
+
+    "component_groups": {
+      "egg": {
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "is_altitude", "operator": ">=", "value": 170 }
+                ]
+              },
+              "event": "aether"
+            },
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "is_brightness", "operator": "<", "value": 0.49 }
+                ]
+              },
+              "event": "skeleton"
+            },
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "is_altitude", "operator": "<=", "value": -20 }
+                ]
+              },
+              "event": "skeleton"
+            }
+          ]
+        }
+      },
+
+      "transform_aether": {
+        "minecraft:transformation": {
+          "into": "dragonmountsplus:aether_dragon_egg",
+                    "delay": { "value": 300 }
+        },
+       "minecraft:variant": {
+          "value": 2
+        }
+      },
+
+      "transform_skeleton": {
+        "minecraft:transformation": {
+          "into": "dragonmountsplus:skeleton_dragon_egg",
+                    "delay": { "value": 300 }
+        },
+         "minecraft:variant": {
+          "value": 2
+        }
+      },
+      "storm": {
+        "minecraft:transformation": {
+          "into": "dragonmountsplus:storm_dragon_egg"
+        },
+         "minecraft:variant": {
+          "value": 2
+        }
+      },      
+
+      "dragonmountsplus:dragon_hatched": {
+        "minecraft:is_shaking": {},
+        "minecraft:transformation": {
+          "into": "dragonmountsplus:water_dragon",
+          "begin_transform_sound": "block.turtle_egg.crack",
+          "transformation_sound": "block.turtle_egg.crack",
+          "delay": { "value": 60 }
+        }
+      }
+    },
+
+    "components": {
+      "minecraft:health": { "value": 20, "max": 20 },
+
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "cooldown": 0.0,
+            "use_item": false,
+            "play_sounds": "unfect",
+            "interact_text": "action.interact.transform_block_dragon_eggs.dragonmountsplus",
+            "on_interact": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_sneaking",
+                    "subject": "player",
+                    "operator": "equals",
+                    "value": true
+                  }
+                ]
+              },
+              "event": "dragonmountsplus:back_to_block",
+              "target": "self"
+            }
+          }
+        ]
+      },
+
+      "minecraft:damage_sensor": {
+        "triggers": [
+          { "cause": "lava", "deals_damage": false },
+          { "cause": "fire", "deals_damage": false },
+          { "cause": "fire_tick", "deals_damage": false },
+          {
+            "on_damage": {
+              "filters": {"test": "is_family","subject": "other","value": "lightning"},
+              "event": "storm"
+            },
+          "deals_damage": false
+          }          
+        ]
+      },
+
+      "minecraft:knockback_resistance": { "value": 1.0 },
+      "minecraft:collision_box": { "width": 0.8, "height": 1.0 },
+
+      "minecraft:breathable": {
+        "total_supply": 240,
+        "suffocate_time": 0,
+        "breathes_lava": true,
+        "breathes_solids": true,
+        "generates_bubbles": false
+      },
+
+      "minecraft:movement": { "value": 0.0 },
+      "minecraft:pushable": { "is_pushable": false, "is_pushable_by_piston": false },
+      "minecraft:physics": { "has_gravity": true },
+
+      "minecraft:type_family": {
+        "family": [
+          "player",
+          "dragon",
+          "dragon_egg",
+          "dragonmountsplus"
+        ]
+      },
+
+      "minecraft:ageable": {
+        "duration": 1200,
+        "feed_items": [
+          { "item": "minecraft:emerald", "growth": 0.03125 }
+        ],
+        "grow_up": {
+          "event": "dragonmountsplus:dragon_egg_hatched",
+          "target": "self"
+        }
+      }
+    },
+
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": { "component_groups": [ "egg" ] }
+      },
+
+      "aether": {
+        "sequence": [
+          {
+            "remove": { "component_groups": [ "egg" ] },
+            "add": { "component_groups": [ "transform_aether" ] }
+          }
+        ]
+      },
+      "storm": {
+            "add": { "component_groups": [ "storm" ] }
+      },      
+
+      "skeleton": {
+        "sequence": [
+          {
+            "remove": { "component_groups": [ "egg" ] },
+            "add": { "component_groups": [ "transform_skeleton" ] }
+          }
+        ]
+      },
+
+      "dragonmountsplus:back_to_block": {
+        "queue_command": {
+          "command": [
+            "function block/water"
+          ]
+        }
+      },
+
+      "dragonmountsplus:dragon_egg_hatched": {
+        "add": { "component_groups": [ "dragonmountsplus:dragon_hatched" ] }
+      }
+    }
+  }
+}

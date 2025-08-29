@@ -1,0 +1,30 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmountsplus:diamond_shears"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			" # ",
+			"OD#",
+			" O "
+		],
+		"key": {
+			"#": {
+				"item": "minecraft:diamond"
+				},
+				"O": {
+				"item": "minecraft:obsidian"
+				},
+				"D": {
+				"item": "minecraft:shears"
+			}
+		},
+		"result": {
+			"item": "dragonmountsplus:diamond_shears"
+		}
+	}
+}

@@ -1,0 +1,1 @@
+effect @e[r=6] wither 5 1

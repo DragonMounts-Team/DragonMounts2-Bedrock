@@ -1,0 +1,72 @@
+{
+  "format_version":"1.13.0",
+  "minecraft:feature_rules":{
+    "description":{
+      "identifier":"minecraft:nest_zombie",
+      "places_feature":"minecraft:nest_zombie"
+    },
+    "conditions":{
+      "placement_pass":"surface_pass",
+      "minecraft:biome_filter": [
+        {
+          "all_of": [
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "river"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "lakes"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "savana"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "planis"
+              },
+              {
+                  "test": "has_biome_tag",
+                  "operator": "!=",
+                  "value": "beach"
+              },
+              {
+                  "any_of": [
+                      {
+                          "test": "has_biome_tag",
+                          "operator": "==",
+                          "value": "nether"
+                      }
+                  ]
+              }
+          ]
+        }
+      ]
+    },
+    "distribution": {
+        "iterations": "math.random_integer(1, 1)",
+        "scatter_chance": 1.8,
+        "x": {
+            "extent": [
+                0,
+                16
+            ],
+            "distribution": "uniform"
+        },
+        "y": "math.random_integer(20, 100)",
+        "z": {
+            "distribution": "uniform",
+            "extent": [
+                0,
+                16
+            ]
+        }
+    }
+  }
+}
+// thêm bất cứ thứ gì bạn muốn ở đây nhá ko cần ngại XDkkkkko

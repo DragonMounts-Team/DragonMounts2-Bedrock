@@ -1,0 +1,52 @@
+{
+	"format_version": "1.21.70",
+	"minecraft:item": {
+		"description": {
+			"identifier": "dragonmountsplus:forest_dragonscale_helmet",
+			"menu_category": {
+        		"category": "equipment",
+        		"group": "minecraft:itemGroup.name.helmet"
+      		}
+		},
+		"components": {
+			"minecraft:icon": "forest_dragonscale_helmet",
+			"minecraft:max_stack_size":1,
+			"minecraft:wearable": {
+				"protection": 4,
+        		"slot": "slot.armor.head"
+      		},
+      					"minecraft:tags": {
+                "tags": [
+                    "minecraft:trimmable_armors",
+					"weight_5"
+                ]
+            },
+			"minecraft:durability": {
+                "max_durability": 1678
+            },
+			"minecraft:enchantable": {
+                "value": 30,
+                "slot": "armor_head"
+            },
+			"minecraft:display_name": {
+        		"value": "item.dragonmountsplus:forest_dragonscale_helmet.name"
+    		},
+			"minecraft:repairable": {
+                "repair_items": [
+                    {
+                        "items": [
+                            "dragonmountsplus:forest_dragonscales"
+                        ],
+                        "repair_amount": "1678 * 0.25"
+                    },
+                    {
+                        "items": [
+                            "dragonmountsplus:forest_dragonscale_helmet"
+                        ],
+                        "repair_amount": "context.other->query.remaining_durability + context.other->query.max_durability * 0.05"
+                    }
+                ]
+            }
+		}
+	}
+}

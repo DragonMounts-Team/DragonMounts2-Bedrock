@@ -1,0 +1,14 @@
+{
+   "format_version":"1.13.0",
+   "minecraft:structure_template_feature":{
+      "description":{
+         "identifier":"minecraft:nest_nether"
+      },
+      "structure_name":"mystructure:nest_nether",
+      "adjustment_radius":12,
+      "facing_direction":"random",
+      "constraints":{
+         "grounded":{}
+      }
+   }
+}

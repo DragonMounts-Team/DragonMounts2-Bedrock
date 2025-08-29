@@ -1,0 +1,29 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmountsplus:waterbreath1",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/breath/water"
+      },
+      "geometry": {
+        "default": "geometry.breath"
+      },
+            "animations": {
+				"default": "animation.dragon_breath.default"
+			},
+	   "particle_effects": {
+				"default": "dragonmountsplus:breathwater1"
+			},
+						"scripts": {
+				"animate": [
+					"default"
+				]
+			},
+      "render_controllers": ["controller.render.default"]
+    }
+  }
+}
