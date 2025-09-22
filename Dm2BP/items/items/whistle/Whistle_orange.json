@@ -5,7 +5,7 @@
       "identifier": "dragonmountsplus:whistle_orange",
       "menu_category": {
         "category": "equipment",
-        "group": "bj5:itemGroup.name.whistle_items"
+        "group": "dragonmountsplus:itemGroup.name.whistle_items"
       }
     },
     "components": {
@@ -30,10 +30,7 @@
         "tags": [
           "minecraft:transform_materials"
         ]
-      },
-      "minecraft:custom_components": [
-        "dragonmountsplus_whistle_orange:trigger"
-      ]
+      }
     }
   }
 }
