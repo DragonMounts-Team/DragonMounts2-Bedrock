@@ -15,9 +15,10 @@
       }
     },
     "components": {
-      "minecraft:loot": "loot_tables/blocks/aether.json",
-      "minecraft:destructible_by_mining": {
-        "seconds_to_destroy": 1.0
+  "minecraft:loot": "loot_tables/blocks/aether.json",
+  "minecraft:custom_components": ["falling_block:powder_placement"],
+  "minecraft:destructible_by_mining": {
+    "seconds_to_destroy": 1.0
       },
       "minecraft:friction": 0.4,
       "minecraft:map_color": "#FFFFFF",

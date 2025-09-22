@@ -12,9 +12,8 @@
 					"on_entry": [
 						"/tag @s add dragonmountsplus",
 						"/function dragon",
-						"/execute @s ~ ~ ~ detect ~ ~-6 ~ air 0 execute @s ~ ~ ~ detect ~ ~-5 ~ air 0 execute @s ~ ~ ~ detect ~ ~-4 ~ air 0 execute @s ~ ~ ~ detect ~ ~-3 ~ air 0 execute @s ~ ~ ~ detect ~ ~-2 ~ air 0 execute @s ~ ~ ~ detect ~ ~-1 ~ air 0 execute @s ~ ~ ~ detect ~ ~ ~ air 0 tag @s add flying",
-						"@s dragonmountsplus:dragon_hasarmor",
-						"@s dragonmountsplus:dragon_flying_b"
+						"/execute at @s if block ~ ~-3 ~ air if block ~ ~-2 ~ air if block ~ ~-1 ~ air if block ~ ~ ~ air run tag @s add flying",
+						"@s dragonmountsplus:dragon_hasarmor"
 					]
 				},
 				"default_back": {

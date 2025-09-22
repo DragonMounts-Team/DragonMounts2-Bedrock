@@ -15,8 +15,10 @@
 			"textures": {
 			  "f_water_dragon": "textures/entity/water_dragon/f_water_dragon",
 				"water_dragon": "textures/entity/water_dragon/water_dragon",
+				"r_water_dragon": "textures/entity/water_dragon/r_water_dragon",
 				"glow": "textures/entity/water_dragon/glow",
 				"f_glow": "textures/entity/water_dragon/f_glow",
+				"r_glow": "textures/entity/water_dragon/r_glow",
 				"dragon_saddled": "textures/entity/dragon_saddled",
 				"dragon_chested": "textures/entity/dragon_chested",
 				"dragon_armor_iron": "textures/entity/dragon_armor/armor_iron",
@@ -24,12 +26,13 @@
 				"dragon_armor_gold": "textures/entity/dragon_armor/armor_gold",
 				"dragon_armor_emerald": "textures/entity/dragon_armor/armor_emerald",
 				"dragon_armor_diamond": "textures/entity/dragon_armor/armor_diamond",
+				"dragon_armor_netherite": "textures/entity/dragon_armor/armor_netherite",
 				"dragon_none": "textures/entity/none",
 				"exploding": "textures/entity/dragon_dissolve",
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
 			},
 			"geometry": {
-				"dragon_default": "geometry.mountdragon_default2",							
+				"dragon_default": "geometry.mountdragon_default5",							
 				"glow": "geometry.mountdragon_default5",
 				"dragon_saddled": "geometry.mountdragon_saddled",
 				"dragon_chested": "geometry.mountdragon_chested"
@@ -78,6 +81,7 @@
 				"controller.render.dragons.is_saddled",
 				{"controller.render.glow1": "query.variant == 1" },
 				{"controller.render.glow2": "query.variant == 0" },
+				{"controller.render.glow3": "query.variant == 2" },
 				"controller.render.dragons.is_armored",
 				"controller.render.dragons.is_chested",
 				{ "controller.render.water_dragon_death_pre_pass": "query.death_ticks > 1.0" },

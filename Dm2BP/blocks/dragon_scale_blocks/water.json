@@ -14,60 +14,22 @@
       "minecraft:destructible_by_explosion": {
         "explosion_resistance": 1.0
       },
-      "minecraft:friction": 0.0,
-      "minecraft:flammable": {
-        "catch_chance_modifier": 0,
-        "destroy_chance_modifier": 0
-      },
       "minecraft:map_color": "#FFFFFF",
-      "minecraft:light_dampening": 15,
-      "minecraft:light_emission": 0,
       "minecraft:loot": "loot_tables/dragon_scales/water_scale.json",
-      "minecraft:collision_box": {
-        "origin": [
-          -8.0,
-          0.0,
-          -8.0
-        ],
-        "size": [
-          16.0,
-          16.0,
-          16.0
-        ]
-      },
-      "minecraft:selection_box": {
-        "origin": [
-          -8.0,
-          0.0,
-          -8.0
-        ],
-        "size": [
-          16.0,
-          16.0,
-          16.0
-        ]
-      },
       "minecraft:material_instances": {
         "*": {
-          "texture": "dragonmountsplus_water_scale",
-          "render_method": "blend"
+          "texture": "dragonmountsplus_water_scale"
         }
-      },
-
-      "minecraft:custom_components": [
-        "dragonmountsplus_water_scale:trigger"
-      ]
+      }
     },
-          "tags": [
-        "diamond_pick_diggable",
-        "gold_pick_diggable",
-        "iron_pick_diggable",
-        "stone",
-        "stone_pick_diggable",
-        "wood_pick_diggable"
-      ],
-    "events": {},
-    "permutations": []
+    "tags": [
+    "diamond_pick_diggable",
+    "gold_pick_diggable",
+    "iron_pick_diggable",
+    "stone_pick_diggable",
+    "wood_pick_diggable",
+    "nsb:fireproof",
+    "nsb:blastproof"
+    ]
   }
 }
-

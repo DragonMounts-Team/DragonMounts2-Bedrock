@@ -8,12 +8,19 @@
 			"crafting_table"
 		],
 		"pattern": [
-			" #",
-			"# "
+			" # ",
+			"OD#",
+			" O "
 		],
 		"key": {
 			"#": {
 				"item": "minecraft:diamond"
+				},
+				"O": {
+				"item": "minecraft:obsidian"
+				},
+				"D": {
+				"item": "minecraft:shears"
 			}
 		},
 		"result": {

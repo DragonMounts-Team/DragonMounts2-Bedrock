@@ -24,6 +24,7 @@
 				"dragon_armor_gold": "textures/entity/dragon_armor/armor_gold",
 				"dragon_armor_emerald": "textures/entity/dragon_armor/armor_emerald",
 				"dragon_armor_diamond": "textures/entity/dragon_armor/armor_diamond",
+				"dragon_armor_netherite": "textures/entity/dragon_armor/armor_netherite",
 				"dragon_none": "textures/entity/none",
 				"exploding": "textures/entity/dragon_dissolve",
 				"beam": "textures/entity/endercrystal/endercrystal_beam"
@@ -72,7 +73,7 @@
 				"null": "mob.mountdragon.null"
 			},
 			"particle_effects": {
-				"default": "dragonmountsplus:endering_table_particle"
+				"default": "dragonmountsplus:leaves_particle"
 			},
 			"render_controllers": [
 				"controller.render.dragons.is_saddled",

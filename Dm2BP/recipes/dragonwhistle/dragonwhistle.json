@@ -6,16 +6,13 @@
     },
     "tags": [ "crafting_table" ],
   "pattern": [
-    "P#",
+    "X#",
     "#X"
 	
   ], 
   "key": {
     "#": {
       "item": "minecraft:stick"
-    },
-    "P": {
-     "item": "minecraft:ender_pearl"
 	},
     "X": {
      "item": "minecraft:string"

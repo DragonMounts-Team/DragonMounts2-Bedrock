@@ -1,0 +1,33 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.default_dragon_egg": {
+			"geometry": "Geometry.dragon_egg",
+			"materials": [
+				{
+					"*": "Material.dragon_egg"
+				}
+			],
+			"textures": [
+				"Texture.dragon_egg"
+			],
+			"is_hurt_color": {
+				"r": 1,
+				"g": 1,
+				"b": 1,
+				"a": 0.1
+			}
+		},
+		"controller.render.default_dragon_egg_death": {
+			"geometry": "Geometry.dragon_egg",
+			"materials": [
+				{
+					"*": "Material.death"
+				}
+			],
+			"textures": [
+				"Texture.dragon_egg"
+			]
+		}
+	}
+}

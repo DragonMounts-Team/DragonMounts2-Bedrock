@@ -1,33 +1,43 @@
 {
   "format_version": "1.21.10",
   "minecraft:item": {
+    "description": {
+      "identifier": "dragonmountsplus:enchant_dragon_axe",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.axe"
+      }
+    },
     "components": {
       "minecraft:can_destroy_in_creative": true,
-      "minecraft:creative_category": {
-        "parent": "itemGroup.name.axe"
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_axe",
+          "minecraft:transformable_items",
+          "plus:weaponry"
+        ]
       },
       "minecraft:custom_components": [
         "tool:can_be_damaged",
         "tool:act_as_axe"
       ],
-      "minecraft:damage": 9,
+      "minecraft:damage": 7,
       "minecraft:digger": {
         "destroy_speeds": [
           {
             "block": {
-              "tags":  "q.any_tag('minecraft:is_axe_item_destructible')"
+              "tags": "q.any_tag('minecraft:is_axe_item_destructible')"
             },
-            
             "speed": 16
           }
         ],
-       "use_efficiency": true
+        "use_efficiency": true
       },
       "minecraft:display_name": {
         "value": "%item.dragonmounts.dragon_axe\n%tooltip.dragonmounts.enchant"
       },
       "minecraft:durability": {
-        "max_durability": 2678
+        "max_durability": 2347
       },
       "minecraft:enchantable": {
         "slot": "axe",
@@ -35,7 +45,7 @@
       },
       "minecraft:hand_equipped": true,
       "minecraft:icon": "enchant_dragon_axe",
-      "minecraft:max_stack_size": 1, 
+      "minecraft:max_stack_size": 1,
       "minecraft:repairable": {
         "repair_items": [
           {
@@ -51,13 +61,6 @@
             "repair_amount": "context.other->query.remaining_durability + query.max_durability * 0.05"
           }
         ]
-      }
-    },
-    "description": {
-      "identifier": "dragonmountsplus:enchant_dragon_axe",
-      "menu_category": {
-        "category": "equipment",
-        "group": "itemGroup.name.axe"
       }
     }
   }

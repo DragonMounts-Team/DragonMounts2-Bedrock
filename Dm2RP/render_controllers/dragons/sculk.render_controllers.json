@@ -39,7 +39,8 @@
 				"textures": {
 					"Array.base": [
 						"Texture.f_sculk_dragon",
-						"Texture.sculk_dragon"
+						"Texture.sculk_dragon",
+						"Texture.r_sculk_dragon"
 					],
 					"Array.saddled": [
 						"Texture.dragon_none",
@@ -51,7 +52,8 @@
 						"Texture.dragon_armor_copper",
 						"Texture.dragon_armor_gold",
 						"Texture.dragon_armor_diamond",
-						"Texture.dragon_armor_emerald"
+						"Texture.dragon_armor_emerald",
+						"Texture.dragon_armor_netherite"
 					]
 				}
 			},

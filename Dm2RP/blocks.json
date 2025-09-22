@@ -11,53 +11,117 @@
 	"dragonmountsplus:aether_dragon_egg": {
 		"sound": "stone"
 	},
+  "dragonmountsplus:aether_dragon_egg.entity": {
+  "textures": "aether_dragon_egg",
+    "sound": "stone"
+	},
 	"dragonmountsplus:dark_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:dark_dragon_egg.entity": {
+  "textures": "dark_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:enchant_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:enchant_dragon_egg.entity": {
+  "textures": "enchant_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:ender_dragon_egg": {
 		"sound": "stone"
 	},
 	"dragonmountsplus:fire_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:fire_dragon_egg.entity": {
+  "textures": "fire_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:forest_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:forest_dragon_egg.entity": {
+  "textures": "forest_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:ice_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:ice_dragon_egg.entity": {
+  "textures": "ice_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:moonlight_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:moonlight_dragon_egg.entity": {
+  "textures": "moonlight_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:nether_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:nether_dragon_egg.entity": {
+  "textures": "nether_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:sculk_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:sculk_dragon_egg.entity": {
+  "textures": "sculk_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:skeleton_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:skeleton_dragon_egg.entity": {
+  "textures": "skelton_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:storm_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:sieleton_dragon_egg.entity": {
+  "textures": "skelton_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:sunlight_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:sunlight_dragon_egg.entity": {
+  "textures": "sunlight_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:terra_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:terra_dragon_egg.entity": {
+  "textures": "terra_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:water_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:water_dragon_egg.entity": {
+  "textures": "water_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:wither_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:wither_dragon_egg.entity": {
+  "textures": "wither_dragon_egg",
+    "sound": "stone"
 	},
 	"dragonmountsplus:zombie_dragon_egg": {
 		"sound": "stone"
+		},
+  "dragonmountsplus:zombie_dragon_egg.entity": {
+  "textures": "zombie_dragon_egg",
+    "sound": "stone"
 	},
 	  "dragonmountsplus:aether_scale": {
     "textures": "dragonmountsplus_aether_scale",

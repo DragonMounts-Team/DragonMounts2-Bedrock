@@ -1,0 +1,1 @@
+particle dragonmountsplus:enchanting_armor_particle

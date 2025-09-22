@@ -16,6 +16,7 @@
     },
     "components": {
       "minecraft:loot": "loot_tables/blocks/sunlight.json",
+      "minecraft:custom_components": ["falling_block:powder_placement"],
       "minecraft:destructible_by_mining": {
         "seconds_to_destroy": 1.0
       },

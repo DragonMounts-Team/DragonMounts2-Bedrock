@@ -25,7 +25,9 @@
             			"minecraft:tags": {
                 "tags": [
                     "minecraft:trimmable_armors",
-					"weight_5"
+                    "nsb:fireproof",
+                    "nsb:blastproof",
+					          "weight_5"
                 ]
             },
 			"minecraft:display_name": {

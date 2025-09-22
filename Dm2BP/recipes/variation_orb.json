@@ -8,25 +8,21 @@
       "crafting_table"
     ],
     "pattern": [
-      "ABC",
-      "DAC",
-      " D "
+      "ABA",
+      "BCB",
+      "ABA"
     ],
     "key": {
       "A": {
-        "item": "minecraft:redstone",
+        "item": "minecraft:obsidian",
         "data": 0
       },
       "B": {
-        "item": "minecraft:gold_ingot",
+        "item": "minecraft:dragon_breath",
         "data": 0
       },
       "C": {
-        "item": "minecraft:emerald",
-        "data": 0
-      },
-      "D": {
-        "item": "minecraft:diamond",
+        "item": "minecraft:ender_pearl",
         "data": 0
       }
     },

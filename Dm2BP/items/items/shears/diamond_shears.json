@@ -10,8 +10,11 @@
 		"components": {
 			"minecraft:max_stack_size": 1,
 			"tag:minecraft:shears": {},
-			"minecraft:icon":"diamond_shears",
-			"minecraft:display_name":{
+			"minecraft:tags": {
+				"tags": ["custom:is_shears","minecraft:is_shears"]
+			},
+			"minecraft:icon": "diamond_shears",
+			"minecraft:display_name": {
 				"value": "item.dragonmountsplus:diamond_shears.name"
 			},
 			"minecraft:durability": {

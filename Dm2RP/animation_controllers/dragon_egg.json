@@ -12,7 +12,7 @@
                     "blend_via_shortest_path": true,
                     "transitions": [
                         {
-                            "dragon_egg_bs": "query.is_transforming"
+                            "dragon_egg_bs": "query.is_transforming && query.variant != 2"
                         }
                     ]
                 },

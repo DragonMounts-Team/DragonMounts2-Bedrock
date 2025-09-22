@@ -48,6 +48,30 @@
       "textures": [ "Texture.r_glow" ],
       "light_color_multiplier": 1.2,
       "ignore_lighting": true
+      },
+        "controller.render.glow4": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.stray_glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+      },
+        "controller.render.glow5": {
+      "geometry": "Geometry.glow", 
+      "materials": [ { "*": "Material.dragon" } ],
+      			"part_visibility": [
+				{
+					"horn_front": "!query.is_saddled"
+				}
+			],
+      "textures": [ "Texture.bogged_glow" ],
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
     }
   }
 }
