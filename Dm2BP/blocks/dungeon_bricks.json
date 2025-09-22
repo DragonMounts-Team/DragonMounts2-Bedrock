@@ -1,0 +1,97 @@
+{
+	"format_version": "1.21.60",
+	"minecraft:block": {
+		"description": {
+			"identifier": "dragonmountsplus:dungeon_bricks",
+            "menu_category": {
+                "category": "nature"
+            }
+        },
+        "components": {
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 10000,
+                "item_specific_speeds": [
+                    {
+                        "item": "dragonmountsplus:aether_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:dark_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:enchant_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:ender_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:fire_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:forest_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:ice_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:moonlight_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:nether_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:sculk_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:skeleton_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:storm_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:sunlight_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:terra_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:water_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:wither_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                    {
+                        "item": "dragonmountsplus:zombie_dragon_pickaxe",
+                        "destroy_speed": 4
+                    },
+                ]
+            },
+            "minecraft:destructible_by_explosion": false,
+            "minecraft:display_name": "dungeon bricks",
+            "minecraft:map_color": "#A87A5F",
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "dungeon_bricks",
+                    "render_method": "opaque"
+                }
+            },
+            "minecraft:geometry": "geometry.block",
+            "minecraft:light_dampening": 15
+        }
+	}
+}
