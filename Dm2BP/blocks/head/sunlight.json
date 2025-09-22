@@ -2,7 +2,7 @@
 	"format_version": "1.21.30",
 	"minecraft:block": {
 		"description": {
-			"identifier": "dragonmountsplus:sunlight_head_block",
+			"identifier": "dragonmountsplus:sunlight_head",
 			"traits": {
 				"minecraft:placement_position": {
 					"enabled_states": [
@@ -20,6 +20,7 @@
 			}
 		},
 		"components": {
+			"minecraft:loot": "loot_tables/head/sunlight.json",
 			"minecraft:collision_box": {
 				"origin": [
 					-4,

@@ -2,7 +2,7 @@
 	"format_version": "1.21.30",
 	"minecraft:block": {
 		"description": {
-			"identifier": "dragonmountsplus:fire1_head",
+			"identifier": "dragonmountsplus:sunlight2_head",
 			"traits": {
 				"minecraft:placement_position": {
 					"enabled_states": [
@@ -20,7 +20,7 @@
 			}
 		},
 		"components": {
-			"minecraft:loot": "loot_tables/head/fire1.json",
+			"minecraft:loot": "loot_tables/head/sunlight2.json",
 			"minecraft:collision_box": {
 				"origin": [
 					-4,
@@ -56,7 +56,7 @@
 			"minecraft:map_color": "#FFFFFF",
 			"minecraft:material_instances": {
       "*": {
-       "texture": "fire1_head_block",
+       "texture": "sunlight2_head_block",
        "render_method": "opaque",
        "face_dimming": false,
        "ambient_occlusion": false

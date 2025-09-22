@@ -2,7 +2,7 @@
 	"format_version": "1.21.30",
 	"minecraft:block": {
 		"description": {
-			"identifier": "dragonmountsplus:nether1_head_block",
+			"identifier": "dragonmountsplus:nether1_head",
 			"traits": {
 				"minecraft:placement_position": {
 					"enabled_states": [
@@ -20,6 +20,7 @@
 			}
 		},
 		"components": {
+			"minecraft:loot": "loot_tables/head/nether1.json",
 			"minecraft:collision_box": {
 				"origin": [
 					-4,
