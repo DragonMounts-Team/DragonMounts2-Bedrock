@@ -1,0 +1,66 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:item": {
+    "components": {
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:custom_components": [
+        "tool:can_be_damaged"
+      ],
+      "minecraft:damage": 7,
+      			"minecraft:tags": {
+                "tags": [
+                    "minecraft:is_pickaxe"
+                ]
+            },
+		"minecraft:digger": {
+			"use_efficiency": true,
+			"destroy_speeds": [
+				{
+					"block": {"tags": "q.any_tag('minecraft:netherite_tier_destructible')"},
+					"speed": 30
+				},
+          		{
+            		"block": {"tags": "q.any_tag('minecraft:is_pickaxe_item_destructible')"},
+            		"speed": 30
+          		}
+			]
+		},
+      "minecraft:display_name": {
+        "value": "%item.dragonmounts.dragon_pickaxe\n%tooltip.dragonmounts.aether"
+      },
+      "minecraft:durability": {
+        "max_durability": 2680
+      },
+      "minecraft:enchantable": {
+        "slot": "pickaxe",
+        "value": 32
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:icon": "aether_dragon_pickaxe",
+      "minecraft:max_stack_size": 1,
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmountsplus:aether_dragonscales"
+            ],
+            "repair_amount": "2680 * 0.25"
+          },
+          {
+            "items": [
+              "dragonmountsplus:aether_dragon_pickaxe"
+            ],
+            "repair_amount": "context.other->query.remaining_durability + query.max_durability * 0.05"
+          }
+        ]
+      }
+    },
+    "description": {
+      "identifier": "dragonmountsplus:aether_dragon_pickaxe",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.pickaxe"
+      }
+    }
+  }
+}

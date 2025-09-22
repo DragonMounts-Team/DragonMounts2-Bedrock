@@ -22,16 +22,6 @@
         }
       },
       "minecraft:max_stack_size": 1,
-      "minecraft:repairable": {
-        "repair_items": [
-          {
-            "items": [
-              "bj:ender_scales"
-            ],
-            "repair_amount": 500
-          }
-        ]
-      },
       "minecraft:shooter": {
         "ammunition": [
           {
@@ -47,14 +37,14 @@
       },
       "minecraft:use_modifiers": {
         "movement_modifier": 0.5,
-        "use_duration": 99999
+        "use_duration": 1.0
       }
     },
     "description": {
-      "identifier": "ender:bow",
+      "identifier": "dragonmountsplus:ender_bow",
       "menu_category": {
         "category": "equipment",
-        "group": "bj:itemGroup.name.bow_items"
+        "group": "dragonmountsplus:itemGroup.name.bow_items"
       }
     }
   }

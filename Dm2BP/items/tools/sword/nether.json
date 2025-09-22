@@ -1,0 +1,62 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:item": {
+    "components": {
+      "minecraft:can_destroy_in_creative": false,
+            "minecraft:tags":{"tags":["minecraft:is_sword","minecraft:transformable_items","plus:weaponry"]},
+      "minecraft:custom_components": [
+        "tool:can_be_damaged"
+      ],
+      "minecraft:damage": 9,
+      "minecraft:digger": {
+        "destroy_speeds": [
+          {
+            "block": "minecraft:web",
+            "speed": 20
+          },
+          {
+            "block": "minecraft:bamboo",
+            "speed": 15
+          }
+        ],
+        "use_efficiency": false
+      },
+      "minecraft:display_name": {
+        "value": "%item.dragonmounts.dragon_sword\n%tooltip.dragonmounts.nether"
+      },
+      "minecraft:durability": {
+        "max_durability": 2160
+      },
+      "minecraft:enchantable": {
+        "slot": "sword",
+        "value": 32
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:icon": "nether_dragon_sword",
+      "minecraft:max_stack_size": 1,
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmountsplus:nether_dragonscales"
+            ],
+            "repair_amount": "2160 * 0.25"
+          },
+          {
+            "items": [
+              "dragonmountsplus:nether_dragon_sword"
+            ],
+            "repair_amount": "context.other->query.remaining_durability + context.other->query.max_durability * 0.05"
+          }
+        ]
+      }
+    },
+    "description": {
+      "identifier": "dragonmountsplus:nether_dragon_sword",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.sword"
+      }
+    }
+  }
+}

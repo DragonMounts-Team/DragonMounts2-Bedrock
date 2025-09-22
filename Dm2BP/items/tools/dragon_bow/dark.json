@@ -2,15 +2,15 @@
   "format_version": "1.20.70",
   "minecraft:item": {
     "description": {
-      "identifier": "dark:bow",
+      "identifier": "dragonmountsplus:dark_bow",
       "menu_category": {
         "category": "equipment",
-        "group": "bj:itemGroup.name.bow_items"
+        "group": "dragonmountsplus:itemGroup.name.bow_items"
       }
     },
     "components": {
       "minecraft:use_modifiers": {
-        "use_duration": 99999,
+        "use_duration": 1.0,
         "movement_modifier": 0.5
       },
       "minecraft:can_destroy_in_creative": {
@@ -45,14 +45,6 @@
       },
       "minecraft:display_name": {
         "value": "%item.dragonmounts.bow\n%tooltip.dragonmounts.dark"
-      },
-      "minecraft:repairable": {
-        "repair_items": [
-          {
-            "items": ["bj:dark_scales"],
-            "repair_amount": 500
-          }
-        ]
       }
     }
   }

@@ -22,7 +22,7 @@
 			  "value": "bow"
 			},
 			"minecraft:use_modifiers": {
-			  "use_duration": 0.0,
+			  "use_duration": 0.1,
 			  "movement_modifier": 0.0
 			},
             "minecraft:hand_equipped":{"value": true},
