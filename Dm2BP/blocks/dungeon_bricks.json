@@ -52,10 +52,6 @@
                         "destroy_speed": 4
                     },
                     {
-                        "item": "dragonmountsplus:skeleton_dragon_pickaxe",
-                        "destroy_speed": 4
-                    },
-                    {
                         "item": "dragonmountsplus:storm_dragon_pickaxe",
                         "destroy_speed": 4
                     },
@@ -72,25 +68,14 @@
                         "destroy_speed": 4
                     },
                     {
-                        "item": "dragonmountsplus:wither_dragon_pickaxe",
-                        "destroy_speed": 4
-                    },
-                    {
                         "item": "dragonmountsplus:zombie_dragon_pickaxe",
                         "destroy_speed": 4
-                    },
+                    }
                 ]
             },
             "minecraft:destructible_by_explosion": false,
-            "minecraft:display_name": "dungeon bricks",
+            "minecraft:display_name": "Dungeon Bricks",
             "minecraft:map_color": "#A87A5F",
-            "minecraft:material_instances": {
-                "*": {
-                    "texture": "dungeon_bricks",
-                    "render_method": "opaque"
-                }
-            },
-            "minecraft:geometry": "geometry.block",
             "minecraft:light_dampening": 15
         }
 	}
