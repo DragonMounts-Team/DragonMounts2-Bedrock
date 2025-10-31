@@ -1,4 +1,4 @@
-![LOG0](Dm2RP/textures/ui/title.png)
+![LOG0](https://raw.githubusercontent.com/Tomanex/Image-dumping/refs/heads/main/mods/dragon-mounts/logo2.png)
 
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/1124643?logo=Curseforge&label=CurseForge&labelColor=Gray)](https://www.curseforge.com/minecraft-bedrock/addons/dragon-mounts-2)
 [![Discord](https://img.shields.io/discord/1293105990476103720?logo=Discord&logoColor=white&label=Discord&labelColor=%235865F2)](https://discord.gg/Ewm8aTTJ3K)
