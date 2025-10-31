@@ -18,13 +18,13 @@ It is a different add-on compared to it's prequel Dragon Mounts. The premise of 
 ## License
 The add-on's binaries, as well as it's textures and code are licensed under the GNU General Public License v3.
 
-Dragon Mounts 2 is owned by Tomanex, JDSKoala and the Dragon Mounts Team.
+Dragon Mounts 2 is owned by Tomanex, JDSK9ala and the Dragon Mounts Team.
 
 © 2018-2025 Dragon Mounts Team.
 
 ## Credits
 - Tomanex - Project Owner & Lead Artist
-- JDSKoala - Project Co-owner, Modeler and Animator
+- JDSK0ala - Project Co-owner, Modeler and Animator
 - Moaswies - Coder
 - Mr. Goofy (Mrngda) - Former Coder
 - Equinox - Artist
