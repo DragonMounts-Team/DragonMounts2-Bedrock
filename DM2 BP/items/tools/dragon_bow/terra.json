@@ -1,0 +1,61 @@
+{
+  "format_version": "1.20.70",
+  "minecraft:item": {
+    "components": {
+      "minecraft:can_destroy_in_creative": {
+        "value": false
+      },
+      "minecraft:display_name": {
+        "value": "%item.dragonmounts.bow\n%tooltip.dragonmounts.terra"
+      },
+      "minecraft:durability": {
+        "max_durability": 407
+      },
+      "minecraft:enchantable": {
+        "slot": "bow",
+        "value": 10
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:icon": {
+        "textures": {
+          "default": "terra_bow"
+        }
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "bj:terra_scales"
+            ],
+            "repair_amount": 500
+          }
+        ]
+      },
+      "minecraft:shooter": {
+        "ammunition": [
+          {
+            "item": "minecraft:arrow",
+            "search_inventory": true,
+            "use_in_creative": true,
+            "use_offhand": true
+          }
+        ],
+        "charge_on_draw": false,
+        "max_draw_duration": 1,
+        "scale_power_by_draw_duration": true
+      },
+      "minecraft:use_modifiers": {
+        "movement_modifier": 0.5,
+        "use_duration": 99999
+      }
+    },
+    "description": {
+      "identifier": "terra:bow",
+      "menu_category": {
+        "category": "equipment",
+        "group": "bj:itemGroup.name.bow_items"
+      }
+    }
+  }
+}

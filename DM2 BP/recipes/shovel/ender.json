@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmountsplus:ender_dragon_shovel"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X",
+			"#",
+			"#"
+		],
+		"key": {
+			"X": {
+				"item": "dragonmountsplus:ender_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmountsplus:ender_dragon_shovel"
+		}
+	}
+}

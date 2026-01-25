@@ -1,0 +1,25 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "recipes_fdc53ba2"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "ingredients": [
+      {
+        "item": "minecraft:black_dye",
+        "data": 0
+      },
+      {
+        "item": "dragonmountsplus:whistle",
+        "data": 0
+      }
+    ],
+    "result": {
+      "item": "dragonmountsplus:whistle_black",
+      "count": 1
+    }
+  }
+}

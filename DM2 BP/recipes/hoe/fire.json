@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmountsplus:fire_dragon_hoe"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"XX",
+			" #",
+			" #"
+		],
+		"key": {
+			"X": {
+				"item": "dragonmountsplus:fire_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmountsplus:fire_dragon_hoe"
+		}
+	}
+}

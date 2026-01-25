@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmountsplus:enchant_dragon_pickaxe"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"XXX",
+			" # ",
+			" # "
+		],
+		"key": {
+			"X": {
+				"item": "dragonmountsplus:enchant_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmountsplus:enchant_dragon_pickaxe"
+		}
+	}
+}

@@ -1,0 +1,67 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmountsplus:ender_dragon_axe",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.axe"
+      }
+    },
+    "components": {
+      "minecraft:can_destroy_in_creative": true,
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_axe",
+          "minecraft:transformable_items",
+          "plus:weaponry"
+        ]
+      },
+      "minecraft:custom_components": [
+        "tool:can_be_damaged",
+        "tool:act_as_axe"
+      ],
+      "minecraft:damage": 9,
+      "minecraft:digger": {
+        "destroy_speeds": [
+          {
+            "block": {
+              "tags": "q.any_tag('minecraft:is_axe_item_destructible')"
+            },
+            "speed": 16
+          }
+        ],
+        "use_efficiency": true
+      },
+      "minecraft:display_name": {
+        "value": "%item.dragonmounts.dragon_axe\n%tooltip.dragonmounts.ender"
+      },
+      "minecraft:durability": {
+        "max_durability": 2823
+      },
+      "minecraft:enchantable": {
+        "slot": "axe",
+        "value": 32
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:icon": "dark_dragon_axe",
+      "minecraft:max_stack_size": 1,
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmountsplus:ender_dragonscales"
+            ],
+            "repair_amount": "query.max_durability * 0.25"
+          },
+          {
+            "items": [
+              "dragonmountsplus:ender_dragon_axe"
+            ],
+            "repair_amount": "context.other->query.remaining_durability + query.max_durability * 0.05"
+          }
+        ]
+      }
+    }
+  }
+}

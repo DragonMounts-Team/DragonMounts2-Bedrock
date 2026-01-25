@@ -1,0 +1,18 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+        {
+          "type": "item",
+          "name": "dragonmountsplus:dark1_head",
+          "weight": 5
+        },
+        {
+          "type": "empty",
+          "weight": 5
+        }
+			]
+		}
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+        {
+          "type": "item",
+          "name": "dragonmountsplus:moonlight_head",
+          "weight": 5
+        },
+        {
+          "type": "empty",
+          "weight": 0
+        }
+			]
+		}
+	]
+}

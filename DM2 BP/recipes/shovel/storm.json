@@ -1,0 +1,27 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "dragonmountsplus:storm_dragon_shovel"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"X",
+			"#",
+			"#"
+		],
+		"key": {
+			"X": {
+				"item": "dragonmountsplus:storm_dragonscales"
+			},
+			"#": {
+				"item": "minecraft:stick"
+			}
+		},
+		"result": {
+			"item": "dragonmountsplus:storm_dragon_shovel"
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "zombie_scale_1df638a5"
+    },
+    "tags": [
+      "crafting_table"
+    ],
+    "pattern": [
+      "AAA",
+      "AAA",
+      "AAA"
+    ],
+    "key": {
+      "A": {
+        "item": "dragonmountsplus:zombie_dragonscales",
+        "data": 0
+      }
+    },
+    "result": {
+      "item": "dragonmountsplus:zombie_scale",
+      "count": 1
+    }
+  }
+}
