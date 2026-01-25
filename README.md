@@ -1,4 +1,4 @@
-![LOG0](https://raw.githubusercontent.com/Tomanex/Image-dumping/refs/heads/main/mods/dragon-mounts/logo2.png)
+[![LOG0](https://raw.githubusercontent.com/Tomanex/Image-dumping/refs/heads/main/mods/dragon-mounts/logo2.png)](https://www.curseforge.com/minecraft-bedrock/addons/dragon-mounts-2-bedrock)
 
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/1124643?logo=Curseforge&label=CurseForge&labelColor=Gray)](https://www.curseforge.com/minecraft-bedrock/addons/dragon-mounts-2)
 [![Discord](https://img.shields.io/discord/1293105990476103720?logo=Discord&logoColor=white&label=Discord&labelColor=%235865F2)](https://discord.gg/Ewm8aTTJ3K)
@@ -13,6 +13,7 @@ It is a different add-on compared to it's prequel Dragon Mounts. The premise of 
 ## Download Links
 - [CurseForge](https://www.curseforge.com/minecraft-bedrock/addons/dragon-mounts-2)
 - [MCPEDL](https://mcpedl.com/dragon-mounts-2/)
+- [Vatonage](https://vatonage.com/mods/dragon-mounts-2)
 - [ModBay](https://modbay.org/mods/4446-dragon-mounts-2.html)
 
 ## License
@@ -21,10 +22,3 @@ The add-on's binaries, as well as it's textures and code are licensed under the 
 Dragon Mounts 2 is owned by Tomanex, JDSK9ala and the Dragon Mounts Team.
 
 © 2018-2025 Dragon Mounts Team.
-
-## Credits
-- Tomanex - Project Owner & Lead Artist
-- JDSK0ala - Project Co-owner, Modeler and Animator
-- Moaswies - Coder
-- Mr. Goofy (Mrngda) - Former Coder
-- Equinox - Artist
