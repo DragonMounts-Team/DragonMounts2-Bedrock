@@ -1,86 +1,64 @@
 {
 	"format_version": "1.19.0",
 	"animation_controllers": {
-		"controller.animation.dm-dragon.ac": {
-			"initial_state": "idle",
-			"states": {
-				"idle": {
-					"animations": [
-						{"idle": "query.is_on_ground"}
-					],
-					"transitions": [
-						{"walk": "q.ground_speed > 1.0"}
-					],
-					"blend_transition": 0.2
-				},
-				"walk": {
-					"animations": [
-						{"walk": "query.is_moving"}
-					],
-					"transitions": [
-						{"idle": "q.ground_speed < 0.5"}
-					],
-					"blend_transition": 0.2
-				}
-			}
-		},
 		"controller.animation.dm-dragon.base": {
 			"states": {
 				"sitting": {
 					"animations": ["sit"],
 					"transitions": [
-						{"default": "!q.is_sitting"},
-						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
-						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
-					]
+						{"default": "!q.is_sitting||q.has_rider"}
+					],
+					"blend_transition": 0.6
 				},
 				"default": {
 					"animations": ["idle"],
 					"transitions": [
-						{"sitting": "q.is_sitting"},
+						{"sitting": "q.is_sitting&&!query.has_rider"},
 						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"hovering": "!q.is_on_ground&&!q.vertical_speed>=2"},
-						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
-						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
-					]
+						{"hovering": "!q.is_on_ground&&q.modified_move_speed<= 0.1&&q.vertical_speed >-0.5&&q.vertical_speed<0.5"}
+					],
+					"blend_transition": 0.6,
+					"blend_via_shortest_path": true
 				},
 				"walking": {
 					"animations": ["walk"],
 					"transitions": [
 						{"default": "q.is_on_ground&&!q.is_moving"},
-						{"sitting": "q.is_sitting"},
-						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"},
-						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
-					]
+						{"sitting": "q.is_sitting&&!query.has_rider"},
+						{"hovering": "!q.is_on_ground&&q.modified_move_speed<= 0.1&&q.vertical_speed >-0.5&&q.vertical_speed<0.5"}
+					],
+					"blend_transition": 0.6,
+					"blend_via_shortest_path": true
 				},
 				"hovering": {
 					"animations": ["hover"],
 					"transitions": [
-						{"default": "q.is_on_ground&&!q.is_moving"},
-						{"sitting": "q.is_sitting"},
-						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=1"},
-						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
-					]
+						{"default": "q.is_on_ground"},
+						{"flying": "!q.is_on_ground &&q.modified_move_speed <= 0.5&&q.vertical_speed >= 0.5"},
+						{"gliding": "!q.is_on_ground&&q.modified_move_speed<=0.5&&q.vertical_speed<=-0.5"}
+					],
+					"blend_transition": 0.6,
+					"blend_via_shortest_path": true
 				},
 				"flying": {
 					"animations": ["fly"],
 					"transitions": [
 						{"default": "q.is_on_ground&&!q.is_moving"},
-						{"sitting": "q.is_sitting"},
-						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"gliding": "!q.is_on_ground&&q.is_moving&&q.vertical_speed<=-2"}
-					]
+						{"hovering": "!q.is_on_ground&&q.modified_move_speed<= 0.1&&q.vertical_speed >-0.5&&q.vertical_speed<0.5"},
+						{"gliding": "!q.is_on_ground&&q.modified_move_speed<=0.5&&q.vertical_speed<=-0.5"}
+					],
+					"blend_transition": 0.6,
+					"blend_via_shortest_path": true
 				},
 				"gliding": {
 					"animations": ["glide"],
 					"transitions": [
 						{"default": "q.is_on_ground&&!q.is_moving"},
-						{"sitting": "q.is_sitting"},
-						{"walking": "q.is_on_ground&&q.is_moving"},
-						{"flying": "!q.is_on_ground&&q.is_moving&&q.vertical_speed>=2"}
-					]
+						{"hovering": "!q.is_on_ground&&q.modified_move_speed<= 0.1&&q.vertical_speed >-0.5&&q.vertical_speed<0.5"},
+						{"flying": "!q.is_on_ground &&q.modified_move_speed <= 0.5&&q.vertical_speed >= 0.5"}
+					],
+					"blend_transition": 0.6,
+					"blend_via_shortest_path": true
 				}
 			}
 		},
@@ -94,30 +72,53 @@
 						{"biting": "q.is_delayed_attacking"},
 						{"breathing": "q.facing_target_to_range_attack"},
 						{"flying": "!q.is_on_ground"}
-					]
+					],
+					"blend_transition": 0.5,
+					"blend_via_shortest_path": true
 				},
 				"roaring": {
 					"animations": ["roar"],
 					"transitions": [
 						{"roaring-pause": "q.any_animation_finished"}
-					]
+					],
+					"blend_transition": 0.5,
+					"blend_via_shortest_path": true
 				},
 				"biting": {
 					"animations": ["bite"],
 					"transitions": [
 						{"roaring-pause": "q.any_animation_finished"}
-					]
+					],
+					"blend_transition": 0.5,
+					"blend_via_shortest_path": true
 				},
 				"breathing": {
 					"animations": ["breath"],
 					"transitions": [
 						{"roaring-pause": "!q.facing_target_to_range_attack"}
-					]
+					],
+					"blend_transition": 0.5
 				},
 				"flying": {
 					"animations": [""],
 					"transitions": [
 						{"roaring-pause": "q.is_on_ground"}
+					],
+					"blend_transition": 0.5
+				}
+			}
+		},
+		"controller.animation.dm-dragon.head": {
+			"states": {
+				"default": {
+					"transitions": [
+						{"baby": "q.is_baby"}
+					]
+				},
+				"baby": {
+					"animations": ["baby"],
+					"transitions": [
+						{"default": "!q.is_baby"}
 					]
 				}
 			}
