@@ -1,0 +1,191 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragon_egg",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "properties": {
+        "dragonmounts2:egg_hatch_time": {
+          "type": "float",
+          "range": [ 0.000, 0.300 ],
+          "default": 0.000,
+          "client_sync": true
+        },
+        "dragonmounts2:egg_nesting_block": {
+          "type": "bool",
+          "default": true,
+          "client_sync": true
+        },
+        "dragonmounts2:egg_state": {
+          "type": "enum",
+          "values": [ "default", "transforming", "transformed", "hatching", "hatched" ],
+          "default": "default",
+          "client_sync": true
+        }
+      }
+    },
+    "component_groups": {
+      "dragonmounts2:dragon_egg_seconds":{
+        "minecraft:timer": {
+          "time": 1.0,
+          "looping": true,
+          "time_down_event": { "event": "minecraft:dragon_egg_timer" }
+        }
+      },
+      "dragonmounts2:egg_hatched": {
+        "minecraft:transformation": {
+          "into": "dragonmounts2:fire_dragon",
+          "begin_transform_sound": "hurt",
+          "transformation_sound": "death",
+          "delay": { "value": 60 }
+        }
+      },
+      "dragonmounts2:egg_despawn":{
+        "minecraft:instant_despawn": { }
+      }
+    },
+    "components": {
+      "minecraft:type_family": { "family": [ "fire_dragon_egg", "dragon_egg", "dragon", "dragonmounts2", "player", "mob" ] },
+      "minecraft:breathable": {
+        "total_supply": 240,
+        "suffocate_time": 0,
+        "breathes_lava": true,
+        "breathes_solids": true,
+        "generates_bubbles": false
+      },
+      "minecraft:collision_box": { "width": 0.98, "height": 0.98 },
+      "minecraft:conditional_bandwidth_optimization": { },
+      "minecraft:damage_sensor": {
+        "triggers": { "cause": "all", "deals_damage": "no" }
+      },
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": { "test": "bool_property", "domain": "dragonmounts2:egg_nesting_block", "operator": "==" },
+            "event": "minecraft:dragon_egg_hatching"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "bool_property", "domain": "dragonmounts2:egg_nesting_block", "operator": "!=" },
+                { "test": "has_component", "operator": "!=", "value": "minecraft:transformation" }
+              ]
+            },
+            "event": "minecraft:dragon_egg_transforming"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatching" },
+                { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "value": 0.300 }
+              ]
+            },
+            "event": "minecraft:dragon_egg_hatched"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transforming" },
+                { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "value": 0.300 }
+              ]
+            },
+            "event": "minecraft:dragon_egg_transformed"
+          }
+        ]
+      },
+      "minecraft:fire_immune": { },
+      "minecraft:health": { "value": 20, "max": 20 },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "on_interact": {
+              "event": "minecraft:dragon_egg_to_block",
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "!=", "value": 0.300 },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_sneak_held", "subject": "other" }
+                ]
+              }
+            },
+            "interact_text": "action.interact.dragonmounts2:return_to_block",
+            "play_sounds": "activate"
+          },
+          {
+            "on_interact": {
+              "event": "minecraft:increase_dragon_egg_hatch_time",
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "!=", "value": 0.300 },
+                  { "test": "has_equipment", "subject": "other", "domain": "main_hand", "value": "emerald" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_sneak_held", "subject": "other", "value": false }
+                ]
+              }
+            },
+            "interact_text": "action.interact.dragonmounts2:increase_time",
+            "play_sounds": "tempt",
+            "use_item": true
+          }
+        ]
+      },
+      "minecraft:is_collidable": { },
+      "minecraft:is_stackable": { },
+      "minecraft:knockback_resistance": { "value": 1.0 },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": false
+      },
+      "minecraft:physics": { }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": { "component_groups": [ "dragonmounts2:dragon_egg_seconds" ] },
+        "set_property": { "dragonmounts2:egg_state": "default" }
+      },
+      "minecraft:entity_born": {
+        "add": { "component_groups": [ "dragonmounts2:dragon_egg_seconds" ] },
+        "set_property": { "dragonmounts2:egg_state": "default" }
+      },
+      "minecraft:dragon_egg_hatching": {
+        "filters": {
+          "none_of": [
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatching" },
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatched" }
+          ]
+        },
+        "set_property": { "dragonmounts2:egg_state": "hatching" }
+      },
+      "minecraft:dragon_egg_hatched": {
+        "add": { "component_groups": [ "dragonmounts2:egg_hatched" ] },
+        "set_property": { "dragonmounts2:egg_state": "hatched" }
+      },
+      "minecraft:dragon_egg_timer": {
+        "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+0.001,0.000,0.300)" }
+      },
+      "minecraft:dragon_egg_transforming": {
+        "filters": {
+          "none_of": [
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transforming" },
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transformed" }
+          ]
+        },
+        "set_property": { "dragonmounts2:egg_state": "transforming" }
+      },
+      "minecraft:dragon_egg_transformed":{
+        "set_property": { "dragonmounts2:egg_state": "transformed" },
+        "trigger": "dragonmounts2:egg_despawn"
+      },
+      "minecraft:increase_dragon_egg_hatch_time": {
+        "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+0.009375,0.000,0.300)" }
+      },
+      "minecraft:dragon_egg_despawn": {
+        "add": { "component_groups": [ "dragonmounts2:egg_despawn" ] }
+      },
+      "minecraft:dragon_egg_to_block": { }
+    }
+  }
+}

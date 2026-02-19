@@ -1,0 +1,147 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.dragonmounts2.dragon_leggings",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "leg_right",
+					"pivot": [-1.9, 12, 0]
+				},
+				{
+					"name": "leggings_right",
+					"parent": "leg_right",
+					"pivot": [-1.4, 12, 0],
+					"binding": "'rightleg'",
+					"cubes": [
+						{
+							"origin": [-3.9, 0, -2],
+							"size": [4, 12, 4],
+							"inflate": 0.52,
+							"uv": {
+								"north": {"uv": [52, 20], "uv_size": [4, 12]},
+								"east": {"uv": [48, 20], "uv_size": [4, 12]},
+								"south": {"uv": [60, 20], "uv_size": [4, 12]},
+								"west": {"uv": [56, 20], "uv_size": [4, 12]},
+								"up": {"uv": [52, 16], "uv_size": [4, 4]},
+								"down": {"uv": [56, 20], "uv_size": [4, -4]}
+							}
+						},
+						{
+							"origin": [-2.5, 2.4, -3.1],
+							"size": [3, 11, 0],
+							"uv": {
+								"north": {"uv": [118, 16], "uv_size": [3, 11]},
+								"east": {"uv": [118, 16], "uv_size": [0, 11]},
+								"south": {"uv": [123, 16], "uv_size": [5, 11]},
+								"west": {"uv": [123, 16], "uv_size": [0, 11]},
+								"up": {"uv": [118, 16], "uv_size": [5, 0]},
+								"down": {"uv": [123, 16], "uv_size": [5, 0]}
+							}
+						},
+						{
+							"origin": [-3.9, 0, -2],
+							"size": [4, 12, 4],
+							"inflate": 0.42,
+							"uv": {
+								"north": {"uv": [36, 20], "uv_size": [4, 12]},
+								"east": {"uv": [32, 20], "uv_size": [4, 12]},
+								"south": {"uv": [44, 20], "uv_size": [4, 12]},
+								"west": {"uv": [40, 20], "uv_size": [4, 12]},
+								"up": {"uv": [36, 16], "uv_size": [4, 4]},
+								"down": {"uv": [40, 20], "uv_size": [4, -4]}
+							}
+						},
+						{
+							"origin": [-4.5, 2, -2],
+							"size": [4, 11, 5],
+							"inflate": 0.5001,
+							"pivot": [0, 1, 0],
+							"rotation": [2.5, 0, 0],
+							"uv": {
+								"north": {"uv": [105, 5], "uv_size": [5, 11]},
+								"east": {"uv": [100, 5], "uv_size": [5, 11]},
+								"south": {"uv": [123, 5], "uv_size": [5, 11]},
+								"west": {"uv": [114, 5], "uv_size": [5, 11]},
+								"up": {"uv": [105, 0], "uv_size": [5, 5]},
+								"down": {"uv": [114, 5], "uv_size": [9, -5]}
+							}
+						}
+					]
+				},
+				{
+					"name": "leg_left",
+					"pivot": [2.4, 12, 0]
+				},
+				{
+					"name": "leggings_left",
+					"parent": "leg_left",
+					"pivot": [1.9, 12, 0],
+					"binding": "'leftleg'",
+					"cubes": [
+						{
+							"origin": [-0.1, 0, -2],
+							"size": [4, 12, 4],
+							"inflate": 0.52,
+							"uv": {
+								"north": {"uv": [56, 20], "uv_size": [-4, 12]},
+								"east": {"uv": [60, 20], "uv_size": [-4, 12]},
+								"south": {"uv": [64, 20], "uv_size": [-4, 12]},
+								"west": {"uv": [52, 20], "uv_size": [-4, 12]},
+								"up": {"uv": [56, 16], "uv_size": [-4, 4]},
+								"down": {"uv": [60, 20], "uv_size": [-4, -4]}
+							}
+						},
+						{
+							"origin": [-0.1, 0, -2],
+							"size": [4, 12, 4],
+							"inflate": 0.42,
+							"uv": {
+								"north": {"uv": [40, 20], "uv_size": [-4, 12]},
+								"east": {"uv": [44, 20], "uv_size": [-4, 12]},
+								"south": {"uv": [48, 20], "uv_size": [-4, 12]},
+								"west": {"uv": [36, 20], "uv_size": [-4, 12]},
+								"up": {"uv": [40, 16], "uv_size": [-4, 4]},
+								"down": {"uv": [44, 20], "uv_size": [-4, -4]}
+							}
+						},
+						{
+							"origin": [-0.5, 2.4, -3.1],
+							"size": [3, 11, 0],
+							"uv": {
+								"north": {"uv": [120, 16], "uv_size": [3, 11]},
+								"east": {"uv": [118, 16], "uv_size": [0, 11]},
+								"south": {"uv": [123, 16], "uv_size": [5, 11]},
+								"west": {"uv": [123, 16], "uv_size": [0, 11]},
+								"up": {"uv": [118, 16], "uv_size": [5, 0]},
+								"down": {"uv": [123, 16], "uv_size": [5, 0]}
+							}
+						},
+						{
+							"origin": [-0.5, 2, -2],
+							"size": [5, 11, 5],
+							"inflate": 0.5,
+							"pivot": [0, 1, 0],
+							"rotation": [2.5, 0, 0],
+							"uv": {
+								"north": {"uv": [109, 5], "uv_size": [5, 11]},
+								"east": {"uv": [100, 5], "uv_size": [5, 11]},
+								"south": {"uv": [119, 5], "uv_size": [5, 11]},
+								"west": {"uv": [114, 5], "uv_size": [5, 11]},
+								"up": {"uv": [109, 0], "uv_size": [5, 5]},
+								"down": {"uv": [114, 5], "uv_size": [9, -5]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

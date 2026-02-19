@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.20",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "dragonmounts2:ice"
+    },
+    "elements": [
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "nest_ice",
+          "processors": "dragonmounts2:empty" 
+        },
+        "weight": 1
+      }
+    ],
+    "fallback": "dragonmounts2:ice"
+  }
+}

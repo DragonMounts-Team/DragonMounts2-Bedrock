@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:golden_dragonarmor"
+    },
+    "unlock": [
+      { "item": "minecraft:gold_block" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ "A B", " AA", "BB " ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "minecraft:gold_block" },
+      "B": { "item": "minecraft:gold_ingot" }
+    },
+    "result": { "item": "dragonmounts2:golden_dragonarmor", "count": 1 }
+  }
+}

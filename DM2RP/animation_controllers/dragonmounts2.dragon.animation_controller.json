@@ -1,0 +1,92 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.dragonmounts2.dragon.action": {
+			"initial_state": "on_ground",
+			"states": {
+				"on_ground": {
+					"animations": ["idle"],
+					"transitions": [
+						{"walk": "v.is_grounded&&q.modified_move_speed>0.25"},
+						{"hover": "v.is_flying&&q.modified_move_speed<=0.5"},
+						{"flying": "v.is_flying&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"},
+						{"dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"},
+						{"sit": "v.is_sitting&&!q.has_rider"},
+						{"bite": "q.is_delayed_attacking==1"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"flying": {
+					"animations": ["flying"],
+					"transitions": [
+						{"on_ground": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.2"},
+						{"walk": "v.is_grounded&&q.modified_move_speed>0.2"},
+						{"hover": "v.is_flying&&q.modified_move_speed<=0.5"},
+						{"dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"},
+						{"sit": "v.is_sitting&&v.is_grounded&&!q.has_rider"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"dive": {
+					"animations": ["dive"],
+					"transitions": [
+						{"on_ground": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.2"},
+						{"walk": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed>0.2"},
+						{"hover": "v.is_flying&&q.modified_move_speed<=0.5&&!q.is_on_ground"},
+						{"flying": "v.is_flying&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"},
+						{"sit": "v.is_sitting&&v.is_grounded&&q.modified_move_speed>0.2&&!q.has_rider"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"hover": {
+					"animations": ["hover"],
+					"transitions": [
+						{"on_ground": "(v.is_standing||q.has_rider) &&v.is_grounded&&q.modified_move_speed<=0.2"},
+						{"walk": "v.is_grounded&&q.modified_move_speed>0.2"},
+						{"sit": "v.is_sitting &&v.is_grounded&& !q.has_rider"},
+						{"flying": "v.is_flying&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"},
+						{"dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"sit": {
+					"animations": ["sit"],
+					"transitions": [
+						{"on_ground": "v.is_standing||q.has_rider"},
+						{"walk": "v.is_grounded&&q.modified_move_speed>0.2"},
+						{"flying": "v.is_flying&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"},
+						{"dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"},
+						{"hover": "v.is_flying&&q.modified_move_speed<=0.5"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"walk": {
+					"animations": ["walking"],
+					"transitions": [
+						{"flying": "v.is_flying&&q.anim_time>2&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"},
+						{"on_ground": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.25"},
+						{"bite": "q.is_delayed_attacking==1"},
+						{"dive": "v.is_flying"},
+						{"sit": "v.is_sitting&&v.is_grounded&&q.modified_move_speed<=0.25&&!q.has_rider"},
+						{"hover": "v.is_flying&&q.modified_move_speed<=0.5"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"bite": {
+					"animations": ["bite", "idle"],
+					"transitions": [
+						{"on_ground": "q.is_delayed_attacking==0"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				}
+			}
+		}
+	}
+}

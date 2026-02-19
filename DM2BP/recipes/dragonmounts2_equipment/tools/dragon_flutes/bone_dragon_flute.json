@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:bone_dragon_flute"
+    },
+    "unlock": [
+      { "item": "minecraft:bone" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ " A", "AB" ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "minecraft:bone" },
+      "B": { "item": "minecraft:string" }
+    },
+    "result": { "item": "dragonmounts2:bone_dragon_flute", "count": 1 }
+  }
+}

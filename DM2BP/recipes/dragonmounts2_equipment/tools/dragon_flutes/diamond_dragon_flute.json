@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:diamond_dragon_flute"
+    },
+    "unlock": [
+      { "item": "minecraft:diamond" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ " A", "AB" ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "minecraft:diamond" },
+      "B": { "item": "minecraft:string" }
+    },
+    "result": { "item": "dragonmounts2:diamond_dragon_flute", "count": 1 }
+  }
+}

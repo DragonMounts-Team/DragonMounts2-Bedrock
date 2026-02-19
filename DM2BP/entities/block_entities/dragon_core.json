@@ -1,0 +1,57 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_core",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "properties": {
+        "dragonmounts2:core_state": {
+          "type": "enum",
+          "values": [ "closed", "opening", "open", "closing" ],
+          "default": "closed",
+          "client_sync": true
+        }
+      }
+    },
+    "component_groups": {
+      "dragonmounts2:core_destroyed":{ "minecraft:instant_despawn": { } }
+    },
+    "components": {
+      "minecraft:type_family": { "family": [ "inanimate" ] },
+      "minecraft:rotation_axis_aligned": { },
+      "minecraft:body_rotation_blocked": { },
+      "minecraft:collision_box": { "width": 0, "height": 0 },
+      "minecraft:custom_hit_test": { "hitboxes": [ { "width": 0, "height": 0, "pivot": [ 0, 0, 0 ] } ] },
+      "minecraft:damage_sensor": {
+        "triggers": { "cause": "all", "deals_damage": "no" }
+      },
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": { "test": "in_block", "operator": "!=", "value": "dragonmounts2:dragon_core" },
+            "event": "minecraft:dragon_core_destroyed"
+          }
+        ]
+      },
+      "minecraft:fire_immune": { },
+      "minecraft:health": { "value": 1, "max": 1 },
+      "minecraft:is_collidable": { },
+      "minecraft:is_stackable": { },
+      "minecraft:knockback_resistance": { "value": 1.0 },
+      "minecraft:pushable": { "is_pushable": false, "is_pushable_by_piston": false },
+      "minecraft:physics": { "has_gravity": false, "has_collision": false }
+    },
+    "events": {
+      "minecraft:dragon_core_close": {
+        "set_property": { "dragonmounts2:core_state": "closing" }
+      },
+      "minecraft:dragon_core_open": {
+        "set_property": { "dragonmounts2:core_state": "opening" }
+      },
+      "minecraft:dragon_core_destroyed": {
+        "add": { "component_groups": [ "dragonmounts2:core_destroyed" ] }
+      }
+    }
+  }
+}

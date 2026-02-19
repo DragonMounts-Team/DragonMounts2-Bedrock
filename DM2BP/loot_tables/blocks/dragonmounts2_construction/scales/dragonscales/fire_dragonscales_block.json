@@ -1,0 +1,14 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "dragonmounts2:fire_dragonscales_block",
+          "weight": 100
+        }
+      ]
+    }
+  ]
+}

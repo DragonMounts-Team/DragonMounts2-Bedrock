@@ -1,0 +1,73 @@
+{
+  "format_version": "1.21.60",
+  "minecraft:block": {
+    "description": {
+      "identifier": "dragonmountsplus:forest_scale",
+      "menu_category": {
+        "category": "construction"
+      }
+    },
+    "components": {
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 4.0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 1.0
+      },
+
+      "minecraft:flammable": {
+        "catch_chance_modifier": 0,
+        "destroy_chance_modifier": 0
+      },
+      "minecraft:map_color": "#FFFFFF",
+      "minecraft:light_dampening": 15,
+      "minecraft:light_emission": 0,
+      "minecraft:loot": "loot_tables/dragon_scales/forest_scale.json",
+      "minecraft:collision_box": {
+        "origin": [
+          -8.0,
+          0.0,
+          -8.0
+        ],
+        "size": [
+          16.0,
+          16.0,
+          16.0
+        ]
+      },
+      "minecraft:selection_box": {
+        "origin": [
+          -8.0,
+          0.0,
+          -8.0
+        ],
+        "size": [
+          16.0,
+          16.0,
+          16.0
+        ]
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "dragonmountsplus_forest_scale",
+          "render_method": "blend"
+        }
+      },
+
+      "minecraft:custom_components": [
+        "dragonmountsplus_forest_scale:trigger"
+      ]
+    },
+          "tags": [
+        "diamond_pick_diggable",
+        "gold_pick_diggable",
+        "iron_pick_diggable",
+        "stone",
+        "stone_pick_diggable",
+        "wood_pick_diggable"
+      ],
+    "events": {},
+    "permutations": []
+  }
+}
+

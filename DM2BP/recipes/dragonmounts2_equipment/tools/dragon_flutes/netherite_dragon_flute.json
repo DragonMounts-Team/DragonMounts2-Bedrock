@@ -1,0 +1,13 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:recipe_smithing_transform": {
+    "description": {
+      "identifier": "dragonmounts2:netherite_dragon_flute"
+    },
+    "tags": [ "smithing_table" ],
+    "template": "minecraft:netherite_upgrade_smithing_template",
+    "base": "dragonmounts2:diamond_dragon_flute",
+    "addition": "minecraft:netherite_ingot",
+    "result": "dragonmounts2:netherite_dragon_flute"
+  }
+}

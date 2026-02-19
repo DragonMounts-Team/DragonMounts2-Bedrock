@@ -1,0 +1,28 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:dragonarmor_leather",
+      "item": { "dragonmounts2:leather_dragonarmor":"q.owner_identifier == 'dragonmounts2:fire_dragon'" },
+      "materials": { "default": "entity_alphatest_change_color", "enchanted": "entity_alphatest_change_color_glint", "overlay": "entity_alphatest", "overlay_enchanted": "entity_alphatest_glint"
+      },
+      "textures": {
+        "dyed": "textures/models/dragonmounts2_equipment/dragon_equipment/normal_armor/armor_leather_dyeable",
+        "overlay": "textures/models/dragonmounts2_equipment/dragon_equipment/normal_armor/armor_leather_overlay",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon.armor_normal"
+      },
+      "scripts": {
+        "pre_animation": [
+          "v.is_dyed = q.armor_color_slot(1,0)!=0.0||q.armor_color_slot(1,1)!=0.0||q.armor_color_slot(1,2)!=0.0||q.armor_color_slot(1,3)!=0.0;"
+        ]
+      },
+      "render_controllers": [
+        { "controller.render.dragonarmor.dyeable": "v.is_dyed" },
+        "controller.render.dragonarmor.overlay"
+      ]
+    }
+  }
+}

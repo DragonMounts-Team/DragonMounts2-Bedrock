@@ -1,0 +1,22 @@
+{
+	"format_version": "1.21.80",
+	"minecraft:structure_set": {
+		"description": {
+			"identifier": "dragonmounts2:enchant"
+		},
+		
+		"placement": {
+			"type": "minecraft:random_spread",
+			"salt": 1909868161,
+			"separation": 12,
+			"spacing": 48,
+			"spread_type": "triangular"
+		},
+		"structures": [
+			{
+				"structure": "dragonmounts2:enchant",
+				"weight": 1
+			}
+		]
+	}
+}

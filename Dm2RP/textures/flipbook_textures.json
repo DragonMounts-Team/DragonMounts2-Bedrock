@@ -4,6 +4,12 @@
     "atlas_tile": "aether_dragon_egg",
     "frames": [ 0, 1, 2, 3 ],
     "ticks_per_frame": 5
+    },
+    {
+    "flipbook_texture": "textures/blocks/eggs/nether",
+    "atlas_tile": "nether_dragon_egg",
+    "frames": [ 0, 1, 2 ], 
+    "ticks_per_frame": 8
   },
   {
     "flipbook_texture": "textures/blocks/eggs/water",

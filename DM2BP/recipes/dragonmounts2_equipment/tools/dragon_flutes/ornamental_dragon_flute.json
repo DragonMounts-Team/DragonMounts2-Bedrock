@@ -1,0 +1,20 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:ornamental_dragon_flute"
+    },
+    "unlock": [
+      { "item": "minecraft:lapis_lazuli" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ " A", "BC" ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "minecraft:lapis_lazuli" },
+      "B": { "item": "minecraftgold_ingot" },
+      "C": { "item": "minecraft:string" }
+    },
+    "result": { "item": "dragonmounts2:ornamental_dragon_flute", "count": 1 }
+  }
+}

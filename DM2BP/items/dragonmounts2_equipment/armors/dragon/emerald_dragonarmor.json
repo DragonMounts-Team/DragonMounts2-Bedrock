@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:emerald_dragonarmor"
+    },
+    "components": {
+      "minecraft:display_name": { "value": "item.dragonmounts2:dragonarmor.emerald.name" },
+      "minecraft:enchantable": { "value": 9, "slot": "armor_torso" },
+      "minecraft:icon": { "textures": { "default": "dragonmounts2:dragonarmor_emerald" } },
+      "minecraft:max_stack_size": { "value": 1 },
+      "minecraft:rarity": "common",
+      "minecraft:tags": {
+        "tags": [ "minecraft:is_armor", "minecraft:emerald_tier", "minecraft:transform_materials", "dragonmounts2:dragonarmors"
+        ]
+      }
+    }
+  }
+}

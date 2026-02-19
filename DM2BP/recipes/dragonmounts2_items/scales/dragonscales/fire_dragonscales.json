@@ -1,0 +1,18 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragonscales"
+    },
+    "unlock": [
+      { "item": "dragonmounts2:fire_dragonscales_block" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ "A" ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "dragonmounts2:fire_dragonscales_block" }
+    },
+    "result": { "item": "dragonmounts2:fire_dragonscales", "count": 9 }
+  }
+}

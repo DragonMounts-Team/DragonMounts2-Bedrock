@@ -1,0 +1,22 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragonscales_block",
+      "menu_category": {
+        "category": "items",
+        "group": "dragonmounts2:itemGroup.name.dragonscales_blocks",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:block_placer": {
+        "block": "dragonmounts2:fire_dragonscales_block",
+        "replace_block_item": true
+      },
+      "minecraft:display_name": { "value": "tile.dragonmounts2:fire_dragonscales_block.name" },
+      "minecraft:fire_resistant": { "value": true },
+      "minecraft:rarity": "common"
+    }
+  }
+}

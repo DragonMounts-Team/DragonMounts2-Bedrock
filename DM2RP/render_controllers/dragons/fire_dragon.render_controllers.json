@@ -1,0 +1,79 @@
+{
+  "format_version": "1.26.0",
+  "render_controllers": {
+    "controller.render.dragonmounts2.fire_dragon.death_pre_pass": {
+      "geometry": "Geometry.dragon_default",
+      "materials": [ { "*": "Material.dissolve_0" } ],
+      "textures": [ "Texture.exploding" ],
+      "part_visibility": [
+        { "*": "v.death_ticks!=0.00" }
+      ],
+      "overlay_color": {
+        "r": "v.death_ticks!=0.00?v.death_alpha:1",
+        "g": "v.death_ticks!=0.00?v.death_alpha:1",
+        "b": "v.death_ticks!=0.00?v.death_alpha:1",
+        "a": "v.death_ticks!=0.00?v.death_alpha:1"
+      }
+    },
+    "controller.render.dragonmounts2.fire_dragon.death_main_pass": {
+      "geometry": "Geometry.dragon_default",
+      "materials": [ { "*": "Material.dissolve_1" } ],
+      "textures": [ "Array.base[v.variant_type_index]" ],
+      "arrays": {
+        "textures": {
+          "Array.base": [ "Texture.flame", "Texture.blaze", "Texture.blue_fire" ]
+        }
+      }
+    },
+    "controller.render.dragonmounts2.fire_dragon.base": {
+      "materials": [ { "*": "Material.dragon_default" } ],
+      "geometry": "Geometry.dragon_default",
+      "textures": [
+        "Array.base[v.variant_type_index]",
+        "Array.saddled[q.is_saddled]"
+      ],
+      "arrays": {
+        "textures": {
+          "Array.base": [ "Texture.flame", "Texture.blaze", "Texture.blue_fire" ],
+          "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ]
+        }
+      },
+      "part_visibility": [
+        { "body.back": "!q.is_saddled" }
+      ]
+    },
+    "controller.render.dragonmounts2.dragon_collar": {
+      "geometry": "Geometry.dragon_default",
+      "materials": [ { "*": "Material.collar" } ],
+      "textures": [ "Texture.collar" ]
+    },
+    "controller.render.dragonmounts2.fire_dragon.glow": {
+      "geometry": "Geometry.glow",
+      "materials": [ { "*": "Material.dragon" } ],
+      "part_visibility": [ { "body.back": "!q.is_saddled" } ],
+      "textures": [ "Array.base[v.variant_type_index]" ],
+      "arrays": {
+        "textures": {
+          "Array.base": [ "Texture.flame_glow", "Texture.blaze_glow", "Texture.blue_fire_glow" ]
+        }
+      },
+      "light_color_multiplier": 1.2,
+      "ignore_lighting": true
+    },
+    "controller.render.fire_dragon_egg": {
+      "geometry": "Geometry.dragon_egg",
+      "materials": [ { "*": "Material.dragon_egg" } ],
+      "textures": [ "Texture.dragon_egg" ],
+      "is_hurt_color": { "r": 1, "g": 1, "b": 1, "a": 0.1 }
+    },
+    "controller.render.fire_dragon_egg_death": {
+      "geometry": "Geometry.dragon_egg",
+      "materials": [
+        { "*": "Material.death" }
+      ],
+      "textures": [
+        "Texture.dragon_egg"
+      ]
+    }
+  }
+}

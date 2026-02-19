@@ -1,7 +1,8 @@
 ﻿// ==== Pack Info ====
-pack.description=Dragon Mounts 2: Bedrock Edition
-pack.name=Dragon Mounts 2: Bedrock Edition
+pack.description=Dragon Mounts 2 - Resource Pack
+pack.name=Dragon Mounts 2: Bedrock Edition V2.1
 
+<<<<<<< Updated upstream
 // ==== Helmets ====
 item.dragonmounts.helmet.name=Dragon Scale Helmet
 item.dragonmountsplus:dark_dragonscale_helmet.name=Dark Dragon Helmet
@@ -18,175 +19,322 @@ item.dragonmountsplus:sunlight_dragonscale_helmet.name=Sunlight Dragon Helmet
 item.dragonmountsplus:terra_dragonscale_helmet.name=Terra Dragon Helmet
 item.dragonmountsplus:water_dragonscale_helmet.name=Water Dragon Helmet
 item.dragonmountsplus:zombie_dragonscale_helmet.name=Zombie Dragon Helmet
+=======
+// ==== New TOT ====
+>>>>>>> Stashed changes
 
-// ==== Chestplates ====
-item.dragonmountsplus:aether_dragonscale_chestplate.name=Aether Dragon Chestplate
-item.dragonmountsplus:dark_dragonscale_chestplate.name=Dark Dragon Chestplate
-item.dragonmountsplus:enchant_dragonscale_chestplate.name=Enchanted Dragon Chestplate
-item.dragonmountsplus:ender_dragonscale_chestplate.name=Ender Dragon Chestplate
-item.dragonmountsplus:fire_dragonscale_chestplate.name=Fire Dragon Chestplate
-item.dragonmountsplus:forest_dragonscale_chestplate.name=Forest Dragon Chestplate
-item.dragonmountsplus:ice_dragonscale_chestplate.name=Ice Dragon Chestplate
-item.dragonmountsplus:moonlight_dragonscale_chestplate.name=Moonlight Dragon Chestplate
-item.dragonmountsplus:nether_dragonscale_chestplate.name=Nether Dragon Chestplate
-item.dragonmountsplus:sculk_dragonscale_chestplate.name=Sculk Dragon Chestplate
-item.dragonmountsplus:storm_dragonscale_chestplate.name=Storm Dragon Chestplate
-item.dragonmountsplus:sunlight_dragonscale_chestplate.name=Sunlight Dragon Chestplate
-item.dragonmountsplus:terra_dragonscale_chestplate.name=Terra Dragon Chestplate
-item.dragonmountsplus:water_dragonscale_chestplate.name=Water Dragon Chestplate
-item.dragonmountsplus:zombie_dragonscale_chestplate.name=Zombie Dragon Chestplate
+// ==== Dragon Interactions ====
+action.interact.dragonmounts2:bottle=Bottle
+action.interact.dragonmounts2:change_variant=Change Variant
+action.interact.dragonmounts2:equip_armor=Equip Armor
+action.interact.dragonmounts2:equip_chest=Equip Chest
+action.interact.dragonmounts2:equip_saddle=Equip Saddle
+action.interact.dragonmounts2:follow=Follow
+action.interact.dragonmounts2:increase_time=Increase Time
+action.interact.dragonmounts2:lock_dragon=Lock Dragon
+action.interact.dragonmounts2:return_to_block=Return To Block
+action.interact.dragonmounts2:ride=Ride
+action.interact.dragonmounts2:shear=Shear
+action.interact.dragonmounts2:sit=Sit
+action.interact.dragonmounts2:stand=Stand
+action.interact.dragonmounts2:unequip_armor=Unequip Armor
+action.interact.dragonmounts2:unequip_saddle=Unequip Saddle
+action.interact.dragonmounts2:unlock_dragon=Unlock Dragon
+action.interact.dragonmounts2:wander=Wander
 
-// ==== Leggings ====
-item.dragonmountsplus:aether_dragonscale_leggings.name=Aether Dragon Leggings
-item.dragonmountsplus:dark_dragonscale_leggings.name=Dark Dragon Leggings
-item.dragonmountsplus:enchant_dragonscale_leggings.name=Enchanted Dragon Leggings
-item.dragonmountsplus:ender_dragonscale_leggings.name=Ender Dragon Leggings
-item.dragonmountsplus:fire_dragonscale_leggings.name=Fire Dragon Leggings
-item.dragonmountsplus:forest_dragonscale_leggings.name=Forest Dragon Leggings
-item.dragonmountsplus:ice_dragonscale_leggings.name=Ice Dragon Leggings
-item.dragonmountsplus:moonlight_dragonscale_leggings.name=Moonlight Dragon Leggings
-item.dragonmountsplus:nether_dragonscale_leggings.name=Nether Dragon Leggings
-item.dragonmountsplus:sculk_dragonscale_leggings.name=Sculk Dragon Leggings
-item.dragonmountsplus:storm_dragonscale_leggings.name=Storm Dragon Leggings
-item.dragonmountsplus:sunlight_dragonscale_leggings.name=Sunlight Dragon Leggings
-item.dragonmountsplus:terra_dragonscale_leggings.name=Terra Dragon Leggings
-item.dragonmountsplus:water_dragonscale_leggings.name=Water Dragon Leggings
-item.dragonmountsplus:zombie_dragonscale_leggings.name=Zombie Dragon Leggings
+// ==== Item Groups ====
+dragonmounts2:itemGroup.name.dragon_eggs=Dragon Eggs
+dragonmounts2:itemGroup.name.dragon_flutes=Dragon Flutes
+dragonmounts2:itemGroup.name.dragon_heads=Dragon Heads
+dragonmounts2:itemGroup.name.dragonarmors=Dragon Armors
+dragonmounts2:itemGroup.name.dragonscales=Dragonscales
+dragonmounts2:itemGroup.name.dragonscales_blocks=Dragonscales Blocks
 
-// ==== Boots ====
-item.dragonmountsplus:aether_dragonscale_boots.name=Aether Dragon Boots
-item.dragonmountsplus:dark_dragonscale_boots.name=Dark Dragon Boots
-item.dragonmountsplus:enchant_dragonscale_boots.name=Enchanted Dragon Boots
-item.dragonmountsplus:ender_dragonscale_boots.name=Ender Dragon Boots
-item.dragonmountsplus:fire_dragonscale_boots.name=Fire Dragon Boots
-item.dragonmountsplus:forest_dragonscale_boots.name=Forest Dragon Boots
-item.dragonmountsplus:ice_dragonscale_boots.name=Ice Dragon Boots
-item.dragonmountsplus:moonlight_dragonscale_boots.name=Moonlight Dragon Boots
-item.dragonmountsplus:nether_dragonscale_boots.name=Nether Dragon Boots
-item.dragonmountsplus:sculk_dragonscale_boots.name=Sculk Dragon Boots
-item.dragonmountsplus:storm_dragonscale_boots.name=Storm Dragon Boots
-item.dragonmountsplus:sunlight_dragonscale_boots.name=Sunlight Dragon Boots
-item.dragonmountsplus:terra_dragonscale_boots.name=Terra Dragon Boots
-item.dragonmountsplus:water_dragonscale_boots.name=Water Dragon Boots
-item.dragonmountsplus:zombie_dragonscale_boots.name=Zombie Dragon Boots
+// ==== Entity Names ====
+entity.dragonmounts2:fire_dragonbreath.name=Fire Dragonbreath
+entity.dragonmounts2:fire_dragon.name=Fire Dragon
+entity.dragonmounts2:ice_dragonbreath.name=Ice Dragonbreath
+entity.dragonmounts2:ice_dragon.name=Ice Dragon
+entity.dragonmounts2:soul_fire_dragonbreath.name=Soul Fire Dragonbreath
+
+item.dragonmounts2:cooked_dragon_meat.name=Cooked Dragon Meat
+item.dragonmounts2:diamond_shears.name=Diamond Shears
+item.dragonmounts2:dragon_essence.name=Dragon Essence
+item.dragonmounts2:dragonarmor.copper.name=Copper Dragon Armour
+item.dragonmounts2:dragonarmor.diamond.name=Diamond Dragon Armour
+item.dragonmounts2:dragonarmor.emerald.name=Emerald Dragon Armour
+item.dragonmounts2:dragonarmor.gold.name=Golden Dragon Armour
+item.dragonmounts2:dragonarmor.iron.name=Iron Dragon Armour
+item.dragonmounts2:dragonarmor.leather.name=Leather Dragon Armour
+item.dragonmounts2:dragonarmor.netherite.name=Netherite Dragon Armour
+item.dragonmounts2:dragon_flute.name=Dragon Flute
+item.dragonmounts2:dragon_flute.bone.name=Bone Dragon Flute
+item.dragonmounts2:dragon_flute.diamond.name=Diamond Dragon Flute
+item.dragonmounts2:dragon_flute.netherite.name=Netherite Dragon Flute
+item.dragonmounts2:dragon_flute.ornamental.name=Ornamental Dragon Flute
+item.dragonmounts2:dragon_flute.wooden.name=Wooden Dragon Flute
+item.dragonmounts2:aether_dragonscales.name=Aether Dragonscales
+item.dragonmounts2:dark_dragonscales.name=Dark Dragonscales
+item.dragonmounts2:enchant_dragonscales.name=Enchant Dragonscales
+item.dragonmounts2:ender_dragonscales.name=Ender Dragonscales
+item.dragonmounts2:fire_dragonscales.name=Fire Dragonscales
+item.dragonmounts2:forest_dragonscales.name=Forest Dragonscales
+item.dragonmounts2:ice_dragonscales.name=Ice Dragonscales
+item.dragonmounts2:moonlight_dragonscales.name=Moonlight Dragonscales
+item.dragonmounts2:nether_dragonscales.name=Nether Dragonscales
+item.dragonmounts2:sculk_dragonscales.name=Sculk Dragonscales
+item.dragonmounts2:skeleton_dragonscales.name=Skeleton Dragonscales
+item.dragonmounts2:storm_dragonscales.name=Storm Dragonscales
+item.dragonmounts2:sunlight_dragonscales.name=Sunlight Dragonscales
+item.dragonmounts2:terra_dragonscales.name=Terra Dragonscales
+item.dragonmounts2:water_dragonscales.name=Water Dragonscales
+item.dragonmounts2:wither_dragonscales.name=Wither Dragonscales
+item.dragonmounts2:zombie_dragonscales.name=Zombie Dragonscales
+item.dragonmounts2:netherite_shears.name=Netherite Shears
+item.dragonmounts2:raw_dragon_meat.name=Raw Dragon Meat
+item.dragonmounts2:variation_orb.name=Variation Orb
+
+item.spawn_egg.entity.dragonmounts2:aether_dragon.name=Aether Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:dark_dragon.name=Dark Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:ender_dragon.name=Ender Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:enchant_dragon.name=Enchant Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:fire_dragon.name=Fire Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:forest_dragon.name=Forest Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:ice_dragon.name=Ice Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:moonlight_dragon.name=Moonlight Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:nether_dragon.name=Nether Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:sculk_dragon.name=Sculk Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:skeleton_dragon.name=Skeleton Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:storm_dragon.name=Storm Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:sunlight_dragon.name=Sunlight Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:terra_dragon.name=Terra Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:water_dragon.name=Water Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:wither_dragon.name=Wither Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:zombie_dragon.name=Zombie Dragon Spawn Egg
+
+tile.dragonmounts2:aether_dragon_egg.name=Aether Dragon Egg
+tile.dragonmounts2:aether_dragon_head.name=Aether Dragon Head
+tile.dragonmounts2:aether_dragonscales_block.name=Block of Aether Dragonscales
+tile.dragonmounts2:dark_dragon_egg.name=Dark Dragon Egg
+tile.dragonmounts2:dark_dragon_head.name=Dark Dragon Head
+tile.dragonmounts2:dark_dragonscales_block.name=Block of Dark Dragonscales
+tile.dragonmounts2:ender_dragon_egg.name=Ender Dragon Egg
+tile.dragonmounts2:ender_dragon_head.name=Ender Dragon Head
+tile.dragonmounts2:ender_dragonscales_block.name=Block of Ender Dragonscales
+tile.dragonmounts2:enchant_dragon_egg.name=Enchant Dragon Egg
+tile.dragonmounts2:enchant_dragon_head.name=Enchant Dragon Head
+tile.dragonmounts2:enchant_dragonscales_block.name=Block of Enchant Dragonscales
+tile.dragonmounts2:fire_dragon_egg.name=Fire Dragon Egg
+tile.dragonmounts2:fire_dragon_head.flame.name=Flame Fire Dragon Head
+tile.dragonmounts2:fire_dragon_head.blaze.name=Blaze Fire Dragon Head
+tile.dragonmounts2:fire_dragon_head.blue.name=Blue Fire Dragon Head
+tile.dragonmounts2:fire_dragonscales_block.name=Block of Fire Dragonscales
+tile.dragonmounts2:forest_dragon_egg.name=Forest Dragon Egg
+tile.dragonmounts2:forest_dragon_head.name=Forest Dragon Head
+tile.dragonmounts2:forest_dragonscales_block.name=Block of Forest Dragonscales
+tile.dragonmounts2:ice_dragon_egg.name=Ice Dragon Egg
+tile.dragonmounts2:ice_dragon_head.name=Ice Dragon Head
+tile.dragonmounts2:ice_dragonscales_block.name=Block of Ice Dragonscales
+tile.dragonmounts2:moonlight_dragon_egg.name=Moonlight Dragon Egg
+tile.dragonmounts2:moonlight_dragon_head.name=Moonlight Dragon Head
+tile.dragonmounts2:moonlight_dragonscales_block.name=Block of Moonlight Dragonscales
+tile.dragonmounts2:nether_dragon_egg.name=Nether Dragon Egg
+tile.dragonmounts2:nether_dragon_head.name=Nether Dragon Head
+tile.dragonmounts2:nether_dragonscales_block.name=Block of Nether Dragonscales
+tile.dragonmounts2:sculk_dragon_egg.name=Sculk Dragon Egg
+tile.dragonmounts2:sculk_dragon_head.name=Sculk Dragon Head
+tile.dragonmounts2:sculk_dragonscales_block.name=Block of Sculk Dragonscales
+tile.dragonmounts2:skeleton_dragon_egg.name=Skeleton Dragon Egg
+tile.dragonmounts2:skeleton_dragon_head.name=Skeleton Dragon Head
+tile.dragonmounts2:skeleton_dragonscales_block.name=Block of Skeleton Dragonscales
+tile.dragonmounts2:storm_dragon_egg.name=Storm Dragon Egg
+tile.dragonmounts2:storm_dragon_head.name=Storm Dragon Head
+tile.dragonmounts2:storm_dragonscales_block.name=Block of Storm Dragonscales
+tile.dragonmounts2:sunlight_dragon_egg.name=Sunlight Dragon Egg
+tile.dragonmounts2:sunlight_dragon_head.name=Sunlight Dragon Head
+tile.dragonmounts2:sunlight_dragonscales_block.name=Block of Sunlight Dragonscales
+tile.dragonmounts2:terra_dragon_egg.name=Terra Dragon Egg
+tile.dragonmounts2:terra_dragon_head.name=Terra Dragon Head
+tile.dragonmounts2:terra_dragonscales_block.name=Block of Terra Dragonscales
+tile.dragonmounts2:water_dragon_egg.name=Water Dragon Egg
+tile.dragonmounts2:water_dragon_head.name=Water Dragon Head
+tile.dragonmounts2:water_dragonscales_block.name=Block of Water Dragonscales
+tile.dragonmounts2:wither_dragon_egg.name=Wither Dragon Egg
+tile.dragonmounts2:wither_dragon_head.name=Wither Dragon Head
+tile.dragonmounts2:wither_dragonscales_block.name=Block of Wither Dragonscales
+tile.dragonmounts2:zombie_dragon_egg.name=Zombie Dragon Egg
+tile.dragonmounts2:zombie_dragon_head.name=Zombie Dragon Head
+tile.dragonmounts2:zombie_dragonscales_block.name=Block of Zombie Dragonscales
+
+
+
+tooltip.dragonmounts2:dragon_flute.bound=Dragon has been bound to this dragon flute!
+tooltip.dragonmounts2:dragon_flute.bound_to=Bound to:
+tooltip.dragonmounts2:dragon_flute.bound_to_owner=Bound to Owner: 
+tooltip.dragonmounts2:dragon_flute.bounded_other_flute=This dragon is already bound to a different dragon flute!
+tooltip.dragonmounts2:dragon_flute.bounded_other_owner=This dragon is already bound to another player's flute!
+tooltip.dragonmounts2:dragon_flute.came=Your dragon came!
+tooltip.dragonmounts2:dragon_flute.come_to_owner=Come To Owner!
+tooltip.dragonmounts2:dragon_flute.cooldown=Dragon Flute on cooldown.
+tooltip.dragonmounts2:dragon_flute.follow=Follow
+tooltip.dragonmounts2:dragon_flute.follow_deny=Dragon can't follow right now.
+tooltip.dragonmounts2:dragon_flute.following=Dragon is following!
+tooltip.dragonmounts2:dragon_flute.lock=Lock
+tooltip.dragonmounts2:dragon_flute.locked=Dragon is locked!
+tooltip.dragonmounts2:dragon_flute.name=Dragon Flute
+tooltip.dragonmounts2:dragon_flute.not_bound=This dragon flute is not bound!
+tooltip.dragonmounts2:dragon_flute.not_located=You cannot locate your dragon...
+tooltip.dragonmounts2:dragon_flute.not_owned=You do not own this dragon.
+tooltip.dragonmounts2:dragon_flute.owned_by=Dragon Flute is owned by: 
+tooltip.dragonmounts2:dragon_flute.ready=Dragon Flute is Ready!
+tooltip.dragonmounts2:dragon_flute.select_command=Select Command:
+tooltip.dragonmounts2:dragon_flute.selected_mobs=Dragon Flute can only be used for specific dragons!
+tooltip.dragonmounts2:dragon_flute.sit=Sit
+tooltip.dragonmounts2:dragon_flute.sitting=Dragon is sitting!
+tooltip.dragonmounts2:dragon_flute.stand=Stand
+tooltip.dragonmounts2:dragon_flute.standing=Dragon is standing!
+tooltip.dragonmounts2:dragon_flute.unbound=Dragon has been unbound to this dragon flute!
+tooltip.dragonmounts2:dragon_flute.unlock=Unlock
+tooltip.dragonmounts2:dragon_flute.unlocked=Dragon is unlocked!
+tooltip.dragonmounts2:dragon_flute.untamed=Dragon is untamed and cannot be binded!
+tooltip.dragonmounts2:dragon_flute.wander=Wander
+tooltip.dragonmounts2:dragon_flute.wandering=Dragon is wandering!
+
+tooltip.dragonmounts2:dragon_identifier=Dragon Identifier
+tooltip.dragonmounts2:dragon_name=Dragon Name
+tooltip.dragonmounts2:dragon_not_owned=You are not the owner of this dragon!
+tooltip.dragonmounts2:dragon_owner_identifier=Owner Identifier
+tooltip.dragonmounts2:dragon_owner_name=Owner Name
+tooltip.dragonmounts2:dragon_variant_type=Variant Type
+tooltip.dragonmounts2:aether=Aether
+tooltip.dragonmounts2:dark=Dark
+tooltip.dragonmounts2:enchant=Enchant
+tooltip.dragonmounts2:ender=Ender
+tooltip.dragonmounts2:fire=Fire
+tooltip.dragonmounts2:forest=Forest
+tooltip.dragonmounts2:ice=Ice
+tooltip.dragonmounts2:moonlight=Moonlight
+tooltip.dragonmounts2:nether=Nether
+tooltip.dragonmounts2:sculk=Sculk
+tooltip.dragonmounts2:skeleton=Skeleton
+tooltip.dragonmounts2:storm=Storm
+tooltip.dragonmounts2:sunlight=Sunlight
+tooltip.dragonmounts2:terra=Terra
+tooltip.dragonmounts2:water=Water
+tooltip.dragonmounts2:wither=Wither
+tooltip.dragonmounts2:zombie=Zombie
+
+// ==== Helmet ====
+item.dragonmounts2:fire_dragonscale_helmet.name=Fire Dragon Scale Helmet
+item.dragonmounts2:fire_dragonscale_chestplate.name=Fire Dragon Scale Chestplate
+item.dragonmounts2:fire_dragonscale_leggings.name=Fire Dragon Scale Leggings
+item.dragonmounts2:fire_dragonscale_boots.name=Fire Dragon Scale Boots
 
 // ==== Dragon Scales ====
-item.dragonmountsplus:aether_dragonscales.name=Aether Dragon Scales
-item.dragonmountsplus:dark_dragonscales.name=Dark Dragon Scales
-item.dragonmountsplus:enchant_dragonscales.name=Enchanted Dragon Scales
-item.dragonmountsplus:ender_dragonscales.name=Ender Dragon Scales
-item.dragonmountsplus:fire_dragonscales.name=Fire Dragon Scales
-item.dragonmountsplus:forest_dragonscales.name=Forest Dragon Scales
-item.dragonmountsplus:ice_dragonscales.name=Ice Dragon Scales
-item.dragonmountsplus:moonlight_dragonscales.name=Moonlight Dragon Scales
-item.dragonmountsplus:nether_dragonscales.name=Nether Dragon Scales
-item.dragonmountsplus:sculk_dragonscales.name=Sculk Dragon Scales
-item.dragonmountsplus:storm_dragonscales.name=Storm Dragon Scales
-item.dragonmountsplus:sunlight_dragonscales.name=Sunlight Dragon Scales
-item.dragonmountsplus:terra_dragonscales.name=Terra Dragon Scales
-item.dragonmountsplus:water_dragonscales.name=Water Dragon Scales
-item.dragonmountsplus:zombie_dragonscales.name=Zombie Dragon Scales
+item.dragonmounts2.dragon_scales.name=Dragon Scales
 
 // ==== Dragon Eggs ====
-tile.dragonmountsplus:aether_dragon_egg.name=Aether Dragon Egg
-tile.dragonmountsplus:dark_dragon_egg.name=Dark Dragon Egg
-tile.dragonmountsplus:enchant_dragon_egg.name=Enchanted Dragon Egg
-tile.dragonmountsplus:ender_dragon_egg.name=Ender Dragon Egg
-tile.dragonmountsplus:fire_dragon_egg.name=Fire Dragon Egg
-tile.dragonmountsplus:forest_dragon_egg.name=Forest Dragon Egg
-tile.dragonmountsplus:ice_dragon_egg.name=Ice Dragon Egg
-tile.dragonmountsplus:moonlight_dragon_egg.name=Moonlight Dragon Egg
-tile.dragonmountsplus:nether_dragon_egg.name=Nether Dragon Egg
-tile.dragonmountsplus:sculk_dragon_egg.name=Sculk Dragon Egg
-tile.dragonmountsplus:skeleton_dragon_egg.name=Skeleton Dragon Egg
-tile.dragonmountsplus:storm_dragon_egg.name=Storm Dragon Egg
-tile.dragonmountsplus:sunlight_dragon_egg.name=Sunlight Dragon Egg
-tile.dragonmountsplus:terra_dragon_egg.name=Terra Dragon Egg
-tile.dragonmountsplus:water_dragon_egg.name=Water Dragon Egg
-tile.dragonmountsplus:wither_dragon_egg.name=Wither Dragon Egg
-tile.dragonmountsplus:zombie_dragon_egg.name=Zombie Dragon Egg
+tile.dragonmounts2:aether_dragon_egg.name=Aether Dragon Egg
+tile.dragonmounts2:dark_dragon_egg.name=Dark Dragon Egg
+tile.dragonmounts2:enchant_dragon_egg.name=Enchanted Dragon Egg
+tile.dragonmounts2:ender_dragon_egg.name=Ender Dragon Egg
+tile.dragonmounts2:fire_dragon_egg.name=Fire Dragon Egg
+tile.dragonmounts2:forest_dragon_egg.name=Forest Dragon Egg
+tile.dragonmounts2:ice_dragon_egg.name=Ice Dragon Egg
+tile.dragonmounts2:moonlight_dragon_egg.name=Moonlight Dragon Egg
+tile.dragonmounts2:nether_dragon_egg.name=Nether Dragon Egg
+tile.dragonmounts2:sculk_dragon_egg.name=Sculk Dragon Egg
+tile.dragonmounts2:skeleton_dragon_egg.name=Skeleton Dragon Egg
+tile.dragonmounts2:storm_dragon_egg.name=Storm Dragon Egg
+tile.dragonmounts2:sunlight_dragon_egg.name=Sunlight Dragon Egg
+tile.dragonmounts2:terra_dragon_egg.name=Terra Dragon Egg
+tile.dragonmounts2:water_dragon_egg.name=Water Dragon Egg
+tile.dragonmounts2:wither_dragon_egg.name=Wither Dragon Egg
+tile.dragonmounts2:zombie_dragon_egg.name=Zombie Dragon Egg
 
 // ==== Dragons ====
-entity.dragonmountsplus:aether_dragon.name=Aether Dragon
-entity.dragonmountsplus:dark_dragon.name=Dark Dragon
-entity.dragonmountsplus:enchant_dragon.name=Enchanted Dragon
-entity.dragonmountsplus:ender_dragon.name=Ender Dragon
-entity.dragonmountsplus:fire_dragon.name=Fire Dragon
-entity.dragonmountsplus:forest_dragon.name=Forest Dragon
-entity.dragonmountsplus:ice_dragon.name=Ice Dragon
-entity.dragonmountsplus:moonlight_dragon.name=Moonlight Dragon
-entity.dragonmountsplus:nether_dragon.name=Nether Dragon
-entity.dragonmountsplus:sculk_dragon.name=Sculk Dragon
-entity.dragonmountsplus:skeleton_dragon.name=Skeleton Dragon
-entity.dragonmountsplus:storm_dragon.name=Storm Dragon
-entity.dragonmountsplus:sunlight_dragon.name=Sunlight Dragon
-entity.dragonmountsplus:terra_dragon.name=Terra Dragon
-entity.dragonmountsplus:water_dragon.name=Water Dragon
-entity.dragonmountsplus:wither_dragon.name=Wither Dragon
-entity.dragonmountsplus:zombie_dragon.name=Zombie Dragon
+entity.dragonmounts2:aether_dragon.name=Aether Dragon
+entity.dragonmounts2:dark_dragon.name=Dark Dragon
+entity.dragonmounts2:enchant_dragon.name=Enchanted Dragon
+entity.dragonmounts2:ender_dragon.name=Ender Dragon
+entity.dragonmounts2:fire_dragon.name=Fire Dragon
+entity.dragonmounts2:forest_dragon.name=Forest Dragon
+entity.dragonmounts2:ice_dragon.name=Ice Dragon
+entity.dragonmounts2:moonlight_dragon.name=Moonlight Dragon
+entity.dragonmounts2:nether_dragon.name=Nether Dragon
+entity.dragonmounts2:sculk_dragon.name=Sculk Dragon
+entity.dragonmounts2:skeleton_dragon.name=Skeleton Dragon
+entity.dragonmounts2:storm_dragon.name=Storm Dragon
+entity.dragonmounts2:sunlight_dragon.name=Sunlight Dragon
+entity.dragonmounts2:terra_dragon.name=Terra Dragon
+entity.dragonmounts2:water_dragon.name=Water Dragon
+entity.dragonmounts2:wither_dragon.name=Wither Dragon
+entity.dragonmounts2:zombie_dragon.name=Zombie Dragon
 
 // ==== Misc ====
 action.interact.start_hatching=Hatch
-entity.dragonmountsplus:dragon_dissolve.name=Dead Dragon
-tile.dragonmountsplus:dragon_nest_block.name=Nest Block
+entity.dragonmounts2:dragon_dissolve.name=Dead Dragon
+tile.dragonmounts2:dragon_nest_block.name=Nest Block
 
 // ==== Dragon Eggs ====
-entity.dragonmountsplus:aether_dragon_egg.name=Aether Dragon Egg
-entity.dragonmountsplus:dark_dragon_egg.name=Dark Dragon Egg
-entity.dragonmountsplus:enchant_dragon_egg.name=Enchanted Dragon Egg
-entity.dragonmountsplus:ender_dragon_egg.name=Ender Dragon Egg
-entity.dragonmountsplus:fire_dragon_egg.name=Fire Dragon Egg
-entity.dragonmountsplus:forest_dragon_egg.name=Forest Dragon Egg
-entity.dragonmountsplus:ice_dragon_egg.name=Ice Dragon Egg
-entity.dragonmountsplus:moonlight_dragon_egg.name=Moonlight Dragon Egg
-entity.dragonmountsplus:nether_dragon_egg.name=Nether Dragon Egg
-entity.dragonmountsplus:sculk_dragon_egg.name=Sculk Dragon Egg
-entity.dragonmountsplus:skeleton_dragon_egg.name=Skeleton Dragon Egg
-entity.dragonmountsplus:storm_dragon_egg.name=Storm Dragon Egg
-entity.dragonmountsplus:sunlight_dragon_egg.name=Sunlight Dragon Egg
-entity.dragonmountsplus:terra_dragon_egg.name=Terra Dragon Egg
-entity.dragonmountsplus:water_dragon_egg.name=Water Dragon Egg
-entity.dragonmountsplus:wither_dragon_egg.name=Wither Dragon Egg
-entity.dragonmountsplus:zombie_dragon_egg.name=Zombie Dragon Egg
+entity.dragonmounts2:aether_dragon_egg.name=Aether Dragon Egg
+entity.dragonmounts2:dark_dragon_egg.name=Dark Dragon Egg
+entity.dragonmounts2:enchant_dragon_egg.name=Enchanted Dragon Egg
+entity.dragonmounts2:ender_dragon_egg.name=Ender Dragon Egg
+entity.dragonmounts2:fire_dragon_egg.name=Fire Dragon Egg
+entity.dragonmounts2:forest_dragon_egg.name=Forest Dragon Egg
+entity.dragonmounts2:ice_dragon_egg.name=Ice Dragon Egg
+entity.dragonmounts2:moonlight_dragon_egg.name=Moonlight Dragon Egg
+entity.dragonmounts2:nether_dragon_egg.name=Nether Dragon Egg
+entity.dragonmounts2:sculk_dragon_egg.name=Sculk Dragon Egg
+entity.dragonmounts2:skeleton_dragon_egg.name=Skeleton Dragon Egg
+entity.dragonmounts2:storm_dragon_egg.name=Storm Dragon Egg
+entity.dragonmounts2:sunlight_dragon_egg.name=Sunlight Dragon Egg
+entity.dragonmounts2:terra_dragon_egg.name=Terra Dragon Egg
+entity.dragonmounts2:water_dragon_egg.name=Water Dragon Egg
+entity.dragonmounts2:wither_dragon_egg.name=Wither Dragon Egg
+entity.dragonmounts2:zombie_dragon_egg.name=Zombie Dragon Egg
 
 // ==== Dragon Armor ====
-item.dragonmountsplus:dragonarmor_copper=Copper Dragon Armor
-item.dragonmountsplus:dragonarmor_diamond=Diamond Dragon Armor
-item.dragonmountsplus:dragonarmor_emerald=Emerald Dragon Armor
-item.dragonmountsplus:dragonarmor_gold=Gold Dragon Armor
-item.dragonmountsplus:dragonarmor_iron=Iron Dragon Armor
-item.dragonmountsplus:dragonarmor_netherite=Netherite Dragon Armor
+item.dragonmounts2:dragonarmor_leather=Leather Dragon Armor
+item.dragonmounts2:dragonarmor_copper=Copper Dragon Armor
+item.dragonmounts2:dragonarmor_diamond=Diamond Dragon Armor
+item.dragonmounts2:dragonarmor_emerald=Emerald Dragon Armor
+item.dragonmounts2:dragonarmor_gold=Golden Dragon Armor
+item.dragonmounts2:dragonarmor_iron=Iron Dragon Armor
+item.dragonmounts2:dragonarmor_netherite=Netherite Dragon Armor
 
 // ==== Dragon Spawn Eggs ====
-item.spawn_egg.entity.dragonmountsplus:aether_dragon.name=Aether Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:dark_dragon.name=Dark Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:enchant_dragon.name=Enchanted Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:ender_dragon.name=Ender Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:fire_dragon.name=Fire Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:forest_dragon.name=Forest Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:ice_dragon.name=Ice Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:moonlight_dragon.name=Moonlight Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:nether_dragon.name=Nether Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:sculk_dragon.name=Sculk Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:skeleton_dragon.name=Skeleton Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:storm_dragon.name=Storm Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:sunlight_dragon.name=Sunlight Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:terra_dragon.name=Terra Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:water_dragon.name=Water Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:wither_dragon.name=Wither Dragon Spawn Egg
-item.spawn_egg.entity.dragonmountsplus:zombie_dragon.name=Zombie Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:aether_dragon.name=Aether Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:dark_dragon.name=Dark Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:enchant_dragon.name=Enchanted Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:ender_dragon.name=Ender Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:fire_dragon.name=Fire Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:forest_dragon.name=Forest Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:ice_dragon.name=Ice Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:moonlight_dragon.name=Moonlight Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:nether_dragon.name=Nether Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:sculk_dragon.name=Sculk Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:skeleton_dragon.name=Skeleton Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:storm_dragon.name=Storm Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:sunlight_dragon.name=Sunlight Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:terra_dragon.name=Terra Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:water_dragon.name=Water Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:wither_dragon.name=Wither Dragon Spawn Egg
+item.spawn_egg.entity.dragonmounts2:zombie_dragon.name=Zombie Dragon Spawn Egg
 
 // ==== Dragon Interactions ====
 action.interact.breath.dragonmounts=Collect
 action.interact.chested.dragonmounts=Equip
 action.interact.fasthatching.dragonmounts=Speed up hatching time
 action.interact.hatch_egg=Hatch
-action.interact.ride.dm2=Ride
-action.interact.shear.dm2=Shear
+action.interact.ride.dragonmounts2=Ride
+action.interact.shear.dragonmounts2=Shear
 action.interact.speed.dragonmounts=Up
-action.interact.transform_block_dragon_eggs.dragonmountsplus=Blockify
+action.interact.transform_block_dragon_eggs.dragonmounts2=Blockify
 
 // ==== Items ====
+<<<<<<< Updated upstream
 item.dragonmountsplus:cooked_dragon_meat=Cooked Dragon Meat
 item.dragonmounts.guide_book=Dracopedia
 item.dragonmountsplus:cooked_dragon_meat.name=Cooked Dragon Meat
@@ -202,38 +350,39 @@ dragonmountsplus:itemGroup.name.whistle_items=Dragon Flutes
 dragonmountsplus:itemGroup.name.dragon_eggs=Dragon Eggs
 dragonmountsplus:itemGroup.name.dragon_scale=Dragon Scale Blocks
 dragonmountsplus:itemGroup.name.scales=Dragon Scales
+=======
+item.dragonmounts2:cooked_dragon_meat=Cooked Dragon Meat
+item.dragonmounts.guide_book=Dracopedia
+item.dragonmounts2:cooked_dragon_meat.name=Cooked Dragon Meat
+item.dragonmounts2:diamond_shears.name=Diamond Shears
+item.dragonmounts2:netherite_shears.name=Netherite Shears
+item.dragonmounts2:raw_dragon_meat.name=Raw Dragon Meat
+
+// ==== Item Groups ====
+dragonmounts2:itemGroup.name.shield_items=Dragon Shields
+dragonmounts2:itemGroup.name.bow_items=Dragon Bows
+dragonmounts2:itemGroup.name.flute_items=Dragon Flutes
+dragonmounts2:itemGroup.name.dragon_eggs=Dragon Eggs
+dragonmounts2:itemGroup.name.dragon_scale=Dragon Scale Blocks
+dragonmounts2:itemGroup.name.scales=Dragon Scales
+>>>>>>> Stashed changes
 
 // ==== Dragon Scale Blocks ====
-tile.dragonmountsplus:aether_scale.name=Aether Dragon Scale Block
-tile.dragonmountsplus:aether_scale=Aether Dragon Scale Block
-tile.dragonmountsplus:dark_scale.name=Dark Dragon Scale Block
-tile.dragonmountsplus:dark_scale=Dark Dragon Scale Block
-tile.dragonmountsplus:enchant_scale.name=Enchanted Dragon Scale Block
-tile.dragonmountsplus:enchant_scale=Enchanted Dragon Scale Block
-tile.dragonmountsplus:ender_scale.name=Ender Dragon Scale Block
-tile.dragonmountsplus:ender_scale=Ender Dragon Scale Block
-tile.dragonmountsplus:fire_scale.name=Fire Dragon Scale Block
-tile.dragonmountsplus:fire_scale=Fire Dragon Scale Block
-tile.dragonmountsplus:forest_scale.name=Forest Dragon Scale Block
-tile.dragonmountsplus:forest_scale=Forest Dragon Scale Block
-tile.dragonmountsplus:ice_scale.name=Ice Dragon Scale Block
-tile.dragonmountsplus:ice_scale=Ice Dragon Scale Block
-tile.dragonmountsplus:moonlight_scale.name=Moonlight Dragon Scale Block
-tile.dragonmountsplus:moonlight_scale=Moonlight Dragon Scale Block
-tile.dragonmountsplus:nether_scale.name=Nether Dragon Scale Block
-tile.dragonmountsplus:nether_scale=Nether Dragon Scale Block
-tile.dragonmountsplus:sculk_scale.name=Sculk Dragon Scale Block
-tile.dragonmountsplus:sculk_scale=Sculk Dragon Scale Block
-tile.dragonmountsplus:storm_scale.name=Storm Dragon Scale Block
-tile.dragonmountsplus:storm_scale=Storm Dragon Scale Block
-tile.dragonmountsplus:sunlight_scale.name=Sunlight Dragon Scale Block
-tile.dragonmountsplus:sunlight_scale=Sunlight Dragon Scale Block
-tile.dragonmountsplus:terra_scale.name=Terra Dragon Scale Block
-tile.dragonmountsplus:terra_scale=Terra Dragon Scale Block
-tile.dragonmountsplus:water_scale.name=Water Dragon Scale Block
-tile.dragonmountsplus:water_scale=Water Dragon Scale Block
-tile.dragonmountsplus:zombie_scale.name=Zombie Dragon Scale Block
-tile.dragonmountsplus:zombie_scale=Zombie Dragon Scale Block
+tile.dragonmounts2:aether_scale.name=Aether Dragon Scale Block
+tile.dragonmounts2:dark_scale.name=Dark Dragon Scale Block
+tile.dragonmounts2:ender_scale.name=Ender Dragon Scale Block
+tile.dragonmounts2:enchant_scale.name=Enchanted Dragon Scale Block
+tile.dragonmounts2:fire_scale.name=Fire Dragon Scale Block
+tile.dragonmounts2:forest_scale.name=Forest Dragon Scale Block
+tile.dragonmounts2:ice_scale.name=Ice Dragon Scale Block
+tile.dragonmounts2:moonlight_scale.name=Moonlight Dragon Scale Block
+tile.dragonmounts2:nether_scale.name=Nether Dragon Scale Block
+tile.dragonmounts2:sculk_scale.name=Sculk Dragon Scale Block
+tile.dragonmounts2:storm_scale.name=Storm Dragon Scale Block
+tile.dragonmounts2:sunlight_scale.name=Sunlight Dragon Scale Block
+tile.dragonmounts2:terra_scale.name=Terra Dragon Scale Block
+tile.dragonmounts2:water_scale.name=Water Dragon Scale Block
+tile.dragonmounts2:zombie_scale.name=Zombie Dragon Scale Block
 
 // ==== Dragon Tooltips ====
 tooltip.dragonmounts.aether=§3Aether
@@ -255,7 +404,11 @@ tooltip.dragonmounts.wither=§0Wither
 tooltip.dragonmounts.zombie=§qZombie
 
 // ==== Dragon Items ====
+<<<<<<< Updated upstream
 tooltip.dragonmountsplus.book=Dragons and You Vol. 2
+=======
+tooltip.dragonmounts2.book=Dragons and You Vol. 2
+>>>>>>> Stashed changes
 item.dragonmounts.dragon_axe=Dragon Scale Axe
 item.dragon_boots=Dragon Scale Boots
 item.dragon_chestplate=Dragon Scale Chestplate
@@ -282,8 +435,8 @@ tip.dragon.wand2=§mBite
 // ==== Dragon Amulet ====
 item.dragon.amulet=Dragon Amulet
 
-// ==== Dragon Whistle ====
-item.dragonmounts.whistle=Dragon Flute
+// ==== Dragon flute ====
+item.dragonmounts.flute=Dragon Flute
 
 // ==== Color Tips ====
 tip.dragonmounts.black=Black
@@ -305,117 +458,137 @@ tip.dragonmounts.default=White
 
 // ==== Dismount Hints ====
 action.hint.exit.unknown=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:aether_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:dark_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:ender_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:enchant_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:fire_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:forest_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:ice_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:moonlight_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:nether_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:sculk_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:skeleton_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:storm_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:sunlight_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:terra_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:water_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:wither_dragon=Tap dismount to dismount
-action.hint.exit.dragonmountsplus:zombie_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:aether_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:dark_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:ender_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:enchant_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:fire_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:forest_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:ice_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:moonlight_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:nether_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:sculk_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:skeleton_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:storm_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:sunlight_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:terra_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:water_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:wither_dragon=Tap dismount to dismount
+action.hint.exit.dragonmounts2:zombie_dragon=Tap dismount to dismount
 
 // ==== Dragon Heads ====
-item.dragonmountsplus:aether_head=Aether Dragon Head
-item.dragonmountsplus:aether1_head=Aether Dragon Head
-item.dragonmountsplus:aether2_head=Aether Dragon Head
-item.dragonmountsplus:dark_head=Dark Dragon Head
-item.dragonmountsplus:dark1_head=Dark Dragon Head
-item.dragonmountsplus:ender_head=Ender Dragon Head
-item.dragonmountsplus:ender1_head=Ender Dragon Head
-item.dragonmountsplus:ender2_head=Ender Dragon Head
-item.dragonmountsplus:enchant_head=Enchanted Dragon Head
-item.dragonmountsplus:enchant1_head=Enchanted Dragon Head
-item.dragonmountsplus:fire_head=Fire Dragon Head
-item.dragonmountsplus:fire1_head=Fire Dragon Head
-item.dragonmountsplus:fire2_head=Fire Dragon Head
-item.dragonmountsplus:forest_head=Forest Dragon Head
-item.dragonmountsplus:forest1_head=Forest Dragon Head
-item.dragonmountsplus:forest2_head=Forest Dragon Head
-item.dragonmountsplus:ice_head=Ice Dragon Head
-item.dragonmountsplus:ice1_head=Ice Dragon Head
-item.dragonmountsplus:moonlight_head=Moonlight Dragon Head
-item.dragonmountsplus:moonlight1_head=Moonlight Dragon Head
-item.dragonmountsplus:nether_head=Nether Dragon Head
-item.dragonmountsplus:nether1_head=Nether Dragon Head
-item.dragonmountsplus:nether2_head=Nether Dragon Head
-item.dragonmountsplus:skeleton_head=Skeleton Dragon Head
-item.dragonmountsplus:sculk_head=Sculk Dragon Head
-item.dragonmountsplus:sculk1_head=Sculk Dragon Head
-item.dragonmountsplus:sculk2_head=Sculk Dragon Head
-item.dragonmountsplus:storm_head=Storm Dragon Head
-item.dragonmountsplus:storm1_head=Storm Dragon Head
-item.dragonmountsplus:storm2_head=Storm Dragon Head
-item.dragonmountsplus:sunlight_head=Sunlight Dragon Head
-item.dragonmountsplus:sunlight1_head=Sunlight Dragon Head
-item.dragonmountsplus:terra_head=Terra Dragon Head
-item.dragonmountsplus:terra1_head=Terra Dragon Head
-item.dragonmountsplus:water_head=Water Dragon Head
-item.dragonmountsplus:water1_head=Water Dragon Head
-item.dragonmountsplus:water2_head=Water Dragon Head
-item.dragonmountsplus:wither_head=Wither Dragon Head
-item.dragonmountsplus:zombie_head=Zombie Dragon Head
+item.dragonmounts2:aether_head=Aether Dragon Head
+item.dragonmounts2:aether1_head=Aether Dragon Head
+item.dragonmounts2:aether2_head=Aether Dragon Head
+item.dragonmounts2:dark_head=Dark Dragon Head
+item.dragonmounts2:dark1_head=Dark Dragon Head
+item.dragonmounts2:dark2_head=Dark Dragon Head
+item.dragonmounts2:ender_head=Ender Dragon Head
+item.dragonmounts2:ender1_head=Ender Dragon Head
+item.dragonmounts2:ender2_head=Ender Dragon Head
+item.dragonmounts2:enchant_head=Enchanted Dragon Head
+item.dragonmounts2:enchant1_head=Enchanted Dragon Head
+item.dragonmounts2:enchant2_head=Enchanted Dragon Head
+item.dragonmounts2:fire_head=Fire Dragon Head
+item.dragonmounts2:fire1_head=Fire Dragon Head
+item.dragonmounts2:fire2_head=Fire Dragon Head
+item.dragonmounts2:forest_head=Forest Dragon Head
+item.dragonmounts2:forest1_head=Forest Dragon Head
+item.dragonmounts2:forest2_head=Forest Dragon Head
+item.dragonmounts2:ice_head=Ice Dragon Head
+item.dragonmounts2:ice1_head=Ice Dragon Head
+item.dragonmounts2:ice2_head=Ice Dragon Head
+item.dragonmounts2:moonlight_head=Moonlight Dragon Head
+item.dragonmounts2:moonlight1_head=Moonlight Dragon Head
+item.dragonmounts2:moonlight2_head=Moonlight Dragon Head
+item.dragonmounts2:nether_head=Nether Dragon Head
+item.dragonmounts2:nether1_head=Nether Dragon Head
+item.dragonmounts2:nether2_head=Nether Dragon Head
+item.dragonmounts2:skeleton_head=Skeleton Dragon Head
+item.dragonmounts2:skeleton1_head=Skeleton Dragon Head
+item.dragonmounts2:skeleton2_head=Skeleton Dragon Head
+item.dragonmounts2:sculk_head=Sculk Dragon Head
+item.dragonmounts2:sculk1_head=Sculk Dragon Head
+item.dragonmounts2:sculk2_head=Sculk Dragon Head
+item.dragonmounts2:storm_head=Storm Dragon Head
+item.dragonmounts2:storm1_head=Storm Dragon Head
+item.dragonmounts2:storm2_head=Storm Dragon Head
+item.dragonmounts2:sunlight_head=Sunlight Dragon Head
+item.dragonmounts2:sunlight1_head=Sunlight Dragon Head
+item.dragonmounts2:sunlight2_head=Sunlight Dragon Head
+item.dragonmounts2:terra_head=Terra Dragon Head
+item.dragonmounts2:terra1_head=Terra Dragon Head
+item.dragonmounts2:terra2_head=Terra Dragon Head
+item.dragonmounts2:water_head=Water Dragon Head
+item.dragonmounts2:water1_head=Water Dragon Head
+item.dragonmounts2:water2_head=Water Dragon Head
+item.dragonmounts2:wither_head=Wither Dragon Head
+item.dragonmounts2:zombie_head=Zombie Dragon Head
+item.dragonmounts2:zombie1_head=Zombie Dragon Head
+item.dragonmounts2:zombie2_head=Zombie Dragon Head
 
 // ==== Dragon Head Blocks ====
-tile.dragonmountsplus:aether_head_block.name=Aether Dragon Head
-tile.dragonmountsplus:aether1_head_block.name=Aether Dragon Head
-tile.dragonmountsplus:aether2_head_block.name=Aether Dragon Head
-tile.dragonmountsplus:dark_head_block.name=Dark Dragon Head
-tile.dragonmountsplus:dark1_head_block.name=Dark Dragon Head
-tile.dragonmountsplus:ender_head_block.name=Ender Dragon Head
-tile.dragonmountsplus:ender1_head_block.name=Ender Dragon Head
-tile.dragonmountsplus:ender2_head_block.name=Ender Dragon Head
-tile.dragonmountsplus:enchant_head_block.name=Enchanted Dragon Head
-tile.dragonmountsplus:enchant1_head_block.name=Enchanted Dragon Head
-tile.dragonmountsplus:fire_head_block.name=Fire Dragon Head
-tile.dragonmountsplus:fire1_head_block.name=Fire Dragon Head
-tile.dragonmountsplus:fire2_head_block.name=Fire Dragon Head
-tile.dragonmountsplus:forest_head_block.name=Forest Dragon Head
-tile.dragonmountsplus:forest1_head_block.name=Forest Dragon Head
-tile.dragonmountsplus:forest2_head_block.name=Forest Dragon Head
-tile.dragonmountsplus:ice_head_block.name=Ice Dragon Head
-tile.dragonmountsplus:ice1_head_block.name=Ice Dragon Head
-tile.dragonmountsplus:moonlight_head_block.name=Moonlight Dragon Head
-tile.dragonmountsplus:moonlight1_head_block.name=Moonlight Dragon Head
-tile.dragonmountsplus:nether_head_block.name=Nether Dragon Head
-tile.dragonmountsplus:nether1_head_block.name=Nether Dragon Head
-tile.dragonmountsplus:nether2_head_block.name=Nether Dragon Head
-tile.dragonmountsplus:skeleton_head_block.name=Skeleton Dragon Head
-tile.dragonmountsplus:sculk_head_block.name=Sculk Dragon Head
-tile.dragonmountsplus:sculk1_head_block.name=Sculk Dragon Head
-tile.dragonmountsplus:sculk2_head_block.name=Sculk Dragon Head
-tile.dragonmountsplus:storm_head_block.name=Storm Dragon Head
-tile.dragonmountsplus:storm1_head_block.name=Storm Dragon Head
-tile.dragonmountsplus:storm2_head_block.name=Storm Dragon Head
-tile.dragonmountsplus:sunlight_head_block.name=Sunlight Dragon Head
-tile.dragonmountsplus:sunlight1_head_block.name=Sunlight Dragon Head
-tile.dragonmountsplus:terra_head_block.name=Terra Dragon Head
-tile.dragonmountsplus:terra1_head_block.name=Terra Dragon Head
-tile.dragonmountsplus:water_head_block.name=Water Dragon Head
-tile.dragonmountsplus:water1_head_block.name=Water Dragon Head
-tile.dragonmountsplus:water2_head_block.name=Water Dragon Head
-tile.dragonmountsplus:wither_head_block.name=Wither Dragon Head
-tile.dragonmountsplus:zombie_head_block.name=Zombie Dragon Head
+tile.dragonmounts2:aether_head.name=Aether Dragon Head
+tile.dragonmounts2:aether1_head.name=Aether Dragon Head
+tile.dragonmounts2:aether2_head.name=Aether Dragon Head
+tile.dragonmounts2:dark_head.name=Dark Dragon Head
+tile.dragonmounts2:dark1_head.name=Dark Dragon Head
+tile.dragonmounts2:dark2_head.name=Dark Dragon Head
+tile.dragonmounts2:ender_head.name=Ender Dragon Head
+tile.dragonmounts2:ender1_head.name=Ender Dragon Head
+tile.dragonmounts2:ender2_head.name=Ender Dragon Head
+tile.dragonmounts2:enchant_head.name=Enchanted Dragon Head
+tile.dragonmounts2:enchant1_head.name=Enchanted Dragon Head
+tile.dragonmounts2:enchant2_head.name=Enchanted Dragon Head
+tile.dragonmounts2:fire_head.name=Fire Dragon Head
+tile.dragonmounts2:fire1_head.name=Fire Dragon Head
+tile.dragonmounts2:fire2_head.name=Fire Dragon Head
+tile.dragonmounts2:forest_head.name=Forest Dragon Head
+tile.dragonmounts2:forest1_head.name=Forest Dragon Head
+tile.dragonmounts2:forest2_head.name=Forest Dragon Head
+tile.dragonmounts2:ice_head.name=Ice Dragon Head
+tile.dragonmounts2:ice1_head.name=Ice Dragon Head
+tile.dragonmounts2:ice2_head.name=Ice Dragon Head
+tile.dragonmounts2:moonlight_head.name=Moonlight Dragon Head
+tile.dragonmounts2:moonlight1_head.name=Moonlight Dragon Head
+tile.dragonmounts2:moonlight2_head.name=Moonlight Dragon Head
+tile.dragonmounts2:nether_head.name=Nether Dragon Head
+tile.dragonmounts2:nether1_head.name=Nether Dragon Head
+tile.dragonmounts2:nether2_head.name=Nether Dragon Head
+tile.dragonmounts2:skeleton_head.name=Skeleton Dragon Head
+tile.dragonmounts2:skeleton1_head.name=Skeleton Dragon Head
+tile.dragonmounts2:skeleton2_head.name=Skeleton Dragon Head
+tile.dragonmounts2:sculk_head.name=Sculk Dragon Head
+tile.dragonmounts2:sculk1_head.name=Sculk Dragon Head
+tile.dragonmounts2:sculk2_head.name=Sculk Dragon Head
+tile.dragonmounts2:storm_head.name=Storm Dragon Head
+tile.dragonmounts2:storm1_head.name=Storm Dragon Head
+tile.dragonmounts2:storm2_head.name=Storm Dragon Head
+tile.dragonmounts2:sunlight_head.name=Sunlight Dragon Head
+tile.dragonmounts2:sunlight1_head.name=Sunlight Dragon Head
+tile.dragonmounts2:sunlight2_head.name=Sunlight Dragon Head
+tile.dragonmounts2:terra_head.name=Terra Dragon Head
+tile.dragonmounts2:terra1_head.name=Terra Dragon Head
+tile.dragonmounts2:terra2_head.name=Terra Dragon Head
+tile.dragonmounts2:water_head.name=Water Dragon Head
+tile.dragonmounts2:water1_head.name=Water Dragon Head
+tile.dragonmounts2:water2_head.name=Water Dragon Head
+tile.dragonmounts2:wither_head.name=Wither Dragon Head
+tile.dragonmounts2:zombie_head.name=Zombie Dragon Head
+tile.dragonmounts2:zombie1_head.name=Zombie Dragon Head
+tile.dragonmounts2:zombie2_head.name=Zombie Dragon Head
 
 // ==== Miscellaneous Dragon Items ====
-item.dragonmountsplus:variation_orb.name=Variant Orb
-dm:itemGroup.name.head_items=Dragon Head
-dm:itemGroup.name.essence_items=Essences
+item.dragonmounts2:variation_orb.name=Variant Orb
+dragonmounts2:itemGroup.name.head_items=Dragon Heads
 item.essence.name=Essence
-tile.dragonmountsplus:dragon_core.name=Dragon Core
+tile.dragonmounts2:dragon_core.name=Dragon Core
 
 // ==== Interaction ====
 interaction.text.change_variation=Change Variant
 
 // ==== Guide Book ===
+<<<<<<< Updated upstream
 # -------------------- START --------------------
 dracopedia.title.start=§6§lDragon Mounts 2 Guidebook
 dracopedia.body.start=§eWelcome, Adventurer!§r\n\n§fChoose a section below to begin your journey.
@@ -487,3 +660,24 @@ dracopedia.body.zombie=§fA dragon brought back from death.\nIts flesh rots, yet
 
 # -------------------- BUTTONS --------------------
 dracopedia.button.back=§c← Back
+=======
+dracopedia.title.start=§l§6Dragon Mounts Guide
+dracopedia.body.start=§r§fWelcome to Dragon Mounts!\nDragon Mounts 2 is proudly brought to you by the Official DragonMountsTeam.\n\nAs you explore the world, you’ll discover unique structures that contain dragon eggs.\n\nVisit the How To Play section to learn how to hatch, raise, and ride your dragons!
+dracopedia.button.how_to_play=How to Play
+dracopedia.button.credits=Credits
+dracopedia.button.dragons=Dragons
+dracopedia.title.how_to_play=How to Play
+dracopedia.body.how_to_play=Before you begin your journey, choose the type of guidance you need.
+dracopedia.button.back=Back
+dracopedia.button.dragon_raising=Dragon Raising
+dracopedia.button.egg_conversion=Egg Conversion
+
+dracopedia.title.dragon_raising=§6§lRaising Your Dragon
+dracopedia.body.dragon_raising=§fRaising your dragon involves progressing it through five growth stages.\n\n§6§lEgg Stage§r\n§fWhen you collect your first Dragon Egg, place it on the ground and right-click to begin incubation. Once activated, the egg enters a 20-minute real-time incubation period before it hatches.\n\n§6§lSpeeding Up Hatching§r\n§fYou can reduce the incubation time by using Emeralds:\n§f• Each Emerald removes a portion of the remaining time.\n§f• Using multiple Emeralds can skip the entire incubation instantly.\n\n§6§lHatchling Stage§r\n§fAs soon as the egg finishes incubating, it hatches into a Hatchling. This early stage is short but important — the dragon is small and fragile. Feed the hatchling any raw meat except pufferfish. Regular feeding will help it progress into the Juvenile stage more quickly.\n\n§6§lJuvenile Stage§r\n§fThe Juvenile stage is not a major milestone, as the dragon can do everything a Hatchling can but with increased health. Continue feeding it any type of meat to help it progress into the Adolescence stage.\n\n§6§lAdolescence Stage§r\n§fDuring Adolescence, your dragon becomes rideable, can equip armor, and gains the ability to breathe fire. Continue feeding it raw meat to help it reach the Adult stage.\n\n§6§lAdult Stage§r\n§fThe Adult stage is the dragon’s fully matured form. Adult dragons can do everything they could during Adolescence, but also gain the ability to breed with another adult dragon of the same type.
+
+dracopedia.title.egg_conversion=Egg Conversion
+dracopedia.body.egg_conversion=Each Dragon Egg can transform into another type when placed on specific blocks or exposed to certain conditions.\n\nAll conversions take §l5 real minutes§r unless lightning is involved (lightning conversions are instant).\n\n§6Aether Egg§r\n1. Place any egg on a 3×3 Glowstone platform.\n2. Wait 5 minutes.\n\n§6Fire Egg§r\n1. Place any egg in open space.\n2. Surround the egg with Lava on all 4 sides.\n3. Wait 5 minutes.\n\n§6Water Egg§r\n1. Place any egg in a small area.\n2. Surround it completely with Water source blocks.\n3. Wait 5 minutes.\n\n§6Terra Egg§r\n1. Build a 3×3 platform using Sand or Red Sand.\n2. Place the egg in the center.\n3. Wait 5 minutes.\n\n§6Forest Egg§r\n1. Build a 3×3 Oak Wood or Oak Leaves platform.\n2. Place the egg in the center.\n3. Wait 5 minutes.\n\n§6Ice Egg§r\n1. Build a 3×3 platform from Ice, Packed Ice, Blue Ice, or Snow Blocks.\n2. Place the egg in the center.\n3. Wait 5 minutes.\n\n§6Zombie Egg§r\n1. Build a 3×3 platform of Mossy Cobblestone or Soul Sand.\n2. Place the egg in the center.\n3. Wait 5 minutes.\n\n§6Skeleton Egg§r\n1. Build a 3×3 Bone Block platform.\n2. Place a Zombie Egg in the center.\n3. Wait 5 minutes.\n\n§6Nether Egg§r\n1. Build a 3×3 Magma Block platform.\n2. Place any egg on top.\n3. Wait 5 minutes.\n\n§6Ender Egg§r\n1. Build a 3×3 End Stone platform.\n2. Place the egg in the center.\n3. Wait 5 minutes.\n\n§6Sunlight Egg§r\n1. Place any egg on a Daylight Sensor set to Day Mode (yellow).\n2. Wait 5 minutes.\n\n§6Moonlight Egg§r\n1. Place any egg on a Daylight Sensor set to Night Mode (blue).\n2. Wait 5 minutes.\n\n§6Sculk Egg§r\n1. Build a 3×3 Sculk Block or Sculk Catalyst platform.\n2. Place the egg in the center.\n3. Wait 5 minutes.\n\n§6Storm Egg§r\n1. Start with a Water Egg.\n2. Strike it with lightning (natural or Channeling).\n3. Conversion is instant.\n\n§6Wither Egg§r\n1. Start with a Skeleton Egg.\n2. Strike with lightning.\n3. Conversion is instant.\n\n§6Dark Egg§r\n1. Start with a Moonlight Egg.\n2. Strike with lightning.\n3. Conversion is instant.\n\n§6Enchanted Egg§r\n1. Build a 3×3 Bookshelf platform.\n2. Place an Ender Egg in the center.\n3. Wait 5 minutes.
+
+dracopedia.title.how_to_use_items=§6§lHow To Use Items
+dracopedia.body.how_to_use_items=§fThis page explains how to properly use key items that interact with your dragons.\n\n§6§lFlute§r\n§fThe Flute is used to command a specific dragon. To bind a flute to a dragon, §lsneak§r and interact with the dragon while holding the flute. Once bound, the flute will only control that dragon.\n\nAfter binding, the flute provides two commands:\n§f• Follow / Wander — Toggles whether the dragon roams or stays near you.\n§f• Come To Player — Calls the dragon directly to your location.\n\n§6Note:§r\n§fIf you release a dragon from an amulet, you must rebind the flute to that dragon.\n\n§6§lAmulet§r\n§fThe Amulet allows you to safely store your dragon. To use it, §lcrouch§r and hit your dragon while holding the amulet. The dragon will be safely stored without taking any damage.\n\nThe amulet will display important information about the stored dragon:\n§f• Breed\n§f• Owner\n§f• Health\n\n§6§lEssence§r\n§fWhen your dragon dies, it drops its Essence. This item is required to revive your dragon.\n\nA Dragoncore block also appears at the death location. Interact with the Dragoncore, or use the Essence on the ground, to resurrect your dragon as a baby.\n\nThe revived dragon returns with the §fsame name and variant§r it had before death.
+>>>>>>> Stashed changes

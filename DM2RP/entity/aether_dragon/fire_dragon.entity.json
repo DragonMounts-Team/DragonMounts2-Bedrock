@@ -1,0 +1,93 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragon",
+      "enable_attachables": true,
+      "materials": { "dragon": "dragon", "dragon_default": "dragon", "dissolve_0": "entity_dissolve_layer0.skinning", "dissolve_1": "entity_dissolve_layer1.skinning", "collar": "entity_alphatest_change_color" },
+      "textures": {
+        "fire": "textures/entity/dragon/fire/fire/body",
+        "blaze": "textures/entity/dragon/fire/blaze/body",
+        "blue": "textures/entity/dragon/fire/blue/body",
+        "fire_glow": "textures/entity/dragon/fire/fire/glow",
+        "blaze_glow": "textures/entity/dragon/fire/blaze/glow",
+        "blue_glow": "textures/entity/dragon/fire/blue/glow",
+        "dragon_saddled": "textures/models/dragonmounts2_equipment/dragon_equipment/dragon_saddle",
+        "dragon_chested": "textures/models/dragonmounts2_equipment/dragon_equipment/dragon_chest",
+        "dragon_none": "textures/entity/dragon/none",
+        "collar": "textures/models/dragonmounts2_equipment/dragon_equipment/dragon_collar",
+        "exploding": "textures/entity/dragon/dragon_dissolve",
+        "beam": "textures/entity/endercrystal/endercrystal_beam"
+      },
+      "geometry": {
+        "dragon_default": "geometry.dragonmounts2.dragon.normal",
+        "glow": "geometry.dragonmounts2.dragon.normal",
+        "dragon_saddled": "geometry.dragonmounts2.dragon.saddle",
+        "dragon_chested": "geometry.dragonmounts2.dragon.chest"
+      },
+      "animations": {
+        "controller": "controller.animation.dragonmounts2.dragon.action",
+        "idle": "animation.dragonmounts2.dragon.idle",
+        "walking": "animation.dragonmounts2.dragon.walking",
+        "sit": "animation.dragonmounts2.dragon.sit",
+        "dive": "animation.dragonmounts2.dragon.dive",
+        "flying": "animation.dragonmounts2.dragon.flying",
+        "hover": "animation.dragonmounts2.dragon.hover",
+        "bite": "animation.dragonmounts2.dragon.bite",
+        "breath": "animation.dragonmounts2.dragon.breath",
+        "init": "animation.dragonmounts2.dragon.init",
+        "death": "animation.dragonmounts2.dragon.death",
+        "death_particles": "animation.dragonmounts2.dragon.death_particles"
+      },
+      "scripts": {
+        "pre_animation": [
+          "v.death_ticks = q.property('dragonmounts2:death_ticks');",
+          "v.death_effect_duration = 2.00;",
+          "v.death_alpha = (1.0-((v.death_ticks/2)/v.death_effect_duration));",
+          "v.script_ride = q.has_rider;",
+          "v.bite_anim_duration = 0.75f;",
+          "v.is_breathing = q.property('dragonmounts2:is_breathing');",
+          "v.variant_type = q.property('dragonmounts2:variant_type');",
+          "v.is_fire = v.variant_type=='fire';",
+          "v.is_blaze = v.variant_type=='blaze';",
+          "v.is_blue = v.variant_type=='blue';",
+          "v.variant_type_index = v.is_fire?0:v.is_blaze?1:v.is_blue?2:0;",
+          "v.mob_state = q.property('dragonmounts2:mob_state');",
+          "v.is_standing = v.mob_state=='standing';",
+          "v.is_sitting = v.mob_state=='sitting';",
+          "v.movement_state = q.property('dragonmounts2:movement_state');",
+          "v.is_grounded_legacy = v.movement_state=='grounded';",
+          "v.is_flying = v.movement_state=='flying';",
+          "v.is_swimming = v.movement_state=='swimming';",
+          "v.is_grounded = v.is_grounded_legacy||v.is_swimming;",
+          "v.equipped_armor = !q.is_item_name_any('slot.armor.chest','')||!q.is_item_name_any('slot.armor.body','');"
+        ],
+        "animate": [
+          { "controller": "v.death_ticks==0.00" },
+          { "breath": "v.death_ticks==0.00&&v.is_breathing" },
+          { "death": "!q.is_alive" },
+          { "death_particles": "v.death_ticks!=0.00" },
+          { "idle": "v.death_ticks!=0.00&&v.is_standing" },
+          { "sit": "v.death_ticks!=0.00&&v.is_sitting" }
+        ]
+      },
+      "sound_effects": {
+        "wings_flap": "dragonmounts2:mob.dragon.wings",
+        "wings_subduction": "dragonmounts2:mob.dragon.subduction"
+      },
+      "particle_effects": {
+        "death_cloud": "dragonmounts2:fire_dragon_death_cloud"
+      },
+      "render_controllers": [
+        "controller.render.dragonmounts2.dragon.is_saddled",
+        "controller.render.dragonmounts2.dragon.is_chested",
+        { "controller.render.dragonmounts2.dragon_collar": "q.is_tamed" },
+        { "controller.render.dragonmounts2.fire_dragon.glow": "v.death_ticks==0.00" },
+        { "controller.render.dragonmounts2.fire_dragon.base": "v.death_ticks==0.00" },
+        { "controller.render.dragonmounts2.fire_dragon.death_pre_pass": "v.death_ticks!=0.00" },
+        { "controller.render.dragonmounts2.fire_dragon.death_main_pass": "v.death_ticks!=0.00" }
+      ],
+      "spawn_egg": { "texture": "dragonmounts2:spawn_egg_fire_dragon" }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "resource_pack_name": "pack.name",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "dragonmounts2:dragon_core": { "textures": ["textures/entity/dragon_core"] },
+    "dragonmounts2:dragon_nest_block": { "textures": ["textures/blocks/dragon_nest_block"] },
+    "dragonmounts2:fire_dragon_egg": { "textures": ["textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/fire_dragon_egg"] },
+    "dragonmounts2:fire_dragon_head_flame": { "textures": ["textures/entity/dragon/fire/flame/body"] },
+    "dragonmounts2:fire_dragon_head_blaze": { "textures": ["textures/entity/dragon/fire/blaze/body"] },
+    "dragonmounts2:fire_dragon_head_blue": { "textures": ["textures/entity/dragon/fire/blue_fire/body"] },
+    "dragonmounts2:aether_dragonscales_block": { "textures": ["textures/blocks/dragonmounts2_construction/scales/dragonscales/aether_dragonscales_block"] },
+    "dragonmounts2:dark_dragonscales_block": { "textures": ["textures/blocks/dragonmounts2_construction/scales/dragonscales/dark_dragonscales_block"] },
+    "dragonmounts2:enchanted_dragonscales_block": { "textures": ["textures/blocks/dragonmounts2_construction/scales/dragonscales/enchanted_dragonscales_block"] },
+    "dragonmounts2:ender_dragonscales_block": { "textures": ["textures/blocks/dragonmounts2_construction/scales/dragonscales/ender_dragonscales_block"] },
+    "dragonmounts2:fire_dragonscales_block": { "textures": ["textures/blocks/dragonmounts2_construction/scales/dragonscales/fire_dragonscales_block"] }
+  }
+}

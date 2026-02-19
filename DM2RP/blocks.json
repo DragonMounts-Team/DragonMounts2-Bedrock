@@ -1,0 +1,13 @@
+{
+  "format_version": "1.21.40",  
+  "dragonmounts2:dragon_core": { "sound": "netherite" },
+  "dragonmounts2:dragon_nest_block": { "sound": "wood" },
+  "dragonmounts2:blaze_fire_dragon_head": { "sound": "stone" },
+  "dragonmounts2:blue_fire_dragon_head": { "sound": "stone" },
+  "dragonmounts2:flame_fire_dragon_head": { "sound": "stone" },
+  "dragonmounts2:fire_dragon_egg": { "sound": "stone" },
+  "dragonmounts2:aether_dragonscales_block": { "sound": "netherite" },
+  "dragonmounts2:enchanted_dragonscales_block": { "sound": "netherite" },
+  "dragonmounts2:ender_dragonscales_block": { "sound": "netherite" },
+  "dragonmounts2:fire_dragonscales_block": { "sound": "netherite" }
+}

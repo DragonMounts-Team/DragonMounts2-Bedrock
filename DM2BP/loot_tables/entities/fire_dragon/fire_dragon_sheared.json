@@ -1,0 +1,23 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "dragonmounts2:fire_dragonscales",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 3,
+								"max": 7
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

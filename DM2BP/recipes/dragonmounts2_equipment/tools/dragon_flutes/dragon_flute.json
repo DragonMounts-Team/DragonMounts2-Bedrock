@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_flute"
+    },
+    "unlock": [
+      { "tag": "minecraft:metal_nuggets" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ " A", "AB" ],
+    "priority": -1,
+    "key": {
+      "A": { "tag": "minecraft:metal_nuggets" },
+      "B": { "item": "minecraft:string" }
+    },
+    "result": { "item": "dragonmounts2:dragon_flute", "count": 1 }
+  }
+}

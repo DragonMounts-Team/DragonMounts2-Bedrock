@@ -1,0 +1,48 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:block": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragon_egg",
+      "menu_category": {
+        "category": "nature",
+        "group": "dragonmounts2:itemGroup.name.dragon_eggs",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:collision_box": true,
+      "minecraft:destructible_by_explosion": true,
+      "minecraft:destructible_by_mining": true,
+      "minecraft:destruction_particles": {
+        "texture": "dragonmounts2:fire_dragon_egg"
+      },
+      "minecraft:display_name": "tile.dragonmounts2:fire_dragon_egg.name",
+      "minecraft:geometry": "geometry.dragon_egg",
+      "minecraft:light_dampening": 0,
+      "minecraft:light_emission": 7,
+      "minecraft:loot": "loot_tables/blocks/dragonmounts2_nature/eggs/dragon_eggs/fire_dragon_egg.json",
+      "minecraft:map_color": {
+        "color": [255,55,55]
+      },
+      "minecraft:material_instances": {
+        "*": { "texture": "dragonmounts2:fire_dragon_egg", "render_method": "alpha_test" }
+      },
+      "minecraft:redstone_conductivity": {
+        "allows_wire_to_step_down": true,
+        "redstone_conductor": false
+      },
+      "minecraft:selection_box": true,
+      "dragonmounts2:dragon_egg": {
+        "block_entity": "dragonmounts2:fire_dragon_egg",
+        "block_transforms_into": "minecraft:air",
+        "particles": {
+          "interact_particle": "dragonmountsplus:fire_dragon_egg_bs",
+          "random_tick_particle": "dragonmountsplus:fire_dragon_egg_hatching"
+        },
+        "sounds": {
+          "interact_sound": "dragonmounts2:block.dragon_egg.convert"
+        }
+      }
+    }
+  }
+}
