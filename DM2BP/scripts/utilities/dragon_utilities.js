@@ -11,11 +11,11 @@ const BREATH_START_DELAY_TICKS = 8; // Delay before fire breath starts charging 
 let lastCleanup = 0;
 
 const fallRescueData = new Map();
-const FALL_RESCUE_MIN_FALL_HEIGHT = 4.5;
-const FALL_RESCUE_MIN_FALL_TICKS = 8;
-const FALL_RESCUE_DELAY_TICKS = 24;
-const FALL_RESCUE_SEARCH_RADIUS = 48;
-const FALL_RESCUE_MAX_RECENT_TICKS = 90;
+const FALL_RESCUE_MIN_FALL_HEIGHT = 2.5;
+const FALL_RESCUE_MIN_FALL_TICKS = 4;
+const FALL_RESCUE_DELAY_TICKS = 10;
+const FALL_RESCUE_SEARCH_RADIUS = 56;
+const FALL_RESCUE_MAX_RECENT_TICKS = 120;
 
 const playerLookupCache = {
 	tick: -1,
@@ -847,14 +847,14 @@ export function updateElytraFollow(dragon) {
 	const playerVel = getSafeVelocity(player);
 	const playerSpeed = Math.sqrt(playerVel.x * playerVel.x + playerVel.y * playerVel.y + playerVel.z * playerVel.z);
 	let desiredSpeed = playerSpeed;
-	const overshoot = Math.max(0, dist - 3.0);
-	const catchupBonus = Math.min(overshoot / 15, 1) * 2.5;
+	const overshoot = Math.max(0, dist - 2.0);
+	const catchupBonus = Math.min(overshoot / 12, 1) * 4.0;
 	desiredSpeed = desiredSpeed + catchupBonus;
-	if (dist < 4.0) {
-		desiredSpeed *= Math.max(dist / 4.0, 0.15);
+	if (dist < 3.5) {
+		desiredSpeed *= Math.max(dist / 3.5, 0.1);
 	}
 	
-	desiredSpeed = Math.min(desiredSpeed, 10);
+	desiredSpeed = Math.min(desiredSpeed, 12);
 	
 	if (desiredSpeed <= 0.01 || dist < 0.1) {
 		dragon.clearVelocity();
@@ -1022,11 +1022,11 @@ function executePlayerRescue(playerId, dragonPid) {
 	}
 
 	const playerLoc = player.location;
-	const predictedTarget = predictPlayerRescuePosition(player, 6) ?? playerLoc;
-	const verticalLead = Math.max(3.2, Math.min(6.5, Math.max(0, playerLoc.y - predictedTarget.y) * 0.35 + 3.2));
+	const predictedTarget = predictPlayerRescuePosition(player, 8) ?? playerLoc;
+	const verticalLead = Math.max(2.5, Math.min(7.5, Math.max(0, playerLoc.y - predictedTarget.y) * 0.5 + 2.5));
 	const teleportPos = {
 		x: predictedTarget.x,
-		y: Math.max(predictedTarget.y + verticalLead, playerLoc.y + 2.5),
+		y: Math.max(predictedTarget.y + verticalLead, playerLoc.y + 3.0),
 		z: predictedTarget.z
 	};
 	try {
@@ -1068,7 +1068,7 @@ export function tickFallRescue() {
 		const velocity = getSafeVelocity(player);
 		const falling = velocity.y < -0.1 || loc.y < data.lastY - 0.02;
 		const fallHeight = data.maxY - loc.y;
-		const shouldRescue = falling && (fallHeight >= FALL_RESCUE_MIN_FALL_HEIGHT || velocity.y <= -0.8) && system.currentTick - data.startTick >= FALL_RESCUE_MIN_FALL_TICKS;
+		const shouldRescue = falling && (fallHeight >= FALL_RESCUE_MIN_FALL_HEIGHT || velocity.y <= -0.6) && system.currentTick - data.startTick >= FALL_RESCUE_MIN_FALL_TICKS;
 		if (shouldRescue) {
 			const healthComp = player.getComponent("minecraft:health");
 			const currentHealth = healthComp?.currentValue ?? 20;
