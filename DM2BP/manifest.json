@@ -1,0 +1,42 @@
+{
+  "format_version": 3,
+  "header": {
+    "description": "pack.name",
+    "name": "pack.description",
+    "uuid": "24b454d6-d9bb-4327-968b-79000bbe8fc8",
+    "version": "2.1.0",
+    "min_engine_version": "1.26.30"
+  },
+  "modules": [
+    {
+      "description": "pack.description",
+      "type": "data",
+      "uuid": "7c169933-56ca-4e32-8cac-db9fda7b3567",
+      "version": "2.1.0"
+    },
+    {
+      "type": "script",
+      "uuid": "a163dae8-c766-4ffb-8788-9f6d8e61caa4",
+      "version": "2.1.0",
+      "entry": "scripts/dragonmounts2_main.js",
+      "language": "javascript"
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "77968600-b721-4f95-ad8c-d4f936ace3ef",
+      "version": "2.1.0"
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.8.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.0.0"
+    }
+  ],
+  "metadata": {
+    "product_type": "addon"
+  }
+}
