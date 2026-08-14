@@ -15,6 +15,11 @@
         "geometry": "Geometry.default",
         "materials": [ { "*": "v.is_enchanted?Material.overlay_enchanted:Material.overlay" } ],
         "textures": [ "v.has_trim?v.trim_path:Texture.overlay", "Texture.enchanted" ]
+      },
+      "controller.render.armor.dyeable": {
+        "geometry": "Geometry.default",
+        "materials": [ { "*": "v.is_enchanted?Material.enchanted:Material.default" } ],
+        "textures": [ "v.has_trim?v.trim_path:Texture.dyed", "Texture.enchanted" ]
       }
     }
   }
