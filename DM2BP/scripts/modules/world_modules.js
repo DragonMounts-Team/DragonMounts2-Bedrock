@@ -1,4 +1,4 @@
-import { system, world, BlockPermutation, GameMode, Player, BlockRecordPlayerComponent } from "@minecraft/server";
+import { system, world, BlockPermutation, GameMode, Player, BlockRecordPlayerComponent, EquipmentSlot } from "@minecraft/server";
 import * as itemArrays from "../arrays/item_arrays.js";
 
 const activeDiscs = new Map();
@@ -26,7 +26,9 @@ function stopDiscDeferred(key) {
     activeDiscs.delete(key);
     system.run(() => stopSoundForNearby(dim, center, sound));
 }
-world.beforeEvents.playerInteractWithBlock.subscribe(({ block }) => {
+world.beforeEvents.playerInteractWithBlock.subscribe((data) => {
+    const { block } = data;
+    
     if (block.typeId !== "minecraft:jukebox") return;
     const key = locationKey(block.location);
     if (!activeDiscs.has(key)) return;

@@ -12,9 +12,13 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:dragon_amulet.name"
       },
+      "minecraft:fire_resistant": {
+        "value": true
+      },
       "minecraft:icon": {
         "textures": {
-          "default": "dragonmounts2:ice_amulet"
+          "default": "dragonmounts2:ice_amulet",
+          "dyed": "dragonmounts2:ice_amulet_overlay"
         }
       },
       "minecraft:max_stack_size": {
@@ -26,6 +30,14 @@
           "minecraft:is_sword",
           "dragonmounts2:is_dragon_amulet"
         ]
+      },
+      "minecraft:block_placer": {
+        "block": "minecraft:air",
+        "use_on": ["minecraft:air"]
+      },
+      "minecraft:wearable": {
+        "protection": 1,
+        "slot": "slot.armor.chest"
       },
       "dragonmounts2:dragon_amulet": {
         "dragon_types": [

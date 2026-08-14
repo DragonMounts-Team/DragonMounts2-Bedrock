@@ -359,6 +359,27 @@
 
 "dragonmounts2:armor_trim": { "textures": "textures/trims/dragonmounts2_icon/armor_trim" },
 // ===== Dyable Components =====
+"dragonmounts2:dragon_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/dragon_amulet_overlay"},
+"dragonmounts2:aether_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/aether_dragon_amulet_overlay"},
+"dragonmounts2:dark_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/dark_dragon_amulet_overlay"},
+"dragonmounts2:enchanted_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/enchanted_dragon_amulet_overlay"},
+"dragonmounts2:ender_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/ender_dragon_amulet_overlay"},
+"dragonmounts2:fire_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/fire_dragon_amulet_overlay"},
+"dragonmounts2:forest_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/forest_dragon_amulet_overlay"},
+"dragonmounts2:ice_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/ice_dragon_amulet_overlay"},
+"dragonmounts2:light_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/light_dragon_amulet_overlay"},
+"dragonmounts2:moonlight_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/moonlight_dragon_amulet_overlay"},
+"dragonmounts2:nether_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/nether_dragon_amulet_overlay"},
+"dragonmounts2:sculk_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/sculk_dragon_amulet_overlay"},
+"dragonmounts2:skeleton_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/skeleton_dragon_amulet_overlay"},
+"dragonmounts2:storm_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/storm_dragon_amulet_overlay"},
+"dragonmounts2:sunlight_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/sunlight_dragon_amulet_overlay"},
+"dragonmounts2:terra_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/terra_dragon_amulet_overlay"},
+"dragonmounts2:water_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/water_dragon_amulet_overlay"},
+"dragonmounts2:wither_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/wither_dragon_amulet_overlay"},
+"dragonmounts2:zombie_amulet_overlay":{"textures":"textures/items/dragonmounts2_equipment/tools/amulets/zombie_dragon_amulet_overlay"},
+
+// ===== Miscellaneous =====
 
 "dragonmounts2:dragon_flute_dyeable": { "textures": "textures/items/dragonmounts2_equipment/tools/dragon_flutes/dragon_flute_dyeable" },
 "dragonmounts2:dragon_flute_bone_dyeable": { "textures": "textures/items/dragonmounts2_equipment/tools/dragon_flutes/dragon_flute_bone_dyeable" },

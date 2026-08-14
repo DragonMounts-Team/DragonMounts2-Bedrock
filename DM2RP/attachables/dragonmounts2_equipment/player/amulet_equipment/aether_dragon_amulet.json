@@ -1,0 +1,17 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:aether_amulet",
+      "materials": { "default": "entity_alphatest_change_color", "overlay": "entity_alphatest" },
+      "textures": {
+        "default": "textures/models/dragonmounts2_equipment/amulet_equipment/worn_aether_dragon_amulet",
+        "dyed": "textures/models/dragonmounts2_equipment/amulet_equipment/worn_aether_dragon_amulet"
+      },
+      "geometry": { "default": "geometry.dragonmounts2.dragon_amulet.worn" },
+      "animations": { "cape": "animation.dragonmounts2.player.cape" },
+      "scripts": { "parent_setup": "v.chest_layer_visible = 0.0;", "animate": [ "cape" ] },
+      "controller.render.dragonarmor.dyeable": "v.is_dyed" 
+    }
+  }
+}
