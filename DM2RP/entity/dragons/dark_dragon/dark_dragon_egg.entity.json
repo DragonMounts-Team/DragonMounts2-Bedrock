@@ -8,7 +8,7 @@
 				"death": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-				"dragon_egg": "textures/entity/dragon_eggs/dark"
+				"dragon_egg": "textures/entity/dragon_eggs/dark_dragon_egg"
 			},
 			"geometry": {
 				"dragon_egg": "geometry.dragon_egg"

@@ -8,7 +8,7 @@
 				"death": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-				"dragon_egg": "textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/ender_dragon_egg"
+				"dragon_egg": "textures/entity/dragon_eggs/ender_dragon_egg"
 			},
 			"geometry": {
 				"dragon_egg": "geometry.dragon_egg"

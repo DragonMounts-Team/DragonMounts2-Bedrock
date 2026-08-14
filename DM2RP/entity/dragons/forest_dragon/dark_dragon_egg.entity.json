@@ -2,13 +2,13 @@
 	"format_version": "1.26.10",
 	"minecraft:client_entity": {
 		"description": {
-			"identifier": "dragonmounts2:aether_dragon_egg",
+			"identifier": "dragonmounts2:forest_dragon_egg",
 			"materials": {
 				"dragon_egg": "dragon_egg",
 				"death": "entity_dissolve_layer1.skinning"
 			},
 			"textures": {
-				"dragon_egg": "textures/entity/dragon_eggs/aether_dragon_egg"
+				"dragon_egg": "textures/entity/dragon_eggs/forest_dragon_egg"
 			},
 			"geometry": {
 				"dragon_egg": "geometry.dragon_egg"
@@ -30,12 +30,12 @@
 				"dragonegg_bs1_sou": "dragonmounts2:block.dragon_egg.crack"
 			},
 			"particle_effects": {
-				"dragon_egg_hatching": "dragonmounts2:aether_dragon_egg_hatching",
-				"dragon_egg_cracks": "dragonmounts2:aether_dragon_egg_cracks"
+				"dragon_egg_hatching": "dragonmounts2:forest_dragon_egg_hatching",
+				"dragon_egg_cracks": "dragonmounts2:forest_dragon_egg_cracks"
 			},
 			"render_controllers": [
-				{ "controller.render.aether_dragon_egg": "query.death_ticks < 1.0" },
-				{ "controller.render.aether_dragon_egg_death": "query.death_ticks >= 1.0" }
+				{ "controller.render.forest_dragon_egg": "query.death_ticks < 1.0" },
+				{ "controller.render.forest_dragon_egg_death": "query.death_ticks >= 1.0" }
 			]
 		}
 	}

@@ -19,6 +19,11 @@
         "textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/fire_dragon_egg"
       ]
     },
+    "dragonmounts2:dark_dragon_egg": {
+      "textures": [
+        "textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/dark_dragon_egg"
+      ]
+    },
     "dragonmounts2:ice_dragon_egg": {
       "textures": [
         "textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/ice_dragon_egg"
@@ -209,9 +214,9 @@
         "textures/entity/dragon/ice/frost/body"
       ]
     },
-    "dragonmounts2:aether_dragon_head": {
+    "dragonmounts2:aethra_dragon_head": {
       "textures": [
-        "textures/entity/dragon/aether/aether/body"
+        "textures/entity/dragon/aether/aethra/body"
       ]
     },
     "dragonmounts2:aether_dragon_head_wind": {
