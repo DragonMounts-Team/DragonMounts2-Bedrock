@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:ender_dragon_scales"
+    },
+    "unlock": [
+      { "item": "dragonmounts2:ender_dragon_scale_block" },
+      { "item": "dragonmounts2:ender_dragon_scales" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ "A" ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "dragonmounts2:ender_dragon_scale_block" }
+    },
+    "result": { "item": "dragonmounts2:ender_dragon_scales", "count": 9 }
+  }
+}

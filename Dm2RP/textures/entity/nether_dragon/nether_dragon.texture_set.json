@@ -1,7 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "nether_dragon",
-        "metalness_emissive_roughness": "nether_dragon_mer"
-    }
-}

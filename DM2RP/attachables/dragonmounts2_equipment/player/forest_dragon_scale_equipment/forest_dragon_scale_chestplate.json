@@ -1,0 +1,17 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:forest_dragon_scale_chestplate",
+      "materials": { "default": "armor","enchanted": "armor_enchanted"},
+      "textures": {
+        "default": "textures/models/dragonmounts2_equipment/armor_equipment/forest_classic",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": { "default": "geometry.dragonmounts2.dragon_scale.chestplate" },
+      "animations": { "cape": "animation.dragonmounts2.player.cape" },
+      "scripts": { "parent_setup": "v.chest_layer_visible = 0.0;", "animate": [ "cape" ] },
+      "render_controllers": [ "controller.render.dragon_scale_armor" ]
+    }
+  }
+}

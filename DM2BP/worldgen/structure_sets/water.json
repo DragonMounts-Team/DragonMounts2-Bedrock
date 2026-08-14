@@ -1,0 +1,22 @@
+{
+	"format_version": "1.21.80",
+	"minecraft:structure_set": {
+		"description": {
+			"identifier": "dragonmounts2:water"
+		},
+		
+		"placement": {
+			"type": "minecraft:random_spread",
+			"salt": 1941215060,
+			"separation": 12,
+			"spacing": 45,
+			"spread_type": "triangular"
+		},
+		"structures": [
+			{
+				"structure": "dragonmounts2:water",
+				"weight": 1
+			}
+		]
+	}
+}

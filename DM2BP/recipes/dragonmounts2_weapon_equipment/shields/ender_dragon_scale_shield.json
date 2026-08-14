@@ -1,0 +1,34 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "item": "dragonmounts2:ender_dragon_scales"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      "AAA",
+      "ABA",
+      " A "
+    ],
+    "description": {
+      "identifier": "dragonmounts2:ender_dragon_scale_shield"
+    },
+    "key": {
+      "A": {
+        "item": "dragonmounts2:ender_dragon_scales"
+      },
+      "B": {
+        "item": "minecraft:shield"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:ender_dragon_scale_shield"
+    }
+  },
+  "format_version": "1.26.10"
+}

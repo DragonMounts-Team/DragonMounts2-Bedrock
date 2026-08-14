@@ -1,0 +1,114 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:netherite_dragon_flute",
+      "menu_category": {
+        "category": "equipment",
+        "group": "dragonmounts2:itemGroup.name.dragon_flutes",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:cooldown": {
+        "category": "dragonmounts2:dragon_flute",
+        "type": "use",
+        "duration": 1
+      },
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:dragon_flute.netherite.name"
+      },
+      "minecraft:dyeable": {},
+      "minecraft:fire_resistant": {
+        "value": true
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:dragon_flute_netherite",
+          "dyed": "dragonmounts2:dragon_flute_netherite_dyeable"
+        }
+      },
+      "minecraft:max_stack_size": {
+        "value": 1
+      },
+      "minecraft:rarity": "uncommon",
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_sword",
+          "dragonmounts2:is_dragon_flute"
+        ]
+      },
+      "minecraft:use_modifiers": {
+        "movement_modifier": 0.35,
+        "start_sound": "pop",
+        "use_duration": 1.0
+      },
+      "dragonmounts2:dragon_flute": {
+        "cooldown": {
+          "value": 1
+        },
+        "dragon_types": [
+          "dragonmounts2:aether_dragon",
+          "dragonmounts2:dark_dragon",
+          "dragonmounts2:enchant_dragon",
+          "dragonmounts2:ender_dragon",
+          "dragonmounts2:fire_dragon",
+          "dragonmounts2:forest_dragon",
+          "dragonmounts2:ice_dragon",
+          "dragonmounts2:moonlight_dragon",
+          "dragonmounts2:nether_dragon",
+          "dragonmounts2:sculk_dragon",
+          "dragonmounts2:skeleton_dragon",
+          "dragonmounts2:storm_dragon",
+          "dragonmounts2:sunlight_dragon",
+          "dragonmounts2:terra_dragon",
+          "dragonmounts2:water_dragon",
+          "dragonmounts2:wither_dragon",
+          "dragonmounts2:zombie_dragon"
+        ],
+        "sounds": {
+          "long": "dragonmounts2:item.dragon_flute.long",
+          "short": "dragonmounts2:item.dragon_flute.short"
+        },
+        "translates": {
+          "last_seen_location": "tooltip.dragonmounts2:dragon_flute.last_seen_location",
+          "bound": "tooltip.dragonmounts2:dragon_flute.bound",
+          "bound_to": "tooltip.dragonmounts2:dragon_flute.bound_to",
+          "bound_to_owner": "tooltip.dragonmounts2:dragon_flute.bound_to_owner",
+          "bounded_other_flute": "tooltip.dragonmounts2:dragon_flute.bounded_other_flute",
+          "bounded_other_owner": "tooltip.dragonmounts2:dragon_flute.bounded_other_owner",
+          "collar": "tooltip.dragonmounts2:dragon_flute.collar",
+          "came": "tooltip.dragonmounts2:dragon_flute.came",
+          "come_to_owner": "tooltip.dragonmounts2:dragon_flute.come_to_owner",
+          "cooldown": "tooltip.dragonmounts2:dragon_flute.cooldown",
+          "follow": "tooltip.dragonmounts2:dragon_flute.follow",
+          "follow_deny": "tooltip.dragonmounts2:dragon_flute.follow_deny",
+          "following": "tooltip.dragonmounts2:dragon_flute.following",
+          "lock": "tooltip.dragonmounts2:dragon_flute.lock",
+          "locked": "tooltip.dragonmounts2:dragon_flute.locked",
+          "no_collar": "tooltip.dragonmounts2:dragon_flute.no_collar",
+          "name": "tooltip.dragonmounts2:dragon_flute.name",
+          "not_bound": "tooltip.dragonmounts2:dragon_flute.not_bound",
+          "not_located": "tooltip.dragonmounts2:dragon_flute.not_located",
+          "not_owned": "tooltip.dragonmounts2:dragon_flute.not_owned",
+          "owned_by": "tooltip.dragonmounts2:dragon_flute.owned_by",
+          "on_collar": "tooltip.dragonmounts2:dragon_flute.on_collar",
+          "off_collar": "tooltip.dragonmounts2:dragon_flute.off_collar",
+          "ready": "tooltip.dragonmounts2:dragon_flute.ready",
+          "select_command": "tooltip.dragonmounts2:dragon_flute.select_command",
+          "selected_mobs": "tooltip.dragonmounts2:dragon_flute.selected_mobs",
+          "sit": "tooltip.dragonmounts2:dragon_flute.sit",
+          "sitting": "tooltip.dragonmounts2:dragon_flute.sitting",
+          "stand": "tooltip.dragonmounts2:dragon_flute.stand",
+          "standing": "tooltip.dragonmounts2:dragon_flute.standing",
+          "unbound": "tooltip.dragonmounts2:dragon_flute.unbound",
+          "unlock": "tooltip.dragonmounts2:dragon_flute.unlock",
+          "unlocked": "tooltip.dragonmounts2:dragon_flute.unlocked",
+          "untamed": "tooltip.dragonmounts2:dragon_flute.untamed",
+          "wander": "tooltip.dragonmounts2:dragon_flute.wander",
+          "wandering": "tooltip.dragonmounts2:dragon_flute.wandering"
+        }
+      }
+    }
+  }
+}

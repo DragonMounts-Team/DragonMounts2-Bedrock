@@ -1,0 +1,86 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:block": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_core",
+      "menu_category": {
+        "category": "nature",
+        "is_hidden_in_commands": false
+      },
+      "states": {
+        "dragonmounts2:core_state": [ "closed", "opening", "open", "closing" ],
+        "dragonmounts2:core_used": [ false, true ]
+      },
+      "traits": {
+        "minecraft:placement_direction": { "enabled_states": [ "minecraft:cardinal_direction" ] }
+      }
+    },
+    "components": {
+      "minecraft:collision_box": true,
+      "minecraft:destructible_by_mining": { "seconds_to_destroy": 1.0 },
+      "minecraft:destructible_by_explosion": { "explosion_resistance": 55.0 },
+      "minecraft:geometry": {
+        "identifier": "geometry.dragonmounts2.block.dragon_core",
+        "bone_visibility": {
+          "bottom": "q.block_state('dragonmounts2:core_state')=='closed'||q.block_state('dragonmounts2:core_state')=='open'",
+          "top": "q.block_state('dragonmounts2:core_state')=='closed'",
+          "open_top": "q.block_state('dragonmounts2:core_state')=='open'"
+        }
+      },
+      "minecraft:light_dampening": 0,
+      "minecraft:light_emission": 0,
+      "minecraft:map_color": "#000000",
+      "minecraft:material_instances": {
+        "*": { "texture": "dragonmounts2:dragon_core", "render_method": "alpha_test", "ambient_occlusion": false, "face_dimmimg": false }
+      },
+      "minecraft:selection_box": true,
+      "tag:metal": { },
+      "dragonmounts2:dragon_core": {
+        "block_entity": "dragonmounts2:dragon_core",
+        "block_transforms_into": "minecraft:air",
+        "particles": {
+          "interact_particle": "dragonmountsplus:ice_dragon_egg_bs",
+          "random_tick_particle": "dragonmountsplus:ice_dragon_egg_hatching"
+        },
+        "sounds": {
+          "interact_sound": "dragonmounts2:block.dragon_egg.convert"
+        },
+        "states": {
+          "cardinal": "minecraft:cardinal_direction",
+          "core_state": "dragonmounts2:core_state",
+          "core_used": "dragonmounts2:core_used"
+        }
+      }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": { "minecraft:transformation": { "rotation": [0,180,0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": { "minecraft:transformation": { "rotation": [0,0,0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": { "minecraft:transformation": { "rotation": [0,-90,0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": { "minecraft:transformation": { "rotation": [0,90,0] } }
+      },
+      {
+        "condition": "q.block_state('dragonmounts2:core_state')=='closed'",
+        "components": { "minecraft:collision_box": true }
+      },
+      {
+        "condition": "q.block_state('dragonmounts2:core_state')=='open'",
+        "components": { "minecraft:collision_box": { "origin": [-8,0,-8], "size": [16,24,16] } }
+      },
+      {
+        "condition": "q.block_state('dragonmounts2:core_state')=='opening'||q.block_state('dragonmounts2:core_state')=='closing'",
+        "components": { "minecraft:collision_box": { "origin": [-8,0,-8], "size": [16,20,16] } }
+      }
+    ]
+  }
+}

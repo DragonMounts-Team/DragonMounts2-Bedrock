@@ -1,0 +1,34 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "item": "dragonmounts2:sculk_dragon_scales"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      "A",
+      "A",
+      "B"
+    ],
+    "description": {
+      "identifier": "dragonmounts2:sculk_dragon_scale_sword"
+    },
+    "key": {
+      "A": {
+        "item": "dragonmounts2:sculk_dragon_scales"
+      },
+      "B": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:sculk_dragon_scale_sword"
+    }
+  },
+  "format_version": "1.26.10"
+}

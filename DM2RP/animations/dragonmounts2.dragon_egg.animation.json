@@ -1,0 +1,23 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dragon_egg.cracks2": {
+			"loop": true,
+			"animation_length": 6,
+			"bones": {
+				"egg": {
+					"rotation": {
+						"0.0": ["math.sin(query.anim_time * 640.0) * -16.0", 0, "8 + math.sin(query.anim_time * 640.0 - 320) * -16.0"],
+						"1.6333": [0, 0, 0]
+					}
+				}
+			},
+			"particle_effects": {
+				"0.0": {
+					"effect": "dragon_egg_cracks",
+					"locator": "egg"
+				}
+			}
+		}
+	}
+}

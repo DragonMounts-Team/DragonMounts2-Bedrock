@@ -1,0 +1,30 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "item": "dragonmounts2:skeleton_dragon_scales"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      "AAA",
+      "A A"
+    ],
+    "description": {
+      "identifier": "dragonmounts2:skeleton_dragon_bone_helmet"
+    },
+    "key": {
+      "A": {
+        "item": "dragonmounts2:skeleton_dragon_scales"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:skeleton_dragon_bone_helmet"
+    }
+  },
+  "format_version": "1.26.10"
+}

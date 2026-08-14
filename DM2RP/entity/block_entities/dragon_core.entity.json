@@ -1,0 +1,32 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_core",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/dragon_core"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon_core"
+      },
+      "animations": {
+        "closed": "animation.dragonmounts2.dragon_core.closed",
+        "opening": "animation.dragonmounts2.dragon_core.opening",
+        "opened": "animation.dragonmounts2.dragon_core.opened",
+        "closing": "animation.dragonmounts2.dragon_core.closing"
+      },
+      "scripts": {
+        "animate": [
+          { "closed": "q.property('dragonmounts2:core_state')=='closed'" },
+          { "opening": "q.property('dragonmounts2:core_state')=='opening'" },
+          { "opened": "q.property('dragonmounts2:core_state')=='open'" },
+          { "closing": "q.property('dragonmounts2:core_state')=='closing'" }
+        ]
+      },
+      "render_controllers": [ "controller.render.default" ]
+    }
+  }
+}

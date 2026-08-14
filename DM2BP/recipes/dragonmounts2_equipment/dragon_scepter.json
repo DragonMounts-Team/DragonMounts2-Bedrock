@@ -1,0 +1,21 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_scepter"
+    },
+    "unlock": [
+      { "item": "dragonmounts2:variation_orb" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ " AB", " CA", "D  " ],
+    "priority": -1,
+    "key": {
+      "A": { "tag": "dragonmounts2:dragon_scales" },
+      "B": { "item": "dragonmounts2:variation_orb" },
+      "C": { "item": "minecraft:breeze_rod" },
+      "D": { "item": "minecraft:blaze_rod" }
+    },
+    "result": { "item": "dragonmounts2:dragon_scepter", "count": 1 }
+  }
+}

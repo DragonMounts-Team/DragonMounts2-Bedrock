@@ -1,0 +1,31 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "item": "dragonmounts2:fire_dragon_scales"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      "AAA",
+      "A A",
+      "A A"
+    ],
+    "description": {
+      "identifier": "dragonmounts2:fire_dragon_scale_leggings"
+    },
+    "key": {
+      "A": {
+        "item": "dragonmounts2:fire_dragon_scales"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:fire_dragon_scale_leggings"
+    }
+  },
+  "format_version": "1.26.10"
+}

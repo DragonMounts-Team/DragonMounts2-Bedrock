@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:netherite_dragon_flute"
+    },
+    "unlock": [
+      { "item": "minecraft:netherite_ingot" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ " A", "AB" ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "minecraft:netherite_ingot" },
+      "B": { "item": "minecraft:string" }
+    },
+    "result": { "item": "dragonmounts2:netherite_dragon_flute", "count": 1 }
+  }
+}

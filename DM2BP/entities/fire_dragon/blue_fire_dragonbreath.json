@@ -1,0 +1,91 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:blue_fire_dragonbreath",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.3,
+        "height": 0.3
+      },
+      "minecraft:projectile": {
+        "on_hit": {
+          "stick_in_ground": {
+            "shake_time": 0.2
+          },
+          "definition_event": {
+            "affect_projectile": true,
+            "event_trigger": {
+              "event": "on:hit",
+              "target": "self"
+            }
+          }
+        },
+        "power": 4.2,
+        "gravity": 0.0,
+        "inertia": 0.99,
+        "uncertainty": {
+          "x": 0.03,
+          "y": 0.03,
+          "z": 0.03
+        },
+        "anchor": 2,
+        "offset": [ 0.0, 1.4, 1.7 ],
+        "should_bounce": false
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable_by_block": {},
+      "minecraft:pushable_by_entity": {},
+      "minecraft:conditional_bandwidth_optimization": {
+        "default_values": {
+          "max_optimized_distance": 120,
+          "max_dropped_ticks": 5,
+          "use_motion_prediction_hints": true
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "sequence": []
+      },
+      "on:hit": {
+        "sequence": [
+          {
+            "queue_command": {
+              "command": [
+                "execute at @s run fill ~1 ~1 ~1 ~-1 ~-1 ~-1 fire replace air",
+                "execute at @s run damage @e[r=5, family=!dragon_projectile, family=!dragon, type=!dragonmounts2:blue_fire_dragonbreath] 12",
+                "execute at @s run effect @e[r=5, family=!dragon_projectile, family=!dragon, type=!dragonmounts2:blue_fire_dragonbreath] minecraft:burning 2 0 true"
+              ]
+            }
+          },
+          {
+            "add": {
+              "component_groups": [ "ignite", "despawn" ]
+            }
+          }
+        ]
+      }
+    },
+    "component_groups": {
+      "ignite": {
+        "minecraft:explode": {
+          "power": 0.0,
+          "fuse_length": 0.0,
+          "max_resistance": 1000,
+          "breaks_blocks": false,
+          "causes_fire": true,
+          "destroy_affected_by_griefing": false,
+          "fire_affected_by_griefing": false,
+          "fuse_lit": true
+        }
+      },
+      "despawn": {
+        "minecraft:despawn": {}
+      }
+    }
+  }
+}

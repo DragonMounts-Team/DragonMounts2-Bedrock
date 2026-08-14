@@ -1,0 +1,108 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:ender_dragon",
+      "enable_attachables": true,
+      "materials": {
+        "dragon": "dragon",
+        "dragon_default": "dragon",
+        "dissolve_0": "entity_dissolve_layer0.skinning",
+        "dissolve_1": "entity_dissolve_layer1.skinning",
+        "collar": "entity_alphatest_change_color"
+      },
+      "textures": {
+        "jean": "textures/entity/dragon/ender/jean/body",
+        "john": "textures/entity/dragon/ender/john/body",
+        "shadow": "textures/entity/dragon/ender/shadow/body",
+        "jean_glow": "textures/entity/dragon/ender/jean/glow",
+        "john_glow": "textures/entity/dragon/ender/john/glow",
+        "shadow_glow": "textures/entity/dragon/ender/shadow/glow",
+        "dragon_saddled": "textures/models/dragonmounts2_equipment/dragon_equipment/dragon_saddle",
+        "dragon_chested": "textures/models/dragonmounts2_equipment/dragon_equipment/dragon_chest",
+        "dragon_none": "textures/entity/dragon/none",
+        "collar": "textures/models/dragonmounts2_equipment/dragon_equipment/dragon_collar",
+        "exploding": "textures/entity/dragon/dragon_dissolve",
+        "beam": "textures/entity/endercrystal/endercrystal_beam"
+      },
+      "geometry": {
+        "dragon_default": "geometry.dragonmounts2.dragon.normal",
+        "glow": "geometry.dragonmounts2.dragon.normal",
+        "dragon_saddled": "geometry.dragonmounts2.dragon.saddle",
+        "dragon_chested": "geometry.dragonmounts2.dragon.chest"
+      },
+      "animations": {
+        "controller": "controller.animation.dragonmounts2.dragon.action",
+        "idle": "animation.dragonmounts2.dragon.idle",
+        "walking": "animation.dragonmounts2.dragon.walking",
+        "swimming": "animation.dragonmounts2.dragon.swimming",
+        "sit": "animation.dragonmounts2.dragon.sit",
+        "dive": "animation.dragonmounts2.dragon.dive",
+        "flying": "animation.dragonmounts2.dragon.flying",
+        "hover": "animation.dragonmounts2.dragon.hover",
+        "bite": "animation.dragonmounts2.dragon.bite",
+        "breath": "animation.dragonmounts2.dragon.breath",
+        "init": "animation.dragonmounts2.dragon.init",
+        "death": "animation.dragonmounts2.dragon.death",
+        "death_particles": "animation.dragonmounts2.dragon.death_particles"
+      },
+      "scripts": {
+        "initialize": [
+          "v.tail_movement = 0;",
+          "v.body_roll = 0;"
+        ],
+        "pre_animation": [
+          "v.death_ticks = q.property('dragonmounts2:death_ticks');",
+          "v.death_effect_duration = 2.00;",
+          "v.death_alpha = (1.0-((v.death_ticks/2)/v.death_effect_duration));",
+          "v.script_ride = q.has_rider;",
+          "v.bite_anim_duration = 0.75f;",
+          "v.is_breathing = q.property('dragonmounts2:is_breathing');",
+          "v.variant_type = q.property('dragonmounts2:variant_type');",
+          "v.is_john = v.variant_type=='john';",
+          "v.is_shadow = v.variant_type=='shadow';",
+          "v.variant_type_index = v.is_john?1:v.is_shadow?2:0;",
+          "v.mob_state = q.property('dragonmounts2:mob_state');",
+          "v.is_standing = v.mob_state=='standing';",
+          "v.is_sitting = v.mob_state=='sitting';",
+          "v.movement_state = q.property('dragonmounts2:movement_state');",
+          "v.is_grounded_legacy = v.movement_state=='grounded';",
+          "v.is_flying = v.movement_state=='flying';",
+          "v.is_swimming = v.movement_state=='swimming';",
+          "v.is_grounded = v.is_grounded_legacy||v.is_swimming;",
+          "v.has_collar = q.property('dragonmounts2:has_collar');",
+          "v.equipped_armor = !q.is_item_name_any('slot.armor.chest','')||!q.is_item_name_any('slot.armor.body','');",
+          "v.tail_movement = math.lerp(variable.tail_movement,query.yaw_speed, 0.15);",
+          "v.body_roll = math.lerp(variable.body_roll,query.yaw_speed, 0.35);"
+        ],
+        "animate": [
+          { "controller": "v.death_ticks==0.00" },
+          { "breath": "v.death_ticks==0.00&&v.is_breathing" },
+          { "death": "!q.is_alive" },
+          { "death_particles": "v.death_ticks!=0.00" },
+          { "idle": "v.death_ticks!=0.00&&v.is_standing" },
+          { "sit": "v.death_ticks!=0.00&&v.is_sitting" }
+        ]
+      },
+      "sound_effects": {
+        "wings_flap": "dragonmounts2:mob.dragon.wings",
+        "wings_subduction": "dragonmounts2:mob.dragon.subduction"
+      },
+      "particle_effects": {
+        "death_cloud": "dragonmounts2:ender_dragon_death_cloud"
+      },
+      "render_controllers": [
+        "controller.render.dragonmounts2.dragon.is_saddled",
+        "controller.render.dragonmounts2.dragon.is_chested",
+        { "controller.render.dragonmounts2.dragon_collar": "v.has_collar" },
+        { "controller.render.dragonmounts2.ender_dragon.glow": "v.death_ticks==0.00" },
+        { "controller.render.dragonmounts2.ender_dragon.base": "v.death_ticks==0.00" },
+        { "controller.render.dragonmounts2.ender_dragon.death_pre_pass": "v.death_ticks!=0.00" },
+        { "controller.render.dragonmounts2.ender_dragon.death_main_pass": "v.death_ticks!=0.00" }
+      ],
+      "spawn_egg": {
+        "texture": "dragonmounts2:spawn_egg_ender_dragon"
+      }
+    }
+  }
+}

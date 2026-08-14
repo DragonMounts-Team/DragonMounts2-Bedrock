@@ -1,0 +1,50 @@
+{
+	"format_version": "1.19.0",
+	"animation_controllers": {
+		"controller.animation.dragon_baby.action": {
+			"initial_state": "on_ground",
+			"states": {
+				"on_ground": {
+					"animations": ["idle"],
+					"transitions": [
+						{"walk": "v.is_grounded&&q.modified_move_speed>0.25"},
+						{"sit": "q.is_sitting&&!q.has_rider"},
+						{"bite": "q.is_delayed_attacking==1"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"sit": {
+					"animations": ["sit"],
+					"transitions": [
+						{"on_ground": "!q.is_sitting||q.has_rider"},
+						{"walk": "v.is_grounded&&q.modified_move_speed>0.2"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"walk": {
+					"animations": ["walking"],
+					"transitions": [
+						{"on_ground": "(!q.is_sitting||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.25"},
+						{"bite": "q.is_delayed_attacking==1"},
+						{"sit": "q.is_sitting&&v.is_grounded&&q.modified_move_speed<=0.25&&!q.has_rider"}
+					],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"swim": {
+					"animations": ["swimming"],
+					"blend_transition": 0.75,
+					"blend_via_shortest_path": true
+				},
+				"bite": {
+					"animations": ["bite", "idle"],
+					"transitions": [
+						{"on_ground": "q.is_delayed_attacking==0"}
+					]
+				}
+			}
+		}
+	}
+}

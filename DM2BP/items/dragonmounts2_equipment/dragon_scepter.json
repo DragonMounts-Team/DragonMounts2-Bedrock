@@ -1,0 +1,138 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_scepter",
+      "menu_category": {
+        "category": "equipment",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:can_destroy_in_creative": false,
+      "minecraft:cooldown": {
+        "category": "dragonmounts2:dragon_scepter",
+        "type": "use",
+        "duration": 1.0
+      },
+      "minecraft:damage": {
+        "value": 4
+      },
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:dragon_scepter.name"
+      },
+      "minecraft:durability": {
+        "max_durability": 512,
+        "damage_chance": {
+          "min": 0,
+          "max": 100
+        }
+      },
+      "minecraft:enchantable": {
+        "slot": "flintsteel",
+        "value": 25
+      },
+      "minecraft:fire_resistant": {
+        "value": true
+      },
+      "minecraft:hand_equipped": {
+        "value": true
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:dragon_scepter_inactive"
+        }
+      },
+      "minecraft:max_stack_size": {
+        "value": 1
+      },
+      "minecraft:rarity": "uncommon",
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmounts2:dragon_scepter"
+            ],
+            "repair_amount": "c.other->q.remaining_durability"
+          },
+          {
+            "items": [
+              "minecraft:blaze_rod",
+              "minecraft:breeze_rod",
+              {
+                "tags": "q.all_tags('dragonmounts2:dragon_scale')"
+              }
+            ],
+            "repair_amount": "q.max_durability*0.25"
+          }
+        ]
+      },
+      "minecraft:swing_duration": {
+        "value": 1.0
+      },
+      "minecraft:swing_sounds": {
+        "attack_miss": "item.golden_spear.use",
+        "attack_hit": "item.golden_spear.use"
+      },
+      "minecraft:tags": {
+        "tags": [
+          "dragonmounts2:is_dragon_scepter"
+        ]
+      },
+      "minecraft:use_animation": {
+        "value": "none"
+      },
+      "minecraft:use_modifiers": {
+        "use_duration": 2.0,
+        "emit_vibrations": true,
+        "movement_modifier": 1.0
+      },
+      "dragonmounts2:dragon_scepter": {
+        "max_distance": 32,
+        "sounds": {
+          "cast": "dragonmounts2:item.dragon_scepter",
+          "long": "dragonmounts2:item.dragon_flute.long",
+          "short": "dragonmounts2:item.dragon_flute.short",
+          "spell": "dragonmounts2:item.variation_orb"
+        },
+        "dragon_types": [
+          "dragonmounts2:aether_dragon",
+          "dragonmounts2:dark_dragon",
+          "dragonmounts2:enchanted_dragon",
+          "dragonmounts2:ender_dragon",
+          "dragonmounts2:fire_dragon",
+          "dragonmounts2:forest_dragon",
+          "dragonmounts2:ice_dragon",
+          "dragonmounts2:moonlight_dragon",
+          "dragonmounts2:nether_dragon",
+          "dragonmounts2:sculk_dragon",
+          "dragonmounts2:skeleton_dragon",
+          "dragonmounts2:storm_dragon",
+          "dragonmounts2:sunlight_dragon",
+          "dragonmounts2:terra_dragon",
+          "dragonmounts2:water_dragon",
+          "dragonmounts2:wither_dragon",
+          "dragonmounts2:zombie_dragon"
+        ],
+        "translates": {
+          "bound": "tooltip.dragonmounts2:dragon_scepter.bound",
+          "bound_to": "tooltip.dragonmounts2:dragon_scepter.bound_to",
+          "bound_to_owner": "tooltip.dragonmounts2:dragon_scepter.bound_to_owner",
+          "bounded_other_owner": "tooltip.dragonmounts2:dragon_scepter.bounded_other_owner",
+          "bounded_other_scepter": "tooltip.dragonmounts2:dragon_scepter.bounded_other_scepter",
+          "name": "tooltip.dragonmounts2:dragon_scepter.name",
+          "not_bound": "tooltip.dragonmounts2:dragon_scepter.not_bound",
+          "not_owned": "tooltip.dragonmounts2:dragon_scepter.not_owned",
+          "select_command": "tooltip.dragonmounts2:dragon_scepter.select_command",
+          "selected_mobs": "tooltip.dragonmounts2:dragon_scepter.selected_mobs",
+          "toggle_vflight": "tooltip.dragonmounts2:dragon_scepter.toggle_vflight",
+          "unbound": "tooltip.dragonmounts2:dragon_scepter.unbound",
+          "vflight_disabled": "tooltip.dragonmounts2:dragon_scepter.vflight_disabled",
+          "vflight_enabled": "tooltip.dragonmounts2:dragon_scepter.vflight_enabled",
+          "vflight_max": "tooltip.dragonmounts2:dragon_scepter.vflight_max",
+          "vflight_no_target": "tooltip.dragonmounts2:dragon_scepter.vflight_no_target"
+        }
+      }
+    }
+  }
+}

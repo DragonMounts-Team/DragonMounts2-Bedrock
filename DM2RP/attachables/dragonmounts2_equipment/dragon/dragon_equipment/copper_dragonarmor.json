@@ -1,0 +1,23 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:copper_dragonarmor",
+      "item": { "dragonmounts2:copper_dragonarmor": "q.is_owner_identifier_any('dragonmounts2:aether_dragon','dragonmounts2:dark_dragon','dragonmounts2:ender_dragon','dragonmounts2:enchant_dragon','dragonmounts2:fire_dragon','dragonmounts2:forest_dragon','dragonmounts2:ice_dragon','dragonmounts2:moonlight_dragon','dragonmounts2:nether_dragon','dragonmounts2:sculk_dragon','dragonmounts2:skeleton_dragon','dragonmounts2:storm_dragon','dragonmounts2:sunlight_dragon','dragonmounts2:terra_dragon','dragonmounts2:water_dragon','dragonmounts2:wither_dragon','dragonmounts2:zombie_dragon')" },
+      "materials": { "default": "entity_alphatest", "enchanted": "armor_enchanted"
+      },
+      "textures": {
+        "default": "textures/models/dragonmounts2_equipment/dragon_equipment/normal_armor/armor_copper",
+        "enchanted": "textures/misc/enchanted_item_glint",
+        "bolt_trim": "textures/trims/dragonmounts2_equipment/dragon_equipment/bolt",
+        "coast_trim": "textures/trims/dragonmounts2_equipment/dragon_equipment/coast"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon.armor_normal"
+      },
+      "render_controllers": [
+        "controller.render.dragonarmor.default"
+      ]
+    }
+  }
+}

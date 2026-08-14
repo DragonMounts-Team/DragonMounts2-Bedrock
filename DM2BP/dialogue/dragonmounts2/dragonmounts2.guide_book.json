@@ -1,0 +1,3194 @@
+{
+	"format_version": "1.26.10",
+	"minecraft:npc_dialogue": {
+		"scenes": [
+			{
+				"scene_tag": "dragonmounts2:1-home",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.home"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.home"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book home",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:1-home",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:1-home"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.get_started"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.controls"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_training"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.baby_dragons"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.recipes"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.settings"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_1"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_1_1",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_1_1"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_1_1"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_1_1",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_1_1",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_1_1"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.introduction.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.taming_dragons"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_saddle"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_riding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_info"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_1_2",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_1_2"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_1_2"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_1_2",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_1_2",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_1_2"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.introduction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.taming_dragons.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_saddle"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_riding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_info"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_1_3",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_1_3"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_1_3"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_1_3",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_1_3",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_1_3"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.introduction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.taming_dragons"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_saddle.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_riding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_info"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_1_4",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_1_4"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_1_4"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_1_4",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_1_4",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_1_4"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.introduction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.taming_dragons"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_saddle"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_riding.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_info"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_1_5",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_1_5"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_1_5"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_1_5",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_1_5",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_1_5"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.introduction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.taming_dragons"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_saddle"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_riding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.dragon_info.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_1_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_2_1",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_2_1"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_2_1"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_2_1",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_2_1",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_2_1"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.movement"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.interaction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.combat"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.tips"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_2_2",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_2_2"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_2_2"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_2_2",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_2_2",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_2_2"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.movement.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.interaction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.combat"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.tips"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_2_3",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_2_3"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_2_3"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_2_3",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_2_3",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_2_3"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.movement"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.interaction.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.combat"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.tips"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_2_4",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_2_4"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_2_4"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_2_4",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_2_4",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_2_4"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.movement"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.interaction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.combat.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.tips"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_2_5",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_2_5"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_2_5"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_2_5",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_2_5",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_2_5"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.movement"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.interaction"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.combat"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.tips.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_2_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_3_1",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_3_1"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_3_1"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_3_1",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_3_1",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_3_1"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.trust"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.handling"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_3_2",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_3_2"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_3_2"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_3_2",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_3_2",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_3_2"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.trust.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.handling"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_3_3",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_3_3"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_3_3"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_3_3",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_3_3",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_3_3"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.trust"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.handling"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_3_4",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_3_4"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_3_4"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_3_4",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_3_4",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_3_4"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.trust"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.handling.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_3_5",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_3_5"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_3_5"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_3_5",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_3_5",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_3_5"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.trust"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.handling"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_3_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_4_1",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_4_1"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_4_1"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_4_1",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_4_1",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_4_1"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.care"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.safety"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.growth"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_4_2",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_4_2"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_4_2"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_4_2",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_4_2",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_4_2"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.care.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.safety"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.growth"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_4_3",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_4_3"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_4_3"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_4_3",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_4_3",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_4_3"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.care"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.safety"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.growth"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_4_4",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_4_4"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_4_4"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_4_4",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_4_4",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_4_4"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.care"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.safety.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.growth"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_4_5",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_4_5"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_4_5"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_4_5",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_4_5",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_4_5"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.care"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.feeding"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.safety"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.growth.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_4_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_5_1",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_5_1"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_5_1"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_5_1",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_5_1",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_5_1"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.gear"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.crafting"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.saddles"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_5_2",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_5_2"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_5_2"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_5_2",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_5_2",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_5_2"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.gear.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.crafting"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.saddles"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_5_3",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_5_3"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_5_3"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_5_3",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_5_3",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_5_3"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.gear"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.crafting.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.saddles"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_5_4",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_5_4"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_5_4"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_5_4",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_5_4",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_5_4"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.gear"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.crafting"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.saddles.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_5_5",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_5_5"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_5_5"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_5_5",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_5_5",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_5_5"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.overview"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_1"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.gear"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.crafting"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.saddles"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.progress.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_5_5"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_6_1",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_6_1"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_6_1"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_6_1",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_6_1",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_6_1"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.credits"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.changelog"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.options"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_6_2",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_6_2"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_6_2"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_6_2",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_6_2",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_6_2"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.credits.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.changelog"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.options"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_6_3",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_6_3"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_6_3"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_6_3",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_6_3",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_6_3"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.credits"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.changelog.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.options"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_6_4",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_6_4"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_6_4"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_6_4",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_6_4",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_6_4"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.credits"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.changelog"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.options.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			},
+			{
+				"scene_tag": "dragonmounts2:page_6_5",
+				"npc_name": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.name.page_6_5"
+						}
+					]
+				},
+				"text": {
+					"rawtext": [
+						{
+							"translate": "dragonmounts2:guide_book.text.page_6_5"
+						}
+					]
+				},
+				"on_open_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_open",
+					"/execute as @s run scriptevent dragonmounts2:set_guide_book page_6_5",
+					"/scriptevent dragonmounts2:guide_book open dragonmounts2:page_6_5",
+					"/tp @s ~ ~ ~ facing @initiator"
+				],
+				"on_close_commands": [
+					"/execute as @initiator run scriptevent dragonmounts2:guide_book_try_close",
+					"/scriptevent dragonmounts2:guide_book close dragonmounts2:page_6_5"
+				],
+				"buttons": [
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.credits"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_2"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.changelog"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_3"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.options.active"
+								}
+							]
+						},
+						"commands": [
+							"/playsound next_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:page_6_4"
+						]
+					},
+					{
+						"name": {
+							"rawtext": [
+								{
+									"translate": "dragonmounts2:guide_book.button.back"
+								}
+							]
+						},
+						"commands": [
+							"/playsound prev_page @initiator",
+							"/dialogue open @s @initiator dragonmounts2:1-home"
+						]
+					}
+				]
+			}
+		]
+	}
+}

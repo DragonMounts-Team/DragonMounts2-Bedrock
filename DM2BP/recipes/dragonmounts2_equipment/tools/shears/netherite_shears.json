@@ -1,0 +1,33 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "tag": "minecraft:netherite"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      " A",
+      "B "
+    ],
+    "description": {
+      "identifier": "dragonmounts2:netherite_shears"
+    },
+    "key": {
+      "A": {
+        "item": "minecraft:netherite_ingot"
+      },
+      "B": {
+        "item": "minecraft:netherite_ingot"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:netherite_shears"
+    }
+  },
+  "format_version": "1.26.10"
+}

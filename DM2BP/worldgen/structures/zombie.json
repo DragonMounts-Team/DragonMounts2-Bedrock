@@ -1,0 +1,36 @@
+{
+  "format_version": "1.21.80",
+  "minecraft:jigsaw": {
+    "description": {
+      "identifier": "dragonmounts2:zombie"
+    },
+    "start_pool": "dragonmounts2:zombie",
+    "step": "surface_structures",
+    "heightmap_projection": "none",
+    "start_height": {
+        "type": "uniform",
+        "min": {"above_bottom": 10 },
+        "max": {"above_bottom": 100} 
+    },
+    "dimension_padding": {
+        "top": 40,
+        "bottom": 10
+    },
+    "max_depth": 10,
+    "biome_filters": [
+      {
+        "all_of": [
+            {"test": "has_biome_tag","operator": "!=","value": "river"},
+            {"test": "has_biome_tag","operator": "!=","value": "lakes"},
+            {"test": "has_biome_tag","operator": "!=","value": "savana"},
+            {"test": "has_biome_tag","operator": "!=","value": "planis"},
+            {"test": "has_biome_tag","operator": "!=","value": "beach"},
+            {"any_of": [
+                {"test": "has_biome_tag","operator": "==","value": "nether"}
+            ]}
+        ]
+      }
+    ],
+    "terrain_adaptation": "bury"
+  }
+}

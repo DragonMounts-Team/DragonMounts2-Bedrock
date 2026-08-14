@@ -1,0 +1,143 @@
+{
+  "tiers": [
+    {
+      "groups": [
+        {
+          "num_to_select": 1,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": {
+                    "min": 4,
+                    "max": 12
+                  },
+                  "price_multiplier": 0.5
+                },
+                {
+                  "item": "minecraft:empty_map"
+                }
+              ],
+              "gives": [
+                {
+                  "item": "minecraft:map",
+                  "functions": [
+                    {
+                      "function": "exploration_map",
+                      "destination": "dragonmounts2:aether_dragon_nest"
+                    },
+                    {
+                      "function": "set_name",
+                      "name": "§r§enest.aether.dragonmounts2.map_name"
+                    }
+                  ]
+                }
+              ],
+              "max_uses": 1,
+              "trader_exp": 3
+            }
+          ]
+        },
+        {
+          "num_to_select": 5,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 2,
+                    "max": 2
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:dragon_flute"
+                }
+              ],
+              "max_uses": 7,
+              "trader_exp": 3
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 3,
+                    "max": 3
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 7,
+              "trader_exp": 3
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 7,
+              "trader_exp": 3
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 5,
+                    "max": 5
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 7,
+              "trader_exp": 3
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 2,
+                    "max": 2
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_boots"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

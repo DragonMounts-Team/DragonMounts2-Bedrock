@@ -1,1 +1,0 @@
-damage @e[r=6] 5 fire

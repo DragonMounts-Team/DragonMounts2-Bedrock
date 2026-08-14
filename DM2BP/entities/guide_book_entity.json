@@ -1,0 +1,140 @@
+{
+	"minecraft:entity": {
+		"description": {
+			"animations": {
+				"controller.dragonmounts2.npc": "controller.animation.dragonmounts2.npc.guide_book"
+			},
+			"scripts": {
+				"animate": [
+					"controller.dragonmounts2.npc"
+				]
+			},
+			"identifier": "dragonmounts2:guide_book",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false,
+			"properties": {
+				"dragonmounts2:page_number": {
+					"type": "int",
+					"default": 0,
+					"range": [
+						0,
+						37
+					],
+					"client_sync": true
+				}
+			}
+		},
+		"components": {
+			"minecraft:npc": {
+				"npc_data": {
+					"portrait_offsets": {
+						"translate": [
+							0,
+							20,
+							0
+						],
+						"scale": [
+							80,
+							80,
+							80
+						],
+						"rotate": [
+							0,
+							-30,
+							0
+						]
+					}
+				}
+			},
+			"minecraft:scale": {
+				"value": 0.01
+			},
+			"minecraft:physics": {
+				"has_gravity": false,
+				"has_collision": true
+			},
+			"minecraft:pushable": {
+				"is_pushable": false
+			},
+			"minecraft:push_through": {
+				"value": 1
+			},
+			"minecraft:damage_sensor": {
+				"triggers": [
+					{
+						"cause": "all",
+						"deals_damage": "no"
+					}
+				]
+			},
+			"minecraft:mob_effect_immunity": {
+				"mob_effects": [
+					"absorption",
+					"bad_omen",
+					"blindness",
+					"conduit_power",
+					"darkness",
+					"fatal_poison",
+					"fire_resistance",
+					"haste",
+					"health_boost",
+					"hunger",
+					"infested",
+					"instant_damage",
+					"instant_health",
+					"invisibility",
+					"jump_boost",
+					"levitation",
+					"mining_fatigue",
+					"nausea",
+					"night_vision",
+					"oozing",
+					"poison",
+					"raid_omen",
+					"regeneration",
+					"resistance",
+					"saturation",
+					"slow_falling",
+					"slowness",
+					"speed",
+					"strength",
+					"trial_omen",
+					"village_hero",
+					"water_breathing",
+					"weakness",
+					"weaving",
+					"wind_charged",
+					"wither"
+				]
+			},
+			"minecraft:environment_sensor": {
+				"triggers": [
+					{
+						"event": "dragonmounts2:despawn",
+						"filters": {
+							"test": "distance_to_nearest_player",
+							"operator": ">",
+							"value": 5
+						}
+					}
+				]
+			}
+		},
+		"component_groups": {
+			"dragonmounts2:despawn": {
+				"minecraft:instant_despawn": {}
+			}
+		},
+		"events": {
+			"dragonmounts2:despawn": {
+				"add": {
+					"component_groups": [
+						"dragonmounts2:despawn"
+					]
+				}
+			}
+		}
+	},
+	"format_version": "1.21.50"
+}

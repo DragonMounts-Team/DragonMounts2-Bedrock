@@ -1,0 +1,482 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_keeper",
+      "spawn_category": "creature",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "properties": {
+        "dragonmounts2:is_baby": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "dragon_keeper", "dragonmounts2", "villager", "mob" ]
+      },
+      "minecraft:health": { "value": 35, "max": 35 },
+      "minecraft:collision_box": { "width": 0.6, "height": 1.9 },
+      "minecraft:movement": { "value": 0.5 },
+      "minecraft:follow_range": { "value": 128 },
+      "minecraft:physics": {},
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:can_climb": {},
+      "minecraft:jump.static": {},
+      "minecraft:movement.basic": {},
+      "minecraft:hide": {},
+      "minecraft:navigation.walk": {
+        "avoid_water": true,
+        "can_path_over_water": true,
+        "can_pass_doors": true,
+        "can_open_doors": true
+      },
+      "minecraft:dweller": {
+        "dwelling_type": "village",
+        "dweller_role": "inhabitant",
+        "can_find_poi": true,
+        "can_migrate": true,
+        "first_founding_reward": 5,
+        "update_interval_base": 60,
+        "update_interval_variant": 40
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "on_damage": {
+              "event": "dragonmounts2:become_zombie",
+              "filters": {
+                "all_of": [
+                  { "test": "has_damage", "value": "fatal" }
+                ],
+                "any_of": [
+                  { "subject": "other", "test": "is_family", "value": "zombie" },
+                  { "subject": "other", "test": "is_family", "value": "husk" }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "minecraft:inventory": { "inventory_size": 8, "private": true },
+      "minecraft:equipment": {
+        "slot_drop_chance": [
+          { "drop_chance": 0, "slot": "slot.weapon.mainhand" }
+        ]
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava", "subject": "self", "operator": "==", "value": true
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:nameable": {},
+      "minecraft:persistent": {},
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:annotation.open_door": {},
+      "minecraft:ageable": {
+        "duration": 1200,
+        "feed_items": [ "bread", "carrot", "potato", "beetroot" ],
+        "grow_up": {
+          "event": "dragonmounts2:grow_up",
+          "target": "self"
+        }
+      },
+      "minecraft:breedable": {
+        "require_tame": false,
+        "breed_items": [ "bread", "carrot", "potato", "beetroot" ],
+        "environment_requirements": {
+          "blocks": "minecraft:bed",
+          "count": 3,
+          "radius": 2
+        },
+        "allow_sitting": false,
+        "causes_pregnancy": false
+      },
+      "minecraft:shareables": {
+        "items": [
+          { "item": "minecraft:bread",    "stored_in_inventory": true, "surplus_amount": 6,  "want_amount": 3  },
+          { "item": "minecraft:carrot",   "stored_in_inventory": true, "surplus_amount": 24, "want_amount": 12 },
+          { "item": "minecraft:potato",   "stored_in_inventory": true, "surplus_amount": 24, "want_amount": 12 },
+          { "item": "minecraft:beetroot", "stored_in_inventory": true, "surplus_amount": 24, "want_amount": 12 }
+        ]
+      },
+      "minecraft:shooter": {
+        "def": "minecraft:splash_potion",
+        "aux_val": 21,
+        "sound": "throw",
+        "magic": true,
+        "power": 0.25,
+        "projectiles": [
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 22,
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "zombie" },
+                { "test": "is_family", "subject": "other", "value": "zombie_villager" }
+              ]
+            }
+          },
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 23,
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "player" }
+              ]
+            },
+            "lose_target": true
+          },
+          {
+            "def": "minecraft:splash_potion",
+            "aux_val": 24,
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "illager" },
+                { "test": "is_family", "subject": "other", "value": "vex" }
+              ]
+            }
+          }
+        ]
+      },
+      "minecraft:behavior.float":           { "priority": 0 },
+      "minecraft:behavior.hide":            { "priority": 0, "duration": 30, "poi_type": "bed", "speed_multiplier": 0.8 },
+      "minecraft:behavior.drink_potion": {
+        "priority": 1,
+        "speed_modifier": -0.25,
+        "potions": [
+          {
+            "id": 20, "chance": 0.15,
+            "filters": { "all_of": [
+              { "test": "is_underwater", "subject": "self", "value": true },
+              { "none_of": [{ "test": "has_mob_effect", "subject": "self", "value": "water_breathing" }] }
+            ]}
+          },
+          {
+            "id": 13, "chance": 1,
+            "filters": { "all_of": [
+              { "any_of": [
+                { "test": "on_fire",           "subject": "self", "value": true },
+                { "test": "on_hot_block",      "subject": "self", "value": true },
+                { "test": "taking_fire_damage", "subject": "self", "value": true }
+              ]},
+              { "none_of": [{ "test": "has_mob_effect", "subject": "self", "value": "fire_resistance" }] }
+            ]}
+          },
+          {
+            "id": 22, "chance": 0.15,
+            "filters": { "all_of": [{ "test": "is_missing_health", "subject": "self", "value": true }]}
+          },
+          {
+            "id": 14, "chance": 0.25,
+            "filters": { "all_of": [
+              { "test": "has_target",      "subject": "self", "value": true },
+              { "none_of": [{ "test": "has_mob_effect", "subject": "self", "value": "speed" }] },
+              { "test": "target_distance", "subject": "self", "value": 11, "operator": ">=" }
+            ]}
+          },
+          {
+            "id": 39, "chance": 1,
+            "filters": { "all_of": [
+              { "test": "has_target", "subject": "self", "value": true },
+              { "none_of": [{ "test": "has_mob_effect", "subject": "self", "value": "resistance" }] }
+            ]}
+          }
+        ]
+      },
+      "minecraft:behavior.panic":          { "priority": 1, "speed_multiplier": 0.6 },
+      "minecraft:behavior.hurt_by_target": { "priority": 1 },
+      "minecraft:behavior.trade_with_player": {
+        "priority": 2,
+        "filters": {
+          "all_of": [
+            { "all_of": [{ "test": "in_water", "value": false }] },
+            { "any_of": [
+              { "test": "on_ground",   "value": true },
+              { "test": "is_sleeping", "value": true }
+            ]}
+          ]
+        }
+      },
+      "minecraft:behavior.ranged_attack": {
+        "priority": 2,
+        "speed_multiplier": 1,
+        "attack_interval_min": 1,
+        "attack_interval_max": 1,
+        "attack_radius": 10
+      },
+      "minecraft:behavior.nearest_prioritized_attackable_target": {
+        "priority": 2,
+        "must_reach": true,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "zombie" },
+                { "test": "is_family", "subject": "other", "value": "zombie_villager" },
+                { "test": "is_family", "subject": "other", "value": "illager" },
+                { "test": "is_family", "subject": "other", "value": "vex" }
+              ]
+            },
+            "priority": 1,
+            "max_dist": 10
+          }
+        ]
+      },
+      "minecraft:behavior.avoid_mob_type": {
+        "priority": 4,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "zombie" },
+                { "test": "is_family", "subject": "other", "value": "zombie_villager" },
+                { "test": "is_family", "subject": "other", "value": "illager" },
+                { "test": "is_family", "subject": "other", "value": "vex" }
+              ]
+            },
+            "max_dist": 8,
+            "walk_speed_multiplier": 0.6,
+            "sprint_speed_multiplier": 0.6
+          }
+        ]
+      },
+      "minecraft:behavior.breed":  { "priority": 3, "speed_multiplier": 1.0 },
+      "minecraft:behavior.tempt": {
+        "priority": 4,
+        "speed_multiplier": 0.5,
+        "within_radius": 8,
+        "can_get_scared": false,
+        "items": [
+          "poppy", "dandelion", "blue_orchid", "allium", "azure_bluet",
+          "red_tulip", "orange_tulip", "white_tulip", "pink_tulip",
+          "oxeye_daisy", "cornflower", "lily_of_the_valley", "wither_rose",
+          "sunflower", "lilac", "rose_bush", "peony"
+        ]
+      },
+      "minecraft:behavior.look_at_trading_player": { "priority": 7 },
+      "minecraft:behavior.move_indoors":            { "priority": 6, "speed_multiplier": 0.8, "timeout_cooldown": 8 },
+      "minecraft:behavior.restrict_open_door":      { "priority": 7 },
+      "minecraft:behavior.open_door":               { "priority": 8, "close_door_after": true },
+      "minecraft:behavior.share_items": {
+        "priority": 10,
+        "max_dist": 3,
+        "goal_radius": 2,
+        "speed_multiplier": 0.5,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "villager" },
+                { "test": "is_family", "subject": "other", "value": "dragon_keeper" }
+              ]
+            }
+          }
+        ]
+      },
+      "minecraft:behavior.pickup_items": {
+        "priority": 4,
+        "max_dist": 3,
+        "goal_radius": 2,
+        "speed_multiplier": 0.5,
+        "can_pickup_to_hand_or_equipment": false
+      },
+      "minecraft:behavior.random_stroll":                    { "priority": 11, "speed_multiplier": 0.6 },
+      "minecraft:behavior.move_towards_dwelling_restriction": { "priority": 11, "speed_multiplier": 0.6 },
+      "minecraft:behavior.look_at_player":                   { "priority": 9, "look_distance": 8, "probability": 0.02 }
+    },
+    "component_groups": {
+      "dragonmounts2:dragon_keeper_adult": {
+        "minecraft:experience_reward": {
+          "on_bred": "Math.Random(1,7)",
+          "on_death": "query.last_hit_by_player ? Math.Random(1,3) : 0"
+        },
+        "minecraft:scale": { "value": 1.0 },
+        "minecraft:preferred_path": {
+          "default_block_cost": 3,
+          "jump_cost": 20,
+          "max_fall_blocks": 1,
+          "preferred_path_blocks": [
+            { "blocks": ["grass_path"], "cost": 0 },
+            {
+              "blocks": [
+                "cobblestone", "stone", "granite", "polished_granite", "diorite", "polished_diorite",
+                "andesite", "polished_andesite", "stone_bricks", "mossy_stone_bricks", "cracked_stone_bricks",
+                "chiseled_stone_bricks", "sandstone", "smooth_sandstone", "mossy_cobblestone",
+                "oak_planks", "spruce_planks", "birch_planks", "jungle_planks", "acacia_planks", "dark_oak_planks",
+                "brick_block", "nether_brick", "red_nether_brick"
+              ],
+              "cost": 1
+            },
+            {
+              "blocks": [
+                "bed", "lectern", "composter", "grindstone", "blast_furnace", "smoker",
+                "fletching_table", "cartography_table", "brewing_stand", "smithing_table",
+                "cauldron", "barrel", "loom", "stonecutter"
+              ],
+              "cost": 50
+            }
+          ]
+        },
+        "minecraft:scheduler": {
+          "min_delay_secs": 0,
+          "max_delay_secs": 10,
+          "scheduled_events": [
+            {
+              "event": "dragonmounts2:schedule_wander",
+              "filters": { "all_of": [
+                { "test": "hourly_clock_time", "operator": ">=", "value": 0 },
+                { "test": "hourly_clock_time", "operator": "<",  "value": 8000 }
+              ]}
+            },
+            {
+              "event": "dragonmounts2:schedule_gather",
+              "filters": { "all_of": [
+                { "test": "hourly_clock_time", "operator": ">=", "value": 8000 },
+                { "test": "hourly_clock_time", "operator": "<",  "value": 10000 }
+              ]}
+            },
+            {
+              "event": "dragonmounts2:schedule_wander",
+              "filters": { "all_of": [
+                { "test": "hourly_clock_time", "operator": ">=", "value": 10000 },
+                { "test": "hourly_clock_time", "operator": "<",  "value": 11000 }
+              ]}
+            },
+            {
+              "event": "dragonmounts2:schedule_home",
+              "filters": { "all_of": [
+                { "test": "hourly_clock_time", "operator": ">=", "value": 11000 },
+                { "test": "hourly_clock_time", "operator": "<",  "value": 12000 }
+              ]}
+            },
+            {
+              "event": "dragonmounts2:schedule_bed",
+              "filters": { "all_of": [
+                { "test": "hourly_clock_time", "operator": ">=", "value": 12000 },
+                { "test": "hourly_clock_time", "operator": "<",  "value": 24000 }
+              ]}
+            }
+          ]
+        }
+      },
+      "dragonmounts2:dragon_keeper_baby": {
+        "minecraft:is_baby": {},
+        "minecraft:scale": { "value": 0.5 },
+        "minecraft:ageable": {
+          "duration": 1200,
+          "feed_items": [ "bread", "carrot", "potato", "beetroot" ],
+          "grow_up": { "event": "dragonmounts2:grow_up", "target": "self" }
+        },
+        "minecraft:preferred_path": {
+          "default_block_cost": 1.5,
+          "jump_cost": 5,
+          "max_fall_blocks": 1,
+          "preferred_path_blocks": [
+            { "blocks": ["grass_path"], "cost": 0 },
+            {
+              "blocks": [
+                "cobblestone", "stone", "granite", "polished_granite",
+                "oak_planks", "spruce_planks", "birch_planks",
+                "jungle_planks", "acacia_planks", "dark_oak_planks",
+                "brick_block", "nether_brick"
+              ],
+              "cost": 1
+            }
+          ]
+        },
+        "minecraft:behavior.follow_parent": { "priority": 5, "speed_multiplier": 1.1 },
+        "minecraft:behavior.play":          { "priority": 8, "speed_multiplier": 0.6 }
+      },
+      "dragonmounts2:dragon_keeper_trade_table": {
+        "minecraft:economy_trade_table": {
+          "display_name": "entity.dragonmounts2.dragon_keeper.trade",
+          "table": "trading/dragonmounts2/economy_trades/dragon_keeper.json",
+          "new_screen": true,
+          "persist_trades": true,
+          "cured_discount": [-100, -100],
+          "max_cured_discount": [-10, -10]
+        },
+        "minecraft:behavior.trade_interest": {
+          "priority": 5,
+          "within_radius": 6,
+          "interest_time": 45,
+          "remove_item_time": 1,
+          "carried_item_switch_time": 2,
+          "cooldown": 2
+        }
+      },
+      "dragonmounts2:player_sensor": {
+        "minecraft:entity_sensor": {
+          "relative_range": false,
+          "find_players_only": true,
+          "subsensors": [
+            { "range": [15, 15], "event": "dragonmounts2:gain_trade_table" }
+          ]
+        }
+      },
+      "dragonmounts2:bed_schedule": {
+        "minecraft:behavior.sleep": {
+          "priority": 3,
+          "goal_radius": 1.5,
+          "sleep_collider_height": 0.3,
+          "sleep_collider_width": 1,
+          "sleep_y_offset": 0.6,
+          "speed_multiplier": 0.6,
+          "timeout_cooldown": 10
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          { "weight": 95, "trigger": "dragonmounts2:spawn_as_adult" },
+          { "weight": 5,  "trigger": "dragonmounts2:spawn_as_baby"  }
+        ]
+      },
+      "dragonmounts2:entity_born": {
+        "trigger": "dragonmounts2:spawn_as_baby"
+      },
+      "dragonmounts2:spawn_as_adult": {
+        "add": { "component_groups": [ "dragonmounts2:dragon_keeper_adult", "dragonmounts2:player_sensor" ] },
+        "set_property": { "dragonmounts2:is_baby": false }
+      },
+      "dragonmounts2:spawn_as_baby": {
+        "add": { "component_groups": [ "dragonmounts2:dragon_keeper_baby" ] },
+        "set_property": { "dragonmounts2:is_baby": true }
+      },
+      "dragonmounts2:grow_up": {
+        "sequence": [
+          { "remove": { "component_groups": [ "dragonmounts2:dragon_keeper_baby" ] } },
+          {
+            "add": { "component_groups": [ "dragonmounts2:dragon_keeper_adult", "dragonmounts2:player_sensor" ] },
+            "set_property": { "dragonmounts2:is_baby": false }
+          }
+        ]
+      },
+      "dragonmounts2:gain_trade_table": {
+        "sequence": [
+          { "remove": { "component_groups": [ "dragonmounts2:player_sensor" ] } },
+          { "add":    { "component_groups": [ "dragonmounts2:dragon_keeper_trade_table" ] } }
+        ]
+      },
+      "dragonmounts2:schedule_wander": { "remove": { "component_groups": [ "dragonmounts2:bed_schedule" ] } },
+      "dragonmounts2:schedule_gather": { "remove": { "component_groups": [ "dragonmounts2:bed_schedule" ] } },
+      "dragonmounts2:schedule_home":   { "remove": { "component_groups": [ "dragonmounts2:bed_schedule" ] } },
+      "dragonmounts2:schedule_bed":    { "add":    { "component_groups": [ "dragonmounts2:bed_schedule"  ] } }
+    }
+  }
+}

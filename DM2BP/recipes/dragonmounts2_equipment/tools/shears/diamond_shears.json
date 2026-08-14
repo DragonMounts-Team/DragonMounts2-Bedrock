@@ -1,0 +1,33 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "tag": "minecraft:diamond"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      " A",
+      "B "
+    ],
+    "description": {
+      "identifier": "dragonmounts2:diamond_shears"
+    },
+    "key": {
+      "A": {
+        "item": "minecraft:diamond_ingot"
+      },
+      "B": {
+        "item": "minecraft:diamond_ingot"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:diamond_shears"
+    }
+  },
+  "format_version": "1.26.10"
+}

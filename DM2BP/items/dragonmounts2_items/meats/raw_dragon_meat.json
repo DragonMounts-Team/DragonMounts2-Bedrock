@@ -1,0 +1,30 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:raw_dragon_meat",
+      "menu_category": {
+        "category": "nature",
+        "group": "minecraft:itemGroup.name.rawFood",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:display_name": { "value": "item.dragonmounts2:raw_dragon_meat.name" },
+      "minecraft:food": {
+        "nutrition": 3,
+        "saturation_modifier": 0.2
+      },
+      "minecraft:icon": { "textures": { "default": "dragonmounts2:raw_dragon_meat" } },
+      "minecraft:tags": {
+        "tags": [ "minecraft:is_food", "minecraft:is_meat" ]
+      },
+      "minecraft:rarity": "common",
+      "minecraft:use_animation": "eat",
+      "minecraft:use_modifiers": {
+        "use_duration": 1.6,
+        "movement_modifier": 0.35
+      }
+    }
+  }
+}

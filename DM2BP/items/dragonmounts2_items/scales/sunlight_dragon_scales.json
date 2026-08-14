@@ -1,0 +1,22 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:sunlight_dragon_scales",
+      "menu_category": {
+        "category": "items",
+        "group": "dragonmounts2:itemGroup.name.dragon_scales",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:display_name":{ "value": "item.dragonmounts2:sunlight_dragon_scales.name" },
+      "minecraft:fire_resistant": { "value": true },
+      "minecraft:icon": { "textures": { "default": "dragonmounts2:sunlight_dragon_scales" } },
+      "minecraft:rarity": "common",
+      "minecraft:tags": {
+        "tags": [ "dragonmounts2:dragon_scales" ]
+      }
+    }
+  }
+}

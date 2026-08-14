@@ -1,0 +1,65 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:terra_dragon_scale_leggings",
+      "menu_category": {
+        "category": "equipment",
+        "group": "dragonmounts2:itemGroup.name.dragon_scale_leggings",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:terra_dragon_scale_leggings.name"
+      },
+      "dragonmounts2:terra_dragon_scale_lore": {},
+      "dragonmounts2:terra_dragon_scale_effects": {},
+      "minecraft:durability": {
+        "max_durability": 338
+      },
+      "minecraft:enchantable": {
+        "value": 15,
+        "slot": "armor_legs"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:terra_dragon_scale_leggings",
+          "icon_trim": "dragonmounts2:leggings_trim"
+        }
+      },
+      "minecraft:max_stack_size": {
+        "value": 1
+      },
+      "minecraft:rarity": "common",
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmounts2:terra_dragon_scale_leggings"
+            ],
+            "repair_amount": "c.other->q.remaining_durability"
+          },
+          {
+            "items": [
+              "dragonmounts2:terra_dragon_scales"
+            ],
+            "repair_amount": "q.max_durability*0.03"
+          }
+        ]
+      },
+      "minecraft:stacked_by_data": true,
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_armor",
+          "minecraft:trimmable_armors",
+          "minecraft:diamond_tier"
+        ]
+      },
+      "minecraft:wearable": {
+        "protection": 6,
+        "slot": "slot.armor.legs"
+      }
+    }
+  }
+}

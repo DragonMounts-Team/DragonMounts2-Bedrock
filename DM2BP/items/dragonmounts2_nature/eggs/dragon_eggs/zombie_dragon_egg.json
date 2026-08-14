@@ -1,0 +1,22 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:zombie_dragon_egg",
+      "menu_category": {
+        "category": "nature",
+        "group": "dragonmounts2:itemGroup.name.dragon_eggs",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:block_placer": {
+        "block": "dragonmounts2:zombie_dragon_egg",
+        "replace_block_item": true
+      },
+      "minecraft:display_name": { "value": "tile.dragonmounts2:zombie_dragon_egg.name" },
+      "minecraft:fire_resistant": { "value": true },
+      "minecraft:rarity": "uncommon"
+    }
+  }
+}

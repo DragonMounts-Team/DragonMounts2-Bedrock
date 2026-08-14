@@ -1,550 +1,261 @@
 {
-	"mob.mountdragon.null": {
-		"category": "neutral",
-		"sounds": [
-			"null"
-		]
-	},
-	"mob.mountdragon.flap": {
-		"sounds": [
-			{
-				"name": "sounds/mob/enderdragon/wings1",
-				"volume": 2,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/enderdragon/wings2",
-				"volume": 2,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/enderdragon/wings3",
-				"volume": 2,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/enderdragon/wings4",
-				"volume": 2,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/enderdragon/wings5",
-				"volume": 2,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/enderdragon/wings6",
-				"volume": 2,
-				"pitch": 1,
-				"load_on_low_memory": true
-			}
-		]
-	},
-	"mob.mountdragon.step": {
-		"category": "neutral",
-		"sounds": [
-			{
-				"name": "sounds/mob/mountdragon/step/step0",
-				"volume": 5,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/mountdragon/step/step1",
-				"volume": 5,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/mountdragon/step/step2",
-				"volume": 5,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/mob/mountdragon/step/step3",
-				"volume": 5,
-				"pitch": 1,
-				"load_on_low_memory": true
-			}
-		]
-	},
-	"mob.mountdragon.shoot": {
-		"category": "hostile",
-		"sounds": [
-			{
-				"name": "sounds/mob/mountdragon/shoot/shoot0",
-				"volume": 12,
-				"pitch": 12,
-				"load_on_low_memory": true
-			}
-		]
-	},
-	"mob.mountdragon.attack.eat": {
-		"category": "neutral",
-		"sounds": [
-			{
-				"name": "sounds/random/eat1",
-				"volume": 8,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/random/eat2",
-				"volume": 8,
-				"pitch": 1,
-				"load_on_low_memory": true
-			},
-			{
-				"name": "sounds/random/eat3",
-				"volume": 8,
-				"pitch": 1,
-				"load_on_low_memory": true
-			}
-		]
-	},
-	// "mob.mountdragon.subduction.sta": {
-	// 	"category": "neutral",
-	// 	"sounds": [
-	// 		{
-	// 			"name": "sounds/mob/mountdragon/subduction/startairloop",
-	// 			"volume": 16,
-	// 			"pitch": 0.05,
-	// 			"load_on_low_memory": true
-	// 		}
-	// 	]
-	// },
-	"mob.mountdragon.subduction": {
-		"category": "neutral",
-		"sounds": [
-			{
-				"name": "sounds/elytra/elytra_loop",
-				"volume": 2,
-				"pitch": 1
-			}
-			// {
-			// 	"name": "sounds/mob/mountdragon/subduction/airloopComplete",
-			// 	"volume": 0.25,
-			// 	"pitch": 1,
-			// 	"load_on_low_memory": false
-			// }
-			// {
-			// 	"name": "sounds/mob/mountdragon/subduction/startairloop",
-			// 	"volume": 16,
-			// 	"pitch": 0.05,
-			// 	"load_on_low_memory": true
-			// },
-			// {
-			// 	"name": "sounds/mob/mountdragon/subduction/airlooping",
-			// 	"volume": 16,
-			// 	"pitch": 0.05,
-			// 	"load_on_low_memory": true
-			// },
-			// {
-			// 	"name": "sounds/mob/mountdragon/subduction/stopairloop",
-			// 	"volume": 16,
-			// 	"pitch": 0.05,
-			// 	"load_on_low_memory": true
-			// }
-		]
-	},
-	"mob.mountdragon.hit": {
-		"category": "hostile",
-		"sounds": [
-			{
-				"name": "sounds/mob/enderdragon/hit1",
-				"volume": 2
-			},
-			{
-				"name": "sounds/mob/enderdragon/hit2",
-				"volume": 2
-			},
-			{
-				"name": "sounds/mob/enderdragon/hit3",
-				"volume": 2
-			},
-			{
-				"name": "sounds/mob/enderdragon/hit4",
-				"volume": 2
-			}
-		]
-	},
-	"mob.mountdragon.death": {
-		"category": "hostile",
-		"sounds": [
-			{
-				"name": "sounds/mob/mountdragon/death/death",
-				"volume": 4.0
-			}
-		]
-	},
-		"mob.zombiedragon.death": {
-		"category": "hostile",
-		"sounds": [
-			{
-				"name": "sounds/mob/mountdragon/death/zombiedeath",
-				"volume": 3.0
-			}
-		]
-	},
-	"mob.mountdragon.growl": {
-		"category": "neutral",
-		"sounds": [
-			{
-				"name": "sounds/mob/enderdragon/growl1",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/enderdragon/growl2",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/enderdragon/growl3",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/enderdragon/growl4",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/mountdragon/growl/growl4",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/mountdragon/growl/growl5",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/mountdragon/growl/roar0",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/mountdragon/growl/roar1",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/mountdragon/growl/roar2",
-				"volume": 2.0
-			},
-			{
-				"name": "sounds/mob/mountdragon/growl/roar3",
-				"volume": 2.0
-			}
-		]
-	},
-	"mob.mountdragon_egg.bs0": {
-		"category": "neutral",
-		"sounds": [
-			"sounds/mob/mountdragonegg/bs/bs0",
-			"sounds/mob/mountdragonegg/bs/bs1"
-		]
-	},
-	"mob.mountdragon_egg.bs1": {
-		"category": "neutral",
-		"sounds": [
-			"sounds/mob/mountdragonegg/bsrog/bsg0",
-			"sounds/mob/mountdragonegg/bsrog/bsg1",
-			"sounds/mob/mountdragonegg/bsrog/bsr0",
-			"sounds/mob/mountdragonegg/bsrog/bsr1"
-		]
-	},
-	"mob.mountdragon_egg.hit": {
-		"category": "hostile",
-		"sounds": [
-			{
-				"name": "sounds/block/turtle_egg/jump_egg1",
-				"volume": 1.0
-			},
-			{
-				"name": "sounds/block/turtle_egg/jump_egg2",
-				"volume": 1.0
-			},
-			{
-				"name": "sounds/block/turtle_egg/jump_egg3",
-				"volume": 1.0
-			},
-			{
-				"name": "sounds/block/turtle_egg/jump_egg4",
-				"volume": 1.0
-			}
-		]
-	},
-	"mob.dragonegg.back_to_block": {
-		"sounds": [
-			"sounds/mob/zombie/unfect"
-		]
-	},
-	"mob.shulker.teleport": {
-		"category": "neutral",
-		"sounds": [
-			"sounds/mob",
-			"sounds/mob"
-		]
-	},
-	"mob.renderdragon.death": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/enderdragon/end",
-		  "volume": 0.8
-		}
-	  ]
-	},
-	"mob.renderdragon.hit": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/enderdragon/hit1",
-		  "volume": 0.7
-		},
-		{
-		  "name": "sounds/mob/enderdragon/hit2",
-		  "volume": 0.7
-		},
-		{
-		  "name": "sounds/mob/enderdragon/hit3",
-		  "volume": 0.7
-		},
-		{
-		  "name": "sounds/mob/enderdragon/hit4",
-		  "volume": 0.7
-		}
-	  ]
-	},
-	"mob.renderdragon.flap": {
-	  "category": "neutral",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/enderdragon/wings1",
-		  "volume": 0.5
-		},
-		{
-		  "name": "sounds/mob/enderdragon/wings2",
-		  "volume": 0.5
-		},
-		{
-		  "name": "sounds/mob/enderdragon/wings3",
-		  "volume": 0.5
-		},
-		{
-		  "name": "sounds/mob/enderdragon/wings4",
-		  "volume": 0.5
-		},
-		{
-		  "name": "sounds/mob/enderdragon/wings5",
-		  "volume": 0.5
-		},
-		{
-		  "name": "sounds/mob/enderdragon/wings6",
-		  "volume": 0.5
-		}
-	  ]
-	},
-	"mob.renderdragon.growl": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/enderdragon/growl1",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/enderdragon/growl2",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/enderdragon/growl3",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/enderdragon/growl4",
-		  "volume": 0.8
-		}
-	  ]
-	},
-		"mob.netherdragon.growl": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/mountdragon/growl/nethergrowl",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/nethergrowl1",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/nethergrowl2",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/nethergrowl3",
-		  "volume": 0.8
-		}
-	  ]
-	},
-			"mob.baby.growl": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl1",
-		  "volume": 0.4
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl2",
-		  "volume": 0.4
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl3",
-		  "volume": 0.4
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/hatchlinggrowl4",
-		  "volume": 0.4
-		}
-	  ]
-	},
-			"mob.zombiedragon.growl": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/mountdragon/growl/zombiegrowl",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/zombiegrowl1",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/zombiegrowl2",
-		  "volume": 0.8
-		}
-	  ]
-	},
-				"mob.skeletondragon.growl": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/mountdragon/growl/skeletongrowl1",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/skeletongrowl2",
-		  "volume": 0.8
-		}
-	  ]
-	},
-			"mob.waterdragon.growl": {
-	  "category": "hostile",
-	  "sounds": [
-		{
-		  "name": "sounds/mob/mountdragon/growl/water1",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/water2",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/water3",
-		  "volume": 0.8
-		},
-		{
-		  "name": "sounds/mob/mountdragon/growl/water4",
-		  "volume": 0.8
-		}
-	  ]
-	},
-	"dragonmountsplus.whistle": {
-    "category": "hostile",
-   "min_distance": 10.0,
-    "sounds": [
-     {
-        "name": "sounds/flute"
-      }
-    ]
-  },
-        "dragonmountsplus.dragon.fireball": {
-    "category": "nuetral",
-   "min_distance": 10.0,
-    "sounds": [
-      {
-        "name": "sounds/fireball",
-        "volume": 1
-      }
-    ]
-  },
-          "dragonmountsplus.dragon.firebreath": {
-    "category": "nuetral",
-   "min_distance": 10.0,
-    "sounds": [
-      {
-        "name": "sounds/breath/fire",
-        "volume": 0.6
-      }
-    ]
-  },
-          "dragonmountsplus.dragon.waterbreath": {
-    "category": "nuetral",
-   "min_distance": 10.0,
-    "sounds": [
-      {
-        "name": "sounds/breath/water",
-        "volume": 0.6
-      }
-    ]
-  },
-          "dragonmountsplus.dragon.icebreath": {
-    "category": "nuetral",
-   "min_distance": 10.0,
-    "sounds": [
-      {
-        "name": "sounds/breath/ice",
-        "volume": 0.7
-      }
-    ]
-  },
-          "dragonmountsplus.dragon.airbreath": {
-    "category": "nuetral",
-   "min_distance": 10.0,
-    "sounds": [
-      {
-        "name": "sounds/breath/air",
-        "volume": 0.6
-      }
-    ]
-  },
-          "dragonmountsplus.dragon.netherbreath": {
-    "category": "nuetral",
-   "min_distance": 10.0,
-    "sounds": [
-      {
-        "name": "sounds/breath/nether",
-        "volume": 0.7
-      }
-    ]
-  },
-            "dragonmountsplus.dragon.forestbreath": {
-    "category": "nuetral",
-   "min_distance": 10.0,
-    "sounds": [
-      {
-        "name": "sounds/breath/forest",
-        "volume": 1.1
-      }
-    ]
-  },
-  	"mob.mountdragon.variant": {
-		"category": "hostile",
-		"sounds": [
-			{
-				"name": "sounds/variant",
-				"volume": 1.0
-			}
-		]
-	}
-}   
+  "format_version": "1.21.70",
+  "sound_definitions": {
+    "dragonmounts2:block.dragon_core": {
+      "category": "block",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/block/dragon_core/dragon_core1", "sounds/block/dragon_core/dragon_core2" ]
+    },
+     "dragonmounts2:music.record.end_trance" : {
+      "category" : "record",
+      "max_distance" : 64.0,
+      "sounds" : [
+        {
+          "name" : "sounds/music/dragonmounts2/records/end_trance",
+          "stream" : true,
+          "volume" : 0.50
+        }
+      ]
+    },
+    "dragonmounts2:block.dragon_egg.convert": {
+      "category": "block",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/block/dragon_egg/convert" ]
+    },
+    "dragonmounts2:block.dragon_egg.crack": {
+      "category": "block",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/block/dragon_egg/crack1", "sounds/block/dragon_egg/crack2" ]
+    },
+    "dragonmounts2:block.dragon_egg.shatter": {
+      "category": "block",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/block/dragon_egg/shatter" ]
+    },
+    "dragonmounts2:item.dragon_essence": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/item/dragon_essence" ]
+    },
+    "dragonmounts2:item.dragon_flute.long": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [ "sounds/item/dragon_flute_long" ]
+    },
+    "dragonmounts2:item.dragon_flute.short": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [ "sounds/item/dragon_flute_short" ]
+    },
+    "dragonmounts2:item.dragon_amulet.capture": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [ "sounds/item/dragon_amulet_capture" ]
+    },
+    "dragonmounts2:item.dragon_amulet.release": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [ "sounds/item/dragon_amulet_release" ]
+    },
+    "dragonmounts2:item.dragon_scepter": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/item/dragon_scepter" ]
+    },
+    "dragonmounts2:item.variation_orb": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/item/variation_orb" ]
+    },
+    "dragonmounts2:mob.dragon.airflow_dragonbreath": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/airflow_dragonbreath" ]
+    },
+    "dragonmounts2:mob.dragon.airflow_dragonbreathe": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/airflow_dragonbreathe" ]
+    },
+    "dragonmounts2:mob.dragon.airflow_dragonbreathing": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/airflow_dragonbreathing" ]
+    },
+    "dragonmounts2:mob.dragon.baby.dragonbreath": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/mob/dragon/baby_dragonbreath" ]
+    },
+    "dragonmounts2:mob.dragon.baby.dragonbreathe": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/mob/dragon/baby_dragonbreathe" ]
+    },
+    "dragonmounts2:mob.dragon.baby.dragonbreathing": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/mob/dragon/baby_dragonbreathing" ]
+    },
+    "dragonmounts2:mob.dragon.baby.growl": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/mob/dragon/baby_growl1", "sounds/mob/dragon/baby_growl2" ]
+    },
+    "dragonmounts2:mob.dragon.baby.idle": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/mob/dragon/baby_idle1", "sounds/mob/dragon/baby_idle2", "sounds/mob/dragon/baby_idle3" ]
+    },
+    "dragonmounts2:mob.dragon.baby.tame_idle": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/mob/dragon/baby_tame_idle1", "sounds/mob/dragon/baby_tame_idle2", "sounds/mob/dragon/baby_tame_idle3", "sounds/mob/dragon/baby_tame_idle4", "sounds/mob/dragon/baby_tame_idle5" ]
+    },
+    "dragonmounts2:mob.dragon.bite": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [ "sounds/mob/dragon/bite1", "sounds/mob/dragon/bite2", "sounds/mob/dragon/bite3" ]
+    },
+    "dragonmounts2:mob.dragon.death": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/death" ]
+    },
+    "dragonmounts2:mob.dragon.dragonbreath": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/dragonbreath" ]
+    },
+    "dragonmounts2:mob.dragon.dragonbreathe": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/dragonbreathe" ]
+    },
+    "dragonmounts2:mob.dragon.dragonbreathing": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/dragonbreathing" ]
+    },
+    "dragonmounts2:mob.dragon.forest_dragonbreath": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/forest_dragonbreath" ]
+    },
+    "dragonmounts2:mob.dragon.forest_dragonbreathe": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/forest_dragonbreathe" ]
+    },
+    "dragonmounts2:mob.dragon.forest_dragonbreathing": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/forest_dragonbreathing" ]
+    },
+    "dragonmounts2:mob.dragon.growl": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/growl1", "sounds/mob/dragon/growl2", "sounds/mob/dragon/growl3", "sounds/mob/dragon/growl4" ]
+    },
+    "dragonmounts2:mob.dragon.hit": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/hit1", "sounds/mob/dragon/hit2", "sounds/mob/dragon/hit3", "sounds/mob/dragon/hit4" ]
+    },
+    "dragonmounts2:mob.dragon.dark_hit": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/hit_dark1", "sounds/mob/dragon/hit_dark2" ]
+    },
+    "dragonmounts2:mob.dragon.ice_dragonbreath": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/ice_dragonbreath" ]
+    },
+    "dragonmounts2:mob.dragon.ice_dragonbreathe": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/ice_dragonbreathe" ]
+    },
+    "dragonmounts2:mob.dragon.ice_dragonbreathing": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/ice_dragonbreathing" ]
+    },
+    "dragonmounts2:mob.dragon.idle": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/idle1", "sounds/mob/dragon/idle2", "sounds/mob/dragon/idle3", "sounds/mob/dragon/idle4" ]
+    },
+    "dragonmounts2:mob.dragon.nether_idle": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/nether_idle1", "sounds/mob/dragon/nether_idle2", "sounds/mob/dragon/nether_idle3", "sounds/mob/dragon/nether_idle4" ]
+    },
+    "dragonmounts2:mob.dragon.skeleton_idle": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/skeleton_idle1", "sounds/mob/dragon/skeleton_idle2" ]
+    },
+    "dragonmounts2:mob.dragon.step": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/step1", "sounds/mob/dragon/step2", "sounds/mob/dragon/step3", "sounds/mob/dragon/step4" ]
+    },
+    "dragonmounts2:mob.dragon.water_dragonbreath": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/water_dragonbreath" ]
+    },
+    "dragonmounts2:mob.dragon.water_dragonbreathe": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/water_dragonbreathe" ]
+    },
+    "dragonmounts2:mob.dragon.water_dragonbreathing": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [ "sounds/mob/dragon/water_dragonbreathing" ]
+    },
+    "dragonmounts2:mob.dragon.water_growl": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/water_growl1", "sounds/mob/dragon/water_growl2", "sounds/mob/dragon/water_growl3" ]
+    },
+    "dragonmounts2:mob.dragon.water_idle": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/water_idle1", "sounds/mob/dragon/water_idle2", "sounds/mob/dragon/water_idle3", "sounds/mob/dragon/water_idle4" ]
+    },
+    "dragonmounts2:mob.dragon.wings": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [ "sounds/mob/dragon/wings1", "sounds/mob/dragon/wings2", "sounds/mob/dragon/wings3", "sounds/mob/dragon/wings4", "sounds/mob/dragon/wings5", "sounds/mob/dragon/wings6" ]
+    },
+    "dragonmounts2:mob.dragon.subduction": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [
+        {
+          "name": "sounds/mob/dragon/subduction/stopairloop",
+          "volume": 0.12
+        }
+      ]
+    },
+    "dragonmounts2:mob.dragon.dark_death": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/dark_death" ]
+    },
+    "dragonmounts2:mob.dragon.zombie_death": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/zombie_death" ]
+    },
+    "dragonmounts2:mob.dragon.zombie_idle": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [ "sounds/mob/dragon/zombie_idle1", "sounds/mob/dragon/zombie_idle2", "sounds/mob/dragon/zombie_idle3" ]
+    }
+  }
+}

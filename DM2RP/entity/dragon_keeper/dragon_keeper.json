@@ -1,0 +1,54 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_keeper",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/dragon_keeper/keeper/keeper",
+        "baby_default": "textures/entity/dragon_keeper/keeper/keeper_baby"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.villager.dragon_keeper",
+        "baby": "geometry.dragonmounts2.villager.dragon_keeper_baby"
+      },
+      "scripts": {
+        "scale": "q.property('dragonmounts2:is_baby') ? 2.0 : 0.9375",
+        "pre_animation": [
+          "variable.is_baby = q.property('dragonmounts2:is_baby');"
+        ]
+      },
+      "animations": {
+        "general": "animation.villager.general",
+        "look_at_target": "animation.common.look_at_target",
+        "move": "animation.villager.move",
+        "raise_arms": "animation.villager.raise_arms",
+        "get_in_bed": "animation.villager.get_in_bed",
+        "get_in_bed_baby": "animation.villager.get_in_bed_baby"
+      },
+      "render_controllers": [
+        "controller.render.dragon_keeper"
+      ],
+      "enable_attachables": true,
+      "sound_effects": {
+        "hurt": "mob.villager.hit",
+        "death": "mob.villager.death",
+        "step": "step.grass",
+        "trade": "mob.villager.haggle",
+        "yes": "mob.villager.yes",
+        "no": "mob.villager.no",
+        "celebrate": "mob.villager.celebrate",
+        "levelup": "random.levelup",
+        "converted_to_zombie": "mob.villager.cure",
+        "cure": "mob.villager.cure",
+        "deny": "mob.villager.no",
+        "accept": "mob.villager.yes"
+      },
+      "spawn_egg": {
+        "texture": "dragonmounts2:spawn_egg_dragon_keeper"
+      }
+    }
+  }
+}

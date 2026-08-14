@@ -1,0 +1,16 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:falling_fire_dragon_egg_block",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "textures/entity/dragon_eggs/fire"
+      },
+      "geometry": {
+        "default": "geometry.megaverse.falling_dragon_egg_block.default"
+      },
+      "render_controllers": [ "controller.render.dragonmounts2.falling_block.default" ]
+    }
+  }
+}

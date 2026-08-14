@@ -1,0 +1,48 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:netherite_dragonarmor",
+      "menu_category": {
+        "category": "equipment",
+        "group": "dragonmounts2:itemGroup.name.dragonarmors",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:dragonarmor.netherite.name"
+      },
+      "minecraft:enchantable": {
+        "value": 16,
+        "slot": "armor_torso"
+      },
+      "minecraft:fire_resistant": {
+        "value": true
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:dragonarmor_netherite",
+          "icon_trim": "dragonmounts2:armor_trim"
+        }
+      },
+      "minecraft:max_stack_size": {
+        "value": 1
+      },
+      "minecraft:rarity": "common",
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_armor",
+          "minecraft:netherite_tier",
+          "minecraft:transform_materials",
+          "dragonmounts2:dragonarmors",
+          "minecraft:trimmable_armors"
+        ]
+      },
+      "minecraft:wearable": {
+        "protection": 19,
+        "slot": "slot.armor.body"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "format_version": "1.26.10",
+  "render_controllers": {
+    "controller.render.dragonmounts2.dragon_scepter": {
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "variable.is_enchanted ? material.enchanted : material.default" } ],
+      "textures": [ "v.use_item?Texture.active:Texture.inactive", "Texture.enchanted" ],
+      "ignore_lighting": true
+    }
+  }
+}

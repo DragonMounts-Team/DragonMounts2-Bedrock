@@ -1,0 +1,22 @@
+{
+	"format_version": "1.21.80",
+	"minecraft:structure_set": {
+		"description": {
+			"identifier": "dragonmounts2:sunlight"
+		},
+		
+		"placement": {
+			"type": "minecraft:random_spread",
+			"salt": 961294912,
+			"separation": 12,
+			"spacing": 48,
+			"spread_type": "triangular"
+		},
+		"structures": [
+			{
+				"structure": "dragonmounts2:sunlight",
+				"weight": 1
+			}
+		]
+	}
+}

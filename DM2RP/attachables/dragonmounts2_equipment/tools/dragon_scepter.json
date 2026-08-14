@@ -1,0 +1,41 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_scepter",
+      "materials": {
+        "default": "entity_alphatest",
+        "enchanted": "entity_alphatest_glint"
+      },
+      "textures": {
+        "default": "textures/items/dragonmounts2_equipment/dragon_scepter_inactive",
+        "inactive": "textures/items/dragonmounts2_equipment/dragon_scepter_inactive",
+        "active": "textures/items/dragonmounts2_equipment/dragon_scepter_active",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon_scepter"
+      },
+      "animations": {
+        "held": "animation.dragonmounts2.dragon_scepter.held",
+        "use": "animation.dragonmounts2.dragon_scepter.use"
+      },
+      "scripts": {
+        "pre_animation": [
+          "v.use_item = q.cooldown_time_remaining('slot.weapon.mainhand')!=0.00;",
+          "v.held_rotation_x = c.is_first_person?-22.5:0;",
+          "v.held_rotation_y = c.is_first_person?67.5:0;",
+          "v.held_rotation_z = c.is_first_person?-90:0;",
+          "v.use_rotation_x = c.is_first_person?-22.5:0;",
+          "v.use_rotation_y = c.is_first_person?-67.5:0;",
+          "v.use_rotation_z = c.is_first_person?-45:-90;"
+        ],
+        "animate": [
+          "held",
+          { "use": "v.use_item" }
+        ]
+      },
+      "render_controllers": [ "controller.render.dragonmounts2.dragon_scepter" ]
+    }
+  }
+}

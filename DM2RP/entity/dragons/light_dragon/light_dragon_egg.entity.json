@@ -1,0 +1,45 @@
+{
+	"format_version": "1.26.10",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "dragonmounts2:light_dragon_egg",
+			"materials": {
+				"dragon_egg": "dragon_egg",
+				"death": "entity_dissolve_layer1.skinning"
+			},
+			"textures": {
+				"dragon_egg": "textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/light_dragon_egg"
+			},
+			"geometry": {
+				"dragon_egg": "geometry.dragon_egg"
+			},
+			"animations": {
+				"dragon_egg_hatching": "animation.dragon_egg.hatching",
+				"dragon_egg_cracks": "animation.dragon_egg.cracks",
+				"dragon_egg_cracks2": "animation.dragon_egg.cracks2",
+				"dragon_egg_ani": "controller.animation.dragon_egg.action"
+			},
+			"scripts": {
+				"animate": [
+					"dragon_egg_hatching",
+					"dragon_egg_ani"
+				]
+			},
+			"sound_effects": {
+				"dragonegg_bs0_sou": "dragonmounts2:block.dragon_egg.crack",
+				"dragonegg_bs1_sou": "dragonmounts2:block.dragon_egg.crack"
+			},
+			"particle_effects": {
+				"dragon_egg_hatching": "dragonmounts2:light_dragon_egg_hatching",
+				"dragon_egg_cracks": "dragonmounts2:light_dragon_egg_cracks"
+			},
+			"render_controllers": [
+				{ "controller.render.light_dragon_egg": "query.death_ticks < 1.0" },
+				{ "controller.render.light_dragon_egg_death": "query.death_ticks >= 1.0" }
+			],
+			"spawn_egg": {
+				"texture": "lightdragon_egg_item"
+			}
+		}
+	}
+}

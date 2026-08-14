@@ -1,0 +1,87 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:forest_dragon_scale_bow",
+      "menu_category": {
+        "category": "equipment",
+        "group": "dragonmounts2:itemGroup.name.dragon_scale_bows",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:forest_dragon_scale_bow.name"
+      },
+      "minecraft:durability": {
+        "max_durability": 768
+      },
+      "minecraft:enchantable": {
+        "value": 2,
+        "slot": "bow"
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:forest_dragon_scale_bow"
+        }
+      },
+      "minecraft:max_stack_size": {
+        "value": 1
+      },
+      "minecraft:rarity": "common",
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmounts2:forest_dragon_scale_bow"
+            ],
+            "repair_amount": "math.min(q.remaining_durability+c.other->q.remaining_durability+math.floor(q.max_durability/20),c.other->q.max_durability)"
+          },
+          {
+            "items": [
+              "dragonmounts2:forest_dragon_scales"
+            ],
+            "repair_amount": "math.round(q.max_durability*0.25)"
+          }
+        ]
+      },
+      "minecraft:shooter": {
+        "ammunition": [
+          {
+            "item": "minecraft:arrow",
+            "use_offhand": true,
+            "search_inventory": true,
+            "use_in_creative": true
+          },
+          {
+            "item": "minecraft:tipped_arrow",
+            "use_offhand": true,
+            "search_inventory": true,
+            "use_in_creative": true
+          }
+        ],
+        "max_draw_duration": 1.5,
+        "scale_power_by_draw_duration": true,
+        "charge_on_draw": false
+      },
+      "minecraft:projectile": {
+        "projectile_entity": "minecraft:arrow",
+        "minimum_critical_power": 1.0
+      },
+      "minecraft:stacked_by_data": true,
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:bow"
+        ]
+      },
+      "minecraft:use_animation": {
+        "value": "bow"
+      },
+      "minecraft:use_modifiers": {
+        "movement_modifier": 0.35,
+        "use_duration": 72000
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:diamond_dragonarmor"
+    },
+    "unlock": [
+      { "item": "minecraft:diamond_block" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ "A B", " AA", "BB " ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "minecraft:diamond_block" },
+      "B": { "item": "minecraft:diamond" }
+    },
+    "result": { "item": "dragonmounts2:diamond_dragonarmor", "count": 1 }
+  }
+}

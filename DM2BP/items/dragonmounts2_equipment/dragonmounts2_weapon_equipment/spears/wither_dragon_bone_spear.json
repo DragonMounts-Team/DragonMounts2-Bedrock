@@ -1,0 +1,122 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:wither_dragon_bone_spear",
+      "menu_category": {
+        "category": "equipment",
+        "group": "dragonmounts2:itemGroup.name.dragon_scale_spears",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:cooldown": {
+        "category": "spear",
+        "type": "attack",
+        "duration": 1.05
+      },
+      "minecraft:damage": {
+        "value": 8
+      },
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:wither_dragon_bone_spear.name"
+      },
+      "minecraft:fire_resistant": {
+        "value": true
+      },
+      "minecraft:durability": {
+        "max_durability": 512,
+        "damage_chance": {
+          "min": 0,
+          "max": 100
+        }
+      },
+      "minecraft:enchantable": {
+        "slot": "melee_spear",
+        "value": 16
+      },
+      "minecraft:hand_equipped": {
+        "value": true
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:wither_dragon_bone_spear"
+        }
+      },
+      "minecraft:kinetic_weapon": {
+        "delay": 10,
+        "reach": {
+          "min": 2.0,
+          "max": 4.5
+        },
+        "creative_reach": {
+          "min": 2.0,
+          "max": 7.5
+        },
+        "hitbox_margin": 0.25,
+        "damage_multiplier": 1.075,
+        "damage_conditions": {
+          "max_duration": 200,
+          "min_relative_speed": 4.6
+        },
+        "knockback_conditions": {
+          "max_duration": 80,
+          "min_speed": 5.1
+        },
+        "dismount_conditions": {
+          "max_duration": 60,
+          "min_speed": 10.0
+        }
+      },
+      "minecraft:max_stack_size": {
+        "value": 1
+      },
+      "minecraft:piercing_weapon": {
+        "reach": {
+          "min": 2.0,
+          "max": 4.5
+        },
+        "creative_reach": {
+          "min": 2.0,
+          "max": 7.5
+        },
+        "hitbox_margin": 0.25
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": [
+              "dragonmounts2:wither_dragon_bone_spear"
+            ],
+            "repair_amount": "c.other->q.remaining_durability"
+          },
+          {
+            "items": [
+              "dragonmounts2:wither_dragon_bone"
+            ],
+            "repair_amount": "q.max_durability*0.25"
+          }
+        ]
+      },
+      "minecraft:swing_duration": {
+        "value": 1.05
+      },
+      "minecraft:swing_sounds": {
+        "attack_miss": "item.spear.attack_miss",
+        "attack_hit": "item.spear.attack_hit"
+      },
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:diamond_tier",
+          "minecraft:is_spear"
+        ]
+      },
+      "minecraft:use_modifiers": {
+        "use_duration": 72000,
+        "emit_vibrations": false,
+        "start_sound": "item.spear.use",
+        "movement_modifier": 1.0
+      }
+    }
+  }
+}

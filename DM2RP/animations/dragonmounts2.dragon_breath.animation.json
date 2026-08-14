@@ -1,0 +1,25 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dragonmounts2.dragon_breath.rotations": {
+			"loop": true,
+			"animation_length": 0.25,
+			"bones": {
+				"Rotation": {
+					"rotation": ["-q.target_x_rotation", "-q.body_y_rotation", 0]
+				},
+				"Projectile": {
+					"rotation": ["-q.target_x_rotation", "-q.body_y_rotation", 0]
+				}
+			},
+			"sound_effects": {
+				"0.08": { "effect": "breath" },
+				"0.16": { "effect": "breath" }
+			},
+			"particle_effects": {
+				"0.08": { "effect": "breath", "locator": "particle" },
+				"0.16": { "effect": "breath", "locator": "particle" }
+			}
+		}
+	}
+}

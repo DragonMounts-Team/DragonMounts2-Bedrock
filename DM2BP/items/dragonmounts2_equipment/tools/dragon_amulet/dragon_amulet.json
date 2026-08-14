@@ -1,0 +1,69 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_amulet",
+      "menu_category": {
+        "category": "equipment",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:dragon_amulet.name"
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:dragon_amulet"
+        }
+      },
+      "minecraft:max_stack_size": {
+        "value": 1
+      },
+      "minecraft:rarity": "common",
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_sword",
+          "dragonmounts2:is_dragon_amulet"
+        ]
+      },
+      "dragonmounts2:dragon_amulet": {
+        "dragon_types": [
+          "dragonmounts2:aether_dragon",
+          "dragonmounts2:dark_dragon",
+          "dragonmounts2:enchanted_dragon",
+          "dragonmounts2:ender_dragon",
+          "dragonmounts2:fire_dragon",
+          "dragonmounts2:forest_dragon",
+          "dragonmounts2:ice_dragon",
+          "dragonmounts2:moonlight_dragon",
+          "dragonmounts2:nether_dragon",
+          "dragonmounts2:sculk_dragon",
+          "dragonmounts2:skeleton_dragon",
+          "dragonmounts2:storm_dragon",
+          "dragonmounts2:sunlight_dragon",
+          "dragonmounts2:terra_dragon",
+          "dragonmounts2:water_dragon",
+          "dragonmounts2:wither_dragon",
+          "dragonmounts2:zombie_dragon"
+        ],
+        "sounds": {
+          "capture": "dragonmounts2:item.dragon_amulet.capture",
+          "release": "dragonmounts2:item.dragon_amulet.release"
+        },
+        "translates": {
+          "captured": "tooltip.dragonmounts2:dragon_amulet.captured",
+          "captured_to": "tooltip.dragonmounts2:dragon_amulet.captured_to",
+          "captured_to_owner": "tooltip.dragonmounts2:dragon_amulet.captured_to_owner",
+          "name": "tooltip.dragonmounts2:dragon_amulet.name",
+          "not_owned": "tooltip.dragonmounts2:dragon_amulet.not_owned",
+          "owned_by": "tooltip.dragonmounts2:dragon_amulet.owned_by",
+          "selected_mobs": "tooltip.dragonmounts2:dragon_amulet.selected_mobs",
+          "untamed": "tooltip.dragonmounts2:dragon_amulet.untamed",
+          "released": "tooltip.dragonmounts2:dragon_amulet.released",
+          "health": "tooltip.dragonmounts2:dragon_amulet.health"
+        }
+      }
+    }
+  }
+}

@@ -147,6 +147,7 @@
 		"dragon_default:entity_dragon_default": {},
 		"dragon_dissolve:entity_dissolve": {},
 		"dragon_egg:entity_alphatest_dm": {},
+		"breaking_overlay:entity_alphatest_dm": {},
 		"dragon_breath:entity_alphatest_dm": {},
 		"dragon_wings:entity_radioactive_glass": {},
 		"dm_dissolve_0:dm_entity_dissolve_layer0": {},

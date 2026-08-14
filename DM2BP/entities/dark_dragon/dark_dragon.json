@@ -1,0 +1,1740 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:dark_dragon",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "properties": {
+        "dragonmounts2:age_variant": {
+          "type": "enum",
+          "values": [ "adult", "juvenile", "baby" ],
+          "default": "adult",
+          "client_sync": true
+        },
+        "dragonmounts2:breath_charge": {
+          "type": "float",
+          "range": [ 0.0, 1.0 ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:breathing_sound": {
+          "type": "float",
+          "range": [ 0.0, 1.0 ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:death_ticks": {
+          "type": "float",
+          "range": [ 0.0, 2.0 ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:has_collar": { "type": "bool", "client_sync": true, "default": false },
+        "dragonmounts2:is_breathing": { "type": "bool", "client_sync": true, "default": false },
+        "dragonmounts2:is_following": { "type": "bool", "client_sync": false, "default": false },
+        "dragonmounts2:is_locked": { "type": "bool", "client_sync": false, "default": false },
+        "dragonmounts2:elytra_follow_enabled": { "type": "bool", "client_sync": false, "default": false },
+        "dragonmounts2:v_flight_enabled": { "type": "bool", "client_sync": false, "default": false },
+        "dragonmounts2:mob_state": {
+          "type": "enum",
+          "values": [ "standing", "sitting" ],
+          "default": "standing",
+          "client_sync": true
+        },
+        "dragonmounts2:movement_state": {
+          "type": "enum",
+          "values": [ "grounded", "flying", "swimming" ],
+          "default": "grounded",
+          "client_sync": true
+        },
+        "dragonmounts2:variant_type": {
+          "type": "enum",
+          "values": [ "demon", "imp", "underworld", "bloodmoon" ],
+          "default": "demon",
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "dark_dragon", "dragonmounts2", "dragon", "mob" ]
+      },
+      "minecraft:attack": { "damage": 12 },
+      "minecraft:breathable": { "breathes_water": true },
+      "minecraft:can_climb": {},
+      "minecraft:can_power_jump": {},
+      "minecraft:collision_box": { "width": 1.4, "height": 2.75 },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "deals_damage": "no",
+            "cause": "all",
+            "on_damage": {
+              "filters": {
+                "test": "float_property",
+                "subject": "self",
+                "domain": "dragonmounts2:death_ticks",
+                "operator": "!=",
+                "value": 0.0
+              }
+            }
+          },
+          {
+            "cause": "entity_attack",
+            "deals_damage": "no",
+            "on_damage": {
+              "filters": {
+                "any_of": [
+                  {
+                    "test": "has_equipment_tag",
+                    "subject": "other",
+                    "domain": "hand",
+                    "value": "dragonmounts2:is_dragon_flute"
+                  },
+                  {
+                    "test": "has_equipment_tag",
+                    "subject": "other",
+                    "domain": "hand",
+                    "value": "dragonmounts2:is_dragon_amulet"
+                  },
+                  {
+                    "test": "has_equipment_tag",
+                    "subject": "other",
+                    "domain": "hand",
+                    "value": "dragonmounts2:is_dragon_scepter"
+                  }
+                ]
+              }
+            }
+          },
+          { "cause": "contact", "deals_damage": "no" },
+          { "cause": "drowning", "deals_damage": "no" },
+          { "cause": "fall", "deals_damage": "no" },
+          { "cause": "fly_into_wall", "deals_damage": "no" },
+          { "cause": "magic", "deals_damage": "no" },
+          { "cause": "suffocation", "deals_damage": "no" },
+          { "cause": "thorns", "deals_damage": "no" },
+          { "cause": "void", "deals_damage": "no" },
+          { "cause": "wither", "deals_damage": "no" },
+          {
+            "deals_damage": "yes",
+            "damage_multiplier": 0.9,
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  {
+                    "test": "has_equipment",
+                    "subject": "self",
+                    "domain": "inventory",
+                    "value": "dragonmounts2:leather_dragonarmor"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "deals_damage": "yes",
+            "damage_multiplier": 0.8,
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  {
+                    "test": "has_equipment",
+                    "subject": "self",
+                    "domain": "inventory",
+                    "value": "dragonmounts2:golden_dragonarmor"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "deals_damage": "yes",
+            "damage_multiplier": 0.7,
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  {
+                    "test": "has_equipment",
+                    "subject": "self",
+                    "domain": "inventory",
+                    "value": "dragonmounts2:copper_dragonarmor"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "deals_damage": "yes",
+            "damage_multiplier": 0.6,
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  {
+                    "test": "has_equipment",
+                    "subject": "self",
+                    "domain": "inventory",
+                    "value": "dragonmounts2:iron_dragonarmor"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "deals_damage": "yes",
+            "damage_multiplier": 0.5,
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  {
+                    "test": "has_equipment",
+                    "subject": "self",
+                    "domain": "inventory",
+                    "value": "dragonmounts2:emerald_dragonarmor"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "deals_damage": "yes",
+            "damage_multiplier": 0.4,
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  {
+                    "test": "has_equipment",
+                    "subject": "self",
+                    "domain": "inventory",
+                    "value": "dragonmounts2:diamond_dragonarmor"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "deals_damage": "yes",
+            "damage_multiplier": 0.3,
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  {
+                    "test": "has_equipment",
+                    "subject": "self",
+                    "domain": "inventory",
+                    "value": "dragonmounts2:netherite_dragonarmor"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "deals_damage": "yes",
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "sitting" },
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "is_owner", "subject": "other", "operator": "!=", "value": true },
+                  {
+                    "any_of": [
+                      { "test": "is_family", "subject": "other", "operator": "!=", "value": "player" },
+                      {
+                        "all_of": [
+                          { "test": "has_ability", "subject": "other", "operator": "!=", "value": "instabuild" },
+                          { "test": "is_family", "subject": "other", "value": "player" }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "event": "minecraft:on_stand",
+              "target": "self"
+            }
+          }
+        ]
+      },
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:death_ticks", "operator": "==", "value": 2.0 },
+            "event": "minecraft:on_final_death"
+          },
+          {
+            "filters": { "test": "bool_property", "domain": "dragonmounts2:is_breathing", "operator": "==" },
+            "event": "minecraft:increase_breath_charge"
+          },
+          {
+            "filters": { "test": "bool_property", "domain": "dragonmounts2:is_breathing", "operator": "!=" },
+            "event": "minecraft:decrease_breath_charge"
+          },
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": "==", "value": 1.0 },
+            "event": "minecraft:on_dragon_breath"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "sitting" },
+                { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                { "test": "is_underwater" },
+                { "test": "rider_count", "value": 0 }
+              ]
+            },
+            "event": "minecraft:on_stand"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "on_ground", "operator": "==" },
+                { "test": "has_component", "value": "minecraft:is_saddled" },
+                { "test": "has_component", "operator": "!=", "value": "minecraft:input_ground_controlled" }
+              ]
+            },
+            "event": "minecraft:on_ground_controlled"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "on_ground", "operator": "!=" },
+                { "test": "has_component", "value": "minecraft:is_saddled" },
+                { "test": "has_component", "operator": "!=", "value": "minecraft:free_camera_controlled" }
+              ]
+            },
+            "event": "minecraft:on_camera_controlled"
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "has_component", "operator": "!=", "value": "minecraft:is_saddled" },
+                {
+                  "any_of": [
+                    { "test": "has_component", "value": "minecraft:free_camera_controlled" },
+                    { "test": "has_component", "value": "minecraft:input_ground_controlled" }
+                  ]
+                }
+              ]
+            },
+            "event": "minecraft:on_not_controlled"
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "enum_property",
+                  "domain": "dragonmounts2:movement_state",
+                  "operator": "!=",
+                  "value": "swimming"
+                },
+                { "test": "in_water" },
+                { "test": "rider_count", "operator": "!=", "value": 0 }
+              ]
+            },
+            "event": "minecraft:on_swimming"
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "enum_property",
+                  "domain": "dragonmounts2:movement_state",
+                  "operator": "!=",
+                  "value": "grounded"
+                },
+                {
+                  "any_of": [
+                    {
+                      "all_of": [
+                        { "test": "rider_count", "value": 0 },
+                        {
+                          "test": "bool_property",
+                          "domain": "dragonmounts2:v_flight_enabled",
+                          "operator": "!=",
+                          "value": true
+                        },
+                        {
+                          "test": "bool_property",
+                          "domain": "dragonmounts2:elytra_follow_enabled",
+                          "operator": "!=",
+                          "value": true
+                        }
+                      ]
+                    },
+                    {
+                      "all_of": [
+                        { "test": "on_ground" },
+                        { "test": "in_water", "operator": "!=" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "event": "minecraft:on_grounded"
+          },
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "enum_property",
+                  "domain": "dragonmounts2:movement_state",
+                  "operator": "!=",
+                  "value": "flying"
+                },
+                { "test": "in_water", "operator": "!=" },
+                { "test": "on_ground", "operator": "!=" },
+                {
+                  "any_of": [
+                    { "test": "rider_count", "operator": "!=", "value": 0 },
+                    { "test": "bool_property", "domain": "dragonmounts2:v_flight_enabled", "value": true },
+                    { "test": "bool_property", "domain": "dragonmounts2:elytra_follow_enabled", "value": true }
+                  ]
+                }
+              ]
+            },
+            "event": "minecraft:on_flying"
+          }
+        ]
+      },
+      "minecraft:equippable": {
+        "slots": [
+          {
+            "slot": 0,
+            "item": "saddle",
+            "accepted_items": [ "saddle" ],
+            "on_equip": { "event": "minecraft:equipped_saddle" },
+            "on_unequip": { "event": "minecraft:unequipped_saddle" }
+          },
+          {
+            "slot": 1,
+            "item": "horsearmoriron",
+            "accepted_items": [
+              "dragonmounts2:leather_dragonarmor",
+              "dragonmounts2:golden_dragonarmor",
+              "dragonmounts2:copper_dragonarmor",
+              "dragonmounts2:iron_dragonarmor",
+              "dragonmounts2:emerald_dragonarmor",
+              "dragonmounts2:diamond_dragonarmor",
+              "dragonmounts2:netherite_dragonarmor"
+            ]
+          }
+        ]
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:follow_range": { "value": 64, "max": 64 },
+      "minecraft:healable": {
+        "filters": { "test": "is_family", "subject": "self", "value": "dragon" },
+        "items": [
+          { "item": "axolotl_bucket", "result_item": "water_bucket", "heal_amount": 4 },
+          { "item": "beef", "heal_amount": 4 },
+          { "item": "blue_egg", "heal_amount": 4 },
+          { "item": "brown_egg", "heal_amount": 4 },
+          { "item": "chicken", "heal_amount": 4 },
+          { "item": "cod", "heal_amount": 4 },
+          { "item": "cod_bucket", "result_item": "water_bucket", "heal_amount": 4 },
+          { "item": "cooked_beef", "heal_amount": 6 },
+          { "item": "cooked_chicken", "heal_amount": 6 },
+          { "item": "cooked_cod", "heal_amount": 6 },
+          { "item": "cooked_mutton", "heal_amount": 6 },
+          { "item": "cooked_porkchop", "heal_amount": 6 },
+          { "item": "cooked_rabbit", "heal_amount": 6 },
+          { "item": "cooked_salmon", "heal_amount": 6 },
+          { "item": "egg", "heal_amount": 4 },
+          { "item": "mutton", "heal_amount": 4 },
+          { "item": "porkchop", "heal_amount": 4 },
+          { "item": "pufferfish", "heal_amount": 4 },
+          { "item": "pufferfish_bucket", "result_item": "water_bucket", "heal_amount": 4 },
+          { "item": "rabbit", "heal_amount": 4 },
+          { "item": "rabbit_stew", "result_item": "bowl", "heal_amount": 4 },
+          { "item": "rotten_flesh", "heal_amount": 2 },
+          { "item": "salmon", "heal_amount": 4 },
+          { "item": "salmon_bucket", "result_item": "water_bucket", "heal_amount": 4 },
+          { "item": "sniffer_egg", "heal_amount": 4 },
+          { "item": "tadpole_bucket", "result_item": "water_bucket", "heal_amount": 4 },
+          { "item": "tropical_fish", "heal_amount": 4 },
+          { "item": "tropical_fish_bucket", "result_item": "water_bucket", "heal_amount": 4 },
+          { "item": "turtle_egg", "heal_amount": 4 }
+        ]
+      },
+      "minecraft:health": { "value": 180 },
+      "minecraft:horse.jump_strength": { "value": 0.0 },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "on_interact": {
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_locked", "value": true },
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_component", "subject": "self", "value": "minecraft:is_tamed" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other", "value": false }
+                ]
+              }
+            },
+            "swing": true,
+            "vibration": "entity_act"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_shears" },
+                  { "test": "is_baby", "subject": "self", "operator": "!=" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "cooldown": 60.0,
+            "interact_text": "action.interact.dragonmounts2:shear",
+            "hurt_item": 16,
+            "play_sounds": "shear",
+            "spawn_items": { "table": "loot_tables/entities/dark_dragon_sheared.json" },
+            "swing": true,
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment", "subject": "other", "domain": "main_hand", "value": "glass_bottle" },
+                  { "test": "is_baby", "subject": "self", "operator": "!=" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "cooldown": 60.0,
+            "interact_text": "action.interact.dragonmounts2:bottle",
+            "play_sounds": "item.bottle.fill_dragonbreath",
+            "add_items": { "table": "loot_tables/entities/dragon_breath_bottle.json" },
+            "swing": true,
+            "use_item": true,
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "event": "minecraft:on_variant",
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:dragon_scepter" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "interact_text": "action.interact.dragonmounts2:change_variant",
+            "hurt_item": 1,
+            "play_sounds": "activate",
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "event": "minecraft:on_variant",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:variation_orb" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "interact_text": "action.interact.dragonmounts2:change_variant",
+            "play_sounds": "activate",
+            "swing": true,
+            "use_item": true,
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment_tag", "subject": "self", "domain": "inventory", "operator": "!=", "value": "dragonmounts2:dragonarmors" },
+                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:dragonarmors" },
+                  { "test": "is_baby", "subject": "self", "operator": "!=" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "equip_item_slot": "1",
+            "interact_text": "action.interact.dragonmounts2:equip_armor",
+            "play_sounds": "attach",
+            "swing": true,
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment_tag", "subject": "self", "domain": "inventory", "operator": "==", "value": "dragonmounts2:dragonarmors" },
+                  {
+                    "any_of": [
+                      { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "minecraft:is_shears" },
+                      { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_shears" }
+                    ]
+                  },
+                  { "test": "is_baby", "subject": "self", "operator": "!=" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "drop_item_slot": "1",
+            "drop_item_y_offset": 1,
+            "hurt_item": 1,
+            "interact_text": "action.interact.dragonmounts2:unequip_armor",
+            "play_sounds": "detach",
+            "swing": true,
+            "vibration": "shear"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "operator": "!=", "value": "saddle" },
+                  { "test": "has_equipment", "subject": "other", "domain": "main_hand", "value": "saddle" },
+                  { "test": "is_baby", "subject": "self", "operator": "!=" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "equip_item_slot": "0",
+            "interact_text": "action.interact.dragonmounts2:equip_saddle",
+            "play_sounds": "saddle",
+            "swing": true,
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "operator": "==", "value": "saddle" },
+                  {
+                    "any_of": [
+                      { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "minecraft:is_shears" },
+                      { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_shears" },
+                      { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "orevile:is_shears" }
+                    ]
+                  },
+                  { "test": "is_baby", "subject": "self", "operator": "!=" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "drop_item_slot": "0",
+            "drop_item_y_offset": 1,
+            "hurt_item": 1,
+            "interact_text": "action.interact.dragonmounts2:unequip_saddle",
+            "play_sounds": "unsaddle",
+            "swing": true,
+            "vibration": "shear"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "event": "minecraft:equipped_chest",
+              "filters": {
+                "all_of": [
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_chested" },
+                  { "test": "has_equipment", "subject": "other", "domain": "main_hand", "value": "chest" },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "!=" }
+                ]
+              }
+            },
+            "interact_text": "action.interact.dragonmounts2:equip_chest",
+            "play_sounds": "add.chest",
+            "swing": true,
+            "use_item": true,
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "event": "minecraft:on_stand",
+              "filters": {
+                "all_of": [
+                  { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "sitting" },
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "==" }
+                ]
+              }
+            },
+            "interact_text": "action.interact.dragonmounts2:stand",
+            "swing": true,
+            "vibration": "entity_interact"
+          },
+          {
+            "on_interact": {
+              "target": "self",
+              "event": "minecraft:on_sit",
+              "filters": {
+                "all_of": [
+                  { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
+                  { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_owner", "subject": "other" },
+                  { "test": "is_sneak_held", "subject": "other", "operator": "==" }
+                ]
+              }
+            },
+            "interact_text": "action.interact.dragonmounts2:sit",
+            "swing": true,
+            "vibration": "entity_interact"
+          }
+        ]
+      },
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:knockback_resistance": { "value": 1.0 },
+      "minecraft:nameable": {},
+      "minecraft:offspring": {
+        "offspring_pairs": {
+          "dragonmounts2:aether_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:dark_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:enchanted_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:ender_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:fire_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:forest_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:ice_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:light_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:moonlight_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:nether_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:sculk_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:skeleton_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:storm_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:sunlight_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:terra_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:water_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:wither_dragon": "dragonmounts2:dark_dragon_egg",
+          "dragonmounts2:zombie_dragon": "dragonmounts2:dark_dragon_egg"
+        }
+      },
+      "minecraft:on_death": {
+        "filters": { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
+        "event": "minecraft:on_death",
+        "target": "self"
+      },
+      "minecraft:persistent": {},
+      "minecraft:physics": {}
+    },
+    "component_groups": {
+      "dragonmounts2:dragon_living_components": {
+        "minecraft:breathable": { "breathes_water": true },
+        "minecraft:collision_box": { "width": 1.4, "height": 2.75 },
+        "minecraft:jump.static": {},
+        "minecraft:pushable_by_block": {},
+        "minecraft:pushable_by_entity": {},
+        "minecraft:body_rotation_always_follows_head": {},
+        "minecraft:tameable": {
+          "probability": 0.24,
+          "tame_items": [
+            { "item": "axolotl_bucket", "result_item": "water_bucket" },
+            "beef",
+            "blue_egg",
+            "brown_egg",
+            "chicken",
+            "cod",
+            { "item": "cod_bucket", "result_item": "water_bucket" },
+            "cooked_beef",
+            "cooked_chicken",
+            "cooked_cod",
+            "cooked_mutton",
+            "cooked_porkchop",
+            "cooked_rabbit",
+            "cooked_salmon",
+            "egg",
+            "mutton",
+            "porkchop",
+            "pufferfish",
+            { "item": "pufferfish_bucket", "result_item": "water_bucket" },
+            "rabbit",
+            { "item": "rabbit_stew", "result_item": "bowl" },
+            "rotten_flesh",
+            "salmon",
+            { "item": "salmon_bucket", "result_item": "water_bucket" },
+            "sniffer_egg",
+            { "item": "tadpole_bucket", "result_item": "water_bucket" },
+            "tropical_fish",
+            { "item": "tropical_fish_bucket", "result_item": "water_bucket" },
+            "turtle_egg"
+          ],
+          "tame_event": { "event": "minecraft:on_tame", "target": "self" }
+        },
+        "minecraft:behavior.delayed_attack": {
+          "priority": 1,
+          "speed_multiplier": 1.2,
+          "attack_duration": 0.36,
+          "hit_delay_pct": 0.24,
+          "track_target": true,
+          "reach_multiplier": 4.0
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 1,
+          "scan_interval": 10,
+          "must_reach": true,
+          "must_see": false,
+          "reselect_targets": true,
+          "entity_types": [
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
+                  { "test": "is_family", "subject": "other", "value": "monster" }
+                ]
+              },
+              "max_dist": 16
+            }
+          ]
+        }
+      },
+      "dragonmounts2:dragon_standing_components": {
+        "minecraft:behavior.look_at_player": {
+          "priority": 8,
+          "look_distance": 12,
+          "look_time": { "min": 1, "max": 2 },
+          "probability": 0.0001
+        },
+        "minecraft:behavior.random_look_around": { "priority": 7 },
+        "minecraft:behavior.random_stroll": {
+          "priority": 5,
+          "speed_multiplier": 1.2,
+          "xz_dist": 80,
+          "y_dist": 100,
+          "interval": 5
+        },
+        "minecraft:behavior.tempt": {
+          "priority": 4,
+          "speed_multiplier": 1.6,
+          "within_radius": 16,
+          "sound_interval": [ 3, 6 ],
+          "can_tempt_vertically": true,
+          "tempt_sound": "tempt",
+          "items": [
+            "axolotl_bucket",
+            "beef",
+            "blue_egg",
+            "brown_egg",
+            "chicken",
+            "cod",
+            "cod_bucket",
+            "cooked_beef",
+            "cooked_chicken",
+            "cooked_cod",
+            "cooked_mutton",
+            "cooked_porkchop",
+            "cooked_rabbit",
+            "cooked_salmon",
+            "egg",
+            "mutton",
+            "porkchop",
+            "pufferfish",
+            "pufferfish_bucket",
+            "rabbit",
+            "rabbit_stew",
+            "rotten_flesh",
+            "salmon",
+            "salmon_bucket",
+            "sniffer_egg",
+            "tadpole_bucket",
+            "tropical_fish",
+            "tropical_fish_bucket",
+            "turtle_egg"
+          ]
+        }
+      },
+      "dragonmounts2:dragon_death": {
+        "minecraft:transformation": {
+          "into": "dragonmounts2:dark_dragon<minecraft:on_died>",
+          "transformation_sound": "death",
+          "drop_inventory": true,
+          "delay": { "value": 0.1 }
+        }
+      },
+      "dragonmounts2:dragon_dying_components": {
+        "minecraft:type_family": {
+          "family": [ "inanimate" ]
+        },
+        "minecraft:can_fly": {},
+        "minecraft:collision_box": { "width": 0.0, "height": 0.0 },
+        "minecraft:damage_sensor": {
+          "triggers": { "cause": "all", "deals_damage": "no" }
+        },
+        "minecraft:equippable": {},
+        "minecraft:interact": {},
+        "minecraft:is_collidable": {},
+        "minecraft:is_stackable": {},
+        "minecraft:knockback_resistance": { "value": 1.0 },
+        "minecraft:loot": { "table": "loot_tables/empty.json" },
+        "minecraft:movement": { "value": 0.0 },
+        "minecraft:movement.hover": {},
+        "minecraft:navigation.hover": { "can_sink": false },
+        "minecraft:physics": { "has_collision": false, "has_gravity": false },
+        "minecraft:timer": {
+          "time": 0.05,
+          "looping": true,
+          "time_down_event": { "event": "minecraft:on_dying_ticks" }
+        }
+      },
+      "dragonmounts2:dead_dragon_baby": {
+        "minecraft:scale": { "value": 0.2 }
+      },
+      "dragonmounts2:dead_dragon_juvenile": {
+        "minecraft:scale": { "value": 0.7 }
+      },
+      "dragonmounts2:dead_dragon_adult": {},
+      "dragonmounts2:dragon_despawn": { "minecraft:instant_despawn": {} },
+      "dragonmounts2:dragon_growth": {
+        "minecraft:ageable": {
+          "duration": 14400,
+          "reset_growth_items": [ "golden_dandelion" ],
+          "pause_growth_items": [ "golden_dandelion" ],
+          "feed_items": [
+            { "item": "axolotl_bucket", "result_item": "water_bucket", "growth": 0.01 },
+            { "item": "beef", "growth": 0.0354 },
+            { "item": "blue_egg", "growth": 0.0354 },
+            { "item": "brown_egg", "growth": 0.0354 },
+            { "item": "chicken", "growth": 0.028 },
+            { "item": "cod", "growth": 0.008 },
+            { "item": "cod_bucket", "result_item": "water_bucket", "growth": 0.01 },
+            { "item": "cooked_beef", "growth": 0.0354 },
+            { "item": "cooked_chicken", "growth": 0.028 },
+            { "item": "cooked_cod", "growth": 0.008 },
+            { "item": "cooked_mutton", "growth": 0.021 },
+            { "item": "cooked_porkchop", "growth": 0.034 },
+            { "item": "cooked_rabbit", "growth": 0.021 },
+            { "item": "cooked_salmon", "growth": 0.01 },
+            { "item": "egg", "growth": 0.0354 },
+            { "item": "mutton", "growth": 0.021 },
+            { "item": "porkchop", "growth": 0.034 },
+            { "item": "pufferfish", "growth": 0.021 },
+            { "item": "pufferfish_bucket", "result_item": "water_bucket", "growth": 0.01 },
+            { "item": "rabbit", "growth": 0.021 },
+            { "item": "rabbit_stew", "result_item": "bowl", "growth": 0.01 },
+            { "item": "salmon", "growth": 0.01 },
+            { "item": "salmon_bucket", "result_item": "water_bucket", "growth": 0.01 },
+            { "item": "sniffer_egg", "growth": 0.021 },
+            { "item": "tadpole_bucket", "result_item": "water_bucket", "growth": 0.01 },
+            { "item": "tropical_fish", "growth": 0.0156 },
+            { "item": "tropical_fish_bucket", "result_item": "water_bucket", "growth": 0.01 },
+            { "item": "turtle_egg", "growth": 0.021 }
+          ],
+          "grow_up": { "event": "minecraft:ageable_grow_up", "target": "self" }
+        }
+      },
+      "dragonmounts2:dragon_baby": {
+        "minecraft:attack": { "damage": 6 },
+        "minecraft:is_baby": {},
+        "minecraft:scale": { "value": 0.2 },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 2,
+          "hurt_owner": false,
+          "entity_types": { "max_dist": 16, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 }
+        },
+        "minecraft:health": { "value": 60 }
+      },
+      "dragonmounts2:dragon_juvenile": {
+        "minecraft:attack": { "damage": 9 },
+        "minecraft:leashable_to": {},
+        "minecraft:scale": { "value": 0.7 },
+        "minecraft:spawn_egg_interaction": {},
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 2,
+          "hurt_owner": false,
+          "entity_types": { "max_dist": 32, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 }
+        },
+        "minecraft:health": { "value": 120 }
+      },
+      "dragonmounts2:dragon_adult": {
+        "minecraft:attack": { "damage": 12 },
+        "minecraft:breedable": {
+          "breed_items": [
+            { "item": "axolotl_bucket", "result_item": "water_bucket" },
+            "beef",
+            "blue_egg",
+            "brown_egg",
+            "chicken",
+            "cod",
+            { "item": "cod_bucket", "result_item": "water_bucket" },
+            "cooked_beef",
+            "cooked_chicken",
+            "cooked_cod",
+            "cooked_mutton",
+            "cooked_porkchop",
+            "cooked_rabbit",
+            "cooked_salmon",
+            "egg",
+            "mutton",
+            "porkchop",
+            "pufferfish",
+            { "item": "pufferfish_bucket", "result_item": "water_bucket" },
+            "rabbit",
+            { "item": "rabbit_stew", "result_item": "bowl" },
+            "rotten_flesh",
+            "salmon",
+            { "item": "salmon_bucket", "result_item": "water_bucket" },
+            "sniffer_egg",
+            { "item": "tadpole_bucket", "result_item": "water_bucket" },
+            "tropical_fish",
+            { "item": "tropical_fish_bucket", "result_item": "water_bucket" },
+            "turtle_egg"
+          ],
+          "breeds_with": { 
+            "dragonmounts2:aether_dragon": {},
+            "dragonmounts2:dark_dragon": {},
+            "dragonmounts2:enchanted_dragon": {},
+            "dragonmounts2:ender_dragon": {},
+            "dragonmounts2:fire_dragon": {},
+            "dragonmounts2:forest_dragon": {},
+            "dragonmounts2:ice_dragon": {},
+            "dragonmounts2:light_dragon": {},
+            "dragonmounts2:moonlight_dragon": {},
+            "dragonmounts2:nether_dragon": {},
+            "dragonmounts2:sculk_dragon": {},
+            "dragonmounts2:skeleton_dragon": {},
+            "dragonmounts2:storm_dragon": {},
+            "dragonmounts2:sunlight_dragon": {},
+            "dragonmounts2:terra_dragon": {},
+            "dragonmounts2:water_dragon": {},
+            "dragonmounts2:wither_dragon": {},
+            "dragonmounts2:zombie_dragon": {}
+          },
+          "require_tame": true
+        },
+        "minecraft:leashable_to": {},
+        "minecraft:loot": { "table": "loot_tables/entities/dark_dragon.json" },
+        "minecraft:spawn_egg_interaction": {},
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 2,
+          "hurt_owner": false,
+          "entity_types": { "max_dist": 64, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 }
+        },
+        "minecraft:health": { "value": 180 }
+      },
+      "dragonmounts2:dragon_flying": {
+        "minecraft:can_fly": {},
+        "minecraft:flying_speed": { "value": 0.15 },
+        "minecraft:movement": { "value": 0.15 },
+        "minecraft:movement.fly": {},
+        "minecraft:navigation.fly": {
+          "avoid_water": true,
+          "can_breach": true,
+          "can_jump": true,
+          "can_path_from_air": true,
+          "can_path_over_water": false
+        },
+        "minecraft:physics": { "has_gravity": false }
+      },
+      "dragonmounts2:dragon_grounded": {
+        "minecraft:navigation.walk": {
+          "avoid_damage_blocks": true,
+          "avoid_water": true,
+          "can_jump": true,
+          "can_path_from_air": true,
+          "can_path_over_water": false
+        },
+        "minecraft:physics": {},
+        "minecraft:movement.basic": { "max_turn": 45.0 },
+        "minecraft:movement": { "value": 0.24 },
+        "minecraft:variable_max_auto_step": { "base_value": 1.5625, "controlled_value": 1.5625, "jump_prevented_value": 0.5625 }
+      },
+      "dragonmounts2:dragon_swimming": {
+        "minecraft:movement": { "value": 0.1 },
+        "minecraft:movement.sway": { "sway_amplitude": 0.0 },
+        "minecraft:navigation.generic": {
+          "can_breach": true,
+          "can_path_over_water": true,
+          "can_sink": false,
+          "can_swim": true,
+          "can_walk": true,
+          "is_amphibious": true
+        },
+        "minecraft:physics": {},
+        "minecraft:underwater_movement": { "value": 0.1 }
+      },
+      "dragonmounts2:dragon_follow_owner": {
+        "minecraft:behavior.follow_owner": {
+          "priority": 3,
+          "can_teleport": false,
+          "speed_multiplier": 2.4,
+          "start_distance": 5,
+          "stop_distance": 5
+        }
+      },
+      "dragonmounts2:dragon_elytra_follow": {
+        "minecraft:behavior.follow_owner": {
+          "priority": 3,
+          "can_teleport": false,
+          "speed_multiplier": 1.6,
+          "start_distance": 3,
+          "stop_distance": 2
+        }
+      },
+      "dragonmounts2:dragon_tamed": {
+        "minecraft:color": { "value": 14 },
+        "minecraft:is_dyeable": { "interact_text": "action.interact.dragonmounts2:dye" },
+        "minecraft:is_tamed": {},
+        "minecraft:leashable": {},
+        "minecraft:behavior.owner_hurt_by_target": {
+          "priority": 1,
+          "entity_types": { "max_dist": 64, "walk_speed_multiplier": 1.4, "sprint_speed_multiplier": 2.4 }
+        },
+        "minecraft:behavior.owner_hurt_target": {
+          "priority": 2,
+          "entity_types": { "max_dist": 64, "walk_speed_multiplier": 1.4, "sprint_speed_multiplier": 2.4 }
+        },
+        "minecraft:behavior.breed": { "priority": 0 }
+      },
+      "dragonmounts2:dragon_inventory": {
+        "minecraft:inventory": { "inventory_size": 17, "container_type": "horse" }
+      },
+      "dragonmounts2:dragon_rideable": {
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "crouching_skip_interact": true,
+          "dismount_mode": "default",
+          "controlling_seat": 0,
+          "family_types": [ "player" ],
+          "interact_text": "action.interact.dragonmounts2:ride",
+          "seats": [
+            {
+              "position": [ 0.0, 2.7, 0.9 ],
+              "third_person_camera_radius": 15.0,
+              "camera_relax_distance_smoothing": 10.0
+            }
+          ]
+        }
+      },
+      "dragonmounts2:tamed_dark_dragon_family": {
+        "minecraft:type_family": {
+          "family": [ "dark_dragon", "dragonmounts2", "dragon", "mob" ]
+        }
+      },
+      "dragonmounts2:dragon_saddled": { "minecraft:is_saddled": {}, "minecraft:behavior.player_ride_tamed": {} },
+      "dragonmounts2:dragon_ground_controlled": { "minecraft:input_ground_controlled": {} },
+      "dragonmounts2:dragon_camera_controlled": {
+        "minecraft:free_camera_controlled": { "strafe_speed_modifier": 0.6, "backwards_movement_modifier": 0.35 }
+      },
+      "dragonmounts2:dragon_chested": { "minecraft:is_chested": {} },
+      "dragonmounts2:dragon_breath": {
+        "minecraft:spawn_entity": {
+          "entities": [
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_breathing", "operator": "==" },
+                  {
+                    "test": "float_property",
+                    "subject": "self",
+                    "domain": "dragonmounts2:breath_charge",
+                    "operator": "==",
+                    "value": 1.0
+                  }
+                ]
+              },
+              "min_wait_time": 0,
+              "max_wait_time": 0,
+              "spawn_entity": "dragonmounts2:fire_dragonbreath",
+              "spawn_event": "minecraft:entity_spawned",
+              "single_use": true,
+              "spawn_sound": "",
+              "num_to_spawn": 4
+            }
+          ]
+        }
+      },
+      "dragonmounts2:dragon_sitting_components": {}
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "sequence": [
+          {
+            "randomize": [
+              { "weight": 100, "trigger": "minecraft:spawn_as_adult" },
+              { "weight": 0, "trigger": "minecraft:spawn_as_baby" }
+            ]
+          },
+          {
+            "randomize": [
+              { "weight": 45, "trigger": "minecraft:become_demon" },
+              { "weight": 45, "trigger": "minecraft:become_imp" },
+              { "weight": 45, "trigger": "minecraft:become_underworld" },
+              { "weight": 45, "trigger": "minecraft:become_bloodmoon" }
+            ]
+          }
+        ]
+      },
+      "minecraft:entity_born": {
+        "sequence": [
+          { "trigger": "minecraft:spawn_as_baby" },
+          {
+            "randomize": [
+              { "weight": 45, "trigger": "minecraft:become_demon" },
+              { "weight": 45, "trigger": "minecraft:become_imp" },
+              { "weight": 45, "trigger": "minecraft:become_underworld" },
+              { "weight": 45, "trigger": "minecraft:become_bloodmoon" }
+            ]
+          }
+        ]
+      },
+      "minecraft:spawn_as_adult": {
+        "add": {
+          "component_groups": [
+            "dragonmounts2:dragon_living_components",
+            "dragonmounts2:dragon_adult",
+            "dragonmounts2:dragon_grounded"
+          ]
+        },
+        "set_property": { "dragonmounts2:age_variant": "adult" },
+        "trigger": "minecraft:on_stand"
+      },
+      "minecraft:spawn_as_baby": {
+        "add": {
+          "component_groups": [
+            "dragonmounts2:dragon_living_components",
+            "dragonmounts2:dragon_baby",
+            "dragonmounts2:dragon_growth",
+            "dragonmounts2:dragon_grounded"
+          ]
+        },
+        "set_property": { "dragonmounts2:age_variant": "baby" },
+        "trigger": "minecraft:on_stand"
+      },
+      "minecraft:become_demon": {
+        "set_property": { "dragonmounts2:variant_type": "demon" }
+      },
+      "minecraft:become_imp": {
+        "set_property": { "dragonmounts2:variant_type": "imp" }
+      },
+      "minecraft:become_underworld": {
+        "set_property": { "dragonmounts2:variant_type": "underworld" }
+      },
+      "minecraft:become_bloodmoon": {
+        "set_property": { "dragonmounts2:variant_type": "bloodmoon" }
+      },
+      "minecraft:ageable_grow_up": {
+        "sequence": [
+          {
+            "filters": {
+              "all_of": [
+                { "test": "enum_property", "domain": "dragonmounts2:age_variant", "value": "juvenile" },
+                { "test": "has_component", "value": "minecraft:is_tamed" }
+              ]
+            },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_rideable", "dragonmounts2:dragon_inventory" ]
+            }
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:age_variant", "value": "juvenile" },
+            "remove": {
+              "component_groups": [ "dragonmounts2:dragon_juvenile", "dragonmounts2:dragon_growth" ]
+            },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_adult" ]
+            },
+            "set_property": { "dragonmounts2:age_variant": "adult" }
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:age_variant", "value": "baby" },
+            "remove": {
+              "component_groups": [ "dragonmounts2:dragon_baby", "dragonmounts2:dragon_growth" ]
+            },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_juvenile", "dragonmounts2:dragon_growth" ]
+            },
+            "set_property": { "dragonmounts2:age_variant": "juvenile" }
+          }
+        ]
+      },
+      "minecraft:on_tame": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_tamed" ]
+            },
+            "trigger": "minecraft:on_sit"
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:age_variant", "value": "adult" },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_rideable", "dragonmounts2:dragon_inventory" ]
+            }
+          }
+        ]
+      },
+      "minecraft:on_hatch_dark_dragon_demon": {
+        "sequence": [
+          { "trigger": "minecraft:spawn_as_baby" },
+          { "trigger": "minecraft:become_demon" }
+        ]
+      },
+      "minecraft:on_hatch_dark_dragon_imp": {
+        "sequence": [
+          { "trigger": "minecraft:spawn_as_baby" },
+          { "trigger": "minecraft:become_imp" }
+        ]
+      },
+      "minecraft:on_hatch_dark_dragon_underworld": {
+        "sequence": [
+          { "trigger": "minecraft:spawn_as_baby" },
+          { "trigger": "minecraft:become_underworld" }
+        ]
+      },
+      "minecraft:on_hatch_dark_dragon_bloodmoon": {
+        "sequence": [
+          { "trigger": "minecraft:spawn_as_baby" },
+          { "trigger": "minecraft:become_bloodmoon" }
+        ]
+      },
+      "minecraft:entity_transformed": {
+        "sequence": [
+          { "trigger": "minecraft:spawn_as_baby" },
+          {
+            "randomize": [
+              { "weight": 45, "trigger": "minecraft:become_demon" },
+              { "weight": 45, "trigger": "minecraft:become_imp" },
+              { "weight": 45, "trigger": "minecraft:become_underworld" },
+              { "weight": 45, "trigger": "minecraft:become_bloodmoon" }
+            ]
+          }
+        ]
+      },
+      "minecraft:equipped_saddle": {
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_saddled" ]
+        }
+      },
+      "minecraft:unequipped_saddle": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_saddled" ]
+        }
+      },
+      "minecraft:equipped_chest": {
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_chested" ]
+        }
+      },
+      "minecraft:unequipped_chest": {
+        "sequence": [
+          {
+            "remove": {
+              "component_groups": [ "dragonmounts2:dragon_chested" ]
+            }
+          },
+          {
+            "drop_item": { "slot": "2" }
+          },
+          {
+            "drop_item": { "slot": "3" }
+          },
+          {
+            "drop_item": { "slot": "4" }
+          },
+          {
+            "drop_item": { "slot": "5" }
+          },
+          {
+            "drop_item": { "slot": "6" }
+          },
+          {
+            "drop_item": { "slot": "7" }
+          },
+          {
+            "drop_item": { "slot": "8" }
+          },
+          {
+            "drop_item": { "slot": "9" }
+          },
+          {
+            "drop_item": { "slot": "10" }
+          },
+          {
+            "drop_item": { "slot": "11" }
+          },
+          {
+            "drop_item": { "slot": "12" }
+          },
+          {
+            "drop_item": { "slot": "13" }
+          },
+          {
+            "drop_item": { "slot": "14" }
+          }
+        ]
+      },
+      "minecraft:on_dragon_breath": {
+        "sequence": [
+          {
+            "filters": {
+              "test": "float_property",
+              "domain": "dragonmounts2:breathing_sound",
+              "operator": "==",
+              "value": 1.0
+            },
+            "set_property": { "dragonmounts2:breathing_sound": "0.00" },
+            "play_sound": { "sound": "shoot" }
+          },
+          {
+            "filters": {
+              "test": "float_property",
+              "domain": "dragonmounts2:breathing_sound",
+              "operator": "<",
+              "value": 1.0
+            },
+            "set_property": {
+              "dragonmounts2:breathing_sound": "math.clamp(q.property('dragonmounts2:breathing_sound')+0.01,0.0,1.0)"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_breath" ]
+            }
+          }
+        ]
+      },
+      "minecraft:decrease_breath_charge": {
+        "sequence": [
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": "==", "value": 0.05 },
+            "play_sound": { "sound": "deactivate" }
+          },
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": ">", "value": 0.0 },
+            "set_property": {
+              "dragonmounts2:breath_charge": "math.clamp(q.property('dragonmounts2:breath_charge')-0.05,0.0,1.0)"
+            }
+          }
+        ]
+      },
+      "minecraft:increase_breath_charge": {
+        "sequence": [
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": "==", "value": 0.0 },
+            "play_sound": { "sound": "warn" }
+          },
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": "<", "value": 1.0 },
+            "set_property": {
+              "dragonmounts2:breath_charge": "math.clamp(q.property('dragonmounts2:breath_charge')+0.05,0.0,1.0)"
+            }
+          }
+        ]
+      },
+      "minecraft:on_flying": {
+        "sequence": [
+          {
+            "filters": {
+              "test": "enum_property",
+              "domain": "dragonmounts2:movement_state",
+              "operator": "!=",
+              "value": "flying"
+            },
+            "remove": {
+              "component_groups": [ "dragonmounts2:dragon_grounded", "dragonmounts2:dragon_swimming" ]
+            },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_flying" ]
+            },
+            "set_property": { "dragonmounts2:movement_state": "flying" }
+          },
+          {
+            "filters": { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_following", "value": true },
+            "add": { "component_groups": [ "dragonmounts2:dragon_elytra_follow" ] }
+          }
+        ]
+      },
+      "minecraft:on_grounded": {
+        "filters": { "test": "enum_property", "domain": "dragonmounts2:movement_state", "operator": "!=", "value": "grounded" },
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_flying", "dragonmounts2:dragon_swimming", "dragonmounts2:dragon_elytra_follow" ]
+        },
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_grounded" ]
+        },
+        "set_property": { "dragonmounts2:movement_state": "grounded" }
+      },
+      "minecraft:on_swimming": {
+        "filters": { "test": "enum_property", "domain": "dragonmounts2:movement_state", "operator": "!=", "value": "swimming" },
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_grounded", "dragonmounts2:dragon_flying" ]
+        },
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_swimming" ]
+        },
+        "set_property": { "dragonmounts2:movement_state": "swimming" }
+      },
+      "minecraft:on_camera_controlled": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_ground_controlled" ]
+        },
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_camera_controlled" ]
+        }
+      },
+      "minecraft:on_ground_controlled": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_camera_controlled" ]
+        },
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_ground_controlled" ]
+        }
+      },
+      "minecraft:on_not_controlled": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_camera_controlled", "dragonmounts2:dragon_ground_controlled" ]
+        }
+      },
+      "minecraft:on_sit": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_standing_components" ]
+        },
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_sitting_components" ]
+        },
+        "set_property": { "dragonmounts2:mob_state": "sitting" },
+        "trigger": "minecraft:on_wander"
+      },
+      "minecraft:on_stand": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_sitting_components" ]
+        },
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_standing_components" ]
+        },
+        "set_property": { "dragonmounts2:mob_state": "standing" }
+      },
+      "minecraft:on_follow": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_follow_owner" ]
+            },
+            "set_property": { "dragonmounts2:is_following": true }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:movement_state", "value": "flying" },
+            "add": { "component_groups": [ "dragonmounts2:dragon_elytra_follow" ] }
+          }
+        ]
+      },
+      "minecraft:on_wander": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_follow_owner", "dragonmounts2:dragon_elytra_follow" ]
+        },
+        "set_property": { "dragonmounts2:is_following": false }
+      },
+      "minecraft:on_lock": {
+        "set_property": { "dragonmounts2:is_locked": true }
+      },
+      "minecraft:on_unlock": {
+        "set_property": { "dragonmounts2:is_locked": false }
+      },
+      "dragonmounts2:on_vflight_enable": {
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_follow_owner", "dragonmounts2:dragon_standing_components" ]
+        },
+        "set_property": { "dragonmounts2:v_flight_enabled": true }
+      },
+      "dragonmounts2:on_elytra_follow_enable": {
+        "set_property": { "dragonmounts2:elytra_follow_enabled": true },
+        "remove": {
+          "component_groups": [ "dragonmounts2:dragon_follow_owner", "dragonmounts2:dragon_standing_components" ]
+        }
+      },
+      "dragonmounts2:on_vflight_disable": {
+        "sequence": [
+          {
+            "set_property": { "dragonmounts2:v_flight_enabled": false }
+          },
+          {
+            "filters": { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_following", "value": true },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_follow_owner" ]
+            }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_standing_components" ]
+            }
+          }
+        ]
+      },
+      "dragonmounts2:on_elytra_follow_disable": {
+        "sequence": [
+          {
+            "set_property": { "dragonmounts2:elytra_follow_enabled": false }
+          },
+          {
+            "filters": { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_following", "value": true },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_follow_owner" ]
+            }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_standing_components" ]
+            }
+          }
+        ]
+      },
+      "minecraft:on_collar": {
+        "set_property": { "dragonmounts2:has_collar": true }
+      },
+      "minecraft:on_no_collar": {
+        "set_property": { "dragonmounts2:has_collar": false }
+      },
+      "minecraft:on_death": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_death" ]
+            }
+          },
+          {
+            "filters": { "test": "has_component", "value": "minecraft:is_tamed" },
+            "queue_command": { "command": "scriptevent dragonmounts2:dragon_core" }
+          }
+        ]
+      },
+      "minecraft:on_died": {
+        "sequence": [
+          {
+            "remove": {
+              "component_groups": [ "dragonmounts2:dragon_living_components" ]
+            },
+            "add": {
+              "component_groups": [ "dragonmounts2:dragon_dying_components" ]
+            },
+            "set_property": { "dragonmounts2:death_ticks": "0.01" }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:age_variant", "value": "adult" },
+            "add": {
+              "component_groups": [ "dragonmounts2:dead_dragon_adult" ]
+            },
+            "set_property": { "dragonmounts2:age_variant": "adult" }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:age_variant", "value": "juvenile" },
+            "add": {
+              "component_groups": [ "dragonmounts2:dead_dragon_juvenile" ]
+            },
+            "set_property": { "dragonmounts2:age_variant": "juvenile" }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:age_variant", "value": "baby" },
+            "add": {
+              "component_groups": [ "dragonmounts2:dead_dragon_baby" ]
+            },
+            "set_property": { "dragonmounts2:age_variant": "baby" }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:mob_state", "value": "standing" },
+            "set_property": { "dragonmounts2:mob_state": "standing" }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:mob_state", "value": "sitting" },
+            "set_property": { "dragonmounts2:mob_state": "sitting" }
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "other", "value": "demon" },
+            "trigger": "minecraft:become_demon"
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "other", "value": "imp" },
+            "trigger": "minecraft:become_imp"
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "other", "value": "underworld" },
+            "trigger": "minecraft:become_underworld"
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "other", "value": "bloodmoon" },
+            "trigger": "minecraft:become_bloodmoon"
+          }
+        ]
+      },
+      "minecraft:on_dying_ticks": {
+        "sequence": [
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:death_ticks", "operator": "==", "value": 2.0 },
+            "trigger": "minecraft:on_final_death"
+          },
+          {
+            "filters": { "test": "float_property", "domain": "dragonmounts2:death_ticks", "operator": "<", "value": 2.0 },
+            "set_property": { "dragonmounts2:death_ticks": "math.clamp(q.property('dragonmounts2:death_ticks')+0.01,0.0,2.0)" }
+          }
+        ]
+      },
+      "minecraft:on_final_death": {
+        "add": {
+          "component_groups": [ "dragonmounts2:dragon_despawn" ]
+        }
+      },
+      "minecraft:on_variant": {
+        "sequence": [
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "bloodmoon" },
+            "set_property": { "dragonmounts2:variant_type": "demon" }
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "demon" },
+            "set_property": { "dragonmounts2:variant_type": "imp" }
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "imp" },
+            "set_property": { "dragonmounts2:variant_type": "underworld" }
+          },
+          {
+            "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "underworld" },
+            "set_property": { "dragonmounts2:variant_type": "bloodmoon" }
+          }
+        ]
+      }
+    }
+  }
+}

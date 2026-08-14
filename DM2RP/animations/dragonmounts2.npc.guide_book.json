@@ -1,0 +1,129 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dragonmounts2.guide_book.home": {
+			"loop": true,
+			"bones": {
+				"page_1_1": {
+					"rotation": [0, "math.abs(q.anim_time*90)*1", 0],
+					"position": [3, "4+math.sin(q.anim_time*180)*1", 0],
+					"scale": 1
+				},
+				"page_1_2": {
+					"scale": 0
+				},
+				"credits": {
+					"scale": 0
+				},
+				"dragons": {
+					"scale": 0
+				}
+			}
+		},
+		"animation.dragonmounts2.guide_book.page_1_2": {
+			"loop": true,
+			"animation_length": 6.0333,
+			"bones": {
+				"page_1_1": {
+					"scale": 0
+				},
+				"page_1_2": {
+					"rotation": [0, -145, 0],
+					"position": [-4, 0, -14]
+				},
+				"player": {
+					"position": [2, -9, 0]
+				},
+				"body": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"2.0": [-17.5, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 7],
+						"2.0": [0, -1, 11]
+					}
+				},
+				"head": {
+					"rotation": [27.5, 0, 0]
+				},
+				"rightArm": {
+					"rotation": [23.161, 14.2413, 11.4174],
+					"position": [0, -1, 0.5]
+				},
+				"leftArm": {
+					"rotation": [23.161, -14.2413, -11.4174],
+					"position": [0, -1, 0.5]
+				},
+				"rightLeg": {
+					"rotation": [-84.9571, 7.4713, 0.6574],
+					"position": [0, 0, 8]
+				},
+				"leftLeg": {
+					"rotation": [-84.9571, -7.4713, -0.6574],
+					"position": [0, 0, 8]
+				},
+				"egg": {
+					"rotation": {
+						"0.0": ["math.sin(query.anim_time * 640.0) * -16.0", 0, "-8 - math.sin(query.anim_time * 640.0 - 320) * -16.0"],
+						"1.6": [0, 0, 0]
+					},
+					"position": [2, 0, -12]
+				},
+				"credits": {
+					"scale": 0
+				},
+				"dragons": {
+					"scale": 0
+				}
+			}
+		},
+		"animation.dragonmounts2.guide_book.credits": {
+			"loop": true,
+			"bones": {
+				"page_1_1": {
+					"scale": 0
+				},
+				"page_1_2": {
+					"scale": 0
+				},
+				"body": {
+					"rotation": [-5, 5, 0]
+				},
+				"head": {
+					"rotation": [7.5018, -2.8048, 2.1523]
+				},
+				"credits": {
+					"rotation": [-7.5, 0, 0]
+				},
+				"body2": {
+					"rotation": [5, 0, 0]
+				},
+				"head2": {
+					"rotation": [5, 0, 0]
+				},
+				"helmet": {
+					"rotation": [2.5, 0, 0]
+				},
+				"nose": {
+					"rotation": [5, 0, 0]
+				},
+				"arms": {
+					"rotation": [-57.5, 0, 0]
+				},
+				"leg0": {
+					"rotation": [1.2943, 14.2909, 5.1159]
+				},
+				"leg1": {
+					"rotation": [-1.1888, -14.5069, -5.1454]
+				},
+				"page_1_3": {
+					"scale": 0
+				},
+				"dragons": {
+					"scale": 0
+				}
+			}
+		}
+	}
+}

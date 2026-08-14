@@ -1,0 +1,103 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragonbreath",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.28,
+        "height": 0.28
+      },
+      "minecraft:type_family": {
+        "family": [
+          "dragon_projectile",
+          "fire_dragonbreath"
+        ]
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:projectile": {
+        "power": 3.8,
+        "gravity": 0.0,
+        "inertia": 0.98,
+        "liquid_inertia": 0.98,
+        "uncertainty_base": 0,
+        "uncertainty_multiplier": 0,
+        "anchor": 2,
+        "offset": [ 0.0, 1.4, 1.7 ],
+        "should_bounce": false,
+        "multiple_targets": false,
+        "owner_launch_immunity_ticks": 6,
+        "catch_fire": true,
+        "on_fire_time": 2,
+        "on_hit": {
+          "impact_damage": {
+            "damage": 8,
+            "knockback": false,
+            "semi_random_diff_damage": false
+          },
+          "stick_in_ground": {
+            "shake_time": 0.2
+          },
+          "definition_event": {
+            "affect_projectile": true,
+            "event_trigger": {
+              "event": "on:hit",
+              "target": "self"
+            }
+          }
+        }
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable_by_block": {},
+      "minecraft:pushable_by_entity": {},
+      "minecraft:conditional_bandwidth_optimization": {
+        "default_values": {
+          "max_optimized_distance": 120,
+          "max_dropped_ticks": 5,
+          "use_motion_prediction_hints": true
+        }
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "sequence": []
+      },
+      "on:hit": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": [ "ignite", "despawn" ]
+            }
+          }
+        ]
+      }
+    },
+    "component_groups": {
+      "ignite": {
+        "minecraft:explode": {
+          "power": 1.5,
+          "fuse_length": 0,
+          "fuse_lit": true,
+          "breaks_blocks": false,
+          "causes_fire": true,
+          "damage_scaling": 0,
+          "destroy_affected_by_griefing": false,
+          "fire_affected_by_griefing": false
+        }
+      },
+      "despawn": {
+        "minecraft:despawn": {}
+      }
+    }
+  }
+}

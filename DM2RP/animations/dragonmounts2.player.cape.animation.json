@@ -1,0 +1,14 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dragonmounts2.player.cape": {
+			"loop": true,
+			"bones": {
+				"cape": {
+					"rotation": ["math.lerp(0, 126, q.cape_flap_amount)", 0, 0],
+					"position": [0, 0, 0]
+				}
+			}
+		}
+	}
+}

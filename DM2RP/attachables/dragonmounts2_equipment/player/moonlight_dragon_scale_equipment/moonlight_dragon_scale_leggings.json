@@ -1,0 +1,16 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:moonlight_dragon_scale_leggings",
+      "materials": { "default": "armor", "enchanted": "armor_enchanted" },
+      "textures": {
+        "default": "textures/models/dragonmounts2_equipment/armor_equipment/moonlight_classic",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": { "default": "geometry.dragonmounts2.dragon_scale.leggings" },
+      "scripts": { "parent_setup": "v.leg_layer_visible = 0.0;" },
+      "render_controllers": [ "controller.render.armor" ]
+    }
+  }
+}

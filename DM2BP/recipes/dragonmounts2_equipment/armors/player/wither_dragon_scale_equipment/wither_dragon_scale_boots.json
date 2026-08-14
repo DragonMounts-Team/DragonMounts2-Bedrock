@@ -1,0 +1,30 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "item": "dragonmounts2:wither_dragon_scales"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      "A A",
+      "A A"
+    ],
+    "description": {
+      "identifier": "dragonmounts2:wither_dragon_scale_boots"
+    },
+    "key": {
+      "A": {
+        "item": "dragonmounts2:wither_dragon_scales"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:wither_dragon_scale_boots"
+    }
+  },
+  "format_version": "1.26.10"
+}

@@ -1,0 +1,535 @@
+{
+  "format_version": "1.26.30",
+  "minecraft:crafting_items_catalog": {
+    "categories": [
+      {
+        "category_name": "construction",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_block",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_blocks"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_block",
+              "dragonmounts2:dark_dragon_scale_block",
+              "dragonmounts2:enchanted_dragon_scale_block",
+              "dragonmounts2:ender_dragon_scale_block",
+              "dragonmounts2:fire_dragon_scale_block",
+              "dragonmounts2:forest_dragon_scale_block",
+              "dragonmounts2:ice_dragon_scale_block",
+              "dragonmounts2:light_dragon_scale_block",
+              "dragonmounts2:moonlight_dragon_scale_block",
+              "dragonmounts2:nether_dragon_scale_block",
+              "dragonmounts2:sculk_dragon_scale_block",
+              "dragonmounts2:storm_dragon_scaleblock",
+              "dragonmounts2:sunlight_dragon_scale_block",
+              "dragonmounts2:terra_dragon_scale_block",
+              "dragonmounts2:water_dragon_scale_block",
+              "dragonmounts2:zombie_dragon_scale_block"
+            ]
+          }
+        ]
+      },
+      {
+        "category_name": "equipment",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "minecraft:chicken",
+              "name": "minecraft:itemGroup.name.cookedFood"
+            },
+            "items": [
+              "dragonmounts2:cooked_dragon_meat"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_helmet",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_helmets"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_helmet",
+              "dragonmounts2:dark_dragon_scale_helmet",
+              "dragonmounts2:enchanted_dragon_scale_helmet",
+              "dragonmounts2:ender_dragon_scale_helmet",
+              "dragonmounts2:fire_dragon_scale_helmet",
+              "dragonmounts2:forest_dragon_scale_helmet",
+              "dragonmounts2:ice_dragon_scale_helmet",
+              "dragonmounts2:light_dragon_scale_helmet",
+              "dragonmounts2:moonlight_dragon_scale_helmet",
+              "dragonmounts2:nether_dragon_scale_helmet",
+              "dragonmounts2:sculk_dragon_scale_helmet",
+              "dragonmounts2:skeleton_dragon_bone_helmet",
+              "dragonmounts2:storm_dragon_scale_helmet",
+              "dragonmounts2:sunlight_dragon_scale_helmet",
+              "dragonmounts2:terra_dragon_scale_helmet",
+              "dragonmounts2:water_dragon_scale_helmet",
+              "dragonmounts2:wither_dragon_scale_helmet",
+              "dragonmounts2:zombie_dragon_scale_helmet"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_chestplate",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_chestplates"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_chestplate",
+              "dragonmounts2:dark_dragon_scale_chestplate",
+              "dragonmounts2:enchanted_dragon_scale_chestplate",
+              "dragonmounts2:ender_dragon_scale_chestplate",
+              "dragonmounts2:fire_dragon_scale_chestplate",
+              "dragonmounts2:forest_dragon_scale_chestplate",
+              "dragonmounts2:ice_dragon_scale_chestplate",
+              "dragonmounts2:light_dragon_scale_chestplate",
+              "dragonmounts2:moonlight_dragon_scale_chestplate",
+              "dragonmounts2:nether_dragon_scale_chestplate",
+              "dragonmounts2:sculk_dragon_scale_chestplate",
+              "dragonmounts2:skeleton_dragon_bone_chestplate",
+              "dragonmounts2:storm_dragon_scale_chestplate",
+              "dragonmounts2:sunlight_dragon_scale_chestplate",
+              "dragonmounts2:terra_dragon_scale_chestplate",
+              "dragonmounts2:water_dragon_scale_chestplate",
+              "dragonmounts2:wither_dragon_scale_chestplate",
+              "dragonmounts2:zombie_dragon_scale_chestplate"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_leggings",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_leggings"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_leggings",
+              "dragonmounts2:dark_dragon_scale_leggings",
+              "dragonmounts2:enchanted_dragon_scale_leggings",
+              "dragonmounts2:ender_dragon_scale_leggings",
+              "dragonmounts2:fire_dragon_scale_leggings",
+              "dragonmounts2:forest_dragon_scale_leggings",
+              "dragonmounts2:ice_dragon_scale_leggings",
+              "dragonmounts2:light_dragon_scale_leggings",
+              "dragonmounts2:moonlight_dragon_scale_leggings",
+              "dragonmounts2:nether_dragon_scale_leggings",
+              "dragonmounts2:sculk_dragon_scale_leggings",
+              "dragonmounts2:skeleton_dragon_bone_leggings",
+              "dragonmounts2:storm_dragon_scale_leggings",
+              "dragonmounts2:sunlight_dragon_scale_leggings",
+              "dragonmounts2:terra_dragon_scale_leggings",
+              "dragonmounts2:water_dragon_scale_leggings",
+              "dragonmounts2:wither_dragon_scale_leggings",
+              "dragonmounts2:zombie_dragon_scale_leggings"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_boots",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_boots"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_boots",
+              "dragonmounts2:dark_dragon_scale_boots",
+              "dragonmounts2:enchanted_dragon_scale_boots",
+              "dragonmounts2:ender_dragon_scale_boots",
+              "dragonmounts2:fire_dragon_scale_boots",
+              "dragonmounts2:forest_dragon_scale_boots",
+              "dragonmounts2:ice_dragon_scale_boots",
+              "dragonmounts2:light_dragon_scale_boots",
+              "dragonmounts2:moonlight_dragon_scale_boots",
+              "dragonmounts2:nether_dragon_scale_boots",
+              "dragonmounts2:sculk_dragon_scale_boots",
+              "dragonmounts2:skeleton_dragon_bone_boots",
+              "dragonmounts2:storm_dragon_scale_boots",
+              "dragonmounts2:sunlight_dragon_scale_boots",
+              "dragonmounts2:terra_dragon_scale_boots",
+              "dragonmounts2:water_dragon_scale_boots",
+              "dragonmounts2:wither_dragon_scale_boots",
+              "dragonmounts2:zombie_dragon_scale_boots"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_sword",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_swords"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_sword",
+              "dragonmounts2:dark_dragon_scale_sword",
+              "dragonmounts2:enchanted_dragon_scale_sword",
+              "dragonmounts2:ender_dragon_scale_sword",
+              "dragonmounts2:fire_dragon_scale_sword",
+              "dragonmounts2:forest_dragon_scale_sword",
+              "dragonmounts2:ice_dragon_scale_sword",
+              "dragonmounts2:light_dragon_scale_sword",
+              "dragonmounts2:moonlight_dragon_scale_sword",
+              "dragonmounts2:nether_dragon_scale_sword",
+              "dragonmounts2:sculk_dragon_scale_sword",
+              "dragonmounts2:skeleton_dragon_bone_sword",
+              "dragonmounts2:storm_dragon_scale_sword",
+              "dragonmounts2:sunlight_dragon_scale_sword",
+              "dragonmounts2:terra_dragon_scale_sword",
+              "dragonmounts2:water_dragon_scale_sword",
+              "dragonmounts2:wither_dragon_scale_sword",
+              "dragonmounts2:zombie_dragon_scale_sword"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_spear",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_spears"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_spear",
+              "dragonmounts2:dark_dragon_scale_spear",
+              "dragonmounts2:enchanted_dragon_scale_spear",
+              "dragonmounts2:ender_dragon_scale_spear",
+              "dragonmounts2:fire_dragon_scale_spear",
+              "dragonmounts2:forest_dragon_scale_spear",
+              "dragonmounts2:ice_dragon_scale_spear",
+              "dragonmounts2:light_dragon_scale_spear",
+              "dragonmounts2:moonlight_dragon_scale_spear",
+              "dragonmounts2:nether_dragon_scale_spear",
+              "dragonmounts2:sculk_dragon_scale_spear",
+              "dragonmounts2:skeleton_dragon_bone_spear",
+              "dragonmounts2:storm_dragon_scale_spear",
+              "dragonmounts2:sunlight_dragon_scale_spear",
+              "dragonmounts2:terra_dragon_scale_spear",
+              "dragonmounts2:water_dragon_scale_spear",
+              "dragonmounts2:wither_dragon_bone_spear",
+              "dragonmounts2:zombie_dragon_scale_spear"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_axe",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_axes"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_axe",
+              "dragonmounts2:dark_dragon_scale_axe",
+              "dragonmounts2:enchanted_dragon_scale_axe",
+              "dragonmounts2:ender_dragon_scale_axe",
+              "dragonmounts2:fire_dragon_scale_axe",
+              "dragonmounts2:forest_dragon_scale_axe",
+              "dragonmounts2:ice_dragon_scale_axe",
+              "dragonmounts2:light_dragon_scale_axe",
+              "dragonmounts2:moonlight_dragon_scale_axe",
+              "dragonmounts2:nether_dragon_scale_axe",
+              "dragonmounts2:sculk_dragon_scale_axe",
+              "dragonmounts2:skeleton_dragon_bone_axe",
+              "dragonmounts2:storm_dragon_scale_axe",
+              "dragonmounts2:sunlight_dragon_scale_axe",
+              "dragonmounts2:terra_dragon_scale_axe",
+              "dragonmounts2:water_dragon_scale_axe",
+              "dragonmounts2:wither_dragon_bone_axe",
+              "dragonmounts2:zombie_dragon_scale_axe"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_pickaxe",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_pickaxes"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_pickaxe",
+              "dragonmounts2:dark_dragon_scale_pickaxe",
+              "dragonmounts2:enchanted_dragon_scale_pickaxe",
+              "dragonmounts2:ender_dragon_scale_pickaxe",
+              "dragonmounts2:fire_dragon_scale_pickaxe",
+              "dragonmounts2:forest_dragon_scale_pickaxe",
+              "dragonmounts2:ice_dragon_scale_pickaxe",
+              "dragonmounts2:light_dragon_scale_pickaxe",
+              "dragonmounts2:moonlight_dragon_scale_pickaxe",
+              "dragonmounts2:nether_dragon_scale_pickaxe",
+              "dragonmounts2:sculk_dragon_scale_pickaxe",
+              "dragonmounts2:skeleton_dragon_bone_pickaxe",
+              "dragonmounts2:storm_dragon_scale_pickaxe",
+              "dragonmounts2:sunlight_dragon_scale_pickaxe",
+              "dragonmounts2:terra_dragon_scale_pickaxe",
+              "dragonmounts2:water_dragon_scale_pickaxe",
+              "dragonmounts2:wither_dragon_bone_pickaxe",
+              "dragonmounts2:zombie_dragon_scale_pickaxe"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_shovel",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_shovels"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_shovel",
+              "dragonmounts2:dark_dragon_scale_shovel",
+              "dragonmounts2:enchanted_dragon_scale_shovel",
+              "dragonmounts2:ender_dragon_scale_shovel",
+              "dragonmounts2:fire_dragon_scale_shovel",
+              "dragonmounts2:forest_dragon_scale_shovel",
+              "dragonmounts2:ice_dragon_scale_shovel",
+              "dragonmounts2:light_dragon_scale_shovel",
+              "dragonmounts2:moonlight_dragon_scale_shovel",
+              "dragonmounts2:nether_dragon_scale_shovel",
+              "dragonmounts2:sculk_dragon_scale_shovel",
+              "dragonmounts2:skeleton_dragon_bone_shovel",
+              "dragonmounts2:storm_dragon_scale_shovel",
+              "dragonmounts2:sunlight_dragon_scale_shovel",
+              "dragonmounts2:terra_dragon_scale_shovel",
+              "dragonmounts2:water_dragon_scale_shovel",
+              "dragonmounts2:wither_dragon_bone_shovel",
+              "dragonmounts2:zombie_dragon_scale_shovel"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_hoe",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_hoes"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_hoe",
+              "dragonmounts2:dark_dragon_scale_hoe",
+              "dragonmounts2:enchanted_dragon_scale_hoe",
+              "dragonmounts2:ender_dragon_scale_hoe",
+              "dragonmounts2:fire_dragon_scale_hoe",
+              "dragonmounts2:forest_dragon_scale_hoe",
+              "dragonmounts2:ice_dragon_scale_hoe",
+              "dragonmounts2:light_dragon_scale_hoe",
+              "dragonmounts2:moonlight_dragon_scale_hoe",
+              "dragonmounts2:nether_dragon_scale_hoe",
+              "dragonmounts2:sculk_dragon_scale_hoe",
+              "dragonmounts2:skeleton_dragon_bone_hoe",
+              "dragonmounts2:storm_dragon_scale_hoe",
+              "dragonmounts2:sunlight_dragon_scale_hoe",
+              "dragonmounts2:terra_dragon_scale_hoe",
+              "dragonmounts2:water_dragon_scale_hoe",
+              "dragonmounts2:wither_dragon_bone_hoe",
+              "dragonmounts2:zombie_dragon_scale_hoe"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_bow",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_bows"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_bow",
+              "dragonmounts2:dark_dragon_scale_bow",
+              "dragonmounts2:enchanted_dragon_scale_bow",
+              "dragonmounts2:ender_dragon_scale_bow",
+              "dragonmounts2:fire_dragon_scale_bow",
+              "dragonmounts2:forest_dragon_scale_bow",
+              "dragonmounts2:ice_dragon_scale_bow",
+              "dragonmounts2:light_dragon_scale_bow",
+              "dragonmounts2:moonlight_dragon_scale_bow",
+              "dragonmounts2:nether_dragon_scale_bow",
+              "dragonmounts2:sculk_dragon_scale_bow",
+              "dragonmounts2:skeleton_dragon_bone_bow",
+              "dragonmounts2:storm_dragon_scale_bow",
+              "dragonmounts2:sunlight_dragon_scale_bow",
+              "dragonmounts2:terra_dragon_scale_bow",
+              "dragonmounts2:water_dragon_scale_bow",
+              "dragonmounts2:wither_dragon_bone_bow",
+              "dragonmounts2:zombie_dragon_scale_bow"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scale_shield",
+              "name": "dragonmounts2:itemGroup.name.dragon_scale_shields"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scale_shield",
+              "dragonmounts2:dark_dragon_scale_shield",
+              "dragonmounts2:enchanted_dragon_scale_shield",
+              "dragonmounts2:ender_dragon_scale_shield",
+              "dragonmounts2:fire_dragon_scale_shield",
+              "dragonmounts2:forest_dragon_scale_shield",
+              "dragonmounts2:ice_dragon_scale_shield",
+              "dragonmounts2:light_dragon_scale_shield",
+              "dragonmounts2:moonlight_dragon_scale_shield",
+              "dragonmounts2:nether_dragon_scale_shield",
+              "dragonmounts2:sculk_dragon_scale_shield",
+              "dragonmounts2:skeleton_dragon_bone_shield",
+              "dragonmounts2:storm_dragon_scale_shield",
+              "dragonmounts2:sunlight_dragon_scale_shield",
+              "dragonmounts2:terra_dragon_scale_shield",
+              "dragonmounts2:water_dragon_scale_shield",
+              "dragonmounts2:wither_dragon_bone_shield",
+              "dragonmounts2:zombie_dragon_scale_shield"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:dragon_amulet",
+              "name": "dragonmounts2:itemGroup.name.dragon_amulets"
+            },
+            "items": [
+              "dragonmounts2:dragon_amulet"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:wooden_dragon_flute",
+              "name": "dragonmounts2:itemGroup.name.dragon_flutes"
+            },
+            "items": [
+              "dragonmounts2:wooden_dragon_flute",
+              "dragonmounts2:bone_dragon_flute",
+              "dragonmounts2:dragon_flute",
+              "dragonmounts2:ornamental_dragon_flute",
+              "dragonmounts2:diamond_dragon_flute",
+              "dragonmounts2:netherite_dragon_flute"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:leather_dragonarmor",
+              "name": "dragonmounts2:itemGroup.name.dragonarmors"
+            },
+            "items": [
+              "dragonmounts2:leather_dragonarmor",
+              "dragonmounts2:copper_dragonarmor",
+              "dragonmounts2:iron_dragonarmor",
+              "dragonmounts2:golden_dragonarmor",
+              "dragonmounts2:diamond_dragonarmor",
+              "dragonmounts2:netherite_dragonarmor"
+            ]
+          },
+          {
+            "items": [
+              "dragonmounts2:diamond_shears",
+              "dragonmounts2:netherite_shears",
+              "dragonmounts2:variation_orb",
+              "dragonmounts2:dragon_scepter"
+            ]
+          }
+        ]
+      },
+      {
+        "category_name": "items",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:breeze_aether_dragon_head",
+              "name": "dragonmounts2:itemGroup.name.dragon_heads"
+            },
+            "items": [
+              "dragonmounts2:breeze_aether_dragon_head",
+              "dragonmounts2:wind_aether_dragon_head",
+              "dragonmounts2:bloodmoon_dark_dragon_head",
+              "dragonmounts2:demon_dark_dragon_head",
+              "dragonmounts2:imp_dark_dragon_head",
+              "dragonmounts2:underworld_dark_dragon_head",
+              "dragonmounts2:flame_fire_dragon_head",
+              "dragonmounts2:blaze_fire_dragon_head",
+              "dragonmounts2:blue_fire_dragon_head",
+              "dragonmounts2:alpine_ice_dragon_head",
+              "dragonmounts2:iceberg_ice_dragon_head",
+              "dragonmounts2:frost_ice_dragon_head"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_scales",
+              "name": "dragonmounts2:itemGroup.name.dragon_scales"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_scales",
+              "dragonmounts2:dark_dragon_scales",
+              "dragonmounts2:enchanted_dragon_scales",
+              "dragonmounts2:ender_dragon_scales",
+              "dragonmounts2:fire_dragon_scales",
+              "dragonmounts2:forest_dragon_scales",
+              "dragonmounts2:ice_dragon_scales",
+              "dragonmounts2:light_dragon_scales",
+              "dragonmounts2:moonlight_dragon_scales",
+              "dragonmounts2:nether_dragon_scales",
+              "dragonmounts2:sculk_dragon_scales",
+              "dragonmounts2:skeleton_dragon_bone",
+              "dragonmounts2:storm_dragon_scales",
+              "dragonmounts2:sunlight_dragon_scales",
+              "dragonmounts2:terra_dragon_scales",
+              "dragonmounts2:water_dragon_scales",
+              "dragonmounts2:wither_dragon_bone",
+              "dragonmounts2:zombie_dragon_scales"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "minecraft:music_disc_13",
+              "name": "minecraft:itemGroup.name.record"
+            },
+            "items": [
+              "dragonmounts2:music_disc_end_trance"
+            ]
+          }
+        ]
+      },
+      {
+        "category_name": "nature",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "minecraft:chicken",
+              "name": "minecraft:itemGroup.name.rawFood"
+            },
+            "items": [
+              "dragonmounts2:raw_dragon_meat"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "minecraft:chicken_spawn_egg",
+              "name": "minecraft:itemGroup.name.mobEgg"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_spawn_egg",
+              "dragonmounts2:dark_dragon_spawn_egg",
+              "dragonmounts2:dragon_keeper",
+              "dragonmounts2:enchanted_dragon_spawn_egg",
+              "dragonmounts2:ender_dragon_spawn_egg",
+              "dragonmounts2:fire_dragon_spawn_egg",
+              "dragonmounts2:forest_dragon_spawn_egg",
+              "dragonmounts2:ice_dragon_spawn_egg",
+              "dragonmounts2:light_dragon_spawn_egg",
+              "dragonmounts2:moonlight_dragon_spawn_egg",
+              "dragonmounts2:nether_dragon_spawn_egg",
+              "dragonmounts2:sculk_dragon_spawn_egg",
+              "dragonmounts2:skeleton_dragon_spawn_egg",
+              "dragonmounts2:storm_dragon_spawn_egg",
+              "dragonmounts2:sunlight_dragon_spawn_egg",
+              "dragonmounts2:terra_dragon_spawn_egg",
+              "dragonmounts2:water_dragon_spawn_egg",
+              "dragonmounts2:wither_dragon_spawn_egg",
+              "dragonmounts2:zombie_dragon_keeper_spawn_egg",
+              "dragonmounts2:zombie_dragon_spawn_egg"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "dragonmounts2:aether_dragon_egg",
+              "name": "dragonmounts2:itemGroup.name.dragon_eggs"
+            },
+            "items": [
+              "dragonmounts2:aether_dragon_egg",
+              "dragonmounts2:dark_dragon_egg",
+              "dragonmounts2:enchanted_dragon_egg",
+              "dragonmounts2:ender_dragon_egg",
+              "dragonmounts2:fire_dragon_egg",
+              "dragonmounts2:forest_dragon_egg",
+              "dragonmounts2:ice_dragon_egg",
+              "dragonmounts2:light_dragon_egg",
+              "dragonmounts2:moonlight_dragon_egg",
+              "dragonmounts2:nether_dragon_egg",
+              "dragonmounts2:sculk_dragon_egg",
+              "dragonmounts2:skeleton_dragon_egg",
+              "dragonmounts2:storm_dragon_egg",
+              "dragonmounts2:sunlight_dragon_egg",
+              "dragonmounts2:terra_dragon_egg",
+              "dragonmounts2:water_dragon_egg",
+              "dragonmounts2:wither_dragon_egg",
+              "dragonmounts2:zombie_dragon_egg"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

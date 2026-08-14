@@ -1,0 +1,34 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "item": "dragonmounts2:sculk_dragon_bone"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      "A",
+      "B",
+      "B"
+    ],
+    "description": {
+      "identifier": "dragonmounts2:sculk_dragon_scale_shovel"
+    },
+    "key": {
+      "A": {
+        "item": "dragonmounts2:sculk_dragon_bone"
+      },
+      "B": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:sculk_dragon_bone_shovel"
+    }
+  },
+  "format_version": "1.26.10"
+}

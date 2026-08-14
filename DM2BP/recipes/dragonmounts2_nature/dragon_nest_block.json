@@ -1,0 +1,18 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_nest_block"
+    },
+    "unlock": [
+      { "item": "minecraft:stick" }
+    ],
+    "tags": [ "crafting_table" ],
+    "pattern": [ "AAA", "AAA", "AAA" ],
+    "priority": -1,
+    "key": {
+      "A": { "item": "minecraft:stick" }
+    },
+    "result": { "item": "dragonmounts2:dragon_nest_block", "count": 1 }
+  }
+}

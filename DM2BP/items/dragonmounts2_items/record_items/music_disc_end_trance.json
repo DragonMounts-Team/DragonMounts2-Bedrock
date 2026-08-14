@@ -1,0 +1,31 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "dragonmounts2:music_disc_end_trance",
+      "menu_category": {
+        "category": "items",
+        "group": "minecraft:itemGroup.name.record",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:display_name": { "value": "item.record.name" },
+      "minecraft:icon": {
+        "textures": {
+          "default": "dragonmounts2:record_end_trance"
+        }
+      },
+      "minecraft:max_stack_size": { "value": 1 },
+      "minecraft:rarity": "epic",
+       "minecraft:record": {
+         "comparator_signal": 1,
+         "duration": 138,
+         "sound_event": "activate"
+       },
+      "minecraft:tags": {
+        "tags": [ "minecraft:music_disc" ]
+      }
+    }
+  }
+}

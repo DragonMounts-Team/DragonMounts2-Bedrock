@@ -1,0 +1,32 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:ender_dragon_scale_leggings",
+      "materials": { "default": "armor", "enchanted": "armor_enchanted" },
+      "textures": {
+        "default": "textures/models/dragonmounts2_equipment/armor_equipment/ender_classic",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": { "default": "geometry.dragonmounts2.dragon_scale.leggings" },
+      "particle_effects": { "ender_particles": "dragonmounts2:ender_armor_particle" },
+      "animations": { "particle_loop": "animation.dragonmounts2.dragon_scale.leggings.particles" },
+      "scripts": {
+        "initialize": [
+          "v.not_armor_stand = !q.is_owner_identifier_any('minecraft:armor_stand');"
+        ],
+        "pre_animation": [
+          "v.has_helmet     = q.is_item_name_any('slot.armor.head',  0, 'dragonmounts2:ender_dragon_scale_helmet');",
+          "v.has_chest      = q.is_item_name_any('slot.armor.chest', 0, 'dragonmounts2:ender_dragon_scale_chestplate');",
+          "v.upper_priority = math.max(v.has_helmet, v.has_chest);",
+          "v.particle_gate  = v.not_armor_stand * (1.0 - v.upper_priority);"
+        ],
+        "parent_setup": "v.leg_layer_visible = 0.0;",
+        "animate": [
+          { "particle_loop": "v.particle_gate" }
+        ]
+      },
+      "render_controllers": [ "controller.render.armor" ]
+    }
+  }
+}

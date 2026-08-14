@@ -1,0 +1,54 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.dragonmounts2.dragon_scale.chestplate",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 24, 0],
+					"binding": "'body'",
+					"cubes": [
+						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.75, "uv": [16, 16]},
+						{"origin": [-4.8, 13.475, -2.95], "size": [4, 2.3, 0], "pivot": [-3.3, 14.975, -2.95], "rotation": [0, 7.5, 0], "uv": [66, 14]},
+						{"origin": [-4.8, 17.225, -2.95], "size": [4, 3, 0], "pivot": [-3.3, 18.725, -2.95], "rotation": [0, 7.5, 0], "uv": [66, 13]},
+						{"origin": [0.8, 17.225, -2.95], "size": [4, 3, 0], "pivot": [3.3, 18.725, -2.95], "rotation": [0, -7.5, 0], "uv": [66, 13], "mirror": true},
+						{"origin": [0.8, 13.475, -2.95], "size": [4, 2.3, 0], "pivot": [3.3, 14.975, -2.95], "rotation": [0, -7.5, 0], "uv": [66, 14], "mirror": true}
+					]
+				},
+				{
+					"name": "cape",
+					"parent": "body",
+					"pivot": [0, 24, 3],
+					"binding": "'body'",
+					"cubes": [
+						{"origin": [-5, 8, 2], "size": [10, 16, 1], "inflate": 0.15, "pivot": [0, 24, 2.5], "rotation": [6.25, 0, 0], "uv": [42, 32]}
+					]
+				},
+				{
+					"name": "rightArm",
+					"parent": "body",
+					"pivot": [-5, 22, 0],
+					"cubes": [
+						{"origin": [-8, 12, -2], "size": [4, 12, 4], "inflate": 0.76, "uv": [40, 16]}
+					]
+				},
+				{
+					"name": "leftArm",
+					"parent": "body",
+					"pivot": [5, 22, 0],
+					"cubes": [
+						{"origin": [4, 12, -2], "size": [4, 12, 4], "inflate": 0.76, "uv": [40, 16], "mirror": true}
+					]
+				}
+			]
+		}
+	]
+}

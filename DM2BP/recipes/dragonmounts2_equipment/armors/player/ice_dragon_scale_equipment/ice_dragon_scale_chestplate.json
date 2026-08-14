@@ -1,0 +1,31 @@
+{
+  "minecraft:recipe_shaped": {
+    "unlock": [
+      {
+        "item": "dragonmounts2:ice_dragon_scales"
+      }
+    ],
+    "tags": [
+      "crafting_table"
+    ],
+    "priority": -1,
+    "pattern": [
+      "A A",
+      "AAA",
+      "AAA"
+    ],
+    "description": {
+      "identifier": "dragonmounts2:ice_dragon_scale_chestplate"
+    },
+    "key": {
+      "A": {
+        "item": "dragonmounts2:ice_dragon_scales"
+      }
+    },
+    "result": {
+      "count": 1,
+      "item": "dragonmounts2:ice_dragon_scale_chestplate"
+    }
+  },
+  "format_version": "1.26.10"
+}
