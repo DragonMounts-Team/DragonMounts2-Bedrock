@@ -39,6 +39,7 @@
         "protection": 1,
         "slot": "slot.armor.chest"
       },
+      "minecraft:dyeable": {},
       "dragonmounts2:dragon_amulet": {
         "dragon_types": [
           "dragonmounts2:aether_dragon",
