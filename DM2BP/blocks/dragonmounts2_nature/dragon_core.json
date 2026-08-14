@@ -31,17 +31,13 @@
       "minecraft:light_emission": 0,
       "minecraft:map_color": "#000000",
       "minecraft:material_instances": {
-        "*": { "texture": "dragonmounts2:dragon_core", "render_method": "alpha_test", "ambient_occlusion": false, "face_dimmimg": false }
+        "*": { "texture": "dragonmounts2:dragon_core", "render_method": "alpha_test", "ambient_occlusion": false, "face_dimming": false }
       },
       "minecraft:selection_box": true,
       "tag:metal": { },
       "dragonmounts2:dragon_core": {
         "block_entity": "dragonmounts2:dragon_core",
         "block_transforms_into": "minecraft:air",
-        "particles": {
-          "interact_particle": "dragonmountsplus:ice_dragon_egg_bs",
-          "random_tick_particle": "dragonmountsplus:ice_dragon_egg_hatching"
-        },
         "sounds": {
           "interact_sound": "dragonmounts2:block.dragon_egg.convert"
         },
