@@ -28,7 +28,8 @@
       "minecraft:tags": {
         "tags": [
           "minecraft:is_sword",
-          "dragonmounts2:is_dragon_amulet"
+          "dragonmounts2:is_dragon_amulet",
+          "novelty:is_neckless"
         ]
       },
       "minecraft:block_placer": {
