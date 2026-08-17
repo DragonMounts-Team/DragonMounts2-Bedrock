@@ -1,34 +1,88 @@
 {
-  "format_version": "1.26.30",
-  "minecraft:block": {
-    "description": {
-      "identifier": "dragonmounts2:wind_aether_dragon_head",
-      "menu_category": {
-        "category": "items",
-        "group": "dragonmounts2:itemGroup.name.dragon_heads",
-        "is_hidden_in_commands": false
-      }
-    },
-    "components": {
-      "minecraft:collision_box": { "origin": [-4,0,-4], "size": [8,8,8] },
-      "minecraft:selection_box": { "origin": [-4,0,-4], "size": [8,8,8] },
-      "minecraft:destructible_by_explosion": { "explosion_resistance": 4 },
-      "minecraft:destructible_by_mining": { "seconds_to_destroy": 1.0 },
-      "minecraft:geometry": "geometry.dragonmounts2.head_block.base",
-      "minecraft:material_instances": {
-        "*": { 
-          "texture": "dragonmounts2:aether_dragon_head_wind", 
-          "render_method": "alpha_test", 
-          "ambient_occlusion": 0.25, 
-          "face_dimming": false 
-        }
-      },
-      "minecraft:placement_filter": {
-        "conditions": [
-          { "allowed_faces": [ "up", "north", "south", "east", "west" ] }
+    "format_version": "1.26.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "dragonmounts2:wind_aether_dragon_head",
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": ["minecraft:sixteen_way_rotation"],
+                    "y_rotation_offset": 180
+                },
+                "minecraft:placement_position": {
+                    "enabled_states": ["minecraft:block_face"]
+                }
+            }
+        },
+        "components": {
+            "minecraft:collision_box": { "origin": [-4, 0, -4], "size": [8, 8, 8] },
+            "minecraft:selection_box": { "origin": [-4, 0, -4], "size": [8, 8, 8] },
+            "minecraft:connection_rule": { "accepts_connections_from": "none" },
+            "minecraft:placement_filter": { "conditions": [{ "allowed_faces": ["up", "south", "north", "west", "east"] }] },
+            "minecraft:precipitation_interactions": { "precipitation_behavior": "none" },
+            "minecraft:destructible_by_explosion": { "explosion_resistance": 5 },
+            "minecraft:destructible_by_mining": { "seconds_to_destroy": 1 },
+            "minecraft:destruction_particles": { "particle_count": 48, "texture": "soul_sand" },
+            "minecraft:display_name": "tile.dragonmounts2:aether_dragon_head.wind.name",
+            "minecraft:loot": "loot_tables/blocks/dragonmounts2_items/heads/dragon_heads/aether/wind_aether_dragon_head.json",
+            "minecraft:movable": { "movement_type": "popped" },
+            "minecraft:liquid_detection": {
+                "detection_rules": [
+                    {
+                        "liquid_type": "water",
+                        "can_contain_liquid": true, 
+                        "on_liquid_touches": "popped" 
+                    }
+                ]
+            },
+            "minecraft:material_instances": {
+               "*": { "texture": "dragonmounts2:wind_aether_dragon_head", "render_method": "alpha_test", "ambient_occlusion": 0.25, "face_dimming": false }
+            },
+            "minecraft:geometry": { "identifier": "geometry.dragonmounts2.head_block.base", "n_way_visual_rotation": { "y": "minecraft:sixteen_way_rotation" }
+            }
+        },
+        "permutations": [
+            {
+                "condition": "q.block_state('minecraft:block_face') != 'up'",
+                "components": {
+                    "minecraft:geometry": "geometry.dragonmounts2.head_block.base"
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:block_face') == 'north'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 0, 0],
+                        "translation": [0, 0.25, 0.25]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:block_face') == 'west'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 90, 0],
+                        "translation": [0.25, 0.25, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:block_face') == 'south'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 180, 0],
+                        "translation": [0, 0.25, -0.25]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:block_face') == 'east'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, -90, 0],
+                        "translation": [-0.25, 0.25, 0]
+                    }
+                }
+            }
         ]
-      },
-      "minecraft:loot": "loot_tables/blocks/dragonmounts2_items/heads/dragon_heads/aether_dragon/wind_aether_dragon_head.json"
     }
-  }
 }

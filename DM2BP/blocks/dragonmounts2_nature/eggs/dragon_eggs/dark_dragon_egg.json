@@ -1,5 +1,5 @@
 {
-  "format_version": "1.26.30",
+  "format_version": "1.26.40",
   "minecraft:block": {
     "description": {
       "identifier": "dragonmounts2:dark_dragon_egg",
@@ -26,6 +26,10 @@
       },
       "minecraft:material_instances": {
         "*": { "texture": "dragonmounts2:dark_dragon_egg", "render_method": "alpha_test" }
+      },
+      "minecraft:redstone_conductivity": {
+        "allows_wire_to_step_down": true,
+        "redstone_conductor": false
       },
       "minecraft:selection_box": true,
       "dragonmounts2:dragon_egg": {

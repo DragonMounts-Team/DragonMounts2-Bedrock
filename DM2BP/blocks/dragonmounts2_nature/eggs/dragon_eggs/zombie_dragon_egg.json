@@ -1,5 +1,5 @@
 {
-  "format_version": "1.26.10",
+  "format_version": "1.26.40",
   "minecraft:block": {
     "description": {
       "identifier": "dragonmounts2:zombie_dragon_egg",
@@ -22,7 +22,7 @@
       "minecraft:light_emission": 7,
       "minecraft:loot": "loot_tables/blocks/dragonmounts2_nature/eggs/dragon_eggs/zombie_dragon_egg.json",
       "minecraft:map_color": {
-        "color": [120,110,40]
+        "color": "#556B2F"
       },
       "minecraft:material_instances": {
         "*": { "texture": "dragonmounts2:zombie_dragon_egg", "render_method": "alpha_test" }
