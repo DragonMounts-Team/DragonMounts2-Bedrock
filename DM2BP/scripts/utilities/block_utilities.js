@@ -1,5 +1,4 @@
 import { world, system, Player, GameMode, EquipmentSlot, EntityEquippableComponent } from "@minecraft/server";
-import * as blockArrays from "../arrays/block_arrays.js";
 import * as blockData from "../data/block_data.js";
 import * as itemData from "../data/item_data.js";
 

@@ -1,6 +1,5 @@
 import { world, system, ItemStack } from "@minecraft/server";
 import * as defaultWorldArrays from "../arrays/default_world_arrays.js";
-import * as blockArrays from "../arrays/block_arrays.js";
 import * as blockData from "../data/block_data.js";
 import * as blockUtilities from "../utilities/block_utilities.js";
 import * as itemData from "../data/item_data.js";
@@ -60,20 +59,6 @@ system.afterEvents.scriptEventReceive.subscribe(event => {
 
 		dimension.spawnItem(essenceItem, { x: spawnLocation.x, y: spawnLocation.y + 0.5, z: spawnLocation.z });
 	}
-});
-
-world.afterEvents.playerPlaceBlock.subscribe(({ block, player }) => {
-	if (!blockArrays.dragonHeadTypes.includes(block.typeId)) return;
-
-	const applyRotation = () => {
-		const yaw = ((player.getRotation().y % 360) + 360) % 360;
-		let rot = Math.round(yaw / 22.5);
-		if (rot === 16) rot = 0;
-		block.setPermutation(block.permutation.withState("dragonmounts2:rotation", rot));
-	};
-
-	applyRotation();
-	system.runTimeout(applyRotation, 0);
 });
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
