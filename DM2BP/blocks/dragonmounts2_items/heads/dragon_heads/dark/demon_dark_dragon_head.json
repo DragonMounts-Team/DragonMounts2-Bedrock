@@ -35,7 +35,7 @@
                 ]
             },
             "minecraft:material_instances": {
-               "*": { "texture": "dragonmounts2:demon_dark_dragon_head", "render_method": "alpha_test", "ambient_occlusion": 0.25, "face_dimming": false }
+               "*": { "texture": "dragonmounts2:dark_dragon_head_demon", "render_method": "alpha_test", "ambient_occlusion": 0.25, "face_dimming": false }
             },
             "minecraft:geometry": { "identifier": "geometry.dragonmounts2.head_block.spiked_horned", "n_way_visual_rotation": { "y": "minecraft:sixteen_way_rotation" }
             }
@@ -52,7 +52,7 @@
                 "components": {
                     "minecraft:transformation": {
                         "rotation": [0, 0, 0],
-                        "translation": [0, 0.25, 0.25]
+                        "translation": [0, 0.25, 0.15]
                     }
                 }
             },
@@ -61,7 +61,7 @@
                 "components": {
                     "minecraft:transformation": {
                         "rotation": [0, 90, 0],
-                        "translation": [0.25, 0.25, 0]
+                        "translation": [0.15, 0.25, 0]
                     }
                 }
             },
@@ -70,7 +70,7 @@
                 "components": {
                     "minecraft:transformation": {
                         "rotation": [0, 180, 0],
-                        "translation": [0, 0.25, -0.25]
+                        "translation": [0, 0.25, -0.15]
                     }
                 }
             },
@@ -79,7 +79,7 @@
                 "components": {
                     "minecraft:transformation": {
                         "rotation": [0, -90, 0],
-                        "translation": [-0.25, 0.25, 0]
+                        "translation": [-0.15, 0.25, 0]
                     }
                 }
             }
