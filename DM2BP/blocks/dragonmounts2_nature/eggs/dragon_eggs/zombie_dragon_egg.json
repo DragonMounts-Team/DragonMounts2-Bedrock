@@ -7,6 +7,9 @@
         "category": "nature",
         "group": "dragonmounts2:itemGroup.name.dragon_eggs",
         "is_hidden_in_commands": false
+      },
+      "traits": {
+        "minecraft:placement_direction": { "enabled_states": [ "minecraft:cardinal_direction" ] }
       }
     },
     "components": {
@@ -37,8 +40,30 @@
         },
         "sounds": {
           "interact_sound": "dragonmounts2:block.dragon_egg.convert"
+        },
+        "states": {
+          "cardinal": "minecraft:cardinal_direction"
         }
       }
-    }
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+        "components": { "minecraft:transformation": { "rotation": [0,180,0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+        "components": { "minecraft:transformation": { "rotation": [0,0,0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+        "components": { "minecraft:transformation": { "rotation": [0,-90,0] } }
+      },
+      {
+        "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+        "components": { "minecraft:transformation": { "rotation": [0,90,0] } 
+        }
+      } 
+    ] 
   }
 }
