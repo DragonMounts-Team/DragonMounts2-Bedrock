@@ -36,9 +36,11 @@ system.afterEvents.scriptEventReceive.subscribe(event => {
 		const { x, y, z } = entity.location;
 		const blockLocation = dimension.getBlock({ x: Math.floor(x), y: Math.floor(y), z: Math.floor(z) });
 		const spawnLocation = blockLocation.center();
+		const cardinalDirection = blockLocation.permutation.getState("minecraft:cardinal_direction");
 
 		dimension.playSound("break.amethyst_block", spawnLocation);
 		blockLocation.setType("dragonmounts2:dragon_core");
+		blockUtilities.restoreCardinalDirection(blockLocation, "minecraft:cardinal_direction", cardinalDirection);
 
 		const essenceItem = new ItemStack(entityEntry.dragon_item, 1);
 		essenceItem.setLore([

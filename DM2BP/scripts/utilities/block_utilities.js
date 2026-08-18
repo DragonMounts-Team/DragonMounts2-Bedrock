@@ -4,12 +4,30 @@ import * as itemData from "../data/item_data.js";
 
 function setBlockEntityRotation(blockEntity, cardinalDirection) {
 	const rotations = {
+		"north": {x:0, y:0},
 		"south": {x:0, y:180},
 		"east": {x:0, y:90},
 		"west": {x:0, y:-90}
 	};
 	const rotation = rotations[cardinalDirection];
 	if (rotation) blockEntity.setRotation(rotation);
+}
+
+export function getCardinalDirectionFromRotation(rotationY) {
+	const normalizedYaw = ((rotationY ?? 0) % 360 + 360) % 360;
+
+	if (normalizedYaw < 45 || normalizedYaw >= 315) return "north";
+	if (normalizedYaw < 135) return "east";
+	if (normalizedYaw < 225) return "south";
+	return "west";
+}
+
+export function restoreCardinalDirection(block, stateKey, cardinalDirection) {
+	if (!block || cardinalDirection === undefined) return;
+	const availableStates = block.permutation.getAllStates();
+	if (Object.prototype.hasOwnProperty.call(availableStates, stateKey)) {
+		block.setPermutation(block.permutation.withState(stateKey, cardinalDirection));
+	}
 }
 
 function animateCore(block, dimension, params, state, sound1, sound2, spawnEvent) {
@@ -117,6 +135,7 @@ export function dragonCorePlayerInteract(block, dimension, player, params) {
 		
 		system.runTimeout(() => {
 			block.setType(params.block_transforms_into);
+			restoreCardinalDirection(block, params.states.cardinal, cardinalDirection);
 			blockEntity.triggerEvent("minecraft:dragon_core_destroyed");
 			dimension.spawnParticle("dragonmounts2:dragon_core_outer_cloud", block.center());
 		}, 20);
@@ -153,12 +172,19 @@ export function dragonEggRandomTick(block, dimension, params) {
 }
 
 export function dragonEggPlayerInteract(block, dimension, player, params) {
+	const cardinalDirection = block.permutation.getState(params.states.cardinal);
+
 	block.setType(params.block_transforms_into);
+	restoreCardinalDirection(block, params.states.cardinal, cardinalDirection);
 	dimension.playSound(params.sounds.interact_sound, block.center());
-	dimension.spawnEntity(params.block_entity, {
+
+	const blockEntity = block.dimension.spawnEntity(params.block_entity, {
 		x: block.center().x,
-		y: block.location.y,
+		y: block.center().y - 0.5,
 		z: block.center().z
 	});
+
+	setBlockEntityRotation(blockEntity, cardinalDirection);
+
 	dimension.spawnParticle(params.particles.interact_particle, block.center());
 }

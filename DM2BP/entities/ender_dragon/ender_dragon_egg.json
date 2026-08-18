@@ -56,6 +56,8 @@
       },
       "minecraft:collision_box": { "width": 0.98, "height": 0.98 },
       "minecraft:conditional_bandwidth_optimization": { },
+      "minecraft:rotation_axis_aligned": { },
+      "minecraft:body_rotation_blocked": { },
       "minecraft:damage_sensor": {
         "triggers": { "cause": "all", "deals_damage": "no" }
       },

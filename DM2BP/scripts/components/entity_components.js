@@ -3,6 +3,7 @@ import * as defaultWorldArrays from "../arrays/default_world_arrays.js";
 import * as entityData from "../data/entity_data.js";
 import * as entityUtilities from "../utilities/entity_utilities.js";
 import * as itemUtilities from "../utilities/item_utilities.js";
+import * as blockUtilities from "../utilities/block_utilities.js";
 
 const EGG_CHECK_INTERVAL = 10;
 
@@ -101,6 +102,8 @@ world.afterEvents.dataDrivenEntityTrigger.subscribe(({ entity, eventId }) => {
 	const centerBlock = entity.dimension.getBlock(entity.location);
 	if (!centerBlock || (!centerBlock.isAir && !centerBlock.isLiquid)) return;
 
+	const cardinalDirection = blockUtilities.getCardinalDirectionFromRotation(entity.getRotation().y);
 	centerBlock.setType(entity.typeId);
+	blockUtilities.restoreCardinalDirection(centerBlock, "minecraft:cardinal_direction", cardinalDirection);
 	entity.triggerEvent("minecraft:dragon_egg_despawn");
 });
