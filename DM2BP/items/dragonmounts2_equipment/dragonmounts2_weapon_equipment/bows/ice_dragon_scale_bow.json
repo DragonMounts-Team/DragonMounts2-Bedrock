@@ -53,12 +53,6 @@
             "use_offhand": true,
             "search_inventory": true,
             "use_in_creative": true
-          },
-          {
-            "item": "minecraft:tipped_arrow",
-            "use_offhand": true,
-            "search_inventory": true,
-            "use_in_creative": true
           }
         ],
         "max_draw_duration": 1.5,

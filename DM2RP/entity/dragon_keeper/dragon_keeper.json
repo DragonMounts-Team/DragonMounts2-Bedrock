@@ -25,27 +25,12 @@
         "look_at_target": "animation.common.look_at_target",
         "move": "animation.villager.move",
         "raise_arms": "animation.villager.raise_arms",
-        "get_in_bed": "animation.villager.get_in_bed",
-        "get_in_bed_baby": "animation.villager.get_in_bed_baby"
+        "get_in_bed": "animation.villager.get_in_bed"
       },
       "render_controllers": [
         "controller.render.dragon_keeper"
       ],
       "enable_attachables": true,
-      "sound_effects": {
-        "hurt": "mob.villager.hit",
-        "death": "mob.villager.death",
-        "step": "step.grass",
-        "trade": "mob.villager.haggle",
-        "yes": "mob.villager.yes",
-        "no": "mob.villager.no",
-        "celebrate": "mob.villager.celebrate",
-        "levelup": "random.levelup",
-        "converted_to_zombie": "mob.villager.cure",
-        "cure": "mob.villager.cure",
-        "deny": "mob.villager.no",
-        "accept": "mob.villager.yes"
-      },
       "spawn_egg": {
         "texture": "dragonmounts2:spawn_egg_dragon_keeper"
       }

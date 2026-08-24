@@ -2,7 +2,7 @@
   "minecraft:recipe_shaped": {
     "unlock": [
       {
-        "item": "dragonmounts2:wither_dragon_scales"
+        "item": "dragonmounts2:wither_dragon_bone"
       }
     ],
     "tags": [
@@ -15,11 +15,11 @@
       "B  "
     ],
     "description": {
-      "identifier": "dragonmounts2:wither_dragon_scale_spear"
+      "identifier": "dragonmounts2:wither_dragon_bone_spear"
     },
     "key": {
       "A": {
-        "item": "dragonmounts2:wither_dragon_scales"
+        "item": "dragonmounts2:wither_dragon_bone"
       },
       "B": {
         "item": "minecraft:stick"
@@ -27,7 +27,7 @@
     },
     "result": {
       "count": 1,
-      "item": "dragonmounts2:wither_dragon_scale_spear"
+      "item": "dragonmounts2:wither_dragon_bone_spear"
     }
   },
   "format_version": "1.26.10"

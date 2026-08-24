@@ -93,8 +93,6 @@ world.beforeEvents.entityHurt.subscribe((data) => {
   const cause = data.damageSource.cause;
   const currentTick = system.currentTick;
 
-  // Brief grace period after a successful block so lingering fire-tick damage
-  // (e.g. from standing in fire/lava right as you blocked) doesn't slip through.
   if (cause === EntityDamageCause.fireTick || cause === EntityDamageCause.fire || cause === EntityDamageCause.onFire) {
     if (recentlyBlocked[player.id] !== undefined && currentTick - recentlyBlocked[player.id] < 40) {
       data.cancel = true;
@@ -106,9 +104,6 @@ world.beforeEvents.entityHurt.subscribe((data) => {
   const equip = player.getComponent(EntityEquippableComponent.componentId);
   if (equip) {
     let totalProtection = 0;
-    // totalArmor comes straight from the engine (sum of each equipped item's
-    // "minecraft:armor" component), so custom/modded armor is picked up
-    // automatically - no hardcoded item lookup table needed.
     const totalArmor = equip.totalArmor ?? 0;
     for (const equipSlot in EquipmentSlot) {
       if (equipSlot.includes("hand")) continue;

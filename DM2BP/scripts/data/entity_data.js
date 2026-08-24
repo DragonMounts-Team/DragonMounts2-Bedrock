@@ -1,5 +1,4 @@
 export const dragonVariantDenyTypes = {
-	//"dragonmounts2:fire_dragon": "blue"//Rare variants have been deprecated so unless you wanna add something here, then this is a backup.
 };
 
 export const dragonEggTypes = {

@@ -85,7 +85,7 @@
           "v.is_grounded = v.is_grounded_legacy||v.is_swimming;",
           
           "v.tail_movement = math.lerp(v.tail_movement,q.yaw_speed, 0.15);",
-          "v.body_roll = math.lerp(v.body_roll,q.yaw_speed, 0.35);"
+          "v.body_roll = math.lerp(v.body_roll,q.yaw_speed, 0.15);"
         ],
         "animate": [
           { "controller": "v.death_ticks==0.00" },

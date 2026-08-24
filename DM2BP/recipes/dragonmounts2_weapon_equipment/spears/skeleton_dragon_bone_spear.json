@@ -2,7 +2,7 @@
   "minecraft:recipe_shaped": {
     "unlock": [
       {
-        "item": "dragonmounts2:skeleton_dragon_scales"
+        "item": "dragonmounts2:skeleton_dragon_bone"
       }
     ],
     "tags": [
@@ -19,7 +19,7 @@
     },
     "key": {
       "A": {
-        "item": "dragonmounts2:skeleton_dragon_scales"
+        "item": "dragonmounts2:skeleton_dragon_bone"
       },
       "B": {
         "item": "minecraft:stick"

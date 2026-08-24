@@ -1,18 +1,14 @@
-// Player Modules: dragon_scale armor effects and XP helpers (trimmed comments)
-
 import { world, system, EquipmentSlot, EntityDamageCause, EntityEquippableComponent, EntityHealthComponent, EntityHungerComponent, EntityTameableComponent, Player } from "@minecraft/server";
 
-// Configuration constants
 const CONFIG = {
-	XP_BOOST_MULTIPLIER: 1.5, // 50% more XP guaranteed (1.0 = normal, 1.5 = 50% more)
-	XP_ORBS_PER_SPLIT: 64, // Max XP per orb (Minecraft standard)
+	XP_BOOST_MULTIPLIER: 1.5,
+	XP_ORBS_PER_SPLIT: 64,
 	CLEANUP_INTERVAL: 1200,
-	// Base XP tiers for dynamic calculation (health-based)
-	XP_TIER_HOSTILE_WEAK: 2,      // Slimes, silverfish, etc.
-	XP_TIER_HOSTILE_NORMAL: 5,    // Zombies, skeletons, creepers
-	XP_TIER_HOSTILE_STRONG: 10,   // Blazes, ghasts, guardians
-	XP_TIER_BOSS: 50,             // Wardens, elder guardians
-	XP_TIER_BOSS_MAJOR: 120,      // Ender dragons
+	XP_TIER_HOSTILE_WEAK: 2,
+	XP_TIER_HOSTILE_NORMAL: 5,
+	XP_TIER_HOSTILE_STRONG: 10,
+	XP_TIER_BOSS: 50,
+	XP_TIER_BOSS_MAJOR: 120,
 };
 
 const ARMOR_SLOTS = [
@@ -22,11 +18,6 @@ const ARMOR_SLOTS = [
 	EquipmentSlot.Feet,
 ];
 
-/**
- * Entity type classifications for dynamic XP calculation
- * Uses health values and special types to determine XP rewards
- * XP is calculated as: baseXP * CONFIG.XP_BOOST_MULTIPLIER
- */
 const HOSTILE_ENTITIES = new Set([
 	"minecraft:zombie", "minecraft:zombified_piglin", "minecraft:skeleton",
 	"minecraft:wither_skeleton", "minecraft:creeper", "minecraft:spider",
@@ -172,12 +163,12 @@ const pendingReflect = new Map();
 const stormLightningCooldowns = new Map();
 const CLEANUP_INTERVAL = 1200;
 let lastCleanup = 0;
-const playersWithDragonArmor = new Set();  // OPTIMIZATION: Cache players with dragon armor
+const playersWithDragonArmor = new Set();
 
 world.afterEvents.playerLeave.subscribe(({ playerId }) => {
 	cooldowns.delete(playerId);
 	pendingReflect.delete(playerId);
-	playersWithDragonArmor.delete(playerId);  // Clean up cache
+	playersWithDragonArmor.delete(playerId);
 });
 
 function refreshDragonArmorCacheForPlayer(player) {
@@ -195,7 +186,6 @@ function refreshDragonArmorCacheForPlayer(player) {
 	return hasArmor;
 }
 
-// OPTIMIZATION: Update armor cache on join/equip changes (event-driven, not every tick)
 world.afterEvents.playerSpawn.subscribe(({ player }) => {
 	refreshDragonArmorCacheForPlayer(player);
 });
@@ -241,11 +231,9 @@ function isWearingFullSet(equip, componentType) {
 }
 
 function hasAnyDragonArmor(equip) {
-	// OPTIMIZATION: Quick check if player has ANY dragon armor
 	for (const slot of ARMOR_SLOTS) {
 		const item = equip.getEquipmentSlot(slot).getItem();
 		if (!item) continue;
-		// Check if item has any dragon_scale component
 		for (const [, data] of DRAGON_ARMOR_LORE_ENTRIES) {
 			if (item.getComponent(data.effectsKey)) return true;
 		}
@@ -320,7 +308,7 @@ function updateDragonArmorLore(player) {
 		if (modified) equip.getEquipmentSlot(EquipmentSlot.Mainhand).setItem(modified);
 	}
 
-	const container = player.getComponent("minecraft:inventory")?.container; // 2.8.0 pattern: stable component ID
+	const container = player.getComponent("minecraft:inventory")?.container;
 	if (!container) return;
 
 	for (let i = 0; i < container.size; i++) {
@@ -371,14 +359,6 @@ function isDay(timeOfDay) {
 	return timeOfDay >= 0 && timeOfDay < 12000;
 }
 
-/**
- * Spawns XP orbs at the entity's death location with guaranteed 50% boost applied
- * Splits XP into multiple orbs (max 64 per orb) with natural velocity spread
- * Optimized: Pre-calculates orb count and velocities for fewer iterations
- * @param {Dimension} dimension - The dimension where the XP should spawn
- * @param {Vector3} location - The location where the entity died
- * @param {number} totalXp - Total XP amount to spawn (boost already applied)
- */
 function spawnXpOrbs(dimension, location, totalXp) {
 	if (!dimension || !location || totalXp <= 0) return;
 
@@ -386,7 +366,6 @@ function spawnXpOrbs(dimension, location, totalXp) {
 		const maxXpPerOrb = CONFIG.XP_ORBS_PER_SPLIT;
 		const orbCount = Math.ceil(totalXp / maxXpPerOrb);
 
-		// Pre-calculate all orb data to minimize iterations
 		const orbs = [];
 		let remaining = totalXp;
 
@@ -406,7 +385,6 @@ function spawnXpOrbs(dimension, location, totalXp) {
 			remaining -= xpAmount;
 		}
 
-		// Spawn all orbs in a single loop
 		for (const orbData of orbs) {
 			const orb = dimension.spawnEntity("xp_orb", {
 				x: location.x,
@@ -424,21 +402,6 @@ function spawnXpOrbs(dimension, location, totalXp) {
 	}
 }
 
-/**
- * Apply a timed effect if cooldown is not active - Optimized
- * Consistent helper for all cooldown-based armor effects
- * Avoids redundant equip check by accepting component parameter
- * @param {Player} player - The player to affect
- * @param {EntityEquippableComponent} equip - Pre-fetched equippable component
- * @param {string} playerId - The player's ID
- * @param {string} componentType - The armor component type to check
- * @param {string} cooldownKey - The cooldown key
- * @param {string} effectName - The effect to apply
- * @param {number} duration - Duration in ticks
- * @param {number} amplifier - Effect amplifier
- * @param {number} now - Current tick
- * @param {number} cooldownSeconds - Cooldown duration in seconds
- */
 function applyTimedArmorEffect(player, equip, playerId, componentType, cooldownKey, effectName, duration, amplifier, now, cooldownSeconds) {
 	if (!isWearingFullSet(equip, componentType)) return false;
 	if (isCooldownActive(playerId, cooldownKey, now)) return false;
@@ -449,30 +412,12 @@ function applyTimedArmorEffect(player, equip, playerId, componentType, cooldownK
 	return true;
 }
 
-/**
- * Apply a passive armor effect that runs every interval
- * Consistent helper for continuous armor effects
- * @param {Player} player - The player to affect
- * @param {EntityEquippableComponent} equip - The player's equippable component
- * @param {string} componentType - The armor component type to check
- * @param {string} effectName - The effect to apply
- * @param {number} duration - Duration in ticks
- * @param {number} amplifier - Effect amplifier
- */
 function applyPassiveArmorEffect(player, equip, componentType, effectName, duration, amplifier = 0) {
 	if (!equip || !isWearingFullSet(equip, componentType)) return;
 	player.addEffect(effectName, duration, { amplifier, showParticles: true });
 }
 
-/**
- * Main armor effect processor - applies all dragon_scale effects consistently
- * Optimized: Pre-fetches all components once, reduces redundant checks
- * @param {Player} player - The player to process
- * @param {number} now - Current game tick
- * @param {number} timeOfDay - Current time of day (0-24000)
- */
 function processPlayerArmorEffects(player, now, timeOfDay) {
-	// Fetch all components once for efficiency
 	const equip = player.getComponent(EntityEquippableComponent.componentId);
 	const healthComp = player.getComponent(EntityHealthComponent.componentId);
 	const hungerComp = player.getComponent(EntityHungerComponent.componentId);
@@ -488,7 +433,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 	const hunger = hungerComp?.hunger || 20;
 	const inWater = player.isInWater;
 
-	// Dark dragon_scale — regeneration at night
 	if (night) {
 		applyTimedArmorEffect(
 			player, equip, playerId,
@@ -498,7 +442,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 		);
 	}
 
-	// Light dragon_scale — regeneration during day
 	if (day) {
 		applyTimedArmorEffect(
 			player, equip, playerId,
@@ -508,7 +451,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 		);
 	}
 
-	// Zombie dragon_scale — strength at night (passive, no cooldown)
 	if (night) {
 		applyPassiveArmorEffect(
 			player, equip,
@@ -517,7 +459,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 		);
 	}
 
-	// Forest dragon_scale — regeneration when low health
 	if (isLowHealth) {
 		applyTimedArmorEffect(
 			player, equip, playerId,
@@ -527,7 +468,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 		);
 	}
 
-	// Ender dragon_scale — resistance + strength when low health
 	if (isLowHealth && applyTimedArmorEffect(
 		player, equip, playerId,
 		"dragonmounts2:ender_dragon_scale_effects",
@@ -537,7 +477,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 		player.addEffect("strength", 15 * 20, { amplifier: 1, showParticles: true });
 	}
 
-	// Water dragon_scale — water breathing when in water (passive)
 	if (inWater) {
 		applyPassiveArmorEffect(
 			player, equip,
@@ -546,7 +485,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 		);
 	}
 
-	// Sunlight dragon_scale — saturation when hungry
 	if (hunger < 6) {
 		applyPassiveArmorEffect(
 			player, equip,
@@ -555,49 +493,33 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 		);
 	}
 
-	// Moonlight dragon_scale — night vision (passive, no particles)
 	if (isWearingFullSet(equip, "dragonmounts2:moonlight_dragon_scale_effects")) {
 		player.addEffect("night_vision", 30 * 20, { amplifier: 0, showParticles: false });
 	}
 
-	// Storm set is defined in the lang text as a lightning proc on melee hits, not a slow-fall passive.
-	// The actual proc remains handled in the entity hurt logic below.
-
-	// Terra dragon_scale — haste (passive)
 	applyPassiveArmorEffect(
 		player, equip,
 		"dragonmounts2:terra_dragon_scale_effects",
 		"haste", 30 * 20, 0
 	);
 
-	// Update lore display once per player
 	updateDragonArmorLore(player);
 }
 
-/**
- * Calculate XP reward dynamically based on entity type and health
- * Uses entity classification and health values instead of static table
- * Applies CONFIG.XP_BOOST_MULTIPLIER for guaranteed XP boost
- * @param {Entity} entity - The entity that died
- * @returns {number} XP amount to award (with 50% boost applied)
- */
 function calculateEntityXpReward(entity, applyBonus = false) {
 	const typeId = entity.typeId;
 	let baseXp = 0;
 
-	// Boss entities get maximum XP
 	if (BOSS_ENTITIES.has(typeId)) {
 		baseXp = typeId === "minecraft:ender_dragon" 
 			? CONFIG.XP_TIER_BOSS_MAJOR 
 			: CONFIG.XP_TIER_BOSS;
 	} 
-	// Hostile mobs get XP based on their health value
 	else if (HOSTILE_ENTITIES.has(typeId)) {
 		try {
 			const healthComp = entity.getComponent(EntityHealthComponent.componentId);
 			const maxHealth = healthComp?.maxValue || 20;
 
-			// Scale XP based on max health: weak (low health) to strong (high health)
 			if (maxHealth <= 4) {
 				baseXp = CONFIG.XP_TIER_HOSTILE_WEAK;
 			} else if (maxHealth <= 10) {
@@ -606,10 +528,9 @@ function calculateEntityXpReward(entity, applyBonus = false) {
 				baseXp = CONFIG.XP_TIER_HOSTILE_STRONG;
 			}
 		} catch {
-			baseXp = CONFIG.XP_TIER_HOSTILE_NORMAL; // Fallback
+			baseXp = CONFIG.XP_TIER_HOSTILE_NORMAL;
 		}
 	}
-	// Non-hostile mobs grant no XP
 	else {
 		return 0;
 	}
@@ -632,26 +553,18 @@ world.beforeEvents.entityHurt.subscribe(event => {
 	event.damage *= 0.75;
 });
 
-/**
- * Handle entity death and spawn XP orbs
- * Calculates dynamic XP based on entity properties with guaranteed 50% boost
- * Spawns XP orbs at death location immediately (no probability check)
- */
 world.afterEvents.entityDie.subscribe(event => {
 	const { deadEntity } = event;
 	
-	// Skip players and invalid entities
 	if (deadEntity.typeId === "minecraft:player" || !deadEntity.isValid) return;
 
 	const killer = event.damageSource?.damagingEntity;
 	const killerEquip = killer?.getComponent(EntityEquippableComponent.componentId);
 	const applyBonusXp = killer?.typeId === "minecraft:player" && isWearingFullSet(killerEquip, "dragonmounts2:enchanted_dragon_scale_effects");
 
-	// Calculate XP dynamically with 50% boost already applied when the killer is wearing the enchanted set
 	const xpAmount = calculateEntityXpReward(deadEntity, applyBonusXp);
 	if (xpAmount <= 0) return;
 
-	// Always spawn XP orbs (guaranteed, no RNG)
 	spawnXpOrbs(deadEntity.dimension, deadEntity.location, xpAmount);
 });
 
@@ -767,7 +680,6 @@ world.afterEvents.entityHurt.subscribe(event => {
 });
 
 
-// Only process players with dragon armor
 function tickArmorEffects() {
 	const now = system.currentTick;
 	cleanupExpiredCooldowns(now);
@@ -783,10 +695,6 @@ function tickArmorEffects() {
 
 system.run(tickArmorEffects);
 
-/**
- * Handle Aether dragon_scale sprint effect
- * Only runs every 10 ticks instead of every tick
- */
 function tickAetherSprint() {
 	const now = system.currentTick;
 
@@ -797,7 +705,6 @@ function tickAetherSprint() {
 		const equip = player.getComponent(EntityEquippableComponent.componentId);
 		if (!equip) continue;
 
-		// Aether dragon_scale — speed boost while sprinting
 		applyTimedArmorEffect(
 			player, equip, player.id,
 			"dragonmounts2:aether_dragon_scale_effects",

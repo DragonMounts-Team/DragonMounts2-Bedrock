@@ -47,9 +47,6 @@ export function dragonFluteUse(itemStack, source, params) {
 	showDragonFluteUI(source, itemStack, rule);
 }
 
-// Sneak + use the flute while looking at a nearby owned dragon to toggle V-Flight
-// for that specific dragon (max dragonUtilities.V_FLIGHT_MAX_FOLLOWERS per owner).
-// This is independent of flute binding - it works on any owned dragon in view.
 function toggleNearbyVFlight(source, rule) {
 	const maxDistance = rule.v_flight_max_distance ?? rule.max_distance ?? 12;
 	
@@ -566,33 +563,20 @@ function findDragonByPersistentId(dimension, pid) {
 	return null;
 }
 
-// Checks whether the dragon's hitbox (1.4 wide x 2.75 tall) fits at the given foot position.
-// The collision box is centred on x/z, so we sample the 4 corner columns (-1, 0) and (0, 1)
-// in both axes to cover the full 1.4-block width, then verify 3 vertical blocks of air
-// (feet, mid, head) and a solid floor block beneath each column.
 function dragonHitboxFits(dim, fx, fy, fz) {
-	// Half-width rounded up to nearest block boundary: ceil(1.4/2) = 1
-	const offsets = [-1, 0]; // columns to check in each axis relative to the centre block
-	const bx = Math.floor(fx);
-	const by = Math.floor(fy);
-	const bz = Math.floor(fz);
+	return dragonUtilities.isSafeDragonTeleportLocation(dim, { x: fx, y: fy, z: fz }, true, 3);
+}
 
-	for (const dx of offsets) {
-		for (const dz of offsets) {
-			try {
-				const floor = dim.getBlock({ x: bx + dx, y: by - 1,     z: bz + dz });
-				const feet  = dim.getBlock({ x: bx + dx, y: by,         z: bz + dz });
-				const mid   = dim.getBlock({ x: bx + dx, y: by + 1,     z: bz + dz });
-				const head  = dim.getBlock({ x: bx + dx, y: by + 2,     z: bz + dz });
-				// Need solid floor and 3 clear blocks above it
-				if (!floor || floor.isAir) return false;
-				if (!feet?.isAir || !mid?.isAir || !head?.isAir) return false;
-			} catch {
-				return false; // out of loaded range — treat as blocked
-			}
-		}
+function hasSolidTeleportGround(dim, x, y, z) {
+	const ground = dim.getBlock({ x: Math.floor(x), y: Math.floor(y) - 1, z: Math.floor(z) });
+	if (!ground || ground.typeId === "minecraft:air") return false;
+	if (ground.typeId.includes("water") || ground.typeId.includes("lava")) return false;
+	try {
+		return ground.permutation?.getState("minecraft:waterlogged") !== true &&
+			ground.permutation?.getState("waterlogged") !== true;
+	} catch {
+		return false;
 	}
-	return true;
 }
 
 function findFreeTeleportSpot(source) {
@@ -600,29 +584,21 @@ function findFreeTeleportSpot(source) {
 	const origin = source.location;
 	const radius = 6;
 	
-	// Try up to 20 random positions within the 6-block radius
 	for (let attempt = 0; attempt < 20; attempt++) {
 		const angle = Math.random() * Math.PI * 2;
-		const dist = 2 + Math.random() * (radius - 2); // keep at least 2 blocks away so it doesn't land on the player
+		const dist = 2 + Math.random() * (radius - 2);
 		const tx = Math.floor(origin.x + Math.cos(angle) * dist) + 0.5;
 		const tz = Math.floor(origin.z + Math.sin(angle) * dist) + 0.5;
 		
-		// Scan vertically near the player's Y to find a spot the full hitbox fits in
 		for (let dy = 2; dy >= -4; dy--) {
 			const ty = Math.floor(origin.y) + dy;
-			if (dragonHitboxFits(dim, tx, ty, tz)) {
+			if (hasSolidTeleportGround(dim, tx, ty, tz) && dragonHitboxFits(dim, tx, ty, tz)) {
 				return { x: tx, y: ty, z: tz };
 			}
 		}
 	}
 	
-	// Fallback: directly behind the player at their feet if nothing free was found
-	const yaw = (source.getRotation().y * Math.PI) / 180;
-	return {
-		x: origin.x - Math.sin(yaw) * 2,
-		y: origin.y,
-		z: origin.z + Math.cos(yaw) * 2
-	};
+	return null;
 }
 
 function showDragonFluteUI(source, itemStack, rule) {
@@ -651,24 +627,29 @@ function showDragonFluteUI(source, itemStack, rule) {
 		.button({translate:`${rule.translates.come_to_owner}`}, () => {
 			try { fluteForm.close(); } catch {}
 			system.run(() => {
-				// Try to teleport to the block the player is looking at
+				if (!source?.isValid || !dragon?.isValid) return;
+				if (dragon.getProperty("dragonmounts2:v_flight_enabled") === true) {
+					dragonUtilities.disableVFlight(dragon, "manual");
+				}
 				const blockRay = source.getBlockFromViewDirection({ maxDistance: 10, includePassableBlocks: false, includeLiquidBlocks: false });
 				let teleportPos;
 				if (blockRay?.block) {
-					// Place the dragon on top of the looked-at block — but only if the full hitbox fits there
 					const b = blockRay.block.location;
 					const candidate = { x: b.x + 0.5, y: b.y + 1, z: b.z + 0.5 };
-					if (dragonHitboxFits(source.dimension, candidate.x, candidate.y, candidate.z)) {
+					if (
+						hasSolidTeleportGround(source.dimension, candidate.x, candidate.y, candidate.z) &&
+						dragonHitboxFits(source.dimension, candidate.x, candidate.y, candidate.z)
+					) {
 						teleportPos = candidate;
 					} else {
-						// Looked-at spot is too cramped — fall back to a safe nearby position
 						teleportPos = findFreeTeleportSpot(source);
 					}
 				} else {
-					// No block in view — find a random free spot within 6 blocks of the player
 					teleportPos = findFreeTeleportSpot(source);
 				}
+				if (!teleportPos) return;
 				dragon.teleport(teleportPos, { dimension: source.dimension });
+				dragonUtilities.normalizeDragonAfterTeleport(dragon);
 				source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.came}`}]});
 				source.dimension.playSound(rule.sounds.long, source.location);
 			});
@@ -749,6 +730,14 @@ function isAmuletFilled(itemStack) {
 	return !!itemStack.getDynamicProperty("dragonmounts2:dragon_identifier");
 }
 
+function copyDyeableColor(sourceItem, targetItem) {
+	const sourceDyeable = sourceItem.getComponent("minecraft:dyeable");
+	const targetDyeable = targetItem.getComponent("minecraft:dyeable");
+	if (sourceDyeable && targetDyeable) {
+		targetDyeable.color = sourceDyeable.color;
+	}
+}
+
 export function dragonAmuletHitEntity(attackingEntity, hitEntity, itemStack, params) {
 	if (!(attackingEntity instanceof Player) || !hitEntity?.isValid) return;
 	
@@ -786,6 +775,7 @@ export function dragonAmuletHitEntity(attackingEntity, hitEntity, itemStack, par
 	
 	const amuletType = itemData.dragonAmuletTypes[hitEntity.typeId] || "dragonmounts2:dragon_amulet";
 	const filledAmulet = new ItemStack(amuletType, 1);
+	copyDyeableColor(itemStack, filledAmulet);
 	
 	const variantProperty = hitEntity.getProperty("dragonmounts2:variant_type") || "default";
 	const amuletData = itemData.dragonAmuletDataBlockTypes[hitEntity.typeId];
@@ -878,6 +868,7 @@ export function dragonAmuletUseOn(source, block, blockFace, itemStack, params) {
 		source.runCommand(`structure delete "${data.dragonIdentifier}"`);
 		
 		const emptyAmulet = new ItemStack("dragonmounts2:dragon_amulet", 1);
+		copyDyeableColor(itemStack, emptyAmulet);
 		const equippable = source.getComponent("minecraft:equippable");
 		if (!equippable) return;
 		

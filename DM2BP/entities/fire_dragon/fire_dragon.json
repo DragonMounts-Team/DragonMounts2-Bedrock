@@ -36,7 +36,6 @@
         "dragonmounts2:is_locked": { "type": "bool", "client_sync": false, "default": false },
         "dragonmounts2:elytra_follow_enabled": { "type": "bool", "client_sync": false, "default": false },
         "dragonmounts2:v_flight_enabled": { "type": "bool", "client_sync": false, "default": false },
-        "dragonmounts2:wild_flight_enabled": { "type": "bool", "client_sync": false, "default": false },
         "dragonmounts2:mob_state": {
           "type": "enum",
           "values": [ "standing", "sitting" ],
@@ -372,8 +371,7 @@
                   "any_of": [
                     { "test": "rider_count", "operator": "!=", "value": 0 },
                     { "test": "bool_property", "domain": "dragonmounts2:v_flight_enabled", "value": true },
-                    { "test": "bool_property", "domain": "dragonmounts2:elytra_follow_enabled", "value": true },
-                    { "test": "bool_property", "domain": "dragonmounts2:wild_flight_enabled", "value": true }
+                    { "test": "bool_property", "domain": "dragonmounts2:elytra_follow_enabled", "value": true }
                   ]
                 }
               ]
@@ -854,7 +852,9 @@
               "filters": {
                 "all_of": [
                   { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
-                  { "test": "is_family", "subject": "other", "value": "monster" }
+                  { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:movement_state", "value": "grounded" },
+                  { "test": "is_family", "subject": "other", "value": "monster" },
+                  { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" }
                 ]
               },
               "max_dist": 16
@@ -1003,7 +1003,12 @@
         "minecraft:behavior.hurt_by_target": {
           "priority": 2,
           "hurt_owner": false,
-          "entity_types": { "max_dist": 16, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 }
+          "entity_types": {
+            "filters": { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" },
+            "max_dist": 16,
+            "walk_speed_multiplier": 2.4,
+            "sprint_speed_multiplier": 2.4
+          }
         },
         "minecraft:health": { "value": 60 }
       },
@@ -1015,7 +1020,12 @@
         "minecraft:behavior.hurt_by_target": {
           "priority": 2,
           "hurt_owner": false,
-          "entity_types": { "max_dist": 32, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 }
+          "entity_types": {
+            "filters": { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" },
+            "max_dist": 32,
+            "walk_speed_multiplier": 2.4,
+            "sprint_speed_multiplier": 2.4
+          }
         },
         "minecraft:health": { "value": 120 }
       },
@@ -1081,7 +1091,12 @@
         "minecraft:behavior.hurt_by_target": {
           "priority": 2,
           "hurt_owner": false,
-          "entity_types": { "max_dist": 64, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 }
+          "entity_types": {
+            "filters": { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" },
+            "max_dist": 64,
+            "walk_speed_multiplier": 2.4,
+            "sprint_speed_multiplier": 2.4
+          }
         },
         "minecraft:health": { "value": 180 }
       },
@@ -1089,11 +1104,7 @@
         "minecraft:can_fly": {},
         "minecraft:flying_speed": { "value": 0.15 },
         "minecraft:movement": { "value": 0.15 },
-        "minecraft:movement.fly": {
-          "max_turn": 60,
-          "speed_when_turning": 0.24,
-          "start_speed": 0.18
-        },
+        "minecraft:movement.fly": {},
         "minecraft:navigation.fly": {
           "avoid_water": false,
           "can_breach": true,
@@ -1101,23 +1112,7 @@
           "can_path_from_air": true,
           "can_path_over_water": true
         },
-        "minecraft:physics": { "has_gravity": false },
-        "minecraft:behavior.random_fly": {
-          "priority": 5,
-          "speed_multiplier": 1.8,
-          "xz_dist": 48,
-          "y_dist": 6,
-          "y_offset": 0,
-          "avoid_damage_blocks": true,
-          "can_land_on_trees": false
-        }
-      },
-      "dragonmounts2:dragon_wild_wander": {
-        "minecraft:timer": {
-          "time": [ 20.0, 45.0 ],
-          "looping": true,
-          "time_down_event": { "event": "dragonmounts2:on_wild_takeoff", "target": "self" }
-        }
+        "minecraft:physics": { "has_gravity": false }
       },
       "dragonmounts2:dragon_grounded": {
         "minecraft:navigation.walk": {
@@ -1171,7 +1166,12 @@
         "minecraft:leashable": {},
         "minecraft:behavior.owner_hurt_by_target": {
           "priority": 1,
-          "entity_types": { "max_dist": 64, "walk_speed_multiplier": 1.4, "sprint_speed_multiplier": 2.4 }
+          "entity_types": {
+            "filters": { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" },
+            "max_dist": 64,
+            "walk_speed_multiplier": 1.4,
+            "sprint_speed_multiplier": 2.4
+          }
         },
         "minecraft:behavior.owner_hurt_target": {
           "priority": 2,
@@ -1180,7 +1180,12 @@
               { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" }
             ]
           },
-          "entity_types": { "max_dist": 64, "walk_speed_multiplier": 1.4, "sprint_speed_multiplier": 2.4 }
+          "entity_types": {
+            "filters": { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" },
+            "max_dist": 64,
+            "walk_speed_multiplier": 1.4,
+            "sprint_speed_multiplier": 2.4
+          }
         },
         "minecraft:behavior.breed": { "priority": 0 }
       },
@@ -1314,8 +1319,7 @@
           "component_groups": [
             "dragonmounts2:dragon_living_components",
             "dragonmounts2:dragon_adult",
-            "dragonmounts2:dragon_grounded",
-            "dragonmounts2:dragon_wild_wander"
+            "dragonmounts2:dragon_grounded"
           ]
         },
         "set_property": { "dragonmounts2:age_variant": "adult" },
@@ -1327,8 +1331,7 @@
             "dragonmounts2:dragon_living_components",
             "dragonmounts2:dragon_baby",
             "dragonmounts2:dragon_growth",
-            "dragonmounts2:dragon_grounded",
-            "dragonmounts2:dragon_wild_wander"
+            "dragonmounts2:dragon_grounded"
           ]
         },
         "set_property": { "dragonmounts2:age_variant": "baby" },
@@ -1381,13 +1384,9 @@
       "minecraft:on_tame": {
         "sequence": [
           {
-            "remove": {
-              "component_groups": [ "dragonmounts2:dragon_wild_wander" ]
-            },
             "add": {
               "component_groups": [ "dragonmounts2:dragon_tamed" ]
             },
-            "set_property": { "dragonmounts2:wild_flight_enabled": false },
             "trigger": "minecraft:on_sit"
           },
           {
@@ -1558,20 +1557,6 @@
           }
         ]
       },
-      "dragonmounts2:on_wild_takeoff": {
-        "filters": {
-          "all_of": [
-            { "test": "has_component", "subject": "self", "operator": "!=", "value": "minecraft:is_tamed" },
-            { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-            { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
-            { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:movement_state", "value": "grounded" },
-            { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:age_variant", "operator": "!=", "value": "baby" },
-            { "test": "rider_count", "subject": "self", "value": 0 }
-          ]
-        },
-        "set_property": { "dragonmounts2:wild_flight_enabled": true },
-        "trigger": "minecraft:on_flying"
-      },
       "minecraft:on_flying": {
         "sequence": [
           {
@@ -1598,7 +1583,6 @@
       "minecraft:on_grounded": {
         "sequence": [
           {
-            "filters": { "test": "enum_property", "domain": "dragonmounts2:movement_state", "operator": "!=", "value": "grounded" },
             "remove": {
               "component_groups": [
                 "dragonmounts2:dragon_flying",
@@ -1609,7 +1593,7 @@
             "add": {
               "component_groups": [ "dragonmounts2:dragon_grounded" ]
             },
-            "set_property": { "dragonmounts2:movement_state": "grounded", "dragonmounts2:wild_flight_enabled": false }
+            "set_property": { "dragonmounts2:movement_state": "grounded" }
           },
           {
             "filters": { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_following", "value": true },
@@ -1631,7 +1615,7 @@
             "add": {
               "component_groups": [ "dragonmounts2:dragon_swimming" ]
             },
-            "set_property": { "dragonmounts2:movement_state": "swimming", "dragonmounts2:wild_flight_enabled": false }
+            "set_property": { "dragonmounts2:movement_state": "swimming" }
           },
           {
             "filters": { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_following", "value": true },

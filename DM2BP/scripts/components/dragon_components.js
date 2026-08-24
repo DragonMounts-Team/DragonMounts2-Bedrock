@@ -1,6 +1,7 @@
 import { world, system } from "@minecraft/server";
 import * as defaultWorldArrays from "../arrays/default_world_arrays.js";
 import * as dragonUtilities from "../utilities/dragon_utilities.js";
+import * as dragonAIUtilities from "../utilities/dragon_ai_utilities.js";
 
 system.runInterval(() => {
 	for (const dim of defaultWorldArrays.addonDimensions) {
@@ -9,6 +10,7 @@ system.runInterval(() => {
 		for (const dragon of entities) {
 			if (!dragon?.isValid) continue;
 			dragonUtilities.dragonsMainComponents(dragon);
+			dragonAIUtilities.updateDragonAI(dragon);
 		}
 	}
 	dragonUtilities.tickFallRescue();
