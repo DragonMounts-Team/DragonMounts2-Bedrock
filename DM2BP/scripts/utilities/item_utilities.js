@@ -5,6 +5,8 @@ import * as itemData from "../data/item_data.js";
 import * as dragonUtilities from "./flight/dragon_utilities.js";
 import { getSoundOptions } from "../data/settings.js";
 
+const TELEPORT_AIR_TYPES = new Set(["minecraft:air", "minecraft:cave_air", "minecraft:void_air"]);
+
 export function restoreGuideBookMode(player) {
 	if (!(player instanceof Player) || !player.isValid) return;
 
@@ -576,7 +578,45 @@ function findDragonByPersistentId(dimension, pid) {
 }
 
 function dragonHitboxFits(dim, fx, fy, fz) {
-	return dragonUtilities.isSafeDragonTeleportLocation(dim, { x: fx, y: fy, z: fz }, true, 3);
+	if (!dim) return false;
+	try {
+		for (let offset = 0; offset < 3; offset++) {
+			const block = dim.getBlock({
+				x: Math.floor(fx),
+				y: Math.floor(fy) + offset,
+				z: Math.floor(fz),
+			});
+			if (!block || !TELEPORT_AIR_TYPES.has(block.typeId)) return false;
+		}
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+function setDragonHome(dragon, owner) {
+	if (!dragon?.isValid || !owner?.isValid) return false;
+	const location = owner.location;
+	dragon.setDynamicProperty("dragonmounts2:home_x", location.x);
+	dragon.setDynamicProperty("dragonmounts2:home_y", location.y);
+	dragon.setDynamicProperty("dragonmounts2:home_z", location.z);
+	dragon.setDynamicProperty("dragonmounts2:home_dimension", owner.dimension.id);
+	return true;
+}
+
+function getDragonHome(dragon) {
+	if (!dragon?.isValid) return null;
+	const x = dragon.getDynamicProperty("dragonmounts2:home_x");
+	const y = dragon.getDynamicProperty("dragonmounts2:home_y");
+	const z = dragon.getDynamicProperty("dragonmounts2:home_z");
+	const dimensionId = dragon.getDynamicProperty("dragonmounts2:home_dimension");
+	if (![x, y, z].every(value => typeof value === "number") || typeof dimensionId !== "string") return null;
+	return { location: { x, y, z }, dimensionId };
+}
+
+function isDragonAtHome(dragon, home) {
+	if (!home?.location || home.dimensionId !== dragon?.dimension?.id) return false;
+	return dragonUtilities.distanceBetween(dragon.location, home.location) <= 2;
 }
 
 function hasSolidTeleportGround(dim, x, y, z) {
@@ -591,10 +631,16 @@ function hasSolidTeleportGround(dim, x, y, z) {
 	}
 }
 
-function findFreeTeleportSpot(source) {
+function isPlayerStandingOnSolidBlock(player) {
+	if (!player?.isValid) return false;
+	const location = player.location;
+	return hasSolidTeleportGround(player.dimension, location.x, location.y, location.z);
+}
+
+function findFreeTeleportSpot(source, searchOrigin = source.location) {
 	const dim = source.dimension;
-	const origin = source.location;
-	const radius = 6;
+	const origin = searchOrigin;
+	const radius = 10;
 	
 	for (let attempt = 0; attempt < 20; attempt++) {
 		const angle = Math.random() * Math.PI * 2;
@@ -647,14 +693,17 @@ function showDragonFluteUI(source, itemStack, rule) {
 				let teleportPos;
 				if (blockRay?.block) {
 					const b = blockRay.block.location;
+					teleportPos = findFreeTeleportSpot(source, {
+						x: b.x + 0.5,
+						y: b.y + 1,
+						z: b.z + 0.5,
+					});
 					const candidate = { x: b.x + 0.5, y: b.y + 1, z: b.z + 0.5 };
-					if (
+					if (!teleportPos &&
 						hasSolidTeleportGround(source.dimension, candidate.x, candidate.y, candidate.z) &&
 						dragonHitboxFits(source.dimension, candidate.x, candidate.y, candidate.z)
 					) {
 						teleportPos = candidate;
-					} else {
-						teleportPos = findFreeTeleportSpot(source);
 					}
 				} else {
 					teleportPos = findFreeTeleportSpot(source);
@@ -664,6 +713,32 @@ function showDragonFluteUI(source, itemStack, rule) {
 				dragonUtilities.normalizeDragonAfterTeleport(dragon);
 				source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.came}`}]});
 				source.dimension.playSound(rule.sounds.long, source.location, getSoundOptions());
+			});
+		})
+		.button({translate:`${(() => {
+			const home = getDragonHome(dragon);
+			return home && !isDragonAtHome(dragon, home) ? rule.translates.send_home : rule.translates.set_home;
+		})()}`}, () => {
+			try { fluteForm.close(); } catch {}
+			system.run(() => {
+				if (!source?.isValid || !dragon?.isValid) return;
+				const home = getDragonHome(dragon);
+				if (!home || isDragonAtHome(dragon, home)) {
+					if (!isPlayerStandingOnSolidBlock(source)) {
+						source.onScreenDisplay.setActionBar({rawtext:[{text:"§c"},{translate:`${rule.translates.home_ground}`} ]});
+						return;
+					}
+					if (!setDragonHome(dragon, source)) return;
+					source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.home_set}`} ]});
+					source.dimension.playSound(rule.sounds.short, source.location, getSoundOptions());
+					return;
+				}
+				try {
+					dragon.teleport(home.location, { dimension: world.getDimension(home.dimensionId) });
+					dragonUtilities.normalizeDragonAfterTeleport(dragon);
+					source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.sent_home}`} ]});
+					source.dimension.playSound(rule.sounds.long, source.location, getSoundOptions());
+				} catch {}
 			});
 		})
 		.button(dragonMobState=="standing" ? {translate:`${rule.translates.sit}`} : {translate:`${rule.translates.stand}`}, () => {

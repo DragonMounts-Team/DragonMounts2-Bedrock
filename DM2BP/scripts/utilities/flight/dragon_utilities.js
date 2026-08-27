@@ -1930,11 +1930,10 @@ export function dragonsMainComponents(dragon) {
   const controllingSeat = rideable.controllingSeat;
   const controllingRider = riders[controllingSeat];
   if (!controllingRider || !(controllingRider instanceof Player)) return;
-  dragon.setDynamicProperty("dragonmounts2:last_rider_id", controllingRider.id);
-  dragon.setDynamicProperty(
-    "dragonmounts2:last_ridden_tick",
-    system.currentTick,
-  );
+  if (dragon.getDynamicProperty("dragonmounts2:last_rider_id") !== controllingRider.id) {
+    dragon.setDynamicProperty("dragonmounts2:last_rider_id", controllingRider.id);
+  }
+  dragon.setDynamicProperty("dragonmounts2:last_ridden_tick", system.currentTick);
   markPlayerRodeDragon(controllingRider, dragon);
 
   handleDragonJumpInput(dragon, controllingRider, isBreathing);

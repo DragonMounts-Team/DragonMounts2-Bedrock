@@ -505,3 +505,9 @@ tooltip.dragonmounts2:wither=Wither
 tooltip.dragonmounts2:zombie=Zombie
 
 tile.dragonmounts2:aether_dragon_scale_sword.tooltip=Aether
+
+tooltip.dragonmounts2:dragon_flute.set_home=Set Home
+tooltip.dragonmounts2:dragon_flute.send_home=Send Home
+tooltip.dragonmounts2:dragon_flute.home_set=Dragon home set!
+tooltip.dragonmounts2:dragon_flute.home_ground=You must be standing on solid ground to set home.
+tooltip.dragonmounts2:dragon_flute.sent_home=Dragon sent home!

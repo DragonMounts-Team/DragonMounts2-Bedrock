@@ -660,7 +660,9 @@ function clearAutonomousFlightState(dragon, state) {
 
 export function updateDragonAI(dragon) {
   if (!dragon?.isValid) return;
-  if (dragon.getComponent("rideable")?.getRiders?.().length > 0) return;
+  const rideable = dragon.getComponent("rideable");
+  const riders = rideable?.getRiders?.() ?? [];
+  if (riders.length > 0) return;
   if (dragon.getProperty("dragonmounts2:v_flight_enabled") === true) return;
   if (dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") === true) return;
   if (followStates.get(dragon)?.active === true) {
@@ -702,7 +704,6 @@ export function updateDragonAI(dragon) {
   if (dragon.getProperty("dragonmounts2:is_following") === true) return;
   if (dragon.getProperty("dragonmounts2:is_breathing") === true) return;
   if (dragon.getDynamicProperty("dragonmounts2:autonomous_flight_active") === true) return;
-  if (dragon.getComponent("rideable")?.getRiders?.().length > 0) return;
   let state = states.get(dragon);
   if (!state) {
     state = {

@@ -2004,3 +2004,9 @@ dragonmounts2:guide_book.text.page_5_1=Recipes offer the tools, gear, and crafti
 dragonmounts2:guide_book.text.page_6_1=The settings and preferences in this add-on help you tailor the experience.~LINEBREAK~~LINEBREAK~Adjust the options to match how you like to play.
 
 tile.dragonmounts2:dragon_scale_upgrade_smithing_template=Smithing Template\n\nApplies to:\n Diamond Equipment\nIngredients:\n Dragon Scales
+
+tooltip.dragonmounts2:dragon_flute.set_home=Set Home
+tooltip.dragonmounts2:dragon_flute.send_home=Send Home
+tooltip.dragonmounts2:dragon_flute.home_set=Dragon home set!
+tooltip.dragonmounts2:dragon_flute.home_ground=You must be standing on solid ground to set home.
+tooltip.dragonmounts2:dragon_flute.sent_home=Dragon sent home!
