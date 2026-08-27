@@ -1,7 +1,17 @@
-import { system, CustomCommandParamType } from "@minecraft/server";
+import { system, CustomCommandParamType, Player, world } from "@minecraft/server";
+import { registerSettingsCommand } from "./settings_modules.js";
+import * as dragonUtilities from "../utilities/flight/dragon_utilities.js";
 
 function isValidEntity(entity) {
 	return entity?.isValid === true;
+}
+
+function getCommandPlayer(origin) {
+	if (origin instanceof Player) return origin;
+	const player = origin?.sourceEntity ?? origin?.initiator ?? origin?.entity;
+	if (player instanceof Player) return player;
+	const playerId = origin?.id ?? player?.id;
+	return playerId ? world.getAllPlayers().find(candidate => candidate.id === playerId) ?? null : null;
 }
 
 function normalizeEntities(value) {
@@ -88,6 +98,17 @@ function registerBuiltInCommands(customCommandRegistry) {
 			sender.sendMessage(`Tamed ${result.tamedCount} entity${result.tamedCount === 1 ? "" : "ies"}.`);
 		}
 	);
+	registerSettingsCommand(customCommandRegistry);
+	const toggleDebug = (origin, _args) => {
+		const player = getCommandPlayer(origin);
+		if (player) dragonUtilities.toggleFlightDebug(player);
+	};
+	customCommandRegistry.registerCommand({
+		name: "dragonmounts2:debug",
+		description: "Toggle dragon flight speed debugging.",
+		permissionLevel: 0,
+		cheatsRequired: false
+	}, toggleDebug);
 }
 
 export function initDragonMounts2Commands() {

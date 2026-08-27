@@ -1,6 +1,7 @@
 import "../components/item_components.js";
 import { world, system, ButtonState, EntityDamageCause, EntityOnFireComponent, InputButton, EquipmentSlot, EntityEquippableComponent, ItemCooldownComponent, ItemDurabilityComponent, ItemEnchantableComponent, Player } from "@minecraft/server";
 import * as itemUtilities from "../utilities/item_utilities.js";
+import { getSoundOptions } from "../data/settings.js";
 
 const Shields = {};
 
@@ -159,6 +160,10 @@ world.beforeEvents.entityHurt.subscribe((data) => {
   const id = player.id;
 
   system.run(() => {
+    if (!player.isValid) {
+      delete cancelledEffects[id];
+      return;
+    }
     delete cancelledEffects[id];
     const heldShield = getHeldShield(player);
     if (!heldShield) return;
@@ -180,12 +185,12 @@ world.beforeEvents.entityHurt.subscribe((data) => {
       }
     }
     const cooldown = heldShield.item.getComponent(ItemCooldownComponent.componentId);
-    if (comp.block) player.dimension.playSound(comp.block, player.location);
+    if (comp.block) player.dimension.playSound(comp.block, player.location, getSoundOptions());
     if (comp.command) player.runCommand(comp.command);
     if (cooldown !== undefined && disableShield) {
       cooldown.startCooldown(player);
       cooldownUntil[id] = system.currentTick + (cooldown.cooldownTicks ?? 100);
-      if (comp.disable_sound) player.dimension.playSound(comp.disable_sound, player.location);
+      if (comp.disable_sound) player.dimension.playSound(comp.disable_sound, player.location, getSoundOptions());
     }
   });
   data.cancel = true;
@@ -199,6 +204,7 @@ world.beforeEvents.effectAdd.subscribe((data) => {
 world.afterEvents.playerLeave.subscribe((data) => {
   delete playerAnimations[data.playerId];
   delete usingItem[data.playerId];
+  delete cancelledEffects[data.playerId];
   if (delays[data.playerId]) system.clearRun(delays[data.playerId]);
   delete delays[data.playerId];
   delete cooldownUntil[data.playerId];
@@ -206,13 +212,16 @@ world.afterEvents.playerLeave.subscribe((data) => {
 });
 
 world.afterEvents.itemStartUse.subscribe((data) => {
+  if (!data.source?.isValid) return;
   usingItem[data.source.id] = true;
 });
 
 world.afterEvents.itemStopUse.subscribe((data) => {
+  if (!data.source?.id) return;
   delete usingItem[data.source.id];
 });
 
 world.afterEvents.itemReleaseUse.subscribe((data) => {
+  if (!data.source?.id) return;
   delete usingItem[data.source.id];
 });

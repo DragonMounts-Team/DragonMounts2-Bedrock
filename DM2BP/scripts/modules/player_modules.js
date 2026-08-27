@@ -168,6 +168,7 @@ const playersWithDragonArmor = new Set();
 world.afterEvents.playerLeave.subscribe(({ playerId }) => {
 	cooldowns.delete(playerId);
 	pendingReflect.delete(playerId);
+	stormLightningCooldowns.delete(playerId);
 	playersWithDragonArmor.delete(playerId);
 });
 
@@ -283,6 +284,7 @@ function applyDragonLoreToItem(item, fullSetMap, pieceCountMap, player, now) {
 }
 
 function updateDragonArmorLore(player) {
+	if (!player?.isValid) return;
 	const equip = player.getComponent(EntityEquippableComponent.componentId);
 	if (!equip) return;
 
@@ -346,9 +348,7 @@ function applyAoeKnockback(hurtEntity, playerId, radius, knockbackStrength, appl
 			}
 
 			applyEffect(entity);
-		} catch (error) {
-			console.warn(`AoE effect failed on entity: ${error}`);
-		}
+		} catch {}
 	}
 }
 function isNight(timeOfDay) {
@@ -397,9 +397,7 @@ function spawnXpOrbs(dimension, location, totalXp) {
 				orb.applyImpulse(orbData.velocity);
 			}
 		}
-	} catch (error) {
-		console.warn(`Failed to spawn XP orbs: ${error}`);
-	}
+	} catch {}
 }
 
 function applyTimedArmorEffect(player, equip, playerId, componentType, cooldownKey, effectName, duration, amplifier, now, cooldownSeconds) {
@@ -590,14 +588,14 @@ function tryTriggerStormLightningProc(player, attacker) {
 	try {
 		attacker.dimension.spawnEntity("minecraft:lightning_bolt", spawnLoc);
 		return true;
-	} catch (error) {
-		console.warn(`[DM2BP] Failed to spawn storm lightning: ${error?.message || error}`);
+	} catch {
 		return false;
 	}
 }
 
 world.afterEvents.entityHurt.subscribe(event => {
 	const { hurtEntity, damageSource, damage } = event;
+	if (!hurtEntity?.isValid) return;
 	const isPlayerVictim = hurtEntity.typeId === "minecraft:player";
 	const attacker = damageSource.damagingEntity;
 	const cause = damageSource.cause;
@@ -673,9 +671,7 @@ world.afterEvents.entityHurt.subscribe(event => {
 				cause: EntityDamageCause.magic,
 				damagingEntity: hurtEntity,
 			});
-		} catch (error) {
-			console.warn(`Sculk dragon_scale reflect failed: ${error}`);
-		}
+		} catch {}
 	}
 });
 
@@ -687,8 +683,11 @@ function tickArmorEffects() {
 	const timeOfDay = world.getTimeOfDay();
 
 	for (const player of world.getPlayers()) {
-		if (!refreshDragonArmorCacheForPlayer(player)) continue;
-		processPlayerArmorEffects(player, now, timeOfDay);
+		if (!player?.isValid) continue;
+		try {
+			if (!refreshDragonArmorCacheForPlayer(player)) continue;
+			processPlayerArmorEffects(player, now, timeOfDay);
+		} catch {}
 	}
 	system.runTimeout(tickArmorEffects, 20);
 }
@@ -699,18 +698,21 @@ function tickAetherSprint() {
 	const now = system.currentTick;
 
 	for (const player of world.getPlayers()) {
-		if (!refreshDragonArmorCacheForPlayer(player)) continue;
-		if (!player.isSprinting) continue;
+		if (!player?.isValid) continue;
+		try {
+			if (!refreshDragonArmorCacheForPlayer(player)) continue;
+			if (!player.isSprinting) continue;
 
-		const equip = player.getComponent(EntityEquippableComponent.componentId);
-		if (!equip) continue;
+			const equip = player.getComponent(EntityEquippableComponent.componentId);
+			if (!equip) continue;
 
-		applyTimedArmorEffect(
-			player, equip, player.id,
-			"dragonmounts2:aether_dragon_scale_effects",
-			"aether_dragon_scale_sprint_speed",
-			"speed", 5 * 20, 1, now, 15.0
-		);
+			applyTimedArmorEffect(
+				player, equip, player.id,
+				"dragonmounts2:aether_dragon_scale_effects",
+				"aether_dragon_scale_sprint_speed",
+				"speed", 5 * 20, 1, now, 15.0
+			);
+		} catch {}
 	}
 	system.runTimeout(tickAetherSprint, 10);
 }

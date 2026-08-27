@@ -1732,7 +1732,7 @@
               "value": "flying"
             },
             "remove": {
-              "component_groups": [ "dragonmounts2:dragon_grounded", "dragonmounts2:dragon_swimming", "dragonmounts2:dragon_follow_owner" ]
+              "component_groups": [ "dragonmounts2:dragon_grounded", "dragonmounts2:dragon_swimming", "dragonmounts2:dragon_follow_owner", "dragonmounts2:dragon_ground_controlled", "dragonmounts2:dragon_camera_controlled" ]
             },
             "add": {
               "component_groups": [ "dragonmounts2:dragon_flying" ]

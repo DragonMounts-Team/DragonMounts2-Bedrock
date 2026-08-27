@@ -3,6 +3,7 @@ import * as defaultWorldArrays from "../arrays/default_world_arrays.js";
 import * as blockData from "../data/block_data.js";
 import * as blockUtilities from "../utilities/block_utilities.js";
 import * as itemData from "../data/item_data.js";
+import { getSoundOptions } from "../data/settings.js";
 
 system.afterEvents.scriptEventReceive.subscribe(event => {
 	const entity = event.sourceEntity;
@@ -38,7 +39,7 @@ system.afterEvents.scriptEventReceive.subscribe(event => {
 		const spawnLocation = blockLocation.center();
 		const cardinalDirection = blockLocation.permutation.getState("minecraft:cardinal_direction");
 
-		dimension.playSound("break.amethyst_block", spawnLocation);
+		dimension.playSound("break.amethyst_block", spawnLocation, getSoundOptions());
 		blockLocation.setType("dragonmounts2:dragon_core");
 		blockUtilities.restoreCardinalDirection(blockLocation, "minecraft:cardinal_direction", cardinalDirection);
 

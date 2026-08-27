@@ -107,7 +107,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "==", "value": 0.300 },
-                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:dragon_scepter" },
+                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_scepter" },
                   { "test": "is_family", "subject": "other", "value": "player" },
                   { "test": "is_sneak_held", "subject": "other" }
                 ]
@@ -141,7 +141,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "!=", "value": 0.300 },
-                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:dragon_scepter" },
+                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_scepter" },
                   { "test": "is_family", "subject": "other", "value": "player" },
                   { "test": "is_sneak_held", "subject": "other", "value": false }
                 ]

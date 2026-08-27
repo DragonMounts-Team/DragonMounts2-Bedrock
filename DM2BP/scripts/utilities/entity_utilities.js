@@ -7,6 +7,26 @@ const methodCheckers = {
 	single: checkSingleMethod
 };
 
+export function getDragonEggDebugMessage(player) {
+	if (!player?.isValid) return null;
+
+	let hits;
+	try {
+		hits = player.getEntitiesFromViewDirection({
+			maxDistance: 16,
+			families: ["dragonmounts2", "dragon_egg"],
+		});
+	} catch {
+		return null;
+	}
+
+	const egg = hits?.find(hit => hit?.entity?.isValid)?.entity;
+	if (!egg) return null;
+	const eggState = egg.getProperty("dragonmounts2:egg_state");
+	const hatchProgress = Number(egg.getProperty("dragonmounts2:egg_hatch_time")) || 0;
+	return `Dragon egg: ${eggState}, ${(hatchProgress / 0.3 * 100).toFixed(1)}%`;
+}
+
 export function getDragonEggNestingBlock(dragonEgg) {
 	if (!dragonEgg?.isValid) return;
 

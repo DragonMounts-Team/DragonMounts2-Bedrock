@@ -13,10 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:dragonarmor.diamond.name"
       },
-      "minecraft:enchantable": {
-        "value": 16,
-        "slot": "armor_torso"
-      },
       "minecraft:icon": {
         "textures": {
           "default": "dragonmounts2:dragonarmor_diamond",
@@ -32,13 +28,8 @@
           "minecraft:is_armor",
           "minecraft:diamond_tier",
           "minecraft:transformable_items",
-          "dragonmounts2:dragonarmors",
-          "minecraft:trimmable_armors"
+          "dragonmounts2:dragonarmors"
         ]
-      },
-      "minecraft:wearable": {
-        "protection": 11,
-        "slot": "slot.armor.body"
       }
     }
   }

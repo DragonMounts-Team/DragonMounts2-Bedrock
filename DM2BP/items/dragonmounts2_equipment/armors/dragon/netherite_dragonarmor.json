@@ -13,10 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:dragonarmor.netherite.name"
       },
-      "minecraft:enchantable": {
-        "value": 16,
-        "slot": "armor_torso"
-      },
       "minecraft:fire_resistant": {
         "value": true
       },
@@ -35,13 +31,8 @@
           "minecraft:is_armor",
           "minecraft:netherite_tier",
           "minecraft:transform_materials",
-          "dragonmounts2:dragonarmors",
-          "minecraft:trimmable_armors"
+          "dragonmounts2:dragonarmors"
         ]
-      },
-      "minecraft:wearable": {
-        "protection": 19,
-        "slot": "slot.armor.body"
       }
     }
   }

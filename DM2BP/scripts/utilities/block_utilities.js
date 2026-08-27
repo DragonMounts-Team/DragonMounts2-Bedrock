@@ -1,6 +1,7 @@
 import { world, system, Player, GameMode, EquipmentSlot, EntityEquippableComponent } from "@minecraft/server";
 import * as blockData from "../data/block_data.js";
 import * as itemData from "../data/item_data.js";
+import { getSoundOptions } from "../data/settings.js";
 
 function setBlockEntityRotation(blockEntity, cardinalDirection) {
 	const rotations = {
@@ -34,8 +35,8 @@ function animateCore(block, dimension, params, state, sound1, sound2, spawnEvent
 	const cardinalDirection = block.permutation.getState(params.states.cardinal);
 	
 	system.runTimeout(() => {
-		block.dimension.playSound(sound1, block.center(), {volume:0.9});
-		block.dimension.playSound(sound2, block.center(), {volume:0.1});
+		block.dimension.playSound(sound1, block.center(), getSoundOptions({volume:0.9}));
+		block.dimension.playSound(sound2, block.center(), getSoundOptions({volume:0.1}));
 		block.setPermutation(block.permutation.withState(params.states.core_state, state));
 		
 		const blockEntity = block.dimension.spawnEntity(params.block_entity, {
@@ -111,9 +112,9 @@ export function dragonCorePlayerInteract(block, dimension, player, params) {
 	
 	system.runTimeout(() => {
 		block.setPermutation(block.permutation.withState(params.states.core_used, true));
-		dimension.playSound("block.enchanting_table.use", block.center(), {volume:0.6, pitch:0.4});
-		dimension.playSound("block.end_portal.fill", block.center(), {pitch:0.8});
-		dimension.playSound("dragonmounts2:block.dragon_core", block.center(), {volume:1.2, pitch:0.7});
+		dimension.playSound("block.enchanting_table.use", block.center(), getSoundOptions({volume:0.6, pitch:0.4}));
+		dimension.playSound("block.end_portal.fill", block.center(), getSoundOptions({pitch:0.8}));
+		dimension.playSound("dragonmounts2:block.dragon_core", block.center(), getSoundOptions({volume:1.2, pitch:0.7}));
 		
 		block.setPermutation(block.permutation.withState(params.states.core_state, "closing"));
 		
@@ -151,7 +152,7 @@ export function dragonCorePlayerInteract(block, dimension, player, params) {
 		}
 		
 		system.runTimeout(() => {
-			dimension.playSound("dragonmounts2:item.dragon_essence", block.center(), {volume:1.2});
+			dimension.playSound("dragonmounts2:item.dragon_essence", block.center(), getSoundOptions({volume:1.2}));
 			const dragon = dimension.spawnEntity(essenceItemData[itemStack.typeId].dragon_entity, 
 				{x: x, y: y - 0.5, z: z}, {spawnEvent: variantHatched});
 			
@@ -176,7 +177,7 @@ export function dragonEggPlayerInteract(block, dimension, player, params) {
 
 	block.setType(params.block_transforms_into);
 	restoreCardinalDirection(block, params.states.cardinal, cardinalDirection);
-	dimension.playSound(params.sounds.interact_sound, block.center());
+	dimension.playSound(params.sounds.interact_sound, block.center(), getSoundOptions());
 
 	const blockEntity = block.dimension.spawnEntity(params.block_entity, {
 		x: block.center().x,

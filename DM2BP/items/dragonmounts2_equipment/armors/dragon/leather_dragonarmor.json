@@ -13,10 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:dragonarmor.leather.name"
       },
-      "minecraft:enchantable": {
-        "value": 16,
-        "slot": "armor_torso"
-      },
       "minecraft:dyeable": {
         "default_color": "#A06540"
       },
@@ -38,10 +34,6 @@
           "minecraft:transform_materials",
           "dragonmounts2:dragonarmors"
         ]
-      },
-      "minecraft:wearable": {
-        "protection": 3,
-        "slot": "slot.armor.body"
       }
     }
   }

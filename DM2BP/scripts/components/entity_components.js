@@ -5,8 +5,6 @@ import * as entityUtilities from "../utilities/entity_utilities.js";
 import * as itemUtilities from "../utilities/item_utilities.js";
 import * as blockUtilities from "../utilities/block_utilities.js";
 
-const EGG_CHECK_INTERVAL = 10;
-
 function checkDragonEggs() {
 	for (const dim of defaultWorldArrays.addonDimensions) {
 		const dimension = world.getDimension(dim);
@@ -17,7 +15,7 @@ function checkDragonEggs() {
 			entityUtilities.getDragonEggConvertBlock(dragonEgg);
 		}
 	}
-	system.runTimeout(checkDragonEggs, EGG_CHECK_INTERVAL);
+	system.runTimeout(checkDragonEggs, 10);
 }
 
 system.run(checkDragonEggs);
@@ -26,6 +24,31 @@ world.afterEvents.itemStartUse.subscribe(({ itemStack, source }) => {
 	if (!(source instanceof Player) || !source.isValid) return;
 	if (itemStack?.typeId !== "dragonmounts2:guide_book") return;
 	itemUtilities.guideBookUse(itemStack, source, {});
+});
+
+world.afterEvents.playerSpawn.subscribe(({ player, initialSpawn }) => {
+	if (!(player instanceof Player) || !player.isValid) return;
+	if (!initialSpawn) return;
+	if (player.getDynamicProperty("dragonmounts2:guide_book_original_mode") !== "creative") return;
+
+	const bookId = player.getDynamicProperty("dragonmounts2:guide_book_entity_id");
+	if (bookId) {
+		for (const dimensionId of defaultWorldArrays.addonDimensions) {
+			const book = world.getDimension(dimensionId).getEntities({ type: "dragonmounts2:guide_book" })
+				.find(candidate => candidate.id === bookId);
+			book?.remove();
+		}
+	}
+	itemUtilities.restoreGuideBookMode(player);
+});
+
+world.afterEvents.playerLeave.subscribe(({ playerId }) => {
+	for (const dimensionId of defaultWorldArrays.addonDimensions) {
+		const dimension = world.getDimension(dimensionId);
+		for (const book of dimension.getEntities({ type: "dragonmounts2:guide_book" })) {
+			if (book.getDynamicProperty("dragonmounts2:book_user_id") === playerId) book.remove();
+		}
+	}
 });
 
 system.afterEvents.scriptEventReceive.subscribe((event) => {
@@ -47,7 +70,6 @@ system.afterEvents.scriptEventReceive.subscribe((event) => {
 				bookEntity?.remove();
 			}
 			entity.setDynamicProperty("dragonmounts2:guide_book_entity_id", "");
-			entity.setDynamicProperty("dragonmounts2:guide_book_open", false);
 			itemUtilities.restoreGuideBookMode(entity);
 		}
 		return;

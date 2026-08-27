@@ -13,10 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:dragonarmor.gold.name"
       },
-      "minecraft:enchantable": {
-        "value": 16,
-        "slot": "armor_torso"
-      },
       "minecraft:icon": {
         "textures": {
           "default": "dragonmounts2:dragonarmor_gold",
@@ -32,13 +28,8 @@
           "minecraft:is_armor",
           "minecraft:golden_tier",
           "minecraft:transform_materials",
-          "dragonmounts2:dragonarmors",
-          "minecraft:trimmable_armors"
+          "dragonmounts2:dragonarmors"
         ]
-      },
-      "minecraft:wearable": {
-        "protection": 5,
-        "slot": "slot.armor.body"
       }
     }
   }

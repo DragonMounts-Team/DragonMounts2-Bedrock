@@ -1,5 +1,6 @@
-import { system, world } from "@minecraft/server";
+import { system } from "@minecraft/server";
 import * as dragonUtilities from "./dragon_utilities.js";
+import { consumeFlightQuery } from "./flight_budget.js";
 
 const states = new WeakMap();
 const followStates = new WeakMap();
@@ -14,6 +15,7 @@ const LANDING_SPEED = 0.62;
 const STEERING_RESPONSE = 0.65;
 const LANDING_GLIDE_ANGLE = Math.PI / 3;
 const LANDING_CONFIRM_TICKS = 3;
+const LANDING_SNAP_RADIUS = 1.25;
 const FOLLOW_START_DISTANCE = 14;
 const FOLLOW_LAND_DISTANCE = 10;
 const FOLLOW_STUCK_TICKS = 60;
@@ -31,6 +33,7 @@ function getBlock(dimension, location) {
     location.y < WORLD_MIN_Y ||
     location.y > WORLD_MAX_Y
   ) return null;
+  if (!consumeFlightQuery()) return null;
   try {
     return dimension.getBlock({
       x: Math.floor(location.x),
@@ -63,8 +66,35 @@ function isWaterlogged(block) {
   }
 }
 
+function isLandingSupport(block) {
+  if (!block || isAir(block) || isLiquid(block) || isWaterlogged(block)) return false;
+  try {
+    if (typeof block.isSolid === "boolean") return block.isSolid;
+  } catch {}
+
+  const typeId = block.typeId ?? "";
+  return ![
+    "minecraft:short_grass",
+    "minecraft:grass",
+    "minecraft:tall_grass",
+    "minecraft:fern",
+    "minecraft:large_fern",
+    "minecraft:vine",
+    "minecraft:glow_lichen",
+    "minecraft:dead_bush",
+    "minecraft:fire",
+    "minecraft:soul_fire",
+    "minecraft:snow",
+    "minecraft:powder_snow",
+  ].includes(typeId) &&
+    !typeId.endsWith("_flower") &&
+    !typeId.endsWith("_sapling") &&
+    !typeId.endsWith("_mushroom");
+}
+
 function getLiquidSurfaceY(dimension, location) {
-  for (let y = Math.floor(location.y) - 1; y >= WORLD_MIN_Y; y--) {
+  const minimumScanY = Math.max(WORLD_MIN_Y, Math.floor(location.y) - 48);
+  for (let y = Math.floor(location.y) - 1; y >= minimumScanY; y--) {
     const block = getBlock(dimension, { x: location.x, y, z: location.z });
     if (isLiquid(block) || isWaterlogged(block)) return y + 1;
     if (!isAir(block)) return null;
@@ -121,21 +151,46 @@ function rotateToward(dragon, direction, amount) {
 function isGrounded(dragon) {
   try {
     const standingOn = dragon.getBlockStandingOn?.();
-    if (standingOn) return !isAir(standingOn) &&
-      !isLiquid(standingOn) &&
-      !isWaterlogged(standingOn);
+    if (standingOn) return isLandingSupport(standingOn);
   } catch {
   }
   const location = dragon.location;
-  const support = getBlock(dragon.dimension, {
-    x: location.x,
-    y: location.y - 1,
-    z: location.z,
+  const sampleOffsets = [
+    [0, 0],
+    [0.65, 0],
+    [-0.65, 0],
+    [0, 0.65],
+    [0, -0.65],
+  ];
+  return sampleOffsets.some(([offsetX, offsetZ]) => isLandingSupport(
+    getBlock(dragon.dimension, {
+      x: location.x + offsetX,
+      y: location.y - 1,
+      z: location.z + offsetZ,
+    }),
+  ));
+}
+
+function isLandingPad(dimension, target) {
+  const sampleOffsets = [
+    [0, 0],
+    [0.55, 0.55],
+    [0.55, -0.55],
+    [-0.55, 0.55],
+    [-0.55, -0.55],
+  ];
+  return sampleOffsets.every(([offsetX, offsetZ]) => {
+    const support = getBlock(dimension, {
+      x: target.x + offsetX,
+      y: target.y - 1,
+      z: target.z + offsetZ,
+    });
+    return isLandingSupport(support) && isAir(getBlock(dimension, {
+      x: target.x + offsetX,
+      y: target.y,
+      z: target.z + offsetZ,
+    }));
   });
-  return !!support &&
-    !isAir(support) &&
-    !isLiquid(support) &&
-    !isWaterlogged(support);
 }
 
 function setGroundedState(dragon) {
@@ -143,12 +198,22 @@ function setGroundedState(dragon) {
     dragon.setDynamicProperty("dragonmounts2:autonomous_flight_active", undefined);
     dragon.setDynamicProperty("dragonmounts2:autonomous_roam_flight", undefined);
   } catch {}
+  try { dragon.setProperty("dragonmounts2:movement_state", "grounded"); } catch {}
   try {
     dragon.triggerEvent("minecraft:on_grounded");
   } catch {}
-  try { dragon.setProperty("dragonmounts2:movement_state", "grounded"); } catch {}
+  try {
+    dragon.triggerEvent("minecraft:on_stand");
+  } catch {}
   try { dragon.setProperty("dragonmounts2:mob_state", "standing"); } catch {}
   try { dragon.clearVelocity(); } catch {}
+  system.run(() => {
+    if (!dragon?.isValid) return;
+    if (dragon.getProperty("dragonmounts2:movement_state") !== "grounded") return;
+    try {
+      dragon.triggerEvent("minecraft:on_stand");
+    } catch {}
+  });
 }
 
 function finishFollowLanding(dragon, state) {
@@ -173,6 +238,31 @@ function finishFollowLanding(dragon, state) {
   });
 }
 
+
+function snapToLandingTarget(dragon, target) {
+  if (!target || !dragon?.isValid) return false;
+  const location = dragon.location;
+  const horizontalDistance = Math.hypot(
+    target.x - location.x,
+    target.z - location.z,
+  );
+  if (
+    horizontalDistance > LANDING_SNAP_RADIUS ||
+    location.y < target.y - 0.75 ||
+    location.y > target.y + 1.5 ||
+    !isLandingPad(dragon.dimension, target)
+  ) return false;
+  try {
+    dragon.teleport(
+      { x: target.x, y: target.y, z: target.z },
+      { dimension: dragon.dimension },
+    );
+    dragon.clearVelocity();
+    return true;
+  } catch {
+    return false;
+  }
+}
 function synchronizeMovementState(dragon) {
   const movementState = dragon.getProperty("dragonmounts2:movement_state");
   const nextState = dragon.isInWater === true
@@ -208,6 +298,10 @@ function updateFollowLanding(dragon, state) {
   const target = state.landingTarget;
   state.landingTarget = target;
   const location = dragon.location;
+  if (snapToLandingTarget(dragon, target)) {
+    finishFollowLanding(dragon, state);
+    return;
+  }
   if (target) {
     const horizontalDistance = Math.hypot(
       target.x - location.x,
@@ -215,13 +309,16 @@ function updateFollowLanding(dragon, state) {
     );
     const glideHeight = horizontalDistance > 3
       ? Math.min(18, Math.max(2, horizontalDistance * Math.tan(LANDING_GLIDE_ANGLE)))
-      : Math.max(0.2, horizontalDistance * 0.3);
-    steer(dragon, {
+      : 0;
+    steerLanding(dragon, {
       ...target,
-      y: Math.min(target.y + glideHeight, location.y),
-    }, LANDING_SPEED, true);
+      y: Math.min(
+        target.y + glideHeight - (horizontalDistance < 2 ? 0.35 : 0),
+        location.y,
+      ),
+    }, LANDING_SPEED);
   } else {
-    steer(dragon, { x: location.x, y: location.y - 8, z: location.z }, LANDING_SPEED, true);
+    steerLanding(dragon, { x: location.x, y: location.y - 8, z: location.z }, LANDING_SPEED);
   }
 
   const horizontalDistance = target
@@ -253,9 +350,15 @@ function findFlightTarget(dragon, previousTarget = null) {
   const rotation = dragon.getRotation?.() ?? { y: 0 };
   const yaw = (rotation.y * Math.PI) / 180;
   const forward = { x: -Math.sin(yaw), z: Math.cos(yaw) };
-  for (let attempt = 0; attempt < 12; attempt++) {
-    const angle = yaw + (Math.random() - 0.5) * 2.4;
-    const distance = 20 + Math.random() * 32;
+  const candidateAngles = [-0.85, -0.45, 0, 0.45, 0.85, Math.PI];
+  const candidateDistances = [24, 32, 40, 48];
+  let bestTarget = null;
+  let bestScore = -Infinity;
+  for (const angleOffset of candidateAngles) {
+    for (const distance of candidateDistances) {
+      const angle = yaw + angleOffset;
+      const forwardAlignment = Math.cos(angleOffset);
+      if (forwardAlignment < -0.5 && bestTarget) continue;
     const target = {
       x: origin.x - Math.sin(angle) * distance,
       y: Math.max(WORLD_MIN_Y + 8, Math.min(WORLD_MAX_Y - 8, origin.y)),
@@ -264,18 +367,22 @@ function findFlightTarget(dragon, previousTarget = null) {
     if (
       isNewFlightTarget(target, previousTarget) &&
       isClearPath(dragon.dimension, origin, target)
-    ) return target;
-    const fallback = {
-      x: origin.x + forward.x * 18,
-      y: origin.y,
-      z: origin.z + forward.z * 18,
-    };
-    if (
-      isNewFlightTarget(fallback, previousTarget) &&
-      isClearPath(dragon.dimension, origin, fallback)
-    ) return fallback;
+      ) {
+        const score = distance * 2 + forwardAlignment * 24;
+        if (score > bestScore) {
+          bestTarget = target;
+          bestScore = score;
+        }
+      }
+    }
   }
-  return null;
+  if (bestTarget) return bestTarget;
+  const fallback = {
+    x: origin.x + forward.x * 18,
+    y: origin.y,
+    z: origin.z + forward.z * 18,
+  };
+  return isNewFlightTarget(fallback, previousTarget) ? fallback : null;
 }
 
 function getEmergencyFlightTarget(dragon, previousTarget = null) {
@@ -304,32 +411,34 @@ function getNextFlightTarget(dragon, previousTarget = null) {
 
 function findLandingTarget(dragon, maxRadius = LANDING_SEARCH_RADIUS) {
   const origin = dragon.location;
-  const searchRadii = [0];
-  for (let radius = 4; radius <= maxRadius; radius += 4) {
-    searchRadii.push(radius);
-  }
-  for (const radius of searchRadii) {
-    for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 4) {
-      const x = origin.x + Math.cos(angle) * radius;
-      const z = origin.z + Math.sin(angle) * radius;
-      const minimumY = Math.max(WORLD_MIN_Y, Math.floor(origin.y) - LANDING_SEARCH_DEPTH);
+  const originX = Math.floor(origin.x);
+  const originZ = Math.floor(origin.z);
+  const minimumY = Math.max(WORLD_MIN_Y, Math.floor(origin.y) - LANDING_SEARCH_DEPTH);
+  let bestTarget = null;
+  let bestDistance = Infinity;
+  let blockChecks = 0;
+  const maxBlockChecks = 350;
+  search:
+  for (let offsetX = -maxRadius; offsetX <= maxRadius; offsetX += 2) {
+    for (let offsetZ = -maxRadius; offsetZ <= maxRadius; offsetZ += 2) {
+      const x = originX + offsetX;
+      const z = originZ + offsetZ;
+      const horizontalDistance = Math.hypot(x + 0.5 - origin.x, z + 0.5 - origin.z);
+      if (horizontalDistance > maxRadius || horizontalDistance >= bestDistance) continue;
       for (let y = Math.floor(origin.y); y >= minimumY; y--) {
+        if (blockChecks++ >= maxBlockChecks) break search;
         const ground = getBlock(dragon.dimension, { x, y, z });
-        const target = { x: Math.floor(x) + 0.5, y: y + 1, z: Math.floor(z) + 0.5 };
-        if (!ground || (!isAir(ground) && !isLiquid(ground) && !isWaterlogged(ground))) {
-          if (
-            ground &&
-            !isAir(ground) &&
-            !isLiquid(ground) &&
-            !isWaterlogged(ground) &&
-            isOpen(dragon.dimension, target)
-          ) return target;
+        if (!ground) continue;
+        const target = { x: x + 0.5, y: y + 1, z: z + 0.5 };
+        if (isLandingSupport(ground) && isLandingPad(dragon.dimension, target)) {
+          bestTarget = target;
+          bestDistance = horizontalDistance;
           break;
         }
       }
     }
   }
-  return null;
+  return bestTarget;
 }
 
 function findNearestLandingTarget(dragon) {
@@ -355,7 +464,7 @@ function updateAutonomousFollowFlight(dragon) {
   const tameable = dragon.getComponent("minecraft:tameable");
   const owner = tameable?.tamedToPlayer?.isValid
     ? tameable.tamedToPlayer
-    : world.getAllPlayers().find((player) => player.id === ownerId);
+    : dragonUtilities.getPlayerById(ownerId);
   if (!state) {
     if (!owner?.isValid) return;
     const distance = dragonUtilities.distanceBetween(owner.location, dragon.location);
@@ -444,18 +553,41 @@ function steer(dragon, target, speed, flying) {
     z: (direction.z / distance) * approachSpeed,
   };
   try {
-    const blendedVelocity = dragonUtilities.blendVelocity(
-      velocity,
-      desired,
-      STEERING_RESPONSE,
-    );
-    dragon.clearVelocity();
-    dragon.applyImpulse(blendedVelocity);
+    dragonUtilities.applyFlightMotion(dragon, desired, STEERING_RESPONSE);
     rotateToward(
       dragon,
-      flying ? blendedVelocity : direction,
+      flying ? desired : direction,
       flying ? 0.18 : 0.12,
     );
+  } catch {}
+  return distance;
+}
+
+function steerLanding(dragon, target, speed) {
+  const location = dragon.location;
+  const direction = {
+    x: target.x - location.x,
+    y: target.y - location.y,
+    z: target.z - location.z,
+  };
+  const horizontalDistance = Math.hypot(direction.x, direction.z);
+  const distance = Math.max(Math.hypot(direction.x, direction.y, direction.z), 0.001);
+  const velocity = getVelocity(dragon);
+  const horizontalSpeed = horizontalDistance < 2
+    ? Math.min(speed * 0.35, Math.max(0.025, horizontalDistance * 0.12))
+    : Math.min(speed, Math.max(0.08, horizontalDistance * 0.16));
+  const descentSpeed = direction.y < 0
+    ? -Math.min(0.7, Math.max(0.08, Math.abs(direction.y) * 0.2))
+    : 0;
+  const desired = {
+    x: horizontalDistance > 0.01 ? (direction.x / horizontalDistance) * horizontalSpeed : 0,
+    y: descentSpeed,
+    z: horizontalDistance > 0.01 ? (direction.z / horizontalDistance) * horizontalSpeed : 0,
+  };
+  try {
+    if (direction.y < -0.05) desired.y = Math.min(desired.y, -0.25);
+    dragonUtilities.applyFlightMotion(dragon, desired, 0.35);
+    rotateToward(dragon, distance > 0.01 ? direction : { x: 0, y: -1, z: 0 }, 0.2);
   } catch {}
   return distance;
 }
@@ -494,6 +626,7 @@ function finishFlight(dragon, state) {
     state.lastFlightLocation = null;
     state.flightStuckTicks = 0;
     state.flightAwayTicks = 0;
+    state.nextFlightTick = system.currentTick + 300 + Math.random() * 500;
     return;
   }
   if (state.targetKind === "landing") return;
@@ -527,6 +660,7 @@ function clearAutonomousFlightState(dragon, state) {
 
 export function updateDragonAI(dragon) {
   if (!dragon?.isValid) return;
+  if (dragon.getComponent("rideable")?.getRiders?.().length > 0) return;
   if (dragon.getProperty("dragonmounts2:v_flight_enabled") === true) return;
   if (dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") === true) return;
   if (followStates.get(dragon)?.active === true) {
@@ -603,6 +737,13 @@ export function updateDragonAI(dragon) {
     return;
   }
   if (currentMovementState === "flying") {
+    if (
+      dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") === true &&
+      isGrounded(dragon)
+    ) {
+      finishFlight(dragon, state);
+      return;
+    }
     if (dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") !== true) {
       if (!startFlight(dragon, state)) return;
     }
@@ -680,29 +821,18 @@ export function updateDragonAI(dragon) {
         );
         const glideHeight = horizontalDistance > 3
           ? Math.min(18, Math.max(2, horizontalDistance * Math.tan(LANDING_GLIDE_ANGLE)))
-          : Math.max(0.2, horizontalDistance * 0.3);
+          : 0;
         steeringTarget = {
           ...state.target,
-          y: Math.min(state.target.y + glideHeight, dragon.location.y),
+          y: Math.min(
+            state.target.y + glideHeight - (horizontalDistance < 2 ? 0.35 : 0),
+            dragon.location.y,
+          ),
         };
       }
-      const distance = steer(
-        dragon,
-        steeringTarget,
-        state.targetKind === "landing" ? LANDING_SPEED : FLIGHT_SPEED,
-        true,
-      );
-      if (state.targetKind === "landing" && !isGrounded(dragon)) {
-        const horizontalDistance = Math.hypot(
-          state.target.x - dragon.location.x,
-          state.target.z - dragon.location.z,
-        );
-        if (horizontalDistance < 4) {
-          try {
-            dragon.applyImpulse({ x: 0, y: -0.08, z: 0 });
-          } catch {}
-        }
-      }
+      const distance = state.targetKind === "landing"
+        ? steerLanding(dragon, steeringTarget, LANDING_SPEED)
+        : steer(dragon, steeringTarget, FLIGHT_SPEED, true);
       if (state.targetKind === "flight" && distance < FLIGHT_WAYPOINT_ARRIVAL) {
         state.target = findNearestLandingTarget(dragon);
         state.targetKind = state.target ? "landing" : "flight";
@@ -710,6 +840,10 @@ export function updateDragonAI(dragon) {
         state.lastFlightRouteTick = system.currentTick;
       }
       if (state.targetKind === "landing") {
+        if (snapToLandingTarget(dragon, state.target)) {
+          finishFlight(dragon, state);
+          return;
+        }
         const landingHorizontalDistance = Math.hypot(
           state.target.x - dragon.location.x,
           state.target.z - dragon.location.z,
@@ -724,9 +858,6 @@ export function updateDragonAI(dragon) {
         }
         if (state.landingTicks >= LANDING_CONFIRM_TICKS) {
           finishFlight(dragon, state);
-        } else if (!isGrounded(dragon) && distance < 2.5) {
-          state.target = null;
-          state.landingTicks = 0;
         }
       }
     }

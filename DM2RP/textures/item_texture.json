@@ -58,6 +58,7 @@
 "dragonmounts2:dragon_scepter_inactive":{"textures":"textures/items/dragonmounts2_equipment/dragon_scepter_inactive"},
 "dragonmounts2:cooked_dragon_meat":{"textures":"textures/items/dragonmounts2_items/meats/cooked_dragon_meat"},
 "dragonmounts2:raw_dragon_meat":{"textures":"textures/items/dragonmounts2_items/meats/raw_dragon_meat"},
+"dragonmounts2:dragon_scale_upgrade_smithing_template":{"textures":"textures/items/dragonmounts2_items/dragon_scale_upgrade_smithing_template"},
 
 // ===== Trim Icons =====
 

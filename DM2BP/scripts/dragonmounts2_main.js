@@ -4,3 +4,4 @@ import "./modules/item_modules.js";
 import "./modules/world_modules.js";
 import "./modules/player_modules.js";
 import "./modules/command_modules.js";
+import "./modules/settings_modules.js";

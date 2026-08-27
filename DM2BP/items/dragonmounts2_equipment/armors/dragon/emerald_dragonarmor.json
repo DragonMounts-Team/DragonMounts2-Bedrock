@@ -27,13 +27,8 @@
           "minecraft:is_armor",
           "minecraft:emerald_tier",
           "minecraft:transform_materials",
-          "dragonmounts2:dragonarmors",
-          "minecraft:trimmable_armors"
+          "dragonmounts2:dragonarmors"
         ]
-      },
-      "minecraft:wearable": {
-        "protection": 15,
-        "slot": "slot.armor.body"
       }
     }
   }

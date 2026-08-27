@@ -1,19 +1,13 @@
 {
-  "format_version": "1.26.10",
-  "minecraft:recipe_shaped": {
+  "format_version": "1.26.0",
+  "minecraft:recipe_smithing_transform": {
     "description": {
       "identifier": "dragonmounts2:netherite_dragon_flute"
     },
-    "unlock": [
-      { "item": "minecraft:netherite_ingot" }
-    ],
-    "tags": [ "crafting_table" ],
-    "pattern": [ " A", "AB" ],
-    "priority": -1,
-    "key": {
-      "A": { "item": "minecraft:netherite_ingot" },
-      "B": { "item": "minecraft:string" }
-    },
-    "result": { "item": "dragonmounts2:netherite_dragon_flute", "count": 1 }
+    "tags": [ "smithing_table" ],
+    "template": "minecraft:netherite_upgrade_smithing_template",
+    "base": "dragonmounts2:diamond_dragon_flute",
+    "addition": "minecraft:netherite_ingot",
+    "result": "dragonmounts2:netherite_dragon_flute"
   }
 }

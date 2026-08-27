@@ -39,6 +39,7 @@ item.dragonmounts2:dragon_scepter.name=Dragon Scepter
 item.dragonmounts2:guide_book.name=Guide Book
 item.dragonmounts2:netherite_shears.name=Netherite Shears
 item.dragonmounts2:raw_dragon_meat.name=Raw Dragon Meat
+item.dragonmounts2:dragon_scale_upgrade_smithing_template.name=Dragon Scale Upgrade
 item.dragonmounts2:variation_orb.name=Variation Orb
 
 // ==== Dragon Armor ====
@@ -2002,3 +2003,4 @@ dragonmounts2:guide_book.text.page_4_1=Baby dragons need extra care and attentio
 dragonmounts2:guide_book.text.page_5_1=Recipes offer the tools, gear, and crafting options you need for progression.~LINEBREAK~~LINEBREAK~Use them to build armor, weapons, flutes, and other useful items.
 dragonmounts2:guide_book.text.page_6_1=The settings and preferences in this add-on help you tailor the experience.~LINEBREAK~~LINEBREAK~Adjust the options to match how you like to play.
 
+tile.dragonmounts2:dragon_scale_upgrade_smithing_template=Smithing Template\n\nApplies to:\n Diamond Equipment\nIngredients:\n Dragon Scales

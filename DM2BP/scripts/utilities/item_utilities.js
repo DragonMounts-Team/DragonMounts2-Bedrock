@@ -2,19 +2,29 @@ import { world, system, ItemStack, Player, EquipmentSlot, EntityEquippableCompon
 import { CustomForm } from "@minecraft/server-ui";
 import * as entityData from "../data/entity_data.js";
 import * as itemData from "../data/item_data.js";
-import * as dragonUtilities from "./dragon_utilities.js";
+import * as dragonUtilities from "./flight/dragon_utilities.js";
+import { getSoundOptions } from "../data/settings.js";
 
 export function restoreGuideBookMode(player) {
 	if (!(player instanceof Player) || !player.isValid) return;
 
-	if (player.getGameMode() === GameMode.spectator) {
+	const originalMode = player.getDynamicProperty("dragonmounts2:guide_book_original_mode");
+	if (originalMode === "creative" && player.getGameMode() === GameMode.spectator) {
 		player.setGameMode(GameMode.creative);
 	}
+	player.setDynamicProperty("dragonmounts2:guide_book_original_mode", undefined);
+	player.setDynamicProperty("dragonmounts2:guide_book_open", false);
 }
 
 export function guideBookUse(itemStack, source, params) {
 	if (!(source instanceof Player) || !source.isValid) return;
 
+	const existingBookId = source.getDynamicProperty("dragonmounts2:guide_book_entity_id");
+	if (existingBookId && source.getDynamicProperty("dragonmounts2:guide_book_open") === true) return;
+
+	if (source.getGameMode() === GameMode.creative) {
+		source.setDynamicProperty("dragonmounts2:guide_book_original_mode", "creative");
+	}
 	const bookEntity = source.dimension.spawnEntity("dragonmounts2:guide_book", source.location);
 	if (!bookEntity?.isValid) return;
 
@@ -84,7 +94,7 @@ function toggleNearbyVFlight(source, rule) {
 	if (currentlyEnabled) {
 		dragonUtilities.disableVFlight(dragon, "manual");
 		source.onScreenDisplay.setActionBar({rawtext:[{text:"§e"},{translate:`${rule.translates.vflight_disabled}`},{text:` ${dragonName}`}]});
-		source.dimension.playSound("random.break", source.location);
+		source.dimension.playSound("random.break", source.location, getSoundOptions());
 		return;
 	}
 
@@ -95,7 +105,7 @@ function toggleNearbyVFlight(source, rule) {
 	}
 
 	source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.vflight_enabled}`},{text:` ${dragonName}`}]});
-	source.dimension.playSound("random.levelup", source.location);
+	source.dimension.playSound("random.levelup", source.location, getSoundOptions());
 }
 
 export function dragonScepterCompleteUse(itemStack, source, params) {
@@ -103,27 +113,19 @@ export function dragonScepterCompleteUse(itemStack, source, params) {
 	
 	if (params.sounds?.spell) {
 		system.run(() => {
-			source.dimension.playSound(params.sounds.spell, source.location);
+			source.dimension.playSound(params.sounds.spell, source.location, getSoundOptions());
 		});
 	}
 	
 	const boundDragons = getOwnedBoundScepterDragons(source, itemStack, params);
-	if (source.isSneaking) {
+	if (getRidingDragon(source, params)) {
 		if (boundDragons.length) {
-			return toggleBoundScepterVFlight(source, itemStack, params);
+			return showDragonScepterUI(source, itemStack, params);
 		}
-		return source.onScreenDisplay.setActionBar({rawtext:[{text:"§c"},{translate:`${params.translates.not_bound}`}]});
+		return source.onScreenDisplay.setActionBar({rawtext:[{text:"§c"},{translate:`${params.translates.not_bound}`} ]});
 	}
-	
-	if (!getRidingDragon(source, params)) {
-		return source.onScreenDisplay.setActionBar({rawtext:[{text:"§c"},{translate:`${params.translates.must_be_riding}`}]});
-	}
-	
-	if (boundDragons.length) {
-		return showDragonScepterUI(source, itemStack, params);
-	}
-	
-	return source.onScreenDisplay.setActionBar({rawtext:[{text:"§c"},{translate:`${params.translates.not_bound}`}]});
+
+	return changeDragonVariant(source, params);
 }
 
 function getRidingDragon(source, rule) {
@@ -134,48 +136,58 @@ function getRidingDragon(source, rule) {
 	return mountedDragon;
 }
 
+function changeDragonVariant(source, rule) {
+	const results = source.getEntitiesFromViewDirection({
+		maxDistance: rule.max_distance ?? 32,
+		ignoreBlockCollision: false,
+		includePassableBlocks: false,
+		families: ["dragonmounts2"],
+	});
+	const dragon = results?.[0]?.entity;
+	if (!dragon?.isValid || !rule.dragon_types?.includes(dragon.typeId)) {
+		return source.onScreenDisplay.setActionBar({
+			rawtext: [{ text: "§c" }, { translate: `${rule.translates.selected_mobs}` }],
+		});
+	}
+
+	const tameable = dragon.getComponent("minecraft:tameable");
+	const dragonName = dragon.nameTag?.trim() || "Unnamed";
+	if (!tameable) {
+		return source.onScreenDisplay.setActionBar({
+			rawtext: [{ text: "§c" }, { translate: "tooltip.dragonmounts2:dragon_scepter.untameable", with: [dragonName] }],
+		});
+	}
+	if (!tameable.isTamed) {
+		return source.onScreenDisplay.setActionBar({
+			rawtext: [{ text: "§c" }, { translate: "tooltip.dragonmounts2:dragon_scepter.untamed", with: [dragonName] }],
+		});
+	}
+	if (tameable.tamedToPlayerId !== source.id) {
+		return source.onScreenDisplay.setActionBar({
+			rawtext: [{ text: "§c" }, { translate: `${rule.translates.not_owned}`, with: [dragonName] }],
+		});
+	}
+
+	const denyVariant = entityData.dragonVariantDenyTypes[dragon.typeId];
+	if (denyVariant && dragon.getProperty("dragonmounts2:variant_type") === denyVariant) {
+		return source.onScreenDisplay.setActionBar({
+			rawtext: [{ text: "§c" }, { translate: "tooltip.dragonmounts2:dragon_scepter.variant_unchangeable", with: [dragonName] }],
+		});
+	}
+
+	dragon.triggerEvent("minecraft:on_variant");
+	itemToolDamage(source.getComponent(EntityEquippableComponent.componentId)
+		.getEquipmentSlot(EquipmentSlot.Mainhand).getItem(), source);
+	return source.onScreenDisplay.setActionBar({
+		rawtext: [{ translate: "tooltip.dragonmounts2:dragon_scepter.variant_changed", with: [dragonName] }],
+	});
+}
+
 export function dragonScepterUse(itemStack, source, params) {
 	if (params.sounds?.cast) {
 		system.run(() => {
-			source.dimension.playSound(params.sounds.cast, source.location);
+			source.dimension.playSound(params.sounds.cast, source.location, getSoundOptions());
 		});
-	}
-}
-
-function toggleBoundScepterVFlight(source, itemStack, rule) {
-	const boundDragons = getOwnedBoundScepterDragons(source, itemStack, rule);
-	if (!boundDragons.length) {
-		return source.onScreenDisplay.setActionBar({rawtext:[{text:"§c"},{translate:`${rule.translates.not_bound}`}]});
-	}
-
-	const activeBoundDragons = boundDragons.filter(dragon => dragon.getProperty("dragonmounts2:v_flight_enabled") === true);
-	if (activeBoundDragons.length) {
-		for (const dragon of activeBoundDragons) {
-			let dragonName = dragon.nameTag;
-			if (!dragonName || dragonName.trim() === "") dragonName = "Unnamed";
-			dragonUtilities.disableVFlight(dragon, "manual");
-			source.onScreenDisplay.setActionBar({rawtext:[{text:"§e"},{translate:`${rule.translates.vflight_disabled}`},{text:` ${dragonName}`}]});
-		}
-		source.dimension.playSound("random.break", source.location);
-		return;
-	}
-
-	let enabled = 0;
-	const controllerDragon = source.getComponent("minecraft:riding")?.entityRidingOn;
-	for (const dragon of boundDragons) {
-		let dragonName = dragon.nameTag;
-		if (!dragonName || dragonName.trim() === "") dragonName = "Unnamed";
-
-		const started = dragonUtilities.startVFlight(dragon, source.id, source.dimension, controllerDragon);
-		if (started) {
-			enabled++;
-			source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.vflight_enabled}`},{text:` ${dragonName}`}]});
-			source.dimension.playSound("random.levelup", source.location);
-		}
-	}
-
-	if (enabled === 0) {
-		return source.onScreenDisplay.setActionBar({rawtext:[{text:"§c"},{translate:`${rule.translates.vflight_no_target}`}]});
 	}
 }
 
@@ -215,12 +227,12 @@ export function dragonScepterHitEntity(attackingEntity, hitEntity, itemStack, pa
 		if (boundDragonIds.includes(pid)) {
 			unbindDragonScepter(attackingEntity, hitEntity, itemStack, pid, rule);
 			attackingEntity.onScreenDisplay.setActionBar({rawtext:[{text:"§e"},{translate:`${rule.translates.unbound}`}]});
-			attackingEntity.dimension.playSound("random.break", attackingEntity.location);
+			attackingEntity.dimension.playSound("random.break", attackingEntity.location, getSoundOptions());
 		} else {
 			const bound = bindDragonScepter(attackingEntity, hitEntity, itemStack, pid, rule);
 			if (bound) {
 				attackingEntity.onScreenDisplay.setActionBar({rawtext:[{text:"§e"},{translate:`${rule.translates.bound}`}]});
-				attackingEntity.dimension.playSound("random.levelup", attackingEntity.location);
+				attackingEntity.dimension.playSound("random.levelup", attackingEntity.location, getSoundOptions());
 			}
 		}
 	});
@@ -381,7 +393,7 @@ function showDragonScepterUI(source, itemStack, rule) {
 						dragonUtilities.disableVFlight(activeDragon, "manual");
 						source.onScreenDisplay.setActionBar({rawtext:[{text:"§e"},{translate:`${rule.translates.vflight_disabled}`},{text:` ${activeDragonName}`}]});
 					}
-					source.dimension.playSound("random.break", source.location);
+					source.dimension.playSound("random.break", source.location, getSoundOptions());
 					return;
 				}
 				let enabled = 0;
@@ -392,7 +404,7 @@ function showDragonScepterUI(source, itemStack, rule) {
 					if (started) {
 						enabled++;
 						source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.vflight_enabled}`},{text:` ${activeDragonName}`}]});
-						source.dimension.playSound("random.levelup", source.location);
+						source.dimension.playSound("random.levelup", source.location, getSoundOptions());
 					}
 				}
 				if (enabled === 0) {
@@ -425,7 +437,7 @@ export function itemToolDamage(itemStack, player) {
 	
 	if (durability.damage >= durability.maxDurability) {
 		mainhand.setItem(undefined);
-		player.playSound("random.break");
+		player.playSound("random.break", getSoundOptions());
 	} else {
 		durability.damage++;
 		mainhand.setItem(itemStack);
@@ -474,11 +486,11 @@ export function dragonFluteHitEntity(attackingEntity, hitEntity, itemStack, para
 		if (binding?.ownerIdentifier === attackingEntity.id && binding.dragonIdentifier === pid) {
 			unbindDragonFlute(attackingEntity, hitEntity, itemStack, rule);
 			attackingEntity.onScreenDisplay.setActionBar({rawtext:[{text:"§e"},{translate:`${rule.translates.unbound}`}]});
-			attackingEntity.dimension.playSound("random.break", attackingEntity.location);
+			attackingEntity.dimension.playSound("random.break", attackingEntity.location, getSoundOptions());
 		} else {
 			bindDragonFlute(attackingEntity, hitEntity, itemStack, rule, pid);
 			attackingEntity.onScreenDisplay.setActionBar({rawtext:[{text:"§e"},{translate:`${rule.translates.bound}`}]});
-			attackingEntity.dimension.playSound("random.levelup", attackingEntity.location);
+			attackingEntity.dimension.playSound("random.levelup", attackingEntity.location, getSoundOptions());
 		}
 	});
 }
@@ -651,7 +663,7 @@ function showDragonFluteUI(source, itemStack, rule) {
 				dragon.teleport(teleportPos, { dimension: source.dimension });
 				dragonUtilities.normalizeDragonAfterTeleport(dragon);
 				source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.came}`}]});
-				source.dimension.playSound(rule.sounds.long, source.location);
+				source.dimension.playSound(rule.sounds.long, source.location, getSoundOptions());
 			});
 		})
 		.button(dragonMobState=="standing" ? {translate:`${rule.translates.sit}`} : {translate:`${rule.translates.stand}`}, () => {
@@ -664,7 +676,7 @@ function showDragonFluteUI(source, itemStack, rule) {
 					source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.standing}`}]});
 					dragon.triggerEvent("minecraft:on_stand");
 				}
-				source.dimension.playSound(rule.sounds.short, source.location);
+				source.dimension.playSound(rule.sounds.short, source.location, getSoundOptions());
 			});
 		})
 		.button(dragonIsFollowing==false ? {translate:`${rule.translates.follow}`} : {translate:`${rule.translates.wander}`}, () => {
@@ -678,7 +690,7 @@ function showDragonFluteUI(source, itemStack, rule) {
 					source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.wandering}`}]});
 					dragon.triggerEvent("minecraft:on_wander");
 				}
-				source.dimension.playSound(rule.sounds.short, source.location);
+				source.dimension.playSound(rule.sounds.short, source.location, getSoundOptions());
 			});
 		})
 		.button(dragonIsLocked==false ? {translate:`${rule.translates.lock}`} : {translate:`${rule.translates.unlock}`}, () => {
@@ -691,7 +703,7 @@ function showDragonFluteUI(source, itemStack, rule) {
 					source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.unlocked}`}]});
 					dragon.triggerEvent("minecraft:on_unlock");
 				}
-				source.dimension.playSound(rule.sounds.long, source.location);
+				source.dimension.playSound(rule.sounds.long, source.location, getSoundOptions());
 			});
 		})
 		.button(dragonHasCollar==false ? {translate:`${rule.translates.collar}`} : {translate:`${rule.translates.no_collar}`}, () => {
@@ -704,7 +716,7 @@ function showDragonFluteUI(source, itemStack, rule) {
 					source.onScreenDisplay.setActionBar({rawtext:[{text:"§a"},{translate:`${rule.translates.off_collar}`}]});
 					dragon.triggerEvent("minecraft:on_no_collar");
 				}
-				source.dimension.playSound(rule.sounds.short, source.location);
+				source.dimension.playSound(rule.sounds.short, source.location, getSoundOptions());
 			});
 		});
 
@@ -813,7 +825,7 @@ export function dragonAmuletHitEntity(attackingEntity, hitEntity, itemStack, par
 		world.afterEvents.entityHitEntity.unsubscribe(captureSound);
 		
 		if (rule.sounds?.capture) {
-			attackingEntity.dimension.playSound(rule.sounds.capture, attackingEntity.location);
+			attackingEntity.dimension.playSound(rule.sounds.capture, attackingEntity.location, getSoundOptions());
 		}
 	});
 	
@@ -861,7 +873,7 @@ export function dragonAmuletUseOn(source, block, blockFace, itemStack, params) {
 	
 	system.run(() => {
 		if (rule.sounds?.release) {
-			source.dimension.playSound(rule.sounds.release, releaseLocation);
+			source.dimension.playSound(rule.sounds.release, releaseLocation, getSoundOptions());
 		}
 		
 		source.runCommand(`structure load "${data.dragonIdentifier}" ${x} ${y} ${z}`);
@@ -919,7 +931,7 @@ export function reduceDurability(player, item, damage) {
         const random = Math.random() * 100;
         if (random >= 100 - chance) {
             if (durComp.damage + damage > durComp.maxDurability) {
-                player.dimension.playSound("random.break", player.location);
+				player.dimension.playSound("random.break", player.location, getSoundOptions());
                 return undefined;
             } else {
                 durComp.damage += damage;
@@ -929,7 +941,7 @@ export function reduceDurability(player, item, damage) {
         return item;
     }
     if (durComp.damage + damage > durComp.maxDurability) {
-        player.dimension.playSound("random.break", player.location);
+		player.dimension.playSound("random.break", player.location, getSoundOptions());
         return undefined;
     } else {
         durComp.damage += damage;

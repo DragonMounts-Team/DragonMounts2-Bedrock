@@ -68,46 +68,6 @@
 					}
 				]
 			},
-			"minecraft:mob_effect_immunity": {
-				"mob_effects": [
-					"absorption",
-					"bad_omen",
-					"blindness",
-					"conduit_power",
-					"darkness",
-					"fatal_poison",
-					"fire_resistance",
-					"haste",
-					"health_boost",
-					"hunger",
-					"infested",
-					"instant_damage",
-					"instant_health",
-					"invisibility",
-					"jump_boost",
-					"levitation",
-					"mining_fatigue",
-					"nausea",
-					"night_vision",
-					"oozing",
-					"poison",
-					"raid_omen",
-					"regeneration",
-					"resistance",
-					"saturation",
-					"slow_falling",
-					"slowness",
-					"speed",
-					"strength",
-					"trial_omen",
-					"village_hero",
-					"water_breathing",
-					"weakness",
-					"weaving",
-					"wind_charged",
-					"wither"
-				]
-			},
 			"minecraft:environment_sensor": {
 				"triggers": [
 					{
@@ -115,7 +75,7 @@
 						"filters": {
 							"test": "distance_to_nearest_player",
 							"operator": ">",
-							"value": 5
+							"value": 32
 						}
 					}
 				]

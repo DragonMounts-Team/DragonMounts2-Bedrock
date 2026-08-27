@@ -104,7 +104,7 @@
 						},
 						"commands": [
 							"/playsound next_page @initiator",
-							"/dialogue open @s @initiator dragonmounts2:page_6_1"
+							"/execute as @initiator run scriptevent dragonmounts2:open_settings"
 						]
 					}
 				]
@@ -3090,7 +3090,7 @@
 						},
 						"commands": [
 							"/playsound next_page @initiator",
-							"/dialogue open @s @initiator dragonmounts2:page_6_4"
+							"/dialogue open @s @initiator dragonmounts2:page_6_5"
 						]
 					},
 					{
@@ -3171,7 +3171,7 @@
 						},
 						"commands": [
 							"/playsound next_page @initiator",
-							"/dialogue open @s @initiator dragonmounts2:page_6_4"
+							"/execute as @initiator run scriptevent dragonmounts2:open_settings"
 						]
 					},
 					{
