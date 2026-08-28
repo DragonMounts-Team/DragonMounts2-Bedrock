@@ -357,15 +357,6 @@
           },
           {
             "group_identifier": {
-              "icon": "dragonmounts2:dragon_amulet",
-              "name": "dragonmounts2:itemGroup.name.dragon_amulets"
-            },
-            "items": [
-              "dragonmounts2:dragon_amulet"
-            ]
-          },
-          {
-            "group_identifier": {
               "icon": "dragonmounts2:wooden_dragon_flute",
               "name": "dragonmounts2:itemGroup.name.dragon_flutes"
             },
@@ -458,6 +449,15 @@
             },
             "items": [
               "dragonmounts2:music_disc_end_trance"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "minecraft:netherite_upgrade_smithing_template",
+              "name": "minecraft:itemGroup.name.smithing_templates"
+            },
+            "items": [
+              "dragonmounts2:dragon_scale_upgrade_smithing_template"
             ]
           }
         ]

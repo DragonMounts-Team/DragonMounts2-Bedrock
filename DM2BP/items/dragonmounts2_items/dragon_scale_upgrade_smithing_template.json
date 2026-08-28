@@ -5,6 +5,7 @@
       "identifier": "dragonmounts2:dragon_scale_upgrade_smithing_template",
       "menu_category": {
         "category": "items",
+        "group": "minecraft:itemGroup.name.smithing_templates",
         "is_hidden_in_commands": false
       }
     },

@@ -43,7 +43,9 @@ export function toggleFlightDebug(player) {
   if (!player?.isValid) return false;
   if (flightDebugPlayers.has(player.id)) {
     flightDebugPlayers.delete(player.id);
-    player.onScreenDisplay.setActionBar({ rawtext: [{ text: "Flight speed debug: off" }] });
+    player.onScreenDisplay.setActionBar({
+      rawtext: [{ text: "Flight speed debug: off" }],
+    });
     return false;
   }
   flightDebugPlayers.set(player.id, {
@@ -51,7 +53,9 @@ export function toggleFlightDebug(player) {
     speedTotal: 0,
     sampleCount: 0,
   });
-  player.onScreenDisplay.setActionBar({ rawtext: [{ text: "Flight speed debug: on" }] });
+  player.onScreenDisplay.setActionBar({
+    rawtext: [{ text: "Flight speed debug: on" }],
+  });
   return true;
 }
 
@@ -76,11 +80,12 @@ export function tickFlightDebug() {
       state.sampleCount++;
     }
     if (system.currentTick - state.lastTick < 20) continue;
-    const blocksPerSecond = state.sampleCount > 0
-      ? state.speedTotal / state.sampleCount
-      : 0;
+    const blocksPerSecond =
+      state.sampleCount > 0 ? state.speedTotal / state.sampleCount : 0;
     player.onScreenDisplay.setActionBar({
-      rawtext: [{ text: `Dragon flight speed: ${blocksPerSecond.toFixed(2)} blocks/s` }],
+      rawtext: [
+        { text: `Dragon flight speed: ${blocksPerSecond.toFixed(2)} blocks/s` },
+      ],
     });
     state.lastTick = system.currentTick;
     state.speedTotal = 0;
@@ -105,11 +110,7 @@ export function getSafeVelocity(entity) {
 }
 
 export function distanceBetween(first, second) {
-  return Math.hypot(
-    first.x - second.x,
-    first.y - second.y,
-    first.z - second.z,
-  );
+  return Math.hypot(first.x - second.x, first.y - second.y, first.z - second.z);
 }
 
 export function vectorLength(vector) {
@@ -166,16 +167,22 @@ function applyMountedFlightMovement(dragon, player) {
         z: (forward.z * forwardInput + right.z * strafeInput) / magnitude,
       }
     : { x: 0, z: 0 };
-  const verticalInput = (player.isJumping ? 1 : 0) - (player.isSneaking ? 1 : 0);
-  const verticalSpeed = verticalInput * speed * 0.8 +
+  const verticalInput =
+    (player.isJumping ? 1 : 0) - (player.isSneaking ? 1 : 0);
+  const verticalSpeed =
+    verticalInput * speed * 0.8 +
     (hasHorizontalInput ? view.y * speed * 0.35 : 0);
   const desiredX = direction.x * speed;
   const desiredZ = direction.z * speed;
-  applyFlightMotion(dragon, {
-    x: desiredX,
-    y: verticalSpeed,
-    z: desiredZ,
-  }, 0.45);
+  applyFlightMotion(
+    dragon,
+    {
+      x: desiredX,
+      y: verticalSpeed,
+      z: desiredZ,
+    },
+    0.45,
+  );
 }
 
 export const V_FLIGHT_MAX_FOLLOWERS = 4;
@@ -190,7 +197,6 @@ const V_FLIGHT_CATCHUP_BONUS = 8;
 const V_FLIGHT_MAX_SPEED = 7;
 const V_FLIGHT_ARRIVE_RADIUS = 1.8;
 const V_FLIGHT_HOVER_DEADZONE = 0.9;
-const V_FLIGHT_SNAP_DISTANCE = 22;
 const V_FLIGHT_RECOVERY_DISTANCE = 96;
 const V_FLIGHT_STUCK_TICKS = 40;
 const V_FLIGHT_LINE_GAP = 5.5;
@@ -317,10 +323,7 @@ function trackVFlightProgress(dragon, targetPos) {
   const position = dragon.location;
   const distance = distanceBetween(targetPos, position);
   let state = flightProgressCache.get(dragon);
-  if (
-    !state ||
-      distanceBetween(state.target, targetPos) > 4
-  ) {
+  if (!state || distanceBetween(state.target, targetPos) > 4) {
     state = {
       target: { ...targetPos },
       position: { ...position },
@@ -368,8 +371,8 @@ function resolveVFlightObstacleTarget(
     routeAttempt === 0 &&
     cached &&
     system.currentTick - cached.tick < 6 &&
-      distanceBetween(cached.target, targetPos) < 1.5 &&
-      distanceBetween(cached.from, from) < 4
+    distanceBetween(cached.target, targetPos) < 1.5 &&
+    distanceBetween(cached.from, from) < 4
   ) {
     return cached.result;
   }
@@ -639,13 +642,12 @@ function getOwnerFlightRoster(dimension, ownerIdentifier) {
   if (dimensionCache.owners.has(ownerIdentifier)) {
     return dimensionCache.owners.get(ownerIdentifier);
   }
-  const roster = dimensionCache.dragons
-    .filter(
-      (candidate) =>
-        candidate?.isValid &&
-        candidate.getDynamicProperty("dragonmounts2:owner_identifier") ===
-          ownerIdentifier,
-    );
+  const roster = dimensionCache.dragons.filter(
+    (candidate) =>
+      candidate?.isValid &&
+      candidate.getDynamicProperty("dragonmounts2:owner_identifier") ===
+        ownerIdentifier,
+  );
   dimensionCache.owners.set(ownerIdentifier, roster);
   return roster;
 }
@@ -709,7 +711,8 @@ function isAirborneFlying(dragon) {
 
 function isLiquidBlock(block) {
   if (!block) return false;
-  if (block.typeId.includes("water") || block.typeId.includes("lava")) return true;
+  if (block.typeId.includes("water") || block.typeId.includes("lava"))
+    return true;
   try {
     return (
       block.permutation?.getState("minecraft:waterlogged") === true ||
@@ -773,8 +776,7 @@ function findNearbyLandTarget(dragon, radius = 16, maxDepth = 12) {
   let blockChecks = 0;
   const maxBlockChecks = 350;
 
-  search:
-  for (let step = 0; step <= radius; step += 2) {
+  search: for (let step = 0; step <= radius; step += 2) {
     for (const [dx, dz] of offsets) {
       const x = ox + dx * step;
       const z = oz + dz * step;
@@ -786,11 +788,7 @@ function findNearbyLandTarget(dragon, radius = 16, maxDepth = 12) {
         const above = getSafeBlock(dim, { x, y: y + 1, z });
         const above2 = getSafeBlock(dim, { x, y: y + 2, z });
         if (!block || !above || !above2) continue;
-        if (
-          isLiquidBlock(block) ||
-          !isAirBlock(above) ||
-          !isAirBlock(above2)
-        )
+        if (isLiquidBlock(block) || !isAirBlock(above) || !isAirBlock(above2))
           continue;
 
         const horizontalDist = Math.sqrt(
@@ -862,7 +860,7 @@ export function applyRotation(dragon, rotation) {
   }
   try {
     dragon.teleport(dragon.location, { dimension: dragon.dimension, rotation });
-  } catch (e) {}
+  } catch {}
 }
 
 function recoverDragonToFlightTarget(dragon, target, velocity = null) {
@@ -879,9 +877,7 @@ function recoverDragonToFlightTarget(dragon, target, velocity = null) {
     if (rotation) options.rotation = rotation;
     dragon.teleport(target, options);
     dragon.clearVelocity();
-    const speed = velocity
-      ? Math.min(vectorLength(velocity) + 0.4, 3.5)
-      : 1.2;
+    const speed = velocity ? Math.min(vectorLength(velocity) + 0.4, 3.5) : 1.2;
     const distance = Math.max(vectorLength(direction), 0.001);
     dragon.applyImpulse({
       x: (direction.x / distance) * speed,
@@ -927,7 +923,11 @@ export function activateElytraFollow(dragon, playerId) {
   dragon.setDynamicProperty("dragonmounts2:v_flight_controller_pid", undefined);
 
   const player = getPlayerById(playerId);
-  if (!player?.isValid || !player.isGliding || player.dimension.id !== dragon.dimension.id)
+  if (
+    !player?.isValid ||
+    !player.isGliding ||
+    player.dimension.id !== dragon.dimension.id
+  )
     return false;
 
   elytraFollowTracking.set(dragon, {
@@ -948,11 +948,11 @@ export function activateElytraFollow(dragon, playerId) {
   dragon.setProperty("dragonmounts2:is_following", false);
   try {
     dragon.triggerEvent("dragonmounts2:on_elytra_follow_enable");
-  } catch (e) {}
+  } catch {}
   dragon.setProperty("dragonmounts2:movement_state", "flying");
   try {
     dragon.triggerEvent("minecraft:on_flying");
-  } catch (e) {}
+  } catch {}
   dragon.clearVelocity();
 
   return true;
@@ -974,7 +974,7 @@ export function deactivateElytraFollow(dragon) {
   }
   try {
     dragon.triggerEvent("dragonmounts2:on_elytra_follow_disable");
-  } catch (e) {}
+  } catch {}
   dragon.setDynamicProperty("dragonmounts2:elytra_follow_active", undefined);
   dragon.setDynamicProperty("dragonmounts2:elytra_follow_player_id", undefined);
   dragon.clearVelocity();
@@ -992,13 +992,13 @@ export function deactivateElytraFollow(dragon) {
   dragon.setProperty("dragonmounts2:movement_state", "grounded");
   try {
     dragon.triggerEvent("minecraft:on_grounded");
-  } catch (e) {}
+  } catch {}
   dragon.setProperty("dragonmounts2:is_following", prevIsFollowing);
   if (prevMobState === "sitting") {
     dragon.setProperty("dragonmounts2:mob_state", "sitting");
     try {
       dragon.triggerEvent("minecraft:on_sit");
-    } catch (e) {}
+    } catch {}
   }
 
   return true;
@@ -1023,9 +1023,9 @@ function isGrounded(dragon) {
   if (!dragon?.isValid) return false;
   try {
     const standingOn = dragon.getBlockStandingOn?.();
-    if (standingOn) return !isLiquidBlock(standingOn) && !isAirBlock(standingOn);
-  } catch {
-  }
+    if (standingOn)
+      return !isLiquidBlock(standingOn) && !isAirBlock(standingOn);
+  } catch {}
   const location = dragon.location;
   const support = getSafeBlock(dragon.dimension, {
     x: location.x,
@@ -1246,10 +1246,15 @@ export function disableVFlight(dragon, reason = null) {
 
 export function normalizeDragonAfterTeleport(dragon) {
   if (!dragon?.isValid) return;
-  const wasSitting = dragon.getProperty("dragonmounts2:mob_state") === "sitting";
-  const wasFollowing = dragon.getProperty("dragonmounts2:is_following") === true;
+  const wasSitting =
+    dragon.getProperty("dragonmounts2:mob_state") === "sitting";
+  const wasFollowing =
+    dragon.getProperty("dragonmounts2:is_following") === true;
 
-  dragon.setDynamicProperty("dragonmounts2:autonomous_flight_active", undefined);
+  dragon.setDynamicProperty(
+    "dragonmounts2:autonomous_flight_active",
+    undefined,
+  );
   dragon.setDynamicProperty("dragonmounts2:autonomous_roam_flight", undefined);
   if (dragon.getProperty("dragonmounts2:movement_state") !== "grounded") {
     try {
@@ -1344,9 +1349,6 @@ function steerTowardVFlightSlot(
     V_FLIGHT_STEERING_SMOOTH_BASE +
     (V_FLIGHT_STEERING_SMOOTH_CATCHUP - V_FLIGHT_STEERING_SMOOTH_BASE) *
       smoothT;
-
-  const currentVel = getSafeVelocity(dragon);
-  const blended = blendVelocity(currentVel, desiredVel, steeringSmooth);
 
   applyFlightMotion(dragon, desiredVel, steeringSmooth);
 }
@@ -1621,7 +1623,7 @@ function isDragonInAirAbovePlayer(player, dragon) {
   try {
     const dy = dragon.location.y - player.location.y;
     return dy > 1.0;
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -1755,10 +1757,10 @@ function executePlayerRescue(playerId, dragonPid) {
   }
   try {
     dragon.triggerEvent("minecraft:on_flying");
-  } catch (e) {}
+  } catch {}
   try {
     dragon.runCommand(`ride @a[name=${player.name}] start_riding @s`);
-  } catch (e) {
+  } catch {
     player.runCommand(
       `ride @s start_riding @e[type=${dragon.typeId},c=1,sort=nearest]`,
     );
@@ -1841,9 +1843,10 @@ function shouldProcessDragon(dragon) {
   if (dragon.getProperty("dragonmounts2:is_breathing") === true) return true;
   if (dragon.getProperty("dragonmounts2:v_flight_enabled") === true)
     return true;
-  if (dragon.getProperty("dragonmounts2:is_following") === true)
-    return true;
-  if (dragon.getDynamicProperty("dragonmounts2:autonomous_flight_active") === true)
+  if (dragon.getProperty("dragonmounts2:is_following") === true) return true;
+  if (
+    dragon.getDynamicProperty("dragonmounts2:autonomous_flight_active") === true
+  )
     return true;
   if (dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") === true)
     return true;
@@ -1882,13 +1885,18 @@ export function dragonsMainComponents(dragon) {
       dragon.getDynamicProperty("dragonmounts2:owner_identifier") !==
       ownerIdentifier
     ) {
-      dragon.setDynamicProperty("dragonmounts2:owner_identifier", ownerIdentifier);
+      dragon.setDynamicProperty(
+        "dragonmounts2:owner_identifier",
+        ownerIdentifier,
+      );
     }
   } else {
     if (dragon.getDynamicProperty("dragonmounts2:owner_name") !== undefined) {
       dragon.setDynamicProperty("dragonmounts2:owner_name", undefined);
     }
-    if (dragon.getDynamicProperty("dragonmounts2:owner_identifier") !== undefined) {
+    if (
+      dragon.getDynamicProperty("dragonmounts2:owner_identifier") !== undefined
+    ) {
       dragon.setDynamicProperty("dragonmounts2:owner_identifier", undefined);
     }
   }
@@ -1930,10 +1938,19 @@ export function dragonsMainComponents(dragon) {
   const controllingSeat = rideable.controllingSeat;
   const controllingRider = riders[controllingSeat];
   if (!controllingRider || !(controllingRider instanceof Player)) return;
-  if (dragon.getDynamicProperty("dragonmounts2:last_rider_id") !== controllingRider.id) {
-    dragon.setDynamicProperty("dragonmounts2:last_rider_id", controllingRider.id);
+  if (
+    dragon.getDynamicProperty("dragonmounts2:last_rider_id") !==
+    controllingRider.id
+  ) {
+    dragon.setDynamicProperty(
+      "dragonmounts2:last_rider_id",
+      controllingRider.id,
+    );
   }
-  dragon.setDynamicProperty("dragonmounts2:last_ridden_tick", system.currentTick);
+  dragon.setDynamicProperty(
+    "dragonmounts2:last_ridden_tick",
+    system.currentTick,
+  );
   markPlayerRodeDragon(controllingRider, dragon);
 
   handleDragonJumpInput(dragon, controllingRider, isBreathing);

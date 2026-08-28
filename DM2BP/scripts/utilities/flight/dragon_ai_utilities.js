@@ -32,7 +32,8 @@ function getBlock(dimension, location) {
     !location ||
     location.y < WORLD_MIN_Y ||
     location.y > WORLD_MAX_Y
-  ) return null;
+  )
+    return null;
   if (!consumeFlightQuery()) return null;
   try {
     return dimension.getBlock({
@@ -46,9 +47,11 @@ function getBlock(dimension, location) {
 }
 
 function isAir(block) {
-  return block?.typeId === "minecraft:air" ||
+  return (
+    block?.typeId === "minecraft:air" ||
     block?.typeId === "minecraft:cave_air" ||
-    block?.typeId === "minecraft:void_air";
+    block?.typeId === "minecraft:void_air"
+  );
 }
 
 function isLiquid(block) {
@@ -67,29 +70,32 @@ function isWaterlogged(block) {
 }
 
 function isLandingSupport(block) {
-  if (!block || isAir(block) || isLiquid(block) || isWaterlogged(block)) return false;
+  if (!block || isAir(block) || isLiquid(block) || isWaterlogged(block))
+    return false;
   try {
     if (typeof block.isSolid === "boolean") return block.isSolid;
   } catch {}
 
   const typeId = block.typeId ?? "";
-  return ![
-    "minecraft:short_grass",
-    "minecraft:grass",
-    "minecraft:tall_grass",
-    "minecraft:fern",
-    "minecraft:large_fern",
-    "minecraft:vine",
-    "minecraft:glow_lichen",
-    "minecraft:dead_bush",
-    "minecraft:fire",
-    "minecraft:soul_fire",
-    "minecraft:snow",
-    "minecraft:powder_snow",
-  ].includes(typeId) &&
+  return (
+    ![
+      "minecraft:short_grass",
+      "minecraft:grass",
+      "minecraft:tall_grass",
+      "minecraft:fern",
+      "minecraft:large_fern",
+      "minecraft:vine",
+      "minecraft:glow_lichen",
+      "minecraft:dead_bush",
+      "minecraft:fire",
+      "minecraft:soul_fire",
+      "minecraft:snow",
+      "minecraft:powder_snow",
+    ].includes(typeId) &&
     !typeId.endsWith("_flower") &&
     !typeId.endsWith("_sapling") &&
-    !typeId.endsWith("_mushroom");
+    !typeId.endsWith("_mushroom")
+  );
 }
 
 function getLiquidSurfaceY(dimension, location) {
@@ -113,7 +119,10 @@ function isOpen(dimension, location) {
 }
 
 function isClearPath(dimension, from, to) {
-  const distance = Math.max(1, Math.hypot(to.x - from.x, to.y - from.y, to.z - from.z));
+  const distance = Math.max(
+    1,
+    Math.hypot(to.x - from.x, to.y - from.y, to.z - from.z),
+  );
   const steps = Math.min(14, Math.max(4, Math.ceil(distance / 2)));
   for (let index = 0; index <= steps; index++) {
     const progress = index / steps;
@@ -152,8 +161,7 @@ function isGrounded(dragon) {
   try {
     const standingOn = dragon.getBlockStandingOn?.();
     if (standingOn) return isLandingSupport(standingOn);
-  } catch {
-  }
+  } catch {}
   const location = dragon.location;
   const sampleOffsets = [
     [0, 0],
@@ -162,13 +170,15 @@ function isGrounded(dragon) {
     [0, 0.65],
     [0, -0.65],
   ];
-  return sampleOffsets.some(([offsetX, offsetZ]) => isLandingSupport(
-    getBlock(dragon.dimension, {
-      x: location.x + offsetX,
-      y: location.y - 1,
-      z: location.z + offsetZ,
-    }),
-  ));
+  return sampleOffsets.some(([offsetX, offsetZ]) =>
+    isLandingSupport(
+      getBlock(dragon.dimension, {
+        x: location.x + offsetX,
+        y: location.y - 1,
+        z: location.z + offsetZ,
+      }),
+    ),
+  );
 }
 
 function isLandingPad(dimension, target) {
@@ -185,31 +195,49 @@ function isLandingPad(dimension, target) {
       y: target.y - 1,
       z: target.z + offsetZ,
     });
-    return isLandingSupport(support) && isAir(getBlock(dimension, {
-      x: target.x + offsetX,
-      y: target.y,
-      z: target.z + offsetZ,
-    }));
+    return (
+      isLandingSupport(support) &&
+      isAir(
+        getBlock(dimension, {
+          x: target.x + offsetX,
+          y: target.y,
+          z: target.z + offsetZ,
+        }),
+      )
+    );
   });
 }
 
 function setGroundedState(dragon) {
   try {
-    dragon.setDynamicProperty("dragonmounts2:autonomous_flight_active", undefined);
-    dragon.setDynamicProperty("dragonmounts2:autonomous_roam_flight", undefined);
+    dragon.setDynamicProperty(
+      "dragonmounts2:autonomous_flight_active",
+      undefined,
+    );
+    dragon.setDynamicProperty(
+      "dragonmounts2:autonomous_roam_flight",
+      undefined,
+    );
   } catch {}
-  try { dragon.setProperty("dragonmounts2:movement_state", "grounded"); } catch {}
+  try {
+    dragon.setProperty("dragonmounts2:movement_state", "grounded");
+  } catch {}
   try {
     dragon.triggerEvent("minecraft:on_grounded");
   } catch {}
   try {
     dragon.triggerEvent("minecraft:on_stand");
   } catch {}
-  try { dragon.setProperty("dragonmounts2:mob_state", "standing"); } catch {}
-  try { dragon.clearVelocity(); } catch {}
+  try {
+    dragon.setProperty("dragonmounts2:mob_state", "standing");
+  } catch {}
+  try {
+    dragon.clearVelocity();
+  } catch {}
   system.run(() => {
     if (!dragon?.isValid) return;
-    if (dragon.getProperty("dragonmounts2:movement_state") !== "grounded") return;
+    if (dragon.getProperty("dragonmounts2:movement_state") !== "grounded")
+      return;
     try {
       dragon.triggerEvent("minecraft:on_stand");
     } catch {}
@@ -222,7 +250,10 @@ function finishFollowLanding(dragon, state) {
   state.landingTarget = null;
   state.landingSearchRadius = LANDING_SEARCH_RADIUS;
   state.landingTicks = 0;
-  dragon.setDynamicProperty("dragonmounts2:autonomous_flight_active", undefined);
+  dragon.setDynamicProperty(
+    "dragonmounts2:autonomous_flight_active",
+    undefined,
+  );
   dragon.setProperty("dragonmounts2:is_following", false);
   try {
     dragon.triggerEvent("minecraft:on_wander");
@@ -238,7 +269,6 @@ function finishFollowLanding(dragon, state) {
   });
 }
 
-
 function snapToLandingTarget(dragon, target) {
   if (!target || !dragon?.isValid) return false;
   const location = dragon.location;
@@ -251,7 +281,8 @@ function snapToLandingTarget(dragon, target) {
     location.y < target.y - 0.75 ||
     location.y > target.y + 1.5 ||
     !isLandingPad(dragon.dimension, target)
-  ) return false;
+  )
+    return false;
   try {
     dragon.teleport(
       { x: target.x, y: target.y, z: target.z },
@@ -265,18 +296,21 @@ function snapToLandingTarget(dragon, target) {
 }
 function synchronizeMovementState(dragon) {
   const movementState = dragon.getProperty("dragonmounts2:movement_state");
-  const nextState = dragon.isInWater === true
-    ? "swimming"
-    : movementState === "flying"
-      ? null
-      : isGrounded(dragon)
-        ? "grounded"
-        : null;
+  const nextState =
+    dragon.isInWater === true
+      ? "swimming"
+      : movementState === "flying"
+        ? null
+        : isGrounded(dragon)
+          ? "grounded"
+          : null;
   if (!nextState || nextState === movementState) return;
 
   try {
     dragon.triggerEvent(
-      nextState === "swimming" ? "minecraft:on_swimming" : "minecraft:on_grounded",
+      nextState === "swimming"
+        ? "minecraft:on_swimming"
+        : "minecraft:on_grounded",
     );
   } catch {}
   try {
@@ -290,9 +324,15 @@ function updateFollowLanding(dragon, state) {
       dragon,
       state.landingSearchRadius ?? LANDING_SEARCH_RADIUS,
     );
-    if (!state.landingTarget && state.landingSearchRadius !== LANDING_SEARCH_EXPANDED_RADIUS) {
+    if (
+      !state.landingTarget &&
+      state.landingSearchRadius !== LANDING_SEARCH_EXPANDED_RADIUS
+    ) {
       state.landingSearchRadius = LANDING_SEARCH_EXPANDED_RADIUS;
-      state.landingTarget = findLandingTarget(dragon, state.landingSearchRadius);
+      state.landingTarget = findLandingTarget(
+        dragon,
+        state.landingSearchRadius,
+      );
     }
   }
   const target = state.landingTarget;
@@ -307,27 +347,36 @@ function updateFollowLanding(dragon, state) {
       target.x - location.x,
       target.z - location.z,
     );
-    const glideHeight = horizontalDistance > 3
-      ? Math.min(18, Math.max(2, horizontalDistance * Math.tan(LANDING_GLIDE_ANGLE)))
-      : 0;
-    steerLanding(dragon, {
-      ...target,
-      y: Math.min(
-        target.y + glideHeight - (horizontalDistance < 2 ? 0.35 : 0),
-        location.y,
-      ),
-    }, LANDING_SPEED);
+    const glideHeight =
+      horizontalDistance > 3
+        ? Math.min(
+            18,
+            Math.max(2, horizontalDistance * Math.tan(LANDING_GLIDE_ANGLE)),
+          )
+        : 0;
+    steerLanding(
+      dragon,
+      {
+        ...target,
+        y: Math.min(
+          target.y + glideHeight - (horizontalDistance < 2 ? 0.35 : 0),
+          location.y,
+        ),
+      },
+      LANDING_SPEED,
+    );
   } else {
-    steerLanding(dragon, { x: location.x, y: location.y - 8, z: location.z }, LANDING_SPEED);
+    steerLanding(
+      dragon,
+      { x: location.x, y: location.y - 8, z: location.z },
+      LANDING_SPEED,
+    );
   }
 
   const horizontalDistance = target
     ? Math.hypot(target.x - dragon.location.x, target.z - dragon.location.z)
     : 0;
-  if (
-    isGrounded(dragon) &&
-    horizontalDistance <= 2.5
-  ) {
+  if (isGrounded(dragon) && horizontalDistance <= 2.5) {
     state.landingTicks++;
   } else {
     state.landingTicks = 0;
@@ -338,11 +387,14 @@ function updateFollowLanding(dragon, state) {
 }
 
 function isNewFlightTarget(target, previousTarget) {
-  return !previousTarget || Math.hypot(
-    target.x - previousTarget.x,
-    target.y - previousTarget.y,
-    target.z - previousTarget.z,
-  ) >= FLIGHT_NEW_TARGET_DISTANCE;
+  return (
+    !previousTarget ||
+    Math.hypot(
+      target.x - previousTarget.x,
+      target.y - previousTarget.y,
+      target.z - previousTarget.z,
+    ) >= FLIGHT_NEW_TARGET_DISTANCE
+  );
 }
 
 function findFlightTarget(dragon, previousTarget = null) {
@@ -359,14 +411,14 @@ function findFlightTarget(dragon, previousTarget = null) {
       const angle = yaw + angleOffset;
       const forwardAlignment = Math.cos(angleOffset);
       if (forwardAlignment < -0.5 && bestTarget) continue;
-    const target = {
-      x: origin.x - Math.sin(angle) * distance,
-      y: Math.max(WORLD_MIN_Y + 8, Math.min(WORLD_MAX_Y - 8, origin.y)),
-      z: origin.z + Math.cos(angle) * distance,
-    };
-    if (
-      isNewFlightTarget(target, previousTarget) &&
-      isClearPath(dragon.dimension, origin, target)
+      const target = {
+        x: origin.x - Math.sin(angle) * distance,
+        y: Math.max(WORLD_MIN_Y + 8, Math.min(WORLD_MAX_Y - 8, origin.y)),
+        z: origin.z + Math.cos(angle) * distance,
+      };
+      if (
+        isNewFlightTarget(target, previousTarget) &&
+        isClearPath(dragon.dimension, origin, target)
       ) {
         const score = distance * 2 + forwardAlignment * 24;
         if (score > bestScore) {
@@ -406,31 +458,43 @@ function getEmergencyFlightTarget(dragon, previousTarget = null) {
 }
 
 function getNextFlightTarget(dragon, previousTarget = null) {
-  return findFlightTarget(dragon, previousTarget) ?? getEmergencyFlightTarget(dragon, previousTarget);
+  return (
+    findFlightTarget(dragon, previousTarget) ??
+    getEmergencyFlightTarget(dragon, previousTarget)
+  );
 }
 
 function findLandingTarget(dragon, maxRadius = LANDING_SEARCH_RADIUS) {
   const origin = dragon.location;
   const originX = Math.floor(origin.x);
   const originZ = Math.floor(origin.z);
-  const minimumY = Math.max(WORLD_MIN_Y, Math.floor(origin.y) - LANDING_SEARCH_DEPTH);
+  const minimumY = Math.max(
+    WORLD_MIN_Y,
+    Math.floor(origin.y) - LANDING_SEARCH_DEPTH,
+  );
   let bestTarget = null;
   let bestDistance = Infinity;
   let blockChecks = 0;
   const maxBlockChecks = 350;
-  search:
-  for (let offsetX = -maxRadius; offsetX <= maxRadius; offsetX += 2) {
+  search: for (let offsetX = -maxRadius; offsetX <= maxRadius; offsetX += 2) {
     for (let offsetZ = -maxRadius; offsetZ <= maxRadius; offsetZ += 2) {
       const x = originX + offsetX;
       const z = originZ + offsetZ;
-      const horizontalDistance = Math.hypot(x + 0.5 - origin.x, z + 0.5 - origin.z);
-      if (horizontalDistance > maxRadius || horizontalDistance >= bestDistance) continue;
+      const horizontalDistance = Math.hypot(
+        x + 0.5 - origin.x,
+        z + 0.5 - origin.z,
+      );
+      if (horizontalDistance > maxRadius || horizontalDistance >= bestDistance)
+        continue;
       for (let y = Math.floor(origin.y); y >= minimumY; y--) {
         if (blockChecks++ >= maxBlockChecks) break search;
         const ground = getBlock(dragon.dimension, { x, y, z });
         if (!ground) continue;
         const target = { x: x + 0.5, y: y + 1, z: z + 0.5 };
-        if (isLandingSupport(ground) && isLandingPad(dragon.dimension, target)) {
+        if (
+          isLandingSupport(ground) &&
+          isLandingPad(dragon.dimension, target)
+        ) {
           bestTarget = target;
           bestDistance = horizontalDistance;
           break;
@@ -442,13 +506,16 @@ function findLandingTarget(dragon, maxRadius = LANDING_SEARCH_RADIUS) {
 }
 
 function findNearestLandingTarget(dragon) {
-  return findLandingTarget(dragon, LANDING_SEARCH_RADIUS) ??
-    findLandingTarget(dragon, LANDING_SEARCH_EXPANDED_RADIUS);
+  return (
+    findLandingTarget(dragon, LANDING_SEARCH_RADIUS) ??
+    findLandingTarget(dragon, LANDING_SEARCH_EXPANDED_RADIUS)
+  );
 }
 
 function updateAutonomousFollowFlight(dragon) {
   if (dragon.getProperty("dragonmounts2:v_flight_enabled") === true) return;
-  if (dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") === true) return;
+  if (dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") === true)
+    return;
   if (dragon.isInWater === true) {
     const state = followStates.get(dragon);
     if (state) {
@@ -456,7 +523,10 @@ function updateAutonomousFollowFlight(dragon) {
       state.stuckTicks = 0;
       state.landingTicks = 0;
     }
-    dragon.setDynamicProperty("dragonmounts2:autonomous_flight_active", undefined);
+    dragon.setDynamicProperty(
+      "dragonmounts2:autonomous_flight_active",
+      undefined,
+    );
     return;
   }
   let state = followStates.get(dragon);
@@ -467,7 +537,10 @@ function updateAutonomousFollowFlight(dragon) {
     : dragonUtilities.getPlayerById(ownerId);
   if (!state) {
     if (!owner?.isValid) return;
-    const distance = dragonUtilities.distanceBetween(owner.location, dragon.location);
+    const distance = dragonUtilities.distanceBetween(
+      owner.location,
+      dragon.location,
+    );
     state = {
       lastDistance: distance,
       stuckTicks: 0,
@@ -486,26 +559,34 @@ function updateAutonomousFollowFlight(dragon) {
   }
 
   const dragonLocation = dragon.location;
-  const distance = dragonUtilities.distanceBetween(owner.location, dragonLocation);
+  const distance = dragonUtilities.distanceBetween(
+    owner.location,
+    dragonLocation,
+  );
 
   if (state.landing) {
     updateFollowLanding(dragon, state);
     return;
   }
 
-  if (!state.active && dragon.getProperty("dragonmounts2:movement_state") === "grounded") {
+  if (
+    !state.active &&
+    dragon.getProperty("dragonmounts2:movement_state") === "grounded"
+  ) {
     if (distance <= FOLLOW_START_DISTANCE) {
       state.lastDistance = distance;
       state.stuckTicks = 0;
       return;
     }
-    state.stuckTicks = distance >= state.lastDistance - 0.05 ? state.stuckTicks + 1 : 0;
+    state.stuckTicks =
+      distance >= state.lastDistance - 0.05 ? state.stuckTicks + 1 : 0;
     state.lastDistance = distance;
     if (state.stuckTicks < FOLLOW_STUCK_TICKS) return;
     state.active = true;
     state.stuckTicks = 0;
     state.landingTicks = 0;
-    state.wasFollowing = dragon.getProperty("dragonmounts2:is_following") === true;
+    state.wasFollowing =
+      dragon.getProperty("dragonmounts2:is_following") === true;
     if (state.wasFollowing) {
       dragon.setProperty("dragonmounts2:is_following", false);
       try {
@@ -527,11 +608,16 @@ function updateAutonomousFollowFlight(dragon) {
     updateFollowLanding(dragon, state);
     return;
   } else {
-    steer(dragon, {
-      x: ownerLocation.x,
-      y: ownerLocation.y + 3,
-      z: ownerLocation.z,
-    }, 1.1, true);
+    steer(
+      dragon,
+      {
+        x: ownerLocation.x,
+        y: ownerLocation.y + 3,
+        z: ownerLocation.z,
+      },
+      1.1,
+      true,
+    );
   }
 }
 
@@ -542,7 +628,10 @@ function steer(dragon, target, speed, flying) {
     y: target.y - location.y,
     z: target.z - location.z,
   };
-  const distance = Math.max(Math.hypot(direction.x, direction.y, direction.z), 0.001);
+  const distance = Math.max(
+    Math.hypot(direction.x, direction.y, direction.z),
+    0.001,
+  );
   const velocity = getVelocity(dragon);
   const approachSpeed = flying
     ? Math.min(speed, Math.max(0.04, distance * 0.18))
@@ -554,11 +643,7 @@ function steer(dragon, target, speed, flying) {
   };
   try {
     dragonUtilities.applyFlightMotion(dragon, desired, STEERING_RESPONSE);
-    rotateToward(
-      dragon,
-      flying ? desired : direction,
-      flying ? 0.18 : 0.12,
-    );
+    rotateToward(dragon, flying ? desired : direction, flying ? 0.18 : 0.12);
   } catch {}
   return distance;
 }
@@ -571,23 +656,37 @@ function steerLanding(dragon, target, speed) {
     z: target.z - location.z,
   };
   const horizontalDistance = Math.hypot(direction.x, direction.z);
-  const distance = Math.max(Math.hypot(direction.x, direction.y, direction.z), 0.001);
-  const velocity = getVelocity(dragon);
-  const horizontalSpeed = horizontalDistance < 2
-    ? Math.min(speed * 0.35, Math.max(0.025, horizontalDistance * 0.12))
-    : Math.min(speed, Math.max(0.08, horizontalDistance * 0.16));
-  const descentSpeed = direction.y < 0
-    ? -Math.min(0.7, Math.max(0.08, Math.abs(direction.y) * 0.2))
-    : 0;
+  const distance = Math.max(
+    Math.hypot(direction.x, direction.y, direction.z),
+    0.001,
+  );
+  const horizontalSpeed =
+    horizontalDistance < 2
+      ? Math.min(speed * 0.35, Math.max(0.025, horizontalDistance * 0.12))
+      : Math.min(speed, Math.max(0.08, horizontalDistance * 0.16));
+  const descentSpeed =
+    direction.y < 0
+      ? -Math.min(0.7, Math.max(0.08, Math.abs(direction.y) * 0.2))
+      : 0;
   const desired = {
-    x: horizontalDistance > 0.01 ? (direction.x / horizontalDistance) * horizontalSpeed : 0,
+    x:
+      horizontalDistance > 0.01
+        ? (direction.x / horizontalDistance) * horizontalSpeed
+        : 0,
     y: descentSpeed,
-    z: horizontalDistance > 0.01 ? (direction.z / horizontalDistance) * horizontalSpeed : 0,
+    z:
+      horizontalDistance > 0.01
+        ? (direction.z / horizontalDistance) * horizontalSpeed
+        : 0,
   };
   try {
     if (direction.y < -0.05) desired.y = Math.min(desired.y, -0.25);
     dragonUtilities.applyFlightMotion(dragon, desired, 0.35);
-    rotateToward(dragon, distance > 0.01 ? direction : { x: 0, y: -1, z: 0 }, 0.2);
+    rotateToward(
+      dragon,
+      distance > 0.01 ? direction : { x: 0, y: -1, z: 0 },
+      0.2,
+    );
   } catch {}
   return distance;
 }
@@ -617,7 +716,10 @@ function startFlight(dragon, state) {
 
 function finishFlight(dragon, state) {
   if (isGrounded(dragon)) {
-    dragon.setDynamicProperty("dragonmounts2:autonomous_roam_flight", undefined);
+    dragon.setDynamicProperty(
+      "dragonmounts2:autonomous_roam_flight",
+      undefined,
+    );
     setGroundedState(dragon);
     state.target = null;
     state.targetKind = null;
@@ -654,7 +756,10 @@ function clearAutonomousFlightState(dragon, state) {
   state.landingTicks = 0;
   state.flightStuckTicks = 0;
   state.flightAwayTicks = 0;
-  dragon.setDynamicProperty("dragonmounts2:autonomous_flight_active", undefined);
+  dragon.setDynamicProperty(
+    "dragonmounts2:autonomous_flight_active",
+    undefined,
+  );
   dragon.setDynamicProperty("dragonmounts2:autonomous_roam_flight", undefined);
 }
 
@@ -664,17 +769,22 @@ export function updateDragonAI(dragon) {
   const riders = rideable?.getRiders?.() ?? [];
   if (riders.length > 0) return;
   if (dragon.getProperty("dragonmounts2:v_flight_enabled") === true) return;
-  if (dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") === true) return;
+  if (dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") === true)
+    return;
   if (followStates.get(dragon)?.active === true) {
     updateAutonomousFollowFlight(dragon);
     return;
   }
 
   const movementState = dragon.getProperty("dragonmounts2:movement_state");
-  const autonomousFlight = dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") === true;
+  const autonomousFlight =
+    dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") === true;
   if (dragon.isInWater === true) {
     if (autonomousFlight) {
-      dragon.setDynamicProperty("dragonmounts2:autonomous_roam_flight", undefined);
+      dragon.setDynamicProperty(
+        "dragonmounts2:autonomous_roam_flight",
+        undefined,
+      );
     }
     synchronizeMovementState(dragon);
     const state = states.get(dragon);
@@ -693,7 +803,10 @@ export function updateDragonAI(dragon) {
     dragon.getDynamicProperty("dragonmounts2:v_flight_enabled") !== true &&
     dragon.getDynamicProperty("dragonmounts2:elytra_follow_active") !== true
   ) {
-    dragon.setDynamicProperty("dragonmounts2:autonomous_roam_flight", undefined);
+    dragon.setDynamicProperty(
+      "dragonmounts2:autonomous_roam_flight",
+      undefined,
+    );
   }
   synchronizeMovementState(dragon);
   if (dragon.getProperty("dragonmounts2:is_following") === true) {
@@ -703,7 +816,10 @@ export function updateDragonAI(dragon) {
   if (dragon.getProperty("dragonmounts2:mob_state") !== "standing") return;
   if (dragon.getProperty("dragonmounts2:is_following") === true) return;
   if (dragon.getProperty("dragonmounts2:is_breathing") === true) return;
-  if (dragon.getDynamicProperty("dragonmounts2:autonomous_flight_active") === true) return;
+  if (
+    dragon.getDynamicProperty("dragonmounts2:autonomous_flight_active") === true
+  )
+    return;
   let state = states.get(dragon);
   if (!state) {
     state = {
@@ -729,7 +845,9 @@ export function updateDragonAI(dragon) {
     state.flightAwayTicks = 0;
   }
 
-  const currentMovementState = dragon.getProperty("dragonmounts2:movement_state");
+  const currentMovementState = dragon.getProperty(
+    "dragonmounts2:movement_state",
+  );
   if (currentMovementState === "grounded") {
     clearAutonomousFlightState(dragon, state);
     if (system.currentTick < state.nextFlightTick) return;
@@ -739,13 +857,16 @@ export function updateDragonAI(dragon) {
   }
   if (currentMovementState === "flying") {
     if (
-      dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") === true &&
+      dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") ===
+        true &&
       isGrounded(dragon)
     ) {
       finishFlight(dragon, state);
       return;
     }
-    if (dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") !== true) {
+    if (
+      dragon.getDynamicProperty("dragonmounts2:autonomous_roam_flight") !== true
+    ) {
       if (!startFlight(dragon, state)) return;
     }
     if (
@@ -757,14 +878,21 @@ export function updateDragonAI(dragon) {
       state.landingTicks = 0;
     }
     if (state.targetKind === "flight") {
-      if (!state.target || !isClearPath(dragon.dimension, dragon.location, state.target)) {
-        if (system.currentTick - state.lastFlightRouteTick >= FLIGHT_REPLAN_COOLDOWN) {
+      if (
+        !state.target ||
+        !isClearPath(dragon.dimension, dragon.location, state.target)
+      ) {
+        if (
+          system.currentTick - state.lastFlightRouteTick >=
+          FLIGHT_REPLAN_COOLDOWN
+        ) {
           state.target = getNextFlightTarget(dragon, state.target);
           state.lastFlightRouteTick = system.currentTick;
           state.flightStuckTicks = 0;
         }
       }
-      if (!state.lastFlightLocation) state.lastFlightLocation = { ...dragon.location };
+      if (!state.lastFlightLocation)
+        state.lastFlightLocation = { ...dragon.location };
       const velocity = getVelocity(dragon);
       const toTarget = {
         x: state.target.x - dragon.location.x,
@@ -776,22 +904,26 @@ export function updateDragonAI(dragon) {
         0.001,
       );
       const velocityLength = Math.hypot(velocity.x, velocity.y, velocity.z);
-      const travelAlignment = velocityLength > 0.1
-        ? (velocity.x * toTarget.x + velocity.y * toTarget.y + velocity.z * toTarget.z) /
-          (velocityLength * targetDistance)
-        : 1;
-      state.flightAwayTicks = travelAlignment < FLIGHT_AWAY_DOT
-        ? state.flightAwayTicks + 5
-        : 0;
+      const travelAlignment =
+        velocityLength > 0.1
+          ? (velocity.x * toTarget.x +
+              velocity.y * toTarget.y +
+              velocity.z * toTarget.z) /
+            (velocityLength * targetDistance)
+          : 1;
+      state.flightAwayTicks =
+        travelAlignment < FLIGHT_AWAY_DOT ? state.flightAwayTicks + 5 : 0;
       const flightMoved = Math.hypot(
         dragon.location.x - state.lastFlightLocation.x,
         dragon.location.y - state.lastFlightLocation.y,
         dragon.location.z - state.lastFlightLocation.z,
       );
-      state.flightStuckTicks = flightMoved < 0.12 ? state.flightStuckTicks + 5 : 0;
+      state.flightStuckTicks =
+        flightMoved < 0.12 ? state.flightStuckTicks + 5 : 0;
       state.lastFlightLocation = { ...dragon.location };
       if (
-        system.currentTick - state.lastFlightRouteTick >= FLIGHT_REPLAN_COOLDOWN &&
+        system.currentTick - state.lastFlightRouteTick >=
+          FLIGHT_REPLAN_COOLDOWN &&
         (state.flightStuckTicks >= FLIGHT_STUCK_TICKS ||
           state.flightAwayTicks >= FLIGHT_AWAY_TICKS)
       ) {
@@ -820,9 +952,13 @@ export function updateDragonAI(dragon) {
           state.target.x - dragon.location.x,
           state.target.z - dragon.location.z,
         );
-        const glideHeight = horizontalDistance > 3
-          ? Math.min(18, Math.max(2, horizontalDistance * Math.tan(LANDING_GLIDE_ANGLE)))
-          : 0;
+        const glideHeight =
+          horizontalDistance > 3
+            ? Math.min(
+                18,
+                Math.max(2, horizontalDistance * Math.tan(LANDING_GLIDE_ANGLE)),
+              )
+            : 0;
         steeringTarget = {
           ...state.target,
           y: Math.min(
@@ -831,9 +967,10 @@ export function updateDragonAI(dragon) {
           ),
         };
       }
-      const distance = state.targetKind === "landing"
-        ? steerLanding(dragon, steeringTarget, LANDING_SPEED)
-        : steer(dragon, steeringTarget, FLIGHT_SPEED, true);
+      const distance =
+        state.targetKind === "landing"
+          ? steerLanding(dragon, steeringTarget, LANDING_SPEED)
+          : steer(dragon, steeringTarget, FLIGHT_SPEED, true);
       if (state.targetKind === "flight" && distance < FLIGHT_WAYPOINT_ARRIVAL) {
         state.target = findNearestLandingTarget(dragon);
         state.targetKind = state.target ? "landing" : "flight";
@@ -849,10 +986,7 @@ export function updateDragonAI(dragon) {
           state.target.x - dragon.location.x,
           state.target.z - dragon.location.z,
         );
-        if (
-          isGrounded(dragon) &&
-          landingHorizontalDistance <= 2.5
-        ) {
+        if (isGrounded(dragon) && landingHorizontalDistance <= 2.5) {
           state.landingTicks++;
         } else {
           state.landingTicks = 0;
@@ -864,5 +998,4 @@ export function updateDragonAI(dragon) {
     }
     return;
   }
-
 }

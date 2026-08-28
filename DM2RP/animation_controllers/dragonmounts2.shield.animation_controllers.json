@@ -15,7 +15,7 @@
 					],
 					"transitions": [
 						{
-							"blocking": "query.blocking && ((variable.is_blocking_main_hand && c.item_slot == 'main_hand') || (variable.is_blocking_off_hand && c.item_slot == 'off_hand')) && q.cooldown_time_remaining <= 0"
+							"blocking": "query.blocking && ((variable.is_blocking_main_hand && !variable.is_blocking_off_hand && c.item_slot == 'main_hand') || (variable.is_blocking_off_hand && c.item_slot == 'off_hand')) && q.cooldown_time_remaining <= 0"
 						},
 						{
 							"third_person": "!c.is_first_person"
@@ -28,7 +28,7 @@
 							"wield_main_hand_first_person": "!variable.is_blocking_main_hand && c.item_slot == 'main_hand'"
 						},
 						{
-							"wield_main_hand_first_person_block": "variable.is_blocking_main_hand && c.item_slot == 'main_hand'"
+							"wield_main_hand_first_person_block": "variable.is_blocking_main_hand && !variable.is_blocking_off_hand && c.item_slot == 'main_hand'"
 						},
 						{
 							"wield_off_hand_first_person_block": "variable.is_blocking_off_hand && c.item_slot == 'off_hand'"

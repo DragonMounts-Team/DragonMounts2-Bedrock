@@ -64,7 +64,8 @@
       },
       "minecraft:selection_box": true,
       "minecraft:tags": [
-        "minecraft:is_pickaxe_item_destructible"
+        "minecraft:is_pickaxe_item_destructible",
+        "dragonmounts2:dragon_scale_block"
       ]
     }
   }
