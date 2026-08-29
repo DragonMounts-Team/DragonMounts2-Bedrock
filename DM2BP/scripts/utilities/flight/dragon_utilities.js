@@ -6,6 +6,7 @@ import { consumeFlightQuery } from "./flight_budget.js";
 export const dragonTypes = { families: ["dragon"] };
 const dragonTypeSet = new Set(dragonArrays.dragonTypesList);
 const jumpData = new Map();
+const breathData = new Map();
 const flightDebugPlayers = new Map();
 const CLEANUP_INTERVAL = 600;
 let lastCleanup = 0;
@@ -34,6 +35,7 @@ const landingTargetCache = new WeakMap();
 
 world.afterEvents.playerLeave.subscribe(({ playerId }) => {
   jumpData.delete(playerId);
+  breathData.delete(playerId);
   flightDebugPlayers.delete(playerId);
   fallRescueData.delete(playerId);
   elytraRescueTracking.delete(playerId);
@@ -2005,20 +2007,6 @@ function handleDragonJumpInput(dragon, player, isBreathing) {
     data.lastJumpTick = currentTick;
   }
 
-  if (isJumping) {
-    data.holdTime++;
-    if (data.holdTime === holdThreshold) {
-      data.pendingSingle = false;
-      if (!isBreathing) dragon.setProperty("dragonmounts2:is_breathing", true);
-    }
-    if (data.holdTime > holdThreshold) {
-      if (!isBreathing) dragon.setProperty("dragonmounts2:is_breathing", true);
-    }
-  } else {
-    if (isBreathing) dragon.setProperty("dragonmounts2:is_breathing", false);
-    data.holdTime = 0;
-  }
-
   if (
     data.pendingSingle &&
     currentTick - data.lastJumpTick > holdThreshold &&
@@ -2026,6 +2014,57 @@ function handleDragonJumpInput(dragon, player, isBreathing) {
   ) {
     data.pendingSingle = false;
   }
+
+  let breathState = breathData.get(id);
+  if (!breathState) {
+    breathState = {
+      wasJumping: false,
+      charging: false,
+      cooldownUntil: 0,
+    };
+  }
+
+  const canUseBreath = currentTick >= breathState.cooldownUntil;
+  if (isJumping && !breathState.wasJumping && canUseBreath) {
+    breathState.charging = true;
+    if (dragon.getProperty("dragonmounts2:is_breathing") !== true) {
+      dragon.setProperty("dragonmounts2:is_breathing", true);
+    }
+  }
+
+  if (breathState.charging) {
+    if (isJumping && canUseBreath) {
+      const nextCharge = Math.min(
+        1.0,
+        (dragon.getProperty("dragonmounts2:breath_charge") ?? 0) + 0.05,
+      );
+      dragon.setProperty("dragonmounts2:breath_charge", nextCharge);
+    } else {
+      breathState.charging = false;
+      const releaseCharge = dragon.getProperty("dragonmounts2:breath_charge") ?? 0;
+      if (releaseCharge >= 0.5) {
+        dragon.setProperty("dragonmounts2:is_breathing", true);
+        dragon.setProperty("dragonmounts2:breath_charge", 1.0);
+        dragon.triggerEvent("minecraft:on_dragon_breath");
+        breathState.cooldownUntil = currentTick + 12;
+      }
+      dragon.setProperty("dragonmounts2:is_breathing", false);
+      dragon.setProperty("dragonmounts2:breath_charge", 0.0);
+    }
+  }
+
+  if (!isJumping && !breathState.charging) {
+    const breathCharge = dragon.getProperty("dragonmounts2:breath_charge") ?? 0;
+    if (breathCharge > 0) {
+      dragon.setProperty("dragonmounts2:breath_charge", 0.0);
+    }
+    if (dragon.getProperty("dragonmounts2:is_breathing") === true) {
+      dragon.setProperty("dragonmounts2:is_breathing", false);
+    }
+  }
+
+  breathState.wasJumping = isJumping;
+  breathData.set(id, breathState);
   data.wasJumping = isJumping;
   jumpData.set(id, data);
 }

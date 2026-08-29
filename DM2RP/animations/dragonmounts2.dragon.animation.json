@@ -2248,14 +2248,38 @@
 				},
 				"head.jaw": {
 					"rotation": {
-						"0.0": [0, 0, 0],
-						"0.25": [0, 0, 0],
-						"0.3333": [5.9609, 0, 0],
-						"0.4167": [19.0391, 0, 0],
-						"0.5": [25, 0, 0],
-						"0.5833": [19.0391, 0, 0],
-						"0.6667": [5.9609, 0, 0],
-						"0.75": [0, 0, 0]
+						"0.0": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.25": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.3333": {
+							"post": [5.9609, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.4167": {
+							"post": [19.0391, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5": {
+							"post": [25, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5833": {
+							"post": [19.0391, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.6667": {
+							"post": [5.9609, 0, 0],
+							"lerp_mode": "catmullrom"
+						},
+						"0.75": {
+							"post": [0, 0, 0],
+							"lerp_mode": "catmullrom"
+						}
 					}
 				},
 				"head.light_right_horn.0": {
@@ -2277,6 +2301,15 @@
 			"sound_effects": {
 				"0.0": {
 					"effect": "wings_flap"
+				}
+			}
+		},
+		"animation.dragonmounts2.dragon.death_particles": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 12,
+			"particle_effects": {
+				"0.0": {
+					"effect": "death_cloud"
 				}
 			}
 		}

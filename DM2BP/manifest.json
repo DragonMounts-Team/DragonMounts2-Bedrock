@@ -37,6 +37,11 @@
     }
   ],
   "metadata": {
-    "product_type": "addon"
+    "product_type": "addon",
+    "authors": [
+      "Dragonmounts2"
+    ],
+    "license": "All Rights Reserved",
+    "url": "https://discord.gg/Ewm8aTTJ3K"
   }
 }
