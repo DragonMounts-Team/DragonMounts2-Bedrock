@@ -1,14 +1,1 @@
-[
-  {
-  "flipbook_texture": "textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/dark_dragon_egg",
-    "atlas_tile": "dragonmounts2:dark_dragon_egg",
-    "frames": [ 0, 1, 2, 3 ],
-    "ticks_per_frame": 10
-  },
-  {
-  "flipbook_texture": "textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/enchanted_dragon_egg",
-    "atlas_tile": "dragonmounts2:enchanted_dragon_egg",
-    "frames": [ 0, 1 ],
-    "ticks_per_frame": 8
-  }
-]  
+[{"flipbook_texture":"textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/dark_dragon_egg","atlas_tile":"dragonmounts2:dark_dragon_egg","frames":[0,1,2,3],"ticks_per_frame":10},{"flipbook_texture":"textures/blocks/dragonmounts2_nature/eggs/dragon_eggs/enchanted_dragon_egg","atlas_tile":"dragonmounts2:enchanted_dragon_egg","frames":[0,1],"ticks_per_frame":8}]

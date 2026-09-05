@@ -1,7 +1,0 @@
-{
-    "format_version": "1.21.30",
-    "minecraft:texture_set": {
-        "color": "keeper_baby",
-        "metalness_emissive_roughness": "keeper_baby_mer"
-    }
-}
