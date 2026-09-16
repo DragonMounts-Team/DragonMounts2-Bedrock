@@ -1,0 +1,35 @@
+{
+  "format_version": "1.21.80",
+  "minecraft:jigsaw": {
+    "description": {
+      "identifier": "dragonmounts2:forest"
+    },
+    "start_pool": "dragonmounts2:forest",
+    "step": "surface_structures",
+    "heightmap_projection": "world_surface",
+    "start_height": {
+        "type": "constant",
+        "value": {
+            "absolute": -3
+        } 
+    },
+    "max_depth": 10,
+    "biome_filters": [
+      {
+        "all_of": [
+            {"test": "has_biome_tag","operator": "!=","value": "river"},
+            {"test": "has_biome_tag","operator": "!=","value": "lakes"},
+            {"test": "has_biome_tag","operator": "!=","value": "savana"},
+            {"test": "has_biome_tag","operator": "!=","value": "mesa"},
+            {"test": "has_biome_tag","operator": "!=","value": "beach"},
+            {"any_of": [
+                {"test": "has_biome_tag","operator": "==","value": "forest"},
+                {"test": "has_biome_tag","operator": "==","value": "bee_habitat"},
+                {"test": "has_biome_tag","operator": "==","value": "jungle"}
+            ]}
+        ]
+      }
+    ],
+    "terrain_adaptation": "beard_thin"
+  }
+}

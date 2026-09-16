@@ -1,0 +1,37 @@
+{
+  "format_version": "1.21.80",
+  "minecraft:jigsaw": {
+    "description": {
+      "identifier": "dragonmounts2:water"
+    },
+    "start_pool": "dragonmounts2:water",
+    "step": "surface_structures",
+    "heightmap_projection": "world_surface",
+    "start_height": {
+        "type": "constant",
+        "value": {
+            "absolute": -1
+        } 
+    },
+    "liquid_settings": "apply_waterlogging",
+    "max_depth": 10,
+    "biome_filters": [
+      {
+        "all_of": [
+            {"test": "has_biome_tag","operator": "!=","value": "river"},
+            {"test": "has_biome_tag","operator": "!=","value": "lakes"},
+            {"test": "has_biome_tag","operator": "!=","value": "savana"},
+            {"test": "has_biome_tag","operator": "!=","value": "mesa"},
+            {"test": "has_biome_tag","operator": "!=","value": "beach"},
+            {"test": "has_biome_tag","operator": "!=","value": "frozen"},
+            {"any_of": [
+                {"test": "has_biome_tag","operator": "==","value": "ocean"},
+                {"test": "has_biome_tag","operator": "==","value": "swamp_hills"},
+                {"test": "has_biome_tag","operator": "==","value": "swamp"}
+            ]}
+        ]
+      }
+    ],
+    "terrain_adaptation": "beard_thin"
+  }
+}

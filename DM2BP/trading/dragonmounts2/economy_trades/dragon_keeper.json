@@ -1,0 +1,1586 @@
+{
+  "tiers": [
+    {
+      "total_exp_required": 0,
+      "groups": [
+        {
+          "num_to_select": 1,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": {
+                    "min": 2,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:wooden_dragon_flute"
+                }
+              ],
+              "max_uses": 12,
+              "trader_exp": 2
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": {
+                    "min": 4,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:bone_dragon_flute"
+                }
+              ],
+              "max_uses": 8,
+              "trader_exp": 3
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:emerald",
+                  "quantity": {
+                    "min": 6,
+                    "max": 12
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:dragon_flute"
+                }
+              ],
+              "max_uses": 8,
+              "trader_exp": 3
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 1,
+                    "max": 2
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:diamond_dragon_flute"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:iron_ingot",
+                  "quantity": {
+                    "min": 8,
+                    "max": 16
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:netherite_dragon_flute"
+                }
+              ],
+              "max_uses": 4,
+              "trader_exp": 8
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:gold_ingot",
+                  "quantity": {
+                    "min": 8,
+                    "max": 16
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ornamental_dragon_flute"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:aether_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:dark_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:dark_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:dark_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:dark_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:enchanted_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:enchanted_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:enchanted_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:enchanted_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ender_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ender_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ender_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ender_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:fire_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:fire_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:fire_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:fire_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:forest_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:forest_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:forest_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:forest_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ice_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ice_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ice_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:ice_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:light_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:light_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:light_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:light_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:moonlight_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:moonlight_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:moonlight_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:moonlight_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:netherite_scrap",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:nether_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:netherite_scrap",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:nether_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:netherite_scrap",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:nether_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:netherite_scrap",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:nether_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sculk_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sculk_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sculk_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sculk_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:skeleton_dragon_bone_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:skeleton_dragon_bone_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:skeleton_dragon_bone_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:skeleton_dragon_bone_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:storm_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:storm_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:storm_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:storm_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sunlight_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sunlight_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sunlight_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:sunlight_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:terra_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:terra_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:terra_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:terra_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:water_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:water_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:water_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:water_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:wither_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:wither_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:wither_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:bone",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:wither_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        },
+        {
+          "num_to_select": 2,
+          "trades": [
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:zombie_dragon_scale_boots"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 8,
+                    "max": 8
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:zombie_dragon_scale_chestplate"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 4,
+                    "max": 4
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:zombie_dragon_scale_helmet"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            },
+            {
+              "wants": [
+                {
+                  "item": "minecraft:diamond",
+                  "quantity": {
+                    "min": 6,
+                    "max": 6
+                  },
+                  "price_multiplier": 0.5
+                }
+              ],
+              "gives": [
+                {
+                  "item": "dragonmounts2:zombie_dragon_scale_leggings"
+                }
+              ],
+              "max_uses": 6,
+              "trader_exp": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:recipe_smithing_transform": {
+    "description": {
+      "identifier": "dragonmounts2:aether_dragon_scale_boots"
+    },
+    "unlock": [
+      {
+        "item": "dragonmounts2:aether_dragon_scales"
+      }
+    ],
+    "tags": [ "smithing_table" ],
+    "template": "dragonmounts2:dragon_scale_upgrade_smithing_template",
+    "base": "minecraft:diamond_boots",
+    "addition": "dragonmounts2:aether_dragon_scales",
+    "result": "dragonmounts2:aether_dragon_scale_boots"
+  }
+}

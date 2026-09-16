@@ -1,0 +1,132 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_keeper",
+      "spawn_category": "creature",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "properties": {
+        "dragonmounts2:is_baby": {
+          "type": "bool",
+          "default": false,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["dragon_keeper", "dragonmounts2", "villager", "mob"]
+      },
+      "minecraft:health": {"value": 35, "max": 35},
+      "minecraft:collision_box": {"width": 0.6, "height": 1.9},
+      "minecraft:movement": {"value": 0.5},
+      "minecraft:follow_range": {"value": 32},
+      "minecraft:physics": {},
+      "minecraft:breathable": {"total_supply": 15, "suffocate_time": 0},
+      "minecraft:can_climb": {},
+      "minecraft:movement.basic": {},
+      "minecraft:navigation.walk": {
+        "avoid_water": true,
+        "can_path_over_water": true,
+        "can_pass_doors": true,
+        "can_open_doors": true
+      },
+      "minecraft:dweller": {
+        "dwelling_type": "village",
+        "dweller_role": "inhabitant",
+        "can_find_poi": true,
+        "can_migrate": true,
+        "first_founding_reward": 5,
+        "update_interval_base": 60,
+        "update_interval_variant": 40
+      },
+      "minecraft:inventory": {"inventory_size": 8, "private": true},
+      "minecraft:equipment": {
+        "slot_drop_chance": [{"drop_chance": 0, "slot": "slot.weapon.mainhand"}]
+      },
+      "minecraft:nameable": {},
+      "minecraft:persistent": {},
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:annotation.open_door": {},
+      "minecraft:behavior.float": {"priority": 0},
+      "minecraft:behavior.panic": {"priority": 1, "speed_multiplier": 0.8},
+      "minecraft:behavior.trade_with_player": {"priority": 2},
+      "minecraft:behavior.look_at_trading_player": {"priority": 3},
+      "minecraft:behavior.move_indoors": {"priority": 4, "speed_multiplier": 0.8},
+      "minecraft:behavior.restrict_open_door": {"priority": 5},
+      "minecraft:behavior.open_door": {"priority": 6, "close_door_after": true},
+      "minecraft:behavior.random_stroll": {"priority": 8, "speed_multiplier": 0.6},
+      "minecraft:behavior.move_towards_dwelling_restriction": {"priority": 9, "speed_multiplier": 0.6},
+      "minecraft:behavior.look_at_player": {"priority": 10, "look_distance": 8, "probability": 0.05}
+    },
+    "component_groups": {
+      "dragonmounts2:adult": {
+        "minecraft:scale": {"value": 1.0},
+        "minecraft:experience_reward": {
+          "on_death": "query.last_hit_by_player ? Math.Random(1,3) : 0"
+        },
+        "minecraft:economy_trade_table": {
+          "display_name": "entity.dragonmounts2.dragon_keeper.trade",
+          "table": "trading/dragonmounts2/economy_trades/dragon_keeper.json",
+          "new_screen": true,
+          "persist_trades": true,
+          "cured_discount": [-100, -100],
+          "max_cured_discount": [-10, -10]
+        },
+        "minecraft:behavior.trade_interest": {
+          "priority": 7,
+          "within_radius": 6,
+          "interest_time": 45,
+          "remove_item_time": 1,
+          "carried_item_switch_time": 2,
+          "cooldown": 2
+        },
+        "minecraft:ageable": {
+          "duration": 1200,
+          "feed_items": ["bread", "carrot", "potato", "beetroot"],
+          "grow_up": {"event": "dragonmounts2:grow_up", "target": "self"}
+        }
+      },
+      "dragonmounts2:baby": {
+        "minecraft:is_baby": {},
+        "minecraft:scale": {"value": 0.5},
+        "minecraft:ageable": {
+          "duration": 1200,
+          "feed_items": ["bread", "carrot", "potato", "beetroot"],
+          "grow_up": {"event": "dragonmounts2:grow_up", "target": "self"}
+        },
+        "minecraft:behavior.follow_parent": {"priority": 5, "speed_multiplier": 1.1},
+        "minecraft:behavior.play": {"priority": 8, "speed_multiplier": 0.6}
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {"weight": 95, "trigger": "dragonmounts2:spawn_as_adult"},
+          {"weight": 5, "trigger": "dragonmounts2:spawn_as_baby"}
+        ]
+      },
+      "dragonmounts2:entity_born": {"trigger": "dragonmounts2:spawn_as_baby"},
+      "dragonmounts2:spawn_as_adult": {
+        "add": {"component_groups": ["dragonmounts2:adult"]},
+        "set_property": {"dragonmounts2:is_baby": false}
+      },
+      "dragonmounts2:spawn_as_baby": {
+        "add": {"component_groups": ["dragonmounts2:baby"]},
+        "set_property": {"dragonmounts2:is_baby": true}
+      },
+      "dragonmounts2:grow_up": {
+        "sequence": [
+          {"remove": {"component_groups": ["dragonmounts2:baby"]}},
+          {
+            "add": {"component_groups": ["dragonmounts2:adult"]},
+            "set_property": {"dragonmounts2:is_baby": false}
+          }
+        ]
+      }
+    }
+  }
+}
+

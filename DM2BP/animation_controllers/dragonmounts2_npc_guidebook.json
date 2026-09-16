@@ -1,0 +1,15 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.dragonmounts2.npc.guide_book": {
+			"initial_state": "default",
+			"states": {
+				"default": {
+					"on_entry": [
+						"/dialogue change @s dragonmounts2:1-home"
+					]
+				}
+			}
+		}
+	}
+}

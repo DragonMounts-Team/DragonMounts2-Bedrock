@@ -1,0 +1,24 @@
+{
+    "format_version": "1.26.50",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "dragonmounts2:guide_book",
+            "materials": {
+                "default": "entity_alphatest"
+            },
+            "render_controllers": [
+                "controller.render.dragonmounts2.guide_book"
+            ],
+            "textures": {
+                "default": "textures/entity/dragon_keeper/keeper/keeper"
+            },
+            "geometry": {
+                "default": "geometry.dragonmounts2.villager.dragon_keeper"
+            },
+            "spawn_egg": {
+                "base_color": "#22629c",
+                "overlay_color": "#bf39eb"
+            }
+        }
+    }
+}

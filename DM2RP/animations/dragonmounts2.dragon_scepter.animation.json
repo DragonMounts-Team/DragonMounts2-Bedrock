@@ -1,0 +1,23 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dragonmounts2.dragon_scepter.held": {
+			"loop": true,
+			"bones": {
+				"rightitem": {
+					"rotation": ["v.held_rotation_x", "v.held_rotation_y", "v.held_rotation_z"],
+					"position": ["c.is_first_person?0:-0.5", "c.is_first_person?-5:-4", "c.is_first_person?10:-1"]
+				}
+			}
+		},
+		"animation.dragonmounts2.dragon_scepter.use": {
+			"loop": true,
+			"bones": {
+				"rightitem": {
+					"rotation": ["v.use_rotation_x", "v.use_rotation_y", "v.use_rotation_z"],
+					"position": ["c.is_first_person?0:0", "c.is_first_person?5:2", "c.is_first_person?-10:0"]
+				}
+			}
+		}
+	}
+}

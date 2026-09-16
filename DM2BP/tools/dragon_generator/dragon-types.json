@@ -1,0 +1,62 @@
+{
+  "namespace": "dragonmounts2",
+  "output": {
+    "entities": "../DM2BP/entities",
+    "amulets": "../DM2BP/items/dragonmounts2_equipment/tools/dragon_amulet",
+    "resource_entities": "../DM2RP/entity/dragons",
+    "resource_amulets": "../DM2RP/attachables/dragonmounts2_equipment/player/amulet_equipment",
+    "resource_item_texture": "../DM2RP/textures/item_texture.json",
+    "script_data": "../DM2BP/scripts/data/item_data.js",
+    "loot_tables": "../DM2BP/loot_tables/entities",
+    "flutes": "../DM2BP/items/dragonmounts2_equipment/tools/dragon_flutes",
+    "custom_items": "../DM2BP/items/dragonmounts2_generated",
+    "resource_attachables": "../DM2RP/attachables/dragonmounts2_generated",
+    "languages": ["../DM2BP/texts/en_US.lang", "../DM2BP/texts/en_GB.lang"]
+  },
+  "templates": {
+    "dragon": "../DM2BP/entities/fire_dragon/fire_dragon.json",
+    "egg": "../DM2BP/entities/fire_dragon/fire_dragon_egg.json",
+    "amulet": "../DM2BP/items/dragonmounts2_equipment/tools/dragon_amulet/fire_amulet.json",
+    "resource_dragon": "../DM2RP/entity/dragons/fire_dragon/fire_dragon.entity.json",
+    "resource_amulet": "../DM2RP/attachables/dragonmounts2_equipment/player/amulet_equipment/fire_amulet.json",
+    "resource_armor_attachables": {
+      "helmet": "../DM2RP/attachables/dragonmounts2_equipment/player/fire_dragon_scale_equipment/fire_dragon_scale_helmet.json",
+      "chestplate": "../DM2RP/attachables/dragonmounts2_equipment/player/fire_dragon_scale_equipment/fire_dragon_scale_chestplate.json",
+      "leggings": "../DM2RP/attachables/dragonmounts2_equipment/player/fire_dragon_scale_equipment/fire_dragon_scale_leggings.json",
+      "boots": "../DM2RP/attachables/dragonmounts2_equipment/player/fire_dragon_scale_equipment/fire_dragon_scale_boots.json"
+    }
+  },
+  "defaults": {
+    "breath_entity": "dragonmounts2:fire_dragonbreath"
+  },
+  "dragons": [
+    {
+      "type": "aether_dragon",
+      "variants": ["aethra", "wind", "breeze"],
+      "default_variant": "aethra"
+    },
+    {
+      "type": "example_dragon",
+      "enabled": false,
+      "variants": ["default", "variant_two"],
+      "default_variant": "default",
+      "custom_assets": [
+        {
+          "name": "scales",
+          "kind": "item",
+          "loot_min": 1,
+          "loot_max": 3
+        },
+        {
+          "name": "armor",
+          "kind": "armor",
+          "components": {
+            "minecraft:fire_resistant": { "value": true }
+          }
+        }
+      ],
+      "custom_components": {},
+      "custom_component_groups": {}
+    }
+  ]
+}

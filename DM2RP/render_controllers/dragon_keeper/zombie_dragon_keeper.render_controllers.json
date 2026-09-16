@@ -1,0 +1,23 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.zombie_dragon_keeper_base": {
+      "geometry": "query.is_baby ? Geometry.baby : Geometry.default",
+      "materials": [
+        { "*": "Material.default" }
+      ],
+      "textures": [
+        "query.is_baby ? Texture.baby_default : Texture.default"
+      ]
+    },
+    "controller.render.zombie_dragon_keeper_masked": {
+      "geometry": "query.is_baby ? Geometry.baby : Geometry.default",
+      "materials": [
+        { "*": "query.is_baby ? Material.default : Material.masked" }
+      ],
+      "textures": [
+        "query.is_baby ? Texture.baby_clothing : Texture.clothing"
+      ]
+    }
+  }
+}

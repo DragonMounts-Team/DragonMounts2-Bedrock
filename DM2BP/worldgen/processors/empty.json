@@ -1,0 +1,10 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:processor_list": {
+    "description": {
+      "identifier": "dragonmounts2:empty"
+    },
+    "processors": [
+    ]
+  }
+}

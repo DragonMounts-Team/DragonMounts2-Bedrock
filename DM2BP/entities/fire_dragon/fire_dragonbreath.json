@@ -1,0 +1,87 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragonbreath",
+      "runtime_identifier": "minecraft:snowball",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.25,
+        "height": 0.25
+      },
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": {
+            "damage": 15,
+            "knockback": true,
+            "semi_random_diff_damage": false,
+            "destroy_on_hit": false
+          },
+          "stick_in_ground": {
+            "shake_time": 0.35
+          },
+          "definition_event": {
+            "affect_projectile": true,
+            "event_trigger": {
+              "event": "on:hit",
+              "target": "self"
+            }
+          }
+        },
+        "power": 2.5,
+        "gravity": 0.05,
+        "inertia": 1,
+        "anchor": "middle",
+        "offset": [ 0.0, 2.5, 3.0 ]
+      },
+      "minecraft:physics": { },
+      "minecraft:pushable_by_block": { },
+      "minecraft:pushable_by_entity": { },
+      "minecraft:conditional_bandwidth_optimization": {
+        "default_values": {
+          "max_optimized_distance": 100,
+          "max_dropped_ticks": 7,
+          "use_motion_prediction_hints": true
+        }
+      }
+    },
+    "events": {
+      "on:hit": {
+        "sequence": [
+          {
+            "queue_command": {
+              "command": ["execute at @e[r=5] run fill ~1 ~1 ~1 ~~~ fire replace air","damage @e[r=6] 5 fire"]
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "exploding","despawn"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "component_groups": {
+      "exploding": {
+        "minecraft:explode": {
+          "power": 0.0,
+          "fuse_length": 0.0,
+          "max_resistance": 1000,
+          "breaks_blocks": false,
+          "causes_fire": true,
+          "destroy_affected_by_griefing": false,
+          "fire_affected_by_griefing": false,
+          "fuse_lit": true
+        }
+      },
+      "despawn": {
+  "minecraft:despawn": {}
+   }      
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dragonmounts2.dragon_flute.use.1st": {
+			"loop": true,
+			"bones": {
+				"rightItem": {
+					"rotation": ["-c.is_first_person?-17:-0", "-c.is_first_person?9:-0", "c.is_first_person?45:0"],
+					"position": ["-c.is_first_person?-2:-0", "c.is_first_person?8:0", "c.is_first_person?-1:0"]
+				}
+			}
+		},
+		"animation.ddragonmounts2.dragon_flute.use.3rd": {
+			"loop": true,
+			"animation_length": 0.75,
+			"bones": {
+				"rightItem": {
+					"rotation": [0, 0, -90]
+				},
+				"head": {
+					"rotation": {
+						"0.0": ["-!c.is_first_person?42.5:-0", 0, 0],
+						"0.25": ["-!c.is_first_person?42.5:-0", 0, 0]
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"0.0": ["-!c.is_first_person?-100:-0", "-!c.is_first_person?-20:-0", "!c.is_first_person?90:0"],
+						"0.25": ["-!c.is_first_person?-100:-0", "-!c.is_first_person?-10:-0", "!c.is_first_person?80:0"],
+						"0.5": ["-!c.is_first_person?-110:-0", "-!c.is_first_person?-20:-0", "!c.is_first_person?70:0"],
+						"0.75": ["-!c.is_first_person?-100:-0", "-!c.is_first_person?-20:-0", "!c.is_first_person?90:0"]
+					}
+				}
+			}
+		}
+	}
+}

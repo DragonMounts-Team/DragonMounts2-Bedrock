@@ -1,0 +1,29 @@
+{
+  "format_version": "1.21.80",
+  "minecraft:jigsaw": {
+    "description": {
+      "identifier": "dragonmounts2:sculk"
+    },
+    "start_pool": "dragonmounts2:sculk",
+    "step": "underground_structures",
+    "heightmap_projection": "none",
+    "start_height": {
+        "type": "uniform",
+        "min": {"above_bottom": 10 },
+        "max": {"above_bottom": 40} 
+    },
+    "dimension_padding": {
+        "top": 40,
+        "bottom": 10
+    },
+    "max_depth": 10,
+    "biome_filters": [
+      {
+        "all_of": [
+            {"test": "has_biome_tag","operator": "==","value": "deep_dark"}
+        ]
+      }
+    ],
+    "terrain_adaptation": "beard_thin"
+  }
+}

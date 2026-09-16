@@ -1,0 +1,19 @@
+{
+  "format_version": "1.26.10",
+  "minecraft:template_pool": {
+    "description": {
+      "identifier": "dragonmounts2:forest"
+    },
+    "elements": [
+      {
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "nest_forest",
+          "processors": "dragonmounts2:empty" 
+        },
+        "weight": 1
+      }
+    ],
+    "fallback": "dragonmounts2:forest"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "format_version": "1.10.0",
+  "animations": {
+    "animation.dragonmounts2.shield.wield_main_hand_first_person": {
+      "loop": true,
+      "bones": {
+        "shield": {
+          "position": [ "variable.main_hand_first_person_pos_x", "variable.main_hand_first_person_pos_y", "variable.main_hand_first_person_pos_z" ],
+          "rotation": [ "variable.main_hand_first_person_rot_x", "variable.main_hand_first_person_rot_y", "variable.main_hand_first_person_rot_z" ]
+        }
+      }
+    },
+    "animation.dragonmounts2.shield.wield_off_hand_first_person": {
+      "loop": true,
+      "bones": {
+        "shield": {
+          "position": [ "variable.off_hand_first_person_pos_x", "variable.off_hand_first_person_pos_y", "variable.is_using_bow ? variable.off_hand_first_person_with_bow_pos_z : variable.off_hand_first_person_pos_z" ],
+          "rotation": [ "variable.off_hand_first_person_rot_x", "variable.off_hand_first_person_rot_y", "variable.off_hand_first_person_rot_z" ]
+        }
+      }
+    },
+    "animation.dragonmounts2.shield.wield_main_hand_first_person_blocking": {
+      "loop": "hold_on_last_frame",
+      "bones": {
+        "shield": {
+          "position": {
+            "0": [ "variable.main_hand_first_person_pos_x - 2", "variable.main_hand_first_person_pos_y", "variable.main_hand_first_person_pos_z" ],
+            "0.1": [ "variable.main_hand_first_person_pos_x - 2", "variable.main_hand_first_person_pos_y - 2", "variable.main_hand_first_person_pos_z - 2" ]
+          },
+          "rotation": [ "variable.main_hand_first_person_rot_x", "variable.main_hand_first_person_rot_y - 12.0", "variable.main_hand_first_person_rot_z" ]
+        }
+      }
+    },
+    "animation.dragonmounts2.shield.wield_off_hand_first_person_blocking": {
+      "loop": "hold_on_last_frame",
+      "bones": {
+        "shield": {
+          "position": {
+            "0": [ "variable.off_hand_first_person_pos_x + 0.5", "variable.off_hand_first_person_pos_y", "variable.is_using_bow ? variable.off_hand_first_person_with_bow_pos_z : variable.off_hand_first_person_pos_z" ],
+            "0.1": [ "variable.off_hand_first_person_pos_x + 0.5", "variable.off_hand_first_person_pos_y + 3.2", "variable.is_using_bow ? variable.off_hand_first_person_with_bow_pos_z : variable.off_hand_first_person_pos_z + 1.5" ]
+          },
+          "rotation": [ "variable.off_hand_first_person_rot_x", "variable.off_hand_first_person_rot_y", "variable.off_hand_first_person_rot_z + 10.0" ]
+        }
+      }
+    },
+    "animation.dragonmounts2.shield.wield_third_person": {
+      "loop": true,
+      "bones": {
+        "shield": {
+          "position": [ "c.item_slot == 'main_hand' ? -0.4 : -1.6", 9.0, 9.3 ],
+          "rotation": [ -90.0, 0.0, 90.0 ],
+          "scale": [ "c.item_slot == 'main_hand' ? 1.0 : -1.0", -1.0, "c.item_slot == 'main_hand' ? -1.0 : 1.0" ]
+        }
+      }
+    },
+    "animation.dragonmounts2.player.shield_block_main_hand": {
+      "loop": true,
+      "bones": {
+        "rightarm": {
+          "rotation": [ "!v.is_first_person ? -20.0 : 0", "!v.is_first_person ? -30.0 : 0", "!v.is_first_person ? -25.0 : 0" ]
+        },
+        "rightitem": {
+          "position": [ "!v.is_first_person ? -1.0 : 0", "!v.is_first_person ? -3.0 : 0", 0.0 ],
+          "rotation": [ 0.0, "!v.is_first_person ? -60.0 : 0", "!v.is_first_person ? -45.0 : 0" ]
+        }
+      }
+    },
+    "animation.dragonmounts2.player.shield_block_off_hand": {
+      "loop": true,
+      "bones": {
+        "leftarm": {
+          "rotation": [ "!v.is_first_person ? -20.0 : 0", "!v.is_first_person ? 20.0 : 0", "!v.is_first_person ? 20.0 : 0" ]
+        },
+        "leftitem": {
+          "position": [ "!v.is_first_person ? 1.0 + query.item_is_charged * 1.5 : 0", "!v.is_first_person ? -3.0 + query.item_is_charged : 0", 0.0 ],
+          "rotation": [ "!v.is_first_person ? query.item_is_charged * 30.0 : 0", "!v.is_first_person ? 70.0 - query.item_is_charged * 60.0 : 0", "!v.is_first_person ? 65.0 - query.item_is_charged * 15.0 : 0" ]
+        }
+      }
+    }
+  }
+}

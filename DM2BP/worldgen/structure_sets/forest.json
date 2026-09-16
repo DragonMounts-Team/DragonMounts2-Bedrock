@@ -1,0 +1,22 @@
+{
+	"format_version": "1.21.80",
+	"minecraft:structure_set": {
+		"description": {
+			"identifier": "dragonmounts2:forest"
+		},
+		
+		"placement": {
+			"type": "minecraft:random_spread",
+			"salt": 815723328,
+			"separation": 12,
+			"spacing": 48,
+			"spread_type": "triangular"
+		},
+		"structures": [
+			{
+				"structure": "dragonmounts2:forest",
+				"weight": 1
+			}
+		]
+	}
+}
