@@ -1,69 +1,18 @@
 {
   "format_version": "1.26.50",
   "minecraft:item": {
-    "description": {
-      "identifier": "dragonmounts2:nether_amulet",
-      "menu_category": {
-        "category": "none",
-        "is_hidden_in_commands": true
-      }
-    },
+    "description": { "identifier": "dragonmounts2:nether_amulet", "menu_category": { "category": "none", "is_hidden_in_commands": true } },
     "components": {
-      "minecraft:display_name": {
-        "value": "item.dragonmounts2:dragon_amulet.name"
-      },
-      "minecraft:fire_resistant": {
-        "value": true
-      },
-      "minecraft:icon": {
-        "textures": {
-          "default": "dragonmounts2:nether_amulet",
-          "dyed": "dragonmounts2:nether_amulet_overlay"
-        }
-      },
-      "minecraft:max_stack_size": {
-        "value": 1
-      },
+      "minecraft:display_name": { "value": "item.dragonmounts2:dragon_amulet.name" },
+      "minecraft:fire_resistant": { "value": true },
+      "minecraft:icon": { "textures": { "default": "dragonmounts2:nether_amulet", "dyed": "dragonmounts2:nether_amulet_overlay" } },
+      "minecraft:max_stack_size": { "value": 1 },
       "minecraft:rarity": "common",
-      "minecraft:tags": {
-        "tags": [
-          "minecraft:is_sword",
-          "dragonmounts2:is_dragon_amulet",
-          "novelty:is_neckless"
-        ]
-      },
-      "minecraft:block_placer": {
-        "block": "minecraft:air",
-        "use_on": [
-          "minecraft:air"
-        ]
-      },
-      "minecraft:wearable": {
-        "protection": 1,
-        "slot": "slot.armor.chest"
-      },
-      "minecraft:dyeable": {},
-      "dragonmounts2:dragon_amulet": {
-        "dragon_types": [
-          "dragonmounts2:nether_dragon"
-        ],
-        "sounds": {
-          "capture": "dragonmounts2:item.dragon_amulet.capture",
-          "release": "dragonmounts2:item.dragon_amulet.release"
-        },
-        "translates": {
-          "captured": "tooltip.dragonmounts2:dragon_amulet.captured",
-          "captured_to": "tooltip.dragonmounts2:dragon_amulet.captured_to",
-          "captured_to_owner": "tooltip.dragonmounts2:dragon_amulet.captured_to_owner",
-          "name": "tooltip.dragonmounts2:dragon_amulet.name",
-          "not_owned": "tooltip.dragonmounts2:dragon_amulet.not_owned",
-          "owned_by": "tooltip.dragonmounts2:dragon_amulet.owned_by",
-          "selected_mobs": "tooltip.dragonmounts2:dragon_amulet.selected_mobs",
-          "untamed": "tooltip.dragonmounts2:dragon_amulet.untamed",
-          "released": "tooltip.dragonmounts2:dragon_amulet.released",
-          "health": "tooltip.dragonmounts2:dragon_amulet.health"
-        }
-      }
+      "minecraft:tags": { "tags": [ "minecraft:is_sword", "dragonmounts2:is_dragon_amulet", "novelty:is_neckless" ] },
+      "minecraft:block_placer": { "block": "minecraft:air", "use_on": [ "minecraft:air" ] },
+      "minecraft:wearable": { "protection": 1, "slot": "slot.armor.chest" },
+      "minecraft:dyeable": { },
+      "dragonmounts2:dragon_amulet": { "dragon_types": [ "dragonmounts2:nether_dragon" ], "sounds": { "capture": "dragonmounts2:item.dragon_amulet.capture", "release": "dragonmounts2:item.dragon_amulet.release" }, "translates": { "captured": "tooltip.dragonmounts2:dragon_amulet.captured", "captured_to": "tooltip.dragonmounts2:dragon_amulet.captured_to", "captured_to_owner": "tooltip.dragonmounts2:dragon_amulet.captured_to_owner", "name": "tooltip.dragonmounts2:dragon_amulet.name", "not_owned": "tooltip.dragonmounts2:dragon_amulet.not_owned", "owned_by": "tooltip.dragonmounts2:dragon_amulet.owned_by", "selected_mobs": "tooltip.dragonmounts2:dragon_amulet.selected_mobs", "untamed": "tooltip.dragonmounts2:dragon_amulet.untamed", "released": "tooltip.dragonmounts2:dragon_amulet.released", "health": "tooltip.dragonmounts2:dragon_amulet.health" } }
     }
   }
 }

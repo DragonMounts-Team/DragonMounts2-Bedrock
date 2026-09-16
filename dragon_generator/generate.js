@@ -300,11 +300,33 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
+function formatJson(value, indent = 0) {
+  const spacing = " ".repeat(indent);
+  const childSpacing = " ".repeat(indent + 2);
+  if (value === null || typeof value !== "object") return JSON.stringify(value);
+
+  if (Array.isArray(value)) {
+    if (value.every((entry) => entry === null || typeof entry !== "object")) {
+      return `[ ${value.map((entry) => formatJson(entry, indent)).join(", ")} ]`;
+    }
+    return `[\n${value.map((entry) => `${childSpacing}${formatJson(entry, indent + 2)}`).join(",\n")}\n${spacing}]`;
+  }
+
+  const entries = Object.entries(value);
+  if (entries.length === 0) return "{ }";
+  const formattedEntries = entries.map(([key, entry]) => `"${key}": ${formatJson(entry, indent + 2)}`);
+  const isInline = entries.every(([, entry]) => entry === null || typeof entry !== "object" || (Array.isArray(entry)
+    ? entry.every((item) => item === null || typeof item !== "object")
+    : Object.values(entry).every((item) => item === null || typeof item !== "object")));
+  if (isInline) return `{ ${formattedEntries.join(", ")} }`;
+  return `{\n${formattedEntries.map((entry) => `${childSpacing}${entry}`).join(",\n")}\n${spacing}}`;
+}
+
 function writeJson(filePath, value, dryRun) {
   const exists = fs.existsSync(filePath);
   if (!dryRun) {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
-    fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`);
+    fs.writeFileSync(filePath, `${formatJson(value)}\n`);
   }
   const action = exists
     ? (dryRun ? "already exists (would update)" : "already exists, updated")
@@ -641,7 +663,7 @@ function addFluteDragonType(dragon, dryRun) {
       continue;
     }
     flute.dragon_types.push(`${namespace}:${dragon.type}`);
-    if (!dryRun) fs.writeFileSync(filePath, `${JSON.stringify(item, null, 2)}\n`);
+    if (!dryRun) fs.writeFileSync(filePath, `${formatJson(item)}\n`);
     console.log(`${dryRun ? "would update" : "updated"} ${path.relative(process.cwd(), filePath)}`);
   }
 }
@@ -705,7 +727,7 @@ function writeOutput(dragon, kind, value, dryRun) {
   const filePath = path.join(directory, `${dragon.type}${kind === "egg" ? "_egg" : ""}.json`);
   if (!dryRun) {
     fs.mkdirSync(directory, { recursive: true });
-    fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`);
+    fs.writeFileSync(filePath, `${formatJson(value)}\n`);
   }
   console.log(`${dryRun ? "would generate" : "generated"} ${path.relative(process.cwd(), filePath)}`);
 }
