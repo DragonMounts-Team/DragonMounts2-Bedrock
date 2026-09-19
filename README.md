@@ -16,11 +16,6 @@ It is a different add-on compared to it's prequel Dragon Mounts. The premise of 
 - [Vatonage](https://vatonage.com/mods/dragon-mounts-2)
 - [ModBay](https://modbay.org/mods/4446-dragon-mounts-2.html)
 
-## Generator
-[Open the Dragon Mount's Generator](https://dragonmounts-team.github.io/DragonMounts2-Bedrock/dragon_generator/website/)
-
-The generator website is deployed automatically through GitHub Pages. Before the first deployment, open the repository's **Settings > Pages** and select **GitHub Actions** as the source. For one-click file generation, run the local bridge described in [the generator guide](dragon_generator/website/README.md).
-
 ## License
 The add-on's binaries, as well as it's textures and code are licensed under the GNU General Public License v3.
 
