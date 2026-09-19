@@ -1,5 +1,6 @@
-import { system, world } from "@minecraft/server";
+import { system } from "@minecraft/server";
 import * as itemArrays from "../arrays/item_arrays.js";
+import { onWorldEvent } from "../core/world_events.js";
 
 const activeDiscs = new Map();
 function locationKey(dimension, loc) {
@@ -29,7 +30,7 @@ function stopDiscDeferred(key) {
   activeDiscs.delete(key);
   system.run(() => stopSoundForNearby(dim, center, sound));
 }
-world.beforeEvents.playerInteractWithBlock.subscribe((data) => {
+onWorldEvent("beforeEvents", "playerInteractWithBlock", (data) => {
   const { block } = data;
 
   if (block.typeId !== "minecraft:jukebox") return;
@@ -37,7 +38,7 @@ world.beforeEvents.playerInteractWithBlock.subscribe((data) => {
   if (!activeDiscs.has(key)) return;
   stopDiscDeferred(key);
 });
-world.afterEvents.playerInteractWithBlock.subscribe(({ block }) => {
+onWorldEvent("afterEvents", "playerInteractWithBlock", ({ block }) => {
   if (block.typeId !== "minecraft:jukebox") return;
   const key = locationKey(block.dimension, block.location);
   if (activeDiscs.has(key)) return;
@@ -62,7 +63,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(({ block }) => {
     });
   }, 1);
 });
-world.beforeEvents.playerBreakBlock.subscribe(({ block }) => {
+onWorldEvent("beforeEvents", "playerBreakBlock", ({ block }) => {
   if (block.typeId !== "minecraft:jukebox") return;
   stopDiscDeferred(locationKey(block.dimension, block.location));
 });

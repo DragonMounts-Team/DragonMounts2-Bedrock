@@ -3,14 +3,23 @@
   "minecraft:attachable": {
     "description": {
       "identifier": "dragonmounts2:ender_dragon_scale_leggings",
-      "materials": { "default": "armor", "enchanted": "armor_enchanted" },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted"
+      },
       "textures": {
         "default": "textures/models/dragonmounts2_equipment/armor_equipment/ender_classic",
         "enchanted": "textures/misc/enchanted_item_glint"
       },
-      "geometry": { "default": "geometry.dragonmounts2.dragon_scale.armor.leggings" },
-      "particle_effects": { "ender_particles": "dragonmounts2:ender_armor_particle" },
-      "animations": { "offset": "animation.armor.leggings.offset", "particle_loop": "animation.dragonmounts2.dragon_scale.leggings.particles" },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon_scale.leggings"
+      },
+      "particle_effects": {
+        "ender_particles": "dragonmounts2:ender_armor_particle"
+      },
+      "animations": {
+        "particle_loop": "animation.dragonmounts2.dragon_scale.leggings.particles"
+      },
       "scripts": {
         "initialize": [
           "v.not_armor_stand = !q.is_owner_identifier_any('minecraft:armor_stand');"
@@ -23,11 +32,14 @@
         ],
         "parent_setup": "v.leg_layer_visible = 0.0;",
         "animate": [
-          "offset",
-          { "particle_loop": "v.particle_gate" }
+          {
+            "particle_loop": "v.particle_gate"
+          }
         ]
       },
-      "render_controllers": [ "controller.render.armor" ]
+      "render_controllers": [
+        "controller.render.armor"
+      ]
     }
   }
 }

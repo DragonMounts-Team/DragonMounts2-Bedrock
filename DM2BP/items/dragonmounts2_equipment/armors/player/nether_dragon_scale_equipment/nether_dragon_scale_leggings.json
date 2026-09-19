@@ -16,7 +16,6 @@
       "minecraft:fire_resistant": {
         "value": true
       },
-      "dragonmounts2:nether_dragon_scale_lore": {},
       "dragonmounts2:nether_dragon_scale_effects": {},
       "minecraft:durability": {
         "max_durability": 500

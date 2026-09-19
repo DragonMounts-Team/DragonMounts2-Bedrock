@@ -13,7 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:terra_dragon_scale_leggings.name"
       },
-      "dragonmounts2:terra_dragon_scale_lore": {},
       "dragonmounts2:terra_dragon_scale_effects": {},
       "minecraft:durability": {
         "max_durability": 338

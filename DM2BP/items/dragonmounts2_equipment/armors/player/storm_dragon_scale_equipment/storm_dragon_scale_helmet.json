@@ -13,7 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:storm_dragon_scale_helmet.name"
       },
-      "dragonmounts2:storm_dragon_scale_lore": {},
       "dragonmounts2:storm_dragon_scale_effects": {},
       "minecraft:durability": {
         "max_durability": 327

@@ -1,4 +1,3 @@
-import "../components/item_components.js";
 import {
   world,
   system,
@@ -14,7 +13,16 @@ import {
   Player,
 } from "@minecraft/server";
 import * as itemUtilities from "../utilities/item_utilities.js";
+import * as shieldUtilities from "../utilities/item/shield_utilities.js";
 import { getSoundOptions } from "../data/settings.js";
+import { onPlayerLeave } from "../core/player_lifecycle.js";
+import { onBeforeEntityHurt } from "../core/combat_events.js";
+import {
+  onItemStartUse,
+  onItemStopUse,
+  onItemReleaseUse,
+} from "../core/item_events.js";
+import { onWorldEvent } from "../core/world_events.js";
 
 const Shields = {};
 
@@ -63,11 +71,11 @@ function startBlockAnimation(player, hand) {
   }
 }
 
-world.afterEvents.playerButtonInput.subscribe((data) => {
+onWorldEvent("afterEvents", "playerButtonInput", (data) => {
   if (data.button !== InputButton.Sneak) return;
   const player = data.player;
   if (data.newButtonState === ButtonState.Pressed) {
-    const shield = itemUtilities.getHeldShield(
+    const shield = shieldUtilities.getHeldShield(
       player,
       true,
       cooldownUntil[player.id],
@@ -84,10 +92,10 @@ world.afterEvents.playerButtonInput.subscribe((data) => {
   }
 });
 
-world.afterEvents.playerSwingStart.subscribe((data) => {
+onWorldEvent("afterEvents", "playerSwingStart", (data) => {
   if (!data.player.isSneaking) return;
   const player = data.player;
-  const shield = itemUtilities.getHeldShield(
+  const shield = shieldUtilities.getHeldShield(
     player,
     true,
     cooldownUntil[player.id],
@@ -98,13 +106,13 @@ world.afterEvents.playerSwingStart.subscribe((data) => {
   }
 });
 
-world.afterEvents.playerHotbarSelectedSlotChange.subscribe((data) => {
+onWorldEvent("afterEvents", "playerHotbarSelectedSlotChange", (data) => {
   const player = data.player;
   if (!playerAnimations[player.id]) return;
-  if (!itemUtilities.getHeldShield(player, false)) stopBlockAnimation(player);
+  if (!shieldUtilities.getHeldShield(player, false)) stopBlockAnimation(player);
 });
 
-world.beforeEvents.entityHurt.subscribe((data) => {
+onBeforeEntityHurt((data) => {
   if (!(data.hurtEntity instanceof Player)) return;
   const player = data.hurtEntity;
   const cause = data.damageSource.cause;
@@ -154,7 +162,7 @@ world.beforeEvents.entityHurt.subscribe((data) => {
     usingItem[player.id]
   )
     return;
-  const shield = itemUtilities.getHeldShield(
+  const shield = shieldUtilities.getHeldShield(
     player,
     true,
     cooldownUntil[player.id],
@@ -218,7 +226,7 @@ world.beforeEvents.entityHurt.subscribe((data) => {
       return;
     }
     delete cancelledEffects[id];
-    const heldShield = itemUtilities.getHeldShield(
+    const heldShield = shieldUtilities.getHeldShield(
       player,
       true,
       cooldownUntil[player.id],
@@ -243,10 +251,10 @@ world.beforeEvents.entityHurt.subscribe((data) => {
       if (damage > Math.floor(damage)) damage = Math.floor(damage);
       damage += 1;
       heldShield.slot.setItem(
-        itemUtilities.reduceDurability(player, heldShield.item, damage),
+        shieldUtilities.reduceDurability(player, heldShield.item, damage),
       );
     }
-    const comp = itemUtilities.getShieldParameters(heldShield.item);
+    const comp = shieldUtilities.getShieldParameters(heldShield.item);
     if (!comp) return;
     if (
       comp.knockback &&
@@ -294,12 +302,12 @@ world.beforeEvents.entityHurt.subscribe((data) => {
   data.cancel = true;
 });
 
-world.beforeEvents.effectAdd.subscribe((data) => {
+onWorldEvent("beforeEvents", "effectAdd", (data) => {
   if (!cancelledEffects[data.entity.id]) return;
   data.cancel = true;
 });
 
-world.afterEvents.playerLeave.subscribe((data) => {
+onPlayerLeave((data) => {
   delete playerAnimations[data.playerId];
   delete usingItem[data.playerId];
   delete cancelledEffects[data.playerId];
@@ -309,17 +317,17 @@ world.afterEvents.playerLeave.subscribe((data) => {
   delete recentlyBlocked[data.playerId];
 });
 
-world.afterEvents.itemStartUse.subscribe((data) => {
+onItemStartUse((data) => {
   if (!data.source?.isValid) return;
   usingItem[data.source.id] = true;
 });
 
-world.afterEvents.itemStopUse.subscribe((data) => {
+onItemStopUse((data) => {
   if (!data.source?.id) return;
   delete usingItem[data.source.id];
 });
 
-world.afterEvents.itemReleaseUse.subscribe((data) => {
+onItemReleaseUse((data) => {
   if (!data.source?.id) return;
   delete usingItem[data.source.id];
 });

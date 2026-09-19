@@ -1,10 +1,10 @@
-import { system, ItemStack } from "@minecraft/server";
-import "../components/block_components.js";
+import { ItemStack } from "@minecraft/server";
 import * as blockUtilities from "../utilities/block_utilities.js";
 import * as itemData from "../data/item_data.js";
 import { getSoundOptions } from "../data/settings.js";
+import { onScriptEvent } from "../core/script_events.js";
 
-system.afterEvents.scriptEventReceive.subscribe((event) => {
+onScriptEvent((event) => {
 	const entity = event.sourceEntity;
 	if (!entity?.isValid) return;
 

@@ -1,4 +1,3 @@
-import { system } from "@minecraft/server";
 import * as blockUtilities from "../utilities/block_utilities.js";
 
 const DragonCoreComponent = {
@@ -16,7 +15,7 @@ const DragonEggComponent = {
   },
 };
 
-system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
+export function registerBlockComponents(blockComponentRegistry) {
   blockComponentRegistry.registerCustomComponent(
     "dragonmounts2:dragon_core",
     DragonCoreComponent,
@@ -25,4 +24,4 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     "dragonmounts2:dragon_egg",
     DragonEggComponent,
   );
-});
+}

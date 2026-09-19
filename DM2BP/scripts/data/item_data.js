@@ -15,7 +15,8 @@ export const dragonAmuletTypes = {
   "dragonmounts2:terra_dragon": "dragonmounts2:terra_amulet",
   "dragonmounts2:water_dragon": "dragonmounts2:water_amulet",
   "dragonmounts2:wither_dragon": "dragonmounts2:wither_amulet",
-  "dragonmounts2:zombie_dragon": "dragonmounts2:zombie_amulet",\n};
+  "dragonmounts2:zombie_dragon": "dragonmounts2:zombie_amulet",
+};
 export const dragonAmuletDataBlockTypes = {
   "dragonmounts2:fire_dragon": {
     dragon_item: "dragonmounts2:fire_amulet",

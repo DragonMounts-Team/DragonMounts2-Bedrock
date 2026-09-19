@@ -1,5 +1,5 @@
 {
-  "format_version": "1.10.0",
+  "format_version": "1.26.50",
   "minecraft:attachable": {
     "description": {
       "identifier": "dragonmounts2:dragon_scepter",
@@ -32,10 +32,14 @@
         ],
         "animate": [
           "held",
-          { "use": "v.use_item" }
+          {
+            "use": "v.use_item"
+          }
         ]
       },
-      "render_controllers": [ "controller.render.dragonmounts2.dragon_scepter" ]
+      "render_controllers": [
+        "controller.render.dragonmounts2.dragon_scepter"
+      ]
     }
   }
 }

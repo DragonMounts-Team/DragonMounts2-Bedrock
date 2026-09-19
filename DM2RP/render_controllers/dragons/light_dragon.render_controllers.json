@@ -3,40 +3,33 @@
   "render_controllers": {
     "controller.render.dragonmounts2.light_dragon.death_pre_pass": {
       "geometry": "Geometry.dragon_default",
-      "materials": [ { "*": "Material.dissolve_0" } ],
+      "materials": [
+        { "*": "Material.dissolve_0" }
+      ],
       "textures": [ "Texture.exploding" ],
       "part_visibility": [
         { "*": "v.death_ticks!=0.00" }
       ],
-      "overlay_color": {
-        "r": "v.death_ticks!=0.00?v.death_alpha:1",
-        "g": "v.death_ticks!=0.00?v.death_alpha:1",
-        "b": "v.death_ticks!=0.00?v.death_alpha:1",
-        "a": "v.death_ticks!=0.00?v.death_alpha:1"
-      }
+      "overlay_color": { "r": "v.death_ticks != 0.00 ? v.death_alpha : 1", "g": "v.death_ticks != 0.00 ? v.death_alpha : 1", "b": "v.death_ticks != 0.00 ? v.death_alpha : 1", "a": "v.death_ticks != 0.00 ? v.death_alpha : 1" }
     },
     "controller.render.dragonmounts2.light_dragon.death_main_pass": {
       "geometry": "Geometry.dragon_default",
-      "materials": [ { "*": "Material.dissolve_1" } ],
+      "materials": [
+        { "*": "Material.dissolve_1" }
+      ],
       "textures": [ "Array.base[v.variant_type_index]" ],
       "arrays": {
-        "textures": {
-          "Array.base": [ "Texture.prism", "Texture.radiant", "Texture.sunset", "Texture.fallen" ]
-        }
+        "textures": { "Array.base": [ "Texture.fallen", "Texture.prism", "Texture.radiant", "Texture.light_sunset" ] }
       }
     },
     "controller.render.dragonmounts2.light_dragon.base": {
-      "materials": [ { "*": "Material.dragon_default" } ],
-      "geometry": "Geometry.dragon_default",
-      "textures": [
-        "Array.base[v.variant_type_index]",
-        "Array.saddled[q.is_saddled]"
+      "materials": [
+        { "*": "Material.dragon_default" }
       ],
+      "geometry": "Geometry.dragon_default",
+      "textures": [ "Array.base[v.variant_type_index]", "Array.saddled[q.is_saddled]" ],
       "arrays": {
-        "textures": {
-          "Array.base": [ "Texture.prism", "Texture.radiant", "Texture.sunset", "Texture.fallen" ],
-          "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ]
-        }
+        "textures": { "Array.base": [ "Texture.fallen", "Texture.prism", "Texture.radiant", "Texture.light_sunset" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ] }
       },
       "part_visibility": [
         { "body.back": "!q.is_saddled" }
@@ -44,25 +37,31 @@
     },
     "controller.render.dragonmounts2.dragon_collar": {
       "geometry": "Geometry.dragon_default",
-      "materials": [ { "*": "Material.collar" } ],
+      "materials": [
+        { "*": "Material.collar" }
+      ],
       "textures": [ "Texture.collar" ]
     },
     "controller.render.dragonmounts2.light_dragon.glow": {
       "geometry": "Geometry.glow",
-      "materials": [ { "*": "Material.dragon" } ],
-      "part_visibility": [ { "body.back": "!q.is_saddled" } ],
+      "materials": [
+        { "*": "Material.dragon" }
+      ],
+      "part_visibility": [
+        { "body.back": "!q.is_saddled" }
+      ],
       "textures": [ "Array.base[v.variant_type_index]" ],
       "arrays": {
-        "textures": {
-          "Array.base": [ "Texture.prism_glow", "Texture.radiant_glow", "Texture.sunset_glow", "Texture.fallen_glow" ]
-        }
+        "textures": { "Array.base": [ "Texture.fallen_glow", "Texture.prism_glow", "Texture.radiant_glow", "Texture.light_sunset_glow" ] }
       },
       "light_color_multiplier": 1.2,
       "ignore_lighting": true
     },
     "controller.render.light_dragon_egg": {
       "geometry": "Geometry.dragon_egg",
-      "materials": [ { "*": "Material.dragon_egg" } ],
+      "materials": [
+        { "*": "Material.dragon_egg" }
+      ],
       "textures": [ "Texture.dragon_egg" ],
       "is_hurt_color": { "r": 1, "g": 1, "b": 1, "a": 0.1 }
     },
@@ -71,9 +70,7 @@
       "materials": [
         { "*": "Material.death" }
       ],
-      "textures": [
-        "Texture.dragon_egg"
-      ]
+      "textures": [ "Texture.dragon_egg" ]
     }
   }
 }

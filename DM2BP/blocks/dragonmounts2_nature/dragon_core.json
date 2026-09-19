@@ -36,7 +36,6 @@
         "*": { "texture": "dragonmounts2:dragon_core", "render_method": "alpha_test" }
       },
       "minecraft:selection_box": true,
-      "tag:metal": { },
       "dragonmounts2:dragon_core": {
         "block_entity": "dragonmounts2:dragon_core",
         "block_transforms_into": "minecraft:air",

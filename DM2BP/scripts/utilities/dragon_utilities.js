@@ -1584,7 +1584,7 @@ export function restoreFlightState(dragon) {
   writeDynamicProperty(dragon, "dragonmounts2:v_flight_prev_is_following", undefined);
 }
 
-world.afterEvents.playerLeave.subscribe(({ playerId }) => {
+export function handleDragonOwnerLeave(playerId) {
   JUMP_STATE.delete(playerId);
   DEBUG_PLAYERS.delete(playerId);
   FALL_RESCUE_STATE.delete(playerId);
@@ -1603,11 +1603,11 @@ world.afterEvents.playerLeave.subscribe(({ playerId }) => {
       }
     }
   }
-});
+}
 
-world.afterEvents.entityHurt.subscribe(({ hurtEntity }) => {
+export function handleDragonHurt(hurtEntity) {
   if (!hurtEntity?.isValid || !DRAGON_TYPES.has(hurtEntity.typeId)) return;
   wakeDragon(hurtEntity);
-});
+}
 
 export { resolveActiveMode, getActiveFlightMode, getDragonActivity, DragonActivity, FLIGHT_MODES, MODE_PRIORITY };

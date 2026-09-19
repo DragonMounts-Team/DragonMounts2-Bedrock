@@ -4,21 +4,31 @@
     "entities": "../DM2BP/entities",
     "amulets": "../DM2BP/items/dragonmounts2_equipment/tools/dragon_amulet",
     "resource_entities": "../DM2RP/entity/dragons",
+    "render_controllers": "../DM2RP/render_controllers/dragons",
     "resource_amulets": "../DM2RP/attachables/dragonmounts2_equipment/player/amulet_equipment",
     "resource_item_texture": "../DM2RP/textures/item_texture.json",
     "script_data": "../DM2BP/scripts/data/item_data.js",
     "loot_tables": "../DM2BP/loot_tables/entities",
     "flutes": "../DM2BP/items/dragonmounts2_equipment/tools/dragon_flutes",
-    "custom_items": "../DM2BP/items/dragonmounts2_generated",
-    "resource_attachables": "../DM2RP/attachables/dragonmounts2_generated",
-    "languages": ["../DM2BP/texts/en_US.lang", "../DM2BP/texts/en_GB.lang"]
+    "custom_items": "../DM2BP/items/dragonmounts2_items",
+    "equipment_items": "../DM2BP/items/dragonmounts2_equipment",
+    "resource_attachables": "../DM2RP/attachables/dragonmounts2_equipment",
+    "languages": [
+      "../DM2RP/texts/en_GB.lang"
+    ],
+    "language_directories": [
+      "../DM2RP/texts/NeededTranslations"
+    ],
+    "language_source": "../DM2RP/texts/en_US.lang"
   },
   "templates": {
     "dragon": "../DM2BP/entities/fire_dragon/fire_dragon.json",
     "egg": "../DM2BP/entities/fire_dragon/fire_dragon_egg.json",
     "amulet": "../DM2BP/items/dragonmounts2_equipment/tools/dragon_amulet/fire_amulet.json",
     "resource_dragon": "../DM2RP/entity/dragons/fire_dragon/fire_dragon.entity.json",
-    "resource_amulet": "../DM2RP/attachables/dragonmounts2_equipment/player/amulet_equipment/fire_amulet.json",
+    "render_controllers": "../DM2RP/render_controllers/dragons/fire_dragon.render_controllers.json",
+    "resource_egg": "../DM2RP/entity/dragons/fire_dragon/fire_dragon_egg.entity.json",
+    "resource_amulet": "../DM2RP/attachables/dragonmounts2_equipment/player/amulet_equipment/fire_dragon_amulet.json",
     "resource_armor_attachables": {
       "helmet": "../DM2RP/attachables/dragonmounts2_equipment/player/fire_dragon_scale_equipment/fire_dragon_scale_helmet.json",
       "chestplate": "../DM2RP/attachables/dragonmounts2_equipment/player/fire_dragon_scale_equipment/fire_dragon_scale_chestplate.json",
@@ -32,31 +42,255 @@
   "dragons": [
     {
       "type": "aether_dragon",
-      "variants": ["aethra", "wind", "breeze"],
-      "default_variant": "aethra"
-    },
-    {
-      "type": "example_dragon",
-      "enabled": false,
-      "variants": ["default", "variant_two"],
-      "default_variant": "default",
-      "custom_assets": [
-        {
-          "name": "scales",
-          "kind": "item",
-          "loot_min": 1,
-          "loot_max": 3
-        },
-        {
-          "name": "armor",
-          "kind": "armor",
-          "components": {
-            "minecraft:fire_resistant": { "value": true }
-          }
-        }
+      "model": "normal",
+      "variants": [
+        "aethra",
+        "wind",
+        "breeze"
       ],
+      "default_variant": "aethra",
+      "enabled": true,
+      "biome_variant_rules": [],
+      "custom_assets": [],
       "custom_components": {},
       "custom_component_groups": {}
+    },
+    {
+      "type": "dark_dragon",
+      "model": "spiked_horned",
+      "variants": [
+        "bloodmoon",
+        "demon",
+        "imp",
+        "underworld"
+      ],
+      "default_variant": "bloodmoon"
+    },
+    {
+      "type": "enchanted_dragon",
+      "model": "normal",
+      "variants": [
+        "enchanting",
+        "shimmer",
+        "sparkling"
+      ],
+      "default_variant": "enchanting"
+    },
+    {
+      "type": "ender_dragon",
+      "model": "normal",
+      "variants": [
+        "ender_jean",
+        "ender_john",
+        "ender_shadow"
+      ],
+      "default_variant": "ender_jean"
+    },
+    {
+      "type": "fire_dragon",
+      "model": "normal",
+      "variants": [
+        "blaze",
+        "flame",
+        "blue_fire"
+      ],
+      "default_variant": "blaze"
+    },
+    {
+      "type": "forest_dragon",
+      "model": "horned_antlers",
+      "variants": [
+        "cold",
+        "jungle",
+        "nature",
+        "warm"
+      ],
+      "default_variant": "cold",
+      "biome_variant_rules": [
+        {
+          "variant": "jungle",
+          "any_tags": [
+            "jungle"
+          ]
+        },
+        {
+          "variant": "warm",
+          "any_tags": [
+            "warm"
+          ],
+          "exclude_tags": [
+            "jungle"
+          ]
+        },
+        {
+          "variant": "cold",
+          "any_tags": [
+            "cold",
+            "ice",
+            "frozen"
+          ],
+          "exclude_tags": [
+            "jungle"
+          ]
+        },
+        {
+          "variant": "nature",
+          "exclude_tags": [
+            "jungle",
+            "warm",
+            "cold",
+            "ice",
+            "frozen"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ice_dragon",
+      "model": "tail_scale_inclined",
+      "variants": [
+        "alpine",
+        "iceberg",
+        "frost"
+      ],
+      "default_variant": "alpine"
+    },
+    {
+      "type": "light_dragon",
+      "model": "winged_horned",
+      "variants": [
+        "fallen",
+        "prism",
+        "radiant",
+        "light_sunset"
+      ],
+      "default_variant": "fallen"
+    },
+    {
+      "type": "moonlight_dragon",
+      "model": "normal",
+      "variants": [
+        "starlight",
+        "eclipse",
+        "constellation"
+      ],
+      "default_variant": "starlight"
+    },
+    {
+      "type": "nether_dragon",
+      "model": "scale_sharpened",
+      "variants": [
+        "magma",
+        "volcanic",
+        "soul_fire"
+      ],
+      "default_variant": "magma"
+    },
+    {
+      "type": "sculk_dragon",
+      "model": "sculk",
+      "variants": [
+        "sculk_amethyst",
+        "sculk_beta",
+        "sculk_warden"
+      ],
+      "default_variant": "sculk_amethyst"
+    },
+    {
+      "type": "skeleton_dragon",
+      "model": "skeleton",
+      "variants": [
+        "skeleton",
+        "stray",
+        "bogged"
+      ],
+      "default_variant": "skeleton",
+      "biome_variant_rules": [
+        {
+          "variant": "bogged",
+          "any_tags": [
+            "swamp",
+            "mangrove"
+          ]
+        },
+        {
+          "variant": "stray",
+          "any_tags": [
+            "frozen",
+            "ice",
+            "cold"
+          ]
+        },
+        {
+          "variant": "skeleton",
+          "exclude_tags": [
+            "swamp",
+            "mangrove",
+            "frozen",
+            "ice",
+            "cold"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "storm_dragon",
+      "model": "tail_horned",
+      "variants": [
+        "lightning",
+        "thunder",
+        "bronzed_storm"
+      ],
+      "default_variant": "lightning"
+    },
+    {
+      "type": "sunlight_dragon",
+      "model": "normal",
+      "variants": [
+        "sunrise",
+        "sunset",
+        "aurora"
+      ],
+      "default_variant": "sunrise"
+    },
+    {
+      "type": "terra_dragon",
+      "model": "bland",
+      "variants": [
+        "valley",
+        "mesa",
+        "crystalline"
+      ],
+      "default_variant": "valley"
+    },
+    {
+      "type": "water_dragon",
+      "model": "scale_sharpened",
+      "variants": [
+        "pond",
+        "tidal",
+        "brine"
+      ],
+      "default_variant": "pond"
+    },
+    {
+      "type": "wither_dragon",
+      "model": "skeleton",
+      "variants": [
+        "wither",
+        "withered"
+      ],
+      "default_variant": "wither"
+    },
+    {
+      "type": "zombie_dragon",
+      "model": "skeleton",
+      "variants": [
+        "drowned",
+        "husk",
+        "zombie"
+      ],
+      "default_variant": "drowned"
     }
   ]
 }

@@ -1,14 +1,14 @@
 {
-  "format_version": "1.10.0",
+  "format_version": "1.26.50",
   "minecraft:attachable": {
     "description": {
-      "identifier": "dragonmounts2:wither_dragon_scale_shield",
+      "identifier": "dragonmounts2:wither_dragon_bone_shield",
       "materials": {
         "default": "entity_alphatest",
         "enchanted": "entity_alphatest_glint"
       },
       "textures": {
-        "default": "textures/items/dragonmounts2_equipment/tools/shields/wither_dragon_scale_shield",
+        "default": "textures/items/dragonmounts2_equipment/tools/shields/wither_dragon_bone_shield",
         "enchanted": "textures/misc/enchanted_item_glint"
       },
       "geometry": {
@@ -25,7 +25,7 @@
       },
       "scripts": {
         "initialize": [
-          "variable.item_id = 'dragonmounts2:wither_dragon_scale_shield';",
+          "variable.item_id = 'dragonmounts2:wither_dragon_bone_shield';",
           "variable.main_hand_first_person_pos_x =  5.3;",
           "variable.main_hand_first_person_pos_y = 26.0;",
           "variable.main_hand_first_person_pos_z = 0.4;",
@@ -49,7 +49,9 @@
           "wield"
         ]
       },
-      "render_controllers": [ "controller.render.item_default" ]
+      "render_controllers": [
+        "controller.render.item_default"
+      ]
     }
   }
 }

@@ -1,9 +1,4 @@
-import {
-  system,
-  CustomCommandParamType,
-  Player,
-  world,
-} from "@minecraft/server";
+import { CustomCommandParamType, Player, world } from "@minecraft/server";
 import { registerSettingsCommand } from "./settings_modules.js";
 import * as dragonUtilities from "../utilities/dragon_utilities.js";
 
@@ -130,10 +125,6 @@ function registerBuiltInCommands(customCommandRegistry) {
   );
 }
 
-export function initDragonMounts2Commands() {
-  system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
-    registerBuiltInCommands(customCommandRegistry);
-  });
+export function registerDragonMounts2Commands(customCommandRegistry) {
+  registerBuiltInCommands(customCommandRegistry);
 }
-
-initDragonMounts2Commands();

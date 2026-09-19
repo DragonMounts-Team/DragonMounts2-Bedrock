@@ -1,5 +1,5 @@
 {
-  "format_version": "1.10.0",
+  "format_version": "1.26.50",
   "minecraft:attachable": {
     "description": {
       "identifier": "dragonmounts2:ice_dragon_scale_spear",
@@ -25,9 +25,14 @@
         "hit": "item.spear.hit"
       },
       "scripts": {
-        "animate": [ "held_controller", "hit_controller" ]
+        "animate": [
+          "held_controller",
+          "hit_controller"
+        ]
       },
-      "render_controllers": [ "controller.render.item_default" ]
+      "render_controllers": [
+        "controller.render.item_default"
+      ]
     }
   }
 }

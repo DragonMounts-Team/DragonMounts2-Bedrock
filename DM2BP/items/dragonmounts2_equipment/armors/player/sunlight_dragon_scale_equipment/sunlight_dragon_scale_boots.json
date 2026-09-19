@@ -13,7 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:sunlight_dragon_scale_boots.name"
       },
-      "dragonmounts2:sunlight_dragon_scale_lore": {},
       "dragonmounts2:sunlight_dragon_scale_effects": {},
       "minecraft:durability": {
         "max_durability": 309

@@ -3,16 +3,23 @@
   "minecraft:attachable": {
     "description": {
       "identifier": "dragonmounts2:nether_dragon_scale_helmet",
-      "materials": { "default": "armor", "enchanted": "armor_enchanted" },
+      "materials": {
+        "default": "armor",
+        "enchanted": "armor_enchanted"
+      },
       "textures": {
         "default": "textures/models/dragonmounts2_equipment/armor_equipment/nether_classic",
         "enchanted": "textures/misc/enchanted_item_glint"
       },
-      "geometry": { "default": "geometry.dragonmounts2.dragon_scale.armor.helmet" },
-      "animations": { "offset": "animation.armor.helmet.offset" },
-      "scripts": { "parent_setup": "v.helmet_layer_visible = 0.0;", "animate": [ "offset" ] },
-      "render_controllers": [ "controller.render.armor" ]
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon_scale.helmet"
+      },
+      "scripts": {
+        "parent_setup": "v.helmet_layer_visible = 0.0;"
+      },
+      "render_controllers": [
+        "controller.render.armor"
+      ]
     }
   }
 }
-

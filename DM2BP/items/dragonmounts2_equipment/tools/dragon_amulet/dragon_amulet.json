@@ -34,7 +34,9 @@
       },
       "minecraft:block_placer": {
         "block": "minecraft:air",
-        "use_on": ["minecraft:air"]
+        "use_on": [
+          "minecraft:air"
+        ]
       },
       "minecraft:wearable": {
         "protection": 1,

@@ -1,10 +1,9 @@
-import { world, system } from "@minecraft/server";
-import * as defaultWorldArrays from "../arrays/default_world_arrays.js";
 import * as dragonUtilities from "../utilities/dragon_utilities.js";
+import { getAddonDimensions, runSafely } from "../lib/runtime.js";
+import { registerIntervalTask } from "../core/scheduler.js";
 
 const reportedFlightErrors = new WeakMap();
-let lastDimensionErrorTick = -Infinity;
-let lastSupportErrorTick = -Infinity;
+const activeDragons = new Set();
 
 function reportFlightError(dragon, error) {
   const message = error instanceof Error ? error.message : String(error);
@@ -13,33 +12,31 @@ function reportFlightError(dragon, error) {
   console.warn(`[DragonMounts2] Flight update failed for ${dragon.typeId}: ${message}`);
 }
 
-system.runInterval(() => {
-  for (const dim of defaultWorldArrays.addonDimensions) {
-    try {
-      const dimension = world.getDimension(dim);
+registerIntervalTask("dragon-discovery", 10, () => {
+  for (const dimension of getAddonDimensions()) {
+    runSafely("Dragon flight dimension update failed", () => {
       const entities = dimension.getEntities(dragonUtilities.dragonTypes);
       for (const dragon of entities) {
-        if (!dragon?.isValid) continue;
-        try {
-          dragonUtilities.tickDragon(dragon);
-        } catch (error) {
-          reportFlightError(dragon, error);
-        }
+        if (dragon?.isValid) activeDragons.add(dragon);
       }
+    });
+  }
+});
+
+registerIntervalTask("dragon-flight", 1, () => {
+  for (const dragon of activeDragons) {
+    if (!dragon?.isValid) {
+      activeDragons.delete(dragon);
+      continue;
+    }
+    try {
+      dragonUtilities.tickDragon(dragon);
     } catch (error) {
-      if (system.currentTick - lastDimensionErrorTick >= 100) {
-        lastDimensionErrorTick = system.currentTick;
-        console.warn(`[DragonMounts2] Dragon flight dimension update failed: ${error}`);
-      }
+      reportFlightError(dragon, error);
     }
   }
-  try {
+  runSafely("Dragon flight support update failed", () => {
     dragonUtilities.tickFallRescue();
     dragonUtilities.tickFlightDebug();
-  } catch (error) {
-    if (system.currentTick - lastSupportErrorTick >= 100) {
-      lastSupportErrorTick = system.currentTick;
-      console.warn(`[DragonMounts2] Dragon flight support update failed: ${error}`);
-    }
-  }
-}, 1);
+  });
+});

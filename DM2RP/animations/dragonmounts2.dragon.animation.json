@@ -995,20 +995,6 @@
 					"rotation": [30, 0, 0],
 					"position": [0, 0.00736, -0.43726]
 				}
-			},
-			"particle_effects": {
-				"0.0": {
-					"effect": "breath",
-					"locator": "muzzle"
-				},
-				"0.12": {
-					"effect": "breath",
-					"locator": "muzzle"
-				},
-				"0.24": {
-					"effect": "breath",
-					"locator": "muzzle"
-				}
 			}
 		},
 		"animation.dragonmounts2.dragon.swimming": {

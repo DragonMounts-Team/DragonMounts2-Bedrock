@@ -71,12 +71,10 @@ item.dragonmounts2:light_dragon_scale_sword.name=Light Dragon Scale Sword
 item.dragonmounts2:moonlight_dragon_scale_sword.name=Moonlight Dragon Scale Sword
 item.dragonmounts2:nether_dragon_scale_sword.name=Nether Dragon Scale Sword
 item.dragonmounts2:sculk_dragon_scale_sword.name=Sculk Dragon Scale Sword
-item.dragonmounts2:skeleton_dragon_bone_sword.name=Skeleton Dragon Bone Sword
 item.dragonmounts2:storm_dragon_scale_sword.name=Storm Dragon Scale Sword
 item.dragonmounts2:sunlight_dragon_scale_sword.name=Sunlight Dragon Scale Sword
 item.dragonmounts2:terra_dragon_scale_sword.name=Terra Dragon Scale Sword
 item.dragonmounts2:water_dragon_scale_sword.name=Water Dragon Scale Sword
-item.dragonmounts2:wither_dragon_bone_sword.name=Wither Dragon Bone Sword
 item.dragonmounts2:zombie_dragon_scale_sword.name=Zombie Dragon Scale Sword
 
 # ==== Spears ====
@@ -91,12 +89,10 @@ item.dragonmounts2:light_dragon_scale_spear.name=Light Dragon Scale Spear
 item.dragonmounts2:moonlight_dragon_scale_spear.name=Moonlight Dragon Scale Spear
 item.dragonmounts2:nether_dragon_scale_spear.name=Nether Dragon Scale Spear
 item.dragonmounts2:sculk_dragon_scale_spear.name=Sculk Dragon Scale Spear
-item.dragonmounts2:skeleton_dragon_bone_spear.name=Skeleton Dragon Bone Spear
 item.dragonmounts2:storm_dragon_scale_spear.name=Storm Dragon Scale Spear
 item.dragonmounts2:sunlight_dragon_scale_spear.name=Sunlight Dragon Scale Spear
 item.dragonmounts2:terra_dragon_scale_spear.name=Terra Dragon Scale Spear
 item.dragonmounts2:water_dragon_scale_spear.name=Water Dragon Scale Spear
-item.dragonmounts2:wither_dragon_bone_spear.name=Wither Dragon Bone Spear
 item.dragonmounts2:zombie_dragon_scale_spear.name=Zombie Dragon Scale Spear
 
 # ==== Axes ====
@@ -111,12 +107,10 @@ item.dragonmounts2:light_dragon_scale_axe.name=Light Dragon Scale Axe
 item.dragonmounts2:moonlight_dragon_scale_axe.name=Moonlight Dragon Scale Axe
 item.dragonmounts2:nether_dragon_scale_axe.name=Nether Dragon Scale Axe
 item.dragonmounts2:sculk_dragon_scale_axe.name=Sculk Dragon Scale Axe
-item.dragonmounts2:skeleton_dragon_bone_axe.name=Skeleton Dragon Bone Axe
 item.dragonmounts2:storm_dragon_scale_axe.name=Storm Dragon Scale Axe
 item.dragonmounts2:sunlight_dragon_scale_axe.name=Sunlight Dragon Scale Axe
 item.dragonmounts2:terra_dragon_scale_axe.name=Terra Dragon Scale Axe
 item.dragonmounts2:water_dragon_scale_axe.name=Water Dragon Scale Axe
-item.dragonmounts2:wither_dragon_bone_axe.name=Wither Dragon Bone Axe
 item.dragonmounts2:zombie_dragon_scale_axe.name=Zombie Dragon Scale Axe
 
 # ==== Pickaxes ====
@@ -131,12 +125,10 @@ item.dragonmounts2:light_dragon_scale_pickaxe.name=Light Dragon Scale Pickaxe
 item.dragonmounts2:moonlight_dragon_scale_pickaxe.name=Moonlight Dragon Scale Pickaxe
 item.dragonmounts2:nether_dragon_scale_pickaxe.name=Nether Dragon Scale Pickaxe
 item.dragonmounts2:sculk_dragon_scale_pickaxe.name=Sculk Dragon Scale Pickaxe
-item.dragonmounts2:skeleton_dragon_bone_pickaxe.name=Skeleton Dragon Bone Pickaxe
 item.dragonmounts2:storm_dragon_scale_pickaxe.name=Storm Dragon Scale Pickaxe
 item.dragonmounts2:sunlight_dragon_scale_pickaxe.name=Sunlight Dragon Scale Pickaxe
 item.dragonmounts2:terra_dragon_scale_pickaxe.name=Terra Dragon Scale Pickaxe
 item.dragonmounts2:water_dragon_scale_pickaxe.name=Water Dragon Scale Pickaxe
-item.dragonmounts2:wither_dragon_bone_pickaxe.name=Wither Dragon Bone Pickaxe
 item.dragonmounts2:zombie_dragon_scale_pickaxe.name=Zombie Dragon Scale Pickaxe
 
 # ==== Shovels ====
@@ -151,12 +143,10 @@ item.dragonmounts2:light_dragon_scale_shovel.name=Light Dragon Scale Shovel
 item.dragonmounts2:moonlight_dragon_scale_shovel.name=Moonlight Dragon Scale Shovel
 item.dragonmounts2:nether_dragon_scale_shovel.name=Nether Dragon Scale Shovel
 item.dragonmounts2:sculk_dragon_scale_shovel.name=Sculk Dragon Scale Shovel
-item.dragonmounts2:skeleton_dragon_bone_shovel.name=Skeleton Dragon Bone Shovel
 item.dragonmounts2:storm_dragon_scale_shovel.name=Storm Dragon Scale Shovel
 item.dragonmounts2:sunlight_dragon_scale_shovel.name=Sunlight Dragon Scale Shovel
 item.dragonmounts2:terra_dragon_scale_shovel.name=Terra Dragon Scale Shovel
 item.dragonmounts2:water_dragon_scale_shovel.name=Water Dragon Scale Shovel
-item.dragonmounts2:wither_dragon_bone_shovel.name=Wither Dragon Bone Shovel
 item.dragonmounts2:zombie_dragon_scale_shovel.name=Zombie Dragon Scale Shovel
 
 # ==== Hoes ====
@@ -171,12 +161,10 @@ item.dragonmounts2:light_dragon_scale_hoe.name=Light Dragon Scale Hoe
 item.dragonmounts2:moonlight_dragon_scale_hoe.name=Moonlight Dragon Scale Hoe
 item.dragonmounts2:nether_dragon_scale_hoe.name=Nether Dragon Scale Hoe
 item.dragonmounts2:sculk_dragon_scale_hoe.name=Sculk Dragon Scale Hoe
-item.dragonmounts2:skeleton_dragon_bone_hoe.name=Skeleton Dragon Bone Hoe
 item.dragonmounts2:storm_dragon_scale_hoe.name=Storm Dragon Scale Hoe
 item.dragonmounts2:sunlight_dragon_scale_hoe.name=Sunlight Dragon Scale Hoe
 item.dragonmounts2:terra_dragon_scale_hoe.name=Terra Dragon Scale Hoe
 item.dragonmounts2:water_dragon_scale_hoe.name=Water Dragon Scale Hoe
-item.dragonmounts2:wither_dragon_bone_hoe.name=Wither Dragon Bone Hoe
 item.dragonmounts2:zombie_dragon_scale_hoe.name=Zombie Dragon Scale Hoe
 
 # ==== Shields ====
@@ -191,12 +179,10 @@ item.dragonmounts2:light_dragon_scale_shield.name=Light Dragon Scale Shield
 item.dragonmounts2:moonlight_dragon_scale_shield.name=Moonlight Dragon Scale Shield
 item.dragonmounts2:nether_dragon_scale_shield.name=Nether Dragon Scale Shield
 item.dragonmounts2:sculk_dragon_scale_shield.name=Sculk Dragon Scale Shield
-item.dragonmounts2:skeleton_dragon_bone_shield.name=Skeleton Dragon Bone Shield
 item.dragonmounts2:storm_dragon_scale_shield.name=Storm Dragon Scale Shield
 item.dragonmounts2:sunlight_dragon_scale_shield.name=Sunlight Dragon Scale Shield
 item.dragonmounts2:terra_dragon_scale_shield.name=Terra Dragon Scale Shield
 item.dragonmounts2:water_dragon_scale_shield.name=Water Dragon Scale Shield
-item.dragonmounts2:wither_dragon_bone_shield.name=Wither Dragon Bone Shield
 item.dragonmounts2:zombie_dragon_scale_shield.name=Zombie Dragon Scale Shield
 
 # ==== Bows ====
@@ -211,12 +197,10 @@ item.dragonmounts2:light_dragon_scale_bow.name=Light Dragon Scale Bow
 item.dragonmounts2:moonlight_dragon_scale_bow.name=Moonlight Dragon Scale Bow
 item.dragonmounts2:nether_dragon_scale_bow.name=Nether Dragon Scale Bow
 item.dragonmounts2:sculk_dragon_scale_bow.name=Sculk Dragon Scale Bow
-item.dragonmounts2:skeleton_dragon_bone_bow.name=Skeleton Dragon Bone Bow
 item.dragonmounts2:storm_dragon_scale_bow.name=Storm Dragon Scale Bow
 item.dragonmounts2:sunlight_dragon_scale_bow.name=Sunlight Dragon Scale Bow
 item.dragonmounts2:terra_dragon_scale_bow.name=Terra Dragon Scale Bow
 item.dragonmounts2:water_dragon_scale_bow.name=Water Dragon Scale Bow
-item.dragonmounts2:wither_dragon_bone_bow.name=Wither Dragon Bone Bow
 item.dragonmounts2:zombie_dragon_scale_bow.name=Zombie Dragon Scale Bow
 
 # ==== Spawn Eggs ====
@@ -251,12 +235,10 @@ item.dragonmounts2:light_dragon_scales.name=Light Dragon Scales
 item.dragonmounts2:moonlight_dragon_scales.name=Moonlight Dragon Scales
 item.dragonmounts2:nether_dragon_scales.name=Nether Dragon Scales
 item.dragonmounts2:sculk_dragon_scales.name=Sculk Dragon Scales
-item.dragonmounts2:skeleton_dragon_bone.name=Skeleton Dragon Bone
 item.dragonmounts2:storm_dragon_scales.name=Storm Dragon Scales
 item.dragonmounts2:sunlight_dragon_scales.name=Sunlight Dragon Scales
 item.dragonmounts2:terra_dragon_scales.name=Terra Dragon Scales
 item.dragonmounts2:water_dragon_scales.name=Water Dragon Scales
-item.dragonmounts2:wither_dragon_bone.name=Wither Dragon Bone
 item.dragonmounts2:zombie_dragon_scales.name=Zombie Dragon Scales
 
 # ==== Helmets ====
@@ -271,12 +253,10 @@ item.dragonmounts2:light_dragon_scale_helmet.name=Light Dragon Scale Helmet
 item.dragonmounts2:moonlight_dragon_scale_helmet.name=Moonlight Dragon Scale Helmet
 item.dragonmounts2:nether_dragon_scale_helmet.name=Nether Dragon Scale Helmet
 item.dragonmounts2:sculk_dragon_scale_helmet.name=Sculk Dragon Scale Helmet
-item.dragonmounts2:skeleton_dragon_bone_helmet.name=Skeleton Dragon Bone Helmet
 item.dragonmounts2:storm_dragon_scale_helmet.name=Storm Dragon Scale Helmet
 item.dragonmounts2:sunlight_dragon_scale_helmet.name=Sunlight Dragon Scale Helmet
 item.dragonmounts2:terra_dragon_scale_helmet.name=Terra Dragon Scale Helmet
 item.dragonmounts2:water_dragon_scale_helmet.name=Water Dragon Scale Helmet
-item.dragonmounts2:wither_dragon_bone_helmet.name=Wither Dragon Bone Helmet
 item.dragonmounts2:zombie_dragon_scale_helmet.name=Zombie Dragon Scale Helmet
 
 # ==== Chestplates ====
@@ -291,12 +271,10 @@ item.dragonmounts2:light_dragon_scale_chestplate.name=Light Dragon Scale Chestpl
 item.dragonmounts2:moonlight_dragon_scale_chestplate.name=Moonlight Dragon Scale Chestplate
 item.dragonmounts2:nether_dragon_scale_chestplate.name=Nether Dragon Scale Chestplate
 item.dragonmounts2:sculk_dragon_scale_chestplate.name=Sculk Dragon Scale Chestplate
-item.dragonmounts2:skeleton_dragon_bone_chestplate.name=Skeleton Dragon Bone Chestplate
 item.dragonmounts2:storm_dragon_scale_chestplate.name=Storm Dragon Scale Chestplate
 item.dragonmounts2:sunlight_dragon_scale_chestplate.name=Sunlight Dragon Scale Chestplate
 item.dragonmounts2:terra_dragon_scale_chestplate.name=Terra Dragon Scale Chestplate
 item.dragonmounts2:water_dragon_scale_chestplate.name=Water Dragon Scale Chestplate
-item.dragonmounts2:wither_dragon_bone_chestplate.name=Wither Dragon Bone Chestplate
 item.dragonmounts2:zombie_dragon_scale_chestplate.name=Zombie Dragon Scale Chestplate
 
 # ==== Leggings ====
@@ -311,12 +289,10 @@ item.dragonmounts2:light_dragon_scale_leggings.name=Light Dragon Scale Leggings
 item.dragonmounts2:moonlight_dragon_scale_leggings.name=Moonlight Dragon Scale Leggings
 item.dragonmounts2:nether_dragon_scale_leggings.name=Nether Dragon Scale Leggings
 item.dragonmounts2:sculk_dragon_scale_leggings.name=Sculk Dragon Scale Leggings
-item.dragonmounts2:skeleton_dragon_bone_leggings.name=Skeleton Dragon Bone Leggings
 item.dragonmounts2:storm_dragon_scale_leggings.name=Storm Dragon Scale Leggings
 item.dragonmounts2:sunlight_dragon_scale_leggings.name=Sunlight Dragon Scale Leggings
 item.dragonmounts2:terra_dragon_scale_leggings.name=Terra Dragon Scale Leggings
 item.dragonmounts2:water_dragon_scale_leggings.name=Water Dragon Scale Leggings
-item.dragonmounts2:wither_dragon_bone_leggings.name=Wither Dragon Bone Leggings
 item.dragonmounts2:zombie_dragon_scale_leggings.name=Zombie Dragon Scale Leggings
 
 # ==== Boots ====
@@ -331,47 +307,39 @@ item.dragonmounts2:light_dragon_scale_boots.name=Light Dragon Scale Boots
 item.dragonmounts2:moonlight_dragon_scale_boots.name=Moonlight Dragon Scale Boots
 item.dragonmounts2:nether_dragon_scale_boots.name=Nether Dragon Scale Boots
 item.dragonmounts2:sculk_dragon_scale_boots.name=Sculk Dragon Scale Boots
-item.dragonmounts2:skeleton_dragon_bone_boots.name=Skeleton Dragon Bone Boots
 item.dragonmounts2:storm_dragon_scale_boots.name=Storm Dragon Scale Boots
 item.dragonmounts2:sunlight_dragon_scale_boots.name=Sunlight Dragon Scale Boots
 item.dragonmounts2:terra_dragon_scale_boots.name=Terra Dragon Scale Boots
 item.dragonmounts2:water_dragon_scale_boots.name=Water Dragon Scale Boots
-item.dragonmounts2:wither_dragon_bone_boots.name=Wither Dragon Bone Boots
 item.dragonmounts2:zombie_dragon_scale_boots.name=Zombie Dragon Scale Boots
 
-# ==== Dragon Scale Lore ====
-tooltip.dragonmounts2:fire_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:fire_dragon_scale_set.lore.disc=When the wearer is on fire, apply Fire\nResistance I effect for 30s
-tooltip.dragonmounts2.cooldown=CD:
-tooltip.dragonmounts2.seconds=s
-tooltip.dragonmounts2:aether_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:aether_dragon_scale_set.lore.disc=When the wearer is sprinting, apply Speed\nII effect for 5s
-tooltip.dragonmounts2:ice_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:ice_dragon_scale_set.lore.disc=When the wearer is hurt, deal 1 damage\nwhich also applies Slowness II effect for\n10s to targets within 5 metres and knock\nthem back
-tooltip.dragonmounts2:ender_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:ender_dragon_scale_set.lore.disc=When the health of wearer is less than\n10, apply Resistance III effect for 30s\nand Strength II effect for 15s
-tooltip.dragonmounts2:forest_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:forest_dragon_scale_set.lore.disc=When the health of wearer is less than\n10, apply Regeneration II effect for 10s
-tooltip.dragonmounts2:enchanted_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:enchanted_dragon_scale_set.lore.disc=Targets killed by the wearer\ndrop 50% extra EXP
-tooltip.dragonmounts2:water_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:water_dragon_scale_set.lore.disc=When the wearer is underwater,\napply Water Breathing I effect\nfor 30s
-tooltip.dragonmounts2:moonlight_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:moonlight_dragon_scale_set.lore.disc=Apply Night Vision I effect for\n30s
-tooltip.dragonmounts2:sculk_dragon_scale_set.lore.set.2=2-Piece Set:
-tooltip.dragonmounts2:sculk_dragon_scale_set.lore.disc.2=The wearer takes reduced\nSonic Boom damage
-tooltip.dragonmounts2:sculk_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:sculk_dragon_scale_set.lore.disc=When the wearer is hit by a Sonic Boom, the\nwearer reflects Sonic Boom\ndamage back to the attacker at\n75% of the original damage
-tooltip.dragonmounts2:terra_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:terra_dragon_scale_set.lore.disc=Apply Haste I effect for 30s
-tooltip.dragonmounts2:zombie_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:zombie_dragon_scale_set.lore.disc=Apply Strength I effect for 15s\at night
-tooltip.dragonmounts2:sunlight_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:sunlight_dragon_scale_set.lore.disc=When the hunger value of\nwearer is less than 6, apply\nSaturation I effect for 10s
-tooltip.dragonmounts2:nether_dragon_scale_set.lore.set=4-Piece Set:
-tooltip.dragonmounts2:nether_dragon_scale_set.lore.disc=When the wearer is hurt, cause\ntargets within 5 metres to catch\nfire for 10s and knock them\nback
-
 # ==== Entity Names ====
+item.dragonmounts2:skeleton_dragon_bone_sword.name=Skeleton Dragon Bone Sword
+item.dragonmounts2:wither_dragon_bone_sword.name=Wither Dragon Bone Sword
+item.dragonmounts2:skeleton_dragon_bone_spear.name=Skeleton Dragon Bone Spear
+item.dragonmounts2:wither_dragon_bone_spear.name=Wither Dragon Bone Spear
+item.dragonmounts2:skeleton_dragon_bone_axe.name=Skeleton Dragon Bone Axe
+item.dragonmounts2:wither_dragon_bone_axe.name=Wither Dragon Bone Axe
+item.dragonmounts2:skeleton_dragon_bone_pickaxe.name=Skeleton Dragon Bone Pickaxe
+item.dragonmounts2:wither_dragon_bone_pickaxe.name=Wither Dragon Bone Pickaxe
+item.dragonmounts2:skeleton_dragon_bone_shovel.name=Skeleton Dragon Bone Shovel
+item.dragonmounts2:wither_dragon_bone_shovel.name=Wither Dragon Bone Shovel
+item.dragonmounts2:skeleton_dragon_bone_hoe.name=Skeleton Dragon Bone Hoe
+item.dragonmounts2:wither_dragon_bone_hoe.name=Wither Dragon Bone Hoe
+item.dragonmounts2:skeleton_dragon_bone_shield.name=Skeleton Dragon Bone Shield
+item.dragonmounts2:wither_dragon_bone_shield.name=Wither Dragon Bone Shield
+item.dragonmounts2:skeleton_dragon_bone_bow.name=Skeleton Dragon Bone Bow
+item.dragonmounts2:wither_dragon_bone_bow.name=Wither Dragon Bone Bow
+item.dragonmounts2:skeleton_dragon_bone.name=Skeleton Dragon Bone
+item.dragonmounts2:wither_dragon_bone.name=Wither Dragon Bone
+item.dragonmounts2:skeleton_dragon_bone_helmet.name=Skeleton Dragon Bone Helmet
+item.dragonmounts2:wither_dragon_scale_helmet.name=Wither Dragon Bone Helmet
+item.dragonmounts2:skeleton_dragon_bone_chestplate.name=Skeleton Dragon Bone Chestplate
+item.dragonmounts2:wither_dragon_scale_chestplate.name=Wither Dragon Bone Chestplate
+item.dragonmounts2:skeleton_dragon_bone_leggings.name=Skeleton Dragon Bone Leggings
+item.dragonmounts2:wither_dragon_scale_leggings.name=Wither Dragon Bone Leggings
+item.dragonmounts2:skeleton_dragon_bone_boots.name=Skeleton Dragon Bone Boots
+item.dragonmounts2:wither_dragon_scale_boots.name=Wither Dragon Bone Boots
 entity.dragonmounts2:wind_dragonbreath.name=Wind Dragonbreath
 entity.dragonmounts2:aether_dragon.name=Aether Dragon
 entity.dragonmounts2:aether_dragon_egg.name=Aether Dragon Egg
@@ -519,7 +487,6 @@ tile.dragonmounts2:sculk_dragon_head.name=Sculk Dragon Head
 tile.dragonmounts2:sculk_dragon_scale_block.name=Block of Sculk Dragon Scales
 tile.dragonmounts2:skeleton_dragon_egg.name=Skeleton Dragon Egg
 tile.dragonmounts2:skeleton_dragon_head.name=Skeleton Dragon Head
-tile.dragonmounts2:skeleton_dragon_scale_block.name=Block of Skeleton Dragon Scales
 tile.dragonmounts2:storm_dragon_egg.name=Storm Dragon Egg
 tile.dragonmounts2:storm_dragon_head.name=Storm Dragon Head
 tile.dragonmounts2:storm_dragon_scale_block.name=Block of Storm Dragon Scales
@@ -534,7 +501,6 @@ tile.dragonmounts2:water_dragon_head.name=Water Dragon Head
 tile.dragonmounts2:water_dragon_scale_block.name=Block of Water Dragon Scales
 tile.dragonmounts2:wither_dragon_egg.name=Wither Dragon Egg
 tile.dragonmounts2:wither_dragon_head.name=Wither Dragon Head
-tile.dragonmounts2:wither_dragon_scale_block.name=Block of Wither Dragon Scales
 tile.dragonmounts2:zombie_dragon_egg.name=Zombie Dragon Egg
 tile.dragonmounts2:zombie_dragon_head.name=Zombie Dragon Head
 tile.dragonmounts2:zombie_dragon_scale_block.name=Block of Zombie Dragon Scales
@@ -601,6 +567,8 @@ tooltip.dragonmounts2:dragon_scepter.select_command=Select Command:
 tooltip.dragonmounts2:dragon_scepter.selected_mobs=Dragon scepter can only be used for specific dragons!
 tooltip.dragonmounts2:dragon_scepter.unbound=Dragon has been unbound from this scepter!
 tooltip.dragonmounts2:dragon_scepter.toggle_vflight=Toggle V-Flight
+tooltip.dragonmounts2:dragon_scepter.enable_formation=Enable Formation
+tooltip.dragonmounts2:dragon_scepter.disable_formation=Disable Formation
 tooltip.dragonmounts2:dragon_scepter.max_dragons=This scepter can only be bound to 4 dragons.
 tooltip.dragonmounts2:dragon_scepter.vflight_disabled=V-Flight disabled for %1$s
 tooltip.dragonmounts2:dragon_scepter.vflight_enabled=V-Flight enabled for %1$s
@@ -742,10 +710,90 @@ dragonmounts2:guide_book.text.page_6_3=Visuals can be adjusted to make the world
 dragonmounts2:guide_book.text.page_6_4=Audio settings help you hear your surroundings and your dragon more clearly.~LINEBREAK~~LINEBREAK~Fine-tune them for comfort and atmosphere.
 dragonmounts2:guide_book.text.page_6_5=Preferences let you shape the add-on around your own style.~LINEBREAK~~LINEBREAK~The best setup is the one that makes your adventures feel natural.
 
-tile.dragonmounts2:dragon_scale_upgrade_smithing_template=Smithing Template\n\nApplies to:\n Diamond Equipment\nIngredients:\n Dragon Scales
+tile.dragonmounts2:dragon_scale_upgrade_smithing_template.tooltip=Smithing Template\n\nApplies to:\n Diamond Equipment\nIngredients:\n Dragon Scales
 
 tooltip.dragonmounts2:dragon_flute.set_home=Set Home
 tooltip.dragonmounts2:dragon_flute.send_home=Send Home
 tooltip.dragonmounts2:dragon_flute.home_set=Dragon home set!
 tooltip.dragonmounts2:dragon_flute.home_ground=You must be standing on solid ground to set home.
 tooltip.dragonmounts2:dragon_flute.sent_home=Dragon sent home!
+
+tile.dragonmounts2:spawn_egg_aether_dragon.tooltip=This is an example tooltip.
+tile.dragonmounts2:zombie_dragon_scale_block.tooltip=This is an example tooltip.
+tile.dragonmounts2:dragon_amulet.tooltip=Capture & Release
+
+# ==== Generated Armor Tooltips ====
+tile.dragonmounts2:aether_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the wearer is sprinting, apply Speed II effect for 5s\n§fCD:15\n
+tile.dragonmounts2:aether_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the wearer is sprinting, apply Speed II effect for 5s\n§fCD:15\n
+tile.dragonmounts2:aether_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the wearer is sprinting, apply Speed II effect for 5s\n§fCD:15\n
+tile.dragonmounts2:aether_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the wearer is sprinting, apply Speed II effect for 5s\n§fCD:15\n
+
+tile.dragonmounts2:fire_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the wearer is on fire, apply Fire Resistance I effect for 30s\n§fCD:45\n
+tile.dragonmounts2:fire_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the wearer is on fire, apply Fire Resistance I effect for 30s\n§fCD:45\n
+tile.dragonmounts2:fire_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the wearer is on fire, apply Fire Resistance I effect for 30s\n§fCD:45\n
+tile.dragonmounts2:fire_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the wearer is on fire, apply Fire Resistance I effect for 30s\n§fCD:45\n
+
+tile.dragonmounts2:dark_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen it is night, apply Regeneration I effect for 10s\n§fCD:30\n
+tile.dragonmounts2:dark_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen it is night, apply Regeneration I effect for 10s\n§fCD:30\n
+tile.dragonmounts2:dark_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen it is night, apply Regeneration I effect for 10s\n§fCD:30\n
+tile.dragonmounts2:dark_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen it is night, apply Regeneration I effect for 10s\n§fCD:30\n
+
+tile.dragonmounts2:enchanted_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fTargets killed by the wearer drop 50% extra EXP\n
+tile.dragonmounts2:enchanted_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fTargets killed by the wearer drop 50% extra EXP\n
+tile.dragonmounts2:enchanted_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fTargets killed by the wearer drop 50% extra EXP\n
+tile.dragonmounts2:enchanted_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fTargets killed by the wearer drop 50% extra EXP\n
+
+tile.dragonmounts2:ender_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Resistance III effect for 30s and Strength II effect for 15s\n§fCD:60\n
+tile.dragonmounts2:ender_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Resistance III effect for 30s and Strength II effect for 15s\n§fCD:60\n
+tile.dragonmounts2:ender_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Resistance III effect for 30s and Strength II effect for 15s\n§fCD:60\n
+tile.dragonmounts2:ender_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Resistance III effect for 30s and Strength II effect for 15s\n§fCD:60\n
+
+tile.dragonmounts2:forest_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Regeneration II effect for 10s\n§fCD:60\n
+tile.dragonmounts2:forest_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Regeneration II effect for 10s\n§fCD:60\n
+tile.dragonmounts2:forest_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Regeneration II effect for 10s\n§fCD:60\n
+tile.dragonmounts2:forest_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the health of wearer is less than 10, apply Regeneration II effect for 10s\n§fCD:60\n
+
+tile.dragonmounts2:ice_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, deal 1 damage which also applies Slowness II effect for 10s to targets within 5 metres and knock them back\n§fCD:60\n
+tile.dragonmounts2:ice_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, deal 1 damage which also applies Slowness II effect for 10s to targets within 5 metres and knock them back\n§fCD:60\n
+tile.dragonmounts2:ice_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, deal 1 damage which also applies Slowness II effect for 10s to targets within 5 metres and knock them back\n§fCD:60\n
+tile.dragonmounts2:ice_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, deal 1 damage which also applies Slowness II effect for 10s to targets within 5 metres and knock them back\n§fCD:60\n
+
+tile.dragonmounts2:light_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen it is day, apply Regeneration I effect for 10s\n§fCD:30\n
+tile.dragonmounts2:light_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen it is day, apply Regeneration I effect for 10s\n§fCD:30\n
+tile.dragonmounts2:light_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen it is day, apply Regeneration I effect for 10s\n§fCD:30\n
+tile.dragonmounts2:light_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen it is day, apply Regeneration I effect for 10s\n§fCD:30\n
+
+tile.dragonmounts2:water_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the wearer is underwater, apply Water Breathing I effect for 30s\n
+tile.dragonmounts2:water_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the wearer is underwater, apply Water Breathing I effect for 30s\n
+tile.dragonmounts2:water_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the wearer is underwater, apply Water Breathing I effect for 30s\n
+tile.dragonmounts2:water_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the wearer is underwater, apply Water Breathing I effect for 30s\n
+
+tile.dragonmounts2:moonlight_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fApply Night Vision I effect for 30s\n
+tile.dragonmounts2:moonlight_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fApply Night Vision I effect for 30s\n
+tile.dragonmounts2:moonlight_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fApply Night Vision I effect for 30s\n
+tile.dragonmounts2:moonlight_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fApply Night Vision I effect for 30s\n
+
+tile.dragonmounts2:sculk_dragon_scale_helmet.tooltip=§72-Piece Set:§r\n§fThe wearer takes reduced Sonic Boom damage\n§74-Piece Set:§r\n§fWhen the wearer is hit by a Sonic Boom, the wearer reflects Sonic Boom damage back to the attacker at 75% of the original damage\n
+tile.dragonmounts2:sculk_dragon_scale_chestplate.tooltip=§72-Piece Set:§r\n§fThe wearer takes reduced Sonic Boom damage\n§74-Piece Set:§r\n§fWhen the wearer is hit by a Sonic Boom, the wearer reflects Sonic Boom damage back to the attacker at 75% of the original damage\n
+tile.dragonmounts2:sculk_dragon_scale_leggings.tooltip=§72-Piece Set:§r\n§fThe wearer takes reduced Sonic Boom damage\n§74-Piece Set:§r\n§fWhen the wearer is hit by a Sonic Boom, the wearer reflects Sonic Boom damage back to the attacker at 75% of the original damage\n
+tile.dragonmounts2:sculk_dragon_scale_boots.tooltip=§72-Piece Set:§r\n§fThe wearer takes reduced Sonic Boom damage\n§74-Piece Set:§r\n§fWhen the wearer is hit by a Sonic Boom, the wearer reflects Sonic Boom damage back to the attacker at 75% of the original damage\n
+
+tile.dragonmounts2:terra_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fApply Haste I effect for 30s\n
+tile.dragonmounts2:terra_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fApply Haste I effect for 30s\n
+tile.dragonmounts2:terra_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fApply Haste I effect for 30s\n
+tile.dragonmounts2:terra_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fApply Haste I effect for 30s\n
+
+tile.dragonmounts2:zombie_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fApply Strength I effect for 15s at night\n
+tile.dragonmounts2:zombie_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fApply Strength I effect for 15s at night\n
+tile.dragonmounts2:zombie_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fApply Strength I effect for 15s at night\n
+tile.dragonmounts2:zombie_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fApply Strength I effect for 15s at night\n
+
+tile.dragonmounts2:sunlight_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the hunger value of wearer is less than 6, apply Saturation I effect for 10s\n
+tile.dragonmounts2:sunlight_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the hunger value of wearer is less than 6, apply Saturation I effect for 10s\n
+tile.dragonmounts2:sunlight_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the hunger value of wearer is less than 6, apply Saturation I effect for 10s\n
+tile.dragonmounts2:sunlight_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the hunger value of wearer is less than 6, apply Saturation I effect for 10s\n
+
+tile.dragonmounts2:nether_dragon_scale_helmet.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, cause targets within 5 metres to catch fire for 10s and knock them back\n
+tile.dragonmounts2:nether_dragon_scale_chestplate.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, cause targets within 5 metres to catch fire for 10s and knock them back\n
+tile.dragonmounts2:nether_dragon_scale_leggings.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, cause targets within 5 metres to catch fire for 10s and knock them back\n
+tile.dragonmounts2:nether_dragon_scale_boots.tooltip=§74-Piece Set:§r\n§fWhen the wearer is hurt, cause targets within 5 metres to catch fire for 10s and knock them back\n

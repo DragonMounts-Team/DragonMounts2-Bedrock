@@ -1,5 +1,5 @@
 {
-  "format_version": "1.10.0",
+  "format_version": "1.26.50",
   "minecraft:attachable": {
     "description": {
       "identifier": "dragonmounts2:moonlight_dragon_scale_bow",
@@ -36,7 +36,9 @@
           }
         ]
       },
-      "render_controllers": [ "controller.render.dragonmounts2.bow" ]
+      "render_controllers": [
+        "controller.render.dragonmounts2.bow"
+      ]
     }
   }
 }

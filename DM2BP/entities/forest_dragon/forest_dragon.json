@@ -7,9 +7,9 @@
       "is_summonable": true,
       "properties": {
         "dragonmounts2:age_variant": { "type": "enum", "values": [ "adult", "juvenile", "baby" ], "default": "adult", "client_sync": true },
-        "dragonmounts2:breath_charge": { "type": "float", "range": [ 0, 1 ], "default": 0, "client_sync": true },
-        "dragonmounts2:breathing_sound": { "type": "float", "range": [ 0, 1 ], "default": 0, "client_sync": true },
-        "dragonmounts2:death_ticks": { "type": "float", "range": [ 0, 2 ], "default": 0, "client_sync": true },
+        "dragonmounts2:breath_charge": { "type": "float", "range": [ 0.00, 1.00 ], "default": 0.00, "client_sync": true },
+        "dragonmounts2:breathing_sound": { "type": "float", "range": [ 0.00, 1.00 ], "default": 0.00, "client_sync": true },
+        "dragonmounts2:death_ticks": { "type": "float", "range": [ 0.00, 2.00 ], "default": 0.00, "client_sync": true },
         "dragonmounts2:has_collar": { "type": "bool", "client_sync": true, "default": false },
         "dragonmounts2:is_breathing": { "type": "bool", "client_sync": true, "default": false },
         "dragonmounts2:is_following": { "type": "bool", "client_sync": false, "default": false },
@@ -19,13 +19,13 @@
         "dragonmounts2:v_flight_enabled": { "type": "bool", "client_sync": false, "default": false },
         "dragonmounts2:mob_state": { "type": "enum", "values": [ "standing", "sitting" ], "default": "standing", "client_sync": true },
         "dragonmounts2:movement_state": { "type": "enum", "values": [ "grounded", "flying", "swimming" ], "default": "grounded", "client_sync": true },
-        "dragonmounts2:variant_type": { "type": "enum", "values": [ "forest" ], "default": "forest", "client_sync": true }
+        "dragonmounts2:variant_type": { "type": "enum", "values": [ "cold", "jungle", "nature", "warm" ], "default": "cold", "client_sync": true }
       }
     },
     "components": {
       "minecraft:type_family": { "family": [ "forest_dragon", "dragonmounts2", "dragon", "mob" ] },
       "minecraft:attack": { "damage": 24 },
-      "minecraft:breathable": { "totalSupply": 15, "suffocateTime": 0, "breathes_water": true },
+      "minecraft:breathable": { "total_supply": 15, "suffocate_time": 0, "breathes_water": true },
       "minecraft:can_climb": { },
       "minecraft:can_power_jump": { },
       "minecraft:collision_box": { "width": 1.4, "height": 2.75 },
@@ -569,7 +569,7 @@
     },
     "component_groups": {
       "dragonmounts2:dragon_living_components": {
-        "minecraft:breathable": { "totalSupply": 15, "suffocateTime": 0, "breathes_water": true },
+        "minecraft:breathable": { "total_supply": 15, "suffocate_time": 0, "breathes_water": true },
         "minecraft:collision_box": { "width": 1.4, "height": 2.75 },
         "minecraft:jump.static": { },
         "minecraft:pushable_by_block": { },
@@ -635,8 +635,9 @@
         "minecraft:behavior.random_stroll": { "priority": 5, "speed_multiplier": 1.8, "xz_dist": 96, "y_dist": 128, "interval": 4 },
         "minecraft:behavior.tempt": { "priority": 4, "speed_multiplier": 1.6, "within_radius": 16, "sound_interval": [ 3, 6 ], "can_tempt_vertically": true, "tempt_sound": "tempt", "items": [ "axolotl_bucket", "beef", "blue_egg", "brown_egg", "chicken", "cod", "cod_bucket", "cooked_beef", "cooked_chicken", "cooked_cod", "cooked_mutton", "cooked_porkchop", "cooked_rabbit", "cooked_salmon", "egg", "mutton", "porkchop", "pufferfish", "pufferfish_bucket", "rabbit", "rabbit_stew", "rotten_flesh", "salmon", "salmon_bucket", "sniffer_egg", "tadpole_bucket", "tropical_fish", "tropical_fish_bucket", "turtle_egg" ] }
       },
+      "dragonmounts2:dragon_sitting_components": { },
       "dragonmounts2:dragon_death": {
-        "minecraft:transformation": { "into": "dragonmounts2:forest_dragon", "transformation_sound": "death", "drop_inventory": true, "delay": { "value": 0.1 } }
+        "minecraft:transformation": { "into": "dragonmounts2:forest_dragon<minecraft:on_died>", "transformation_sound": "death", "drop_inventory": true, "delay": { "value": 0.1 } }
       },
       "dragonmounts2:dragon_dying_components": {
         "minecraft:type_family": { "family": [ "inanimate" ] },
@@ -745,7 +746,6 @@
             "turtle_egg"
           ],
           "breeds_with": { "dragonmounts2:fire_dragon": { } },
-          "inherit_tamed": true,
           "require_tame": true
         },
         "minecraft:leashable_to": { },
@@ -816,10 +816,59 @@
             ]
           },
           {
-            "randomize": [
-              { "weight": 45, "trigger": "minecraft:become_forest" },
-              { "weight": 45, "trigger": "minecraft:become_forest" },
-              { "weight": 45, "trigger": "minecraft:become_forest" }
+            "sequence": [
+              {
+                "filters": {
+                  "all_of": [
+                    {
+                      "any_of": [
+                        { "test": "has_biome_tag", "value": "jungle" }
+                      ]
+                    }
+                  ]
+                },
+                "trigger": "minecraft:become_jungle"
+              },
+              {
+                "filters": {
+                  "all_of": [
+                    {
+                      "any_of": [
+                        { "test": "has_biome_tag", "value": "warm" }
+                      ]
+                    },
+                    { "test": "has_biome_tag", "operator": "!=", "value": "jungle" }
+                  ]
+                },
+                "trigger": "minecraft:become_warm"
+              },
+              {
+                "filters": {
+                  "all_of": [
+                    {
+                      "any_of": [
+                        { "test": "has_biome_tag", "value": "cold" },
+                        { "test": "has_biome_tag", "value": "ice" },
+                        { "test": "has_biome_tag", "value": "frozen" }
+                      ]
+                    },
+                    { "test": "has_biome_tag", "operator": "!=", "value": "jungle" }
+                  ]
+                },
+                "trigger": "minecraft:become_cold"
+              },
+              {
+                "filters": {
+                  "all_of": [
+                    { "test": "has_biome_tag", "operator": "!=", "value": "jungle" },
+                    { "test": "has_biome_tag", "operator": "!=", "value": "warm" },
+                    { "test": "has_biome_tag", "operator": "!=", "value": "cold" },
+                    { "test": "has_biome_tag", "operator": "!=", "value": "ice" },
+                    { "test": "has_biome_tag", "operator": "!=", "value": "frozen" }
+                  ]
+                },
+                "trigger": "minecraft:become_nature"
+              }
             ]
           }
         ]
@@ -829,9 +878,9 @@
           { "trigger": "minecraft:spawn_as_baby" },
           {
             "randomize": [
-              { "weight": 45, "trigger": "minecraft:become_forest" },
-              { "weight": 45, "trigger": "minecraft:become_forest" },
-              { "weight": 45, "trigger": "minecraft:become_forest" }
+              { "weight": 45, "trigger": "minecraft:become_cold" },
+              { "weight": 45, "trigger": "minecraft:become_jungle" },
+              { "weight": 45, "trigger": "minecraft:become_nature" }
             ]
           }
         ]
@@ -883,22 +932,16 @@
           }
         ]
       },
-      "minecraft:on_hatch_fire_dragon_blaze": {
-        "sequence": [
-          { "trigger": "minecraft:spawn_as_baby" },
-          { "trigger": "minecraft:become_forest" }
-        ]
-      },
       "minecraft:on_hatch_fire_dragon_flame": {
         "sequence": [
           { "trigger": "minecraft:spawn_as_baby" },
-          { "trigger": "minecraft:become_forest" }
+          { "trigger": "minecraft:become_jungle" }
         ]
       },
-      "minecraft:on_hatch_fire_dragon_blue_fire": {
+      "minecraft:on_hatch_fire_dragon_blaze": {
         "sequence": [
           { "trigger": "minecraft:spawn_as_baby" },
-          { "trigger": "minecraft:become_forest" }
+          { "trigger": "minecraft:become_cold" }
         ]
       },
       "minecraft:entity_transformed": {
@@ -906,9 +949,9 @@
           { "trigger": "minecraft:spawn_as_baby" },
           {
             "randomize": [
-              { "weight": 45, "trigger": "minecraft:become_forest" },
-              { "weight": 45, "trigger": "minecraft:become_forest" },
-              { "weight": 45, "trigger": "minecraft:become_forest" }
+              { "weight": 45, "trigger": "minecraft:become_cold" },
+              { "weight": 45, "trigger": "minecraft:become_jungle" },
+              { "weight": 45, "trigger": "minecraft:become_nature" }
             ]
           }
         ]
@@ -995,8 +1038,7 @@
       "minecraft:on_sit": {
         "remove": { "component_groups": [ "dragonmounts2:dragon_standing_components" ] },
         "add": { "component_groups": [ "dragonmounts2:dragon_sitting_components" ] },
-        "set_property": { "dragonmounts2:mob_state": "sitting" },
-        "trigger": "minecraft:on_wander"
+        "set_property": { "dragonmounts2:mob_state": "sitting" }
       },
       "minecraft:on_stand": {
         "remove": { "component_groups": [ "dragonmounts2:dragon_sitting_components" ] },
@@ -1054,7 +1096,10 @@
           {
             "add": { "component_groups": [ "dragonmounts2:dragon_death" ] }
           },
-          { "filters": { "test": "has_component", "value": "minecraft:is_tamed" }, "queue_command": { "command": "scriptevent dragonmounts2:dragon_core" } }
+          {
+            "filters": { "test": "has_component", "value": "minecraft:is_tamed" },
+            "queue_command": { "command": [ "scriptevent dragonmounts2:dragon_core" ] }
+          }
         ]
       },
       "minecraft:on_died": {
@@ -1065,25 +1110,25 @@
             "set_property": { "dragonmounts2:death_ticks": "0.01" }
           },
           {
-            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:age_variant", "value": "adult" },
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:age_variant", "value": "adult" },
             "add": { "component_groups": [ "dragonmounts2:dead_dragon_adult" ] },
             "set_property": { "dragonmounts2:age_variant": "adult" }
           },
           {
-            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:age_variant", "value": "juvenile" },
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:age_variant", "value": "juvenile" },
             "add": { "component_groups": [ "dragonmounts2:dead_dragon_juvenile" ] },
             "set_property": { "dragonmounts2:age_variant": "juvenile" }
           },
           {
-            "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:age_variant", "value": "baby" },
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:age_variant", "value": "baby" },
             "add": { "component_groups": [ "dragonmounts2:dead_dragon_baby" ] },
             "set_property": { "dragonmounts2:age_variant": "baby" }
           },
-          { "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:mob_state", "value": "standing" }, "set_property": { "dragonmounts2:mob_state": "standing" } },
-          { "filters": { "test": "enum_property", "subject": "other", "domain": "dragonmounts2:mob_state", "value": "sitting" }, "set_property": { "dragonmounts2:mob_state": "sitting" } },
-          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "other", "value": "flame" }, "trigger": "minecraft:become_forest" },
-          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "other", "value": "blaze" }, "trigger": "minecraft:become_forest" },
-          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "other", "value": "blue_fire" }, "trigger": "minecraft:become_forest" }
+          { "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" }, "set_property": { "dragonmounts2:mob_state": "standing" } },
+          { "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "sitting" }, "set_property": { "dragonmounts2:mob_state": "sitting" } },
+          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "self", "value": "cold" }, "trigger": "minecraft:become_cold" },
+          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "self", "value": "jungle" }, "trigger": "minecraft:become_jungle" },
+          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "subject": "self", "value": "nature" }, "trigger": "minecraft:become_nature" }
         ]
       },
       "minecraft:on_dying_ticks": {
@@ -1097,12 +1142,21 @@
       },
       "minecraft:on_variant": {
         "sequence": [
-          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "blue_fire" }, "set_property": { "dragonmounts2:variant_type": "flame" } },
-          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "flame" }, "set_property": { "dragonmounts2:variant_type": "blaze" } },
-          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "blaze" }, "set_property": { "dragonmounts2:variant_type": "blue_fire" } }
+          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "cold" }, "set_property": { "dragonmounts2:variant_type": "jungle" } },
+          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "jungle" }, "set_property": { "dragonmounts2:variant_type": "nature" } },
+          { "filters": { "test": "enum_property", "domain": "dragonmounts2:variant_type", "value": "nature" }, "set_property": { "dragonmounts2:variant_type": "cold" } }
         ]
       },
-      "minecraft:become_forest": { "set_property": { "dragonmounts2:variant_type": "forest" } }
+      "minecraft:on_hatch_fire_dragon_blue_fire": {
+        "sequence": [
+          { "trigger": "minecraft:spawn_as_baby" },
+          { "trigger": "minecraft:become_nature" }
+        ]
+      },
+      "minecraft:become_cold": { "set_property": { "dragonmounts2:variant_type": "cold" } },
+      "minecraft:become_jungle": { "set_property": { "dragonmounts2:variant_type": "jungle" } },
+      "minecraft:become_nature": { "set_property": { "dragonmounts2:variant_type": "nature" } },
+      "minecraft:become_warm": { "set_property": { "dragonmounts2:variant_type": "warm" } }
     }
   }
 }

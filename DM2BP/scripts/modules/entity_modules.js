@@ -1,16 +1,20 @@
-import { world, system, Player } from "@minecraft/server";
-import * as defaultWorldArrays from "../arrays/default_world_arrays.js";
+import { system, Player } from "@minecraft/server";
 import * as entityData from "../data/entity_data.js";
 import * as entityUtilities from "../utilities/entity_utilities.js";
 import * as itemUtilities from "../utilities/item_utilities.js";
 import * as blockUtilities from "../utilities/block_utilities.js";
 import { restoreOwnedDragonFlightState } from "../utilities/dragon_utilities.js";
+import { getAddonDimensions } from "../lib/runtime.js";
+import { onPlayerLeave, onPlayerSpawn } from "../core/player_lifecycle.js";
+import { onScriptEvent } from "../core/script_events.js";
+import { onItemStartUse } from "../core/item_events.js";
+import { registerIntervalTask } from "../core/scheduler.js";
+import { onWorldEvent } from "../core/world_events.js";
 import "./dragon_modules.js";
 
 function checkDragonEggs() {
 	try {
-		for (const dim of defaultWorldArrays.addonDimensions) {
-			const dimension = world.getDimension(dim);
+		for (const dimension of getAddonDimensions()) {
 			const dragonEggs = dimension.getEntities({
 				families: ["dragonmounts2", "dragon_egg"],
 			});
@@ -26,25 +30,23 @@ function checkDragonEggs() {
 		}
 	} catch (error) {
 		console.warn(`[DragonMounts2] Dragon egg scan failed: ${error}`);
-	} finally {
-		system.runTimeout(checkDragonEggs, 10);
 	}
 }
 
-system.run(checkDragonEggs);
+registerIntervalTask("dragon-egg-scan", 10, checkDragonEggs);
 
-world.afterEvents.playerSpawn.subscribe(({ player }) => {
+onPlayerSpawn(({ player }) => {
 	if (!player?.isValid) return;
 	system.run(() => restoreOwnedDragonFlightState(player));
 });
 
-world.afterEvents.itemStartUse.subscribe(({ itemStack, source }) => {
+onItemStartUse(({ itemStack, source }) => {
 	if (!(source instanceof Player) || !source.isValid) return;
 	if (itemStack?.typeId !== "dragonmounts2:guide_book") return;
 	itemUtilities.guideBookUse(itemStack, source, {});
 });
 
-world.afterEvents.playerSpawn.subscribe(({ player, initialSpawn }) => {
+onPlayerSpawn(({ player, initialSpawn }) => {
 	if (!(player instanceof Player) || !player.isValid || !initialSpawn) return;
 	if (
 		player.getDynamicProperty("dragonmounts2:guide_book_original_mode") !==
@@ -56,9 +58,8 @@ world.afterEvents.playerSpawn.subscribe(({ player, initialSpawn }) => {
 		"dragonmounts2:guide_book_entity_id",
 	);
 	if (bookId) {
-		for (const dimensionId of defaultWorldArrays.addonDimensions) {
-			const book = world
-				.getDimension(dimensionId)
+		for (const dimension of getAddonDimensions()) {
+			const book = dimension
 				.getEntities({ type: "dragonmounts2:guide_book" })
 				.find((candidate) => candidate.id === bookId);
 			book?.remove();
@@ -67,9 +68,8 @@ world.afterEvents.playerSpawn.subscribe(({ player, initialSpawn }) => {
 	itemUtilities.restoreGuideBookMode(player);
 });
 
-world.afterEvents.playerLeave.subscribe(({ playerId }) => {
-	for (const dimensionId of defaultWorldArrays.addonDimensions) {
-		const dimension = world.getDimension(dimensionId);
+onPlayerLeave(({ playerId }) => {
+	for (const dimension of getAddonDimensions()) {
 		for (const book of dimension.getEntities({
 			type: "dragonmounts2:guide_book",
 		})) {
@@ -79,7 +79,7 @@ world.afterEvents.playerLeave.subscribe(({ playerId }) => {
 	}
 });
 
-system.afterEvents.scriptEventReceive.subscribe((event) => {
+onScriptEvent((event) => {
 	const entity = event.sourceEntity;
 	if (!entity?.isValid) return;
 
@@ -121,7 +121,7 @@ system.afterEvents.scriptEventReceive.subscribe((event) => {
 	}
 });
 
-world.afterEvents.dataDrivenEntityTrigger.subscribe(({ entity, eventId }) => {
+onWorldEvent("afterEvents", "dataDrivenEntityTrigger", ({ entity, eventId }) => {
 	if (!entity?.isValid) return;
 	if (!entityData.dragonEggTypes[entity.typeId]) return;
 	if (eventId !== "minecraft:dragon_egg_to_block") return;

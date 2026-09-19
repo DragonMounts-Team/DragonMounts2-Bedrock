@@ -1434,7 +1434,7 @@
               ],
               "gives": [
                 {
-                  "item": "dragonmounts2:wither_dragon_scale_boots"
+                  "item": "dragonmounts2:wither_dragon_bone_boots"
                 }
               ],
               "max_uses": 6,
@@ -1453,7 +1453,7 @@
               ],
               "gives": [
                 {
-                  "item": "dragonmounts2:wither_dragon_scale_chestplate"
+                  "item": "dragonmounts2:wither_dragon_bone_chestplate"
                 }
               ],
               "max_uses": 6,
@@ -1472,7 +1472,7 @@
               ],
               "gives": [
                 {
-                  "item": "dragonmounts2:wither_dragon_scale_helmet"
+                  "item": "dragonmounts2:wither_dragon_bone_helmet"
                 }
               ],
               "max_uses": 6,
@@ -1491,7 +1491,7 @@
               ],
               "gives": [
                 {
-                  "item": "dragonmounts2:wither_dragon_scale_leggings"
+                  "item": "dragonmounts2:wither_dragon_bone_leggings"
                 }
               ],
               "max_uses": 6,
@@ -1584,3 +1584,4 @@
     }
   ]
 }
+

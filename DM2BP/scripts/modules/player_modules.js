@@ -7,7 +7,6 @@ import {
   EntityHealthComponent,
   EntityHungerComponent,
   EntityTameableComponent,
-  Player,
 } from "@minecraft/server";
 import { dragonArmorLore } from "../data/armor_data.js";
 import {
@@ -15,6 +14,10 @@ import {
   calculateEntityXpReward,
   spawnXpOrbs,
 } from "../utilities/entity_utilities.js";
+import { onPlayerLeave, onPlayerSpawn } from "../core/player_lifecycle.js";
+import { onBeforeEntityHurt, onAfterEntityHurt } from "../core/combat_events.js";
+import { registerIntervalTask } from "../core/scheduler.js";
+import { onWorldEvent } from "../core/world_events.js";
 
 const ARMOR_SLOTS = [
   EquipmentSlot.Head,
@@ -23,14 +26,16 @@ const ARMOR_SLOTS = [
   EquipmentSlot.Feet,
 ];
 
-const DRAGON_ARMOR_LORE_ENTRIES = Object.entries(dragonArmorLore);
+const DRAGON_ARMOR_EFFECT_COMPONENTS = Object.values(dragonArmorLore).map(
+  ({ effectsKey }) => effectsKey,
+);
 const cooldowns = new Map();
 const pendingReflect = new Map();
 const stormLightningCooldowns = new Map();
 const CLEANUP_INTERVAL = 1200;
 let lastCleanup = 0;
 
-world.afterEvents.playerLeave.subscribe(({ playerId }) => {
+onPlayerLeave(({ playerId }) => {
   cooldowns.delete(playerId);
   pendingReflect.delete(playerId);
   stormLightningCooldowns.delete(playerId);
@@ -45,16 +50,8 @@ function refreshDragonArmorCacheForPlayer(player) {
   return hasArmor;
 }
 
-world.afterEvents.playerSpawn.subscribe(({ player }) => {
+onPlayerSpawn(({ player }) => {
   refreshDragonArmorCacheForPlayer(player);
-});
-
-world.afterEvents.itemCompleteUse.subscribe(({ source }) => {
-  if (!(source instanceof Player)) return;
-  const hasArmor = refreshDragonArmorCacheForPlayer(source);
-  if (hasArmor) {
-    system.run(() => updateDragonArmorLore(source));
-  }
 });
 
 function cleanupExpiredCooldowns(now) {
@@ -94,8 +91,8 @@ function hasAnyDragonArmor(equip) {
   for (const slot of ARMOR_SLOTS) {
     const item = equip.getEquipmentSlot(slot).getItem();
     if (!item) continue;
-    for (const [, data] of DRAGON_ARMOR_LORE_ENTRIES) {
-      if (item.getComponent(data.effectsKey)) return true;
+    for (const componentId of DRAGON_ARMOR_EFFECT_COMPONENTS) {
+      if (item.getComponent(componentId)) return true;
     }
   }
   return false;
@@ -108,106 +105,6 @@ function countArmorPieces(equip, componentType) {
       count++;
   }
   return count;
-}
-function applyDragonLoreToItem(item, fullSetMap, pieceCountMap) {
-  for (const [componentId, data] of DRAGON_ARMOR_LORE_ENTRIES) {
-    if (!item.getComponent(componentId)) continue;
-
-    const lore = [];
-
-    if (data.tiers) {
-      const pieceCount = pieceCountMap.get(componentId) ?? 0;
-      for (const tier of data.tiers) {
-        const color = pieceCount >= tier.threshold ? "§a" : "§7";
-        lore.push({
-          rawtext: [
-            { text: color, italic: false },
-            {
-              translate: `tooltip.${data.setKey}.lore.set${tier.suffix}`,
-              italic: false,
-            },
-          ],
-        });
-        lore.push({
-          rawtext: [
-            { text: "§f", italic: false },
-            {
-              translate: `tooltip.${data.setKey}.lore.disc${tier.suffix}`,
-              italic: false,
-            },
-          ],
-        });
-      }
-    } else {
-      const color = (fullSetMap.get(componentId) ?? false) ? "§a" : "§7";
-      lore.push({
-        rawtext: [
-          { text: color, italic: false },
-          { translate: `tooltip.${data.setKey}.lore.set`, italic: false },
-        ],
-      });
-      lore.push({
-        rawtext: [
-          { text: "§f", italic: false },
-          { translate: `tooltip.${data.setKey}.lore.disc`, italic: false },
-        ],
-      });
-    }
-
-    if (data.maxCd !== null) {
-      lore.push({
-        rawtext: [
-          { text: "§f", italic: false },
-          { translate: "tooltip.dragonmounts2.cooldown", italic: false },
-          { text: ` ${data.maxCd.toFixed(1)}`, italic: false },
-          { translate: "tooltip.dragonmounts2.seconds", italic: false },
-        ],
-      });
-    }
-
-    item.setLore(lore);
-    return item;
-  }
-  return null;
-}
-
-function updateDragonArmorLore(player) {
-  if (!player?.isValid) return;
-  const equip = player.getComponent(EntityEquippableComponent.componentId);
-  if (!equip) return;
-
-  const fullSetMap = new Map();
-  const pieceCountMap = new Map();
-
-  for (const [componentId, data] of DRAGON_ARMOR_LORE_ENTRIES) {
-    fullSetMap.set(componentId, isWearingFullSet(equip, data.effectsKey));
-    if (data.tiers)
-      pieceCountMap.set(componentId, countArmorPieces(equip, data.effectsKey));
-  }
-
-  for (const slot of ARMOR_SLOTS) {
-    const item = equip.getEquipmentSlot(slot).getItem();
-    if (!item) continue;
-    const modified = applyDragonLoreToItem(item, fullSetMap, pieceCountMap);
-    if (modified) equip.getEquipmentSlot(slot).setItem(modified);
-  }
-
-  const mainhand = equip.getEquipmentSlot(EquipmentSlot.Mainhand).getItem();
-  if (mainhand) {
-    const modified = applyDragonLoreToItem(mainhand, fullSetMap, pieceCountMap);
-    if (modified)
-      equip.getEquipmentSlot(EquipmentSlot.Mainhand).setItem(modified);
-  }
-
-  const container = player.getComponent("minecraft:inventory")?.container;
-  if (!container) return;
-
-  for (let i = 0; i < container.size; i++) {
-    const item = container.getItem(i);
-    if (!item) continue;
-    const modified = applyDragonLoreToItem(item, fullSetMap, pieceCountMap);
-    if (modified) container.setItem(i, modified);
-  }
 }
 function isNight(timeOfDay) {
   return timeOfDay >= 12000 && timeOfDay < 24000;
@@ -234,7 +131,6 @@ function applyTimedArmorEffect(
 
   player.addEffect(effectName, duration, { amplifier, showParticles: true });
   setCooldown(playerId, cooldownKey, cooldownSeconds, now);
-  system.run(() => updateDragonArmorLore(player));
   return true;
 }
 
@@ -380,10 +276,9 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
     0,
   );
 
-  updateDragonArmorLore(player);
 }
 
-world.beforeEvents.entityHurt.subscribe((event) => {
+onBeforeEntityHurt((event) => {
   if (event.damageSource.cause !== EntityDamageCause.sonicBoom) return;
   if (event.hurtEntity.typeId !== "minecraft:player") return;
 
@@ -402,7 +297,7 @@ world.beforeEvents.entityHurt.subscribe((event) => {
   event.damage *= 0.75;
 });
 
-world.afterEvents.entityDie.subscribe((event) => {
+onWorldEvent("afterEvents", "entityDie", (event) => {
   const { deadEntity } = event;
 
   if (deadEntity.typeId === "minecraft:player" || !deadEntity.isValid) return;
@@ -459,7 +354,7 @@ function tryTriggerStormLightningProc(player, attacker) {
   }
 }
 
-world.afterEvents.entityHurt.subscribe((event) => {
+onAfterEntityHurt((event) => {
   const { hurtEntity, damageSource, damage } = event;
   if (!hurtEntity?.isValid) return;
   const isPlayerVictim = hurtEntity.typeId === "minecraft:player";
@@ -500,7 +395,6 @@ world.afterEvents.entityHurt.subscribe((event) => {
         "dragonmounts2:fire_dragon_scale",
         45.0 * 20,
       );
-      system.run(() => updateDragonArmorLore(hurtEntity));
     }
     return;
   }
@@ -534,7 +428,6 @@ world.afterEvents.entityHurt.subscribe((event) => {
     });
     if (affected > 0) {
       setCooldown(playerId, "ice_dragon_scale_defensive_burst", 60.0, now);
-      system.run(() => updateDragonArmorLore(hurtEntity));
     }
   }
   if (
@@ -577,10 +470,9 @@ function tickArmorEffects() {
       processPlayerArmorEffects(player, now, timeOfDay);
     } catch {}
   }
-  system.runTimeout(tickArmorEffects, 20);
 }
 
-system.run(tickArmorEffects);
+registerIntervalTask("dragon-armor-effects", 20, tickArmorEffects);
 
 function tickAetherSprint() {
   const now = system.currentTick;
@@ -608,7 +500,6 @@ function tickAetherSprint() {
       );
     } catch {}
   }
-  system.runTimeout(tickAetherSprint, 10);
 }
 
-system.run(tickAetherSprint);
+registerIntervalTask("aether-sprint-effects", 10, tickAetherSprint);

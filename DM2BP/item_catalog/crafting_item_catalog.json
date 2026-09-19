@@ -65,7 +65,7 @@
               "dragonmounts2:sunlight_dragon_scale_helmet",
               "dragonmounts2:terra_dragon_scale_helmet",
               "dragonmounts2:water_dragon_scale_helmet",
-              "dragonmounts2:wither_dragon_scale_helmet",
+              "dragonmounts2:wither_dragon_bone_helmet",
               "dragonmounts2:zombie_dragon_scale_helmet"
             ]
           },
@@ -91,7 +91,7 @@
               "dragonmounts2:sunlight_dragon_scale_chestplate",
               "dragonmounts2:terra_dragon_scale_chestplate",
               "dragonmounts2:water_dragon_scale_chestplate",
-              "dragonmounts2:wither_dragon_scale_chestplate",
+              "dragonmounts2:wither_dragon_bone_chestplate",
               "dragonmounts2:zombie_dragon_scale_chestplate"
             ]
           },
@@ -117,7 +117,7 @@
               "dragonmounts2:sunlight_dragon_scale_leggings",
               "dragonmounts2:terra_dragon_scale_leggings",
               "dragonmounts2:water_dragon_scale_leggings",
-              "dragonmounts2:wither_dragon_scale_leggings",
+              "dragonmounts2:wither_dragon_bone_leggings",
               "dragonmounts2:zombie_dragon_scale_leggings"
             ]
           },
@@ -143,7 +143,7 @@
               "dragonmounts2:sunlight_dragon_scale_boots",
               "dragonmounts2:terra_dragon_scale_boots",
               "dragonmounts2:water_dragon_scale_boots",
-              "dragonmounts2:wither_dragon_scale_boots",
+              "dragonmounts2:wither_dragon_bone_boots",
               "dragonmounts2:zombie_dragon_scale_boots"
             ]
           },
@@ -169,7 +169,7 @@
               "dragonmounts2:sunlight_dragon_scale_sword",
               "dragonmounts2:terra_dragon_scale_sword",
               "dragonmounts2:water_dragon_scale_sword",
-              "dragonmounts2:wither_dragon_scale_sword",
+              "dragonmounts2:wither_dragon_bone_sword",
               "dragonmounts2:zombie_dragon_scale_sword"
             ]
           },
@@ -498,7 +498,6 @@
               "dragonmounts2:terra_dragon_spawn_egg",
               "dragonmounts2:water_dragon_spawn_egg",
               "dragonmounts2:wither_dragon_spawn_egg",
-              "dragonmounts2:zombie_dragon_keeper_spawn_egg",
               "dragonmounts2:zombie_dragon_spawn_egg"
             ]
           },
@@ -533,3 +532,4 @@
     ]
   }
 }
+

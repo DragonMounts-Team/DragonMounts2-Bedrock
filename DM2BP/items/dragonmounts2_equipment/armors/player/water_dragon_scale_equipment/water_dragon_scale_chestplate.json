@@ -13,7 +13,6 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:water_dragon_scale_chestplate.name"
       },
-      "dragonmounts2:water_dragon_scale_lore": {},
       "dragonmounts2:water_dragon_scale_effects": {},
       "minecraft:durability": {
         "max_durability": 361

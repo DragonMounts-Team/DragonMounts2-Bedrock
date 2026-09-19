@@ -6,7 +6,7 @@
       "is_spawnable": false,
       "is_summonable": true,
       "properties": {
-        "dragonmounts2:egg_hatch_time": { "type": "float", "range": [ 0, 0.3 ], "default": 0, "client_sync": true },
+        "dragonmounts2:egg_hatch_time": { "type": "float", "range": [ 0.00, 0.30 ], "default": 0.00, "client_sync": true },
         "dragonmounts2:egg_nesting_block": { "type": "bool", "default": true, "client_sync": true },
         "dragonmounts2:egg_state": { "type": "enum", "values": [ "default", "transforming", "transformed", "hatching", "hatched" ], "default": "default", "client_sync": true }
       }
@@ -21,7 +21,7 @@
       "dragonmounts2:egg_despawn": { "minecraft:instant_despawn": { } }
     },
     "components": {
-      "minecraft:type_family": { "family": [ "wither_dragon_egg_egg", "dragon_egg", "dragon", "dragonmounts2", "mob" ] },
+      "minecraft:type_family": { "family": [ "wither_dragon_egg", "dragon_egg", "dragon", "dragonmounts2", "mob" ] },
       "minecraft:breathable": { "total_supply": 240, "suffocate_time": 0, "breathes_lava": true, "breathes_solids": true, "generates_bubbles": false },
       "minecraft:collision_box": { "width": 0.98, "height": 0.98 },
       "minecraft:conditional_bandwidth_optimization": { },

@@ -8,28 +8,58 @@
           "weight": 1,
           "name": "dragonmounts2:light_dragon_scales",
           "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
+            { "function": "set_count", "count": { "min": 1, "max": 3 } }
           ]
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 1,
-        "max": 3
-      },
-      "entries": [
+        },
         {
           "type": "item",
           "weight": 1,
-          "name": "dragonmounts2:raw_dragon_meat"
-        }
+          "name": "dragonmounts2:light_dragon_sword",
+          "functions": [
+            { "function": "set_count", "count": { "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "dragonmounts2:light_dragon_pickaxe",
+          "functions": [
+            { "function": "set_count", "count": { "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "dragonmounts2:light_dragon_axe",
+          "functions": [
+            { "function": "set_count", "count": { "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "dragonmounts2:light_dragon_shovel",
+          "functions": [
+            { "function": "set_count", "count": { "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "dragonmounts2:light_dragon_hoe",
+          "functions": [
+            { "function": "set_count", "count": { "min": 1, "max": 3 } }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "dragonmounts2:light_dragon_armor",
+          "functions": [
+            { "function": "set_count", "count": { "min": 1, "max": 3 } }
+          ]
+        },
+        { "type": "item", "weight": 1, "name": "dragonmounts2:raw_dragon_meat" }
       ]
     }
   ]

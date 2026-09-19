@@ -7,7 +7,6 @@ import {
   EntityEquippableComponent,
   ItemDurabilityComponent,
   ItemEnchantableComponent,
-  ItemCooldownComponent,
   GameMode,
 } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
@@ -30,9 +29,11 @@ class CustomForm {
     return this;
   }
 
-  button(text, callback) {
-    this.form.button(text);
-    this.callbacks.push(callback);
+  button(text, iconPathOrCallback, callback) {
+    const iconPath = typeof iconPathOrCallback === "function" ? undefined : iconPathOrCallback;
+    const handler = typeof iconPathOrCallback === "function" ? iconPathOrCallback : callback;
+    this.form.button(text, iconPath);
+    this.callbacks.push(handler);
     return this;
   }
 
@@ -685,6 +686,10 @@ function showDragonScepterUI(source, itemStack, rule) {
     });
 
   const dragon = boundDragons[0];
+  const formationEnabled = boundDragons.some(
+    (boundDragon) =>
+      boundDragon.getProperty("dragonmounts2:v_flight_enabled") === true,
+  );
   let dragonName = dragon.nameTag;
   if (!dragonName || dragonName.trim() === "") dragonName = "Unnamed";
 
@@ -699,7 +704,16 @@ function showDragonScepterUI(source, itemStack, rule) {
         { translate: `${rule.translates.select_command}` },
       ],
     })
-    .button({ translate: `${rule.translates.toggle_vflight}` }, () => {
+    .button(
+      {
+        translate: formationEnabled
+          ? "tooltip.dragonmounts2:dragon_scepter.disable_formation"
+          : "tooltip.dragonmounts2:dragon_scepter.enable_formation",
+      },
+      formationEnabled
+        ? "textures/ui/dragonmounts2/dragon_flute/disable_formation"
+        : "textures/ui/dragonmounts2/dragon_flute/v_formation",
+      () => {
       try {
         scepterForm.close();
       } catch { }
@@ -772,7 +786,8 @@ function showDragonScepterUI(source, itemStack, rule) {
           });
         }
       });
-    });
+      },
+    );
 
   scepterForm.show().catch((e) => {
     console.error(e);
@@ -1145,10 +1160,17 @@ function showDragonFluteUI(source, itemStack, rule) {
     });
   }
 
-  const dragonHasCollar = dragon.getProperty("dragonmounts2:has_collar");
   const dragonIsFollowing = dragon.getProperty("dragonmounts2:is_following");
   const dragonIsLocked = dragon.getProperty("dragonmounts2:is_locked");
   const dragonMobState = dragon.getProperty("dragonmounts2:mob_state");
+  const dragonHome = getDragonHome(dragon);
+  const dragonAtHome = dragonHome && isDragonAtHome(dragon, dragonHome);
+  const homeButtonTranslation = dragonHome && !dragonAtHome
+    ? rule.translates.send_home
+    : rule.translates.set_home;
+  const homeButtonIcon = dragonHome && !dragonAtHome
+    ? "textures/ui/dragonmounts2/dragon_flute/send_home"
+    : "textures/ui/dragonmounts2/dragon_flute/set_home";
   let dragonName = dragon.nameTag;
   if (!dragonName || dragonName.trim() === "") dragonName = "Unnamed";
 
@@ -1163,7 +1185,10 @@ function showDragonFluteUI(source, itemStack, rule) {
         { translate: `${rule.translates.select_command}` },
       ],
     })
-    .button({ translate: `${rule.translates.come_to_owner}` }, () => {
+    .button(
+      { translate: `${rule.translates.come_to_owner}` },
+      "textures/ui/dragonmounts2/dragon_flute/come_to_owner",
+      () => {
       try {
         fluteForm.close();
       } catch { }
@@ -1218,16 +1243,13 @@ function showDragonFluteUI(source, itemStack, rule) {
           getSoundOptions(),
         );
       });
-    })
+      },
+    )
     .button(
       {
-        translate: `${(() => {
-          const home = getDragonHome(dragon);
-          return home && !isDragonAtHome(dragon, home)
-            ? rule.translates.send_home
-            : rule.translates.set_home;
-        })()}`,
+        translate: `${homeButtonTranslation}`,
       },
+      homeButtonIcon,
       () => {
         try {
           fluteForm.close();
@@ -1283,6 +1305,9 @@ function showDragonFluteUI(source, itemStack, rule) {
       dragonMobState == "standing"
         ? { translate: `${rule.translates.sit}` }
         : { translate: `${rule.translates.stand}` },
+      dragonMobState == "standing"
+        ? "textures/ui/dragonmounts2/dragon_flute/sit"
+        : "textures/ui/dragonmounts2/dragon_flute/stand",
       () => {
         try {
           fluteForm.close();
@@ -1317,6 +1342,9 @@ function showDragonFluteUI(source, itemStack, rule) {
       dragonIsFollowing == false
         ? { translate: `${rule.translates.follow}` }
         : { translate: `${rule.translates.wander}` },
+      dragonIsFollowing == false
+        ? "textures/ui/dragonmounts2/dragon_flute/follow"
+        : "textures/ui/dragonmounts2/dragon_flute/wander",
       () => {
         try {
           fluteForm.close();
@@ -1358,6 +1386,9 @@ function showDragonFluteUI(source, itemStack, rule) {
       dragonIsLocked == false
         ? { translate: `${rule.translates.lock}` }
         : { translate: `${rule.translates.unlock}` },
+      dragonIsLocked == false
+        ? "textures/ui/dragonmounts2/dragon_flute/lock"
+        : "textures/ui/dragonmounts2/dragon_flute/unlock",
       () => {
         try {
           fluteForm.close();
@@ -1388,40 +1419,7 @@ function showDragonFluteUI(source, itemStack, rule) {
         });
       },
     )
-    .button(
-      dragonHasCollar == false
-        ? { translate: `${rule.translates.collar}` }
-        : { translate: `${rule.translates.no_collar}` },
-      () => {
-        try {
-          fluteForm.close();
-        } catch { }
-        system.run(() => {
-          if (dragonHasCollar == false) {
-            source.onScreenDisplay.setActionBar({
-              rawtext: [
-                { text: "§a" },
-                { translate: `${rule.translates.on_collar}` },
-              ],
-            });
-            dragon.triggerEvent("minecraft:on_collar");
-          } else {
-            source.onScreenDisplay.setActionBar({
-              rawtext: [
-                { text: "§a" },
-                { translate: `${rule.translates.off_collar}` },
-              ],
-            });
-            dragon.triggerEvent("minecraft:on_no_collar");
-          }
-          source.dimension.playSound(
-            rule.sounds.short,
-            source.location,
-            getSoundOptions(),
-          );
-        });
-      },
-    );
+    ;
 
   fluteForm.show().catch((e) => {
     console.error(e);
@@ -1675,86 +1673,3 @@ export function dragonAmuletUseOn(source, block, blockFace, itemStack, params) {
   });
 }
 
-export function isShieldItem(itemStack) {
-  return itemStack.hasComponent("dragonmounts2:dragon_scale_shield");
-}
-
-export function getShieldComponentData(itemStack) {
-  if (!isShieldItem(itemStack)) return undefined;
-  return itemStack.getComponent("dragonmounts2:dragon_scale_shield");
-}
-
-export function getShieldParameters(itemStack) {
-  return getShieldComponentData(itemStack)?.customComponentParameters?.params;
-}
-
-export function getHeldShield(
-  player,
-  withCooldown = true,
-  cooldownUntilTick = 0,
-) {
-  function isValidShield(itemStack) {
-    if (!itemStack.hasComponent("dragonmounts2:dragon_scale_shield"))
-      return false;
-    if (withCooldown && cooldownUntilTick > system.currentTick) return false;
-    if (withCooldown) {
-      const cooldownComp = itemStack.getComponent(
-        ItemCooldownComponent.componentId,
-      );
-      if (cooldownComp && cooldownComp.getCooldownTicksRemaining(player) > 0)
-        return false;
-    }
-    return true;
-  }
-  const equippable = player.getComponent(EntityEquippableComponent.componentId);
-  if (!equippable) return undefined;
-  const mainhand = equippable.getEquipmentSlot(EquipmentSlot.Mainhand);
-  const mainhandItem = mainhand.getItem();
-  const offhand = equippable.getEquipmentSlot(EquipmentSlot.Offhand);
-  const offItem = offhand.getItem();
-  if (offItem?.typeId === "minecraft:shield") return undefined;
-  if (offItem && isValidShield(offItem))
-    return { item: offItem, slot: offhand, hand: "off_hand" };
-  if (mainhandItem?.typeId === "minecraft:shield") return undefined;
-  if (mainhandItem && isValidShield(mainhandItem)) {
-    return { item: mainhandItem, slot: mainhand, hand: "main_hand" };
-  }
-  return undefined;
-}
-
-export function reduceDurability(player, item, damage) {
-  if (player.getGameMode() === GameMode.creative) return item;
-  const durComp = item.getComponent(ItemDurabilityComponent.componentId);
-  if (!durComp) return item;
-  const enchComp = item.getComponent(ItemEnchantableComponent.componentId);
-  const unbreaking = enchComp?.getEnchantment("unbreaking");
-  if (unbreaking !== undefined) {
-    const chance = 100 / (unbreaking.level + 1);
-    const random = Math.random() * 100;
-    if (random >= 100 - chance) {
-      if (durComp.damage + damage > durComp.maxDurability) {
-        player.dimension.playSound(
-          "random.break",
-          player.location,
-          getSoundOptions(),
-        );
-        return undefined;
-      } else {
-        durComp.damage += damage;
-        return item;
-      }
-    }
-    return item;
-  }
-  if (durComp.damage + damage > durComp.maxDurability) {
-    player.dimension.playSound(
-      "random.break",
-      player.location,
-      getSoundOptions(),
-    );
-    return undefined;
-  } else {
-    durComp.damage += damage;
-    return item;
-  }
-}
