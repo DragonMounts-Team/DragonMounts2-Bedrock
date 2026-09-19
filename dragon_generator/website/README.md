@@ -6,7 +6,7 @@ Dragon Mount's Generator is a browser configuration studio for Dragon Mounts 2. 
 
 ### Open On GitHub
 
-Use the hosted [Dragon Mount's Generator](https://dragonmounts-team.github.io/DragonMounts2-Bedrock/dragon_generator/website/) to open the editor directly in your browser. GitHub Pages can download configuration files and commands, but it cannot write files into this repository.
+Use the hosted [Dragon Mount's Generator](https://dragonmounts-team.github.io/DragonMounts2-Bedrock/dragon_generator/website/) to open the editor directly in your browser. Before the first deployment, enable **Settings > Pages > GitHub Actions** in the repository. GitHub Pages can download configuration files and commands, but it cannot write files into this repository.
 
 ### GitHub Pages
 
