@@ -14,7 +14,9 @@
         "block": "dragonmounts2:demon_dark_dragon_head",
         "replace_block_item": true
       },
-      "minecraft:display_name": { "value": "tile.dragonmounts2:dark_dragon_head.demon.name" },
+      "minecraft:display_name": {
+        "value": "tile.dragonmounts2:dark_dragon_head.demon.name"
+      },
       "minecraft:enchantable": { "slot": "cosmetic_head", "value": 0 },
       "minecraft:fire_resistant": { "value": true },
       "minecraft:max_stack_size": 64,

@@ -2,14 +2,25 @@ const fs = require("node:fs");
 const path = require("node:path");
 const readline = require("node:readline/promises");
 const { stdin, stdout } = require("node:process");
+const { isDeepStrictEqual } = require("node:util");
 
 const toolRoot = __dirname;
-const configPath = path.join(toolRoot, "dragon-types.json");
+function getConfigArgument() {
+  const configArg = process.argv.slice(2).find((arg) => arg === "--config" || arg.startsWith("--config="));
+  if (!configArg) return "dragon-types.json";
+  if (configArg === "--config") {
+    const index = process.argv.indexOf(configArg);
+    return process.argv[index + 1] || "dragon-types.json";
+  }
+  return configArg.split("=", 2)[1] || "dragon-types.json";
+}
+
+const configPath = path.resolve(toolRoot, getConfigArgument());
 const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const armorTooltipConfigPath = path.join(toolRoot, "armor-tooltips.json");
 const armorTooltipConfig = JSON.parse(fs.readFileSync(armorTooltipConfigPath, "utf8"));
 const namespace = config.namespace;
-let runtimeOptions = { dryRun: false, diff: false, summary: false };
+let runtimeOptions = { dryRun: false, diff: false, summary: false, noColor: Boolean(process.env.NO_COLOR) };
 let generationSummary = { dragons: [], files: { generated: 0, updated: 0, wouldGenerate: 0, wouldUpdate: 0 }, issues: [] };
 const colors = {
   reset: "\x1b[0m",
@@ -20,20 +31,35 @@ const colors = {
   dim: "\x1b[2m"
 };
 function color(text, name) {
-  return process.stdout.isTTY ? `${colors[name] || ""}${text}${colors.reset}` : text;
+  if (runtimeOptions.noColor || !process.stdout.isTTY) return text;
+  return `${colors[name] || ""}${text}${colors.reset}`;
 }
 const dragonTemplatePath = path.resolve(toolRoot, config.templates.dragon);
 const eggTemplatePath = path.resolve(toolRoot, config.templates.egg);
 const entityRoot = path.resolve(toolRoot, config.output.entities);
 const amuletRoot = path.resolve(toolRoot, config.output.amulets);
 const resourceEntityRoot = path.resolve(toolRoot, config.output.resource_entities);
+const resourcePackRoot = path.resolve(resourceEntityRoot, "../..");
 const renderControllerRoot = path.resolve(toolRoot, config.output.render_controllers);
 const resourceAmuletRoot = path.resolve(toolRoot, config.output.resource_amulets);
 const itemTexturePath = path.resolve(toolRoot, config.output.resource_item_texture);
 const itemDataPath = path.resolve(toolRoot, config.output.script_data);
 const lootRoot = path.resolve(toolRoot, config.output.loot_tables || "../../loot_tables/entities");
 const fluteRoot = path.resolve(toolRoot, config.output.flutes || "../../items/dragonmounts2_equipment/tools/dragon_flutes");
+const scepterPath = path.resolve(
+  toolRoot,
+  config.output.equipment_items || "../../items/dragonmounts2_equipment",
+  "dragon_scepter.json",
+);
 const resourceAttachableRoot = path.resolve(toolRoot, config.output.resource_attachables);
+const headBlockRoot = path.resolve(toolRoot, "../DM2BP/blocks/dragonmounts2_items/heads/dragon_heads");
+const headItemRoot = path.resolve(toolRoot, "../DM2BP/items/dragonmounts2_items/heads/dragon_heads");
+const headLootRoot = path.resolve(toolRoot, "../DM2BP/loot_tables/blocks/dragonmounts2_items/heads/dragon_heads");
+const terrainTexturePath = path.resolve(toolRoot, "../DM2RP/textures/terrain_texture.json");
+const blockSoundsPath = path.resolve(toolRoot, "../DM2RP/blocks.json");
+const itemCatalogPath = path.resolve(toolRoot, "../DM2BP/item_catalog/crafting_item_catalog.json");
+const headTemplatePath = path.resolve(toolRoot, "../DM2BP/blocks/dragonmounts2_items/heads/dragon_heads/aether/aethra_aether_dragon_head.json");
+const headItemTemplatePath = path.resolve(toolRoot, "../DM2BP/items/dragonmounts2_items/heads/dragon_heads/aether/wind_aether_dragon_head.json");
 const languageRoots = (config.output.languages || ["../../texts/en_US.lang", "../../texts/en_GB.lang"])
   .map((filePath) => path.resolve(toolRoot, filePath));
 const languageSource = path.resolve(toolRoot, config.output.language_source || "../../texts/en_US.lang");
@@ -46,6 +72,18 @@ const supportedDragonModels = new Set([
   "bland", "horned_antlers", "normal", "scale_sharpened", "sculk", "skeleton",
   "spiked_horned", "tail_horned", "tail_scale_inclined", "winged_horned"
 ]);
+const headGeometryByModel = {
+  bland: "base",
+  horned_antlers: "winged_horns",
+  normal: "base",
+  scale_sharpened: "base",
+  sculk: "base",
+  skeleton: "skeleton",
+  spiked_horned: "spiked_horned",
+  tail_horned: "base",
+  tail_scale_inclined: "base",
+  winged_horned: "winged_horns"
+};
 const biomeTagSuggestions = [
   "badlands", "beach", "birch", "cold", "deep_ocean", "desert", "edge", "flower_forest",
   "forest", "frozen", "ice", "jungle", "lukewarm", "mangrove", "mesa", "mountain",
@@ -93,8 +131,10 @@ function parseArgs() {
     help: false,
     list: false,
     menu: false,
+    noColor: Boolean(process.env.NO_COLOR),
     preview: false,
     repair: false,
+    validate: false,
     type: undefined,
     verbose: false
   };
@@ -121,15 +161,20 @@ function parseArgs() {
     }
     else if (arg === "--dry-run" || arg === "-d") options.dryRun = true;
     else if (arg === "--summary" || arg === "--report") options.summary = true;
-      else if (arg === "--tooltips") options.tooltips = true;
+    else if (arg === "--tooltips") options.tooltips = true;
+    else if (arg === "--validate" || arg === "--check") options.validate = true;
     else if (arg === "--help" || arg === "-h" || arg === "/?") options.help = true;
     else if (arg === "--list" || arg === "-l") options.list = true;
     else if (arg === "--menu") options.menu = true;
+    else if (arg === "--no-color" || arg === "--plain") options.noColor = true;
     else if (arg === "--repair" || arg === "-r") options.repair = true;
     else if (arg === "--type" || arg === "-t") options.type = nextValue("--type");
     else if (arg.startsWith("--type=")) options.type = arg.split("=", 2)[1];
     else if (arg === "--verbose" || arg === "-v") options.verbose = true;
     else if (arg === "--config") nextValue("--config");
+    else if (arg.startsWith("--config=")) {
+      if (!arg.slice("--config=".length)) throw new Error("--config requires a value");
+    }
     else throw new Error(`Unknown option: ${arg}`);
   }
   if (options.assets && options.assets.toLowerCase() !== "all") {
@@ -152,7 +197,10 @@ function printHelp() {
   console.log("  generate.cmd --diff                Show a file-by-file change preview without writing files");
   console.log("  generate.cmd --summary             Summarize what would change and what issues were detected");
   console.log("  generate.cmd --dry-run              Preview generation without writing files");
-    console.log("  generate.cmd --tooltips              Generate armor tooltips in configured language files");
+  console.log("  generate.cmd --validate             Validate templates, output folders, and configured dragons");
+  console.log("  generate.cmd --tooltips             Generate armor tooltips in configured language files");
+  console.log("  generate.cmd --config custom.json   Use a different generator configuration file");
+  console.log("  generate.cmd --no-color             Disable ANSI colors for logs and CI");
   console.log("  biome_variant_rules                 Route natural spawns with any_tags, all_tags, and exclude_tags");
   console.log("  generate.cmd --help                Show this help");
   console.log("");
@@ -165,6 +213,7 @@ function printHelp() {
   console.log("  --diff / --preview = show a generated diff preview");
   console.log("  --clean / --cleanup = audit + repair all dragons and clean stale output");
   console.log("  --summary / --report = show a concise change summary");
+  console.log("  --check = alias for --validate");
   console.log("  -l = --list");
   console.log("  -r = --repair");
   console.log("  -t = --type");
@@ -172,19 +221,23 @@ function printHelp() {
 }
 
 function printBanner() {
-  console.log(color("\n==================================================", "cyan"));
-  console.log(color("                Dragon Generator Menu             ", "cyan"));
-  console.log(color("==================================================", "cyan"));
-  console.log(color("Use lowercase snake_case names like fire_dragon or blue_fire.", "dim"));
+  const line = "=".repeat(58);
+  console.log(color(`\n${line}`, "cyan"));
+  console.log(color("                 DRAGON GENERATOR", "cyan"));
+  console.log(color(line, "cyan"));
+  console.log(color("  Configure, preview, validate, and generate pack assets", "dim"));
+  console.log(color("  Names use lowercase snake_case, such as fire_dragon", "dim"));
+  console.log(color(`${line}\n`, "cyan"));
 }
 
 function listAvailableDragons() {
   const dragons = getAllDragonsForGeneration();
-  console.log(color("\nAvailable dragons:", "cyan"));
+  console.log(color("\nAvailable dragons", "cyan"));
+  console.log(color("-----------------", "dim"));
   for (const dragon of dragons) {
-    console.log(`  - ${dragon.type} (${dragon.variants.join(", ")})`);
+    console.log(`  ${color(dragon.type.padEnd(24), "green")} ${dragon.variants.join(", ")}`);
   }
-  console.log(color(`\nTotal: ${dragons.length}`, "green"));
+  console.log(color(`\n${dragons.length} dragon(s) available.`, "green"));
 }
 
 function getDragonFolderTypes() {
@@ -587,12 +640,13 @@ function printSummaryReport(selected) {
   const wouldUpdateCount = generationSummary.files.wouldUpdate || 0;
   const issueCount = generationSummary.issues.length;
 
-  console.log(color("\nSummary report:", "cyan"));
-  console.log(`  Dragons selected: ${totalSelected}`);
-  console.log(`  Files generated: ${generatedCount}`);
-  console.log(`  Files updated: ${updatedCount}`);
-  console.log(`  Dry-run preview actions: ${wouldGenerateCount + wouldUpdateCount}`);
-  console.log(`  Audit issues: ${issueCount}`);
+  console.log(color("\nGeneration summary", "cyan"));
+  console.log(color("------------------", "dim"));
+  console.log(`  ${color("Dragons", "dim")}      ${totalSelected}`);
+  console.log(`  ${color("Generated", "dim")}     ${generatedCount}`);
+  console.log(`  ${color("Updated", "dim")}       ${updatedCount}`);
+  console.log(`  ${color("Preview", "dim")}       ${wouldGenerateCount + wouldUpdateCount}`);
+  console.log(`  ${color("Issues", "dim")}        ${issueCount ? color(issueCount, "yellow") : color(issueCount, "green")}`);
   if (issueCount > 0) {
     for (const issue of generationSummary.issues.slice(0, 5)) {
       console.log(`    - ${issue}`);
@@ -607,9 +661,17 @@ function writeJson(filePath, value, dryRun) {
   const exists = fs.existsSync(filePath);
   const nextText = `${formatJson(value)}\n`;
   const currentText = exists ? fs.readFileSync(filePath, "utf8") : "";
-  if (exists && currentText === nextText) {
-    console.log(`unchanged ${path.relative(process.cwd(), filePath)}`);
-    return false;
+  if (exists) {
+    let sameJson = false;
+    try {
+      sameJson = isDeepStrictEqual(JSON.parse(currentText), value);
+    } catch (error) {
+      if (!(error instanceof SyntaxError)) throw error;
+    }
+    if (sameJson) {
+      console.log(`unchanged ${path.relative(process.cwd(), filePath)}`);
+      return false;
+    }
   }
   renderDiffPreview(filePath, nextText);
   if (!dryRun) {
@@ -675,16 +737,22 @@ function parseOptionalJson(value, label) {
 }
 
 function validateDragon(dragon) {
-  assertSafeName(dragon.type, "Dragon type");
-  if (!Array.isArray(dragon.variants) || dragon.variants.length === 0) {
-    throw new Error(`${dragon.type} must define at least one variant`);
+  if (!dragon || typeof dragon !== "object" || Array.isArray(dragon)) {
+    throw new Error("Each dragon configuration entry must be an object");
   }
-  dragon.variants.forEach((variant) => assertSafeName(variant, "Variant"));
-  const defaultVariant = dragon.default_variant || dragon.variants[0];
-  if (!dragon.variants.includes(defaultVariant)) {
+  assertSafeName(dragon.type, "Dragon type");
+  const variants = Array.isArray(dragon.variants) && dragon.variants.length > 0
+    ? [...dragon.variants]
+    : [dragon.type.replace(/_dragon$/, "") || "default"];
+  variants.forEach((variant) => assertSafeName(variant, "Variant"));
+  if (new Set(variants).size !== variants.length) {
+    throw new Error(`${dragon.type} contains duplicate variants`);
+  }
+  const defaultVariant = dragon.default_variant || variants[0];
+  if (!variants.includes(defaultVariant)) {
     throw new Error(`${dragon.type} default_variant is not in variants`);
   }
-  const biomeVariantRules = validateBiomeRules(dragon.biome_variant_rules, dragon.variants, dragon.type);
+  const biomeVariantRules = validateBiomeRules(dragon.biome_variant_rules, variants, dragon.type);
   const customAssets = dragon.custom_assets === "all"
     ? makeStarterAssets(dragon.material_name || "scales")
     : dragon.custom_assets || [];
@@ -693,21 +761,48 @@ function validateDragon(dragon) {
   if (!supportedDragonModels.has(model)) throw new Error(`${dragon.type} has an unsupported model: ${model}`);
   assertSafeName(materialName, "Material name");
   if (!Array.isArray(customAssets)) throw new Error(`${dragon.type} custom_assets must be an array`);
+  const assetNames = new Set();
   customAssets.forEach((asset) => {
     if (!asset || typeof asset !== "object") throw new Error(`${dragon.type} has an invalid custom asset`);
     assertSafeName(asset.name, "Custom asset name");
+    if (assetNames.has(asset.name)) throw new Error(`${dragon.type} has duplicate custom asset: ${asset.name}`);
+    assetNames.add(asset.name);
     if (!["item", "armor", "tool"].includes(asset.kind || "item")) {
       throw new Error(`${dragon.type} custom asset kind must be item, armor, or tool`);
     }
   });
+  if (dragon.breath_entity !== undefined && !/^[a-z0-9_.-]+:[a-z0-9_./-]+$/.test(dragon.breath_entity)) {
+    throw new Error(`${dragon.type} breath_entity must use namespace:id format`);
+  }
   return {
     ...dragon,
+    variants,
     default_variant: defaultVariant,
     model,
     material_name: materialName,
     custom_assets: customAssets,
     ...(biomeVariantRules === undefined ? {} : { biome_variant_rules: biomeVariantRules })
   };
+}
+
+function validateGeneratorConfig() {
+  if (!config || typeof config !== "object" || Array.isArray(config)) {
+    throw new Error("Generator configuration must be a JSON object");
+  }
+  if (typeof namespace !== "string" || !/^[a-z0-9_]+$/.test(namespace)) {
+    throw new Error("Generator namespace must use lowercase letters, numbers, and underscores");
+  }
+  if (!Array.isArray(config.dragons)) {
+    throw new Error("Generator configuration must define a dragons array");
+  }
+  const seenTypes = new Set();
+  for (const dragon of config.dragons) {
+    const normalized = validateDragon(dragon);
+    if (seenTypes.has(normalized.type)) {
+      throw new Error(`Duplicate dragon type in configuration: ${normalized.type}`);
+    }
+    seenTypes.add(normalized.type);
+  }
 }
 
 function normalizeRepeatedEggSuffix(value) {
@@ -803,6 +898,20 @@ function setBiomeVariantSpawnRules(definition, dragon) {
   spawnEvent.sequence[randomVariantStep] = { sequence: biomeSequence };
 }
 
+function setRandomVariantSpawnEvents(definition, dragon) {
+  const spawnEvent = definition.events?.["minecraft:entity_spawned"];
+  if (!Array.isArray(spawnEvent?.sequence)) return;
+  const randomStep = spawnEvent.sequence.find((step) =>
+    Array.isArray(step.randomize) && step.randomize.some((entry) => entry.trigger?.startsWith("minecraft:become_"))
+  );
+  if (!randomStep) return;
+  const templateWeight = randomStep.randomize.find((entry) => Number.isFinite(entry.weight))?.weight || 1;
+  randomStep.randomize = dragon.variants.map((variant) => ({
+    weight: templateWeight,
+    trigger: `minecraft:become_${variant}`,
+  }));
+}
+
 function setDragonVariantData(entity, dragon) {
   const definition = entity["minecraft:entity"];
   const properties = definition.description.properties;
@@ -868,6 +977,31 @@ function setDragonVariantData(entity, dragon) {
       set_property: { "dragonmounts2:variant_type": variant }
     };
   }
+  const variantEvent = definition.events["minecraft:on_variant"];
+  if (dragon.variants.length < 2) {
+    delete definition.events["minecraft:on_variant"];
+    const interactions = definition.components["minecraft:interact"]?.interactions;
+    if (Array.isArray(interactions)) {
+      definition.components["minecraft:interact"].interactions = interactions.filter(
+        (interaction) => interaction.on_interact?.event !== "minecraft:on_variant"
+      );
+    }
+  } else if (Array.isArray(variantEvent?.sequence)) {
+    variantEvent.sequence = dragon.variants.map((variant) => ({
+      filters: {
+        test: "enum_property",
+        domain: "dragonmounts2:variant_type",
+        value: variant,
+      },
+      randomize: dragon.variants
+        .filter((candidate) => candidate !== variant)
+        .map((candidate) => ({
+          weight: 1,
+          set_property: { "dragonmounts2:variant_type": candidate },
+        })),
+    }));
+  }
+  setRandomVariantSpawnEvents(definition, dragon);
   setBiomeVariantSpawnRules(definition, dragon);
   Object.assign(definition.components, dragon.custom_components || {});
   Object.assign(definition.component_groups ||= {}, dragon.custom_component_groups || {});
@@ -920,8 +1054,9 @@ function makeResourceDragon(dragon) {
   });
   const textures = {};
   for (const variant of dragon.variants) {
-    textures[variant] = `textures/entity/dragon/${dragon.type.replace("_dragon", "")}/${variant}/body`;
-    textures[`${variant}_glow`] = `textures/entity/dragon/${dragon.type.replace("_dragon", "")}/${variant}/glow`;
+    const textureVariant = dragon.texture_variants?.[variant] || variant;
+    textures[variant] = `textures/entity/dragon/${dragon.type.replace("_dragon", "")}/${textureVariant}/body`;
+    textures[`${variant}_glow`] = `textures/entity/dragon/${dragon.type.replace("_dragon", "")}/${textureVariant}/glow`;
   }
   for (const [key, value] of Object.entries(description.textures)) {
     if (!key.endsWith("_glow") && !["flame", "blaze", "blue_fire"].includes(key)) textures[key] = value;
@@ -1097,6 +1232,143 @@ function getStarterItemTemplatePath(asset, piece) {
   return null;
 }
 
+function titleCase(value) {
+  return value.split("_").map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
+}
+
+function getDragonHeadId(dragon, variant) {
+  const base = dragon.type.replace("_dragon", "");
+  return `${variant.endsWith(`_${base}`) ? variant : `${variant}_${base}`}_dragon_head`;
+}
+
+function getDragonHeadItemDirectory(dragon) {
+  return ["fire_dragon", "ice_dragon"].includes(dragon.type)
+    ? dragon.type
+    : dragon.type.replace("_dragon", "");
+}
+
+function makeDragonHeadBlock(dragon, variant, headId, textureKey, lootPath) {
+  const block = readJson(headTemplatePath);
+  const definition = block["minecraft:block"];
+  const geometry = `geometry.dragonmounts2.head_block.${headGeometryByModel[dragon.model] || "base"}`;
+  definition.description.identifier = `${namespace}:${headId}`;
+  definition.components["minecraft:display_name"] = `tile.${namespace}:${dragon.type.replace("_dragon", "")}_dragon_head.${variant}.name`;
+  definition.components["minecraft:loot"] = lootPath;
+  definition.components["minecraft:material_instances"]["*"].texture = textureKey;
+  definition.components["minecraft:geometry"].identifier = geometry;
+  for (const permutation of definition.permutations) {
+    if (permutation.components?.["minecraft:geometry"]) permutation.components["minecraft:geometry"] = geometry;
+  }
+  return block;
+}
+
+function makeDragonHeadItem(dragon, variant, headId) {
+  const item = readJson(headItemTemplatePath);
+  const definition = item["minecraft:item"].description;
+  definition.identifier = `${namespace}:${headId}`;
+  item["minecraft:item"].components["minecraft:block_placer"].block = `${namespace}:${headId}`;
+  item["minecraft:item"].components["minecraft:display_name"].value = `tile.${namespace}:${dragon.type.replace("_dragon", "")}_dragon_head.${variant}.name`;
+  return item;
+}
+
+function makeDragonHeadLoot(headId) {
+  return {
+    pools: [{
+      rolls: 1,
+      entries: [{ type: "item", weight: 1, name: `${namespace}:${headId}` }]
+    }]
+  };
+}
+
+function addDragonHeadLanguage(dragon, variant, dryRun) {
+  const base = dragon.type.replace("_dragon", "");
+  const key = `tile.${namespace}:${base}_dragon_head.${variant}.name`;
+  const value = `${titleCase(variant)}${variant.endsWith(`_${base}`) ? "" : ` ${titleCase(base)}`} Dragon Head`;
+  for (const languagePath of languageRoots) {
+    const text = fs.existsSync(languagePath) ? fs.readFileSync(languagePath, "utf8") : "";
+    if (text.split(/\r?\n/).some((line) => line.startsWith(`${key}=`))) continue;
+    const next = `${text.replace(/\s*$/, "")}${text ? "\n" : ""}${key}=${value}\n`;
+    if (!dryRun) writeTextAtomic(languagePath, next);
+    console.log(`${dryRun ? "would update" : "updated"} ${path.relative(process.cwd(), languagePath)}`);
+  }
+}
+
+function registerDragonHeads(dragon, dryRun) {
+  const base = dragon.type.replace("_dragon", "");
+  const terrain = readJson(terrainTexturePath);
+  const blockSounds = readJson(blockSoundsPath);
+  const catalog = readJson(itemCatalogPath);
+  const catalogRoot = catalog["minecraft:crafting_items_catalog"] || catalog;
+  const headGroup = catalogRoot.categories?.find((category) => category.category_name === "items")?.groups
+    ?.find((group) => group.group_identifier?.name === `${namespace}:itemGroup.name.dragon_heads`);
+  if (!headGroup) throw new Error("Could not find the dragon heads item catalog group");
+  let terrainChanged = false;
+  let soundsChanged = false;
+  let catalogChanged = false;
+  if (headGroup.items.includes(`${namespace}:blue_fire_fire_dragon_head`)) {
+    headGroup.items = headGroup.items.filter((item) => item !== `${namespace}:blue_fire_fire_dragon_head`);
+    catalogChanged = true;
+  }
+  if (blockSounds.blue_fire_fire_dragon_head) {
+    delete blockSounds.blue_fire_fire_dragon_head;
+    soundsChanged = true;
+  }
+  if (dragon.type === "wither_dragon") {
+    const staleHeadId = `${namespace}:withered_wither_dragon_head`;
+    const staleTextureKey = `${namespace}:wither_dragon_head_withered`;
+    if (headGroup.items.includes(staleHeadId)) {
+      headGroup.items = headGroup.items.filter((item) => item !== staleHeadId);
+      catalogChanged = true;
+    }
+    if (blockSounds.withered_wither_dragon_head) {
+      delete blockSounds.withered_wither_dragon_head;
+      soundsChanged = true;
+    }
+    if (terrain.texture_data[staleTextureKey]) {
+      delete terrain.texture_data[staleTextureKey];
+      terrainChanged = true;
+    }
+  }
+  for (const variant of dragon.variants) {
+    const headId = getDragonHeadId(dragon, variant);
+    const textureVariant = dragon.texture_variants?.[variant] || variant;
+    const textureKey = `${namespace}:${base}_dragon_head_${variant}`;
+    const texturePath = `textures/entity/dragon/${base}/${textureVariant}/body`;
+    if (terrain.texture_data[textureKey]?.textures?.[0] !== texturePath) {
+      terrain.texture_data[textureKey] = { textures: [texturePath] };
+      terrainChanged = true;
+    }
+    if (!blockSounds[headId]) {
+      blockSounds[headId] = { sound: "stone" };
+      soundsChanged = true;
+    }
+    if (!headGroup.items.includes(`${namespace}:${headId}`)) {
+      headGroup.items.push(`${namespace}:${headId}`);
+      catalogChanged = true;
+    }
+    addDragonHeadLanguage(dragon, variant, dryRun);
+  }
+  if (terrainChanged) writeJson(terrainTexturePath, terrain, dryRun);
+  if (soundsChanged) writeJson(blockSoundsPath, blockSounds, dryRun);
+  if (catalogChanged) writeJson(itemCatalogPath, catalog, dryRun);
+}
+
+function writeDragonHeads(dragon, dryRun) {
+  const base = dragon.type.replace("_dragon", "");
+  for (const variant of dragon.variants) {
+    const headId = getDragonHeadId(dragon, variant);
+    const blockPath = path.join(headBlockRoot, base, `${headId}.json`);
+    const itemPath = path.join(headItemRoot, getDragonHeadItemDirectory(dragon), `${headId}.json`);
+    const lootPath = path.join(headLootRoot, `${base}_dragon`, `${headId}.json`);
+    const relativeLootPath = `loot_tables/blocks/dragonmounts2_items/heads/dragon_heads/${base}_dragon/${headId}.json`;
+    const textureKey = `${namespace}:${base}_dragon_head_${variant}`;
+    if (!fs.existsSync(blockPath)) writeJson(blockPath, makeDragonHeadBlock(dragon, variant, headId, textureKey, relativeLootPath), dryRun);
+    if (!fs.existsSync(itemPath)) writeJson(itemPath, makeDragonHeadItem(dragon, variant, headId), dryRun);
+    if (!fs.existsSync(lootPath)) writeJson(lootPath, makeDragonHeadLoot(headId), dryRun);
+  }
+  registerDragonHeads(dragon, dryRun);
+}
+
 function collectJsonFiles(root) {
   if (!fs.existsSync(root)) return [];
   const files = [];
@@ -1252,6 +1524,40 @@ function addFluteDragonType(dragon, dryRun) {
   }
 }
 
+function addSharedToolDragonType(filePath, componentId, dragon, dryRun) {
+  if (!fs.existsSync(filePath)) return;
+  const item = readJson(filePath);
+  const component = item["minecraft:item"]?.components?.[componentId];
+  if (!component) return;
+
+  const dragonId = `${namespace}:${dragon.type}`;
+  component.dragon_types ||= [];
+  if (component.dragon_types.includes(dragonId)) {
+    console.log(`already registered ${dragonId} in ${path.relative(process.cwd(), filePath)}`);
+    return;
+  }
+
+  component.dragon_types.push(dragonId);
+  component.dragon_types.sort();
+  if (!dryRun) writeTextAtomic(filePath, `${formatJson(item)}\n`);
+  console.log(`${dryRun ? "would update" : "updated"} ${path.relative(process.cwd(), filePath)}`);
+}
+
+function addSharedToolDragonTypes(dragon, dryRun) {
+  addSharedToolDragonType(
+    path.join(amuletRoot, "dragon_amulet.json"),
+    "dragonmounts2:dragon_amulet",
+    dragon,
+    dryRun,
+  );
+  addSharedToolDragonType(
+    scepterPath,
+    "dragonmounts2:dragon_scepter",
+    dragon,
+    dryRun,
+  );
+}
+
 function addScriptData(dragon, dryRun) {
   const text = fs.readFileSync(itemDataPath, "utf8");
   const base = dragon.type.replace("_dragon", "");
@@ -1272,16 +1578,20 @@ function addScriptData(dragon, dryRun) {
   };
   let next = text;
   for (const [exportName, entry] of Object.entries(entries)) {
-    if (next.includes(`"${namespace}:${dragon.type}":`)) {
-      console.log(`already registered ${namespace}:${dragon.type} in ${exportName}`);
-      continue;
-    }
     const exportStart = next.indexOf(`export const ${exportName} = {`);
     const close = next.indexOf("\n};", exportStart);
     if (exportStart < 0 || close < 0) throw new Error(`Could not update ${exportName}`);
     const key = Object.keys(entry)[0];
+    if (next.slice(exportStart, close).includes(`"${key}":`)) {
+      console.log(`already registered ${key} in ${exportName}`);
+      continue;
+    }
     const value = JSON.stringify(Object.values(entry)[0], null, 2).replace(/\n/g, "\n  ");
     next = `${next.slice(0, close)}\n  "${key}": ${value},${next.slice(close)}`;
+  }
+  if (next === text) {
+    console.log(`unchanged ${path.relative(process.cwd(), itemDataPath)}`);
+    return;
   }
   if (!dryRun) writeTextAtomic(itemDataPath, next);
   const action = dryRun ? "would update" : "updated";
@@ -1403,6 +1713,16 @@ function getDragonAuditIssues(dragon) {
 
   if (fs.existsSync(resourcePath)) {
     const resource = readJson(resourcePath);
+    const textureRoot = path.join(resourcePackRoot, "textures", "entity", "dragon", dragon.type.replace("_dragon", ""));
+    for (const variant of dragon.variants) {
+      const textureVariant = dragon.texture_variants?.[variant] || variant;
+      for (const layer of ["body", "glow"]) {
+        const texturePath = path.join(textureRoot, textureVariant, `${layer}.png`);
+        if (!fs.existsSync(texturePath)) {
+          issues.push(`missing ${layer} texture for ${dragon.type}:${variant} (${textureVariant})`);
+        }
+      }
+    }
     const controllers = resource["minecraft:client_entity"]?.description?.render_controllers || [];
     const staleControllerRefs = controllers.filter((controller) => {
       if (typeof controller === "string") return controller.includes("fire_dragon");
@@ -1491,6 +1811,7 @@ async function main() {
   const options = parseArgs();
   runtimeOptions = options;
   generationSummary = { dragons: [], files: { generated: 0, updated: 0, wouldGenerate: 0, wouldUpdate: 0 }, issues: [] };
+  validateGeneratorConfig();
   if (options.diff) options.dryRun = true;
   if (options.help) {
     printHelp();
@@ -1502,6 +1823,16 @@ async function main() {
   }
   if (options.tooltips) {
     writeArmorTooltips(options.dryRun);
+    return;
+  }
+  if (options.validate) {
+    const validationDragons = getAllDragonsForGeneration();
+    validateGenerationInputs();
+    runAudit(validationDragons, true);
+    if (generationSummary.issues.length > 0) {
+      throw new Error(`Validation failed with ${generationSummary.issues.length} issue(s)`);
+    }
+    console.log(color(`Validation passed: ${validationDragons.length} dragon(s) checked.`, "green"));
     return;
   }
 
@@ -1551,9 +1882,11 @@ async function main() {
     writeJson(path.join(resourceAmuletRoot, `${dragon.type}_amulet.json`), makeResourceAmulet(dragon), options.dryRun);
     writeCustomAssets(dragon, options.dryRun);
     writeDragonLoot(dragon, options.dryRun);
+    writeDragonHeads(dragon, options.dryRun);
     addScriptData(dragon, options.dryRun);
     addResourceItemTexture(dragon, options.dryRun);
     addFluteDragonType(dragon, options.dryRun);
+    addSharedToolDragonTypes(dragon, options.dryRun);
     if (options.verbose) {
       console.log(color(`Checked ${dragon.type}: resource entity + render controller + textures reconciled.`, "cyan"));
     }

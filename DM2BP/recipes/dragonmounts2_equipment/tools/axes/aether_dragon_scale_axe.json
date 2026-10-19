@@ -5,15 +5,9 @@
         "item": "dragonmounts2:aether_dragon_scales"
       }
     ],
-    "tags": [
-      "crafting_table"
-    ],
+    "tags": ["crafting_table"],
     "priority": -1,
-    "pattern": [
-      "AA",
-      "AB",
-      " B"
-    ],
+    "pattern": ["AA", "AB", " B"],
     "description": {
       "identifier": "dragonmounts2:aether_dragon_scale_axe"
     },

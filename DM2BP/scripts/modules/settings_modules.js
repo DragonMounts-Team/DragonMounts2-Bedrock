@@ -12,7 +12,10 @@ function applyOwnedDragonCollars(player) {
   for (const dimension of getAddonDimensions()) {
     for (const dragon of dimension.getEntities({ families: ["dragon"] })) {
       if (!dragon?.isValid) continue;
-      if (dragon.getDynamicProperty("dragonmounts2:owner_identifier") !== player.id) {
+      if (
+        dragon.getDynamicProperty("dragonmounts2:owner_identifier") !==
+        player.id
+      ) {
         continue;
       }
       dragon.triggerEvent(
@@ -48,12 +51,12 @@ function showSettings(player) {
     const currentFlightSpeed = settings.getPlayerDragonSpeedSelection(player);
     const showCollars = settings.getPlayerCollarVisibility(player);
     const form = new ModalFormData()
-      .title("DragonMounts2 Settings")
-      .slider("Dragon's Flight Speed: Slow | Default", 0, 1, {
+      .title({ translate: "tooltip.dragonmounts2:settings.title" })
+      .slider({ translate: "tooltip.dragonmounts2:settings.flight_speed" }, 0, 2, {
         valueStep: 1,
         defaultValue: currentFlightSpeed,
       })
-      .toggle("Show dragon collars", { defaultValue: showCollars });
+      .toggle({ translate: "tooltip.dragonmounts2:settings.show_collars" }, { defaultValue: showCollars });
 
     system.runTimeout(() => {
       if (!player.isValid) return;
@@ -64,7 +67,9 @@ function showSettings(player) {
           settings.setPlayerDragonSpeed(player, result.formValues[0]);
           settings.setPlayerCollarVisibility(player, result.formValues[1]);
           applyOwnedDragonCollars(player);
-          player.sendMessage("§aDragon's flight speed saved.");
+          player.sendMessage({
+            rawtext: [{ text: "§a" }, { translate: "tooltip.dragonmounts2:settings.saved" }],
+          });
         })
         .catch((error) =>
           console.error(
@@ -96,7 +101,7 @@ export function registerSettingsCommand(customCommandRegistry) {
   customCommandRegistry.registerCommand(
     {
       name: "dragonmounts2:settings",
-      description: "Open DragonMounts2 world settings.",
+      description: "tooltip.dragonmounts2:command.settings.description",
       permissionLevel: 1,
       cheatsRequired: false,
     },

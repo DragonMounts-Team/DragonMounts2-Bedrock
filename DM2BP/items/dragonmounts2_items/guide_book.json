@@ -11,7 +11,9 @@
     "components": {
       "minecraft:allow_off_hand": { "value": true },
       "minecraft:can_destroy_in_creative": { "value": true },
-      "minecraft:display_name": { "value": "item.dragonmounts2:guide_book.name" },
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:guide_book.name"
+      },
       "minecraft:fire_resistant": { "value": true },
       "minecraft:hand_equipped": { "value": false },
       "minecraft:icon": {
@@ -19,13 +21,16 @@
           "default": "dragonmounts2:guide_book"
         }
       },
-      "minecraft:use_modifiers": { "use_duration": 3600, "movement_modifier": 1 },
+      "minecraft:use_modifiers": {
+        "use_duration": 3600,
+        "movement_modifier": 1
+      },
       "minecraft:max_stack_size": { "value": 1 },
       "minecraft:rarity": "epic",
       "minecraft:should_despawn": { "value": false },
       "minecraft:stacked_by_data": true,
       "minecraft:tags": {
-        "tags": [ "dragonmounts2:guide_book", "minecraft:bookshelf_books" ]
+        "tags": ["dragonmounts2:guide_book", "minecraft:bookshelf_books"]
       }
     }
   }

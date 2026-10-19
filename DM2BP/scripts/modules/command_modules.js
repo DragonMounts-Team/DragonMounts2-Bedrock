@@ -1,4 +1,11 @@
-import { CustomCommandParamType, Player, world } from "@minecraft/server";
+import {
+  CustomCommandParamType,
+  CustomCommandStatus,
+  Player,
+  system,
+  world,
+} from "@minecraft/server";
+import { dragonTypeIds } from "../data/entity_data.js";
 import { registerSettingsCommand } from "./settings_modules.js";
 import * as dragonUtilities from "../utilities/dragon_utilities.js";
 
@@ -33,10 +40,24 @@ function normalizeEntities(value) {
   return [];
 }
 
+function say(origin, key, ...values) {
+  const source = origin?.sourceEntity;
+  if (source instanceof Player) {
+    source.sendMessage({
+      rawtext: [{ translate: key, with: values.map(String) }],
+    });
+  }
+}
+
+function fail(origin, key) {
+  say(origin, key);
+  return { status: CustomCommandStatus.Failure, message: key };
+}
+
 function tameEntities(targetEntities, ownerEntities) {
   const owner = normalizeEntities(ownerEntities)[0];
   if (!owner) {
-    return { success: false, message: "No valid owner entity was provided." };
+    return { success: false, key: "tooltip.dragonmounts2:command.no_owner" };
   }
 
   const ownerName = owner.name ?? owner.typeId ?? "Unknown";
@@ -64,7 +85,7 @@ function tameEntities(targetEntities, ownerEntities) {
   if (tamedCount === 0) {
     return {
       success: false,
-      message: "No tameable entities were found to tame.",
+      key: "tooltip.dragonmounts2:command.no_tameable",
     };
   }
 
@@ -75,8 +96,7 @@ function registerBuiltInCommands(customCommandRegistry) {
   customCommandRegistry.registerCommand(
     {
       name: "dragonmounts2:tame",
-      description:
-        "Tames one or more entities and assigns them to an owner entity.",
+      description: "tooltip.dragonmounts2:command.tame.description",
       permissionLevel: 1,
       cheatsRequired: true,
       mandatoryParameters: [
@@ -84,29 +104,45 @@ function registerBuiltInCommands(customCommandRegistry) {
         { type: CustomCommandParamType.EntitySelector, name: "owner" },
       ],
     },
-    (args, sender) => {
-      const targets = normalizeEntities(args[0]);
-      const owners = normalizeEntities(args[1]);
-
-      if (targets.length === 0) {
-        sender.sendMessage("No valid entities were found to tame.");
-        return;
-      }
-
-      if (owners.length === 0) {
-        sender.sendMessage("No valid owner entity was found.");
-        return;
-      }
-
+    (origin, target, owner) => {
+      const targets = normalizeEntities(target);
+      const owners = normalizeEntities(owner);
+      if (targets.length === 0) return fail(origin, "tooltip.dragonmounts2:command.no_entities");
+      if (owners.length === 0) return fail(origin, "tooltip.dragonmounts2:command.no_owner");
       const result = tameEntities(targets, owners);
-      if (!result.success) {
-        sender.sendMessage(result.message);
-        return;
-      }
-
-      sender.sendMessage(
-        `Tamed ${result.tamedCount} entity${result.tamedCount === 1 ? "" : "ies"}.`,
+      if (!result.success) return fail(origin, result.key);
+      say(origin, "tooltip.dragonmounts2:command.tame.success", result.tamedCount);
+      return { status: CustomCommandStatus.Success };
+    },
+  );
+  // Java /dragonmounts trust [targets] [true|false]: sets the break-in trust flag
+  // directly (saddle/control + V-Flight/catching are gated on it).
+  customCommandRegistry.registerCommand(
+    {
+      name: "dragonmounts2:trust",
+      description: "tooltip.dragonmounts2:command.trust.description",
+      permissionLevel: 1,
+      cheatsRequired: true,
+      mandatoryParameters: [
+        { type: CustomCommandParamType.EntitySelector, name: "targets" },
+      ],
+      optionalParameters: [
+        { type: CustomCommandParamType.Boolean, name: "value" },
+      ],
+    },
+    (origin, targets, value) => {
+      const dragons = normalizeEntities(targets).filter((entity) =>
+        dragonTypeIds.has(entity.typeId),
       );
+      if (dragons.length === 0) return fail(origin, "tooltip.dragonmounts2:command.no_dragons");
+      const trusted = value !== false;
+      system.run(() => {
+        for (const dragon of dragons) {
+          dragonUtilities.setBreakInTrusted(dragon, trusted);
+        }
+      });
+      say(origin, trusted ? "tooltip.dragonmounts2:command.trust.granted" : "tooltip.dragonmounts2:command.trust.removed", dragons.length);
+      return { status: CustomCommandStatus.Success };
     },
   );
   registerSettingsCommand(customCommandRegistry);
@@ -117,7 +153,7 @@ function registerBuiltInCommands(customCommandRegistry) {
   customCommandRegistry.registerCommand(
     {
       name: "dragonmounts2:debug",
-      description: "Toggle dragon flight speed debugging.",
+      description: "tooltip.dragonmounts2:command.debug.description",
       permissionLevel: 0,
       cheatsRequired: false,
     },

@@ -24,9 +24,7 @@
         "initialize": [
           "v.not_armor_stand = !q.is_owner_identifier_any('minecraft:armor_stand');"
         ],
-        "pre_animation": [
-          "v.particle_gate = v.not_armor_stand;"
-        ],
+        "pre_animation": ["v.particle_gate = v.not_armor_stand;"],
         "parent_setup": "v.helmet_layer_visible = 0.0;",
         "animate": [
           {
@@ -34,9 +32,7 @@
           }
         ]
       },
-      "render_controllers": [
-        "controller.render.armor"
-      ]
+      "render_controllers": ["controller.render.armor"]
     }
   }
 }

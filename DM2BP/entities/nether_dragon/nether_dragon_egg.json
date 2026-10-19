@@ -16,7 +16,7 @@
         "minecraft:timer": { "time": 1, "looping": true, "time_down_event": { "event": "minecraft:dragon_egg_timer" } }
       },
       "dragonmounts2:egg_hatched": {
-        "minecraft:transformation": { "into": "dragonmounts2:nether_dragon_egg", "begin_transform_sound": "hurt", "transformation_sound": "death", "delay": { "value": 60 } }
+        "minecraft:transformation": { "into": "dragonmounts2:nether_dragon<minecraft:entity_transformed>", "begin_transform_sound": "dragonmounts2:block.dragon_egg.crack", "transformation_sound": "dragonmounts2:block.dragon_egg.shatter", "delay": { "value": 60 } }
       },
       "dragonmounts2:egg_despawn": { "minecraft:instant_despawn": { } }
     },
@@ -30,11 +30,11 @@
       "minecraft:damage_sensor": { "triggers": { "cause": "all", "deals_damage": "no" } },
       "minecraft:environment_sensor": {
         "triggers": [
-          { "filters": { "test": "bool_property", "domain": "dragonmounts2:egg_nesting_block", "operator": "==", "subject": "self" }, "event": "minecraft:dragon_egg_hatching" },
+          { "filters": { "test": "bool_property", "domain": "dragonmounts2:egg_nesting_block", "operator": "==" }, "event": "minecraft:dragon_egg_hatching" },
           {
             "filters": {
               "all_of": [
-                { "test": "bool_property", "domain": "dragonmounts2:egg_nesting_block", "operator": "!=", "subject": "self" },
+                { "test": "bool_property", "domain": "dragonmounts2:egg_nesting_block", "operator": "!=" },
                 { "test": "has_component", "operator": "!=", "value": "minecraft:transformation" }
               ]
             },
@@ -43,8 +43,8 @@
           {
             "filters": {
               "all_of": [
-                { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatching", "subject": "self" },
-                { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "value": 0.3, "subject": "self" }
+                { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatching" },
+                { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "value": 0.3 }
               ]
             },
             "event": "minecraft:dragon_egg_hatched"
@@ -52,8 +52,8 @@
           {
             "filters": {
               "all_of": [
-                { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transforming", "subject": "self" },
-                { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "value": 0.3, "subject": "self" }
+                { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transforming" },
+                { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "value": 0.3 }
               ]
             },
             "event": "minecraft:dragon_egg_transformed"
@@ -70,8 +70,8 @@
               "target": "self",
               "filters": {
                 "all_of": [
-                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "==", "value": 0.3, "subject": "self" },
-                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_scepter" },
+                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "==", "value": 0.3 },
+                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:dragon_scepter" },
                   { "test": "is_family", "subject": "other", "value": "player" },
                   { "test": "is_sneak_held", "subject": "other" }
                 ]
@@ -88,7 +88,7 @@
               "target": "self",
               "filters": {
                 "all_of": [
-                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "!=", "value": 0.3, "subject": "self" },
+                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "!=", "value": 0.3 },
                   { "test": "is_family", "subject": "other", "value": "player" },
                   { "test": "is_sneak_held", "subject": "other" }
                 ]
@@ -104,8 +104,8 @@
               "target": "self",
               "filters": {
                 "all_of": [
-                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "!=", "value": 0.3, "subject": "self" },
-                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_scepter" },
+                  { "test": "float_property", "domain": "dragonmounts2:egg_hatch_time", "operator": "!=", "value": 0.3 },
+                  { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:dragon_scepter" },
                   { "test": "is_family", "subject": "other", "value": "player" },
                   { "test": "is_sneak_held", "subject": "other", "value": false }
                 ]
@@ -135,8 +135,8 @@
       "minecraft:dragon_egg_hatching": {
         "filters": {
           "none_of": [
-            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatching", "subject": "self" },
-            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatched", "subject": "self" }
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatching" },
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "hatched" }
           ]
         },
         "set_property": { "dragonmounts2:egg_state": "hatching" }
@@ -145,18 +145,18 @@
         "add": { "component_groups": [ "dragonmounts2:egg_hatched" ] },
         "set_property": { "dragonmounts2:egg_state": "hatched" }
       },
-      "minecraft:dragon_egg_timer": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+0.001,0.000,0.300)" } },
+      "minecraft:dragon_egg_timer": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+(q.property('dragonmounts2:egg_nesting_block')?0.00025:0.001),0.000,0.300)" } },
       "minecraft:dragon_egg_transforming": {
         "filters": {
           "none_of": [
-            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transforming", "subject": "self" },
-            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transformed", "subject": "self" }
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transforming" },
+            { "test": "enum_property", "domain": "dragonmounts2:egg_state", "value": "transformed" }
           ]
         },
         "set_property": { "dragonmounts2:egg_state": "transforming" }
       },
-      "minecraft:dragon_egg_transformed": { "set_property": { "dragonmounts2:egg_state": "transformed" }, "trigger": "minecraft:dragon_egg_despawn" },
-      "minecraft:increase_dragon_egg_hatch_time": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+0.009375,0.000,0.300)" } },
+      "minecraft:dragon_egg_transformed": { "set_property": { "dragonmounts2:egg_state": "transformed" } },
+      "minecraft:increase_dragon_egg_hatch_time": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+(q.property('dragonmounts2:egg_nesting_block')?0.00025:0.001),0.000,0.300)" } },
       "minecraft:dragon_egg_despawn": {
         "add": { "component_groups": [ "dragonmounts2:egg_despawn" ] }
       },

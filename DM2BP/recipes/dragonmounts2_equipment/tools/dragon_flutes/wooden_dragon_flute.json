@@ -4,11 +4,9 @@
     "description": {
       "identifier": "dragonmounts2:wooden_dragon_flute"
     },
-    "unlock": [
-      { "item": "minecraft:stick" }
-    ],
-    "tags": [ "crafting_table" ],
-    "pattern": [ " A", "AB" ],
+    "unlock": [{ "item": "minecraft:stick" }],
+    "tags": ["crafting_table"],
+    "pattern": [" A", "AB"],
     "priority": -1,
     "key": {
       "A": { "item": "minecraft:stick" },

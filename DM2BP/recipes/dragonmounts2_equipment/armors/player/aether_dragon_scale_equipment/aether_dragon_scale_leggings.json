@@ -9,7 +9,9 @@
         "item": "dragonmounts2:aether_dragon_scales"
       }
     ],
-    "tags": [ "smithing_table" ],
+    "tags": [
+      "smithing_table"
+    ],
     "template": "dragonmounts2:dragon_scale_upgrade_smithing_template",
     "base": "minecraft:diamond_leggings",
     "addition": "dragonmounts2:aether_dragon_scales",

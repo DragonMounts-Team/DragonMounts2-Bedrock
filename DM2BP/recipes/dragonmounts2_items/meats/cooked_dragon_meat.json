@@ -4,10 +4,8 @@
     "description": {
       "identifier": "dragonmounts2:cooked_dragon_meat"
     },
-    "unlock": [
-      { "item": "dragonmounts2:raw_dragon_meat" }
-    ],
-    "tags": [ "furnace", "smoker", "campfire", "soul_campfire" ],
+    "unlock": [{ "item": "dragonmounts2:raw_dragon_meat" }],
+    "tags": ["furnace", "smoker", "campfire", "soul_campfire"],
     "input": "dragonmounts2:raw_dragon_meat",
     "output": "dragonmounts2:cooked_dragon_meat"
   }

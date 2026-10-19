@@ -34,15 +34,11 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:netherite_shears"
-            ],
+            "items": ["dragonmounts2:netherite_shears"],
             "repair_amount": "c.other->q.remaining_durability"
           },
           {
-            "items": [
-              "minecraft:netherite_ingot"
-            ],
+            "items": ["minecraft:netherite_ingot"],
             "repair_amount": "q.max_durability*0.25"
           }
         ]

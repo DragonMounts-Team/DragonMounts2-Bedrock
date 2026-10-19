@@ -1,0 +1,45 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:ice_dragonball",
+      "runtime_identifier": "minecraft:snowball",
+      "is_summonable": true,
+      "is_spawnable": false
+    },
+    "components": {
+      "minecraft:type_family": { "family": ["projectile", "iceball"] },
+      "minecraft:collision_box": { "width": 0.25, "height": 0.25 },
+      "minecraft:physics": {},
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": {
+            "damage": { "min": 0, "max": 0 },
+            "knockback": false,
+            "destroy_on_hit": true
+          },
+          "definition_event": {
+            "affect_projectile": true,
+            "event_trigger": { "event": "dragonmounts2:impact", "target": "self" }
+          }
+        },
+        "power": 1.2,
+        "gravity": 0,
+        "inertia": 1,
+        "anchor": "middle",
+        "offset": [0, 0, 0],
+        "isolated_physics": false
+      },
+      "minecraft:pushable_by_block": {},
+      "minecraft:pushable_by_entity": {}
+    },
+    "component_groups": {
+      "dragonmounts2:despawn": { "minecraft:despawn": {} }
+    },
+    "events": {
+      "dragonmounts2:impact": {
+        "add": { "component_groups": ["dragonmounts2:despawn"] }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@
       }
     },
     "components": {
+      "minecraft:can_destroy_in_creative": false,
       "minecraft:display_name": {
         "value": "item.dragonmounts2:dragon_amulet.name"
       },
@@ -27,16 +28,14 @@
       "minecraft:rarity": "common",
       "minecraft:tags": {
         "tags": [
-          "minecraft:is_sword",
           "dragonmounts2:is_dragon_amulet",
-          "novelty:is_neckless"
+          "novelty:is_neckless",
+          "oreville:is_lantern"
         ]
       },
       "minecraft:block_placer": {
         "block": "minecraft:air",
-        "use_on": [
-          "minecraft:air"
-        ]
+        "use_on": ["minecraft:air"]
       },
       "minecraft:wearable": {
         "protection": 1,
@@ -52,6 +51,7 @@
           "dragonmounts2:fire_dragon",
           "dragonmounts2:forest_dragon",
           "dragonmounts2:ice_dragon",
+          "dragonmounts2:light_dragon",
           "dragonmounts2:moonlight_dragon",
           "dragonmounts2:nether_dragon",
           "dragonmounts2:sculk_dragon",

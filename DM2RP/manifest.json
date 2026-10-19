@@ -4,7 +4,7 @@
     "description": "pack.description",
     "name": "pack.name",
     "uuid": "77968600-b721-4f95-ad8c-d4f936ace3ef",
-    "version": "2.1.0",
+    "version": "2.1.4",
     "min_engine_version": "1.26.50"
   },
   "modules": [
@@ -12,22 +12,18 @@
       "description": "pack.name",
       "type": "resources",
       "uuid": "e7dcad0a-a877-4414-a16d-4ea644d70d3d",
-      "version": "2.1.0"
+      "version": "2.1.4"
     }
   ],
-  "capabilities": [
-    "pbr"
-  ],
+  "capabilities": ["pbr"],
   "dependencies": [
     {
       "uuid": "24b454d6-d9bb-4327-968b-79000bbe8fc8",
-      "version": "2.1.0"
+      "version": "2.1.4"
     }
   ],
   "metadata": {
-    "authors": [
-      "Dragonmounts2"
-    ],
+    "authors": ["Dragonmounts2"],
     "license": "All Rights Reserved",
     "url": "https://discord.gg/Ewm8aTTJ3K"
   },

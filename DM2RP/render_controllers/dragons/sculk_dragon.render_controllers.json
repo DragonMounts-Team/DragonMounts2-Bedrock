@@ -19,7 +19,7 @@
       ],
       "textures": [ "Array.base[v.variant_type_index]" ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.sculk_amethyst", "Texture.sculk_beta", "Texture.sculk_warden" ] }
+        "textures": { "Array.base": [ "Texture.amethyst", "Texture.beta", "Texture.warden" ] }
       }
     },
     "controller.render.dragonmounts2.sculk_dragon.base": {
@@ -29,7 +29,7 @@
       "geometry": "Geometry.dragon_default",
       "textures": [ "Array.base[v.variant_type_index]", "Array.saddled[q.is_saddled]" ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.sculk_amethyst", "Texture.sculk_beta", "Texture.sculk_warden" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ] }
+        "textures": { "Array.base": [ "Texture.amethyst", "Texture.beta", "Texture.warden" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ] }
       },
       "part_visibility": [
         { "body.back": "!q.is_saddled" }
@@ -52,7 +52,7 @@
       ],
       "textures": [ "Array.base[v.variant_type_index]" ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.sculk_amethyst_glow", "Texture.sculk_beta_glow", "Texture.sculk_warden_glow" ] }
+        "textures": { "Array.base": [ "Texture.amethyst_glow", "Texture.beta_glow", "Texture.warden_glow" ] }
       },
       "light_color_multiplier": 1.2,
       "ignore_lighting": true

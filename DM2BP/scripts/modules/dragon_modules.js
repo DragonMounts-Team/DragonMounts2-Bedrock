@@ -1,3 +1,4 @@
+import { system } from "@minecraft/server";
 import * as dragonUtilities from "../utilities/dragon_utilities.js";
 import { getAddonDimensions, runSafely } from "../lib/runtime.js";
 import { registerIntervalTask } from "../core/scheduler.js";
@@ -7,9 +8,16 @@ const activeDragons = new Set();
 
 function reportFlightError(dragon, error) {
   const message = error instanceof Error ? error.message : String(error);
-  if (reportedFlightErrors.get(dragon) === message) return;
-  reportedFlightErrors.set(dragon, message);
-  console.warn(`[DragonMounts2] Flight update failed for ${dragon.typeId}: ${message}`);
+  const now = system.currentTick;
+  const last = reportedFlightErrors.get(dragon);
+  // Same error from the same dragon is only repeated every 10 seconds, so a
+  // persistent fault stays visible instead of going silent after one report.
+  if (last && last.message === message && now - last.tick < 200) return;
+  reportedFlightErrors.set(dragon, { message, tick: now });
+  const stack = error instanceof Error ? error.stack : null;
+  console.warn(
+    `[DragonMounts2] Flight update failed for ${dragon.typeId}: ${message}${stack ? `\n${stack}` : ""}`,
+  );
 }
 
 registerIntervalTask("dragon-discovery", 10, () => {
@@ -24,8 +32,10 @@ registerIntervalTask("dragon-discovery", 10, () => {
 });
 
 registerIntervalTask("dragon-flight", 1, () => {
+  runSafely("Dragon fall tracking failed", () => dragonUtilities.tickFallRescue());
   for (const dragon of activeDragons) {
     if (!dragon?.isValid) {
+      dragonUtilities.DragonFlightController.cleanupRiderAttackProxy(dragon);
       activeDragons.delete(dragon);
       continue;
     }
@@ -36,7 +46,14 @@ registerIntervalTask("dragon-flight", 1, () => {
     }
   }
   runSafely("Dragon flight support update failed", () => {
-    dragonUtilities.tickFallRescue();
     dragonUtilities.tickFlightDebug();
+  });
+});
+
+// Safety net: remove any attack-interaction proxy that is not currently
+// attached to a ridden dragon (leftovers from older versions, crashes, etc.).
+registerIntervalTask("dragon-attack-proxy-sweep", 60, () => {
+  runSafely("Dragon attack proxy sweep failed", () => {
+    dragonUtilities.sweepOrphanedAttackProxies();
   });
 });

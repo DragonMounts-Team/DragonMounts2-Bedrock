@@ -33,7 +33,7 @@
         }
       },
       "minecraft:durability": {
-        "max_durability": 336
+        "max_durability": 2700
       },
       "minecraft:fire_resistant": {
         "value": true
@@ -47,24 +47,17 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:light_dragon_scale_shield"
-            ],
+            "items": ["dragonmounts2:light_dragon_scale_shield"],
             "repair_amount": "context.other->query.remaining_durability"
           },
           {
-            "items": [
-              "dragonmounts2:light_dragon_scales"
-            ],
+            "items": ["dragonmounts2:light_dragon_scales"],
             "repair_amount": "query.max_durability * 0.25"
           }
         ]
       },
       "minecraft:tags": {
-        "tags": [
-          "oreville:is_shield",
-          "dragonmounts2:is_shield"
-        ]
+        "tags": ["oreville:is_shield", "dragonmounts2:is_shield"]
       }
     }
   }

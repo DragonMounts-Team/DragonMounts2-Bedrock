@@ -24,9 +24,13 @@ initializeScheduler();
 initializeWorldEvents();
 
 system.beforeEvents.startup.subscribe(
-	({ blockComponentRegistry, customCommandRegistry, itemComponentRegistry }) => {
-		registerBlockComponents(blockComponentRegistry);
-		registerItemComponents(itemComponentRegistry);
-		registerDragonMounts2Commands(customCommandRegistry);
-	},
+  ({
+    blockComponentRegistry,
+    customCommandRegistry,
+    itemComponentRegistry,
+  }) => {
+    registerBlockComponents(blockComponentRegistry);
+    registerItemComponents(itemComponentRegistry);
+    registerDragonMounts2Commands(customCommandRegistry);
+  },
 );

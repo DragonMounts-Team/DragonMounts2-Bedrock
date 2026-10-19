@@ -27,10 +27,7 @@
         "raise_arms": "animation.villager.raise_arms",
         "get_in_bed": "animation.villager.get_in_bed"
       },
-      "render_controllers": [
-        "controller.render.dragon_keeper"
-      ],
-      "enable_attachables": true,
+      "render_controllers": ["controller.render.dragon_keeper"],
       "spawn_egg": {
         "texture": "dragonmounts2:spawn_egg_dragon_keeper"
       }

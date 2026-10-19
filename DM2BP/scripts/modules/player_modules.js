@@ -2,22 +2,26 @@ import {
   world,
   system,
   EquipmentSlot,
+  GameMode,
   EntityDamageCause,
   EntityEquippableComponent,
   EntityHealthComponent,
   EntityHungerComponent,
-  EntityTameableComponent,
 } from "@minecraft/server";
 import { dragonArmorLore } from "../data/armor_data.js";
 import {
-  applyAoeKnockback,
   calculateEntityXpReward,
   spawnXpOrbs,
 } from "../utilities/entity_utilities.js";
 import { onPlayerLeave, onPlayerSpawn } from "../core/player_lifecycle.js";
-import { onBeforeEntityHurt, onAfterEntityHurt } from "../core/combat_events.js";
+import {
+  onBeforeEntityHurt,
+  onAfterEntityHurt,
+} from "../core/combat_events.js";
 import { registerIntervalTask } from "../core/scheduler.js";
 import { onWorldEvent } from "../core/world_events.js";
+import { dragonTypeIds } from "../data/entity_data.js";
+import { forgetFormationDragon } from "../utilities/dragon_utilities.js";
 
 const ARMOR_SLOTS = [
   EquipmentSlot.Head,
@@ -30,15 +34,17 @@ const DRAGON_ARMOR_EFFECT_COMPONENTS = Object.values(dragonArmorLore).map(
   ({ effectsKey }) => effectsKey,
 );
 const cooldowns = new Map();
-const pendingReflect = new Map();
 const stormLightningCooldowns = new Map();
+const pendingSonicBoomDamage = new Map();
+const reflectingSonicBoom = new Set();
 const CLEANUP_INTERVAL = 1200;
 let lastCleanup = 0;
 
 onPlayerLeave(({ playerId }) => {
   cooldowns.delete(playerId);
-  pendingReflect.delete(playerId);
   stormLightningCooldowns.delete(playerId);
+  pendingSonicBoomDamage.delete(playerId);
+  reflectingSonicBoom.delete(playerId);
 });
 
 function refreshDragonArmorCacheForPlayer(player) {
@@ -48,6 +54,16 @@ function refreshDragonArmorCacheForPlayer(player) {
   const hasArmor = Boolean(equip && hasAnyDragonArmor(equip));
 
   return hasArmor;
+}
+
+function countArmorPieces(equip, componentType) {
+  let count = 0;
+  for (const slot of ARMOR_SLOTS) {
+    if (equip.getEquipmentSlot(slot).getItem()?.getComponent(componentType)) {
+      count++;
+    }
+  }
+  return count;
 }
 
 onPlayerSpawn(({ player }) => {
@@ -98,20 +114,8 @@ function hasAnyDragonArmor(equip) {
   return false;
 }
 
-function countArmorPieces(equip, componentType) {
-  let count = 0;
-  for (const slot of ARMOR_SLOTS) {
-    if (equip.getEquipmentSlot(slot).getItem()?.getComponent(componentType))
-      count++;
-  }
-  return count;
-}
 function isNight(timeOfDay) {
-  return timeOfDay >= 12000 && timeOfDay < 24000;
-}
-
-function isDay(timeOfDay) {
-  return timeOfDay >= 0 && timeOfDay < 12000;
+  return timeOfDay >= 13000 && timeOfDay < 24000;
 }
 
 function applyTimedArmorEffect(
@@ -155,7 +159,6 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
 
   const playerId = player.id;
   const night = isNight(timeOfDay);
-  const day = isDay(timeOfDay);
   const health = healthComp?.currentValue || 20;
   const isLowHealth = health < 10;
   const hunger = hungerComp?.hunger || 20;
@@ -166,39 +169,13 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
       player,
       equip,
       playerId,
-      "dragonmounts2:dark_dragon_scale_effects",
-      "dark_dragon_scale_night_heal",
-      "regeneration",
-      10 * 20,
-      0,
-      now,
-      30.0,
-    );
-  }
-
-  if (day) {
-    applyTimedArmorEffect(
-      player,
-      equip,
-      playerId,
-      "dragonmounts2:light_dragon_scale_effects",
-      "light_dragon_scale_day_heal",
-      "regeneration",
-      10 * 20,
-      0,
-      now,
-      30.0,
-    );
-  }
-
-  if (night) {
-    applyPassiveArmorEffect(
-      player,
-      equip,
       "dragonmounts2:zombie_dragon_scale_effects",
+      "zombie_dragon_scale_night_strength",
       "strength",
       15 * 20,
       0,
+      now,
+      400.0,
     );
   }
 
@@ -213,7 +190,7 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
       10 * 20,
       1,
       now,
-      60.0,
+      1200.0,
     );
   }
 
@@ -229,7 +206,7 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
       30 * 20,
       2,
       now,
-      60.0,
+      1200.0,
     )
   ) {
     player.addEffect("strength", 15 * 20, {
@@ -250,13 +227,17 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
   }
 
   if (hunger < 6) {
-    applyPassiveArmorEffect(
+    applyTimedArmorEffect(
       player,
       equip,
+      playerId,
       "dragonmounts2:sunlight_dragon_scale_effects",
+      "sunlight_dragon_scale_hunger",
       "saturation",
       10 * 20,
       0,
+      now,
+      1200.0,
     );
   }
 
@@ -276,15 +257,54 @@ function processPlayerArmorEffects(player, now, timeOfDay) {
     0,
   );
 
+  applyPassiveArmorEffect(
+    player,
+    equip,
+    "dragonmounts2:skeleton_dragon_scale_effects",
+    "speed",
+    30 * 20,
+    0,
+  );
+
+  applyPassiveArmorEffect(
+    player,
+    equip,
+    "dragonmounts2:wither_dragon_scale_effects",
+    "resistance",
+    30 * 20,
+    0,
+  );
 }
+
+function tickDarkDragonGrace() {
+  for (const player of world.getPlayers()) {
+    if (!player?.isValid) continue;
+
+    const equip = player.getComponent(EntityEquippableComponent.componentId);
+    if (
+      !equip ||
+      !isWearingFullSet(equip, "dragonmounts2:dark_dragon_scale_effects")
+    )
+      continue;
+    if (player.dimension.getLightLevel(player.location) >= 8) continue;
+
+    const health = player.getComponent(EntityHealthComponent.componentId);
+    if (health && health.currentValue < health.effectiveMax) {
+      health.setCurrentValue(
+        Math.min(health.effectiveMax, health.currentValue + 0.5),
+      );
+    }
+  }
+}
+
+registerIntervalTask("dark-dragon-grace", 50, tickDarkDragonGrace);
 
 onBeforeEntityHurt((event) => {
   if (event.damageSource.cause !== EntityDamageCause.sonicBoom) return;
-  if (event.hurtEntity.typeId !== "minecraft:player") return;
+  const player = event.hurtEntity;
+  if (player.typeId !== "minecraft:player") return;
 
-  const equip = event.hurtEntity.getComponent(
-    EntityEquippableComponent.componentId,
-  );
+  const equip = player.getComponent(EntityEquippableComponent.componentId);
   if (!equip) return;
 
   const pieces = countArmorPieces(
@@ -292,38 +312,45 @@ onBeforeEntityHurt((event) => {
     "dragonmounts2:sculk_dragon_scale_effects",
   );
   if (pieces < 2) return;
-  if (pieces >= 4) pendingReflect.set(event.hurtEntity.id, event.damage);
 
-  event.damage *= 0.75;
+  if (pieces >= 4) pendingSonicBoomDamage.set(player.id, event.damage);
+  event.damage /= pieces;
 });
 
 onWorldEvent("afterEvents", "entityDie", (event) => {
   const { deadEntity } = event;
 
-  if (deadEntity.typeId === "minecraft:player" || !deadEntity.isValid) return;
+  if (!deadEntity?.isValid || deadEntity.typeId === "minecraft:player") return;
+
+  // A dead dragon leaves its owner's formation order (Patch A). Offline owners
+  // keep a ghost entry that the 4-entry cap eventually evicts.
+  if (dragonTypeIds.has(deadEntity.typeId)) {
+    try {
+      const ownerId = deadEntity.getDynamicProperty("dragonmounts2:owner_identifier");
+      const pid = deadEntity.getDynamicProperty("dragonmounts2:persistent_id");
+      if (ownerId && pid) forgetFormationDragon(ownerId, pid);
+    } catch {}
+  }
 
   const killer = event.damageSource?.damagingEntity;
-  const killerEquip = killer?.getComponent(
-    EntityEquippableComponent.componentId,
-  );
-  const applyBonusXp =
-    killer?.typeId === "minecraft:player" &&
+  const hasEnchantedArmor = killer?.isValid === true &&
+    killer.typeId === "minecraft:player" &&
     isWearingFullSet(
-      killerEquip,
+      killer.getComponent(EntityEquippableComponent.componentId),
       "dragonmounts2:enchanted_dragon_scale_effects",
     );
-
-  const xpAmount = calculateEntityXpReward(deadEntity, applyBonusXp);
+  const xpAmount = calculateEntityXpReward(deadEntity, hasEnchantedArmor);
   if (xpAmount <= 0) return;
 
   spawnXpOrbs(deadEntity.dimension, deadEntity.location, xpAmount);
 });
 
-function tryTriggerStormLightningProc(player, attacker) {
-  if (!player || !attacker || !player.isValid || !attacker.isValid)
+function tryTriggerStormLightningProc(player, target) {
+  if (!player || !target || !player.isValid || !target.isValid)
     return false;
-  if (player.typeId !== "minecraft:player" || attacker.id === player.id)
+  if (player.typeId !== "minecraft:player" || target.id === player.id)
     return false;
+  if (Math.random() < 0.5) return false;
 
   const playerEquip = player.getComponent(
     EntityEquippableComponent.componentId,
@@ -337,20 +364,74 @@ function tryTriggerStormLightningProc(player, attacker) {
   const now = system.currentTick;
   const cooldownExpiry = stormLightningCooldowns.get(player.id) || 0;
   if (cooldownExpiry > now) return false;
-  stormLightningCooldowns.set(player.id, now + 60);
+  stormLightningCooldowns.set(player.id, now + 160 * 20);
 
-  const targetLoc = attacker.location;
-  const spawnLoc = {
-    x: targetLoc.x,
-    y: targetLoc.y + 1,
-    z: targetLoc.z,
-  };
+  const targetLoc = target.location;
+  if (target.dimension.getSkyLightLevel(targetLoc) <= 0) return true;
+  const spawnLoc = { x: targetLoc.x, y: targetLoc.y, z: targetLoc.z };
 
   try {
-    attacker.dimension.spawnEntity("minecraft:lightning_bolt", spawnLoc);
+    target.dimension.spawnEntity("minecraft:lightning_bolt", spawnLoc);
     return true;
   } catch {
     return false;
+  }
+}
+
+function triggerArmorRiposte(player, equip, now) {
+  const iceComponent = "dragonmounts2:ice_dragon_scale_effects";
+  const netherComponent = "dragonmounts2:nether_dragon_scale_effects";
+  const iceActive =
+    isWearingFullSet(equip, iceComponent) &&
+    !isCooldownActive(player.id, "ice_dragon_scale_riposte", now);
+  const netherActive =
+    isWearingFullSet(equip, netherComponent) &&
+    !isCooldownActive(player.id, "nether_dragon_scale_riposte", now);
+  if (!iceActive && !netherActive) return;
+
+  const entities = player.dimension
+    .getEntities({ location: player.location, maxDistance: 5 })
+    .filter((entity) => {
+      if (!entity.isValid || entity.id === player.id) return false;
+      if (entity.typeId !== "minecraft:player") return true;
+      const gameMode = entity.getGameMode();
+      return gameMode !== GameMode.creative && gameMode !== GameMode.spectator;
+    });
+  if (entities.length === 0) return;
+
+  for (const entity of entities) {
+    const dx = entity.location.x - player.location.x;
+    const dz = entity.location.z - player.location.z;
+    const distance = Math.hypot(dx, dz);
+    if (distance > 0 && entity.getComponent(EntityHealthComponent.componentId)) {
+      const velocity = entity.getVelocity();
+      entity.applyImpulse({
+        x: velocity.x + (dx / distance) * 0.4,
+        y: velocity.y + 0.4,
+        z: velocity.z + (dz / distance) * 0.4,
+      });
+    }
+
+    if (iceActive) {
+      if (entity.getComponent(EntityHealthComponent.componentId)) {
+        entity.addEffect("slowness", 200, {
+          amplifier: 1,
+          showParticles: true,
+        });
+      }
+      entity.applyDamage(1, {
+        cause: EntityDamageCause.freezing,
+        damagingEntity: player,
+      });
+    }
+    if (netherActive) entity.setOnFire(10, true);
+  }
+
+  if (iceActive) {
+    setCooldown(player.id, "ice_dragon_scale_riposte", 1200, now);
+  }
+  if (netherActive) {
+    setCooldown(player.id, "nether_dragon_scale_riposte", 1200, now);
   }
 }
 
@@ -362,25 +443,26 @@ onAfterEntityHurt((event) => {
   const cause = damageSource.cause;
 
   if (
-    isPlayerVictim &&
     cause === EntityDamageCause.entityAttack &&
-    attacker?.isValid
+    attacker?.isValid &&
+    attacker.typeId === "minecraft:player"
   ) {
-    tryTriggerStormLightningProc(hurtEntity, attacker);
+    tryTriggerStormLightningProc(attacker, hurtEntity);
   }
 
   if (!isPlayerVictim) return;
 
   const equip = hurtEntity.getComponent(EntityEquippableComponent.componentId);
   if (!equip) return;
-
-  const playerId = hurtEntity.id;
   const now = system.currentTick;
+
   const isBurning =
     hurtEntity.isOnFire ||
     cause === EntityDamageCause.fireTick ||
     cause === EntityDamageCause.fire ||
     cause === EntityDamageCause.lava;
+
+  triggerArmorRiposte(hurtEntity, equip, now);
 
   if (isBurning) {
     if (
@@ -391,69 +473,49 @@ onAfterEntityHurt((event) => {
         amplifier: 0,
         showParticles: true,
       });
-      hurtEntity.startItemCooldown(
-        "dragonmounts2:fire_dragon_scale",
-        45.0 * 20,
-      );
+      hurtEntity.startItemCooldown("dragonmounts2:fire_dragon_scale", 900 * 20);
+      hurtEntity.extinguishFire();
     }
     return;
   }
+
   if (
     cause === EntityDamageCause.entityAttack &&
     attacker?.isValid &&
     attacker.id !== hurtEntity.id &&
     isWearingFullSet(equip, "dragonmounts2:light_dragon_scale_effects")
   ) {
-    attacker.addEffect("blindness", 5 * 20, {
+    attacker.addEffect("blindness", 30 * 20, {
       amplifier: 0,
       showParticles: true,
     });
   }
-  if (
-    isWearingFullSet(equip, "dragonmounts2:ice_dragon_scale_effects") &&
-    !isCooldownActive(playerId, "ice_dragon_scale_defensive_burst", now) &&
-    damageSource.damagingEntity?.isValid
-  ) {
-    let affected = 0;
-    applyAoeKnockback(hurtEntity, playerId, 5, 1.5, (entity) => {
-      entity.addEffect("slowness", 10 * 20, {
-        amplifier: 1,
-        showParticles: true,
-      });
-      entity.applyDamage(1, {
-        cause: EntityDamageCause.magic,
-        damagingEntity: hurtEntity,
-      });
-      affected++;
-    });
-    if (affected > 0) {
-      setCooldown(playerId, "ice_dragon_scale_defensive_burst", 60.0, now);
-    }
-  }
-  if (
-    isWearingFullSet(equip, "dragonmounts2:nether_dragon_scale_effects") &&
-    damageSource.damagingEntity?.isValid
-  ) {
-    applyAoeKnockback(hurtEntity, playerId, 5, 1.5, (entity) => {
-      entity.setOnFire(10, true);
-    });
-  }
-  if (
-    cause === EntityDamageCause.sonicBoom &&
-    isWearingFullSet(equip, "dragonmounts2:sculk_dragon_scale_effects")
-  ) {
+
+  if (cause === EntityDamageCause.sonicBoom) {
+    const reflectionDamage = pendingSonicBoomDamage.get(hurtEntity.id);
+    pendingSonicBoomDamage.delete(hurtEntity.id);
     const attacker = damageSource.damagingEntity;
-    if (!attacker?.isValid) return;
 
-    const originalDamage = pendingReflect.get(playerId);
-    pendingReflect.delete(playerId);
-
-    try {
-      attacker.applyDamage((originalDamage ?? damage) * 0.75, {
-        cause: EntityDamageCause.magic,
-        damagingEntity: hurtEntity,
-      });
-    } catch {}
+    if (
+      isWearingFullSet(equip, "dragonmounts2:sculk_dragon_scale_effects") &&
+      attacker?.isValid &&
+      !reflectingSonicBoom.has(hurtEntity.id) &&
+      Math.hypot(
+        attacker.location.x - hurtEntity.location.x,
+        attacker.location.z - hurtEntity.location.z,
+      ) <= 24 &&
+      Math.abs(attacker.location.y - hurtEntity.location.y) <= 32
+    ) {
+      reflectingSonicBoom.add(hurtEntity.id);
+      try {
+        attacker.applyDamage((reflectionDamage ?? damage) * 0.75, {
+          cause: EntityDamageCause.sonicBoom,
+          damagingEntity: hurtEntity,
+        });
+      } finally {
+        reflectingSonicBoom.delete(hurtEntity.id);
+      }
+    }
   }
 });
 
@@ -496,7 +558,7 @@ function tickAetherSprint() {
         5 * 20,
         1,
         now,
-        15.0,
+        300.0,
       );
     } catch {}
   }

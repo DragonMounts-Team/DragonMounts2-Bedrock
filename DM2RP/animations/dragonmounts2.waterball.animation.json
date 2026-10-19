@@ -1,0 +1,16 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.dragonmounts2.waterball.rotations": {
+      "loop": true,
+      "bones": {
+        "Rotation": {
+          "rotation": ["-q.target_x_rotation", "-q.body_y_rotation", 0]
+        },
+        "Projectile": {
+          "rotation": ["-q.target_x_rotation", "-q.body_y_rotation", 0]
+        }
+      }
+    }
+  }
+}

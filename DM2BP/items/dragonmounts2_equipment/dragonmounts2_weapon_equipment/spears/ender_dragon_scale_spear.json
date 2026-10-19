@@ -85,15 +85,11 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:ender_dragon_scale_spear"
-            ],
+            "items": ["dragonmounts2:ender_dragon_scale_spear"],
             "repair_amount": "c.other->q.remaining_durability"
           },
           {
-            "items": [
-              "dragonmounts2:ender_dragon_scales"
-            ],
+            "items": ["dragonmounts2:ender_dragon_scales"],
             "repair_amount": "q.max_durability*0.25"
           }
         ]
@@ -106,10 +102,7 @@
         "attack_hit": "item.spear.attack_hit"
       },
       "minecraft:tags": {
-        "tags": [
-          "minecraft:diamond_tier",
-          "minecraft:is_spear"
-        ]
+        "tags": ["minecraft:diamond_tier", "minecraft:is_spear"]
       },
       "minecraft:use_modifiers": {
         "use_duration": 72000,

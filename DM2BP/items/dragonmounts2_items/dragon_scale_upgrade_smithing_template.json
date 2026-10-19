@@ -10,9 +10,10 @@
       }
     },
     "components": {
-      "minecraft:allow_off_hand": { "value": true },
       "minecraft:can_destroy_in_creative": { "value": true },
-      "minecraft:display_name": { "value": "item.dragonmounts2:dragon_scale_upgrade_smithing_template.name" },
+      "minecraft:display_name": {
+        "value": "item.dragonmounts2:dragon_scale_upgrade_smithing_template.name"
+      },
       "minecraft:fire_resistant": { "value": true },
       "minecraft:hand_equipped": { "value": false },
       "minecraft:icon": {
@@ -25,7 +26,7 @@
       "minecraft:should_despawn": { "value": false },
       "minecraft:stacked_by_data": true,
       "minecraft:tags": {
-        "tags": [ "minecraft:transform_templates" ]
+        "tags": ["minecraft:transform_templates"]
       }
     }
   }

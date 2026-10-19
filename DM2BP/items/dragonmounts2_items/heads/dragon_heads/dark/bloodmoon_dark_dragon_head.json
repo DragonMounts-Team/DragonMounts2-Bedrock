@@ -14,7 +14,9 @@
         "block": "dragonmounts2:bloodmoon_dark_dragon_head",
         "replace_block_item": true
       },
-      "minecraft:display_name": { "value": "tile.dragonmounts2:dark_dragon_head.bloodmoon.name" },
+      "minecraft:display_name": {
+        "value": "tile.dragonmounts2:dark_dragon_head.bloodmoon.name"
+      },
       "minecraft:enchantable": { "slot": "cosmetic_head", "value": 0 },
       "minecraft:fire_resistant": { "value": true },
       "minecraft:max_stack_size": 64,

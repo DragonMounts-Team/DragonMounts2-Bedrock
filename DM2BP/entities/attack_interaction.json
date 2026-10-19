@@ -1,0 +1,50 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:attack_interaction",
+      "is_summonable": true,
+      "is_spawnable": false
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["dragonmounts2_interaction_proxy"]
+      },
+      "minecraft:collision_box": {
+        "width": 2.0,
+        "height": 1.5
+      },
+      "minecraft:health": {
+        "value": 1,
+        "max": 1
+      },
+      "minecraft:damage_sensor": {
+        "triggers": {
+          "cause": "all",
+          "deals_damage": "no"
+        }
+      },
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "interact_text": "action.interact.dragonmounts2:attack_mode",
+            "on_interact": {
+              "event": "dragonmounts2:on_interact",
+              "target": "self"
+            },
+            "swing": false,
+            "vibration": "entity_interact"
+          }
+        ]
+      },
+      "minecraft:is_hidden_when_invisible": {},
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      }
+    },
+    "events": {
+      "dragonmounts2:on_interact": {}
+    }
+  }
+}

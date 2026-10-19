@@ -8,21 +8,23 @@
     "step": "surface_structures",
     "heightmap_projection": "world_surface",
     "start_height": {
-        "type": "constant",
-        "value": {
-            "absolute": 30
-        } 
+      "type": "constant",
+      "value": {
+        "absolute": 30
+      }
     },
     "max_depth": 10,
     "biome_filters": [
       {
         "all_of": [
-            {"test": "has_biome_tag","operator": "!=","value": "warm"},
-            {"test": "has_biome_tag","operator": "!=","value": "lukewarm"},
-            {"any_of": [
-                {"test": "has_biome_tag","operator": "==","value": "ocean"},
-                {"test": "has_biome_tag","operator": "==","value": "river"}
-            ]}
+          { "test": "has_biome_tag", "operator": "!=", "value": "warm" },
+          { "test": "has_biome_tag", "operator": "!=", "value": "lukewarm" },
+          {
+            "any_of": [
+              { "test": "has_biome_tag", "operator": "==", "value": "ocean" },
+              { "test": "has_biome_tag", "operator": "==", "value": "river" }
+            ]
+          }
         ]
       }
     ],

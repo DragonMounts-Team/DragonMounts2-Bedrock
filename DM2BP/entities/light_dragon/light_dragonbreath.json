@@ -1,0 +1,35 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:light_dragonbreath",
+      "runtime_identifier": "minecraft:snowball",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:collision_box": { "width": 0.25, "height": 0.25 },
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": { "damage": { "min": 15, "max": 15 }, "knockback": true, "destroy_on_hit": false },
+          "stick_in_ground": { "shake_time": 0.35 },
+          "definition_event": { "affect_projectile": true, "event_trigger": { "event": "on:hit", "target": "self" } }
+        },
+        "power": 2.5,
+        "gravity": 0.05,
+        "inertia": 1,
+        "anchor": "middle",
+        "offset": [0.0, 2.5, 3.0],
+        "isolated_physics": false
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable_by_block": {},
+      "minecraft:pushable_by_entity": {},
+      "minecraft:conditional_bandwidth_optimization": {
+        "default_values": { "max_optimized_distance": 100, "max_dropped_ticks": 7, "use_motion_prediction_hints": true }
+      }
+    },
+    "events": { "on:hit": { "add": { "component_groups": ["despawn"] } } },
+    "component_groups": { "despawn": { "minecraft:despawn": {} } }
+  }
+}

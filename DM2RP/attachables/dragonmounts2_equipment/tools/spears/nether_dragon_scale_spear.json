@@ -25,14 +25,9 @@
         "hit": "item.spear.hit"
       },
       "scripts": {
-        "animate": [
-          "held_controller",
-          "hit_controller"
-        ]
+        "animate": ["held_controller", "hit_controller"]
       },
-      "render_controllers": [
-        "controller.render.item_default"
-      ]
+      "render_controllers": ["controller.render.item_default"]
     }
   }
 }

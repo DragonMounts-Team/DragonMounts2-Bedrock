@@ -14,7 +14,9 @@
         "block": "dragonmounts2:aether_dragon_egg",
         "replace_block_item": true
       },
-      "minecraft:display_name": { "value": "tile.dragonmounts2:aether_dragon_egg.name" },
+      "minecraft:display_name": {
+        "value": "tile.dragonmounts2:aether_dragon_egg.name"
+      },
       "minecraft:fire_resistant": { "value": true },
       "minecraft:rarity": "uncommon"
     }

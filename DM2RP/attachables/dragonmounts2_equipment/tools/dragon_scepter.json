@@ -8,38 +8,32 @@
         "enchanted": "entity_alphatest_glint"
       },
       "textures": {
-        "default": "textures/items/dragonmounts2_equipment/dragon_scepter_inactive",
-        "inactive": "textures/items/dragonmounts2_equipment/dragon_scepter_inactive",
-        "active": "textures/items/dragonmounts2_equipment/dragon_scepter_active",
+        "default": "textures/models/dragonmounts2_equipment/dragon_scepter_inactive",
+        "inactive": "textures/models/dragonmounts2_equipment/dragon_scepter_inactive",
+        "active": "textures/models/dragonmounts2_equipment/dragon_scepter_active",
         "enchanted": "textures/misc/enchanted_item_glint"
       },
       "geometry": {
         "default": "geometry.dragonmounts2.dragon_scepter"
       },
       "animations": {
-        "held": "animation.dragonmounts2.dragon_scepter.held",
-        "use": "animation.dragonmounts2.dragon_scepter.use"
+        "held_first_person": "animation.dragonmounts2.first_dragon_sceptre.held",
+        "held_third_person": "animation.dragonmounts2.third_dragon_sceptre.held"
       },
       "scripts": {
         "pre_animation": [
-          "v.use_item = q.cooldown_time_remaining('slot.weapon.mainhand')!=0.00;",
-          "v.held_rotation_x = c.is_first_person?-22.5:0;",
-          "v.held_rotation_y = c.is_first_person?67.5:0;",
-          "v.held_rotation_z = c.is_first_person?-90:0;",
-          "v.use_rotation_x = c.is_first_person?-22.5:0;",
-          "v.use_rotation_y = c.is_first_person?-67.5:0;",
-          "v.use_rotation_z = c.is_first_person?-45:-90;"
+          "v.use_item = q.cooldown_time_remaining('slot.weapon.mainhand') != 0.0;"
         ],
         "animate": [
-          "held",
           {
-            "use": "v.use_item"
+            "held_first_person": "c.is_first_person"
+          },
+          {
+            "held_third_person": "!c.is_first_person"
           }
         ]
       },
-      "render_controllers": [
-        "controller.render.dragonmounts2.dragon_scepter"
-      ]
+      "render_controllers": ["controller.render.dragonmounts2.dragon_scepter"]
     }
   }
 }

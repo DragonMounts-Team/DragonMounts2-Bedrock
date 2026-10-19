@@ -13,10 +13,10 @@
         "value": "item.dragonmounts2:wither_dragon_scale_sword.name"
       },
       "minecraft:damage": {
-        "value": 8
+        "value": 11
       },
       "minecraft:durability": {
-        "max_durability": 512
+        "max_durability": 2400
       },
       "minecraft:enchantable": {
         "slot": "sword",
@@ -35,9 +35,7 @@
         "value": true
       },
       "minecraft:tags": {
-        "tags": [
-          "minecraft:sword"
-        ]
+        "tags": ["minecraft:sword"]
       }
     }
   }

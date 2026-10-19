@@ -6,6 +6,7 @@ export const dragonAmuletTypes = {
   "dragonmounts2:ender_dragon": "dragonmounts2:ender_amulet",
   "dragonmounts2:forest_dragon": "dragonmounts2:forest_amulet",
   "dragonmounts2:ice_dragon": "dragonmounts2:ice_amulet",
+  "dragonmounts2:light_dragon": "dragonmounts2:light_amulet",
   "dragonmounts2:moonlight_dragon": "dragonmounts2:moonlight_amulet",
   "dragonmounts2:nether_dragon": "dragonmounts2:nether_amulet",
   "dragonmounts2:sculk_dragon": "dragonmounts2:sculk_amulet",

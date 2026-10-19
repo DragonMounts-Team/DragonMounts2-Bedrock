@@ -1,6 +1,6 @@
 # Dragon Entity Generator
 
-This folder generates an integrated dragon setup from configurable templates. It creates the behavior-pack dragon and egg, a dragon amulet, script data registrations, flute registrations, optional custom items or armor, loot tables, language entries, and resource-pack dragon, render-controller, amulet, item attachable, armor attachable, and item-texture entries. It uses only Node.js built-ins, so no package installation is needed.
+This folder generates an integrated dragon setup from configurable templates. It creates the behavior-pack dragon and egg, a dragon amulet, script data registrations, flute, shared amulet, and sceptre registrations, optional custom items or armor, loot tables, language entries, and resource-pack dragon, render-controller, amulet, item attachable, armor attachable, and item-texture entries. It uses only Node.js built-ins, so no package installation is needed.
 
 ## Configure a dragon
 
@@ -34,7 +34,9 @@ Edit `dragon-types.json` and add an entry like this:
 
 Configuration may also use `"custom_assets": "all"` to select the complete starter set without listing each asset.
 
-`type` is the entity folder and identifier suffix. `variants` are the values used by `dragonmounts2:variant_type`. The generator creates one `minecraft:become_<variant>` event for every value and cycles random variant triggers through those events.
+`type` is the entity folder and identifier suffix. `variants` are the values used by `dragonmounts2:variant_type`. The generator creates one `minecraft:become_<variant>` event for every value and cycles random variant triggers through the complete list. If `variants` is omitted or empty, the generator uses the dragon name without `_dragon` as one fallback variant. Any number of variants is supported.
+
+Use optional `texture_variants` when a gameplay variant uses a different resource-pack folder name. This keeps the gameplay property and resource-pack folder names independent when legacy assets require it.
 
 `biome_variant_rules` is optional and controls only natural `minecraft:entity_spawned` routing. Rules run in array order; each `variant` must be listed in `variants`. `any_tags` matches one or more Bedrock biome tags, `all_tags` requires every listed tag, and `exclude_tags` rejects matching tags. Use a final rule with only `exclude_tags` as the fallback. Tags are passed to Bedrock's `has_biome_tag` filter, so the names must be valid Bedrock biome tags such as `warm`, `cold`, `frozen`, `swamp`, `mangrove`, or `jungle`.
 
@@ -66,6 +68,12 @@ node generate.js --tooltips
 
 # Generate one dragon with every starter asset
 ./generate.ps1 -Type storm_dragon -Assets all -DryRun
+
+# Validate templates, output folders, and all configured dragons
+./generate.ps1 -Validate
+
+# Use a separate configuration file
+./generate.ps1 -Config .\dragon-types.experimental.json -Validate
 ```
 
 The interactive menu also has a direct `Generate all dragons with all equipment` option. From Command Prompt, these equivalent forms are supported:
@@ -118,7 +126,16 @@ Direct Node usage:
 node generate.js --type storm_dragon
 node generate.js --all
 node generate.js --tooltips --dry-run
+node generate.js --validate
+node generate.js --config dragon-types.experimental.json --validate
+node generate.js --no-color --all --dry-run --summary
 ```
+
+`--validate` (also available as `--check`) performs a read-only preflight. It checks the configured templates and output folders, validates every configured or discovered dragon, and runs the same audit checks used by generation without writing files. `--config` selects an alternate JSON configuration relative to this generator folder.
+
+Use `--no-color` (or the `NO_COLOR` environment variable) for clean CI logs and redirected output. Interactive listings and summaries use aligned columns and color-coded status when the terminal supports ANSI color.
+
+Validation also rejects duplicate dragon types, duplicate variants, duplicate custom assets, unsupported dragon models, unsafe names, and malformed namespace IDs before generation starts.
 
 Armor tooltip descriptions are stored once per dragon in `armor-tooltips.json`. The `--tooltips` command expands each description to the four armor item keys and removes obsolete generated lore keys. It updates the configured source language file; add complete language files to `output.tooltip_languages` in `dragon-types.json` if they should also be generated.
 

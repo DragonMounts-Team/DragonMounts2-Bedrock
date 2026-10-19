@@ -13,10 +13,9 @@
       "minecraft:display_name": {
         "value": "item.dragonmounts2:skeleton_dragon_bone_boots.name"
       },
-      "dragonmounts2:skeleton_dragon_bone_lore": {},
-      "dragonmounts2:skeleton_dragon_bone_effects": {},
+      "dragonmounts2:skeleton_dragon_scale_effects": {},
       "minecraft:durability": {
-        "max_durability": 309
+        "max_durability": 650
       },
       "minecraft:enchantable": {
         "value": 15,
@@ -35,9 +34,7 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:skeleton_dragon_bone_boots"
-            ],
+            "items": ["dragonmounts2:skeleton_dragon_bone_boots"],
             "repair_amount": "c.other->q.remaining_durability"
           }
         ]
@@ -51,7 +48,7 @@
         ]
       },
       "minecraft:wearable": {
-        "protection": 4,
+        "protection": 2,
         "slot": "slot.armor.feet"
       }
     }

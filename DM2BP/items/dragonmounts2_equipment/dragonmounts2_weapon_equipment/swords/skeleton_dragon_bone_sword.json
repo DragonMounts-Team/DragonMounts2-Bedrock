@@ -13,10 +13,10 @@
         "value": "item.dragonmounts2:skeleton_dragon_bone_sword.name"
       },
       "minecraft:damage": {
-        "value": 8
+        "value": 10
       },
       "minecraft:durability": {
-        "max_durability": 512
+        "max_durability": 2100
       },
       "minecraft:enchantable": {
         "slot": "sword",
@@ -35,9 +35,7 @@
         "value": true
       },
       "minecraft:tags": {
-        "tags": [
-          "minecraft:sword"
-        ]
+        "tags": ["minecraft:sword"]
       }
     }
   }

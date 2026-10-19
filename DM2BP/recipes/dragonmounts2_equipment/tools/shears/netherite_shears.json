@@ -4,7 +4,7 @@
     "description": {
       "identifier": "dragonmounts2:netherite_shears"
     },
-    "tags": [ "smithing_table" ],
+    "tags": ["smithing_table"],
     "template": "minecraft:netherite_upgrade_smithing_template",
     "base": "dragonmounts2:diamond_shears",
     "addition": "minecraft:netherite_ingot",

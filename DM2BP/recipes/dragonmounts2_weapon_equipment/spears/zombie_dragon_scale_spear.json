@@ -5,15 +5,9 @@
         "item": "dragonmounts2:zombie_dragon_scales"
       }
     ],
-    "tags": [
-      "crafting_table"
-    ],
+    "tags": ["crafting_table"],
     "priority": -1,
-    "pattern": [
-      "  A",
-      " B ",
-      "B  "
-    ],
+    "pattern": ["  A", " B ", "B  "],
     "description": {
       "identifier": "dragonmounts2:zombie_dragon_scale_spear"
     },

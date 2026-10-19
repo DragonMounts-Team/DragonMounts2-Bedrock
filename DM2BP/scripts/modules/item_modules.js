@@ -23,6 +23,7 @@ import {
   onItemReleaseUse,
 } from "../core/item_events.js";
 import { onWorldEvent } from "../core/world_events.js";
+import { registerIntervalTask } from "../core/scheduler.js";
 
 const Shields = {};
 
@@ -33,9 +34,22 @@ const recentlyBlocked = {};
 const playerAnimations = {};
 const cancelledEffects = {};
 
+registerIntervalTask("dragon-scepter-abilities", 1, () => {
+  itemUtilities.tickDragonScepterAbilities();
+});
+
+onWorldEvent(
+  "afterEvents",
+  "playerButtonInput",
+  ({ button, newButtonState, player }) => {
+    if (button !== InputButton.Sneak || newButtonState !== ButtonState.Pressed)
+      return;
+    itemUtilities.dragonScepterQuickBreath(player);
+  },
+);
+
 function getShieldDelay(shield) {
-  return shield?.item
-    .getComponent("dragonmounts2:dragon_scale_shield")
+  return shield?.item.getComponent("dragonmounts2:dragon_scale_shield")
     ?.customComponentParameters?.params?.delay;
 }
 

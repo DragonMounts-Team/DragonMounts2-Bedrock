@@ -4,11 +4,9 @@
     "description": {
       "identifier": "dragonmounts2:variation_orb"
     },
-    "unlock": [
-      { "item": "minecraft:ender_pearl" }
-    ],
-    "tags": [ "crafting_table" ],
-    "pattern": [ "ABA", "BCB", "ABA" ],
+    "unlock": [{ "item": "minecraft:ender_pearl" }],
+    "tags": ["crafting_table"],
+    "pattern": ["ABA", "BCB", "ABA"],
     "priority": -1,
     "key": {
       "A": { "item": "minecraft:obsidian" },

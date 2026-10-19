@@ -14,7 +14,9 @@
         "block": "dragonmounts2:water_dragon_scale_block",
         "replace_block_item": true
       },
-      "minecraft:display_name": { "value": "tile.dragonmounts2:water_dragon_scale_block.name" },
+      "minecraft:display_name": {
+        "value": "tile.dragonmounts2:water_dragon_scale_block.name"
+      },
       "minecraft:fire_resistant": { "value": true },
       "minecraft:rarity": "common"
     }

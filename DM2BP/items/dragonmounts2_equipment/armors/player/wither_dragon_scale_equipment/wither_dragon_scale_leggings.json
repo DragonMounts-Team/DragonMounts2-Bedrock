@@ -15,7 +15,7 @@
       },
       "dragonmounts2:wither_dragon_scale_effects": {},
       "minecraft:durability": {
-        "max_durability": 338
+        "max_durability": 750
       },
       "minecraft:enchantable": {
         "value": 15,
@@ -34,9 +34,7 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:wither_dragon_scale_leggings"
-            ],
+            "items": ["dragonmounts2:wither_dragon_scale_leggings"],
             "repair_amount": "c.other->q.remaining_durability"
           }
         ]

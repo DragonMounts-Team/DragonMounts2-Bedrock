@@ -9,7 +9,7 @@
         "element": {
           "element_type": "minecraft:single_pool_element",
           "location": "nest_ice",
-          "processors": "dragonmounts2:empty" 
+          "processors": "dragonmounts2:empty"
         },
         "weight": 1
       }

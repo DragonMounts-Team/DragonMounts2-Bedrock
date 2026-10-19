@@ -19,7 +19,7 @@
       ],
       "textures": [ "Array.base[v.variant_type_index]" ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.fallen", "Texture.prism", "Texture.radiant", "Texture.light_sunset" ] }
+        "textures": { "Array.base": [ "Texture.fallen", "Texture.prism", "Texture.radiant", "Texture.sunset" ] }
       }
     },
     "controller.render.dragonmounts2.light_dragon.base": {
@@ -29,7 +29,7 @@
       "geometry": "Geometry.dragon_default",
       "textures": [ "Array.base[v.variant_type_index]", "Array.saddled[q.is_saddled]" ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.fallen", "Texture.prism", "Texture.radiant", "Texture.light_sunset" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ] }
+        "textures": { "Array.base": [ "Texture.fallen", "Texture.prism", "Texture.radiant", "Texture.sunset" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ] }
       },
       "part_visibility": [
         { "body.back": "!q.is_saddled" }
@@ -52,7 +52,7 @@
       ],
       "textures": [ "Array.base[v.variant_type_index]" ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.fallen_glow", "Texture.prism_glow", "Texture.radiant_glow", "Texture.light_sunset_glow" ] }
+        "textures": { "Array.base": [ "Texture.fallen_glow", "Texture.prism_glow", "Texture.radiant_glow", "Texture.sunset_glow" ] }
       },
       "light_color_multiplier": 1.2,
       "ignore_lighting": true

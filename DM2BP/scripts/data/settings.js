@@ -7,7 +7,7 @@ const FLIGHT_SPEED_TAGS = settingsArrays.flightSpeedTags;
 const flightSpeedSelectionCache = new WeakMap();
 
 export function getPlayerDragonSpeed(player) {
-  return [0.5, 1][getPlayerDragonSpeedSelection(player)];
+  return [0.5, 1, 1.25][getPlayerDragonSpeedSelection(player)];
 }
 
 export function getPlayerDragonSpeedSelection(player) {
@@ -25,7 +25,7 @@ export function setPlayerDragonSpeed(player, value) {
   if (!player?.isValid) return;
   const numericValue = Number(value);
   const selection = Number.isFinite(numericValue)
-    ? Math.max(0, Math.min(1, Math.round(numericValue)))
+    ? Math.max(0, Math.min(2, Math.round(numericValue)))
     : DEFAULT_PLAYER_DRAGON_SPEED;
   for (const tag of FLIGHT_SPEED_TAGS) {
     try {

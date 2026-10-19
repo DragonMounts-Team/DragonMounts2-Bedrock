@@ -15,7 +15,7 @@
       },
       "dragonmounts2:storm_dragon_scale_effects": {},
       "minecraft:durability": {
-        "max_durability": 361
+        "max_durability": 800
       },
       "minecraft:enchantable": {
         "value": 15,
@@ -34,15 +34,11 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:storm_dragon_scale_chestplate"
-            ],
+            "items": ["dragonmounts2:storm_dragon_scale_chestplate"],
             "repair_amount": "c.other->q.remaining_durability"
           },
           {
-            "items": [
-              "dragonmounts2:storm_dragon_scales"
-            ],
+            "items": ["dragonmounts2:storm_dragon_scales"],
             "repair_amount": "q.max_durability*0.03"
           }
         ]

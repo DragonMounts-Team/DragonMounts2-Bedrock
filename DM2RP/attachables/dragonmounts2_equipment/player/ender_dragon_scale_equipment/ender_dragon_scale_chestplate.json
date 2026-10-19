@@ -37,9 +37,7 @@
           }
         ]
       },
-      "render_controllers": [
-        "controller.render.dragon_scale_armor"
-      ]
+      "render_controllers": ["controller.render.dragon_scale_armor"]
     }
   }
 }

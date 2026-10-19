@@ -8,7 +8,9 @@
         "default": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_scale_equipment/wither_dragon_bone_helmet",
         "enchanted": "textures/misc/enchanted_item_glint"
       },
-      "geometry": { "default": "geometry.dragonmounts2.dragon_scale.helmet" },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon_scale.helmet"
+      },
       "scripts": { "parent_setup": "v.helmet_layer_visible = 0.0;" },
       "render_controllers": ["controller.render.armor"]
     }

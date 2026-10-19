@@ -1,0 +1,26 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:water_dragonball",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/items/heart_of_the_sea"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.elemental_projectile"
+      },
+      "animations": {
+        "rotations": "animation.dragonmounts2.waterball.rotations"
+      },
+      "scripts": {
+        "animate": ["rotations"]
+      },
+      "render_controllers": [
+        "controller.render.dragonmounts2.elemental_projectile"
+      ]
+    }
+  }
+}

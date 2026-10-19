@@ -1,30 +1,20 @@
 {
-  "minecraft:recipe_shaped": {
+  "format_version": "1.26.50",
+  "minecraft:recipe_smithing_transform": {
+    "description": {
+      "identifier": "dragonmounts2:sunlight_dragon_scale_helmet"
+    },
     "unlock": [
       {
         "item": "dragonmounts2:sunlight_dragon_scales"
       }
     ],
     "tags": [
-      "crafting_table"
+      "smithing_table"
     ],
-    "priority": -1,
-    "pattern": [
-      "AAA",
-      "A A"
-    ],
-    "description": {
-      "identifier": "dragonmounts2:sunlight_dragon_scale_helmet"
-    },
-    "key": {
-      "A": {
-        "item": "dragonmounts2:sunlight_dragon_scales"
-      }
-    },
-    "result": {
-      "count": 1,
-      "item": "dragonmounts2:sunlight_dragon_scale_helmet"
-    }
-  },
-  "format_version": "1.26.50"
+    "template": "dragonmounts2:dragon_scale_upgrade_smithing_template",
+    "base": "minecraft:diamond_helmet",
+    "addition": "dragonmounts2:sunlight_dragon_scales",
+    "result": "dragonmounts2:sunlight_dragon_scale_helmet"
+  }
 }

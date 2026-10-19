@@ -50,9 +50,7 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:dragon_scepter"
-            ],
+            "items": ["dragonmounts2:dragon_scepter"],
             "repair_amount": "c.other->q.remaining_durability"
           },
           {
@@ -75,9 +73,7 @@
         "attack_hit": "item.golden_spear.use"
       },
       "minecraft:tags": {
-        "tags": [
-          "dragonmounts2:is_dragon_scepter"
-        ]
+        "tags": ["dragonmounts2:is_dragon_scepter"]
       },
       "minecraft:use_animation": {
         "value": "none"
@@ -103,6 +99,7 @@
           "dragonmounts2:fire_dragon",
           "dragonmounts2:forest_dragon",
           "dragonmounts2:ice_dragon",
+          "dragonmounts2:light_dragon",
           "dragonmounts2:moonlight_dragon",
           "dragonmounts2:nether_dragon",
           "dragonmounts2:sculk_dragon",
@@ -125,12 +122,7 @@
           "not_owned": "tooltip.dragonmounts2:dragon_scepter.not_owned",
           "select_command": "tooltip.dragonmounts2:dragon_scepter.select_command",
           "selected_mobs": "tooltip.dragonmounts2:dragon_scepter.selected_mobs",
-          "toggle_vflight": "tooltip.dragonmounts2:dragon_scepter.toggle_vflight",
-          "unbound": "tooltip.dragonmounts2:dragon_scepter.unbound",
-          "vflight_disabled": "tooltip.dragonmounts2:dragon_scepter.vflight_disabled",
-          "vflight_enabled": "tooltip.dragonmounts2:dragon_scepter.vflight_enabled",
-          "vflight_max": "tooltip.dragonmounts2:dragon_scepter.vflight_max",
-          "vflight_no_target": "tooltip.dragonmounts2:dragon_scepter.vflight_no_target"
+          "unbound": "tooltip.dragonmounts2:dragon_scepter.unbound"
         }
       }
     }

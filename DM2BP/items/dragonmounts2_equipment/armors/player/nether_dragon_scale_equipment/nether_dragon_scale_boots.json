@@ -18,7 +18,7 @@
       },
       "dragonmounts2:nether_dragon_scale_effects": {},
       "minecraft:durability": {
-        "max_durability": 500
+        "max_durability": 715
       },
       "minecraft:enchantable": {
         "value": 15,
@@ -36,15 +36,11 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:nether_dragon_scale_boots"
-            ],
+            "items": ["dragonmounts2:nether_dragon_scale_boots"],
             "repair_amount": "c.other->q.remaining_durability"
           },
           {
-            "items": [
-              "dragonmounts2:nether_dragon_scales"
-            ],
+            "items": ["dragonmounts2:nether_dragon_scales"],
             "repair_amount": "q.max_durability*0.03"
           }
         ]
@@ -58,7 +54,7 @@
         ]
       },
       "minecraft:wearable": {
-        "protection": 5,
+        "protection": 4,
         "slot": "slot.armor.feet"
       }
     }

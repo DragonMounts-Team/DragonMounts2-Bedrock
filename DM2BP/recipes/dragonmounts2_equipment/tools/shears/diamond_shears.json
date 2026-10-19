@@ -2,7 +2,7 @@
   "minecraft:recipe_shaped": {
     "unlock": [
       {
-        "tag": "minecraft:diamond"
+        "item": "minecraft:diamond"
       }
     ],
     "tags": [
@@ -18,10 +18,10 @@
     },
     "key": {
       "A": {
-        "item": "minecraft:diamond_ingot"
+        "item": "minecraft:iron_ingot"
       },
       "B": {
-        "item": "minecraft:diamond_ingot"
+        "item": "minecraft:diamond"
       }
     },
     "result": {

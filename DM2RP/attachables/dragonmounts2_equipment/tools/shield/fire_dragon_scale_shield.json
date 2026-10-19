@@ -45,13 +45,9 @@
           "variable.is_blocking_off_hand = query.blocking && query.is_item_name_any('slot.weapon.offhand', v.item_id) && query.cooldown_time_remaining <= 0;",
           "variable.is_using_bow = (query.get_equipped_item_name == 'bow') && (query.main_hand_item_use_duration > 0.0f);"
         ],
-        "animate": [
-          "wield"
-        ]
+        "animate": ["wield"]
       },
-      "render_controllers": [
-        "controller.render.item_default"
-      ]
+      "render_controllers": ["controller.render.item_default"]
     }
   }
 }

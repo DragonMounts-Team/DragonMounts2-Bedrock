@@ -4,7 +4,6 @@
     "description": {
       "identifier": "dragonmounts2:empty"
     },
-    "processors": [
-    ]
+    "processors": []
   }
 }

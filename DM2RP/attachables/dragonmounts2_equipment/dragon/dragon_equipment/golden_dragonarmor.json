@@ -19,9 +19,7 @@
       "geometry": {
         "default": "geometry.dragonmounts2.dragon.armor_normal"
       },
-      "render_controllers": [
-        "controller.render.dragonarmor.default"
-      ]
+      "render_controllers": ["controller.render.dragonarmor.default"]
     }
   }
 }

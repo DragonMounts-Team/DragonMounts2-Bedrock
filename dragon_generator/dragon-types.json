@@ -49,6 +49,7 @@
         "breeze"
       ],
       "default_variant": "aethra",
+      "breath_entity": "dragonmounts2:aether_dragonbreath",
       "enabled": true,
       "biome_variant_rules": [],
       "custom_assets": [],
@@ -64,7 +65,8 @@
         "imp",
         "underworld"
       ],
-      "default_variant": "bloodmoon"
+      "default_variant": "bloodmoon",
+      "breath_entity": "dragonmounts2:dark_dragonbreath"
     },
     {
       "type": "enchanted_dragon",
@@ -74,17 +76,19 @@
         "shimmer",
         "sparkling"
       ],
-      "default_variant": "enchanting"
+      "default_variant": "enchanting",
+      "breath_entity": "dragonmounts2:enchanted_dragonbreath"
     },
     {
       "type": "ender_dragon",
       "model": "normal",
       "variants": [
-        "ender_jean",
-        "ender_john",
-        "ender_shadow"
+        "jean",
+        "john",
+        "shadow"
       ],
-      "default_variant": "ender_jean"
+      "default_variant": "jean",
+      "breath_entity": "dragonmounts2:ender_dragonbreath"
     },
     {
       "type": "fire_dragon",
@@ -94,7 +98,8 @@
         "flame",
         "blue_fire"
       ],
-      "default_variant": "blaze"
+      "default_variant": "blaze",
+      "breath_entity": "dragonmounts2:fire_dragonbreath"
     },
     {
       "type": "forest_dragon",
@@ -106,6 +111,7 @@
         "warm"
       ],
       "default_variant": "cold",
+      "breath_entity": "dragonmounts2:forest_dragonbreath",
       "biome_variant_rules": [
         {
           "variant": "jungle",
@@ -153,7 +159,8 @@
         "iceberg",
         "frost"
       ],
-      "default_variant": "alpine"
+      "default_variant": "alpine",
+      "breath_entity": "dragonmounts2:ice_dragonbreath"
     },
     {
       "type": "light_dragon",
@@ -162,9 +169,10 @@
         "fallen",
         "prism",
         "radiant",
-        "light_sunset"
+        "sunset"
       ],
-      "default_variant": "fallen"
+      "default_variant": "fallen",
+      "breath_entity": "dragonmounts2:light_dragonbreath"
     },
     {
       "type": "moonlight_dragon",
@@ -174,7 +182,8 @@
         "eclipse",
         "constellation"
       ],
-      "default_variant": "starlight"
+      "default_variant": "starlight",
+      "breath_entity": "dragonmounts2:moonlight_dragonbreath"
     },
     {
       "type": "nether_dragon",
@@ -184,17 +193,19 @@
         "volcanic",
         "soul_fire"
       ],
-      "default_variant": "magma"
+      "default_variant": "magma",
+      "breath_entity": "dragonmounts2:nether_dragonbreath"
     },
     {
       "type": "sculk_dragon",
       "model": "sculk",
       "variants": [
-        "sculk_amethyst",
-        "sculk_beta",
-        "sculk_warden"
+        "amethyst",
+        "beta",
+        "warden"
       ],
-      "default_variant": "sculk_amethyst"
+      "default_variant": "amethyst",
+      "breath_entity": "dragonmounts2:sculk_dragonbreath"
     },
     {
       "type": "skeleton_dragon",
@@ -205,6 +216,7 @@
         "bogged"
       ],
       "default_variant": "skeleton",
+      "breath_entity": "dragonmounts2:skeleton_dragonbreath",
       "biome_variant_rules": [
         {
           "variant": "bogged",
@@ -239,9 +251,10 @@
       "variants": [
         "lightning",
         "thunder",
-        "bronzed_storm"
+        "bronzed"
       ],
-      "default_variant": "lightning"
+      "default_variant": "lightning",
+      "breath_entity": "dragonmounts2:storm_dragonbreath"
     },
     {
       "type": "sunlight_dragon",
@@ -251,7 +264,8 @@
         "sunset",
         "aurora"
       ],
-      "default_variant": "sunrise"
+      "default_variant": "sunrise",
+      "breath_entity": "dragonmounts2:sunlight_dragonbreath"
     },
     {
       "type": "terra_dragon",
@@ -261,7 +275,8 @@
         "mesa",
         "crystalline"
       ],
-      "default_variant": "valley"
+      "default_variant": "valley",
+      "breath_entity": "dragonmounts2:terra_dragonbreath"
     },
     {
       "type": "water_dragon",
@@ -271,16 +286,17 @@
         "tidal",
         "brine"
       ],
-      "default_variant": "pond"
+      "default_variant": "pond",
+      "breath_entity": "dragonmounts2:water_dragonbreath"
     },
     {
       "type": "wither_dragon",
       "model": "skeleton",
       "variants": [
-        "wither",
-        "withered"
+        "wither"
       ],
-      "default_variant": "wither"
+      "default_variant": "wither",
+      "breath_entity": "dragonmounts2:wither_dragonbreath"
     },
     {
       "type": "zombie_dragon",
@@ -290,7 +306,8 @@
         "husk",
         "zombie"
       ],
-      "default_variant": "drowned"
+      "default_variant": "drowned",
+      "breath_entity": "dragonmounts2:zombie_dragonbreath"
     }
   ]
 }

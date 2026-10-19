@@ -36,9 +36,7 @@
           }
         ]
       },
-      "render_controllers": [
-        "controller.render.dragonmounts2.bow"
-      ]
+      "render_controllers": ["controller.render.dragonmounts2.bow"]
     }
   }
 }

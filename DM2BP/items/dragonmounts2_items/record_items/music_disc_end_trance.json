@@ -18,13 +18,13 @@
       },
       "minecraft:max_stack_size": { "value": 1 },
       "minecraft:rarity": "epic",
-       "minecraft:record": {
-         "comparator_signal": 1,
-         "duration": 138,
-         "sound_event": "activate"
-       },
+      "minecraft:record": {
+        "comparator_signal": 1,
+        "duration": 138,
+        "sound_event": "activate"
+      },
       "minecraft:tags": {
-        "tags": [ "minecraft:music_disc" ]
+        "tags": ["minecraft:music_disc"]
       }
     }
   }

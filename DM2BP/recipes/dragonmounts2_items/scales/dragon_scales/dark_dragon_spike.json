@@ -8,8 +8,8 @@
       { "item": "dragonmounts2:dark_dragon_scale_block" },
       { "item": "dragonmounts2:dark_dragon_scales" }
     ],
-    "tags": [ "crafting_table" ],
-    "pattern": [ "A" ],
+    "tags": ["crafting_table"],
+    "pattern": ["A"],
     "priority": -1,
     "key": {
       "A": { "item": "dragonmounts2:dark_dragon_scale_block" }

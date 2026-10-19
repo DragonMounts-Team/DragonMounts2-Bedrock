@@ -1,0 +1,68 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "dragonmounts2:spell_healing",
+      "basic_render_parameters": {
+        "material": "particles_add",
+        "texture": "textures/particle/dragon/spell_spark"
+      }
+    },
+    "components": {
+      "minecraft:emitter_rate_steady": {
+        "spawn_rate": "165 + 20 * Math.sin(variable.emitter_age * 2)",
+        "max_particles": 340
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 15
+      },
+      "minecraft:emitter_shape_point": {
+        "offset": [0, 0.05, 0],
+        "direction": ["Math.random(-0.1, 0.1)", 1, "Math.random(-0.1, 0.1)"]
+      },
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": "t.role = variable.particle_random_3 < 0.45 ? 0 : (variable.particle_random_3 < 0.70 ? 2 : (variable.particle_random_3 < 0.88 ? 4 : 5));return variable.emitter_age < 0.45 ? Math.random(0.3, 0.5) : (t.role == 4 ? Math.random(1.9, 2.1) : (t.role == 5 ? Math.random(0.9, 1.3) : Math.random(2.0, 2.3)));"
+      },
+      "minecraft:particle_initial_spin": {
+        "rotation": "Math.random(0, 360)",
+        "rotation_rate": "Math.random(-60, 60)"
+      },
+      "minecraft:particle_motion_parametric": {
+        "relative_position": [
+          "t.spawnAge = variable.emitter_age - variable.particle_age;t.isIgnition = t.spawnAge < 0.45;t.isDiag = variable.particle_random_4 > 0.65;t.i = t.isDiag ? Math.floor(variable.particle_random_2 * 6) : Math.floor(variable.particle_random_2 * 12);t.j = t.isDiag ? (t.i + 6) : (t.i == 11 ? 0 : t.i + 1);t.ix = t.i == 0 ? 0.65 : (t.i == 1 ? 0.65 : (t.i == 2 ? 1.9 : (t.i == 3 ? 1.9 : (t.i == 4 ? 0.65 : (t.i == 5 ? 0.65 : (t.i == 6 ? -0.65 : (t.i == 7 ? -0.65 : (t.i == 8 ? -1.9 : (t.i == 9 ? -1.9 : (t.i == 10 ? -0.65 : (-0.65)))))))))));t.iz = t.i == 0 ? 1.9 : (t.i == 1 ? 0.65 : (t.i == 2 ? 0.65 : (t.i == 3 ? -0.65 : (t.i == 4 ? -0.65 : (t.i == 5 ? -1.9 : (t.i == 6 ? -1.9 : (t.i == 7 ? -0.65 : (t.i == 8 ? -0.65 : (t.i == 9 ? 0.65 : (t.i == 10 ? 0.65 : (1.9)))))))))));t.jx = t.j == 0 ? 0.65 : (t.j == 1 ? 0.65 : (t.j == 2 ? 1.9 : (t.j == 3 ? 1.9 : (t.j == 4 ? 0.65 : (t.j == 5 ? 0.65 : (t.j == 6 ? -0.65 : (t.j == 7 ? -0.65 : (t.j == 8 ? -1.9 : (t.j == 9 ? -1.9 : (t.j == 10 ? -0.65 : (-0.65)))))))))));t.jz = t.j == 0 ? 1.9 : (t.j == 1 ? 0.65 : (t.j == 2 ? 0.65 : (t.j == 3 ? -0.65 : (t.j == 4 ? -0.65 : (t.j == 5 ? -1.9 : (t.j == 6 ? -1.9 : (t.j == 7 ? -0.65 : (t.j == 8 ? -0.65 : (t.j == 9 ? 0.65 : (t.j == 10 ? 0.65 : (1.9)))))))))));t.tt = variable.particle_random_1;t.line_x = t.ix + (t.jx - t.ix) * t.tt;t.line_z = t.iz + (t.jz - t.iz) * t.tt;t.circle_x = 2.8 * Math.cos(t.tt * 360);t.circle_z = 2.8 * Math.sin(t.tt * 360);t.pulsePeriod = 1.6;t.pulsePhase = variable.emitter_age - t.pulsePeriod * Math.floor(variable.emitter_age / t.pulsePeriod);t.pulseFrac = t.pulsePhase / t.pulsePeriod;t.pulseAng = variable.particle_random_2 * 360;t.pulseR = 3.1 * t.pulseFrac;t.pulse_x = t.pulseR * Math.cos(t.pulseAng);t.pulse_z = t.pulseR * Math.sin(t.pulseAng);t.role = variable.particle_random_3 < 0.45 ? 0 : (variable.particle_random_3 < 0.70 ? 2 : (variable.particle_random_3 < 0.88 ? 4 : 5));t.tx = t.role == 0 ? t.line_x : (t.role == 2 ? t.circle_x : (t.role == 4 ? t.circle_x : t.pulse_x));t.tz = t.role == 0 ? t.line_z : (t.role == 2 ? t.circle_z : (t.role == 4 ? t.circle_z : t.pulse_z));t.f1raw = 1 - Math.pow(1 - Math.min(1, variable.particle_age / 0.35), 3);t.f1 = t.role == 5 ? 1 : t.f1raw;t.breathePulse = 1 + 0.06 * Math.sin(variable.emitter_age * 3);t.floatHold = 0.5;t.floatRiseT = Math.max(0, variable.particle_age - t.floatHold);t.floatProg = Math.min(1, t.floatRiseT / 1.3);t.floatEase = 1 - Math.pow(1 - t.floatProg, 2);t.driftAng = variable.particle_random_2 * 360 + variable.particle_age * 25;t.driftMag = 1.1 * t.floatEase;t.driftX = t.driftMag * Math.cos(t.driftAng);t.driftZ = t.driftMag * Math.sin(t.driftAng);t.sx = t.tx * t.f1 * t.breathePulse + (t.role == 4 ? t.driftX : 0);t.sz = t.tz * t.f1 * t.breathePulse + (t.role == 4 ? t.driftZ : 0);t.spin = variable.emitter_age * 40;t.rx = t.sx * Math.cos(t.spin) - t.sz * Math.sin(t.spin);t.rz = t.sx * Math.sin(t.spin) + t.sz * Math.cos(t.spin);t.ignProg = Math.min(1, variable.particle_age / 0.3);t.ignEase = 1 - Math.pow(1 - t.ignProg, 4);t.ignOvershoot = 1.15 - 0.15 * Math.min(1, variable.particle_age / 0.4);t.ign_x = t.tx * t.ignEase * t.ignOvershoot;t.ign_z = t.tz * t.ignEase * t.ignOvershoot;return t.isIgnition ? t.ign_x : t.rx;",
+          "t.spawnAge = variable.emitter_age - variable.particle_age;t.isIgnition = t.spawnAge < 0.45;t.ignFlashProg = Math.min(1, variable.particle_age / 0.4);t.ignY = 0.45 * Math.sin(t.ignFlashProg * 180);t.role = variable.particle_random_3 < 0.45 ? 0 : (variable.particle_random_3 < 0.70 ? 2 : (variable.particle_random_3 < 0.88 ? 4 : 5));t.bob = 0.015 * Math.sin(variable.particle_age * 200);t.floatHold = 0.5;t.floatRiseT = Math.max(0, variable.particle_age - t.floatHold);t.floatProg = Math.min(1, t.floatRiseT / 1.3);t.floatEase = 1 - Math.pow(1 - t.floatProg, 2);t.floatY = 1.7 * t.floatEase + 0.03 * Math.sin(variable.particle_age * 10);t.groundedY = t.role == 5 ? (t.bob * 0.5) : t.bob;t.finalY = t.role == 4 ? (variable.particle_age < t.floatHold ? t.bob : t.floatY) : t.groundedY;return t.isIgnition ? t.ignY : t.finalY;",
+          "t.spawnAge = variable.emitter_age - variable.particle_age;t.isIgnition = t.spawnAge < 0.45;t.isDiag = variable.particle_random_4 > 0.65;t.i = t.isDiag ? Math.floor(variable.particle_random_2 * 6) : Math.floor(variable.particle_random_2 * 12);t.j = t.isDiag ? (t.i + 6) : (t.i == 11 ? 0 : t.i + 1);t.ix = t.i == 0 ? 0.65 : (t.i == 1 ? 0.65 : (t.i == 2 ? 1.9 : (t.i == 3 ? 1.9 : (t.i == 4 ? 0.65 : (t.i == 5 ? 0.65 : (t.i == 6 ? -0.65 : (t.i == 7 ? -0.65 : (t.i == 8 ? -1.9 : (t.i == 9 ? -1.9 : (t.i == 10 ? -0.65 : (-0.65)))))))))));t.iz = t.i == 0 ? 1.9 : (t.i == 1 ? 0.65 : (t.i == 2 ? 0.65 : (t.i == 3 ? -0.65 : (t.i == 4 ? -0.65 : (t.i == 5 ? -1.9 : (t.i == 6 ? -1.9 : (t.i == 7 ? -0.65 : (t.i == 8 ? -0.65 : (t.i == 9 ? 0.65 : (t.i == 10 ? 0.65 : (1.9)))))))))));t.jx = t.j == 0 ? 0.65 : (t.j == 1 ? 0.65 : (t.j == 2 ? 1.9 : (t.j == 3 ? 1.9 : (t.j == 4 ? 0.65 : (t.j == 5 ? 0.65 : (t.j == 6 ? -0.65 : (t.j == 7 ? -0.65 : (t.j == 8 ? -1.9 : (t.j == 9 ? -1.9 : (t.j == 10 ? -0.65 : (-0.65)))))))))));t.jz = t.j == 0 ? 1.9 : (t.j == 1 ? 0.65 : (t.j == 2 ? 0.65 : (t.j == 3 ? -0.65 : (t.j == 4 ? -0.65 : (t.j == 5 ? -1.9 : (t.j == 6 ? -1.9 : (t.j == 7 ? -0.65 : (t.j == 8 ? -0.65 : (t.j == 9 ? 0.65 : (t.j == 10 ? 0.65 : (1.9)))))))))));t.tt = variable.particle_random_1;t.line_x = t.ix + (t.jx - t.ix) * t.tt;t.line_z = t.iz + (t.jz - t.iz) * t.tt;t.circle_x = 2.8 * Math.cos(t.tt * 360);t.circle_z = 2.8 * Math.sin(t.tt * 360);t.pulsePeriod = 1.6;t.pulsePhase = variable.emitter_age - t.pulsePeriod * Math.floor(variable.emitter_age / t.pulsePeriod);t.pulseFrac = t.pulsePhase / t.pulsePeriod;t.pulseAng = variable.particle_random_2 * 360;t.pulseR = 3.1 * t.pulseFrac;t.pulse_x = t.pulseR * Math.cos(t.pulseAng);t.pulse_z = t.pulseR * Math.sin(t.pulseAng);t.role = variable.particle_random_3 < 0.45 ? 0 : (variable.particle_random_3 < 0.70 ? 2 : (variable.particle_random_3 < 0.88 ? 4 : 5));t.tx = t.role == 0 ? t.line_x : (t.role == 2 ? t.circle_x : (t.role == 4 ? t.circle_x : t.pulse_x));t.tz = t.role == 0 ? t.line_z : (t.role == 2 ? t.circle_z : (t.role == 4 ? t.circle_z : t.pulse_z));t.f1raw = 1 - Math.pow(1 - Math.min(1, variable.particle_age / 0.35), 3);t.f1 = t.role == 5 ? 1 : t.f1raw;t.breathePulse = 1 + 0.06 * Math.sin(variable.emitter_age * 3);t.floatHold = 0.5;t.floatRiseT = Math.max(0, variable.particle_age - t.floatHold);t.floatProg = Math.min(1, t.floatRiseT / 1.3);t.floatEase = 1 - Math.pow(1 - t.floatProg, 2);t.driftAng = variable.particle_random_2 * 360 + variable.particle_age * 25;t.driftMag = 1.1 * t.floatEase;t.driftX = t.driftMag * Math.cos(t.driftAng);t.driftZ = t.driftMag * Math.sin(t.driftAng);t.sx = t.tx * t.f1 * t.breathePulse + (t.role == 4 ? t.driftX : 0);t.sz = t.tz * t.f1 * t.breathePulse + (t.role == 4 ? t.driftZ : 0);t.spin = variable.emitter_age * 40;t.rx = t.sx * Math.cos(t.spin) - t.sz * Math.sin(t.spin);t.rz = t.sx * Math.sin(t.spin) + t.sz * Math.cos(t.spin);t.ignProg = Math.min(1, variable.particle_age / 0.3);t.ignEase = 1 - Math.pow(1 - t.ignProg, 4);t.ignOvershoot = 1.15 - 0.15 * Math.min(1, variable.particle_age / 0.4);t.ign_x = t.tx * t.ignEase * t.ignOvershoot;t.ign_z = t.tz * t.ignEase * t.ignOvershoot;return t.isIgnition ? t.ign_z : t.rz;"
+        ]
+      },
+      "minecraft:particle_appearance_billboard": {
+        "size": [
+          "t.spawnAge = variable.emitter_age - variable.particle_age;t.role = variable.particle_random_3 < 0.45 ? 0 : (variable.particle_random_3 < 0.70 ? 2 : (variable.particle_random_3 < 0.88 ? 4 : 5));t.breathePulse = 1 + 0.12 * Math.sin(variable.emitter_age * 3);t.base = variable.particle_age < 0.35 ? (0.2 * variable.particle_age / 0.35) : (variable.particle_age < variable.particle_lifetime - 0.5 ? 0.2 : (0.2 * (variable.particle_lifetime - variable.particle_age) / 0.5));t.floatHold = 0.5;t.floatRiseT = Math.max(0, variable.particle_age - t.floatHold);t.floatProg = Math.min(1, t.floatRiseT / 1.3);t.floatSize = t.base * Math.max(0, 1 - t.floatProg);t.pulsePeriod = 1.6;t.pulsePhase = variable.emitter_age - t.pulsePeriod * Math.floor(variable.emitter_age / t.pulsePeriod);t.pulseFrac = t.pulsePhase / t.pulsePeriod;t.pulseSize = 0.22 * Math.max(0, 1 - t.pulseFrac) + 0.05;t.lineFlash = Math.max(0, 1 - Math.abs(t.pulseFrac - 0) / 0.15);t.circleFlash = Math.max(0, 1 - Math.abs(t.pulseFrac - 0.85) / 0.15);t.lineSize = t.base * t.breathePulse * (1 + 0.9 * t.lineFlash);t.circleSize = t.base * t.breathePulse * (1 + 0.9 * t.circleFlash);t.ignFlashProg = Math.min(1, variable.particle_age / 0.1);t.ignSize = variable.particle_age < 0.1 ? (0.42 * t.ignFlashProg) : (0.42 * Math.max(0, 1 - (variable.particle_age - 0.1) / 0.35));t.normalSize = t.role == 0 ? t.lineSize : (t.role == 2 ? t.circleSize : (t.role == 4 ? t.floatSize : t.pulseSize));return t.spawnAge < 0.45 ? t.ignSize : t.normalSize;",
+          "t.spawnAge = variable.emitter_age - variable.particle_age;t.role = variable.particle_random_3 < 0.45 ? 0 : (variable.particle_random_3 < 0.70 ? 2 : (variable.particle_random_3 < 0.88 ? 4 : 5));t.breathePulse = 1 + 0.12 * Math.sin(variable.emitter_age * 3);t.base = variable.particle_age < 0.35 ? (0.2 * variable.particle_age / 0.35) : (variable.particle_age < variable.particle_lifetime - 0.5 ? 0.2 : (0.2 * (variable.particle_lifetime - variable.particle_age) / 0.5));t.floatHold = 0.5;t.floatRiseT = Math.max(0, variable.particle_age - t.floatHold);t.floatProg = Math.min(1, t.floatRiseT / 1.3);t.floatSize = t.base * Math.max(0, 1 - t.floatProg);t.pulsePeriod = 1.6;t.pulsePhase = variable.emitter_age - t.pulsePeriod * Math.floor(variable.emitter_age / t.pulsePeriod);t.pulseFrac = t.pulsePhase / t.pulsePeriod;t.pulseSize = 0.22 * Math.max(0, 1 - t.pulseFrac) + 0.05;t.lineFlash = Math.max(0, 1 - Math.abs(t.pulseFrac - 0) / 0.15);t.circleFlash = Math.max(0, 1 - Math.abs(t.pulseFrac - 0.85) / 0.15);t.lineSize = t.base * t.breathePulse * (1 + 0.9 * t.lineFlash);t.circleSize = t.base * t.breathePulse * (1 + 0.9 * t.circleFlash);t.ignFlashProg = Math.min(1, variable.particle_age / 0.1);t.ignSize = variable.particle_age < 0.1 ? (0.42 * t.ignFlashProg) : (0.42 * Math.max(0, 1 - (variable.particle_age - 0.1) / 0.35));t.normalSize = t.role == 0 ? t.lineSize : (t.role == 2 ? t.circleSize : (t.role == 4 ? t.floatSize : t.pulseSize));return t.spawnAge < 0.45 ? t.ignSize : t.normalSize;"
+        ],
+        "facing_camera_mode": "lookat_xyz",
+        "uv": {
+          "texture_width": 16,
+          "texture_height": 96,
+          "flipbook": {
+            "base_UV": [0, 0],
+            "size_UV": [16, 16],
+            "step_UV": [0, 16],
+            "frames_per_second": 10,
+            "max_frame": 4,
+            "loop": true
+          }
+        }
+      },
+      "minecraft:particle_appearance_tinting": {
+        "color": {
+          "interpolant": "t.spawnAge = variable.emitter_age - variable.particle_age;t.isIgnition = t.spawnAge < 0.45;t.role = variable.particle_random_3 < 0.45 ? 0 : (variable.particle_random_3 < 0.70 ? 2 : (variable.particle_random_3 < 0.88 ? 4 : 5));t.shimmer = Math.abs(Math.sin(variable.emitter_age * 3 + variable.particle_random_1 * 2.5));t.base = 0.5 + t.shimmer * 0.5;t.pulsePeriod = 1.6;t.pulsePhase = variable.emitter_age - t.pulsePeriod * Math.floor(variable.emitter_age / t.pulsePeriod);t.pulseFrac = t.pulsePhase / t.pulsePeriod;t.lineFlash = Math.max(0, 1 - Math.abs(t.pulseFrac - 0) / 0.15);t.circleFlash = Math.max(0, 1 - Math.abs(t.pulseFrac - 0.85) / 0.15);t.flashBoost = t.role == 0 ? t.lineFlash : (t.role == 2 ? t.circleFlash : 0);t.steady = t.base * (1 - t.flashBoost * 0.5);t.flashProg = Math.min(1, variable.particle_age / 0.15);t.ignInterp = t.steady * t.flashProg;return t.isIgnition ? t.ignInterp : t.steady;",
+          "gradient": {
+            "0.0": "#FF8CFFB0",
+            "0.5": "#FF1FCB3B",
+            "1.0": "#FF64FF7F"
+          }
+        }
+      }
+    }
+  }
+}

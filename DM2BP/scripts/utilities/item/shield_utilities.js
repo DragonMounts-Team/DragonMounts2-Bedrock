@@ -22,13 +22,20 @@ export function getShieldParameters(itemStack) {
   return getShieldComponentData(itemStack)?.customComponentParameters?.params;
 }
 
-export function getHeldShield(player, withCooldown = true, cooldownUntilTick = 0) {
+export function getHeldShield(
+  player,
+  withCooldown = true,
+  cooldownUntilTick = 0,
+) {
   function isValidShield(itemStack) {
     if (!isShieldItem(itemStack)) return false;
     if (withCooldown && cooldownUntilTick > system.currentTick) return false;
     if (withCooldown) {
-      const cooldown = itemStack.getComponent(ItemCooldownComponent.componentId);
-      if (cooldown && cooldown.getCooldownTicksRemaining(player) > 0) return false;
+      const cooldown = itemStack.getComponent(
+        ItemCooldownComponent.componentId,
+      );
+      if (cooldown && cooldown.getCooldownTicksRemaining(player) > 0)
+        return false;
     }
     return true;
   }
@@ -66,7 +73,11 @@ export function reduceDurability(player, item, damage) {
   }
 
   if (durability.damage + damage > durability.maxDurability) {
-    player.dimension.playSound("random.break", player.location, getSoundOptions());
+    player.dimension.playSound(
+      "random.break",
+      player.location,
+      getSoundOptions(),
+    );
     return undefined;
   }
 

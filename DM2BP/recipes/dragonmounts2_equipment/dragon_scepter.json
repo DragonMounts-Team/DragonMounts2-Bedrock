@@ -4,11 +4,9 @@
     "description": {
       "identifier": "dragonmounts2:dragon_scepter"
     },
-    "unlock": [
-      { "item": "dragonmounts2:variation_orb" }
-    ],
-    "tags": [ "crafting_table" ],
-    "pattern": [ " AB", " CA", "D  " ],
+    "unlock": [{ "item": "dragonmounts2:variation_orb" }],
+    "tags": ["crafting_table"],
+    "pattern": [" AB", " CA", "D  "],
     "priority": -1,
     "key": {
       "A": { "tag": "dragonmounts2:dragon_scales" },

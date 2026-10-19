@@ -120,7 +120,7 @@
       "textures": "textures/items/dragonmounts2_equipment/tools/amulets/zombie_dragon_amulet"
     },
     "dragonmounts2:record_end_trance": {
-      "textures": "textures/items/dragonmounts2_items/scales/record_end_trance"
+      "textures": "textures/items/dragonmounts2_items/record_items/record_end_trance"
     },
     "dragonmounts2:diamond_shears": {
       "textures": "textures/items/dragonmounts2_equipment/tools/shears/diamond_shears"
@@ -141,13 +141,13 @@
       "textures": "textures/items/dragonmounts2_equipment/dragon_scepter_inactive"
     },
     "dragonmounts2:cooked_dragon_meat": {
-      "textures": "textures/items/dragonmounts2_items/scales/cooked_dragon_meat"
+      "textures": "textures/items/dragonmounts2_items/meats/cooked_dragon_meat"
     },
     "dragonmounts2:raw_dragon_meat": {
-      "textures": "textures/items/dragonmounts2_items/scales/raw_dragon_meat"
+      "textures": "textures/items/dragonmounts2_items/meats/raw_dragon_meat"
     },
     "dragonmounts2:dragon_scale_upgrade_smithing_template": {
-      "textures": "textures/items/dragonmounts2_items/scales/dragon_scale_upgrade_smithing_template"
+      "textures": "textures/items/dragonmounts2_items/dragon_scale_upgrade_smithing_template"
     },
     "dragonmounts2:boots_trim": {
       "textures": "textures/trims/dragonmounts2_icon/boots_trim"

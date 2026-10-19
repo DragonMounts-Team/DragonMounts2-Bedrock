@@ -10,7 +10,7 @@
       "textures": {
         "default": "textures/items/dragonmounts2_equipment/tools/bows/light_dragon_scale_bow_standby",
         "bow_pulling_0": "textures/items/dragonmounts2_equipment/tools/bows/light_dragon_scale_bow_pulling_0",
-        "bow_pulling_1": "textures/items/dragonmounts2_equipment/tools/bows/light_dragon_scale_bow_pulling_1",
+        "bow_pulling_1": "textures/items/dragonmounts2_equipment/tools/bows/light_dragon_scale_pulling_bow_1",
         "bow_pulling_2": "textures/items/dragonmounts2_equipment/tools/bows/light_dragon_scale_bow_pulling_2",
         "enchanted": "textures/misc/enchanted_item_glint"
       },
@@ -36,9 +36,7 @@
           }
         ]
       },
-      "render_controllers": [
-        "controller.render.dragonmounts2.bow"
-      ]
+      "render_controllers": ["controller.render.dragonmounts2.bow"]
     }
   }
 }

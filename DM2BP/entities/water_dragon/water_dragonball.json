@@ -1,0 +1,37 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:water_dragonball",
+      "runtime_identifier": "minecraft:snowball",
+      "is_summonable": true,
+      "is_spawnable": false
+    },
+    "components": {
+      "minecraft:type_family": { "family": ["projectile", "waterball"] },
+      "minecraft:collision_box": { "width": 0.3125, "height": 0.3125 },
+      "minecraft:damage_sensor": {
+        "triggers": [{ "cause": "all", "deals_damage": "no" }]
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:physics": {},
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": {
+            "damage": { "min": 0, "max": 0 },
+            "knockback": false,
+            "destroy_on_hit": false
+          }
+        },
+        "power": 1.2,
+        "gravity": 0,
+        "inertia": 0.95,
+        "anchor": "middle",
+        "offset": [0, 0, 0],
+        "isolated_physics": false
+      },
+      "minecraft:pushable_by_block": {},
+      "minecraft:pushable_by_entity": {}
+    }
+  }
+}

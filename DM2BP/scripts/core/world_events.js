@@ -14,7 +14,9 @@ export function initializeWorldEvents() {
   for (const { phase, eventName, handler } of registrations) {
     const eventSignal = world[phase]?.[eventName];
     if (!eventSignal?.subscribe) {
-      console.warn(`[DragonMounts2] Unsupported world event: ${phase}.${eventName}`);
+      console.warn(
+        `[DragonMounts2] Unsupported world event: ${phase}.${eventName}`,
+      );
       continue;
     }
     eventSignal.subscribe((event) => {

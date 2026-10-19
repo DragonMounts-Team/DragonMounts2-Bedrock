@@ -4,11 +4,9 @@
     "description": {
       "identifier": "dragonmounts2:dragon_nest_block"
     },
-    "unlock": [
-      { "item": "minecraft:stick" }
-    ],
-    "tags": [ "crafting_table" ],
-    "pattern": [ "AAA", "AAA", "AAA" ],
+    "unlock": [{ "item": "minecraft:stick" }],
+    "tags": ["crafting_table"],
+    "pattern": ["AAA", "AAA", "AAA"],
     "priority": -1,
     "key": {
       "A": { "item": "minecraft:stick" }

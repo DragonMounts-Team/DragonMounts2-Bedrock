@@ -6,10 +6,12 @@
       "materials": { "default": "dragon_breath" },
       "textures": { "default": "textures/particle/breath/breath_fire" },
       "geometry": { "default": "geometry.dragonmounts2.dragon_breath" },
-      "animations": { "rotations": "animation.dragonmounts2.dragon_breath.rotations" },
-      "scripts": { "animate": [ "rotations" ] },
+      "animations": {
+        "rotations": "animation.dragonmounts2.dragon_breath.rotations"
+      },
+      "scripts": { "animate": ["rotations"] },
       "sound_effects": { "breath": "" },
-      "render_controllers": [ "controller.render.dragonmounts2.dragon_breath" ]
+      "render_controllers": ["controller.render.dragonmounts2.dragon_breath"]
     }
   }
 }

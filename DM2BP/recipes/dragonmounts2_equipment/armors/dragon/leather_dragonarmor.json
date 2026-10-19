@@ -4,11 +4,9 @@
     "description": {
       "identifier": "dragonmounts2:leather_dragonarmor"
     },
-    "unlock": [
-      { "item": "minecraft:leather" }
-    ],
-    "tags": [ "crafting_table" ],
-    "pattern": [ "A B", " AA", "BB " ],
+    "unlock": [{ "item": "minecraft:leather" }],
+    "tags": ["crafting_table"],
+    "pattern": ["A B", " AA", "BB "],
     "priority": -1,
     "key": {
       "A": { "item": "minecraft:leather" },

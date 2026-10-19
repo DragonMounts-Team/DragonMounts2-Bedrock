@@ -38,11 +38,7 @@ export function getSafeVelocity(entity) {
 
 export function distanceBetween(first, second) {
   if (!first || !second) return Infinity;
-  return Math.hypot(
-    first.x - second.x,
-    first.y - second.y,
-    first.z - second.z,
-  );
+  return Math.hypot(first.x - second.x, first.y - second.y, first.z - second.z);
 }
 
 export function applyAoeKnockback(
@@ -89,9 +85,7 @@ export function calculateEntityXpReward(entity, applyBonus = false) {
 
   if (BOSS_ENTITIES.has(typeId)) {
     baseXp =
-      typeId === "minecraft:ender_dragon"
-        ? XP_TIER_BOSS_MAJOR
-        : XP_TIER_BOSS;
+      typeId === "minecraft:ender_dragon" ? XP_TIER_BOSS_MAJOR : XP_TIER_BOSS;
   } else if (HOSTILE_ENTITIES.has(typeId)) {
     try {
       const healthComp = entity.getComponent(EntityHealthComponent.componentId);
@@ -107,7 +101,7 @@ export function calculateEntityXpReward(entity, applyBonus = false) {
     return 0;
   }
 
-  return Math.floor(baseXp * (applyBonus ? XP_BOOST_MULTIPLIER : 1));
+  return Math.ceil(baseXp * (applyBonus ? XP_BOOST_MULTIPLIER : 1));
 }
 
 export function spawnXpOrbs(dimension, location, totalXp) {
@@ -208,8 +202,16 @@ function freezeWaterForIceDragonEgg(dragonEgg) {
   const centerZ = Math.floor(location.z);
   const waterY = centerY - 1;
 
-  for (let offsetX = -FROST_WALKER_RADIUS; offsetX <= FROST_WALKER_RADIUS; offsetX++) {
-    for (let offsetZ = -FROST_WALKER_RADIUS; offsetZ <= FROST_WALKER_RADIUS; offsetZ++) {
+  for (
+    let offsetX = -FROST_WALKER_RADIUS;
+    offsetX <= FROST_WALKER_RADIUS;
+    offsetX++
+  ) {
+    for (
+      let offsetZ = -FROST_WALKER_RADIUS;
+      offsetZ <= FROST_WALKER_RADIUS;
+      offsetZ++
+    ) {
       if (offsetX ** 2 + offsetZ ** 2 > FROST_WALKER_RADIUS_SQUARED) continue;
       try {
         const block = dragonEgg.dimension.getBlock({
@@ -260,7 +262,13 @@ export function getDragonEggConvertBlock(dragonEgg) {
     const convertData = convertTypes[key];
     if (!convertData) continue;
     if (convertData.egg_type === currentTypeId) continue;
-    if (convertData.deny === currentTypeId) continue;
+
+    const deniedTypes = Array.isArray(convertData.deny)
+      ? convertData.deny
+      : convertData.deny
+        ? [convertData.deny]
+        : [];
+    if (deniedTypes.includes(currentTypeId)) continue;
 
     const checker = methodCheckers[convertData.hatch_method];
     if (!checker) continue;

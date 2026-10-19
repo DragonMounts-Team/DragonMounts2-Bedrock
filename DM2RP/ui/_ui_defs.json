@@ -1,0 +1,6 @@
+{
+  "ui_defs": [
+    "ui/dragonmounts2_chest_ui.json",
+    "ui/dragonmounts2_data_container_screen.json"
+  ]
+}

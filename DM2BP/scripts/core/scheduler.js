@@ -17,7 +17,9 @@ export function initializeScheduler() {
         handler();
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        console.warn(`[DragonMounts2] Scheduled task ${name} failed: ${message}`);
+        console.warn(
+          `[DragonMounts2] Scheduled task ${name} failed: ${message}`,
+        );
       }
     };
 

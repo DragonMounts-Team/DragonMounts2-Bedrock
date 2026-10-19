@@ -5,11 +5,12 @@
       "identifier": "dragonmounts2:dragon_amulet",
       "materials": {
         "default": "entity_alphatest_change_color",
-        "overlay": "entity_alphatest"
+        "enchanted": "entity_alphatest_change_color_glint"
       },
       "textures": {
         "default": "textures/models/dragonmounts2_equipment/amulet_equipment/worn_dragon_amulet",
-        "dyed": "textures/models/dragonmounts2_equipment/amulet_equipment/worn_dragon_amulet"
+        "dyed": "textures/models/dragonmounts2_equipment/amulet_equipment/worn_dragon_amulet",
+        "enchanted": "textures/misc/enchanted_item_glint"
       },
       "geometry": {
         "default": "geometry.dragonmounts2.dragon_amulet.worn"

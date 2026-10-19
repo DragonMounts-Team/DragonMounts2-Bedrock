@@ -15,7 +15,7 @@
       },
       "dragonmounts2:wither_dragon_scale_effects": {},
       "minecraft:durability": {
-        "max_durability": 361
+        "max_durability": 800
       },
       "minecraft:enchantable": {
         "value": 15,
@@ -34,9 +34,7 @@
       "minecraft:repairable": {
         "repair_items": [
           {
-            "items": [
-              "dragonmounts2:wither_dragon_scale_chestplate"
-            ],
+            "items": ["dragonmounts2:wither_dragon_scale_chestplate"],
             "repair_amount": "c.other->q.remaining_durability"
           }
         ]

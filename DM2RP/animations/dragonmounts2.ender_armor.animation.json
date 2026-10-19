@@ -1,0 +1,41 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.dragonmounts2.dragon_scale.boots.particles": {
+      "loop": true,
+      "animation_length": 1.7,
+      "particle_effects": {
+        "0.0": {
+          "effect": "ender_particles"
+        }
+      }
+    },
+    "animation.dragonmounts2.dragon_scale.chestplate.particles": {
+      "loop": true,
+      "animation_length": 1.7,
+      "particle_effects": {
+        "0.0": {
+          "effect": "ender_particles"
+        }
+      }
+    },
+    "animation.dragonmounts2.dragon_scale.helmet.particles": {
+      "loop": true,
+      "animation_length": 1.7,
+      "particle_effects": {
+        "0.0": {
+          "effect": "ender_particles"
+        }
+      }
+    },
+    "animation.dragonmounts2.dragon_scale.leggings.particles": {
+      "loop": true,
+      "animation_length": 1.7,
+      "particle_effects": {
+        "0.0": {
+          "effect": "ender_particles"
+        }
+      }
+    }
+  }
+}

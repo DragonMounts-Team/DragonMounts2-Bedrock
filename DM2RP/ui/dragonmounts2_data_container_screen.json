@@ -1,0 +1,40 @@
+{
+  "namespace": "data_driven_container",
+  "screen@common.inventory_screen_common": {
+    "$close_on_player_hurt|default": true,
+    "$use_custom_pocket_toast|default": false,
+    "close_on_player_hurt": "$close_on_player_hurt",
+    "use_custom_pocket_toast": "$use_custom_pocket_toast",
+    "$container_title_copy": "$container_title",
+    "$dragon_core_title_marker": "Dragon Core",
+    "variables": [
+      {
+        "requires": "$desktop_screen",
+        "$screen_content": "data_driven_container.desktop_panel",
+        "$screen_bg_content": "common.screen_background",
+        "$screen_background_alpha": 0.4
+      },
+      {
+        "requires": "((not (($container_title_copy - $dragon_core_title_marker) = $container_title_copy)) or (not (($container_title_copy - 'tile.dragonmounts2:dragon_core.name') = $container_title_copy)) or (not (($container_title_copy - 'container.dragonmounts2:dragon_core') = $container_title_copy)) or (not (($container_title_copy - 'dragonmounts2:dragon_core') = $container_title_copy))) and $pocket_screen",
+        "$use_custom_pocket_toast": true,
+        "$screen_content": "chest.dragon_core_pocket_panel"
+      },
+      {
+        "requires": "$pocket_screen",
+        "$use_custom_pocket_toast": true,
+        "$screen_content": "pocket_containers.data_driven_container_panel"
+      },
+      {
+        "requires": "((not (($container_title_copy - $dragon_core_title_marker) = $container_title_copy)) or (not (($container_title_copy - 'tile.dragonmounts2:dragon_core.name') = $container_title_copy)) or (not (($container_title_copy - 'container.dragonmounts2:dragon_core') = $container_title_copy)) or (not (($container_title_copy - 'dragonmounts2:dragon_core') = $container_title_copy))) and $desktop_screen",
+        "$screen_content": "chest.dragon_core_panel",
+        "$screen_bg_content": "common.screen_background",
+        "$screen_background_alpha": 0.4
+      },
+      {
+        "requires": "((not (($container_title_copy - $dragon_core_title_marker) = $container_title_copy)) or (not (($container_title_copy - 'tile.dragonmounts2:dragon_core.name') = $container_title_copy)) or (not (($container_title_copy - 'container.dragonmounts2:dragon_core') = $container_title_copy)) or (not (($container_title_copy - 'dragonmounts2:dragon_core') = $container_title_copy))) and $pocket_screen",
+        "$use_custom_pocket_toast": true,
+        "$screen_content": "chest.dragon_core_pocket_panel"
+      }
+    ]
+  }
+}

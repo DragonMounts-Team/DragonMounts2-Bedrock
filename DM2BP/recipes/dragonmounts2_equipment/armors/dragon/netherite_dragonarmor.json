@@ -1,13 +1,19 @@
 {
   "format_version": "1.26.50",
-  "minecraft:recipe_smithing_transform": {
+  "minecraft:recipe_shapeless": {
     "description": {
       "identifier": "dragonmounts2:netherite_dragonarmor"
     },
-    "tags": [ "smithing_table" ],
-    "template": "minecraft:netherite_upgrade_smithing_template",
-    "base": "dragonmounts2:diamond_dragonarmor",
-    "addition": "minecraft:netherite_ingot",
-    "result": "dragonmounts2:netherite_dragonarmor"
+    "unlock": [{ "item": "minecraft:netherite_upgrade_smithing_template" }],
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "minecraft:netherite_upgrade_smithing_template" },
+      { "item": "dragonmounts2:diamond_dragonarmor" },
+      { "item": "minecraft:netherite_ingot" }
+    ],
+    "result": {
+      "item": "dragonmounts2:netherite_dragonarmor",
+      "count": 1
+    }
   }
 }

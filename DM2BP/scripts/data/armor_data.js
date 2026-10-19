@@ -2,7 +2,7 @@ export const dragonArmorLore = {
   "dragonmounts2:fire_dragon_scale_lore": {
     effectsKey: "dragonmounts2:fire_dragon_scale_effects",
     setKey: "dragonmounts2:fire_dragon_scale_set",
-    maxCd: 45.0,
+    maxCd: 900.0,
   },
   "dragonmounts2:enchanted_dragon_scale_lore": {
     effectsKey: "dragonmounts2:enchanted_dragon_scale_effects",
@@ -22,22 +22,22 @@ export const dragonArmorLore = {
   "dragonmounts2:aether_dragon_scale_lore": {
     effectsKey: "dragonmounts2:aether_dragon_scale_effects",
     setKey: "dragonmounts2:aether_dragon_scale_set",
-    maxCd: 15.0,
+    maxCd: 300.0,
   },
   "dragonmounts2:ice_dragon_scale_lore": {
     effectsKey: "dragonmounts2:ice_dragon_scale_effects",
     setKey: "dragonmounts2:ice_dragon_scale_set",
-    maxCd: 60.0,
+    maxCd: 1200.0,
   },
   "dragonmounts2:forest_dragon_scale_lore": {
     effectsKey: "dragonmounts2:forest_dragon_scale_effects",
     setKey: "dragonmounts2:forest_dragon_scale_set",
-    maxCd: 60.0,
+    maxCd: 1200.0,
   },
   "dragonmounts2:ender_dragon_scale_lore": {
     effectsKey: "dragonmounts2:ender_dragon_scale_effects",
     setKey: "dragonmounts2:ender_dragon_scale_set",
-    maxCd: 60.0,
+    maxCd: 1200.0,
   },
   "dragonmounts2:water_dragon_scale_lore": {
     effectsKey: "dragonmounts2:water_dragon_scale_effects",
@@ -52,7 +52,7 @@ export const dragonArmorLore = {
   "dragonmounts2:storm_dragon_scale_lore": {
     effectsKey: "dragonmounts2:storm_dragon_scale_effects",
     setKey: "dragonmounts2:storm_dragon_scale_set",
-    maxCd: null,
+    maxCd: 160.0,
   },
   "dragonmounts2:sculk_dragon_scale_lore": {
     effectsKey: "dragonmounts2:sculk_dragon_scale_effects",
@@ -73,19 +73,24 @@ export const dragonArmorLore = {
     setKey: "dragonmounts2:wither_dragon_scale_set",
     maxCd: null,
   },
+  "dragonmounts2:skeleton_dragon_scale_lore": {
+    effectsKey: "dragonmounts2:skeleton_dragon_scale_effects",
+    setKey: "dragonmounts2:skeleton_dragon_scale_set",
+    maxCd: null,
+  },
   "dragonmounts2:zombie_dragon_scale_lore": {
     effectsKey: "dragonmounts2:zombie_dragon_scale_effects",
     setKey: "dragonmounts2:zombie_dragon_scale_set",
-    maxCd: null,
+    maxCd: 400.0,
   },
   "dragonmounts2:sunlight_dragon_scale_lore": {
     effectsKey: "dragonmounts2:sunlight_dragon_scale_effects",
     setKey: "dragonmounts2:sunlight_dragon_scale_set",
-    maxCd: null,
+    maxCd: 1200.0,
   },
   "dragonmounts2:nether_dragon_scale_lore": {
     effectsKey: "dragonmounts2:nether_dragon_scale_effects",
     setKey: "dragonmounts2:nether_dragon_scale_set",
-    maxCd: null,
+    maxCd: 1200.0,
   },
 };
