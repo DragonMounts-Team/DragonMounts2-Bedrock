@@ -10,8 +10,8 @@ function reportFlightError(dragon, error) {
   const message = error instanceof Error ? error.message : String(error);
   const now = system.currentTick;
   const last = reportedFlightErrors.get(dragon);
-  // Same error from the same dragon is only repeated every 10 seconds, so a
-  // persistent fault stays visible instead of going silent after one report.
+                                                                            
+                                                                             
   if (last && last.message === message && now - last.tick < 200) return;
   reportedFlightErrors.set(dragon, { message, tick: now });
   const stack = error instanceof Error ? error.stack : null;
@@ -50,8 +50,8 @@ registerIntervalTask("dragon-flight", 1, () => {
   });
 });
 
-// Safety net: remove any attack-interaction proxy that is not currently
-// attached to a ridden dragon (leftovers from older versions, crashes, etc.).
+                                                                        
+                                                                              
 registerIntervalTask("dragon-attack-proxy-sweep", 60, () => {
   runSafely("Dragon attack proxy sweep failed", () => {
     dragonUtilities.sweepOrphanedAttackProxies();

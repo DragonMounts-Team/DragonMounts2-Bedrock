@@ -1,0 +1,27 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "dragonmounts2:emerald_dragonarmor_sculk",
+      "item": {
+        "dragonmounts2:emerald_dragonarmor": "query.is_owner_identifier_any('dragonmounts2:sculk_dragon')"
+      },
+      "materials": {
+        "default": "entity_alphatest",
+        "enchanted": "armor_enchanted"
+      },
+      "textures": {
+        "default": "textures/models/dragonmounts2_equipment/dragon_equipment/sculk_dragon_armor/armor_emerald",
+        "enchanted": "textures/misc/enchanted_item_glint",
+        "bolt_trim": "textures/trims/dragonmounts2_equipment/dragon_equipment/bolt",
+        "coast_trim": "textures/trims/dragonmounts2_equipment/dragon_equipment/coast"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragon.armor_sculk"
+      },
+      "render_controllers": [
+        "controller.render.dragonarmor.default"
+      ]
+    }
+  }
+}

@@ -9,21 +9,12 @@
         "sounds/block/dragon_core/dragon_core2"
       ]
     },
-    "dragonmounts2:music.record.end_trance": {
-      "category": "record",
-      "max_distance": 64.0,
-      "sounds": [
-        {
-          "name": "sounds/music/dragonmounts2/records/end_trance",
-          "stream": true,
-          "volume": 0.5
-        }
-      ]
-    },
     "dragonmounts2:block.dragon_egg.convert": {
       "category": "block",
       "max_distance": 16.0,
-      "sounds": ["sounds/block/dragon_egg/convert"]
+      "sounds": [
+        "sounds/block/dragon_egg/convert"
+      ]
     },
     "dragonmounts2:block.dragon_egg.crack": {
       "category": "block",
@@ -36,272 +27,510 @@
     "dragonmounts2:block.dragon_egg.shatter": {
       "category": "block",
       "max_distance": 16.0,
-      "sounds": ["sounds/block/dragon_egg/shatter"]
-    },
-    "dragonmounts2:item.dragon_essence": {
-      "category": "neutral",
-      "max_distance": 16.0,
-      "sounds": ["sounds/item/dragon_essence"]
-    },
-    "dragonmounts2:item.dragon_flute.long": {
-      "category": "neutral",
-      "max_distance": 64.0,
-      "sounds": ["sounds/item/dragon_flute_long"]
-    },
-    "dragonmounts2:item.dragon_flute.short": {
-      "category": "neutral",
-      "max_distance": 64.0,
-      "sounds": ["sounds/item/dragon_flute_short"]
+      "sounds": [
+        "sounds/block/dragon_egg/shatter"
+      ]
     },
     "dragonmounts2:item.dragon_amulet.capture": {
       "category": "neutral",
       "max_distance": 64.0,
-      "sounds": ["sounds/item/dragon_amulet_capture"]
+      "sounds": [
+        "sounds/item/dragon_amulet_capture"
+      ]
     },
     "dragonmounts2:item.dragon_amulet.release": {
       "category": "neutral",
       "max_distance": 64.0,
-      "sounds": ["sounds/item/dragon_amulet_release"]
+      "sounds": [
+        "sounds/item/dragon_amulet_release"
+      ]
+    },
+    "dragonmounts2:item.dragon_essence": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [
+        "sounds/item/dragon_essence"
+      ]
+    },
+    "dragonmounts2:item.dragon_flute.long": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [
+        "sounds/item/dragon_flute_long"
+      ]
+    },
+    "dragonmounts2:item.dragon_flute.short": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [
+        "sounds/item/dragon_flute_short"
+      ]
     },
     "dragonmounts2:item.dragon_scepter": {
       "category": "neutral",
       "max_distance": 16.0,
-      "sounds": ["sounds/item/dragon_scepter"]
+      "sounds": [
+        "sounds/item/dragon_scepter"
+      ]
     },
     "dragonmounts2:item.spell_loop": {
       "category": "neutral",
       "max_distance": 32.0,
-      "sounds": ["sounds/item/spell_loop"]
+      "sounds": [
+        "sounds/item/spell_loop"
+      ]
     },
     "dragonmounts2:item.variation_orb": {
       "category": "neutral",
       "max_distance": 16.0,
-      "sounds": ["sounds/item/variation_orb"]
-    },
-    "dragonmounts2:mob.dragon.airflow_dragonbreath": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/airflow_dragonbreath"]
-    },
-    "dragonmounts2:mob.dragon.airflow_dragonbreathe": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/airflow_dragonbreathe"]
-    },
-    "dragonmounts2:mob.dragon.airflow_dragonbreathing": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/airflow_dragonbreathing"]
-    },
-    "dragonmounts2:mob.dragon.baby.dragonbreath": {
-      "category": "neutral",
-      "max_distance": 16.0,
-      "sounds": ["sounds/mob/dragon/baby_dragonbreath"]
-    },
-    "dragonmounts2:mob.dragon.baby.dragonbreathe": {
-      "category": "neutral",
-      "max_distance": 16.0,
-      "sounds": ["sounds/mob/dragon/baby_dragonbreathe"]
-    },
-    "dragonmounts2:mob.dragon.baby.dragonbreathing": {
-      "category": "neutral",
-      "max_distance": 16.0,
-      "sounds": ["sounds/mob/dragon/baby_dragonbreathing"]
+      "sounds": [
+        "sounds/item/variation_orb"
+      ]
     },
     "dragonmounts2:mob.dragon.baby.growl": {
       "category": "neutral",
       "max_distance": 16.0,
       "sounds": [
-        "sounds/mob/dragon/baby_growl1",
-        "sounds/mob/dragon/baby_growl2"
+        "sounds/entity/dragon/roar/baby_growl1",
+        "sounds/entity/dragon/roar/baby_growl2"
       ]
     },
     "dragonmounts2:mob.dragon.baby.idle": {
       "category": "neutral",
       "max_distance": 16.0,
       "sounds": [
-        "sounds/mob/dragon/baby_idle1",
-        "sounds/mob/dragon/baby_idle2",
-        "sounds/mob/dragon/baby_idle3"
+        "sounds/entity/dragon/ambient/baby_idle1",
+        "sounds/entity/dragon/ambient/baby_idle2",
+        "sounds/entity/dragon/ambient/baby_idle3"
       ]
     },
     "dragonmounts2:mob.dragon.baby.tame_idle": {
       "category": "neutral",
       "max_distance": 16.0,
       "sounds": [
-        "sounds/mob/dragon/baby_tame_idle1",
-        "sounds/mob/dragon/baby_tame_idle2",
-        "sounds/mob/dragon/baby_tame_idle3",
-        "sounds/mob/dragon/baby_tame_idle4",
-        "sounds/mob/dragon/baby_tame_idle5"
+        "sounds/entity/dragon/ambient/baby_tame_idle1",
+        "sounds/entity/dragon/ambient/baby_tame_idle2",
+        "sounds/entity/dragon/ambient/baby_tame_idle3",
+        "sounds/entity/dragon/ambient/baby_tame_idle4",
+        "sounds/entity/dragon/ambient/baby_tame_idle5"
       ]
     },
     "dragonmounts2:mob.dragon.bite": {
       "category": "neutral",
       "max_distance": 16.0,
       "sounds": [
-        "sounds/mob/dragon/bite1",
-        "sounds/mob/dragon/bite2",
-        "sounds/mob/dragon/bite3"
+        "sounds/entity/dragon/bite/bite1",
+        "sounds/entity/dragon/bite/bite2",
+        "sounds/entity/dragon/bite/bite3"
+      ]
+    },
+    "dragonmounts2:mob.dragon.dark_death": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/death/dark_death"
+      ]
+    },
+    "dragonmounts2:mob.dragon.dark_hit": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/hit/hit_dark1",
+        "sounds/entity/dragon/hit/hit_dark2"
       ]
     },
     "dragonmounts2:mob.dragon.death": {
       "category": "neutral",
       "max_distance": 24.0,
-      "sounds": ["sounds/mob/dragon/death"]
-    },
-    "dragonmounts2:mob.dragon.dragonbreath": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/dragonbreath"]
-    },
-    "dragonmounts2:mob.dragon.dragonbreathe": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/dragonbreathe"]
-    },
-    "dragonmounts2:mob.dragon.dragonbreathing": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/dragonbreathing"]
-    },
-    "dragonmounts2:mob.dragon.forest_dragonbreath": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/forest_dragonbreath"]
-    },
-    "dragonmounts2:mob.dragon.forest_dragonbreathe": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/forest_dragonbreathe"]
-    },
-    "dragonmounts2:mob.dragon.forest_dragonbreathing": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/forest_dragonbreathing"]
+      "sounds": [
+        "sounds/entity/dragon/death/death"
+      ]
     },
     "dragonmounts2:mob.dragon.growl": {
       "category": "neutral",
       "max_distance": 24.0,
       "sounds": [
-        "sounds/mob/dragon/growl1",
-        "sounds/mob/dragon/growl2",
-        "sounds/mob/dragon/growl3",
-        "sounds/mob/dragon/growl4"
+        "sounds/entity/dragon/roar/growl1",
+        "sounds/entity/dragon/roar/growl2",
+        "sounds/entity/dragon/roar/growl3",
+        "sounds/entity/dragon/roar/growl4"
       ]
     },
     "dragonmounts2:mob.dragon.hit": {
       "category": "neutral",
       "max_distance": 24.0,
       "sounds": [
-        "sounds/mob/dragon/hit1",
-        "sounds/mob/dragon/hit2",
-        "sounds/mob/dragon/hit3",
-        "sounds/mob/dragon/hit4"
+        "sounds/entity/dragon/hit/hit1",
+        "sounds/entity/dragon/hit/hit2",
+        "sounds/entity/dragon/hit/hit3",
+        "sounds/entity/dragon/hit/hit4"
       ]
-    },
-    "dragonmounts2:mob.dragon.dark_hit": {
-      "category": "neutral",
-      "max_distance": 24.0,
-      "sounds": ["sounds/mob/dragon/hit_dark1", "sounds/mob/dragon/hit_dark2"]
-    },
-    "dragonmounts2:mob.dragon.ice_dragonbreath": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/ice_dragonbreath"]
-    },
-    "dragonmounts2:mob.dragon.ice_dragonbreathe": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/ice_dragonbreathe"]
-    },
-    "dragonmounts2:mob.dragon.ice_dragonbreathing": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/ice_dragonbreathing"]
     },
     "dragonmounts2:mob.dragon.idle": {
       "category": "neutral",
       "max_distance": 24.0,
       "sounds": [
-        "sounds/mob/dragon/idle1",
-        "sounds/mob/dragon/idle2",
-        "sounds/mob/dragon/idle3",
-        "sounds/mob/dragon/idle4"
+        "sounds/entity/dragon/ambient/idle1",
+        "sounds/entity/dragon/ambient/idle2",
+        "sounds/entity/dragon/ambient/idle3",
+        "sounds/entity/dragon/ambient/idle4"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_aether": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/airflow"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_dark": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/airflow"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_forest": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/forest"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_ice": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/ice"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_light": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/airflow"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_moonlight": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/lightning"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_storm": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/lightning"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_sunlight": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/lightning"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_water": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/water"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_loop_dragon_zombie": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_loop/forest"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_airflow": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/airflow"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_forest": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/forest"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_ice": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/ice"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_lightning": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/lightning"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_start_water": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_start/water"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_adult": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/adult"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_airflow": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/airflow"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_forest": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/forest"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_hatchling": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/hatchling"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_ice": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/ice"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_juvenile": {
+      "category": "neutral",
+      "max_distance": 32.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/juvenile"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_lightning": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/lightning"
+      ]
+    },
+    "dragonmounts2:mob.dragon.java_breath_stop_water": {
+      "category": "neutral",
+      "max_distance": 40.0,
+      "sounds": [
+        "sounds/entity/dragon/breath_stop/water"
       ]
     },
     "dragonmounts2:mob.dragon.nether_idle": {
       "category": "neutral",
       "max_distance": 24.0,
       "sounds": [
-        "sounds/mob/dragon/nether_idle1",
-        "sounds/mob/dragon/nether_idle2",
-        "sounds/mob/dragon/nether_idle3",
-        "sounds/mob/dragon/nether_idle4"
+        "sounds/entity/dragon/ambient/nether_idle1",
+        "sounds/entity/dragon/ambient/nether_idle2",
+        "sounds/entity/dragon/ambient/nether_idle3",
+        "sounds/entity/dragon/ambient/nether_idle4"
       ]
     },
     "dragonmounts2:mob.dragon.skeleton_idle": {
       "category": "neutral",
       "max_distance": 24.0,
       "sounds": [
-        "sounds/mob/dragon/skeleton_idle1",
-        "sounds/mob/dragon/skeleton_idle2"
+        "sounds/entity/dragon/ambient/skeleton_idle1",
+        "sounds/entity/dragon/ambient/skeleton_idle2"
       ]
     },
     "dragonmounts2:mob.dragon.step": {
       "category": "neutral",
       "max_distance": 24.0,
       "sounds": [
-        "sounds/mob/dragon/step1",
-        "sounds/mob/dragon/step2",
-        "sounds/mob/dragon/step3",
-        "sounds/mob/dragon/step4"
-      ]
-    },
-    "dragonmounts2:mob.dragon.water_dragonbreath": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/water_dragonbreath"]
-    },
-    "dragonmounts2:mob.dragon.water_dragonbreathe": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/water_dragonbreathe"]
-    },
-    "dragonmounts2:mob.dragon.water_dragonbreathing": {
-      "category": "neutral",
-      "max_distance": 32.0,
-      "sounds": ["sounds/mob/dragon/water_dragonbreathing"]
-    },
-    "dragonmounts2:mob.dragon.water_growl": {
-      "category": "neutral",
-      "max_distance": 24.0,
-      "sounds": [
-        "sounds/mob/dragon/water_growl1",
-        "sounds/mob/dragon/water_growl2",
-        "sounds/mob/dragon/water_growl3"
-      ]
-    },
-    "dragonmounts2:mob.dragon.water_idle": {
-      "category": "neutral",
-      "max_distance": 24.0,
-      "sounds": [
-        "sounds/mob/dragon/water_idle1",
-        "sounds/mob/dragon/water_idle2",
-        "sounds/mob/dragon/water_idle3",
-        "sounds/mob/dragon/water_idle4"
-      ]
-    },
-    "dragonmounts2:mob.dragon.wings": {
-      "category": "neutral",
-      "max_distance": 64.0,
-      "sounds": [
-        "sounds/mob/dragon/wings1",
-        "sounds/mob/dragon/wings2",
-        "sounds/mob/dragon/wings3",
-        "sounds/mob/dragon/wings4",
-        "sounds/mob/dragon/wings5",
-        "sounds/mob/dragon/wings6"
+        "sounds/entity/dragon/step/step1",
+        "sounds/entity/dragon/step/step2",
+        "sounds/entity/dragon/step/step3",
+        "sounds/entity/dragon/step/step4"
       ]
     },
     "dragonmounts2:mob.dragon.subduction": {
@@ -309,28 +538,67 @@
       "max_distance": 64.0,
       "sounds": [
         {
-          "name": "sounds/mob/dragon/subduction/stopairloop",
+          "name": "sounds/entity/dragon/subduction/stopairloop",
           "volume": 0.12
         }
       ]
     },
-    "dragonmounts2:mob.dragon.dark_death": {
+    "dragonmounts2:mob.dragon.water_growl": {
       "category": "neutral",
       "max_distance": 24.0,
-      "sounds": ["sounds/mob/dragon/dark_death"]
+      "sounds": [
+        "sounds/entity/dragon/roar/water_growl1",
+        "sounds/entity/dragon/roar/water_growl2",
+        "sounds/entity/dragon/roar/water_growl3"
+      ]
+    },
+    "dragonmounts2:mob.dragon.water_idle": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/ambient/water_idle1",
+        "sounds/entity/dragon/ambient/water_idle2",
+        "sounds/entity/dragon/ambient/water_idle3",
+        "sounds/entity/dragon/ambient/water_idle4"
+      ]
+    },
+    "dragonmounts2:mob.dragon.wings": {
+      "category": "neutral",
+      "max_distance": 64.0,
+      "sounds": [
+        "sounds/entity/dragon/flap/wings1",
+        "sounds/entity/dragon/flap/wings2",
+        "sounds/entity/dragon/flap/wings3",
+        "sounds/entity/dragon/flap/wings4",
+        "sounds/entity/dragon/flap/wings5",
+        "sounds/entity/dragon/flap/wings6"
+      ]
     },
     "dragonmounts2:mob.dragon.zombie_death": {
       "category": "neutral",
       "max_distance": 24.0,
-      "sounds": ["sounds/mob/dragon/zombie_death"]
+      "sounds": [
+        "sounds/entity/dragon/death/zombie_death"
+      ]
     },
     "dragonmounts2:mob.dragon.zombie_idle": {
       "category": "neutral",
       "max_distance": 24.0,
       "sounds": [
-        "sounds/mob/dragon/zombie_idle1",
-        "sounds/mob/dragon/zombie_idle2",
-        "sounds/mob/dragon/zombie_idle3"
+        "sounds/entity/dragon/ambient/zombie_idle1",
+        "sounds/entity/dragon/ambient/zombie_idle2",
+        "sounds/entity/dragon/ambient/zombie_idle3"
+      ]
+    },
+    "dragonmounts2:music.record.end_trance": {
+      "category": "record",
+      "max_distance": 64.0,
+      "sounds": [
+        {
+          "name": "sounds/music/dragonmounts2/records/end_trance",
+          "stream": true,
+          "volume": 0.5
+        }
       ]
     }
   }

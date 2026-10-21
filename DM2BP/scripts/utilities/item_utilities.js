@@ -16,7 +16,11 @@ import * as itemData from "../data/item_data.js";
 import { distanceBetween, getPersistentId } from "./entity_utilities.js";
 import * as dragonUtilities from "./dragon_utilities.js";
 import { compareByAge } from "./formation_order.js";
-import { getSoundOptions } from "../data/settings.js";
+import { spawnParticle } from "./particle_utilities.js";
+import {
+  getWorldDragonEggHatchSpeed,
+  getSoundOptions,
+} from "../data/settings.js";
 
 class CustomForm {
   constructor(player, title) {
@@ -60,12 +64,12 @@ function getMainhandSlot(player) {
     ?.getEquipmentSlot(EquipmentSlot.Mainhand);
 }
 
-// Live displays (action bar, forms) show a translatable fallback. Persisted
-// lore / dynamic properties keep a plain string, see getEntityName.
+                                                                            
+                                                                    
 function nameText(name) {
   const trimmed = typeof name === "string" ? name.trim() : "";
-  // "Unnamed" is the persisted sentinel for a dragon without a name tag, never
-  // shown as English text.
+                                                                               
+                           
   return trimmed && trimmed !== "Unnamed"
     ? { text: trimmed }
     : { translate: "tooltip.dragonmounts2:unnamed" };
@@ -82,7 +86,6 @@ const SCEPTER_HATCH_SOUND_FADE = 10 * 20;
 const SCEPTER_HEAL_RADIUS = 7;
 const SCEPTER_HEAL_DURATION = 15 * 20;
 const scepterHatchZones = new Map();
-const scepterBreathCooldowns = new Map();
 
 function playScepterCastAnimation(player) {
   if (!player?.isValid) return;
@@ -98,7 +101,7 @@ function spawnHatchCastVisuals(dimension, location) {
     location,
     "dragonmounts2:spell_hatchspeed",
   );
-  dimension.spawnParticle("minecraft:totem_particle", {
+  spawnParticle(dimension, "minecraft:totem_particle", {
     x: location.x,
     y: location.y + 1.1,
     z: location.z,
@@ -106,7 +109,7 @@ function spawnHatchCastVisuals(dimension, location) {
 }
 
 function spawnScepterMagicPattern(dimension, origin, particle) {
-  dimension.spawnParticle(particle, {
+  spawnParticle(dimension, particle, {
     x: origin.x,
     y: origin.y + 0.05,
     z: origin.z,
@@ -116,21 +119,6 @@ function spawnScepterMagicPattern(dimension, origin, particle) {
 function getHeldScepter(player) {
   const item = getMainhandSlot(player)?.getItem();
   return item?.typeId === "dragonmounts2:dragon_scepter" ? item : undefined;
-}
-
-function getScepterRemainingDurability(player) {
-  try {
-    const durability = getHeldScepter(player)?.getComponent(
-      ItemDurabilityComponent.componentId,
-    );
-    if (!durability) return 0;
-    return Math.max(
-      0,
-      Number(durability.maxDurability) - Number(durability.damage),
-    );
-  } catch {
-    return 0;
-  }
 }
 
 function damageScepter(player, amount) {
@@ -205,11 +193,19 @@ export function tickDragonScepterAbilities() {
       zone.location,
       getSoundOptions({ volume }),
     );
+    const hatchSpeed = getWorldDragonEggHatchSpeed();
     for (const egg of zone.dimension.getEntities({
       families: ["dragon_egg"],
       location: zone.location,
       maxDistance: SCEPTER_HATCH_RADIUS,
     })) {
+      const eggOwnerId = egg.getDynamicProperty(
+        "dragonmounts2:hatch_owner_identifier",
+      );
+      if (eggOwnerId && eggOwnerId !== playerId) continue;
+      if (egg.getProperty("dragonmounts2:egg_hatch_speed") !== hatchSpeed) {
+        egg.setProperty("dragonmounts2:egg_hatch_speed", hatchSpeed);
+      }
       if (
         (Number(egg.getProperty("dragonmounts2:egg_hatch_time")) || 0) < 0.3
       ) {
@@ -261,45 +257,6 @@ function useScepterHatchSpeed(player) {
   );
 }
 
-function useScepterCommand(player, itemStack, dragons, action) {
-  if (!dragons.length || !damageScepter(player, 3)) return;
-  playScepterCastAnimation(player);
-  for (const dragon of dragons) {
-    if (action === "sit") {
-      dragon.triggerEvent("minecraft:on_sit");
-    } else {
-      if (dragon.getProperty("dragonmounts2:mob_state") === "sitting") {
-        dragon.triggerEvent("minecraft:on_stand");
-      }
-      dragon.triggerEvent("minecraft:on_follow");
-    }
-  }
-  const message =
-    action === "sit"
-      ? "tooltip.dragonmounts2:dragon_scepter.all_sitting"
-      : "tooltip.dragonmounts2:dragon_scepter.all_following";
-  abilityMessage(player, message);
-}
-
-function getOwnedScepterDragons(player, rule) {
-  return player.dimension
-    .getEntities({ families: ["dragonmounts2"] })
-    .filter((dragon) => {
-      if (
-        !dragon?.isValid ||
-        (rule?.dragon_types && !rule.dragon_types.includes(dragon.typeId))
-      ) {
-        return false;
-      }
-      if (
-        dragon.getDynamicProperty("dragonmounts2:owner_identifier") !==
-        player.id
-      )
-        return false;
-      return dragon.getComponent("minecraft:tameable")?.isTamed === true;
-    });
-}
-
 function useScepterHeal(player) {
   if (!damageScepter(player, 6)) return;
   playScepterCastAnimation(player);
@@ -326,24 +283,7 @@ function useScepterHeal(player) {
   abilityMessage(player, "tooltip.dragonmounts2:dragon_scepter.healing_active");
 }
 
-function showDragonScepterAbilityUI(source, itemStack, rule) {
-  const boundDragons = getOwnedScepterDragons(source, rule);
-  const remainingDurability = getScepterRemainingDurability(source);
-  const menuBody = {
-    rawtext: [
-      { translate: "tooltip.dragonmounts2:dragon_scepter.menu_title" },
-      { text: "\n" },
-      { translate: "tooltip.dragonmounts2:dragon_scepter.menu_hint" },
-      { text: "\n\n" },
-      { translate: "tooltip.dragonmounts2:dragon_scepter.menu_bound", with: [String(boundDragons.length)] },
-      { text: "\n" },
-      { translate: "tooltip.dragonmounts2:dragon_scepter.menu_charge", with: [String(remainingDurability)] },
-      { text: "\n\n" },
-      { translate: "tooltip.dragonmounts2:dragon_scepter.menu_sneak" },
-      { text: "\n" },
-      { translate: "tooltip.dragonmounts2:dragon_scepter.menu_repair" },
-    ],
-  };
+function showDragonScepterAbilityUI(source) {
   const menuTitle = {
     rawtext: [
       { text: "§5§l" },
@@ -351,7 +291,6 @@ function showDragonScepterAbilityUI(source, itemStack, rule) {
     ],
   };
   const form = new CustomForm(source, menuTitle)
-    .label(menuBody)
     .button(
       {
         rawtext: [
@@ -361,42 +300,6 @@ function showDragonScepterAbilityUI(source, itemStack, rule) {
       },
       "textures/ui/dragonmounts2/dragon_scepter/hatch_speed",
       () => system.run(() => useScepterHatchSpeed(source)),
-    )
-    .button(
-      {
-        rawtext: [
-          { text: "§b[>] §f" },
-          { translate: "tooltip.dragonmounts2:dragon_scepter.all_sit" },
-        ],
-      },
-      "textures/ui/dragonmounts2/dragon_scepter/all_sit",
-      () =>
-        system.run(() =>
-          useScepterCommand(
-            source,
-            itemStack,
-            getOwnedScepterDragons(source, rule),
-            "sit",
-          ),
-        ),
-    )
-    .button(
-      {
-        rawtext: [
-          { text: "§b[>] §f" },
-          { translate: "tooltip.dragonmounts2:dragon_scepter.all_follow" },
-        ],
-      },
-      "textures/ui/dragonmounts2/dragon_scepter/all_follow",
-      () =>
-        system.run(() =>
-          useScepterCommand(
-            source,
-            itemStack,
-            getOwnedScepterDragons(source, rule),
-            "follow",
-          ),
-        ),
     )
     .button(
       {
@@ -411,100 +314,13 @@ function showDragonScepterAbilityUI(source, itemStack, rule) {
   form.show().catch((error) => console.error(error));
 }
 
-export function dragonScepterQuickBreath(source) {
-  if (!(source instanceof Player) || !source.isValid || !getHeldScepter(source))
-    return;
-  // While mounted, sneak means "descend / dismount". Don't also fire a fireball.
-  const mount = source.getComponent("minecraft:riding")?.entityRidingOn;
-  if (mount?.isValid && entityData.dragonTypeIds.has(mount.typeId)) return;
-  const cooldownUntil = scepterBreathCooldowns.get(source.id) || 0;
-  if (cooldownUntil > system.currentTick) return;
-  scepterBreathCooldowns.set(source.id, system.currentTick + 20);
-  if (!damageScepter(source, 4)) return;
-  const direction = source.getViewDirection();
-  const head = source.getHeadLocation();
-  const breath = source.dimension.spawnEntity("minecraft:fireball", {
-    x: head.x + direction.x * 1.5,
-    y: head.y + direction.y * 1.5,
-    z: head.z + direction.z * 1.5,
-  });
-  if (breath) {
-    source.dimension.playSound(
-      "dragonmounts2:item.dragon_scepter",
-      head,
-      getSoundOptions({ volume: 0.9 }),
-    );
-    breath?.getComponent("minecraft:projectile")?.shoot(direction);
-  }
-}
-
-export function restoreGuideBookMode(player) {
-  if (!(player instanceof Player) || !player.isValid) return;
-
-  const originalMode = player.getDynamicProperty(
-    "dragonmounts2:guide_book_original_mode",
-  );
-  if (
-    originalMode === "creative" &&
-    player.getGameMode() === GameMode.spectator
-  ) {
-    player.setGameMode(GameMode.creative);
-  }
-  player.setDynamicProperty(
-    "dragonmounts2:guide_book_original_mode",
-    undefined,
-  );
-  player.setDynamicProperty("dragonmounts2:guide_book_open", false);
-}
-
-export function guideBookUse(itemStack, source) {
-  if (!(source instanceof Player) || !source.isValid) return;
-
-  const existingBookId = source.getDynamicProperty(
-    "dragonmounts2:guide_book_entity_id",
-  );
-  if (
-    existingBookId &&
-    source.getDynamicProperty("dragonmounts2:guide_book_open") === true
-  )
-    return;
-
-  if (source.getGameMode() === GameMode.creative) {
-    source.setDynamicProperty(
-      "dragonmounts2:guide_book_original_mode",
-      "creative",
-    );
-  }
-  const bookEntity = source.dimension.spawnEntity(
-    "dragonmounts2:guide_book",
-    source.location,
-  );
-  if (!bookEntity?.isValid) return;
-
-  bookEntity.setDynamicProperty("dragonmounts2:book_user_id", source.id);
-  source.setDynamicProperty(
-    "dragonmounts2:guide_book_entity_id",
-    bookEntity.id,
-  );
-
-  system.runTimeout(() => {
-    if (!bookEntity?.isValid || !source?.isValid) return;
-    if (source.getGameMode() === GameMode.creative) {
-      source.setGameMode(GameMode.spectator);
-    }
-    source.runCommand(
-      `/dialogue open @e[type=dragonmounts2:guide_book,c=1] @s dragonmounts2:1-home`,
-    );
-  }, 2);
-}
-
 export function dragonFluteUse(itemStack, source, params) {
   if (!(source instanceof Player)) return;
 
   const rule = params;
 
   if (source.isSneaking) {
-    return toggleNearbyVFlight(source, rule);
+    return toggleFormationFlight(source);
   }
 
   const binding = getDragonFluteBinding(itemStack);
@@ -521,68 +337,17 @@ export function dragonFluteUse(itemStack, source, params) {
   showDragonFluteUI(source, itemStack, rule);
 }
 
-function toggleNearbyVFlight(source, rule) {
-  const maxDistance = rule.v_flight_max_distance ?? rule.max_distance ?? 12;
-
-  const results = source.getEntitiesFromViewDirection({
-    maxDistance,
-    ignoreBlockCollision: false,
-    includePassableBlocks: false,
-    families: ["dragonmounts2"],
-  });
-
-  const dragon = results?.[0]?.entity;
-  if (!dragon?.isValid) {
-    return source.onScreenDisplay.setActionBar({
-      rawtext: [
-        { text: "§c" },
-        { translate: "tooltip.dragonmounts2:flight_rank.no_target" },
-      ],
-    });
-  }
-
-  if (rule.dragon_types && !rule.dragon_types.includes(dragon.typeId)) {
-    return source.onScreenDisplay.setActionBar({
-      rawtext: [
-        { text: "§c" },
-        { translate: `${rule.translates.selected_mobs}` },
-      ],
-    });
-  }
-
-  const tameable = dragon.getComponent("minecraft:tameable");
-  if (!tameable?.isTamed) {
-    return source.onScreenDisplay.setActionBar({
-      rawtext: [{ text: "§c" }, { translate: `${rule.translates.untamed}` }],
-    });
-  }
-
-  const ownerIdentifier = dragon.getDynamicProperty(
-    "dragonmounts2:owner_identifier",
-  );
-  if (ownerIdentifier !== source.id) {
-    return source.onScreenDisplay.setActionBar({
-      rawtext: [{ text: "§c" }, { translate: `${rule.translates.not_owned}` }],
-    });
-  }
-
-  if (!dragonUtilities.isBreakInTrusted(dragon)) {
-    return source.onScreenDisplay.setActionBar({
-      rawtext: [{ text: "§c" }, { translate: "tooltip.dragonmounts2:flight_rank.untrusted" }],
-    });
-  }
-  const enabled = !dragonUtilities.isVFlightEnabled(dragon);
-  dragonUtilities.setVFlightEnabled(dragon, enabled);
-  announceVFlight(source, nameText(dragon.nameTag), enabled);
+function toggleFormationFlight(source) {
+  const enabled = !dragonUtilities.isFormationFlightEnabled(source);
+  dragonUtilities.setFormationFlightEnabled(source, enabled);
+  announceVFlight(source, enabled);
 }
 
-function announceVFlight(source, dragonName, enabled) {
+function announceVFlight(source, enabled) {
   source.onScreenDisplay.setActionBar({
     rawtext: [
       { text: enabled ? "§a" : "§e" },
-      { translate: enabled ? "tooltip.dragonmounts2:flight_rank.vflight_on" : "tooltip.dragonmounts2:flight_rank.vflight_off" },
-      { text: " " },
-      dragonName,
+      { translate: enabled ? "tooltip.dragonmounts2:flight_rank.vflight_state_on" : "tooltip.dragonmounts2:flight_rank.vflight_state_off" },
     ],
   });
   source.dimension.playSound("random.click", source.location, getSoundOptions());
@@ -644,7 +409,7 @@ export function dragonScepterCompleteUse(itemStack, source, params) {
     !viewTarget?.isValid ||
     !params.dragon_types?.includes(viewTarget.typeId)
   ) {
-    return showDragonScepterAbilityUI(source, itemStack, params);
+    return showDragonScepterAbilityUI(source);
   }
 
   return changeDragonVariant(source, params);
@@ -1041,10 +806,10 @@ function getOwnedBoundScepterDragons(source, itemStack, rule) {
   });
 }
 
-// ---- Scepter formation menu (Patch A) ----
-// The roster is the scepter's bound dragons in effective order: ranked dragons
-// by rank, then Autos by age. Order is owner-level, so a bound dragon that is
-// not loaded ("not nearby") can still be reordered.
+                                             
+                                                                               
+                                                                              
+                                                    
 const FORMATION_NAMES_PROPERTY = "dragonmounts2:formation_names";
 const FORMATION_NAMES_MAX = 12;
 
@@ -1114,13 +879,18 @@ function rosterEntryText(entry) {
   };
 }
 
-// "Formation: 1 Ember, 2 Frost, 3 Gale (Auto)" in the order they will fly.
+                                                                           
 function announceFormation(source, roster) {
-  const parts = [{ text: "§a" }, { translate: "tooltip.dragonmounts2:flight_rank.order_prefix" }, { text: " " }];
+  source.onScreenDisplay.setActionBar({
+    rawtext: [{ text: "§a" }, ...formationSummaryText(roster)],
+  });
+  source.dimension.playSound("random.click", source.location, getSoundOptions());
+}
+
+function formationSummaryText(roster) {
+  const parts = [{ translate: "tooltip.dragonmounts2:flight_rank.order_prefix" }, { text: " " }];
   const flying = roster.slice(0, 4);
-  if (!flying.length) {
-    parts.push({ translate: "tooltip.dragonmounts2:flight_rank.auto" });
-  }
+  if (!flying.length) parts.push({ translate: "tooltip.dragonmounts2:flight_rank.auto" });
   flying.forEach((entry, index) => {
     if (index > 0) parts.push({ text: ", " });
     parts.push({
@@ -1130,8 +900,7 @@ function announceFormation(source, roster) {
       with: { rawtext: [{ text: String(index + 1) }, nameText(entry.name)] },
     });
   });
-  source.onScreenDisplay.setActionBar({ rawtext: parts });
-  source.dimension.playSound("random.click", source.location, getSoundOptions());
+  return parts;
 }
 
 function showFormationRankPicker(source, itemStack, rule, pid) {
@@ -1210,52 +979,19 @@ function showDragonScepterUI(source, itemStack, rule) {
       rawtext: [{ text: "§c" }, { translate: `${rule.translates.not_bound}` }],
     });
 
+  const flightEnabled = dragonUtilities.isFormationFlightEnabled(source);
   const scepterForm = new CustomForm(source, {
     translate: `${rule.translates.name}`,
-  }).label({
-    rawtext: [{ translate: "tooltip.dragonmounts2:flight_rank.select" }],
-  });
-  for (const entry of roster) {
-    // One tap cycles Auto, 1, ..., Auto. Each step is one atomic change to the
-    // owner's order, so duplicates and gaps cannot happen.
-    scepterForm.button(
-      { rawtext: [rosterEntryText(entry), { text: "\n" }, flightRankText(entry.rank)] },
-      "textures/ui/dragonmounts2/dragon_flute/v_formation",
-      () => {
-        system.run(() => {
-          if (!source?.isValid) return;
-          dragonUtilities.cycleFormationRank(source, entry.pid);
-          announceFormation(source, buildScepterRoster(source, itemStack, rule));
-          showDragonScepterUI(source, itemStack, rule);
-        });
-      },
-    );
-  }
-  for (const entry of roster) {
-    if (!entry.dragon) continue; // the flight toggle needs a loaded dragon
-    const boundDragon = entry.dragon;
-    const vflightOn = dragonUtilities.isVFlightEnabled(boundDragon);
-    scepterForm.button(
-      {
-        rawtext: [
-          nameText(entry.name),
-          { text: "\n" },
-          { translate: vflightOn ? "tooltip.dragonmounts2:flight_rank.vflight_state_on" : "tooltip.dragonmounts2:flight_rank.vflight_state_off" },
-        ],
-      },
-      "textures/ui/dragonmounts2/dragon_flute/v_formation",
-      () => {
-        system.run(() => {
-          if (!source?.isValid || !boundDragon?.isValid) return;
-          if (!dragonUtilities.isBreakInTrusted(boundDragon)) return;
-          const enabled = !dragonUtilities.isVFlightEnabled(boundDragon);
-          dragonUtilities.setVFlightEnabled(boundDragon, enabled);
-          announceVFlight(source, nameText(entry.name), enabled);
-          showDragonScepterUI(source, itemStack, rule);
-        });
-      },
-    );
-  }
+  }).label({ rawtext: formationSummaryText(roster) });
+  scepterForm.button(
+    { translate: flightEnabled ? "tooltip.dragonmounts2:flight_rank.vflight_state_on" : "tooltip.dragonmounts2:flight_rank.vflight_state_off" },
+    "textures/ui/dragonmounts2/dragon_flute/v_formation",
+    () => system.run(() => {
+      if (!source?.isValid) return;
+      toggleFormationFlight(source);
+      showDragonScepterUI(source, itemStack, rule);
+    }),
+  );
   scepterForm.button(
     { translate: "tooltip.dragonmounts2:flight_rank.set_formation" },
     "textures/ui/dragonmounts2/dragon_flute/v_formation",

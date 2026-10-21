@@ -4,7 +4,7 @@
     "description": {
       "identifier": "dragonmounts2:light_dragonbreath",
       "materials": { "default": "dragon_breath" },
-      "textures": { "default": "textures/particle/breath/breath_mer" },
+      "textures": { "default": "textures/particle/breath/breath_air" },
       "geometry": { "default": "geometry.dragonmounts2.dragon_breath" },
       "animations": { "rotations": "animation.dragonmounts2.dragon_breath.rotations" },
       "scripts": { "animate": ["rotations"] },

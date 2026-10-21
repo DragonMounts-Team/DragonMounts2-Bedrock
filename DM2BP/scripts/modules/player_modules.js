@@ -322,8 +322,8 @@ onWorldEvent("afterEvents", "entityDie", (event) => {
 
   if (!deadEntity?.isValid || deadEntity.typeId === "minecraft:player") return;
 
-  // A dead dragon leaves its owner's formation order (Patch A). Offline owners
-  // keep a ghost entry that the 4-entry cap eventually evicts.
+                                                                               
+                                                               
   if (dragonTypeIds.has(deadEntity.typeId)) {
     try {
       const ownerId = deadEntity.getDynamicProperty("dragonmounts2:owner_identifier");

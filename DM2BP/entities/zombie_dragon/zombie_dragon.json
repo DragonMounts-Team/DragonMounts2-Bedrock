@@ -9,6 +9,8 @@
         "dragonmounts2:age_variant": { "type": "enum", "values": [ "adult", "juvenile", "baby" ], "default": "adult", "client_sync": true },
         "dragonmounts2:breath_charge": { "type": "float", "range": [ 0.00, 1.00 ], "default": 0.00, "client_sync": true },
         "dragonmounts2:breathing_sound": { "type": "float", "range": [ 0.00, 1.00 ], "default": 0.00, "client_sync": true },
+        "dragonmounts2:breath_audio_active": { "type": "bool", "client_sync": false, "default": false },
+        "dragonmounts2:breath_ready": { "type": "bool", "client_sync": true, "default": false },
         "dragonmounts2:death_ticks": { "type": "float", "range": [ 0.00, 2.00 ], "default": 0.00, "client_sync": true },
         "dragonmounts2:has_collar": { "type": "bool", "client_sync": true, "default": false },
         "dragonmounts2:is_breathing": { "type": "bool", "client_sync": true, "default": false },
@@ -56,7 +58,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "value": "dragonmounts2:leather_dragonarmor" }
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "value": "dragonmounts2:leather_dragonarmor" }
                 ]
               }
             }
@@ -68,7 +70,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "value": "dragonmounts2:golden_dragonarmor" }
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "value": "dragonmounts2:golden_dragonarmor" }
                 ]
               }
             }
@@ -80,7 +82,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "value": "dragonmounts2:copper_dragonarmor" }
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "value": "dragonmounts2:copper_dragonarmor" }
                 ]
               }
             }
@@ -92,7 +94,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "value": "dragonmounts2:iron_dragonarmor" }
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "value": "dragonmounts2:iron_dragonarmor" }
                 ]
               }
             }
@@ -104,7 +106,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "value": "dragonmounts2:emerald_dragonarmor" }
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "value": "dragonmounts2:emerald_dragonarmor" }
                 ]
               }
             }
@@ -116,7 +118,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "value": "dragonmounts2:diamond_dragonarmor" }
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "value": "dragonmounts2:diamond_dragonarmor" }
                 ]
               }
             }
@@ -128,7 +130,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "value": "dragonmounts2:netherite_dragonarmor" }
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "value": "dragonmounts2:netherite_dragonarmor" }
                 ]
               }
             }
@@ -436,7 +438,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "operator": "!=", "value": "saddle" },
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "operator": "!=", "value": "saddle" },
                   { "test": "has_equipment", "subject": "other", "domain": "main_hand", "value": "saddle" },
                   { "test": "is_baby", "subject": "self", "operator": "!=" },
                   { "test": "is_family", "subject": "other", "value": "player" },
@@ -457,7 +459,7 @@
               "filters": {
                 "all_of": [
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:death_ticks", "value": 0.0 },
-                  { "test": "has_equipment", "subject": "self", "domain": "inventory", "operator": "==", "value": "saddle" },
+                  { "test": "has_equipment", "subject": "self", "domain": "armor", "operator": "==", "value": "saddle" },
                   {
                     "any_of": [
                       { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "minecraft:is_shears" },
@@ -589,7 +591,6 @@
           ],
           "tame_event": { "event": "minecraft:on_tame", "target": "self" }
         },
-        "minecraft:behavior.delayed_attack": { "priority": 1, "speed_multiplier": 1.8, "attack_duration": 0.36, "hit_delay_pct": 0.24, "track_target": true, "reach_multiplier": 4 },
         "minecraft:behavior.nearest_attackable_target": {
           "priority": 1,
           "scan_interval": 10,
@@ -601,7 +602,7 @@
               "filters": {
                 "all_of": [
                   { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
-                  { "test": "is_family", "subject": "other", "value": "monster" }
+                  { "test": "is_family", "subject": "other", "value": "monster" }, { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" }
                 ]
               },
               "max_dist": 16
@@ -610,10 +611,13 @@
         }
       },
       "dragonmounts2:dragon_standing_components": {
+        "minecraft:behavior.delayed_attack": { "priority": 1, "speed_multiplier": 1.8, "attack_duration": 0.36, "hit_delay_pct": 0.24, "track_target": true, "reach_multiplier": 4 },
+        "minecraft:behavior.owner_hurt_by_target": { "priority": 1, "entity_types": { "filters": { "all_of": [ { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" }, { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" } ] },  "max_dist": 64, "walk_speed_multiplier": 1.5, "sprint_speed_multiplier": 1.5 } },
+        "minecraft:behavior.owner_hurt_target": { "priority": 2, "entity_types": { "filters": { "all_of": [ { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" }, { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" } ] },  "max_dist": 64, "walk_speed_multiplier": 1.5, "sprint_speed_multiplier": 1.5 } },
         "minecraft:behavior.look_at_player": { "priority": 8, "look_distance": 12, "look_time": { "min": 1, "max": 2 }, "probability": 0.0001 },
         "minecraft:behavior.random_look_around": { "priority": 7 },
-        "minecraft:behavior.random_stroll": { "priority": 5, "speed_multiplier": 0.75, "xz_dist": 10, "y_dist": 7, "interval": 120 },
-        "minecraft:behavior.tempt": { "priority": 4, "speed_multiplier": 1.6, "within_radius": 16, "sound_interval": [ 3, 6 ], "can_tempt_vertically": true, "tempt_sound": "tempt", "items": [ "axolotl_bucket", "beef", "blue_egg", "brown_egg", "chicken", "cod", "cod_bucket", "cooked_beef", "cooked_chicken", "cooked_cod", "cooked_mutton", "cooked_porkchop", "cooked_rabbit", "cooked_salmon", "egg", "mutton", "porkchop", "pufferfish", "pufferfish_bucket", "rabbit", "rabbit_stew", "rotten_flesh", "salmon", "salmon_bucket", "sniffer_egg", "tadpole_bucket", "tropical_fish", "tropical_fish_bucket", "turtle_egg" ] }
+        "minecraft:behavior.random_stroll": { "priority": 5, "speed_multiplier": 1.0, "xz_dist": 10, "y_dist": 7, "interval": 120 },
+        "minecraft:behavior.tempt": { "priority": 4, "speed_multiplier": 1.2, "within_radius": 16, "sound_interval": [ 3, 6 ], "can_tempt_vertically": true, "tempt_sound": "tempt", "items": [ "axolotl_bucket", "beef", "blue_egg", "brown_egg", "chicken", "cod", "cod_bucket", "cooked_beef", "cooked_chicken", "cooked_cod", "cooked_mutton", "cooked_porkchop", "cooked_rabbit", "cooked_salmon", "egg", "mutton", "porkchop", "pufferfish", "pufferfish_bucket", "rabbit", "rabbit_stew", "rotten_flesh", "salmon", "salmon_bucket", "sniffer_egg", "tadpole_bucket", "tropical_fish", "tropical_fish_bucket", "turtle_egg" ] }
       },
       "dragonmounts2:dragon_sitting_components": { },
       "dragonmounts2:dragon_death": {
@@ -720,14 +724,14 @@
         "minecraft:attack": { "damage": 8 },
         "minecraft:is_baby": { },
         "minecraft:scale": { "value": 0.2 },
-        "minecraft:behavior.hurt_by_target": { "priority": 2, "hurt_owner": false, "entity_types": { "max_dist": 16, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 } }
+        "minecraft:behavior.hurt_by_target": { "priority": 2, "hurt_owner": false, "entity_types": { "filters": { "all_of": [ { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" }, { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" } ] }, "max_dist": 16, "walk_speed_multiplier": 1.5, "sprint_speed_multiplier": 1.5 } }
       },
       "dragonmounts2:dragon_juvenile": {
         "minecraft:attack": { "damage": 16 },
         "minecraft:leashable_to": { },
         "minecraft:scale": { "value": 0.7 },
         "minecraft:spawn_egg_interaction": { },
-        "minecraft:behavior.hurt_by_target": { "priority": 2, "hurt_owner": false, "entity_types": { "max_dist": 32, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 } }
+        "minecraft:behavior.hurt_by_target": { "priority": 2, "hurt_owner": false, "entity_types": { "filters": { "all_of": [ { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" }, { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" } ] }, "max_dist": 32, "walk_speed_multiplier": 1.5, "sprint_speed_multiplier": 1.5 } }
       },
       "dragonmounts2:dragon_adult": {
         "minecraft:attack": { "damage": 24 },
@@ -769,10 +773,10 @@
         "minecraft:leashable_to": { },
         "minecraft:loot": { "table": "loot_tables/entities/zombie_dragon.json" },
         "minecraft:spawn_egg_interaction": { },
-        "minecraft:behavior.hurt_by_target": { "priority": 2, "hurt_owner": false, "entity_types": { "max_dist": 64, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 } }
+        "minecraft:behavior.hurt_by_target": { "priority": 2, "hurt_owner": false, "entity_types": { "filters": { "all_of": [ { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" }, { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_tamed" } ] }, "max_dist": 64, "walk_speed_multiplier": 1.5, "sprint_speed_multiplier": 1.5 } }
       },
       "dragonmounts2:dragon_flying": { "minecraft:can_fly": { }, "minecraft:flying_speed": { "value": 0.15 }, "minecraft:movement": { "value": 0.15 }, "minecraft:movement.fly": { }, "minecraft:navigation.fly": { "avoid_water": true, "can_breach": true, "can_jump": true, "can_path_from_air": true, "can_path_over_water": false }, "minecraft:physics": { "has_gravity": false } },
-      "dragonmounts2:dragon_grounded": { "minecraft:navigation.walk": { "avoid_damage_blocks": true, "avoid_water": true, "can_jump": true, "can_path_from_air": true, "can_path_over_water": false }, "minecraft:physics": { }, "minecraft:movement.basic": { "max_turn": 45 }, "minecraft:movement": { "value": 0.24 }, "minecraft:variable_max_auto_step": { "base_value": 1.5625, "controlled_value": 1.5625, "jump_prevented_value": 0.5625 } },
+      "dragonmounts2:dragon_grounded": { "minecraft:navigation.walk": { "avoid_damage_blocks": true, "avoid_water": true, "can_jump": true, "can_path_from_air": true, "can_path_over_water": false }, "minecraft:physics": { }, "minecraft:movement.basic": { "max_turn": 45 }, "minecraft:movement": { "value": 0.35 }, "minecraft:variable_max_auto_step": { "base_value": 1.5625, "controlled_value": 1.5625, "jump_prevented_value": 0.5625 } },
       "dragonmounts2:dragon_swimming": { "minecraft:movement": { "value": 0.1 }, "minecraft:movement.sway": { "sway_amplitude": 0 }, "minecraft:navigation.generic": { "can_breach": true, "can_path_over_water": true, "can_sink": false, "can_swim": true, "can_walk": true, "is_amphibious": true }, "minecraft:physics": { }, "minecraft:underwater_movement": { "value": 0.1 } },
       "dragonmounts2:dragon_follow_owner": { "minecraft:behavior.follow_owner": { "priority": 3, "can_teleport": true, "speed_multiplier": 1.0, "start_distance": 14, "stop_distance": 10 } },
       "dragonmounts2:dragon_tamed": {
@@ -780,13 +784,12 @@
         "minecraft:is_dyeable": { "interact_text": "action.interact.dragonmounts2:dye" },
         "minecraft:is_tamed": { },
         "minecraft:leashable": { },
-        "minecraft:behavior.owner_hurt_by_target": { "priority": 1, "entity_types": { "max_dist": 64, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 } },
-        "minecraft:behavior.owner_hurt_target": { "priority": 2, "entity_types": { "max_dist": 64, "walk_speed_multiplier": 2.4, "sprint_speed_multiplier": 2.4 } },
         "minecraft:behavior.breed": { "priority": 0 }
       },
       "dragonmounts2:dragon_inventory": { "minecraft:inventory": { "inventory_size": 17, "container_type": "horse" } },
       "dragonmounts2:dragon_rideable": {
         "minecraft:rideable": {
+          "on_rider_exit_event": "dragonmounts2:on_rider_exit",
           "seat_count": 1,
           "crouching_skip_interact": true,
           "dismount_mode": "default",
@@ -799,7 +802,7 @@
         }
       },
       "dragonmounts2:dragon_saddled": { "minecraft:is_saddled": { }, "minecraft:behavior.player_ride_tamed": { } },
-      "dragonmounts2:dragon_ground_controlled": { "minecraft:input_ground_controlled": { } },
+      "dragonmounts2:dragon_ground_controlled": { "minecraft:movement": { "value": 0.24 }, "minecraft:input_ground_controlled": { } },
       "dragonmounts2:dragon_camera_controlled": { "minecraft:free_camera_controlled": { "strafe_speed_modifier": 0.6, "backwards_movement_modifier": 0.35 } },
       "dragonmounts2:dragon_chested": { "minecraft:is_chested": { } },
       "dragonmounts2:dragon_breath": {
@@ -810,6 +813,7 @@
                 "all_of": [
                   { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:is_breathing", "operator": "==" },
                   { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:ai_breath_active", "operator": "!=" },
+                  { "test": "bool_property", "subject": "self", "domain": "dragonmounts2:breath_ready", "operator": "==" },
                   { "test": "float_property", "subject": "self", "domain": "dragonmounts2:breath_charge", "operator": "==", "value": 1 }
                 ]
               },
@@ -957,19 +961,23 @@
       },
       "minecraft:on_dragon_breath": {
         "sequence": [
-          { "filters": { "test": "float_property", "domain": "dragonmounts2:breathing_sound", "operator": "==", "value": 1 }, "set_property": { "dragonmounts2:breathing_sound": "0.0" }, "play_sound": { "sound": "shoot" } },
+          { "filters": { "test": "float_property", "domain": "dragonmounts2:breathing_sound", "operator": "==", "value": 1 }, "set_property": { "dragonmounts2:breathing_sound": "0.0" } },
           { "filters": { "test": "float_property", "domain": "dragonmounts2:breathing_sound", "operator": "<", "value": 1 }, "set_property": { "dragonmounts2:breathing_sound": "math.clamp(q.property('dragonmounts2:breathing_sound')+0.01,0.0,1.0)" } }
         ]
       },
       "minecraft:decrease_breath_charge": {
         "sequence": [
-          { "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": "==", "value": 0.05 }, "play_sound": { "sound": "deactivate" } },
+          { "set_property": { "dragonmounts2:breath_ready": false } },
+          { "filters": { "test": "bool_property", "domain": "dragonmounts2:breath_audio_active", "operator": "==" }, "play_sound": { "sound": "deactivate" } },
+          { "filters": { "test": "bool_property", "domain": "dragonmounts2:breath_audio_active", "operator": "==" }, "set_property": { "dragonmounts2:breath_audio_active": false } },
           { "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": ">", "value": 0 }, "set_property": { "dragonmounts2:breath_charge": "math.clamp(q.property('dragonmounts2:breath_charge')-0.05,0.0,1.0)" } }
         ]
       },
+      "dragonmounts2:stop_breath_sound": { "sequence": [ { "filters": { "test": "bool_property", "domain": "dragonmounts2:breath_audio_active", "operator": "==" }, "play_sound": { "sound": "deactivate" } }, { "filters": { "test": "bool_property", "domain": "dragonmounts2:breath_audio_active", "operator": "==" }, "set_property": { "dragonmounts2:breath_audio_active": false } }, { "set_property": { "dragonmounts2:is_breathing": false } }, { "set_property": { "dragonmounts2:breath_charge": "0.0" } }, { "set_property": { "dragonmounts2:breath_ready": false } }] },
       "minecraft:increase_breath_charge": {
         "sequence": [
-          { "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": "==", "value": 0 }, "play_sound": { "sound": "warn" } },
+          { "filters": { "test": "bool_property", "domain": "dragonmounts2:breath_audio_active", "operator": "!=" }, "play_sound": { "sound": "warn" } },
+          { "filters": { "test": "bool_property", "domain": "dragonmounts2:breath_audio_active", "operator": "!=" }, "set_property": { "dragonmounts2:breath_audio_active": true } },
           { "filters": { "test": "float_property", "domain": "dragonmounts2:breath_charge", "operator": "<", "value": 1 }, "set_property": { "dragonmounts2:breath_charge": "math.clamp(q.property('dragonmounts2:breath_charge')+0.05,0.0,1.0)" } }
         ]
       },
@@ -1005,10 +1013,19 @@
       "dragonmounts2:on_flight_control_reset": {
         "remove": { "component_groups": [ "dragonmounts2:dragon_camera_controlled", "dragonmounts2:dragon_ground_controlled" ] }
       },
+      "dragonmounts2:on_rider_exit": {
+        "remove": { "component_groups": [ "dragonmounts2:dragon_camera_controlled", "dragonmounts2:dragon_ground_controlled" ] },
+        "sequence": [{
+          "filters": { "all_of": [{ "test": "enum_property", "domain": "dragonmounts2:mob_state", "value": "sitting" }, { "test": "enum_property", "domain": "dragonmounts2:movement_state", "value": "flying" }] },
+          "remove": { "component_groups": [ "dragonmounts2:dragon_flying", "dragonmounts2:dragon_swimming" ] },
+          "add": { "component_groups": [ "dragonmounts2:dragon_grounded" ] },
+          "set_property": { "dragonmounts2:movement_state": "grounded" }
+        }]
+      },
       "minecraft:on_sit": {
-        "remove": { "component_groups": [ "dragonmounts2:dragon_standing_components" ] },
+        "remove": { "component_groups": [ "dragonmounts2:dragon_standing_components", "dragonmounts2:dragon_follow_owner" ] },
         "add": { "component_groups": [ "dragonmounts2:dragon_sitting_components" ] },
-        "set_property": { "dragonmounts2:mob_state": "sitting" }
+        "set_property": { "dragonmounts2:mob_state": "sitting", "dragonmounts2:is_following": false }
       },
       "minecraft:on_stand": {
         "remove": { "component_groups": [ "dragonmounts2:dragon_sitting_components" ] },
@@ -1016,8 +1033,18 @@
         "set_property": { "dragonmounts2:mob_state": "standing" }
       },
       "minecraft:on_follow": {
-        "add": { "component_groups": [ "dragonmounts2:dragon_follow_owner" ] },
-        "set_property": { "dragonmounts2:is_following": true }
+        "sequence": [
+          {
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "standing" },
+            "add": { "component_groups": [ "dragonmounts2:dragon_follow_owner" ] },
+            "set_property": { "dragonmounts2:is_following": true }
+          },
+          {
+            "filters": { "test": "enum_property", "subject": "self", "domain": "dragonmounts2:mob_state", "value": "sitting" },
+            "remove": { "component_groups": [ "dragonmounts2:dragon_follow_owner" ] },
+            "set_property": { "dragonmounts2:is_following": false }
+          }
+        ]
       },
       "minecraft:on_wander": {
         "remove": { "component_groups": [ "dragonmounts2:dragon_follow_owner" ] },

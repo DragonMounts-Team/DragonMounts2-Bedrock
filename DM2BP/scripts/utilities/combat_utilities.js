@@ -1,9 +1,20 @@
-import { EntityDamageCause, system } from "@minecraft/server";
+import { EntityDamageCause, MolangVariableMap, system } from "@minecraft/server";
 import * as entityData from "../data/entity_data.js";
 import { getSafeVelocity } from "./entity_utilities.js";
-import { onAfterEntityHurt } from "../core/combat_events.js";
+import { onAfterEntityHurt, onBeforeEntityHurt } from "../core/combat_events.js";
 import { registerIntervalTask } from "../core/scheduler.js";
 import { onWorldEvent } from "../core/world_events.js";
+import { getAddonDimensions } from "../lib/runtime.js";
+import {
+  BREATH_PARTICLE_STYLES,
+  breathDefinitionFor,
+  FLAME_STYLE,
+  LIGHTNING_KINDS,
+  LIGHTNING_PROFILES,
+} from "../data/breath_data.js";
+import * as breathEffects from "./breath_effects.js";
+import { spawnParticle } from "./particle_utilities.js";
+import { getWorldEnvironmentalEffectsEnabled } from "../data/settings.js";
 
 const TARGET_SCAN_RANGE = 16;
 const TARGET_SCAN_INTERVAL = 10;
@@ -13,15 +24,36 @@ const BREATH_RANGE = 32;
 const BREATH_DURATION = 40;
 const BREATH_COOLDOWN = 40;
 const LONG_FIGHT_TICKS = 200;
+const BREATH_LOOP_SOUND_PROFILES = Object.freeze({
+  aether: "airflow",
+  dark: "airflow",
+  enchanted: "age",
+  ender: "age",
+  fire: "age",
+  forest: "forest",
+  ice: "ice",
+  light: "airflow",
+  moonlight: "lightning",
+  nether: "age",
+  sculk: null,
+  skeleton: "age",
+  storm: "lightning",
+  sunlight: "lightning",
+  terra: "age",
+  water: "water",
+  wither: "age",
+  zombie: "forest",
+});
+const breathStopWarnings = new Set();
 const MELEE_COOLDOWN = 40;
 const RIDDEN_BITE_COOLDOWN = 15;
 const RIDDEN_BITE_REACH = 2;
-// Derived from NeoDragonMounts BreathPower / BreathNode (Java):
-//   speed    = power.speed * 1.2 (INITIAL_SPEED) blocks per tick
-//   lifespan = 40 (DEFAULT_AGE_IN_TICKS) * power.lifetime ticks
-//   radius   = 2.0 (NODE_DIAMETER) * power.size / 2
-//   intensity = power.intensity
-// JUVENILE -> MEDIUM(3.95, 0.7, 2.0, 1.2); ADULT -> LARGE(4.0, 0.8, 3.25, 1.4)
+                                                                
+                                                                 
+                                                                
+                                                    
+                                
+                                                                               
 const BREATH_NODE_PROFILES = Object.freeze({
   juvenile: Object.freeze({
     radius: 2,
@@ -36,15 +68,15 @@ const BREATH_NODE_PROFILES = Object.freeze({
     lifespan: 40 * 0.8,
   }),
 });
-// Java ServerBreathHelper: nodes only spawn once the STARTING state (5 ticks) ends.
-const BREATH_START_DELAY = 5;
-// Java BreathAffectedEntity: density accumulates while hit and resets 7 ticks after the last hit.
+                                                                                    
+const BREATH_START_DELAY_TICKS = 25;
+                                                                                                  
 const ENTITY_DENSITY_RESET_TICKS = 7;
-// Hurt invulnerability window used to space out accumulated-density damage.
+                                                                            
 const BREATH_DAMAGE_INTERVAL = 10;
-// Java BreathNode.SPEED_VARIATION_ABS (3 std deviations)
+                                                         
 const NODE_SPEED_VARIATION_ABS = 0.05;
-// Search radius cap so lingering fast nodes do not trigger huge entity queries.
+                                                                                
 const BREATH_CANDIDATE_RADIUS_CAP = 64;
 const DEFAULT_BREATH_NODE_PROFILE = BREATH_NODE_PROFILES.adult;
 const BREATH_NODE_POINTS = 10;
@@ -82,6 +114,9 @@ const SCULK_REPLACEABLE_BLOCKS = new Set([
 const ELEMENTAL_CLOUD_LIFETIME = 600;
 const ELEMENTAL_CLOUD_EFFECT_INTERVAL = 20;
 const ELEMENTAL_CLOUD_VISUAL_INTERVAL = 5;
+const PROJECTILE_SLOW_SPEED = 0.08;
+const PROJECTILE_SLOW_TICKS = 10;
+const PROJECTILE_MAX_AGE_TICKS = 1200;
 const RECENT_TARGET_KEYS = Object.freeze([
   ["dragonRevenge", "dragonRevengeAt"],
   ["ownerRevenge", "ownerRevengeAt"],
@@ -123,6 +158,17 @@ const DEFAULT_PROJECTILE_ABILITY = Object.freeze({
   minChargeTicks: 20,
   cooldownTicks: 30,
 });
+const DRAGON_PROJECTILE_TYPES = Object.freeze([
+  ...new Set([
+    ...Object.values(PROJECTILE_ABILITIES).map((ability) => ability.entity),
+    DEFAULT_PROJECTILE_ABILITY.entity,
+  ]),
+]);
+const EXPLOSIVE_DRAGON_PROJECTILE_TYPES = new Set([
+  "dragonmounts2:ender_dragonball",
+  "dragonmounts2:fire_dragonball",
+  "dragonmounts2:nether_dragonball",
+]);
 const ELEMENTAL_PROJECTILE_IMPACTS = Object.freeze({
   "dragonmounts2:ice_dragonball": Object.freeze({
     effect: "slowness",
@@ -143,71 +189,76 @@ const ELEMENTAL_PROJECTILE_IMPACTS = Object.freeze({
     cloud: true,
   }),
 });
-const BREATH_PROJECTILE_IMPACTS = Object.freeze({
-  "dragonmounts2:aether_dragonbreath": Object.freeze({ effect: "airflow", particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:dark_dragonbreath": Object.freeze({ particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath", breathCloud: { chance: 0.002, effect: "darkness", duration: 120, radius: 1.4, lifetime: 600, particle: "minecraft:basic_smoke_particle" } }),
-  "dragonmounts2:enchanted_dragonbreath": Object.freeze({ effect: "fire", particle: "minecraft:basic_flame_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:ender_dragonbreath": Object.freeze({ particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath", breathCloud: { chance: 0.002, effect: "instant_damage", duration: 1, radius: 1.6, lifetime: 750, particle: "minecraft:basic_smoke_particle" } }),
-  "dragonmounts2:fire_dragonbreath": Object.freeze({ effect: "fire", particle: "minecraft:basic_flame_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:forest_dragonbreath": Object.freeze({ particle: "minecraft:happy_villager_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath", breathCloud: { chance: 0.008, effect: "poison", duration: 100, radius: 1.3, lifetime: 600, particle: "minecraft:happy_villager_particle" } }),
-  "dragonmounts2:ice_dragonbreath": Object.freeze({ effect: "ice", particle: "minecraft:snowflake_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:light_dragonbreath": Object.freeze({ effect: "airflow", particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:moonlight_dragonbreath": Object.freeze({ effect: "airflow", particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:nether_dragonbreath": Object.freeze({ effect: "nether", particle: "minecraft:basic_flame_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:sculk_dragonbreath": Object.freeze({ effect: "sculk", particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:skeleton_dragonbreath": Object.freeze({ effect: "nether", particle: "minecraft:basic_flame_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:storm_dragonbreath": Object.freeze({ effect: "water", lightningStrike: true, particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:sunlight_dragonbreath": Object.freeze({ effect: "lightning", particle: "minecraft:basic_flame_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:terra_dragonbreath": Object.freeze({ effect: "fire", particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:water_dragonbreath": Object.freeze({ effect: "water", particle: "minecraft:splash_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath" }),
-  "dragonmounts2:wither_dragonbreath": Object.freeze({ effect: "poison", particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath", breathCloud: { chance: 0.002, effect: "wither", duration: 120, radius: 1.4, lifetime: 600, particle: "minecraft:basic_smoke_particle" } }),
-  "dragonmounts2:zombie_dragonbreath": Object.freeze({ particle: "minecraft:basic_smoke_particle", particleCount: 24, sound: "dragonmounts2:mob.dragon.dragonbreath", breathCloud: { chance: 0.002, effect: "poison", duration: 100, radius: 1.3, lifetime: 600, particle: "minecraft:basic_smoke_particle" } }),
-});
+                                                                                               
+const breathDefinitions = new Map();
+function breathFor(typeId) {
+  let definition = breathDefinitions.get(typeId);
+  if (definition === undefined) {
+    definition = breathDefinitionFor(typeId);
+    breathDefinitions.set(typeId, definition);
+  }
+  return definition;
+}
 
-const BREATH_TYPES = Object.freeze({
-  "dragonmounts2:aether_dragon": { damage: 0.7, particle: "minecraft:basic_smoke_particle", effect: "airflow" },
-  "dragonmounts2:dark_dragon": {
-    damage: 0.6,
-    particle: "minecraft:basic_smoke_particle",
-    cloud: { chance: 0.002, effect: "darkness", duration: 120, radius: 1.4, lifetime: 600, particle: "minecraft:basic_smoke_particle" },
-  },
-  "dragonmounts2:enchanted_dragon": { damage: 0.7, particle: "minecraft:basic_flame_particle", effect: "fire" },
-  "dragonmounts2:ender_dragon": {
-    damage: 0.9,
-    particle: "minecraft:basic_smoke_particle",
-    cloud: { chance: 0.002, effect: "instant_damage", duration: 1, radius: 1.6, lifetime: 750, particle: "minecraft:basic_smoke_particle" },
-  },
-  "dragonmounts2:fire_dragon": { damage: 0.7, particle: "minecraft:basic_flame_particle", effect: "fire" },
-  "dragonmounts2:forest_dragon": {
-    damage: 0.6,
-    particle: "minecraft:happy_villager_particle",
-    cloud: { chance: 0.008, effect: "poison", duration: 100, radius: 1.3, lifetime: 600, particle: "minecraft:happy_villager_particle" },
-  },
-  "dragonmounts2:ice_dragon": { damage: 0.7, particle: "minecraft:snowflake_particle", effect: "ice" },
-  "dragonmounts2:light_dragon": { damage: 0.7, particle: "minecraft:basic_smoke_particle", effect: "airflow" },
-  "dragonmounts2:moonlight_dragon": { damage: 0.7, particle: "minecraft:basic_smoke_particle", effect: "airflow" },
-  "dragonmounts2:nether_dragon": { damage: 0.9, particle: "minecraft:basic_flame_particle", effect: "nether" },
-  "dragonmounts2:sculk_dragon": { damage: 0.6, particle: "minecraft:basic_smoke_particle", effect: "sculk" },
-  "dragonmounts2:skeleton_dragon": { damage: 0.7, particle: "minecraft:basic_flame_particle", effect: "nether" },
-  "dragonmounts2:storm_dragon": { damage: 0.7, particle: "minecraft:basic_smoke_particle", effect: "water" },
-  "dragonmounts2:sunlight_dragon": { damage: 0.7, particle: "minecraft:basic_flame_particle", effect: "lightning" },
-  "dragonmounts2:terra_dragon": { damage: 0.7, particle: "minecraft:basic_smoke_particle", effect: "fire" },
-  "dragonmounts2:water_dragon": { damage: 0.7, particle: "minecraft:snowflake_particle", effect: "water" },
-  "dragonmounts2:wither_dragon": {
-    damage: 0.6,
-    particle: "minecraft:basic_smoke_particle",
-    effect: "poison",
-    cloud: { chance: 0.002, effect: "wither", duration: 120, radius: 1.4, lifetime: 600, particle: "minecraft:basic_smoke_particle" },
-  },
-  "dragonmounts2:zombie_dragon": {
-    damage: 0.6,
-    particle: "minecraft:basic_smoke_particle",
-    cloud: { chance: 0.002, effect: "poison", duration: 100, radius: 1.3, lifetime: 600, particle: "minecraft:basic_smoke_particle" },
-  },
+                                                                                            
+const IMPACT_EFFECT_BY_KIND = Object.freeze({
+  fire: "fire", nether: "nether", ice: "ice", water: "water", storm: "water",
+  aether: "airflow", sculk: "sculk", wither: "poison", moonlight: "lightning", sunlight: "lightning",
+});
+const IMPACT_PARTICLE_BY_KIND = Object.freeze({
+  fire: "minecraft:basic_flame_particle", nether: "minecraft:basic_flame_particle",
+  ice: "minecraft:snowflake_particle", water: "minecraft:splash_particle",
+  forest: "minecraft:happy_villager_particle",
+  moonlight: "dragonmounts2:lightning_blue",
+  sunlight: "dragonmounts2:lightning_orange",
+});
+const BREATH_PROJECTILE_IMPACTS = (() => {
+  const impacts = {};
+  const add = (entityId, definition) => {
+    impacts[entityId] = Object.freeze({
+      effect: IMPACT_EFFECT_BY_KIND[definition.kind],
+      particle: IMPACT_PARTICLE_BY_KIND[definition.kind] ?? "minecraft:basic_smoke_particle",
+      particleCount: 24,
+      sound: "dragonmounts2:mob.dragon.dragonbreath",
+      lightningStrike: definition.kind === "storm" ? true : undefined,
+      breathCloud: definition.cloud ?? undefined,
+    });
+  };
+  for (const typeId of [
+    "aether", "dark", "enchanted", "ender", "fire", "forest", "ice", "light", "moonlight",
+    "nether", "sculk", "skeleton", "storm", "sunlight", "terra", "water", "wither", "zombie",
+  ]) {
+    const dragonId = `dragonmounts2:${typeId}_dragon`;
+    add(`${dragonId}breath`, breathFor(dragonId));
+  }
+  add("dragonmounts2:blue_fire_dragonbreath", breathFor("dragonmounts2:fire_dragon"));
+  return Object.freeze(impacts);
+})();
+
+const BREATH_PROJECTILE_DRAGONS = Object.freeze({
+  "dragonmounts2:aether_dragonbreath": "dragonmounts2:aether_dragon",
+  "dragonmounts2:dark_dragonbreath": "dragonmounts2:dark_dragon",
+  "dragonmounts2:enchanted_dragonbreath": "dragonmounts2:enchanted_dragon",
+  "dragonmounts2:ender_dragonbreath": "dragonmounts2:ender_dragon",
+  "dragonmounts2:fire_dragonbreath": "dragonmounts2:fire_dragon",
+  "dragonmounts2:blue_fire_dragonbreath": "dragonmounts2:fire_dragon",
+  "dragonmounts2:forest_dragonbreath": "dragonmounts2:forest_dragon",
+  "dragonmounts2:ice_dragonbreath": "dragonmounts2:ice_dragon",
+  "dragonmounts2:light_dragonbreath": "dragonmounts2:light_dragon",
+  "dragonmounts2:moonlight_dragonbreath": "dragonmounts2:moonlight_dragon",
+  "dragonmounts2:nether_dragonbreath": "dragonmounts2:nether_dragon",
+  "dragonmounts2:sculk_dragonbreath": "dragonmounts2:sculk_dragon",
+  "dragonmounts2:skeleton_dragonbreath": "dragonmounts2:skeleton_dragon",
+  "dragonmounts2:storm_dragonbreath": "dragonmounts2:storm_dragon",
+  "dragonmounts2:sunlight_dragonbreath": "dragonmounts2:sunlight_dragon",
+  "dragonmounts2:terra_dragonbreath": "dragonmounts2:terra_dragon",
+  "dragonmounts2:water_dragonbreath": "dragonmounts2:water_dragon",
+  "dragonmounts2:wither_dragonbreath": "dragonmounts2:wither_dragon",
+  "dragonmounts2:zombie_dragonbreath": "dragonmounts2:zombie_dragon",
 });
 
 const runtimeByDragon = new Map();
-const reportedParticleErrors = new Set();
+const activeDragonProjectiles = new Map();
 const reportedBreathBlockErrors = new Set();
 const reportedBreathEnvironmentErrors = new Set();
 const elementalClouds = new Map();
@@ -244,6 +295,9 @@ function stateFor(dragon) {
       lastBreath: null,
       lastAim: null,
       affectedEntities: new Map(),
+      affectedBlocks: new Map(),
+      breathMemo: {},
+      breathCtx: null,
     };
     runtimeByDragon.set(dragon.id, state);
   }
@@ -443,7 +497,9 @@ function isFriendly(dragon, target) {
   if (ridersOf(dragon).some((rider) => rider.id === target.id)) return true;
   const ownerId = dragonOwnerId(dragon);
   if (ownerId && target.id === ownerId) return true;
-  const targetOwnerId = component(target, "minecraft:tameable")?.tamedToPlayerId;
+  const targetTameable = component(target, "minecraft:tameable");
+  if (targetTameable?.isTamed === true) return true;
+  const targetOwnerId = targetTameable?.tamedToPlayerId;
   return Boolean(ownerId && targetOwnerId === ownerId);
 }
 
@@ -553,6 +609,59 @@ function findTarget(dragon, state) {
 function setAIBreathing(dragon, enabled) {
   dragon.setProperty("dragonmounts2:ai_breath_active", enabled);
   dragon.setProperty("dragonmounts2:is_breathing", enabled);
+  if (enabled) setBreathReady(dragon, false);
+}
+
+function setBreathReady(dragon, ready) {
+  if (dragon.getProperty("dragonmounts2:breath_ready") !== ready) {
+    dragon.setProperty("dragonmounts2:breath_ready", ready);
+  }
+}
+
+export function stopDragonBreathAudio(dragon) {
+  const dragonType = dragon.typeId
+    .replace("dragonmounts2:", "")
+    .replace("_dragon", "");
+  const soundProfile = BREATH_LOOP_SOUND_PROFILES[dragonType];
+  if (soundProfile) {
+    const age = dragon.getProperty("dragonmounts2:age_variant");
+    const ageSound = age === "baby"
+      ? "hatchling"
+      : age === "juvenile"
+        ? "juvenile"
+        : "adult";
+    const sound = `dragonmounts2:mob.dragon.java_breath_loop_dragon_${dragonType}${
+      soundProfile === "age" ? `_${ageSound}` : ""
+    }`;
+    for (const player of dragon.dimension.getPlayers({
+      location: dragon.location,
+      maxDistance: 40,
+    })) {
+      const sameTypeLoopActive = dragon.dimension.getEntities({
+        location: player.location,
+        maxDistance: 40,
+      }).some((candidate) =>
+        candidate.id !== dragon.id &&
+        candidate.typeId === dragon.typeId &&
+        candidate.getProperty("dragonmounts2:is_breathing") === true &&
+        candidate.getProperty("dragonmounts2:breath_ready") === true
+      );
+      if (sameTypeLoopActive) continue;
+
+      try {
+        player.runCommand(`stopsound @s ${sound}`);
+      } catch (error) {
+        if (!breathStopWarnings.has(sound)) {
+          breathStopWarnings.add(sound);
+          const message = error instanceof Error ? error.message : String(error);
+          console.warn(
+            `[DragonMounts2] Failed to stop breath loop ${sound}: ${message}`,
+          );
+        }
+      }
+    }
+  }
+  dragon.triggerEvent("dragonmounts2:stop_breath_sound");
 }
 
 function endAIBreath(dragon, state) {
@@ -562,6 +671,8 @@ function endAIBreath(dragon, state) {
   }
   dragon.setProperty("dragonmounts2:ai_breath_active", false);
   dragon.setProperty("dragonmounts2:is_breathing", false);
+  setBreathReady(dragon, false);
+  stopDragonBreathAudio(dragon);
   if (state.breathStartedAt >= 0) {
     state.lastBreathEndedAt = system.currentTick;
     state.hasBreathed = true;
@@ -610,12 +721,17 @@ function aerialAttackPosition(dragon, target, state) {
   };
 }
 
+                                                                                 
+                                                                                      
+const BREATH_CONE_START = 0.1;
 function breathNodeRadius(node) {
-  const lifetimeFraction = Math.min(node.age / node.profile.lifespan, 1);
-  const sizeFraction = lifetimeFraction < 0.25
-    ? Math.sin((lifetimeFraction / 0.25) * Math.PI / 2)
-    : 1;
-  return node.profile.radius * (Math.max(0, sizeFraction) * 0.8 + 0.2);
+  const origin = node.origin;
+  const at = node.position;
+  const travelled = origin && at
+    ? Math.hypot(at.x - origin.x, at.y - origin.y, at.z - origin.z)
+    : 0;
+  const growth = Math.min(1, travelled / BREATH_CONE_LENGTH);
+  return node.profile.radius * (BREATH_CONE_START + (1 - BREATH_CONE_START) * growth);
 }
 
 function breathNodeIntensity(node) {
@@ -633,7 +749,7 @@ function breathNodeIntensity(node) {
   return node.profile.intensity;
 }
 
-// Truncated gaussian: mean 0, `limit` = 3 standard deviations (Java MathUtil.getTruncatedGaussian).
+                                                                                                    
 function truncatedGaussian(limit) {
   const deviation = limit / 3;
   for (let attempt = 0; attempt < 8; attempt++) {
@@ -680,33 +796,132 @@ function randomNodePoint(start, end, radius, pointIndex) {
     x: centre.x + Math.cos(angle) * horizontal * distance,
     y: centre.y + vertical * distance,
     z: centre.z + Math.sin(angle) * horizontal * distance,
+    cx: centre.x,
+    cy: centre.y,
+    cz: centre.z,
   };
 }
 
+                                                                                    
+                                                                                         
+                                                                                       
+                                  
+function packBlockKey(x, y, z) {
+  return ((x & 0x1fffff) * 2097152 + (z & 0x1fffff)) * 512 + ((y + 64) & 511);
+}
+                                                                                    
+                                                                                   
+const BREATH_PASSABLE_PATTERN =
+  /(flower|tulip|orchid|sapling|torch|grass|fern|vine|carpet|rail|button|lever|sign|banner|pressure_plate|tripwire|web|coral_fan|lichen|roots|mushroom|dripleaf|seagrass|kelp|candle|redstone_wire|snow_layer|petals|leaf_litter|deadbush|fire|poppy|dandelion|allium|bluet|daisy|lily|rose|peony|lilac|sunflower|cornflower|sprouts|wart$|ladder|scaffolding|^minecraft:light_block|^minecraft:structure_void)/;
+function isBreathBlocking(block) {
+  if (block.isAir || block.isLiquid) return false;
+  if (block.isSolid) return true;
+  return !BREATH_PASSABLE_PATTERN.test(block.typeId);
+}
+                                                                           
+function lineBlocked(dimension, ax, ay, az, bx, by, bz) {
+  for (const t of [0.34, 0.67, 1]) {
+    const entry = cachedBlock(
+      dimension,
+      Math.floor(ax + (bx - ax) * t),
+      Math.floor(ay + (by - ay) * t),
+      Math.floor(az + (bz - az) * t),
+    );
+    if (entry?.solid) return true;
+  }
+  return false;
+}
+const nodeBlockCache = { tick: -1, byDimension: new Map() };
+function cachedBlock(dimension, x, y, z) {
+  const now = system.currentTick;
+  if (nodeBlockCache.tick !== now) {
+    nodeBlockCache.tick = now;
+    nodeBlockCache.byDimension.clear();
+  }
+  let cache = nodeBlockCache.byDimension.get(dimension.id);
+  if (!cache) {
+    cache = new Map();
+    nodeBlockCache.byDimension.set(dimension.id, cache);
+  }
+  const key = packBlockKey(x, y, z);
+  let entry = cache.get(key);
+  if (entry === undefined) {
+    let block;
+    try {
+      block = dimension.getBlock({ x, y, z });
+    } catch {
+      block = undefined;
+    }
+    entry = block
+      ? {
+        block,
+        key,
+        x,
+        y,
+        z,
+        air: block.isAir,
+        liquid: block.isLiquid,
+        solid: isBreathBlocking(block),
+        water: block.isLiquid &&
+          (block.typeId === "minecraft:water" || block.typeId === "minecraft:flowing_water"),
+      }
+      : null;
+    cache.set(key, entry);
+  }
+  return entry;
+}
+
+                                                                               
+                                                                                     
 function findNodeCollision(dragon, start, end) {
-  const delta = {
-    x: end.x - start.x,
-    y: end.y - start.y,
-    z: end.z - start.z,
-  };
-  const length = Math.hypot(delta.x, delta.y, delta.z);
-  const steps = Math.max(1, Math.ceil(length / 0.25));
-  let previous = start;
+  const dimension = dragon.dimension;
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const dz = end.z - start.z;
+  const length = Math.hypot(dx, dy, dz);
+  const open = { position: end, block: null, entry: null, collided: false, extinguished: false, axis: null, t: 1 };
+  if (length < 1e-6) return open;
+  const at = (t) => ({ x: start.x + dx * t, y: start.y + dy * t, z: start.z + dz * t });
+  let x = Math.floor(start.x);
+  let y = Math.floor(start.y);
+  let z = Math.floor(start.z);
+  const stepX = Math.sign(dx);
+  const stepY = Math.sign(dy);
+  const stepZ = Math.sign(dz);
+  const deltaX = dx !== 0 ? Math.abs(1 / dx) : Infinity;
+  const deltaY = dy !== 0 ? Math.abs(1 / dy) : Infinity;
+  const deltaZ = dz !== 0 ? Math.abs(1 / dz) : Infinity;
+  let maxX = dx > 0 ? (x + 1 - start.x) / dx : dx < 0 ? (start.x - x) / -dx : Infinity;
+  let maxY = dy > 0 ? (y + 1 - start.y) / dy : dy < 0 ? (start.y - y) / -dy : Infinity;
+  let maxZ = dz > 0 ? (z + 1 - start.z) / dz : dz < 0 ? (start.z - z) / -dz : Infinity;
   try {
-    for (let step = 1; step <= steps; step++) {
-      const point = pointAlongSegment(start, end, step / steps);
-      const block = dragon.dimension.getBlock({
-        x: Math.floor(point.x),
-        y: Math.floor(point.y),
-        z: Math.floor(point.z),
-      });
-      if (block?.isLiquid) {
-        return { position: previous, block, collided: false, extinguished: true };
+    for (let guard = 0; guard < 96; guard++) {
+      let tEnter;
+      let axis;
+      if (maxX <= maxY && maxX <= maxZ) {
+        tEnter = maxX; axis = "x"; x += stepX; maxX += deltaX;
+      } else if (maxY <= maxZ) {
+        tEnter = maxY; axis = "y"; y += stepY; maxY += deltaY;
+      } else {
+        tEnter = maxZ; axis = "z"; z += stepZ; maxZ += deltaZ;
       }
-      if (block?.isSolid) {
-        return { position: previous, block, collided: true, extinguished: false };
+      if (tEnter > 1) break;
+      const entry = cachedBlock(dimension, x, y, z);
+      if (!entry) continue;
+      if (entry.water) {
+        return { position: at(Math.max(0, tEnter)), block: entry.block, entry, collided: false, extinguished: true, axis, t: tEnter };
       }
-      previous = point;
+      if (entry.solid) {
+        return {
+          position: at(Math.max(0, tEnter - 0.02 / length)),
+          block: entry.block,
+          entry,
+          collided: true,
+          extinguished: false,
+          axis,
+          t: Math.min(1, Math.max(0, tEnter)),
+        };
+      }
     }
   } catch (error) {
     if (!reportedBreathBlockErrors.has(dragon.typeId)) {
@@ -717,27 +932,62 @@ function findNodeCollision(dragon, start, end) {
       );
     }
   }
-  return { position: end, block: null, collided: false, extinguished: false };
+  return open;
 }
 
-function addBlockExposure(blocks, block, density, direction) {
-  if (!block || block.isAir || block.isLiquid) return;
-  const key = `${block.location.x},${block.location.y},${block.location.z}`;
-  const existing = blocks.get(key);
-  if (existing) {
-    existing.density += density;
-    existing.direction = addVector(existing.direction, direction, density);
-  } else {
-    blocks.set(key, {
-      block,
-      density,
-      direction: {
-        x: direction.x * density,
-        y: direction.y * density,
-        z: direction.z * density,
-      },
+                                                                               
+                                                                                       
+                                                                   
+function slideNode(dragon, start, node) {
+  let position = start;
+  const velocity = { x: node.velocity.x, y: node.velocity.y, z: node.velocity.z };
+  let remaining = 1;
+  const collisions = [];
+  let extinguished = false;
+  for (let leg = 0; leg < 3 && remaining > 0.001; leg++) {
+    const result = findNodeCollision(dragon, position, {
+      x: position.x + velocity.x * remaining,
+      y: position.y + velocity.y * remaining,
+      z: position.z + velocity.z * remaining,
     });
+    position = result.position;
+    if (result.extinguished) {
+      extinguished = true;
+      break;
+    }
+    if (!result.collided) break;
+                                                                                
+    const heading = velocity[result.axis] > 0;
+    collisions.push({
+      entry: result.entry,
+      face: result.axis === "x"
+        ? (heading ? breathEffects.FACE_WEST : breathEffects.FACE_EAST)
+        : result.axis === "y"
+        ? (heading ? breathEffects.FACE_DOWN : breathEffects.FACE_UP)
+        : (heading ? breathEffects.FACE_NORTH : breathEffects.FACE_SOUTH),
+    });
+    velocity[result.axis] = 0;
+    remaining *= 1 - result.t;
   }
+  node.velocity = velocity;
+  return { position, collided: collisions.length > 0, collisions, extinguished };
+}
+
+                                                                                             
+                                                                                            
+                                                                                         
+const MAX_AFFECTED_BLOCKS = 640;
+function addBlockExposure(affected, entry, density, face, definition, now) {
+  if (!entry || (entry.air && !definition.exposeAir) || (entry.liquid && !definition.exposeLiquid)) return;
+  let record = affected.get(entry.key);
+  if (!record) {
+    if (affected.size >= MAX_AFFECTED_BLOCKS) return;
+    record = breathEffects.createAffectedBlock(entry.key, entry.x, entry.y, entry.z, entry.block);
+    affected.set(entry.key, record);
+  }
+  record.block = entry.block;
+  record.touchedAt = now;
+  breathEffects.addHitDensity(record, face, density);
 }
 
 function addEntityExposure(exposureByEntity, candidate, density, direction) {
@@ -747,7 +997,7 @@ function addEntityExposure(exposureByEntity, candidate, density, direction) {
     exposure.direction = addVector(exposure.direction, direction, density);
   } else {
     exposureByEntity.set(candidate.id, {
-      entity: candidate,
+      entity: candidate.entity,
       density,
       direction: {
         x: direction.x * density,
@@ -781,26 +1031,24 @@ function isInsideBreathNodeSegment(point, start, end, radius) {
   return distanceSquared(point, closest) <= radius ** 2;
 }
 
+                                                                                 
 function candidateNearBreathNode(candidate, start, end, radius) {
-  const box = component(candidate, "minecraft:collision_box");
-  const width = box?.width ?? 1;
-  const height = box?.height ?? 1;
-  const location = candidate.location;
+  const { x, y, z, width, height } = candidate;
   return (
-    location.x + width / 2 >= Math.min(start.x, end.x) - radius &&
-    location.x - width / 2 <= Math.max(start.x, end.x) + radius &&
-    location.y + height >= Math.min(start.y, end.y) - radius &&
-    location.y <= Math.max(start.y, end.y) + radius &&
-    location.z + width / 2 >= Math.min(start.z, end.z) - radius &&
-    location.z - width / 2 <= Math.max(start.z, end.z) + radius
+    x + width / 2 >= Math.min(start.x, end.x) - radius &&
+    x - width / 2 <= Math.max(start.x, end.x) + radius &&
+    y + height >= Math.min(start.y, end.y) - radius &&
+    y <= Math.max(start.y, end.y) + radius &&
+    z + width / 2 >= Math.min(start.z, end.z) - radius &&
+    z - width / 2 <= Math.max(start.z, end.z) + radius
   );
 }
 
-function sampleBreathNode(dragon, node, candidates, blockExposure, entityExposure) {
+function sampleBreathNode(dragon, node, candidates, affectedBlocks, entityExposure, definition, now) {
   node.age += 1;
   const start = node.position;
-  const intendedEnd = addVector(start, node.velocity);
-  const collision = findNodeCollision(dragon, start, intendedEnd);
+  node.lastStart = { x: start.x, y: start.y, z: start.z };
+  const collision = slideNode(dragon, start, node);
   const end = collision.position;
   const movement = {
     x: end.x - start.x,
@@ -816,42 +1064,47 @@ function sampleBreathNode(dragon, node, candidates, blockExposure, entityExposur
   const radius = breathNodeRadius(node);
   const sampledEntityHits = new Map();
   const nearbyCandidates = candidates.filter((candidate) =>
-    valid(candidate) && component(candidate, "minecraft:health") &&
     candidateNearBreathNode(candidate, start, end, radius)
   );
 
-  if (collision.collided) {
-    addBlockExposure(blockExposure, collision.block, intensity, direction);
+  for (const { entry, face } of collision.collisions) {
+    addBlockExposure(affectedBlocks, entry, intensity, face, definition, now);
   }
   for (let pointIndex = 0; pointIndex < BREATH_NODE_POINTS; pointIndex++) {
     const point = randomNodePoint(start, end, radius, pointIndex);
-    try {
-      const block = dragon.dimension.getBlock({
-        x: Math.floor(point.x),
-        y: Math.floor(point.y),
-        z: Math.floor(point.z),
-      });
-      addBlockExposure(blockExposure, block, sampleDensity, direction);
-    } catch (error) {
-      if (!reportedBreathBlockErrors.has(dragon.typeId)) {
-        reportedBreathBlockErrors.add(dragon.typeId);
-        const message = error instanceof Error ? error.message : String(error);
-        console.warn(
-          `[DragonMounts2] Breath node sample failed for ${dragon.typeId}: ${message}`,
+                                                                                         
+                                                    
+    if (lineBlocked(dragon.dimension, point.cx, point.cy, point.cz, point.x, point.y, point.z)) {
+      const own = cachedBlock(dragon.dimension, Math.floor(point.x), Math.floor(point.y), Math.floor(point.z));
+                                                                             
+      if (own && own.solid) {
+        addBlockExposure(
+          affectedBlocks, own, sampleDensity,
+          breathEffects.intersectedFace(point.cx, point.cy, point.cz, point.x, point.y, point.z),
+          definition, now,
         );
       }
+      continue;
     }
-
+    addBlockExposure(
+      affectedBlocks,
+      cachedBlock(
+        dragon.dimension,
+        Math.floor(point.x),
+        Math.floor(point.y),
+        Math.floor(point.z),
+      ),
+      sampleDensity,
+      breathEffects.intersectedFace(point.cx, point.cy, point.cz, point.x, point.y, point.z),
+      definition,
+      now,
+    );
     for (const candidate of nearbyCandidates) {
-      const box = component(candidate, "minecraft:collision_box");
-      const width = box?.width ?? 1;
-      const height = box?.height ?? 1;
-      const location = candidate.location;
       if (
-        Math.abs(point.x - location.x) <= width / 2 &&
-        point.y >= location.y &&
-        point.y <= location.y + height &&
-        Math.abs(point.z - location.z) <= width / 2
+        Math.abs(point.x - candidate.x) <= candidate.width / 2 &&
+        point.y >= candidate.y &&
+        point.y <= candidate.y + candidate.height &&
+        Math.abs(point.z - candidate.z) <= candidate.width / 2
       ) {
         sampledEntityHits.set(
           candidate.id,
@@ -862,18 +1115,20 @@ function sampleBreathNode(dragon, node, candidates, blockExposure, entityExposur
   }
 
   for (const candidate of nearbyCandidates) {
-    const box = component(candidate, "minecraft:collision_box");
-    const width = box?.width ?? 1;
-    const height = box?.height ?? 1;
-    const location = candidate.location;
+                                                                               
+    const seg = pointAlongSegment(start, end, 1);
+    if (lineBlocked(
+      dragon.dimension, seg.x, seg.y, seg.z,
+      candidate.x, candidate.y + candidate.height * 0.5, candidate.z,
+    )) continue;
     let cornersInside = 0;
     for (const xSign of [-1, 1]) {
       for (const ySign of [0, 1]) {
         for (const zSign of [-1, 1]) {
           if (isInsideBreathNodeSegment({
-            x: location.x + xSign * width / 2,
-            y: location.y + ySign * height,
-            z: location.z + zSign * width / 2,
+            x: candidate.x + xSign * candidate.width / 2,
+            y: candidate.y + ySign * candidate.height,
+            z: candidate.z + zSign * candidate.width / 2,
           }, start, end, radius)) {
             cornersInside += 1;
           }
@@ -891,109 +1146,298 @@ function sampleBreathNode(dragon, node, candidates, blockExposure, entityExposur
   if (collision.extinguished) node.age = node.profile.lifespan + 1;
   else {
     if (collision.collided) node.age += 5;
-    if (collision.collided || length < node.profile.speed * 0.25) {
-      node.age += 20;
-    }
+    if (length < node.profile.speed * 0.25) node.age += 20;
   }
   return collision;
 }
 
-function emitNodeParticle(dragon, breath, node) {
-  if (!isLocationInLoadedChunk(dragon.dimension, node.position)) return;
-  try {
-    dragon.dimension.spawnParticle(breath.particle, node.position);
-  } catch (error) {
-    if (reportedParticleErrors.has(breath.particle)) return;
-    reportedParticleErrors.add(breath.particle);
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(
-      `[DragonMounts2] Breath particle ${breath.particle} failed: ${message}`,
-    );
+                                                                                   
+                                                                                      
+                                                                     
+const BREATH_PARTICLE_BUDGET = 40;
+const MAX_BLOCK_EFFECTS_PER_TICK = 32;
+const NORMAL_PARTICLE_CHANCE = 0.1;
+const SPECIAL_PARTICLE_CHANCE = 0.3;
+function breathParticleStyle(dragon) {
+  if (dragon.typeId === "dragonmounts2:nether_dragon") {
+    const variant = String(dragon.getProperty("dragonmounts2:variant_type") ?? "");
+    if (variant.includes("soul")) return { sprite: "soul", style: "plain" };
+  }
+  if (dragon.typeId === "dragonmounts2:fire_dragon") {
+    const variant = String(dragon.getProperty("dragonmounts2:variant_type") ?? "");
+    if (variant.includes("blue")) return { sprite: "blue_fire", style: "flame" };
+  }
+  return BREATH_PARTICLE_STYLES[dragon.typeId] ?? FLAME_STYLE;
+}
+
+function spawnBreathParticle(dimension, id, location, variables) {
+  spawnParticle(dimension, id, location, variables);
+}
+
+                                                                                   
+                                                                                  
+                                                                               
+                                                                              
+                                                                             
+const BREATH_CONE_LENGTH = 14;
+const PARTICLE_LIFE = 0.055;                                                         
+function coneSize(fullSize, travelled) {
+  const growth = Math.min(1, travelled / BREATH_CONE_LENGTH);
+  return Math.max(0.05, fullSize * (0.25 + 0.75 * Math.sin(growth * Math.PI / 2)));
+}
+                                                                                          
+                                                                                        
+function emitLightningNode(dragon, node, kind, budget) {
+  const at = node.position;
+  const spread = breathNodeRadius(node) * 0.375;
+  spawnBreathParticle(dragon.dimension, LIGHTNING_PROFILES[kind].particle, {
+    x: at.x + (Math.random() - 0.5) * spread,
+    y: at.y + (Math.random() - 0.5) * spread,
+    z: at.z + (Math.random() - 0.5) * spread,
+  });
+  budget.left -= 1;
+}
+
+function emitNodeParticle(dragon, node, budget, definition) {
+  if (budget.left <= 0) return;
+  if (LIGHTNING_KINDS.has(definition.kind)) {
+    emitLightningNode(dragon, node, definition.kind, budget);
+    return;
+  }
+  const { sprite, style } = breathParticleStyle(dragon);
+  const fullSize = node.profile.radius * 2 * 0.375 / 2;                                      
+  const renderDiameter = breathNodeRadius(node) * 2 * 0.375;
+  const origin = node.origin ?? node.lastStart ?? node.position;
+  const from = node.lastStart ?? node.position;
+  const to = node.position;
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const dz = to.z - from.z;
+  const length = Math.hypot(dx, dy, dz);
+  const variables = new MolangVariableMap();
+  variables.setFloat("variable.life", PARTICLE_LIFE);
+  variables.setFloat("variable.size0", coneSize(fullSize, Math.hypot(from.x - origin.x, from.y - origin.y, from.z - origin.z)));
+  variables.setFloat("variable.size1", coneSize(fullSize, Math.hypot(to.x - origin.x, to.y - origin.y, to.z - origin.z)));
+  if (length > 0.02) {
+    variables.setFloat("variable.dx", dx / length);
+    variables.setFloat("variable.dy", dy / length);
+    variables.setFloat("variable.dz", dz / length);
+    variables.setFloat("variable.speed", length / PARTICLE_LIFE);
+  } else {
+    variables.setFloat("variable.dx", 0);
+    variables.setFloat("variable.dy", 1);
+    variables.setFloat("variable.dz", 0);
+    variables.setFloat("variable.speed", 0);
+  }
+  if (style === "air") {
+    variables.setFloat("variable.roll", (node.rollSign ??= Math.random() < 0.5 ? 1 : -1) * 1200);
+  }
+  spawnBreathParticle(dragon.dimension, `dragonmounts2:breath_${sprite}`, from, variables);
+  budget.left -= 1;
+
+                                                      
+  const lifetimeFraction = Math.min(node.age / node.profile.lifespan, 1);
+  if (
+    Math.random() > NORMAL_PARTICLE_CHANCE ||
+    Math.random() >= lifetimeFraction
+  ) return;
+  const special = Math.random() < SPECIAL_PARTICLE_CHANCE;
+  const at = node.position;
+  const dimension = dragon.dimension;
+  switch (style) {
+    case "flame":
+      spawnBreathParticle(dimension, "minecraft:basic_smoke_particle", at);
+      break;
+    case "nether":
+      spawnBreathParticle(
+        dimension,
+        special ? "minecraft:lava_particle" : "minecraft:basic_smoke_particle",
+        at,
+      );
+      break;
+    case "ender":
+      spawnBreathParticle(dimension, "minecraft:dragon_breath_trail", at);
+      break;
+    case "water":
+      spawnBreathParticle(dimension, "minecraft:water_splash_particle", {
+        x: at.x + (Math.random() - 0.5) * renderDiameter,
+        y: at.y + 0.8,
+        z: at.z + (Math.random() - 0.5) * renderDiameter,
+      });
+      break;
+    case "ice": {
+      const small = new MolangVariableMap();
+      small.setFloat("variable.size0", 0.12);
+      small.setFloat("variable.size1", 0.12);
+      small.setFloat("variable.life", 0.6);
+      small.setFloat("variable.speed", 0);
+      small.setFloat("variable.dx", 0);
+      small.setFloat("variable.dy", 1);
+      small.setFloat("variable.dz", 0);
+      spawnBreathParticle(dimension, "dragonmounts2:breath_ice", at, small);
+      break;
+    }
+    default:
+      break;
   }
 }
 
-function applyBreathDamage(
-  dragon,
-  target,
-  breath,
-  direction,
-  hitDensity,
-  damageDue = true,
-) {
-  let damage = breath.damage * hitDensity;
-  let knockback = 0;
-  const onFire = isEntityOnFire(target);
-  const inPowderSnow = isEntityInPowderSnow(target);
-  switch (breath.effect) {
-    case "fire":
-      target.setOnFire(4, true);
-      if (inPowderSnow) damage *= 2;
-      else if (target.isInWater) damage *= 1.5;
-      break;
-    case "nether":
-      target.setOnFire(8, true);
-      if (inPowderSnow) damage *= 2.5;
-      else if (target.isInWater) damage *= 2;
-      break;
-    case "ice":
-      if (onFire) {
-        target.extinguishFire();
-        damage *= 2;
-      }
-      knockback = 0.075 * hitDensity;
-      break;
-    case "water":
-    {
-      const aquatic = target.matches?.({ families: ["aquatic"] }) === true;
-      const breathable = component(target, "minecraft:breathable");
-      const waterBreathing = target.getEffect("water_breathing");
-      if (aquatic) damage += 4;
-      if (breathable?.breathesWater === true || waterBreathing) {
-        damage *= 0.5;
-      }
-      if (onFire) {
-        target.extinguishFire();
-        damage *= 1.5;
-      }
-      knockback = 0.05 * hitDensity;
+function isEntityWet(entity) {
+  if (!valid(entity)) return false;
+  if (entity.isInWater) return true;
+                                                                
+  try {
+    const dimension = entity.dimension;
+    const weather = dimension.getWeather?.();
+    if (weather !== "Rain" && weather !== "Thunder") return false;
+    const { x, y, z } = entity.location;
+    const top = dimension.getTopmostBlock({ x: Math.floor(x), z: Math.floor(z) });
+    return !top || top.location.y < y;
+  } catch {
+    return false;
+  }
+}
+
+const SOUL_FIRE_BREEDS = new Set(["dragonmounts2:skeleton_dragon"]);
+function breathFireBlockId(dragon, definition) {
+  const variant = String(dragon.getProperty("dragonmounts2:variant_type") ?? "");
+  if (definition.kind === "nether") {
+    return SOUL_FIRE_BREEDS.has(dragon.typeId) || variant.includes("soul")
+      ? "minecraft:soul_fire"
+      : "minecraft:fire";
+  }
+                                                           
+  return variant.includes("blue") && Math.random() < 0.5
+    ? "minecraft:soul_fire"
+    : "minecraft:fire";
+}
+
+                                                                                      
+                                                                               
+function breathContext(dragon, state, definition) {
+  let ctx = state.breathCtx;
+  if (!ctx) {
+    ctx = {
+      dragon,
+      dimension: dragon.dimension,
+      now: 0,
+      definition,
+      memo: state.breathMemo,
+      counters: breathEffects.newCounters(),
+      at: (x, y, z) => cachedBlock(ctx.dimension, x, y, z)?.block,
+      damage: (target, amount) => applyDragonCombatDamage(ctx.dragon, target, amount),
+      spawnCloud: (block, cloud) =>
+        spawnBreathEffectCloud(ctx.dimension, block, ctx.dragon, cloud),
+      env: {
+        onFire: isEntityOnFire,
+        inPowderSnow: isEntityInPowderSnow,
+        isWet: isEntityWet,
+        fireBlockId: () => breathFireBlockId(ctx.dragon, ctx.definition),
+      },
+    };
+    state.breathCtx = ctx;
+  }
+  ctx.dragon = dragon;
+  ctx.dimension = dragon.dimension;
+  ctx.definition = definition;
+  ctx.now = system.currentTick;
+  const counters = ctx.counters;
+  for (const key in counters) counters[key] = 0;
+  return ctx;
+}
+
+function isSculkReplaceable(block) {
+  return SCULK_REPLACEABLE_BLOCKS.has(block.typeId) ||
+    (typeof block.hasTag === "function" && block.hasTag("minecraft:sculk_replaceable"));
+}
+
+                                                                                              
+                                                                                                
+                                                                       
+const BREATH_DRAG_MAX = 1.2;
+function applyBreathDrag(definition, target, record) {
+  if (!definition.drag) return;
+  const dx = record.direction.x;
+  const dz = record.direction.z;
+  const length = Math.hypot(dx, dz);
+  if (length < 1e-4) return;
+  const strength = Math.min(definition.drag * record.density, BREATH_DRAG_MAX);
+  if (strength < 0.01) return;
+  const push = { x: dx / length * strength, z: dz / length * strength };
+  const lift = target.isOnGround ? Math.min(0.4, strength) : 0;
+  try {
+    target.applyKnockback(push, lift);
+  } catch {
+    try {
+      target.applyImpulse({ x: push.x, y: lift, z: push.z });
+    } catch {
+                                                      
+    }
+  }
+}
+
+                                                                                
+                                                                                  
+                                                                                  
+                                                 
+export function getRiderAimDirection(dragon, rider, maxDistance = 64) {
+  const view = rider.getViewDirection();
+  try {
+    const eye = rider.getHeadLocation();
+    const head = breathMouthLocation(dragon);
+    let aimPoint = null;
+    let range = maxDistance;
+    const blockHit = rider.dimension.getBlockFromRay(eye, view, {
+      maxDistance,
+      includeLiquidBlocks: false,
+      includePassableBlocks: false,
+    });
+    if (blockHit) {
+      const base = blockHit.block.location;
+      const face = blockHit.faceLocation;
+      aimPoint = { x: base.x + face.x, y: base.y + face.y, z: base.z + face.z };
+      range = Math.hypot(aimPoint.x - eye.x, aimPoint.y - eye.y, aimPoint.z - eye.z);
+    }
+    const entityHits = rider.dimension.getEntitiesFromRay(eye, view, {
+      maxDistance: range,
+      ignoreBlockCollision: true,
+    }) ?? [];
+    for (const hit of entityHits) {
+      const entity = hit.entity;
+      if (
+        !valid(entity) ||
+        entity.id === rider.id ||
+        entity.id === dragon.id ||
+        !component(entity, "minecraft:health") ||
+        isFriendly(dragon, entity)
+      ) continue;
+      const height = component(entity, "minecraft:collision_box")?.height ?? 1;
+      aimPoint = {
+        x: entity.location.x,
+        y: entity.location.y + height * 0.6,
+        z: entity.location.z,
+      };
       break;
     }
-    case "airflow":
-      // Java AetherBreath: wind puts the target out.
-      if (onFire) target.extinguishFire();
-      knockback = 0.1 * hitDensity;
-      break;
-    case "sculk":
-      if (hitDensity > 0.2) {
-        target.addEffect("darkness", 80, { amplifier: 0 });
-      }
-      knockback = 0.05 * hitDensity;
-      break;
-    case "poison":
-      target.addEffect(
-        "poison",
-        Math.min(200, Math.max(1, Math.round(4 * hitDensity))),
-        { amplifier: 0 },
-      );
-      break;
-    case "lightning":
-      if (target.isInWater) damage *= 1.5;
-      target.setOnFire(5, true);
-      knockback = 0.05 * hitDensity;
-      break;
-  }
-
-  // Accumulated density makes per-hit damage large, so (like Java's hurt
-  // invulnerability) it is applied once per interval; knockback rides along.
-  if (!damageDue) return;
-  applyDragonCombatDamage(dragon, target, damage);
-  if (knockback > 0) {
-    const capped = Math.min(knockback, 1);
-    target.applyImpulse({
-      x: direction.x * capped,
-      y: 0.04,
-      z: direction.z * capped,
-    });
+    if (!aimPoint) {
+      aimPoint = {
+        x: eye.x + view.x * maxDistance,
+        y: eye.y + view.y * maxDistance,
+        z: eye.z + view.z * maxDistance,
+      };
+    }
+    const toPoint = {
+      x: aimPoint.x - head.x,
+      y: aimPoint.y - head.y,
+      z: aimPoint.z - head.z,
+    };
+    const distance = Math.hypot(toPoint.x, toPoint.y, toPoint.z);
+    const forward = toPoint.x * view.x + toPoint.y * view.y + toPoint.z * view.z;
+                                                                             
+    if (distance < 2 || forward <= 0) return view;
+    return { x: toPoint.x / distance, y: toPoint.y / distance, z: toPoint.z / distance };
+  } catch {
+    return view;
   }
 }
 
@@ -1017,23 +1461,35 @@ export function launchDragonProjectile(dragon, direction, chargePower = 0) {
     y: direction.y / directionLength,
     z: direction.z / directionLength,
   };
-  const head = dragon.getHeadLocation();
+                                                                                            
+                                                                       
+  const mouth = breathMouthLocation(dragon);
+  const head = { x: mouth.x + aim.x * 0.8, y: mouth.y + aim.y * 0.8, z: mouth.z + aim.z * 0.8 };
   const speed = 1 + Math.max(0, Math.min(1, chargePower));
   const ability = getDragonProjectileAbility(dragon);
   let projectileEntity;
   try {
-    projectileEntity = dragon.dimension.spawnEntity(ability.entity, {
-      x: head.x + aim.x * 1.5,
-      y: head.y + aim.y * 1.5,
-      z: head.z + aim.z * 1.5,
-    });
+    projectileEntity = dragon.dimension.spawnEntity(ability.entity, head);
     const projectile = projectileEntity.getComponent("minecraft:projectile");
     if (!projectile) throw new Error(`${ability.entity} is missing its projectile component`);
+    if (EXPLOSIVE_DRAGON_PROJECTILE_TYPES.has(ability.entity)) {
+      projectileEntity.setProperty(
+        "dragonmounts2:environmental_effects_enabled",
+        getWorldEnvironmentalEffectsEnabled(),
+      );
+    }
     projectile.owner = dragon;
     projectile.shoot({
       x: aim.x * speed,
       y: aim.y * speed,
       z: aim.z * speed,
+    });
+    activeDragonProjectiles.set(projectileEntity.id, {
+      entity: projectileEntity,
+      slowTicks: 0,
+      spawnedAt: system.currentTick,
+      velocityErrorReported: false,
+      removeErrorReported: false,
     });
   } catch (error) {
     if (valid(projectileEntity)) {
@@ -1060,305 +1516,39 @@ export function launchDragonProjectile(dragon, direction, chargePower = 0) {
   }
 }
 
-function updateBlockState(block, stateName, value) {
-  const states = block.permutation.getAllStates();
-  if (
-    !Object.prototype.hasOwnProperty.call(states, stateName) ||
-    states[stateName] === value
-  ) return false;
-  block.setPermutation(block.permutation.withState(stateName, value));
-  return true;
-}
+const MAX_BREATH_CLOUDS_TOTAL = 40;
+const MAX_BREATH_CLOUDS_PER_OWNER = 10;
+const CLOUD_SLAB_HEIGHT = 0.5;                                                       
+const CLOUD_CHECK_INTERVAL = 5;                                
+const CLOUD_REAPPLY_DELAY = 20;                                                    
 
-// Java AetherBreath.getDestroyDensity = hardness^2 * 400 for blocks in the
-// airflow_destructible tag. Bedrock has no hardness API, so the tag members
-// are mapped to their Java hardness values.
-const AIRFLOW_HARDNESS_EXACT = new Map([
-  ["minecraft:web", 4],
-  ["minecraft:cactus", 0.4],
-  ["minecraft:chorus_plant", 0.4],
-  ["minecraft:sponge", 0.6],
-  ["minecraft:cocoa", 0.2],
-  ["minecraft:snow_layer", 0.1],
-  ["minecraft:moss_carpet", 0.1],
-  ["minecraft:pale_moss_carpet", 0.1],
-  ["minecraft:sand", 0.5],
-  ["minecraft:red_sand", 0.5],
-  ["minecraft:suspicious_sand", 0.25],
-]);
-const AIRFLOW_ZERO_HARDNESS_EXACT = new Set([
-  "minecraft:short_grass", "minecraft:tallgrass", "minecraft:tall_grass",
-  "minecraft:fern", "minecraft:large_fern", "minecraft:deadbush",
-  "minecraft:vine", "minecraft:glow_lichen", "minecraft:double_plant",
-  "minecraft:hanging_roots", "minecraft:brown_mushroom", "minecraft:red_mushroom",
-  "minecraft:small_dripleaf_block", "minecraft:big_dripleaf",
-  "minecraft:sweet_berry_bush", "minecraft:waterlily", "minecraft:reeds",
-  "minecraft:nether_sprouts", "minecraft:nether_wart", "minecraft:crimson_roots",
-  "minecraft:crimson_fungus", "minecraft:warped_roots", "minecraft:warped_fungus",
-  "minecraft:twisting_vines", "minecraft:weeping_vines", "minecraft:cave_vines",
-  "minecraft:cave_vines_body_with_berries", "minecraft:cave_vines_head_with_berries",
-  "minecraft:fire", "minecraft:soul_fire",
-]);
-const AIRFLOW_ZERO_HARDNESS_PATTERN =
-  /(^minecraft:(yellow_flower|red_flower|wither_rose|rose_bush|peony|lilac|sunflower|cornflower|torchflower|pitcher_plant)$)|(_tulip$)|(sapling$)|(^minecraft:(wheat|carrots|potatoes|beetroot|melon_stem|pumpkin_stem|torchflower_crop|pitcher_crop)$)|(torch$)|(^minecraft:(spore_blossom|azalea|flowering_azalea|pink_petals)$)/;
-
-function airflowDestroyDensity(typeId) {
-  if (AIRFLOW_HARDNESS_EXACT.has(typeId)) {
-    const hardness = AIRFLOW_HARDNESS_EXACT.get(typeId);
-    return hardness * hardness * 400;
-  }
-  if (typeId.endsWith("_leaves") || typeId === "minecraft:leaves" || typeId === "minecraft:leaves2") {
-    return 0.2 * 0.2 * 400;
-  }
-  if (typeId.endsWith("glass_pane")) return 0.3 * 0.3 * 400;
-  if (typeId.endsWith("_concrete_powder")) return 0.5 * 0.5 * 400;
-  if (AIRFLOW_ZERO_HARDNESS_EXACT.has(typeId)) return 0;
-  if (AIRFLOW_ZERO_HARDNESS_PATTERN.test(typeId)) return 0;
-  return null;
-}
-
-function applyAirflowBlockEffects(block, state, hitDensity) {
-  // Extinguish lit candles / campfires (Java AetherBreath).
-  if (
-    updateBlockState(block, "lit", false) ||
-    updateBlockState(block, "extinguished", true)
-  ) return;
-  const threshold = airflowDestroyDensity(block.typeId);
-  if (threshold === null) return;
-  // Java keeps per-face hit density that decays after ~10 ticks without a hit.
-  const key = `${block.location.x},${block.location.y},${block.location.z}`;
-  state.airflowBlockExposure ??= new Map();
-  const previous = state.airflowBlockExposure.get(key);
-  const exposure = (previous && system.currentTick - previous.lastTick <= 10
-    ? previous.density
-    : 0) + hitDensity;
-  state.airflowBlockExposure.set(key, {
-    density: exposure,
-    lastTick: system.currentTick,
-  });
-  for (const [position, record] of state.airflowBlockExposure) {
-    if (system.currentTick - record.lastTick > 10) {
-      state.airflowBlockExposure.delete(position);
-    }
-  }
-  if (exposure <= threshold) return;
-  state.airflowBlockExposure.delete(key);
-  const { x, y, z } = block.location;
-  try {
-    block.dimension.runCommand(`setblock ${x} ${y} ${z} air destroy`);
-  } catch {
-    block.setType("minecraft:air");
-  }
-}
-
-function applyBreathBlockEffects(
-  dragon,
-  state,
-  block,
-  direction,
-  breath,
-  hitDensity = DEFAULT_BREATH_NODE_PROFILE.intensity,
-) {
-  const typeId = block.typeId;
-  const iceBreath = breath.effect === "ice";
-  const waterBreath = breath.effect === "water" ||
-    dragon.typeId === "dragonmounts2:storm_dragon";
-  const fireBreath = breath.effect === "fire" || breath.effect === "nether";
-
-  try {
-    if (iceBreath || waterBreath) {
-      if (typeId === "minecraft:lava") {
-        const depth = block.permutation.getState("liquid_depth");
-        block.setType(depth === undefined || depth === 0
-          ? "minecraft:obsidian"
-          : "minecraft:cobblestone");
-        return;
-      }
-      if (
-        typeId === "minecraft:fire" ||
-        typeId === "minecraft:soul_fire"
-      ) {
-        block.setType("minecraft:air");
-        return;
-      }
-      if (
-        updateBlockState(block, "lit", false) ||
-        updateBlockState(block, "extinguished", true)
-      ) return;
-    }
-
-    if (breath.effect === "airflow") {
-      applyAirflowBlockEffects(block, state, hitDensity);
-      return;
-    }
-
-    if (iceBreath) {
-      if (typeId === "minecraft:water") {
-        const depth = block.permutation.getState("liquid_depth");
-        if (depth === undefined || depth === 0) block.setType("minecraft:ice");
-        return;
-      }
-      const snowPosition = {
-        x: block.location.x,
-        y: block.location.y + 1,
-        z: block.location.z,
-      };
-      const snow = block.dimension.getBlock(snowPosition);
-      if (snow?.isAir && !block.isLiquid) {
-        snow.setType("minecraft:snow");
-      } else if (snow?.typeId === "minecraft:snow") {
-        const height = snow.permutation.getState("height");
-        if (typeof height === "number" && height < 7) {
-          snow.setPermutation(snow.permutation.withState("height", height + 1));
-        }
-      }
-      return;
-    }
-
-    if (waterBreath && typeId === "minecraft:farmland") {
-      const moisture = block.permutation.getState("moisturized_amount");
-      if (typeof moisture === "number" && moisture < 7) {
-        block.setPermutation(
-          block.permutation.withState("moisturized_amount", moisture + 1),
-        );
-      }
-      return;
-    }
-
-    if (waterBreath) return;
-
-    if (fireBreath) {
-      if (updateBlockState(block, "lit", true)) return;
-      if (updateBlockState(block, "extinguished", false)) return;
-      if (typeId === "minecraft:fire" || typeId === "minecraft:soul_fire") {
-        return;
-      }
-      if (typeId === "minecraft:snow") {
-        const height = block.permutation.getState("height");
-        if (typeof height === "number" && height > 0) {
-          block.setPermutation(
-            block.permutation.withState("height", height - 1),
-          );
-        } else {
-          block.setType("minecraft:air");
-        }
-        return;
-      }
-      if (
-        typeId === "minecraft:ice" ||
-        typeId === "minecraft:packed_ice" ||
-        typeId === "minecraft:blue_ice" ||
-        typeId === "minecraft:frosted_ice" ||
-        typeId === "minecraft:powder_snow"
-      ) {
-        block.setType("minecraft:air");
-        return;
-      }
-
-      const key = `${block.location.x},${block.location.y},${block.location.z}`;
-      const previous = state.breathBlockExposure?.get(key);
-      const exposure = previous?.lastTick === system.currentTick - 1
-        ? previous.ticks + 1
-        : 1;
-      state.breathBlockExposure ??= new Map();
-      state.breathBlockExposure.set(key, {
-        ticks: exposure,
-        lastTick: system.currentTick,
-      });
-      for (const [position, record] of state.breathBlockExposure) {
-        if (system.currentTick - record.lastTick > 1) {
-          state.breathBlockExposure.delete(position);
-        }
-      }
-      const igniteSkipChance = breath.effect === "nether" ? 0.1875 : 0.0625;
-      if (exposure < 6 || Math.random() < igniteSkipChance) return;
-
-      const axes = [
-        ["x", direction.x],
-        ["y", direction.y],
-        ["z", direction.z],
-      ].sort((first, second) => Math.abs(second[1]) - Math.abs(first[1]));
-      const [axis, componentValue] = axes[0];
-      if (Math.abs(componentValue) < 0.001) return;
-      const firePosition = {
-        x: block.location.x,
-        y: block.location.y,
-        z: block.location.z,
-      };
-      firePosition[axis] -= Math.sign(componentValue);
-      const fireSpace = block.dimension.getBlock(firePosition);
-      const support = block.dimension.getBlock({
-        x: firePosition.x,
-        y: firePosition.y - 1,
-        z: firePosition.z,
-      });
-      if (fireSpace?.isAir && support && !support.isAir && !support.isLiquid) {
-        fireSpace.setType("minecraft:fire");
-        state.breathBlockExposure.delete(key);
-      }
-    }
-
-    const isSculkReplaceable = SCULK_REPLACEABLE_BLOCKS.has(typeId) ||
-      (typeof block.hasTag === "function" &&
-        block.hasTag("minecraft:sculk_replaceable"));
-    if (breath.effect === "sculk" && isSculkReplaceable) {
-      const key = `${block.location.x},${block.location.y},${block.location.z}`;
-      state.sculkBlockExposure ??= new Map();
-      const previous = state.sculkBlockExposure.get(key);
-      const exposure = (previous?.lastTick === system.currentTick - 1
-        ? previous.density
-        : 0) + hitDensity;
-      state.sculkBlockExposure.set(key, {
-        density: exposure,
-        lastTick: system.currentTick,
-      });
-      for (const [position, record] of state.sculkBlockExposure) {
-        if (system.currentTick - record.lastTick > 1) {
-          state.sculkBlockExposure.delete(position);
-        }
-      }
-      if (
-        exposure < 2 ||
-        system.currentTick < (state.nextSculkSpreadAt ?? 0) ||
-        Math.random() >= 0.5
-      ) return;
-
-      const catalyst = Math.random() < 0.02;
-      block.setType(catalyst ? "minecraft:sculk_catalyst" : "minecraft:sculk");
-      state.nextSculkSpreadAt = system.currentTick + 20;
-      state.sculkBlockExposure.delete(key);
-      if (!catalyst && Math.random() < 0.08) {
-        const above = block.dimension.getBlock({
-          x: block.location.x,
-          y: block.location.y + 1,
-          z: block.location.z,
-        });
-        if (above?.isAir) {
-          above.setType("minecraft:sculk_vein");
-          updateBlockState(above, "down", true);
-        }
-      }
-    }
-  } catch (error) {
-    if (!reportedBreathBlockErrors.has(dragon.typeId)) {
-      reportedBreathBlockErrors.add(dragon.typeId);
-      const message = error instanceof Error ? error.message : String(error);
-      console.warn(
-        `[DragonMounts2] Breath block effect failed for ${dragon.typeId}: ${message}`,
-      );
-    }
-  }
-}
-
+                                                                                     
+                                                                             
 function spawnBreathEffectCloud(dimension, block, owner, cloudEffect) {
+  const location = {
+    x: block.location.x + 0.5,
+    y: block.location.y + 1,
+    z: block.location.z + 0.5,
+  };
+  let total = 0;
+  let owned = 0;
+  for (const cloud of elementalClouds.values()) {
+    if (cloud.slab !== true) continue;
+    total += 1;
+    if (cloud.owner?.id !== owner?.id) continue;
+    owned += 1;
+    if (
+      cloud.effect === cloudEffect.effect &&
+      Math.abs(cloud.location.x - location.x) < 1.5 &&
+      Math.abs(cloud.location.y - location.y) < 1.5 &&
+      Math.abs(cloud.location.z - location.z) < 1.5
+    ) return;
+  }
+  if (total >= MAX_BREATH_CLOUDS_TOTAL || owned >= MAX_BREATH_CLOUDS_PER_OWNER) return;
   const createdAt = system.currentTick;
   elementalClouds.set(++nextWaterballCloudId, {
     dimension,
-    location: {
-      x: block.location.x + 0.5,
-      y: block.location.y + 1,
-      z: block.location.z + 0.5,
-    },
+    location,
     owner,
     effect: cloudEffect.effect,
     effectDuration: cloudEffect.duration,
@@ -1367,25 +1557,12 @@ function spawnBreathEffectCloud(dimension, block, owner, cloudEffect) {
     radiusEnd: 1,
     lifetime: cloudEffect.lifetime,
     ignoreOwner: true,
+    slab: true,
+    victims: new Map(),
     createdAt,
-    nextApplyAt: createdAt + 10,
+    nextApplyAt: createdAt + CLOUD_CHECK_INTERVAL,
     nextVisualAt: createdAt,
   });
-}
-
-function tryLightningStrike(dragon, state, block) {
-  if (
-    system.currentTick < state.nextLightningAt ||
-    Math.random() >= 0.06
-  ) return;
-  const location = {
-    x: block.location.x + 0.5,
-    y: block.location.y + 1,
-    z: block.location.z + 0.5,
-  };
-  if (distanceSquared(dragon.location, location) < 25) return;
-  dragon.dimension.spawnEntity("minecraft:lightning_bolt", location);
-  state.nextLightningAt = system.currentTick + 20;
 }
 
 function normalizeDirection(direction) {
@@ -1398,8 +1575,79 @@ function normalizeDirection(direction) {
   };
 }
 
-// `spawn` = false keeps already-flying nodes moving/hurting after the dragon stops
-// breathing, as Java does (nodes are only removed by age, collision or water).
+                                                                               
+                                                                               
+                                                                               
+                                                                              
+                                                                                
+                                                                             
+  
+function breathMouthLocation(dragon) {
+  return dragon.getHeadLocation();
+}
+
+function positionDragonBreathProjectile(event) {
+  const projectile = event.entity;
+  if (!valid(projectile)) return;
+  const dragonType = BREATH_PROJECTILE_DRAGONS[projectile.typeId];
+  if (!dragonType) return;
+
+  const owner = component(projectile, "minecraft:projectile")?.owner;
+  let dragon = valid(owner) && owner.typeId === dragonType ? owner : null;
+  if (!dragon) {
+    let nearestDistance = 8 ** 2;
+    for (const candidate of projectile.dimension.getEntities({
+      location: projectile.location,
+      maxDistance: 8,
+      type: dragonType,
+    })) {
+      if (
+        !valid(candidate) ||
+        candidate.getProperty("dragonmounts2:is_breathing") !== true
+      ) continue;
+      const distance = distanceSquared(projectile.location, candidate.location);
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        dragon = candidate;
+      }
+    }
+  }
+
+  if (dragon) {
+    projectile.teleport(breathMouthLocation(dragon), { keepVelocity: true });
+  }
+}
+
+onWorldEvent("afterEvents", "entitySpawn", positionDragonBreathProjectile);
+
+                                                                                
+                                                                                 
+                                                                                  
+                                                                                  
+function getRiderBreathDirection(dragon, rider) {
+  try {
+    const riderRotation = rider.getRotation();
+    const dragonRotation = dragon.getRotation();
+    dragon.setRotation({
+      x: dragonRotation.x,
+      y: riderRotation.y,
+      z: 0,
+    });
+    const yaw = riderRotation.y * DEG_TO_RAD;
+    const pitch = Math.max(-90, Math.min(90, riderRotation.x)) * DEG_TO_RAD;
+    const flat = Math.cos(pitch);
+    return {
+      x: -Math.sin(yaw) * flat,
+      y: -Math.sin(pitch),
+      z: Math.cos(yaw) * flat,
+    };
+  } catch {
+    return rider.getViewDirection();
+  }
+}
+
+                                                                                   
+                                                                               
 function tickBreathNodes(
   dragon,
   target,
@@ -1414,7 +1662,7 @@ function tickBreathNodes(
   const profile = breathNodeProfile(dragon);
   let direction;
   if (spawn) {
-    const head = dragon.getHeadLocation();
+    const head = breathMouthLocation(dragon);
     direction = aimedDirection
       ? normalizeDirection(aimedDirection)
       : getAttackDirection(dragon, target, head);
@@ -1428,21 +1676,46 @@ function tickBreathNodes(
       },
       profile,
       age: 0,
+      origin: { x: head.x, y: head.y, z: head.z },
     });
   } else {
     direction = state.lastAim ?? { x: 0, y: 0, z: 1 };
   }
 
-  const candidates = dragon.dimension.getEntities({
-    location: dragon.location,
-    maxDistance: BREATH_NODE_MAX_DISTANCE,
-  }).filter((candidate) =>
-    !isFriendly(dragon, candidate) &&
-    !(dragon.typeId === "dragonmounts2:forest_dragon" &&
-      !canForestBreathAffect(candidate))
-  );
-  const blockExposure = new Map();
+                                                                       
+  let reach = 8;
+  for (const node of state.breathNodes) {
+    const nodeDistance = Math.hypot(
+      node.position.x - dragon.location.x,
+      node.position.y - dragon.location.y,
+      node.position.z - dragon.location.z,
+    ) + node.profile.speed + node.profile.radius + 2;
+    if (nodeDistance > reach) reach = nodeDistance;
+  }
+  const candidates = [];
+  if (state.breathNodes.length > 0) {
+    for (const entity of dragon.dimension.getEntities({
+      location: dragon.location,
+      maxDistance: Math.min(reach, BREATH_NODE_MAX_DISTANCE),
+    })) {
+      if (!valid(entity) || isFriendly(dragon, entity)) continue;
+      if (!component(entity, "minecraft:health")) continue;
+      const box = component(entity, "minecraft:collision_box");
+      const location = entity.location;
+      candidates.push({
+        entity,
+        id: entity.id,
+        x: location.x,
+        y: location.y,
+        z: location.z,
+        width: box?.width ?? 1,
+        height: box?.height ?? 1,
+      });
+    }
+  }
+  const affectedBlocks = state.affectedBlocks;
   const entityExposure = new Map();
+  const particleBudget = { left: BREATH_PARTICLE_BUDGET };
 
   for (const node of state.breathNodes) {
     if (node.age >= node.profile.lifespan) continue;
@@ -1450,54 +1723,21 @@ function tickBreathNodes(
       dragon,
       node,
       candidates,
-      blockExposure,
+      affectedBlocks,
       entityExposure,
+      breath,
+      now,
     );
-    if ((now & 1) === 0) {
-      emitNodeParticle(dragon, breath, node);
-    }
+    emitNodeParticle(dragon, node, particleBudget, breath);
   }
   state.breathNodes = state.breathNodes.filter(
     (node) => node.age < node.profile.lifespan,
   );
 
-  for (const { block, density, direction: blockDirection } of blockExposure.values()) {
-    if (density <= 0) continue;
-    const blockDirectionLength = Math.hypot(
-      blockDirection.x,
-      blockDirection.y,
-      blockDirection.z,
-    );
-    const normalizedBlockDirection = blockDirectionLength > 0
-      ? {
-        x: blockDirection.x / blockDirectionLength,
-        y: blockDirection.y / blockDirectionLength,
-        z: blockDirection.z / blockDirectionLength,
-      }
-      : direction;
-    applyBreathBlockEffects(
-      dragon,
-      state,
-      block,
-      normalizedBlockDirection,
-      breath,
-      density,
-    );
-    if (
-      breath.cloud &&
-      !block.isLiquid &&
-      Math.random() < breath.cloud.chance
-    ) {
-      spawnBreathEffectCloud(dragon.dimension, block, dragon, breath.cloud);
-    }
-    if (
-      dragon.typeId === "dragonmounts2:storm_dragon" &&
-      !block.isLiquid
-    ) tryLightningStrike(dragon, state, block);
-  }
+  applyBreathToBlocks(dragon, state, breath, affectedBlocks, now);
 
-  // Java BreathAffectedEntity: hit density accumulates every tick the entity is
-  // touched and is only reset once it has not been hit for a few ticks.
+                                                                                
+                                                                        
   for (const { entity, density, direction: hitDirection } of entityExposure.values()) {
     if (density <= 0 || !valid(entity)) continue;
     let record = state.affectedEntities.get(entity.id);
@@ -1516,6 +1756,55 @@ function tickBreathNodes(
     record.direction = addVector(record.direction, hitDirection);
     record.lastHitAt = now;
   }
+  applyBreathToEntities(dragon, state, breath, now);
+}
+
+                                                                                              
+                                                                                             
+                                                                                              
+                                
+function applyBreathToBlocks(dragon, state, breath, affectedBlocks, now) {
+  if (affectedBlocks.size === 0) return;
+  const touched = [];
+  for (const [key, record] of affectedBlocks) {
+    if (record.touchedAt === now) touched.push(record);
+    else if (breathEffects.decayAffectedBlock(record)) affectedBlocks.delete(key);
+  }
+  if (touched.length === 0) return;
+  let batch = touched;
+  if (touched.length > MAX_BLOCK_EFFECTS_PER_TICK) {
+    batch = touched
+      .map((record) => ({ record, max: breathEffects.maxDensity(record) }))
+      .sort((first, second) => second.max - first.max)
+      .slice(0, MAX_BLOCK_EFFECTS_PER_TICK)
+      .map((entry) => entry.record);
+  }
+  const ctx = breathContext(dragon, state, breath);
+  for (const record of batch) {
+    try {
+      if (breathEffects.affectBlock(breath, ctx, record, isSculkReplaceable)) {
+        breathEffects.resetAffectedBlock(record);
+      }
+    } catch (error) {
+      if (!reportedBreathBlockErrors.has(dragon.typeId)) {
+        reportedBreathBlockErrors.add(dragon.typeId);
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(
+          `[DragonMounts2] Breath block effect failed for ${dragon.typeId}: ${message}`,
+        );
+      }
+    }
+  }
+  for (const record of touched) {
+    if (breathEffects.decayAffectedBlock(record)) affectedBlocks.delete(record.key);
+  }
+}
+
+                                                                                                
+                                                                                               
+function applyBreathToEntities(dragon, state, breath, now) {
+  if (state.affectedEntities.size === 0) return;
+  let ctx = null;
   for (const [id, record] of state.affectedEntities) {
     if (
       !valid(record.entity) ||
@@ -1524,29 +1813,40 @@ function tickBreathNodes(
       state.affectedEntities.delete(id);
       continue;
     }
-    const damageDue = now - record.lastDamageAt >= BREATH_DAMAGE_INTERVAL;
-    if (damageDue) record.lastDamageAt = now;
-    applyBreathDamage(
-      dragon,
-      record.entity,
-      breath,
-      normalizeDirection(record.direction),
-      record.density,
-      damageDue,
-    );
+    try {
+      if (now - record.lastDamageAt >= BREATH_DAMAGE_INTERVAL) {
+        record.lastDamageAt = now;
+        ctx ??= breathContext(dragon, state, breath);
+        breathEffects.affectEntity(breath, ctx, record.entity, record.density);
+      }
+      applyBreathDrag(breath, record.entity, record);
+    } catch (error) {
+      if (!reportedBreathBlockErrors.has(`${dragon.typeId}:entity`)) {
+        reportedBreathBlockErrors.add(`${dragon.typeId}:entity`);
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(
+          `[DragonMounts2] Breath entity effect failed for ${dragon.typeId}: ${message}`,
+        );
+      }
+    }
   }
 }
 
-function canForestBreathAffect(target) {
-  return target.typeId === "minecraft:player" ||
-    target.matches?.({ families: ["monster"] }) === true;
+                                                                                
+function applyProjectileBreathToBlock(owner, block, breath) {
+  const state = stateFor(owner);
+  const ctx = breathContext(owner, state, breath);
+  const { x, y, z } = block.location;
+  const record = breathEffects.createAffectedBlock(0, x, y, z, block);
+  record.faces.fill(DEFAULT_BREATH_NODE_PROFILE.intensity);
+  breathEffects.affectBlock(breath, ctx, record, isSculkReplaceable);
 }
 
 function tickBreath(dragon, target, state, aerial) {
   const targetInRange = valid(target) &&
     distanceSquared(dragon.location, target.location) <= BREATH_RANGE ** 2;
   const airDuel = aerial && targetInRange && isAirborne(target);
-  const breath = BREATH_TYPES[dragon.typeId];
+  const breath = breathFor(dragon.typeId);
 
   if (
     dragon.getProperty("dragonmounts2:age_variant") === "baby" ||
@@ -1558,8 +1858,9 @@ function tickBreath(dragon, target, state, aerial) {
   }
 
   if (state.breathStartedAt >= 0) {
-    const expired = system.currentTick - state.breathStartedAt >= BREATH_DURATION;
-    const airDuel = aerial && targetInRange && isAirborne(target);
+    const elapsedTicks = system.currentTick - state.breathStartedAt;
+    const startDelayTicks = BREATH_START_DELAY_TICKS;
+    const expired = elapsedTicks >= startDelayTicks + BREATH_DURATION;
     const targetTooClose = aerial && targetInRange && !isAirborne(target) &&
       distanceSquared(dragon.location, target.location) < 100;
     if (!targetInRange || (expired && !airDuel) || targetTooClose) {
@@ -1567,13 +1868,15 @@ function tickBreath(dragon, target, state, aerial) {
       return false;
     }
 
+    const breathReady = elapsedTicks >= startDelayTicks;
+    setBreathReady(dragon, breathReady);
     tickBreathNodes(
       dragon,
       target,
       state,
       breath,
       null,
-      system.currentTick - state.breathStartedAt >= BREATH_START_DELAY,
+      breathReady,
     );
     return true;
   }
@@ -1593,21 +1896,14 @@ function tickBreath(dragon, target, state, aerial) {
 }
 
 function spawnParticleBurst(dimension, particle, location, count, spread) {
-  try {
-    for (let index = 0; index < count; index += 1) {
-      const particleLocation = {
-        x: location.x + (Math.random() * 2 - 1) * spread.x,
-        y: location.y + (Math.random() * 2 - 1) * spread.y,
-        z: location.z + (Math.random() * 2 - 1) * spread.z,
-      };
-      if (!isLocationInLoadedChunk(dimension, particleLocation)) continue;
-      dimension.spawnParticle(particle, particleLocation);
-    }
-  } catch (error) {
-    if (reportedParticleErrors.has(particle)) return;
-    reportedParticleErrors.add(particle);
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(`[DragonMounts2] Projectile particle ${particle} failed: ${message}`);
+  for (let index = 0; index < count; index += 1) {
+    const particleLocation = {
+      x: location.x + (Math.random() * 2 - 1) * spread.x,
+      y: location.y + (Math.random() * 2 - 1) * spread.y,
+      z: location.z + (Math.random() * 2 - 1) * spread.z,
+    };
+    if (!isLocationInLoadedChunk(dimension, particleLocation)) continue;
+    spawnParticle(dimension, particle, particleLocation);
   }
 }
 
@@ -1675,18 +1971,8 @@ function tickElementalClouds() {
         y: cloud.location.y + (Math.random() - 0.5) * 0.6,
         z: cloud.location.z + Math.sin(angle) * distance,
       };
-      try {
-        if (isLocationInLoadedChunk(cloud.dimension, particleLocation)) {
-          cloud.dimension.spawnParticle(cloud.particle, particleLocation);
-        }
-      } catch (error) {
-        if (!reportedParticleErrors.has(cloud.particle)) {
-          reportedParticleErrors.add(cloud.particle);
-          const message = error instanceof Error ? error.message : String(error);
-          console.warn(
-            `[DragonMounts2] Elemental cloud particle ${cloud.particle} failed: ${message}`,
-          );
-        }
+      if (isLocationInLoadedChunk(cloud.dimension, particleLocation)) {
+        spawnParticle(cloud.dimension, cloud.particle, particleLocation);
       }
       cloud.nextVisualAt = now + ELEMENTAL_CLOUD_VISUAL_INTERVAL;
     }
@@ -1694,7 +1980,7 @@ function tickElementalClouds() {
     try {
       const targets = cloud.dimension.getEntities({
         location: cloud.location,
-        maxDistance: radius,
+        maxDistance: cloud.slab ? radius + 2 : radius,
       });
       for (const target of targets) {
         if (
@@ -1705,12 +1991,25 @@ function tickElementalClouds() {
         const dx = target.location.x - cloud.location.x;
         const dy = target.location.y - cloud.location.y;
         const dz = target.location.z - cloud.location.z;
-        if (dx * dx + dy * dy + dz * dz <= radius * radius) {
-          if (cloud.effect) {
-            target.addEffect(cloud.effect, cloud.effectDuration ?? 1, {
-              amplifier: cloud.effectDuration === undefined ? 1 : 0,
-            });
-          }
+        if (cloud.slab) {
+                                                                                 
+          if (dx * dx + dz * dz > radius * radius) continue;
+          const height = component(target, "minecraft:collision_box")?.height ?? 1;
+          if (dy > CLOUD_SLAB_HEIGHT || dy + height < 0) continue;
+          if ((cloud.victims.get(target.id) ?? 0) > now) continue;
+          cloud.victims.set(target.id, now + CLOUD_REAPPLY_DELAY);
+        } else if (dx * dx + dy * dy + dz * dz > radius * radius) {
+          continue;
+        }
+        if (cloud.effect) {
+          target.addEffect(cloud.effect, cloud.effectDuration ?? 1, {
+            amplifier: cloud.effectDuration === undefined ? 1 : 0,
+          });
+        }
+      }
+      if (cloud.victims && cloud.victims.size > 24) {
+        for (const [id, until] of cloud.victims) {
+          if (until <= now) cloud.victims.delete(id);
         }
       }
     } catch (error) {
@@ -1719,7 +2018,8 @@ function tickElementalClouds() {
       elementalClouds.delete(id);
       continue;
     }
-    cloud.nextApplyAt = now + ELEMENTAL_CLOUD_EFFECT_INTERVAL;
+    cloud.nextApplyAt = now + (cloud.slab ? CLOUD_CHECK_INTERVAL : ELEMENTAL_CLOUD_EFFECT_INTERVAL);
+    continue;
   }
 }
 
@@ -1837,16 +2137,8 @@ function applyElementalProjectileImpact(event, impact) {
     valid(owner) &&
     entityData.dragonTypeIds.has(owner.typeId)
   ) {
-    const breath = BREATH_TYPES[owner.typeId];
-    if (breath) {
-      applyBreathBlockEffects(
-        owner,
-        stateFor(owner),
-        hitBlock,
-        { x: 0, y: 0, z: 0 },
-        breath,
-      );
-    }
+    const breath = breathFor(owner.typeId);
+    if (breath) applyProjectileBreathToBlock(owner, hitBlock, breath);
   }
 
   if (
@@ -1867,6 +2159,7 @@ function applyElementalProjectileImpact(event, impact) {
 
   if (
     impact.lightningStrike === true &&
+    getWorldEnvironmentalEffectsEnabled() &&
     !hitEntity &&
     (!valid(owner) || distanceSquared(owner.location, location) >= 25)
   ) {
@@ -1919,7 +2212,117 @@ function applyElementalProjectileImpact(event, impact) {
   }
 }
 
+                                                                                  
+                                                                                
+                                                                                    
+                                                                                  
+                                                          
+const DRAGON_PROJECTILE_PATTERN = /^dragonmounts2:.*(dragonball|dragonbreath)$/;
+const recentDragonBlasts = [];
+function noteDragonBlast(event) {
+  const projectile = event.projectile;
+  if (!projectile || !DRAGON_PROJECTILE_PATTERN.test(projectile.typeId)) return;
+  const at = event.location ?? projectile.location;
+  if (!at) return;
+  recentDragonBlasts.push({
+    tick: system.currentTick,
+    dimension: projectile.dimension.id,
+    x: at.x, y: at.y, z: at.z,
+  });
+  if (recentDragonBlasts.length > 24) recentDragonBlasts.shift();
+}
+onWorldEvent("afterEvents", "projectileHitEntity", noteDragonBlast);
+onWorldEvent("afterEvents", "projectileHitBlock", noteDragonBlast);
+
+onBeforeEntityHurt((event) => {
+  const hurt = event.hurtEntity;
+  if (!hurt?.isValid || !entityData.dragonTypeIds.has(hurt.typeId)) return;
+  const source = event.damageSource;
+  const direct = source?.damagingProjectile?.typeId ?? source?.damagingEntity?.typeId ?? "";
+  if (DRAGON_PROJECTILE_PATTERN.test(direct)) {
+    event.cancel = true;
+    return;
+  }
+  const cause = source?.cause;
+  if (
+    cause !== EntityDamageCause.entityExplosion &&
+    cause !== EntityDamageCause.blockExplosion &&
+    cause !== EntityDamageCause.fire &&
+    cause !== EntityDamageCause.fireTick &&
+    cause !== EntityDamageCause.projectile
+  ) return;
+  const now = system.currentTick;
+  const dimensionId = hurt.dimension.id;
+  for (const blast of recentDragonBlasts) {
+    if (now - blast.tick > 40 || blast.dimension !== dimensionId) continue;
+    const dx = hurt.location.x - blast.x;
+    const dy = hurt.location.y - blast.y;
+    const dz = hurt.location.z - blast.z;
+    if (dx * dx + dy * dy + dz * dz <= 12 * 12) {
+      event.cancel = true;
+      return;
+    }
+  }
+});
+
 registerIntervalTask("elemental-cloud-effects", 5, tickElementalClouds);
+
+registerIntervalTask("dragon-projectile-recovery", 100, () => {
+  for (const dimension of getAddonDimensions()) {
+    for (const typeId of DRAGON_PROJECTILE_TYPES) {
+      for (const projectile of dimension.getEntities({ type: typeId })) {
+        if (!valid(projectile) || activeDragonProjectiles.has(projectile.id)) continue;
+        activeDragonProjectiles.set(projectile.id, {
+          entity: projectile,
+          slowTicks: 0,
+          spawnedAt: system.currentTick,
+          velocityErrorReported: false,
+          removeErrorReported: false,
+        });
+      }
+    }
+  }
+});
+
+registerIntervalTask("dragon-projectile-cleanup", 5, () => {
+  const now = system.currentTick;
+  for (const [id, record] of activeDragonProjectiles) {
+    const projectile = record.entity;
+    if (!valid(projectile)) {
+      activeDragonProjectiles.delete(id);
+      continue;
+    }
+    let speed = Infinity;
+    try {
+      const velocity = projectile.getVelocity();
+      speed = Math.hypot(velocity.x, velocity.y, velocity.z);
+    } catch (error) {
+      if (!record.velocityErrorReported) {
+        record.velocityErrorReported = true;
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[DragonMounts2] Failed to read projectile velocity ${id}: ${message}`);
+      }
+    }
+    record.slowTicks = speed <= PROJECTILE_SLOW_SPEED
+      ? record.slowTicks + 5
+      : 0;
+    if (
+      record.slowTicks < PROJECTILE_SLOW_TICKS &&
+      now - record.spawnedAt < PROJECTILE_MAX_AGE_TICKS
+    ) continue;
+    try {
+      projectile.remove();
+    } catch (error) {
+      if (!record.removeErrorReported) {
+        record.removeErrorReported = true;
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[DragonMounts2] Failed to remove stopped projectile ${id}: ${message}`);
+      }
+      continue;
+    }
+    activeDragonProjectiles.delete(id);
+  }
+});
 
 function handleElementalProjectileImpact(event) {
   const impact = ELEMENTAL_PROJECTILE_IMPACTS[event.projectile?.typeId] ??
@@ -1986,6 +2389,33 @@ onWorldEvent("afterEvents", "entityDie", ({ deadEntity }) => {
 });
 
 export function tickDragonCombat(dragon) {
+  if (
+    valid(dragon) &&
+    entityData.dragonTypeIds.has(dragon.typeId) &&
+    dragon.getProperty("dragonmounts2:mob_state") === "sitting" &&
+    ridersOf(dragon).length === 0
+  ) {
+    const state = stateFor(dragon);
+    const aiBreathing = dragon.getProperty("dragonmounts2:ai_breath_active") === true;
+    const shouldStopRiderBreath = !aiBreathing && (
+      state.riderBreathing ||
+      dragon.getProperty("dragonmounts2:is_breathing") === true ||
+      dragon.getProperty("dragonmounts2:breath_audio_active") === true
+    );
+    endAIBreath(dragon, state);
+    dragon.setProperty("dragonmounts2:is_breathing", false);
+    if (shouldStopRiderBreath) stopDragonBreathAudio(dragon);
+    state.target = null;
+    state.targetSince = -1;
+    state.aerialCommitted = false;
+    state.aerialTargetId = null;
+    state.riderBreathing = false;
+    state.breathBreathingTicks = 0;
+    state.breathNodes.length = 0;
+    state.lastBreath = null;
+    state.nodesTickedAt = system.currentTick;
+    return null;
+  }
   const result = tickDragonCombatInner(dragon);
   const state = valid(dragon) ? runtimeByDragon.get(dragon.id) : undefined;
   if (
@@ -1997,7 +2427,7 @@ export function tickDragonCombat(dragon) {
     tickBreathNodes(dragon, null, state, state.lastBreath, null, false);
   }
   if (state && state.affectedEntities.size > 0 && state.breathNodes.length === 0) {
-    // No nodes left: let stale densities expire.
+                                                 
     for (const [id, record] of state.affectedEntities) {
       if (system.currentTick - record.lastHitAt >= ENTITY_DENSITY_RESET_TICKS) {
         state.affectedEntities.delete(id);
@@ -2028,7 +2458,7 @@ function tickDragonCombatInner(dragon) {
     state.aerialCommitted = false;
     state.aerialTargetId = null;
     const rider = riders[0];
-    const breath = BREATH_TYPES[dragon.typeId];
+    const breath = breathFor(dragon.typeId);
     const tameable = component(dragon, "minecraft:tameable");
     const canRiderBreathe = tameable?.isTamed === true &&
       dragon.hasComponent("minecraft:is_saddled") &&
@@ -2040,24 +2470,29 @@ function tickDragonCombatInner(dragon) {
     if (canRiderBreathe) {
       state.riderBreathing = true;
       state.breathBreathingTicks += 1;
+      setBreathReady(
+        dragon,
+        state.breathBreathingTicks >= BREATH_START_DELAY_TICKS,
+      );
       tickBreathNodes(
         dragon,
         null,
         state,
         breath,
-        rider.getViewDirection(),
-        state.breathBreathingTicks > BREATH_START_DELAY,
+        getRiderBreathDirection(dragon, rider),
+        state.breathBreathingTicks >= BREATH_START_DELAY_TICKS,
       );
     } else {
       state.breathBreathingTicks = 0;
       state.riderBreathing = false;
+      setBreathReady(dragon, false);
     }
     tryRiddenBite(dragon, state, riders);
     return null;
   }
   if (state.riderBreathing) {
     dragon.setProperty("dragonmounts2:is_breathing", false);
-    dragon.setProperty("dragonmounts2:breath_charge", 0);
+    stopDragonBreathAudio(dragon);
   }
   state.riderBreathing = false;
   if (dragon.getProperty("dragonmounts2:rider_attack_mode") !== "breath") {

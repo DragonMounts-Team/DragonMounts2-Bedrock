@@ -8,6 +8,7 @@
       "properties": {
         "dragonmounts2:egg_hatch_time": { "type": "float", "range": [ 0.00, 0.30 ], "default": 0.00, "client_sync": true },
         "dragonmounts2:egg_nesting_block": { "type": "bool", "default": true, "client_sync": true },
+        "dragonmounts2:egg_hatch_speed": { "type": "float", "range": [ 1.0, 2.0 ], "default": 1.0 },
         "dragonmounts2:egg_state": { "type": "enum", "values": [ "default", "transforming", "transformed", "hatching", "hatched" ], "default": "default", "client_sync": true }
       }
     },
@@ -145,7 +146,7 @@
         "add": { "component_groups": [ "dragonmounts2:egg_hatched" ] },
         "set_property": { "dragonmounts2:egg_state": "hatched" }
       },
-        "minecraft:dragon_egg_timer": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+(q.property('dragonmounts2:egg_nesting_block')?0.00025:0.001),0.000,0.300)" } },
+        "minecraft:dragon_egg_timer": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+(q.property('dragonmounts2:egg_nesting_block')?0.00025:0.001)*q.property('dragonmounts2:egg_hatch_speed'),0.000,0.300)" } },
       "minecraft:dragon_egg_transforming": {
         "filters": {
           "none_of": [
@@ -156,7 +157,7 @@
         "set_property": { "dragonmounts2:egg_state": "transforming" }
       },
       "minecraft:dragon_egg_transformed": { "set_property": { "dragonmounts2:egg_state": "transformed" } },
-      "minecraft:increase_dragon_egg_hatch_time": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+(q.property('dragonmounts2:egg_nesting_block')?0.00025:0.001),0.000,0.300)" } },
+      "minecraft:increase_dragon_egg_hatch_time": { "set_property": { "dragonmounts2:egg_hatch_time": "math.clamp(q.property('dragonmounts2:egg_hatch_time')+(q.property('dragonmounts2:egg_nesting_block')?0.00025:0.001)*q.property('dragonmounts2:egg_hatch_speed'),0.000,0.300)" } },
       "minecraft:dragon_egg_despawn": {
         "add": { "component_groups": [ "dragonmounts2:egg_despawn" ] }
       },

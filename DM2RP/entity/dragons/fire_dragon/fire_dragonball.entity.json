@@ -1,0 +1,28 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:fire_dragonball",
+      "materials": {
+        "default": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/particle/breath/breath_fire"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.dragonball"
+      },
+      "animations": {
+        "spin": "animation.dragonmounts2.dragonball.spin"
+      },
+      "scripts": {
+        "animate": [
+          "spin"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.dragonmounts2.dragonball"
+      ]
+    }
+  }
+}

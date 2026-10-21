@@ -38,16 +38,6 @@ registerIntervalTask("dragon-scepter-abilities", 1, () => {
   itemUtilities.tickDragonScepterAbilities();
 });
 
-onWorldEvent(
-  "afterEvents",
-  "playerButtonInput",
-  ({ button, newButtonState, player }) => {
-    if (button !== InputButton.Sneak || newButtonState !== ButtonState.Pressed)
-      return;
-    itemUtilities.dragonScepterQuickBreath(player);
-  },
-);
-
 function getShieldDelay(shield) {
   return shield?.item.getComponent("dragonmounts2:dragon_scale_shield")
     ?.customComponentParameters?.params?.delay;

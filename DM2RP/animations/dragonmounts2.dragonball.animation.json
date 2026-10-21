@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.dragonmounts2.dragonball.spin": {
+      "loop": true,
+      "bones": {
+        "ball": {
+          "rotation": [
+            0,
+            "q.life_time * 360",
+            0
+          ],
+          "scale": "1.0 + math.sin(q.life_time * 720) * 0.08"
+        }
+      }
+    }
+  }
+}

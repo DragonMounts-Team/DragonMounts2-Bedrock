@@ -4,7 +4,9 @@ import * as entityData from "../data/entity_data.js";
 import {
   getDragonProjectileAbility,
   isAttackReady,
+  getRiderAimDirection,
   launchDragonProjectile,
+  stopDragonBreathAudio,
   startAttackCooldown,
   tickDragonCombat,
 } from "./combat_utilities.js";
@@ -14,6 +16,7 @@ import {
   getSafeVelocity,
 } from "./entity_utilities.js";
 import * as formationOrder from "./formation_order.js";
+import { spawnParticle } from "./particle_utilities.js";
 
 const flightSystem = (() => {
   const FlightMode = entityData.FLIGHT_MODES;
@@ -78,8 +81,8 @@ const flightSystem = (() => {
       }
       return false;
     }
-    // The behavior events are guarded by `movement_state != next`, so a forced
-    // re-apply has to move the property off its current value first.
+                                                                               
+                                                                     
     if (current === next) {
       setProperty(dragon, `${FLIGHT}movement_state`, next === "flying" ? "grounded" : "flying");
     }
@@ -175,7 +178,7 @@ const flightSystem = (() => {
     if (!dragon?.isValid || !rider?.isValid) {
       throw new Error("Dragon or rider is no longer available");
     }
-    const direction = rider.getViewDirection();
+    const direction = getRiderAimDirection(dragon, rider);
     const chargePower = Math.min(
       1,
       (chargeTicks - getDragonProjectileAbility(dragon).minChargeTicks) /
@@ -241,7 +244,7 @@ const flightSystem = (() => {
         return;
       }
       setProperty(dragon, `${FLIGHT}is_breathing`, false);
-      setProperty(dragon, `${FLIGHT}breath_charge`, 0);
+      stopDragonBreathAudio(dragon);
       state.fireballChargeTicks = 0;
       if (dragon.typeId === "dragonmounts2:fire_dragon") {
         setProperty(dragon, `${FLIGHT}is_fireball_charging`, false);
@@ -300,8 +303,8 @@ const flightSystem = (() => {
       () => dragon.getComponent("minecraft:tameable")?.tamedToPlayerId,
     ) || dynamic(dragon, `${FLIGHT}owner_identifier`);
     if (!rider?.isValid || rider.id !== ownerId || !riderHandsFree(rider)) {
-      // The proxy sits in the rider's crosshair, so it must not exist while they
-      // are holding a weapon, bow, scepter, etc.
+                                                                                 
+                                                 
       cleanupRiderAttackProxy(dragon);
       return;
     }
@@ -376,15 +379,12 @@ const flightSystem = (() => {
     const tameable = safe(() => dragon.getComponent("minecraft:tameable"));
     const canAttack = tameable?.isTamed === true && isTrusted(dragon) &&
       safe(() => dragon.hasComponent("minecraft:is_saddled")) === true;
-    // Holding any item = hands busy: jump is always plain flight input, never
-    // breath/fireball. The saved attack mode is left untouched for next time.
-    const handsFree = riderHandsFree(rider);
-    const attackMode = handsFree
-      ? property(dragon, `${FLIGHT}rider_attack_mode`, "breath")
-      : "none";
-    if (jumpStarted && dragon.isOnGround) {
-      // Vanilla jump (LivingEntity.jumpFromGround); liftoff then comes from the
-      // airborne timer in updateFlyingFlag.
+    const attackMode = property(dragon, `${FLIGHT}rider_attack_mode`, "breath");
+    const attackInputActive = jumping && canAttack &&
+      (attackMode === "breath" || attackMode === "fireball");
+    if (jumpStarted && dragon.isOnGround && !attackInputActive) {
+                                                                                
+                                            
       safe(() => dragon.applyImpulse({ x: 0, y: JAVA_JUMP_POWER, z: 0 }));
     }
     const projectileAbility = getDragonProjectileAbility(dragon);
@@ -395,12 +395,17 @@ const flightSystem = (() => {
     const isFireDragon = dragon.typeId === "dragonmounts2:fire_dragon";
     const maximumChargeTicks =
       projectileAbility.minChargeTicks + FIREBALL_POWER_RAMP_TICKS;
+    const wasBreathing =
+      property(dragon, `${FLIGHT}is_breathing`, false) === true;
     if (!canBreathe) {
       setProperty(dragon, `${FLIGHT}is_breathing`, false);
     } else {
       state.fireballChargeTicks = 0;
       if (isFireDragon) setProperty(dragon, `${FLIGHT}is_fireball_charging`, false);
       setProperty(dragon, `${FLIGHT}is_breathing`, jumping);
+    }
+    if (wasBreathing && (!canBreathe || !jumping)) {
+      stopDragonBreathAudio(dragon);
     }
     if (attackMode === "fireball" && canAttack) {
       if (jumping) {
@@ -443,8 +448,6 @@ const flightSystem = (() => {
       state.fireballChargeTicks = 0;
       if (isFireDragon) setProperty(dragon, `${FLIGHT}is_fireball_charging`, false);
     }
-    const attackInputActive = jumping && canAttack &&
-      (attackMode === "breath" || attackMode === "fireball");
     if (!canAttack) return;
     if (property(dragon, `${FLIGHT}movement_state`) !== "flying") return;
     const input = safe(() => rider.inputInfo?.getMovementVector?.());
@@ -465,8 +468,8 @@ const flightSystem = (() => {
     return `${name}: ${currentMode(dragon)}/${property(dragon, `${FLIGHT}movement_state`, "?")} [${lastText}]`;
   }
 
-  // Debug overlay: the slots actually flown (can differ from the stored rank
-  // when compaction closes a gap).
+                                                                             
+                                   
   function ownerSlotsLine(player) {
     const cached = FLOCK_CACHE.get(player.id);
     if (!cached || system.currentTick - cached.tick > 20) return null;
@@ -475,7 +478,7 @@ const flightSystem = (() => {
     return `slots ${names.join(" ")}`;
   }
 
-  // Patch B telemetry: tune the catch constants from these numbers.
+                                                                    
   function ownerDebugLine(player) {
     const fall = fallStates.get(player.id);
     if (!fall) return null;
@@ -521,9 +524,9 @@ const flightSystem = (() => {
     }
     return lines;
   }
-  // ---------------------------------------------------------------------------
-  // Java parity helpers (NeoDragonMounts). See JAVA_FLIGHT_SPEC.md.
-  // ---------------------------------------------------------------------------
+                                                                                
+                                                                    
+                                                                                
   const {
     LIFTOFF_THRESHOLD,
     NEAR_GROUND_FACTOR,
@@ -591,14 +594,14 @@ const flightSystem = (() => {
     BREAK_IN_SWEEP_Z_RATE,
     BREAK_IN_TRUST_PROPERTY,
   } = entityData;
-  const AERIAL_COMBAT_SPEED = 1.3; // DragonAerialCombat speed modifier
-  const IDLE_LAND_SPEED = 1.6; // TryFindGround uses 0.75 in Java; raised so descents are not sluggish
+  const AERIAL_COMBAT_SPEED = 1.3;                                     
+  const IDLE_LAND_SPEED = 1.6;                                                                        
   const LAND_COOLDOWN_TICKS = 120;
   const SEA_LEVEL = { overworld: 63, nether: 32, the_end: 64 };
   const fallStates = new Map();
-  const CATCHER = new Map(); // ownerId -> catcher record (single catcher per owner)
+  const CATCHER = new Map();                                                        
 
-  // ---- trust (Java: DATA_BREAK_IN_TRUST) ----
+                                                
   function isTrusted(dragon) {
     if (property(dragon, BREAK_IN_TRUST_PROPERTY) === true) return true;
     if (MIGRATE_LEGACY_TRUST && dynamic(dragon, BREAK_IN_TRUST_PROPERTY) === true) {
@@ -632,7 +635,7 @@ const flightSystem = (() => {
     return stage === "juvenile" ? JUVENILE_SIZE : stage === "baby" ? 0.15 : 1;
   }
 
-  // Java hitbox values (bbWidth / bbHeight) at the dragon's life stage.
+                                                                        
   function javaWidth(dragon) {
     return JAVA_DRAGON_WIDTH * sizeOf(dragon);
   }
@@ -640,17 +643,17 @@ const flightSystem = (() => {
     return JAVA_DRAGON_HEIGHT * sizeOf(dragon);
   }
 
-  // ---- formation order (Patch A) ----
-  // The order lives on the OWNER (player property formation_order, a JSON list
-  // of dragon persistent IDs, index 0 = rank 1), so it is unique by
-  // construction and a rank change never needs a second dragon to be loaded.
-  // flight_rank on a dragon is only a read-only mirror (display and downgrade
-  // safety) plus the source for one-time migration of legacy worlds.
+                                        
+                                                                               
+                                                                    
+                                                                             
+                                                                              
+                                                                     
   const ORDER_PROPERTY = `${FLIGHT}formation_order`;
   const MIRROR_PROPERTY = `${FLIGHT}flight_rank`;
   const MIGRATED_PROPERTY = `${FLIGHT}flight_rank_migrated`;
-  const ORDER_CACHE = new Map(); // ownerId -> { raw, list }
-  const SESSION_ORDER = new Map(); // ownerId -> pid[] (autos, in join order)
+  const ORDER_CACHE = new Map();                            
+  const SESSION_ORDER = new Map();                                           
   const SESSION_ORDER_MAX = 8;
   const VANILLA_DIMENSIONS = ["overworld", "nether", "the_end"];
 
@@ -681,7 +684,7 @@ const flightSystem = (() => {
     if (dynamic(owner, ORDER_PROPERTY) !== raw) setDynamic(owner, ORDER_PROPERTY, raw);
     ORDER_CACHE.set(owner.id, { raw, list });
     FLOCK_CACHE.clear();
-    // Keep the mirror honest on every loaded dragon (only writes on change).
+                                                                             
     for (const dragon of ownedDragonsOf(owner)) mirrorRank(dragon, list);
   }
 
@@ -692,8 +695,8 @@ const flightSystem = (() => {
     if (mirroredRank(dragon) !== rank) setDynamic(dragon, MIRROR_PROPERTY, rank || undefined);
   }
 
-  // First access per owner with no stored order: collect the legacy per-dragon
-  // ranks of every loaded owned dragon and write them as one list.
+                                                                               
+                                                                   
   function migrateOrder(owner) {
     const dimensions = VANILLA_DIMENSIONS
       .map((id) => safe(() => world.getDimension(id), null))
@@ -710,7 +713,7 @@ const flightSystem = (() => {
     return list;
   }
 
-  // Never mutate the returned list; the formation_order functions return new ones.
+                                                                                   
   function readOrder(owner) {
     if (!owner?.isValid) return [];
     const raw = dynamic(owner, ORDER_PROPERTY);
@@ -726,7 +729,7 @@ const flightSystem = (() => {
     return [...readOrder(owner)];
   }
 
-  // Rank shown everywhere: list index + 1, or 0 for Auto.
+                                                          
   function flightRank(dragon, owner = ownerOf(dragon)) {
     if (!owner) return 0;
     const pid = pidOf(dragon);
@@ -737,7 +740,7 @@ const flightSystem = (() => {
     return formationOrder.rankOf(readOrder(owner), pid);
   }
 
-  // One atomic change: returns the rank the dragon ended up with.
+                                                                  
   function placeRank(owner, pid, rank) {
     if (!owner?.isValid || !pid) return null;
     const list = readOrder(owner);
@@ -763,7 +766,7 @@ const flightSystem = (() => {
     return true;
   }
 
-  // Compat wrappers for the older per-dragon API.
+                                                  
   function setFlightRank(dragon, rank) {
     const owner = ownerOf(dragon);
     return owner ? placeRank(owner, pidOf(dragon), rank) !== null : false;
@@ -780,8 +783,8 @@ const flightSystem = (() => {
     return cycleRank(player, pidOf(dragon));
   }
 
-  // Runs from the dragon's own tick (throttled): late-loading legacy dragons
-  // are inserted once, and the mirror follows the owner's list.
+                                                                             
+                                                                
   function syncDragonOrder(dragon, owner, state) {
     const now = system.currentTick;
     if (now < state.nextOrderSync) return;
@@ -801,14 +804,14 @@ const flightSystem = (() => {
     mirrorRank(dragon, list);
   }
 
-  // ---- state / ground contact ----
+                                     
   function data(dragon) {
     let state = runtime.get(dragon);
     if (!state) {
       state = {
         jumpWasDown: false,
         fireballChargeTicks: 0,
-        // A dragon already flying when first seen (reload) must not drop.
+                                                                          
         flightTicks: property(dragon, `${FLIGHT}movement_state`) === "flying" ? LIFTOFF_THRESHOLD + 1 : 0,
         combatIntent: null,
         attackInteraction: null,
@@ -837,6 +840,11 @@ const flightSystem = (() => {
         restoreSitting: false,
         landTarget: null,
         nextLandScan: 0,
+        autonomousTarget: null,
+        autonomousLastPosition: null,
+        autonomousStallTicks: 0,
+        autonomousEscapeTarget: null,
+        autonomousEscapeExpires: 0,
         breakIn: { riderId: null, rideTicks: 0, threshold: 0, climbTicks: 0, anchor: null, banked: 0, lastParticle: -Infinity },
       };
       runtime.set(dragon, state);
@@ -844,9 +852,9 @@ const flightSystem = (() => {
     return state;
   }
 
-  // Java TameableDragonEntity.isNearGround(0.25): the bounding box shifted down
-  // by a quarter of its height touches a collision. Emulated with downward rays
-  // from the footprint so partial blocks (slabs) are handled.
+                                                                                
+                                                                                
+                                                              
   function isNearGround(dragon, factor = NEAR_GROUND_FACTOR) {
     if (dragon.isOnGround) return true;
     const box = safe(() => dragon.getComponent("minecraft:collision_box"), null);
@@ -866,7 +874,7 @@ const flightSystem = (() => {
     return false;
   }
 
-  // ---- Java DragonMoveControl + travel() emulation ----
+                                                          
   function wrapDegrees(value) {
     return ((((value % 360) + 540) % 360) - 180);
   }
@@ -876,10 +884,10 @@ const flightSystem = (() => {
     return current + delta;
   }
 
-  // MoveControl.setWantedPosition + DragonMoveControl.tick. Linear motion is
-  // target-velocity steering (the same self-correcting method the ridden dragon
-  // uses), so every script-driven flight shares one cruise speed regardless of
-  // engine drag. Facing is handled centrally by alignToMotion.
+                                                                             
+                                                                                
+                                                                               
+                                                               
   function moveControlFly(dragon, target, speedModifier, breathing = false, minSpeed = 0) {
     if (!dragon?.isValid || !target) return;
     const pos = dragon.location;
@@ -903,14 +911,14 @@ const flightSystem = (() => {
       y: (intended.y - current.y) * FLIGHT_RESPONSE,
       z: (intended.z - current.z) * FLIGHT_RESPONSE,
     }));
-    // Script-driven takeoff: lift a grounded dragon off the floor.
+                                                                   
     if (liftOff && current.y < 0.3) safe(() => dragon.applyImpulse({ x: 0, y: 0.45, z: 0 }));
     data(dragon).motion = intended;
   }
 
-  // Java-style body roll: banking follows the (smoothed) yaw rate, scaled by
-  // speed. Published as the synced property dragonmounts2:flight_roll, which the
-  // client animation reads instead of the noisy q.yaw_speed. Tune in entity_data.js.
+                                                                             
+                                                                                 
+                                                                                     
   function updateFlightRoll(dragon, state) {
     if (!dragon?.isValid) return;
     const rotation = safe(() => dragon.getRotation(), null);
@@ -932,10 +940,10 @@ const flightSystem = (() => {
     }
   }
 
-  // Dynamic flight facing: the whole body points where the dragon is going.
-  // Yaw follows horizontal motion, pitch follows the climb/dive angle (scaled
-  // by speed so a hovering dragon levels out). Turn rates are limited so it
-  // banks round corners instead of snapping. Roll is not scriptable.
+                                                                            
+                                                                              
+                                                                            
+                                                                     
   function alignToMotion(dragon, state) {
     let motion = state.motion;
     state.motion = null;
@@ -964,7 +972,58 @@ const flightSystem = (() => {
     moveControlFly(dragon, target, speedModifier);
   }
 
-  function faceTarget(dragon, target) {
+  function moveAutonomousFlight(dragon, target, state) {
+    const now = system.currentTick;
+    const position = dragon.location;
+    const distanceToTarget = distanceBetween(position, target);
+    const targetChanged = !state.autonomousTarget ||
+      distanceBetween(state.autonomousTarget, target) > 3;
+    if (targetChanged || distanceToTarget <= 1) {
+      state.autonomousStallTicks = 0;
+      state.autonomousEscapeTarget = null;
+    } else if (
+      state.autonomousLastPosition &&
+      distanceBetween(position, state.autonomousLastPosition) < 0.08
+    ) {
+      state.autonomousStallTicks += 1;
+    } else {
+      state.autonomousStallTicks = 0;
+    }
+    state.autonomousTarget = { x: target.x, y: target.y, z: target.z };
+    state.autonomousLastPosition = { x: position.x, y: position.y, z: position.z };
+
+    if (state.autonomousStallTicks >= 12) {
+      const dx = target.x - position.x;
+      const dz = target.z - position.z;
+      const horizontal = Math.hypot(dx, dz) || 1;
+      state.autonomousEscapeTarget = {
+        x: position.x + (dx / horizontal) * 4,
+        y: position.y + 4,
+        z: position.z + (dz / horizontal) * 4,
+      };
+      state.autonomousEscapeExpires = now + 40;
+      state.autonomousStallTicks = 0;
+    }
+
+    if (state.autonomousEscapeTarget) {
+      if (
+        now >= state.autonomousEscapeExpires ||
+        distanceBetween(position, state.autonomousEscapeTarget) <= 1
+      ) {
+        state.autonomousEscapeTarget = null;
+      } else {
+        moveControlFly(dragon, state.autonomousEscapeTarget, AERIAL_COMBAT_SPEED);
+        return;
+      }
+    }
+
+    const flightTarget = dragon.isOnGround && target.y <= position.y + 2
+      ? { x: target.x, y: position.y + 4, z: target.z }
+      : target;
+    moveControlFly(dragon, flightTarget, AERIAL_COMBAT_SPEED);
+  }
+
+  function faceTarget(dragon, target, snap = false) {
     if (!target?.isValid) return;
     const velocity = getSafeVelocity(target);
     const distance = distanceBetween(dragon.location, target.location);
@@ -973,10 +1032,14 @@ const flightSystem = (() => {
     const dz = target.location.z + velocity.z * leadTicks - dragon.location.z;
     const current = safe(() => dragon.getRotation(), { x: 0, y: 0, z: 0 });
     const yaw = (-Math.atan2(dx, dz) * 180) / Math.PI;
-    safe(() => dragon.setRotation({ x: current.x, y: current.y + wrapDegrees(yaw - current.y) * 0.55, z: 0 }));
+    safe(() => dragon.setRotation({
+      x: current.x,
+      y: snap ? yaw : current.y + wrapDegrees(yaw - current.y) * 0.55,
+      z: 0,
+    }));
   }
 
-  // ---- owner helpers ----
+                            
   function ownerMount(owner) {
     return safe(() => owner?.getComponent("minecraft:riding")?.entityRidingOn, null);
   }
@@ -990,9 +1053,9 @@ const flightSystem = (() => {
       isTamed(mount);
   }
 
-  // One ground sample per tick. isOnGround is client-reported and flickers, so
-  // it is only a hint: water, climbing and a short downward ray (only when the
-  // player is slow and not gliding) count as ground too.
+                                                                               
+                                                                               
+                                                         
   function groundCandidate(player) {
     if (player.isOnGround || player.isInWater || player.isClimbing) return true;
     if (player.isGliding) return false;
@@ -1020,14 +1083,14 @@ const flightSystem = (() => {
     return "AIRBORNE_OTHER";
   }
 
-  // What owner-triggered behavior is wanted right now. Every consumer
-  // (canUseFollow, flockOf, idleLanding, the catch) reads this one value.
+                                                                      
+                                                                          
   function followIntent(owner) {
     return fallStates.get(owner?.id)?.intent ?? "none";
   }
 
-  // The owner just touched down: end every owner-triggered behavior at once
-  // instead of waiting for each dragon's own tick.
+                                                                            
+                                                   
   function onOwnerGrounded(owner, state) {
     state.dismount = null;
     state.distance = 0;
@@ -1048,8 +1111,8 @@ const flightSystem = (() => {
     }
   }
 
-  // Java Entity.fallDistance emulation: accumulates descent while airborne,
-  // reset by ground, water, riding, climbing or creative flight.
+                                                                            
+                                                                 
   function trackFalls() {
     const now = system.currentTick;
     const players = world.getAllPlayers();
@@ -1065,7 +1128,7 @@ const flightSystem = (() => {
         };
         fallStates.set(player.id, state);
       }
-      // Remember which dragon the player just left (the preferred catcher).
+                                                                            
       const mount = ownerMount(player);
       const onDragon = mount?.isValid === true && entityData.dragonTypeIds.has(mount.typeId);
       if (state.mountId && !onDragon) {
@@ -1074,8 +1137,8 @@ const flightSystem = (() => {
       }
       state.mountId = onDragon ? mount.id : null;
 
-      // Debounced ground state: enter after GROUND_DISABLE_TICKS consecutive
-      // candidate ticks, leave after GROUND_LEAVE_TICKS consecutive misses.
+                                                                             
+                                                                            
       const candidate = !mount && groundCandidate(player);
       if (candidate) {
         state.groundTicks += 1;
@@ -1092,11 +1155,11 @@ const flightSystem = (() => {
         state.grounded = false;
         state.airSince = now - state.airTicks;
       }
-      // Hover grace is measured from when the owner last left the ground, a
-      // dragon or a glide.
+                                                                            
+                           
       if (onDragon || player.isGliding) state.airSince = now;
 
-      // A drop of more than 10 blocks in one tick is a teleport, not a fall.
+                                                                             
       const teleported = state.lastY - y > 10;
       const reset = candidate || player.isFlying || teleported ||
         state.dimension !== player.dimension.id || Boolean(mount);
@@ -1127,6 +1190,7 @@ const flightSystem = (() => {
     for (const id of fallStates.keys()) {
       if (!players.some((player) => player.id === id)) {
         fallStates.delete(id);
+        FORMATION_HEADING.delete(id);
         SESSION_ORDER.delete(id);
         CATCHER.delete(id);
         ORDER_CACHE.delete(id);
@@ -1134,7 +1198,7 @@ const flightSystem = (() => {
     }
   }
 
-  // Owner standing on the ground (not riding): every V-Flight behavior ends.
+                                                                             
   function ownerGrounded(owner) {
     if (ownerMount(owner)) return false;
     return fallStates.get(owner?.id)?.grounded === true;
@@ -1151,7 +1215,7 @@ const flightSystem = (() => {
     return owner?.isValid && isDragonOwnedByPlayer(dragon, owner.id) ? owner : null;
   }
 
-  // ---- V-Flight: DragonFollowPlayerFlying ----
+                                                 
   function hasController(dragon) {
     const riders = ridersOf(dragon);
     return riders.length > 0 && isTrusted(dragon) &&
@@ -1163,15 +1227,16 @@ const flightSystem = (() => {
   }
 
   function isVFlightEnabled(dragon) {
-    return dynamic(dragon, `${FLIGHT}vflight_disabled`) !== true;
+                                                                      
+    return dynamic(dragon, `${FLIGHT}vflight_enabled`) === true;
   }
 
   function setVFlightEnabled(dragon, enabled) {
     if (!dragon?.isValid) return false;
-    setDynamic(dragon, `${FLIGHT}vflight_disabled`, enabled ? undefined : true);
+    setDynamic(dragon, `${FLIGHT}vflight_enabled`, enabled ? true : undefined);
     if (!enabled) {
-      // Fully off: drop the behavior flag and its event even if runtime state
-      // was lost, so native AI is restored.
+                                                                              
+                                            
       const state = data(dragon);
       state.followActive = false;
       state.landTarget = null;
@@ -1181,13 +1246,24 @@ const flightSystem = (() => {
     return true;
   }
 
+  function isFormationFlightEnabled(owner) {
+    return dynamic(owner, `${FLIGHT}formation_flight_enabled`) === true;
+  }
+
+  function setFormationFlightEnabled(owner, enabled) {
+    if (!owner?.isValid) return false;
+    setDynamic(owner, `${FLIGHT}formation_flight_enabled`, enabled ? true : undefined);
+    FLOCK_CACHE.clear();
+    return true;
+  }
+
   function ownerAirborne(owner) {
     return owner?.isValid === true && !owner.isOnGround && !owner.isInWater &&
       !owner.isFlying && !ownerMount(owner);
   }
 
-  // The dragon the owner just left is the preferred catcher; it no longer
-  // bypasses the CATCH_MIN_FALL rule.
+                                                                          
+                                      
   function dismountInfo(dragon, owner) {
     const info = fallStates.get(owner?.id)?.dismount;
     if (!info || info.dragonId !== dragon.id) return null;
@@ -1195,8 +1271,8 @@ const flightSystem = (() => {
     return ownerAirborne(owner) ? info : null;
   }
 
-  // The dismount key is sneak, so sneaking right after leaving a dragon does
-  // not cancel the catch.
+                                                                             
+                          
   function inDismountGrace(owner) {
     const info = fallStates.get(owner?.id)?.dismount;
     return Boolean(info) && system.currentTick - info.tick <= DISMOUNT_SNEAK_GRACE;
@@ -1206,16 +1282,15 @@ const flightSystem = (() => {
     if (!owner?.isValid || owner.dimension.id !== dragon.dimension.id) return false;
     if (dragon.isLeashed === true) return false;
     if (ridersOf(dragon).length > 0 || !isVehicleless(dragon)) return false;
-    // Untrusted / unowned / baby / disabled dragons never follow or catch.
-    if (!isTamed(dragon) || !isTrusted(dragon) || isBaby(dragon)) return false;
-    if (!isVFlightEnabled(dragon)) return false;
-    // Sitting, fighting and sleeping never block following: sitters stand up
-    // for the flight and sit again once landed, sleepers are woken.
+                                                                
+    if (!isTamed(dragon) || !isTrusted(dragon) || isBaby(dragon) || isSitting(dragon)) return false;
+                                                                        
     const intent = followIntent(owner);
     if (intent === "none" || ownerGrounded(owner)) return false;
     let wants = false;
     if (intent === "formation") {
-      // Formation is limited to FORMATION_MAX_DRAGONS slots.
+      if (!isFormationFlightEnabled(owner)) return false;
+                                                             
       wants = flockOf(dragon, owner).some((member) => member && (member === dragon || member.id === dragon.id));
     } else if (intent === "catch") {
       wants = distanceBetween(dragon.location, owner.location) < entityData.OWNER_FOLLOW_RANGE &&
@@ -1225,8 +1300,8 @@ const flightSystem = (() => {
     return wants;
   }
 
-  // Dragons of this owner that may follow at all (same filter as the old
-  // flockOf), cached per tick. `main` is the dragon the owner rode last.
+                                                                         
+                                                                         
   function eligibleDragons(dragon, owner) {
     const now = system.currentTick;
     const key = `e:${owner.id}`;
@@ -1242,7 +1317,6 @@ const flightSystem = (() => {
       isVehicleless(member) &&
       isTamed(member) &&
       isTrusted(member) &&
-      isVFlightEnabled(member) &&
       isDragonOwnedByPlayer(member, owner.id) &&
       Math.abs(member.location.x - owner.location.x) <= FLOCK_RADIUS &&
       Math.abs(member.location.y - owner.location.y) <= FLOCK_RADIUS &&
@@ -1263,14 +1337,24 @@ const flightSystem = (() => {
     return entry;
   }
 
-  // Formation slots: list order for ranked dragons (gaps close), then autos in
-  // the order they joined this flight. Slot i is index i.
+                                                                               
+                                                          
   function flockOf(dragon, owner) {
     const now = system.currentTick;
     const cached = FLOCK_CACHE.get(owner.id);
     if (cached && cached.tick === now && cached.dimension === dragon.dimension.id) return cached.members;
     if (FLOCK_CACHE.size > 32) FLOCK_CACHE.clear();
-    const { members, main } = eligibleDragons(dragon, owner);
+    const eligible = eligibleDragons(dragon, owner);
+                                                                                  
+                                                                            
+                                                                         
+    const gliding = !ownerMount(owner);
+    const members = gliding
+      ? eligible.members.filter((member) => property(member, `${FLIGHT}movement_state`) === "flying")
+      : eligible.members;
+    const main = eligible.main && members.some((member) => member.id === eligible.main.id)
+      ? eligible.main
+      : null;
     const byPid = new Map();
     for (const member of members) {
       const pid = pidOf(member);
@@ -1278,8 +1362,8 @@ const flightSystem = (() => {
     }
     const list = readOrder(owner);
     const mainPid = main ? pidOf(main) : null;
-    // Autos that are new to this flight join the session order, main first,
-    // then oldest. This stops range flicker from reshuffling them mid-flight.
+                                                                            
+                                                                              
     const session = SESSION_ORDER.get(owner.id) ?? [];
     const joining = [...byPid.keys()]
       .filter((pid) => !list.includes(pid) && !session.includes(pid))
@@ -1298,46 +1382,85 @@ const flightSystem = (() => {
     return slots;
   }
 
-  // V formation behind the owner. Slot 0 (rank 1 / the main dragon) is straight
-  // behind along the actual flight path; the rest trail behind it in a V.
+                                                                                    
+                                                                                 
   function formationSlot(dragon, owner) {
     const flock = flockOf(dragon, owner);
     const found = flock.findIndex((member) => member && (member === dragon || member.id === dragon.id));
     const index = found < 0 ? 0 : found;
     const state = data(dragon);
-    // Lane change: a dragon whose slot moved toward the front rises over the
-    // others, then eases back down. Never a teleport.
+                                                                             
+                                                      
     if (state.lastSlotIndex !== null && state.lastSlotIndex !== index) {
       state.laneOffset = index < state.lastSlotIndex ? LANE_CHANGE_RISE : 0;
     }
     state.lastSlotIndex = index;
-    const leader = ownerMount(owner) ?? owner;
+    const mount = ownerMount(owner);
+    const leader = mount ?? owner;
     const velocity = getSafeVelocity(leader);
     const speed = Math.hypot(velocity.x, velocity.y, velocity.z);
-    let dir;
+    let rawDir;
     if (speed > 0.2 && Math.hypot(velocity.x, velocity.z) > 0.1) {
-      dir = { x: velocity.x / speed, y: velocity.y / speed, z: velocity.z / speed };
+      rawDir = { x: velocity.x / speed, y: velocity.y / speed, z: velocity.z / speed };
     } else {
       const yaw = (safe(() => leader.getRotation().y, 0) * Math.PI) / 180;
-      dir = { x: -Math.sin(yaw), y: 0, z: Math.cos(yaw) };
+      rawDir = { x: -Math.sin(yaw), y: 0, z: Math.cos(yaw) };
     }
+                                                                                
+                                                                         
+    const dir = smoothFormationHeading(owner.id, rawDir);
+                                                                              
+                                                                           
+    const anchor = leader.location;
+    const anchorLift = mount ? 0 : 0.5;
     const horizontal = Math.hypot(dir.x, dir.z) || 1;
     const right = { x: -dir.z / horizontal, z: dir.x / horizontal };
-    const wing = Math.ceil(index / 2); // 0 = straight behind, 1..2 = V rows
-    const leftSide = index % 2 === 1;
-    const bodySize = Math.max(javaWidth(dragon), 2.0); // max(bbWidth, scale * 2)
-    const back = bodySize * 3 + wing * bodySize * 2;
-    const side = wing * bodySize * 2.5 * (leftSide ? -1 : 1);
+                                                                              
+                                                                                
+                                                                       
+    const wing = Math.floor(index / 2) + 1;               
+    const leftSide = index % 2 === 0;
+                                                                                   
+    let bodySize = Math.max(javaWidth(dragon), 2.0);                           
+    if (mount && entityData.dragonTypeIds.has(mount.typeId)) {
+      bodySize = Math.max(bodySize, javaWidth(mount));
+    }
+    for (const member of flock) {
+      if (member?.isValid) bodySize = Math.max(bodySize, javaWidth(member));
+    }
+    const back = bodySize * (2.5 + 2.2 * (wing - 1));
+    const side = wing * bodySize * 1.8 * (leftSide ? -1 : 1);
     const lane = state.laneOffset;
     state.laneOffset = Math.max(0, lane - LANE_CHANGE_EASE);
     return {
-      x: owner.location.x - dir.x * back + right.x * side,
-      y: owner.location.y + 0.5 - dir.y * back + lane,
-      z: owner.location.z - dir.z * back + right.z * side,
+      x: anchor.x - dir.x * back + right.x * side,
+      y: anchor.y + anchorLift - dir.y * back + lane,
+      z: anchor.z - dir.z * back + right.z * side,
     };
   }
 
-  // ---- single catcher + adaptive catch profile (Patch B) ----
+  const FORMATION_HEADING = new Map();                            
+  function smoothFormationHeading(ownerId, target) {
+    const now = system.currentTick;
+    const cached = FORMATION_HEADING.get(ownerId);
+    if (cached && cached.tick === now) return cached.dir;
+    let dir = target;
+    if (cached && now - cached.tick < 40) {
+      const blend = 0.15;
+      const mixed = {
+        x: cached.dir.x + (target.x - cached.dir.x) * blend,
+        y: cached.dir.y + (target.y - cached.dir.y) * blend,
+        z: cached.dir.z + (target.z - cached.dir.z) * blend,
+      };
+      const length = Math.hypot(mixed.x, mixed.y, mixed.z) || 1;
+      dir = { x: mixed.x / length, y: mixed.y / length, z: mixed.z / length };
+    }
+    FORMATION_HEADING.set(ownerId, { tick: now, dir });
+    if (FORMATION_HEADING.size > 32) FORMATION_HEADING.delete(FORMATION_HEADING.keys().next().value);
+    return dir;
+  }
+
+                                                                
   function lerp(from, to, t) {
     return from + (to - from) * t;
   }
@@ -1346,16 +1469,16 @@ const flightSystem = (() => {
     return Math.max(0, Math.min(1, value));
   }
 
-  // Where the owner sits on the dragon: the saddle, about 80% of its height.
+                                                                             
   function seatPoint(dragon) {
     const at = dragon.location;
     return { x: at.x, y: at.y + javaHeight(dragon) * 0.8, z: at.z };
   }
 
-  // Exactly one dragon dives. Candidates rank by ETA (distance / 1.4) with a
-  // bonus for the dragon the owner just left or rode last. The choice sticks
-  // until that dragon becomes ineligible or CATCH_TIMEOUT passes without a
-  // capture, then the next best takes over.
+                                                                             
+                                                                             
+                                                                           
+                                            
   function catcherFor(owner, dragon) {
     const now = system.currentTick;
     let record = CATCHER.get(owner.id);
@@ -1386,9 +1509,9 @@ const flightSystem = (() => {
     return record;
   }
 
-  // Urgency rises as impact gets closer: 0 when the ground is CATCH_CALM_ETA
-  // or more ticks away, 1 at CATCH_URGENT_ETA or fewer. One ray per owner per
-  // tick; no hit means "far".
+                                                                             
+                                                                              
+                              
   function updateCatchProfile(owner, record) {
     const now = system.currentTick;
     if (record.profileTick === now) return record;
@@ -1401,7 +1524,7 @@ const flightSystem = (() => {
     ));
     const ground = hit?.block ? hit.block.location.y + 1 : null;
     const d = ground === null ? Infinity : Math.max(0, owner.location.y - ground);
-    // d = v*t + 0.04*t^2 (gravity 0.08 per tick), solved for t.
+                                                                
     record.eta = Number.isFinite(d) ? (-v + Math.sqrt(v * v + 0.16 * d)) / 0.08 : 120;
     record.urgency = clamp01((CATCH_CALM_ETA - record.eta) / (CATCH_CALM_ETA - CATCH_URGENT_ETA));
     record.reaction = Math.round(lerp(CATCH_REACTION_CALM, CATCH_REACTION_URGENT, record.urgency));
@@ -1409,7 +1532,7 @@ const flightSystem = (() => {
     return record;
   }
 
-  // Optional (off by default): no catcher can make it, so soften the landing.
+                                                                              
   function maybeSafetyNet(owner, record, dragon) {
     if (!CATCH_SAFETY_NET || record.netApplied || record.eta > 8) return;
     const info = eligibleDragons(dragon, owner);
@@ -1428,8 +1551,8 @@ const flightSystem = (() => {
       return true;
     }
     state.addRiderFails += 1;
-    // Failsafe: only when the owner is practically on the saddle and the seat
-    // keeps refusing. The normal path never teleports.
+                                                                              
+                                                       
     if (state.addRiderFails >= CATCH_FAILSAFE_FAILS &&
         distanceBetween(seatPoint(dragon), owner.location) <= CATCH_FAILSAFE_RADIUS) {
       const rotation = safe(() => dragon.getRotation(), { x: 0, y: 0 });
@@ -1446,9 +1569,9 @@ const flightSystem = (() => {
     return false;
   }
 
-  // Target velocity = owner velocity + direction * closing speed, with the
-  // closing speed ramped in over 8 ticks (3 when urgent) and applied through
-  // the same FLIGHT_RESPONSE impulse as every other flight.
+                                                                           
+                                                                             
+                                                            
   function diveAt(dragon, owner, aim, closing, state, urgency = 0) {
     const now = system.currentTick;
     if (!state.diveTick) state.diveTick = now;
@@ -1474,12 +1597,8 @@ const flightSystem = (() => {
   }
 
   function startFollow(dragon, state) {
-    if (state.followActive || !isTrusted(dragon)) return;
+    if (state.followActive || !isTrusted(dragon) || isSitting(dragon)) return;
     state.followActive = true;
-    if (isSitting(dragon)) {
-      state.restoreSitting = true;
-      syncMobState(dragon, "standing", true);
-    }
     safe(() => dragon.triggerEvent("dragonmounts2:on_vflight_enable"));
     recordTransition(state, "vflight", "off", "on", "started");
   }
@@ -1497,8 +1616,8 @@ const flightSystem = (() => {
     FLOCK_CACHE.clear();
   }
 
-  // Match the leader's velocity plus a pull toward the slot (Java's k),
-  // capped at the cruise speed relative to the leader.
+                                                                        
+                                                       
   function holdFormation(dragon, owner, state) {
     const mount = ownerMount(owner);
     const slot = formationSlot(dragon, owner);
@@ -1511,11 +1630,11 @@ const flightSystem = (() => {
     }
     const ownerSpeed = Math.hypot(ownerVel.x, ownerVel.y, ownerVel.z);
     if (dragon.isOnGround && slot.y - dragon.location.y > 0.5) {
-      moveControlFly(dragon, slot, 14, false, ownerSpeed + 0.5); // takeoff
+      moveControlFly(dragon, slot, 14, false, ownerSpeed + 0.5);           
       return;
     }
     const k = Math.min(0.35, 0.12 + gap * 0.03);
-    const cap = RIDDEN_BASE_SPEED; // relative to the leader, so fast owners are still caught
+    const cap = RIDDEN_BASE_SPEED;                                                           
     let pull = {
       x: (slot.x - dragon.location.x) * k,
       y: (slot.y - dragon.location.y) * k,
@@ -1533,11 +1652,11 @@ const flightSystem = (() => {
       y: (desired.y - current.y) * FLIGHT_RESPONSE,
       z: (desired.z - current.z) * FLIGHT_RESPONSE,
     }));
-    // Face the way the dragon is actually flying (alignToMotion).
+                                                                  
     state.motion = desired;
   }
 
-  // DragonFollowPlayerFlying.tickOrStop
+                                        
   function tickFollow(dragon, owner, state) {
     setMovement(dragon, dragon.isInWater ? "swimming" : "flying", "follow");
     const intent = followIntent(owner);
@@ -1555,7 +1674,7 @@ const flightSystem = (() => {
     const now = system.currentTick;
     const fall = fallStates.get(owner.id);
     const record = catcherFor(owner, dragon);
-    // Only the catcher dives; everyone else keeps formation distance.
+                                                                      
     if (record.dragonId !== dragon.id) {
       state.diveTick = 0;
       holdFormation(dragon, owner, state);
@@ -1563,15 +1682,15 @@ const flightSystem = (() => {
     }
     updateCatchProfile(owner, record);
     maybeSafetyNet(owner, record, dragon);
-    // Sneaking cancels a catch, except right after dismounting (the dismount
-    // key itself is sneak).
+                                                                             
+                            
     if (owner.isSneaking && !inDismountGrace(owner)) {
       state.diveTick = 0;
       holdFormation(dragon, owner, state);
       return;
     }
-    // Not instant: the dragon reacts first. The reaction (14 ticks calm down
-    // to 5 urgent) runs from the moment the fall passed CATCH_MIN_FALL.
+                                                                             
+                                                                        
     const reacted = now - (fall?.catchIntentSince ?? now) >= record.reaction;
     const aim = { x: owner.location.x, y: owner.location.y - 2, z: owner.location.z };
     if (!reacted) {
@@ -1579,8 +1698,8 @@ const flightSystem = (() => {
       moveControlFly(dragon, aim, 2.0);
       return;
     }
-    // Quick but not instant: even when urgent, no mount sooner than about
-    // 0.8 s after the owner let go.
+                                                                          
+                                    
     const sinceRelease = now - (fall?.dismount?.tick ?? fall?.fallStart ?? now);
     if (sinceRelease >= CATCH_MIN_TICKS_FROM_RELEASE &&
         distanceBetween(seatPoint(dragon), owner.location) <= CATCH_CAPTURE_RADIUS &&
@@ -1599,7 +1718,7 @@ const flightSystem = (() => {
     diveAt(dragon, owner, aim, record.closing, state, record.urgency);
   }
 
-  // ---- TryFindGround (idle, flying dragons) ----
+                                                   
   function findLandingSpot(dragon) {
     const origin = dragon.location;
     let best = null;
@@ -1620,9 +1739,9 @@ const flightSystem = (() => {
     return best;
   }
 
-  // Hovering near an airborne owner is bounded: it ends HOVER_GRACE_TICKS
-  // after the owner left the ground, and never applies to a grounded owner
-  // (so standing on a hill or tower above the dragon no longer holds it up).
+                                                                          
+                                                                           
+                                                                             
   function shouldFollowOwner(dragon, owner) {
     if (owner?.isValid !== true || owner.dimension.id !== dragon.dimension.id) return false;
     if (owner.isOnGround || ownerGrounded(owner)) return false;
@@ -1658,7 +1777,7 @@ const flightSystem = (() => {
     if (state.landTarget) moveControlFly(dragon, state.landTarget, IDLE_LAND_SPEED);
   }
 
-  // ---- end-of-tick flying flag (ServerDragonEntity.aiStep) ----
+                                                                  
   function updateFlyingFlag(dragon, state, behaviorFlying, riddenByPlayer) {
     if (dragon.isInWater) {
       state.flightTicks = 0;
@@ -1672,7 +1791,7 @@ const flightSystem = (() => {
     setMovement(dragon, flying ? "flying" : "grounded", flying ? "airborne" : "near_ground");
   }
 
-  // ---- Break-in (BreakInBucking). Progress is intentionally not persisted. ----
+                                                                                  
   function tickBreakIn(dragon, rider) {
     const state = data(dragon);
     const bi = state.breakIn;
@@ -1688,7 +1807,7 @@ const flightSystem = (() => {
       bi.anchor = { ...dragon.location };
       bi.threshold = BREAK_IN_MIN_TICKS + Math.floor(Math.random() * (BREAK_IN_MAX_TICKS - BREAK_IN_MIN_TICKS));
     }
-    // fly(): force flying, stand up, sweep around the anchor.
+                                                              
     if (isSitting(dragon)) {
       setProperty(dragon, `${FLIGHT}mob_state`, "standing");
       safe(() => dragon.triggerEvent("minecraft:on_stand"));
@@ -1703,7 +1822,11 @@ const flightSystem = (() => {
       z: bi.anchor.z + Math.cos(phase * BREAK_IN_SWEEP_Z_RATE) * BREAK_IN_SWEEP_RADIUS,
     }, BREAK_IN_SWEEP_SPEED);
     if (system.currentTick - bi.lastParticle >= 10) {
-      safe(() => dragon.dimension.spawnParticle("minecraft:basic_smoke_particle", dragon.location));
+      spawnParticle(
+        dragon.dimension,
+        "minecraft:basic_smoke_particle",
+        dragon.location,
+      );
       bi.lastParticle = system.currentTick;
     }
     alignToMotion(dragon, state);
@@ -1723,11 +1846,11 @@ const flightSystem = (() => {
       safe(() => dragon.getComponent("rideable")?.ejectRiders());
       safe(() => rider.applyImpulse({ x: -look.x * 0.4, y: 0.3 - look.y * 0.4, z: -look.z * 0.4 }));
     }
-    bi.riderId = null; // doStop: next ride rolls a fresh threshold / anchor
+    bi.riderId = null;                                                      
     return true;
   }
 
-  // ---- ridden flight (TameableDragonEntity.getRiddenInput / tickRidden) ----
+                                                                               
   function rideAir(dragon, rider, strafe, forward, speedScale, suppressVertical) {
     const riderRotation = safe(() => rider.getRotation(), { x: 0, y: 0 });
     const moving = Math.abs(strafe) > 0.001 || Math.abs(forward) > 0.001;
@@ -1743,14 +1866,14 @@ const flightSystem = (() => {
       pitch = rotation.x + wrapDegrees(riderRotation.x - rotation.x) * 0.45;
     } else {
       yaw = rotation.y + wrapDegrees(heading - rotation.y) * (dragon.isOnGround ? 0.15 : 0.2);
-      pitch = Math.max(-90, Math.min(90, riderRotation.x)) * 0.75; // 0.5 (getRiddenRotation) * 1.5
+      pitch = Math.max(-90, Math.min(90, riderRotation.x)) * 0.75;                                 
     }
     safe(() => dragon.setRotation({ x: pitch, y: yaw, z: 0 }));
 
-    // Target-velocity steering (the pre-parity feel): releasing the controls
-    // damps the dragon to a stop instead of letting it drift.
-    // Dynamic speed: momentum from sustained flight, faster dives, slower
-    // climbs, sharp turns bleed speed. Never faster than RIDE_MAX_SPEED.
+                                                                             
+                                                              
+                                                                          
+                                                                         
     const flight = data(dragon);
     const pitchDown = Math.max(-90, Math.min(90, riderRotation.x));
     const diving = aimLocked ? 0 : clamp01((pitchDown - 20) / 50);
@@ -1768,7 +1891,8 @@ const flightSystem = (() => {
     const speed = Math.min(RIDDEN_BASE_SPEED * speedScale * dynamic, RIDE_MAX_SPEED);
     const thrust = moving ? Math.max(Math.abs(strafe), Math.abs(forward)) : 0;
     const moveYaw = ((aimLocked ? heading : yaw) * Math.PI) / 180;
-    const horizontal = thrust * speed * (aimLocked ? 0.7 : 1);
+                                                                        
+    const horizontal = thrust * speed;
     let vertical = 0;
     if (!aimLocked && moving) {
       vertical = Math.max(-0.5, Math.min(0.5, -Math.sin((riderRotation.x * Math.PI) / 180) * thrust));
@@ -1783,7 +1907,7 @@ const flightSystem = (() => {
       z: Math.cos(moveYaw) * horizontal,
     };
     const current = getSafeVelocity(dragon);
-    // Ease into speed, brake a little harder than you accelerate.
+                                                                  
     const response = moving ? RIDE_ACCEL_RESPONSE : RIDE_BRAKE_RESPONSE;
     safe(() => dragon.applyImpulse({
       x: (target.x - current.x) * response,
@@ -1800,8 +1924,8 @@ const flightSystem = (() => {
     return FlightMode.GROUNDED;
   }
 
-  // Self-healing: runtime state does not survive a reload but the entity
-  // properties do, so a stale v_flight_enabled flag is cleared here.
+                                                                         
+                                                                     
   function reconcile(dragon, state) {
     const now = system.currentTick;
     if (state.reconciled && now < state.nextReconcileTick) return;
@@ -1812,8 +1936,8 @@ const flightSystem = (() => {
     }
   }
 
-  // One tick of the dragon's "brain". Priority mirrors DragonAi:
-  // CONTROLLED > SITTING > FIGHT > SLEEPING > IDLE (V-Flight lives in IDLE).
+                                                                 
+                                                                             
   function tick(dragon, { trusted = false } = {}) {
     if (!dragon?.isValid) return FlightMode.GROUNDED;
     const riders = ridersOf(dragon);
@@ -1853,7 +1977,24 @@ const flightSystem = (() => {
     cleanupRiderAttackProxy(dragon);
     resetRiderInputState(dragon, state);
     state.momentum = 0;
-    // Sit back down once the flight is over and the dragon is on the ground.
+    if (isSitting(dragon)) {
+      stopFollow(dragon, "sitting");
+      safe(() => dragon.triggerEvent("minecraft:on_wander"));
+      state.restoreSitting = false;
+      state.combatIntent = null;
+      state.autonomousTarget = null;
+      state.autonomousLastPosition = null;
+      state.autonomousStallTicks = 0;
+      state.autonomousEscapeTarget = null;
+      state.motion = null;
+      if (property(dragon, `${FLIGHT}movement_state`) !== "grounded") {
+        setMovement(dragon, "grounded", "sitting");
+      }
+      safe(() => dragon.clearVelocity());
+      noteModeChange(state, mode);
+      return mode;
+    }
+                                                                             
     if (state.restoreSitting && !state.followActive && dragon.isOnGround &&
         property(dragon, `${FLIGHT}movement_state`) !== "flying") {
       state.restoreSitting = false;
@@ -1872,14 +2013,27 @@ const flightSystem = (() => {
         mode = FlightMode.AUTONOMOUS;
         behaviorFlying = true;
         setMovement(dragon, "flying", "combat");
-        if (!intent.holdPosition) moveControlFly(dragon, intent.flightTarget, AERIAL_COMBAT_SPEED, false);
+        if (!intent.holdPosition) {
+          moveAutonomousFlight(dragon, intent.flightTarget, state);
+        } else {
+          state.autonomousTarget = null;
+          state.autonomousLastPosition = null;
+          state.autonomousStallTicks = 0;
+          state.autonomousEscapeTarget = null;
+        }
       } else if (!intent?.flightTarget) {
+        state.autonomousTarget = null;
+        state.autonomousLastPosition = null;
+        state.autonomousStallTicks = 0;
+        state.autonomousEscapeTarget = null;
         idleLanding(dragon, owner, state);
       }
-      if (intent?.lookTarget) faceTarget(dragon, intent.lookTarget);
+      if (intent?.lookTarget) {
+        faceTarget(dragon, intent.lookTarget, intent.holdPosition === true);
+      }
     }
 
-    if (intent?.lookTarget) state.motion = null; // combat keeps facing its target
+    if (intent?.lookTarget) state.motion = null;                                  
     else alignToMotion(dragon, state);
     if (dragon.isInWater) {
       setMovement(dragon, "swimming", "water");
@@ -1938,6 +2092,8 @@ const flightSystem = (() => {
     forgetDragon,
     isVFlightEnabled,
     setVFlightEnabled,
+    isFormationFlightEnabled,
+    setFormationFlightEnabled,
     trackFalls,
     cycleRiderAttackMode,
     cleanupRiderAttackProxy,
@@ -2004,8 +2160,8 @@ function writeDynamicProperty(entity, propertyName, value) {
   safeExecute(() => entity.setDynamicProperty(propertyName, value));
 }
 
-// Break-in trust (Java: isBreakInTrusted). Separate from taming: a tamed dragon
-// stays untrusted until a break-in completes or /dragonmounts2:trust is used.
+                                                                                
+                                                                              
 export function isBreakInTrusted(dragon) {
   return dragon?.isValid === true && flightSystem.isTrusted(dragon);
 }
@@ -2018,29 +2174,29 @@ export function getFlightRank(dragon) {
   return flightSystem.flightRank(dragon);
 }
 
-// ---- owner-level formation order (Patch A) ----
-// The stored order for a player: persistent IDs, index 0 = rank 1.
+                                                  
+                                                                   
 export function getFormationOrder(player) {
   return flightSystem.getOrder(player);
 }
 
-// Rank of a persistent ID in the owner's order (0 = Auto).
+                                                           
 export function getFormationRank(player, pid) {
   return flightSystem.rankOfPid(player, pid);
 }
 
-// Atomic: places the dragon at `rank` (0 = Auto), swapping with the holder.
-// Works for dragons that are not loaded. Returns the resulting rank.
+                                                                            
+                                                                     
 export function setFormationRank(player, pid, rank) {
   return flightSystem.placeRank(player, pid, rank);
 }
 
-// Auto -> 1 -> ... -> cap -> Auto, one valid state per step.
+                                                             
 export function cycleFormationRank(player, pid) {
   return flightSystem.cycleRank(player, pid);
 }
 
-// Death / untame / owner change: drop the dragon from its owner's order.
+                                                                         
 export function forgetFormationDragon(ownerId, pid) {
   return flightSystem.forgetDragon(ownerId, pid);
 }
@@ -2055,6 +2211,14 @@ export function isVFlightEnabled(dragon) {
 
 export function setVFlightEnabled(dragon, enabled) {
   return flightSystem.setVFlightEnabled(dragon, enabled === true);
+}
+
+export function isFormationFlightEnabled(owner) {
+  return flightSystem.isFormationFlightEnabled(owner);
+}
+
+export function setFormationFlightEnabled(owner, enabled) {
+  return flightSystem.setFormationFlightEnabled(owner, enabled === true);
 }
 
 export function assignFlightRank(dragon, rank, ownerId) {
@@ -2198,7 +2362,7 @@ function markPlayerRodeDragon(player, dragon) {
   );
 }
 
-// Called when a player (re)joins: re-link dragons to the player's new id.
+                                                                          
 export function restoreOwnedDragonFlightState(player) {
   if (!player?.isValid) return;
   for (const dimensionId of ["overworld", "nether", "the_end"]) {
@@ -2311,7 +2475,7 @@ export function dragonsMainComponents(dragon) {
   const rideable = dragon.getComponent("rideable");
   const tameable = dragon.getComponent("minecraft:tameable");
   if (tameable?.isTamed) {
-    // Taming does NOT grant break-in trust (Java parity).
+                                                          
     const owner = tameable.tamedToPlayer;
     const ownerName = owner?.name;
     const ownerId = owner?.id ?? tameable.tamedToPlayerId;
@@ -2327,8 +2491,8 @@ export function dragonsMainComponents(dragon) {
   const rider = riders[0];
   const trusted = isBreakInTrusted(dragon);
 
-  // BreakInBucking: runs while a player rides a dragon that is not both tamed
-  // and trusted. It is not the controlling passenger.
+                                                                              
+                                                      
   if (rider instanceof Player && !(tameable?.isTamed === true && trusted)) {
     flightSystem.tickBreakIn(dragon, rider);
       return;
@@ -2364,7 +2528,7 @@ export function tickDragon(dragon) {
   dragonsMainComponents(dragon);
 }
 
-// Only the pieces other files actually use are exposed.
+                                                        
 export const DragonFlightController = Object.freeze({
   MODE_PRIORITY: flightSystem.MODE_PRIORITY,
   FlightMode: flightSystem.FlightMode,
@@ -2376,8 +2540,8 @@ export const DragonFlightController = Object.freeze({
   cleanupRiderAttackProxy: flightSystem.cleanupRiderAttackProxy,
 });
 
-// Owner fall distance (Java Entity.fallDistance) must be tracked before the
-// dragons tick, so the dragon-flight task calls this first.
+                                                                            
+                                                            
 export function tickFallRescue() {
   cleanupMemory();
   flightSystem.trackFalls();

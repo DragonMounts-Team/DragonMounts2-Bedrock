@@ -5,7 +5,13 @@
       "identifier": "dragonmounts2:nether_dragonball",
       "runtime_identifier": "minecraft:fireball",
       "is_summonable": true,
-      "is_spawnable": false
+      "is_spawnable": false,
+      "properties": {
+        "dragonmounts2:environmental_effects_enabled": {
+          "type": "bool",
+          "default": true
+        }
+      }
     },
     "components": {
       "minecraft:type_family": { "family": ["projectile", "fireball"] },
@@ -49,11 +55,40 @@
           "destroy_affected_by_griefing": true,
           "fuse_length": 0
         }
+      },
+      "dragonmounts2:exploding_no_environmental_effects": {
+        "minecraft:explode": {
+          "causes_fire": false,
+          "fire_affected_by_griefing": false,
+          "fuse_lit": true,
+          "power": 5,
+          "destroy_affected_by_griefing": false,
+          "fuse_length": 0
+        }
       }
     },
     "events": {
       "minecraft:explode": {
-        "add": { "component_groups": ["minecraft:exploding"] }
+        "sequence": [
+          {
+            "filters": {
+              "test": "bool_property",
+              "subject": "self",
+              "domain": "dragonmounts2:environmental_effects_enabled",
+              "value": true
+            },
+            "add": { "component_groups": ["minecraft:exploding"] }
+          },
+          {
+            "filters": {
+              "test": "bool_property",
+              "subject": "self",
+              "domain": "dragonmounts2:environmental_effects_enabled",
+              "value": false
+            },
+            "add": { "component_groups": ["dragonmounts2:exploding_no_environmental_effects"] }
+          }
+        ]
       }
     }
   }

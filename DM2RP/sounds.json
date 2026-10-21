@@ -11,8 +11,11 @@
   "entity_sounds": {
     "entities": {
       "dragonmounts2:aether_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -26,7 +29,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -37,30 +40,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_aether",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_aether",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_aether",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
               }
             }
           }
         }
       },
       "dragonmounts2:dark_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.dark_hit",
@@ -74,7 +92,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -85,30 +103,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.dark_death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_dark",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_dark",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_dark",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
               }
             }
           }
         }
       },
       "dragonmounts2:enchanted_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -122,7 +155,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -133,30 +166,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_hatchling",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_juvenile",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_adult",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
               }
             }
           }
         }
       },
       "dragonmounts2:ender_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -170,7 +218,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -181,30 +229,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_hatchling",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_juvenile",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_adult",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
               }
             }
           }
         }
       },
       "dragonmounts2:fire_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -218,7 +281,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -229,30 +292,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_hatchling",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_juvenile",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_adult",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
               }
             }
           }
         }
       },
       "dragonmounts2:forest_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -266,7 +344,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -277,30 +355,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_forest",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.forest_dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.forest_dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.forest_dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_forest",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_forest",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
               }
             }
           }
         }
       },
       "dragonmounts2:ice_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -314,7 +407,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -325,30 +418,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_ice",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ice",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.ice_dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.ice_dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.ice_dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_ice",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ice",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_ice",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ice",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice"
               }
             }
           }
         }
       },
       "dragonmounts2:light_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -362,7 +470,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -373,30 +481,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_light",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_light",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_light",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
               }
             }
           }
         }
       },
       "dragonmounts2:moonlight_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -410,7 +533,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -421,30 +544,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_moonlight",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_moonlight",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_moonlight",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
               }
             }
           }
         }
       },
       "dragonmounts2:nether_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -458,7 +596,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -469,30 +607,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_hatchling",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.nether_idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.nether_idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_juvenile",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.nether_idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.nether_idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_adult",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
               }
             }
           }
         }
       },
       "dragonmounts2:sculk_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -506,7 +659,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -517,30 +670,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.zombie_death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "mob.warden.sonic_charge",
+                "shoot": "mob.warden.agitated",
+                "deactivate": "mob.warden.sonic_boom",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.zombie_idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.zombie_idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "mob.warden.sonic_charge",
+                "shoot": "mob.warden.agitated",
+                "deactivate": "mob.warden.sonic_boom"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.zombie_idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.zombie_idle",
+                "warn": "mob.warden.sonic_charge",
+                "shoot": "mob.warden.agitated",
+                "deactivate": "mob.warden.sonic_boom"
               }
             }
           }
         }
       },
       "dragonmounts2:skeleton_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -554,7 +722,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -565,30 +733,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_hatchling",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.skeleton_idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_juvenile",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.skeleton_idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_adult",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
               }
             }
           }
         }
       },
       "dragonmounts2:storm_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -602,7 +785,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -613,30 +796,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_storm",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_storm",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_storm",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
               }
             }
           }
         }
       },
       "dragonmounts2:sunlight_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -650,7 +848,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -661,30 +859,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_sunlight",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_sunlight",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_sunlight",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
               }
             }
           }
         }
       },
       "dragonmounts2:terra_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -698,7 +911,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -709,30 +922,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_hatchling",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_juvenile",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_adult",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
               }
             }
           }
         }
       },
       "dragonmounts2:water_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -746,7 +974,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -757,30 +985,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_water",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_water",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.water_idle",
                 "roar": "dragonmounts2:mob.dragon.water_growl",
                 "tempt": "dragonmounts2:mob.dragon.water_idle",
-                "warn": "dragonmounts2:mob.dragon.water_dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.water_dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.water_dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_water",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_water",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.water_idle",
+                "roar": "dragonmounts2:mob.dragon.water_growl",
+                "tempt": "dragonmounts2:mob.dragon.water_idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_water",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_water",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water"
               }
             }
           }
         }
       },
       "dragonmounts2:wither_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -794,7 +1037,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -805,30 +1048,45 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_hatchling",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.skeleton_idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_juvenile",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.skeleton_idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_adult",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
               }
             }
           }
         }
       },
       "dragonmounts2:zombie_dragon": {
-        "volume": 2,
-        "pitch": [0.8, 1.2],
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.variation_orb",
           "hurt": "dragonmounts2:mob.dragon.hit",
@@ -842,7 +1100,7 @@
           "step": "dragonmounts2:mob.dragon.step"
         },
         "variants": {
-          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':'adult'",
+          "key": "q.property('dragonmounts2:age_variant')=='baby'?'baby':q.property('dragonmounts2:age_variant')=='juvenile'?'juvenile':'adult'",
           "map": {
             "baby": {
               "volume": 1,
@@ -853,22 +1111,34 @@
                 "tempt": "dragonmounts2:mob.dragon.baby.idle",
                 "roar": "dragonmounts2:mob.dragon.baby.growl",
                 "death": "dragonmounts2:mob.dragon.zombie_death",
-                "warn": "dragonmounts2:mob.dragon.baby.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.baby.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.baby.dragonbreath",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_zombie",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
                 "step": "dragonmounts2:mob.dragon.step"
               }
             },
-            "adult": {
-              "volume": 2,
+            "juvenile": {
+              "volume": 1,
               "pitch": 1,
               "events": {
                 "ambient": "dragonmounts2:mob.dragon.zombie_idle",
                 "roar": "dragonmounts2:mob.dragon.growl",
                 "tempt": "dragonmounts2:mob.dragon.zombie_idle",
-                "warn": "dragonmounts2:mob.dragon.dragonbreathe",
-                "shoot": "dragonmounts2:mob.dragon.dragonbreathing",
-                "deactivate": "dragonmounts2:mob.dragon.dragonbreath"
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_zombie",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
+              }
+            },
+            "adult": {
+              "volume": 1,
+              "pitch": 1,
+              "events": {
+                "ambient": "dragonmounts2:mob.dragon.zombie_idle",
+                "roar": "dragonmounts2:mob.dragon.growl",
+                "tempt": "dragonmounts2:mob.dragon.zombie_idle",
+                "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
+                "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_zombie",
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
               }
             }
           }
@@ -876,7 +1146,10 @@
       },
       "dragonmounts2:aether_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -886,7 +1159,10 @@
       },
       "dragonmounts2:dark_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -896,7 +1172,10 @@
       },
       "dragonmounts2:enchanted_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -906,7 +1185,10 @@
       },
       "dragonmounts2:forest_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -916,7 +1198,10 @@
       },
       "dragonmounts2:light_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -926,7 +1211,10 @@
       },
       "dragonmounts2:moonlight_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -936,7 +1224,10 @@
       },
       "dragonmounts2:nether_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -946,7 +1237,10 @@
       },
       "dragonmounts2:sculk_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -956,7 +1250,10 @@
       },
       "dragonmounts2:skeleton_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -966,7 +1263,10 @@
       },
       "dragonmounts2:storm_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -976,7 +1276,10 @@
       },
       "dragonmounts2:sunlight_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -986,7 +1289,10 @@
       },
       "dragonmounts2:terra_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -996,7 +1302,10 @@
       },
       "dragonmounts2:water_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -1006,7 +1315,10 @@
       },
       "dragonmounts2:wither_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -1016,7 +1328,10 @@
       },
       "dragonmounts2:zombie_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",
@@ -1026,7 +1341,10 @@
       },
       "dragonmounts2:fire_dragon_egg": {
         "volume": 1,
-        "pitch": [0.8, 1.2],
+        "pitch": [
+          0.8,
+          1.2
+        ],
         "events": {
           "activate": "dragonmounts2:item.dragon_scepter",
           "tempt": "dragonmounts2:item.variation_orb",

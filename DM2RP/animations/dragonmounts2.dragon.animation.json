@@ -1181,6 +1181,69 @@
         }
       }
     },
+    "animation.dragonmounts2.dragon.breath_loop.adult": {
+      "loop": true,
+      "animation_length": 5.37,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.airflow": {
+      "loop": true,
+      "animation_length": 7.41,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.forest": {
+      "loop": true,
+      "animation_length": 1.94,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.ice": {
+      "loop": true,
+      "animation_length": 7.28,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.lightning": {
+      "loop": true,
+      "animation_length": 5.27,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.water": {
+      "loop": true,
+      "animation_length": 4.95,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.juvenile": {
+      "loop": true,
+      "animation_length": 5.37,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop_juvenile" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.hatchling": {
+      "loop": true,
+      "animation_length": 3.4,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop_baby" }
+      }
+    },
+    "animation.dragonmounts2.dragon.breath_loop.sculk": {
+      "loop": true,
+      "animation_length": 2.5,
+      "sound_effects": {
+        "0.0": { "effect": "breath_loop" }
+      }
+    },
     "animation.dragonmounts2.dragon.swimming": {
       "loop": true,
       "bones": {

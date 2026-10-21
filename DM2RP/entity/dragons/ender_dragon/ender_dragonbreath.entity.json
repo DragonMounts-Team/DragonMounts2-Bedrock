@@ -4,7 +4,7 @@
     "description": {
       "identifier": "dragonmounts2:ender_dragonbreath",
       "materials": { "default": "dragon_breath" },
-      "textures": { "default": "textures/particle/breath/breath_dark" },
+      "textures": { "default": "textures/particle/breath/breath_acid" },
       "geometry": { "default": "geometry.dragonmounts2.dragon_breath" },
       "animations": { "rotations": "animation.dragonmounts2.dragon_breath.rotations" },
       "scripts": { "animate": ["rotations"] },

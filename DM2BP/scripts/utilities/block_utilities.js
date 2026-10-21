@@ -1,14 +1,17 @@
 import {
   system,
+  ItemStack,
   GameMode,
   EntityInventoryComponent,
   EntityEquippableComponent,
   EquipmentSlot,
+  Player,
   world,
 } from "@minecraft/server";
 import * as blockData from "../data/block_data.js";
 import * as itemData from "../data/item_data.js";
 import { getSoundOptions } from "../data/settings.js";
+import { spawnParticle } from "./particle_utilities.js";
 
 const dragonCoreContainerSessions = new Map();
 
@@ -93,8 +96,8 @@ function animateCore(
 }
 
 function getDragonEssenceDetails(itemStack) {
+  if (!itemStack) return undefined;
   const lore = itemStack.getLore();
-  if (!lore.length) return undefined;
 
   return {
     ownerIdentifier:
@@ -117,13 +120,16 @@ function getDragonEssenceDetails(itemStack) {
 }
 
 export function dragonEssenceUseOn(block, player, itemStack) {
-  if (!block || !player?.isValid) return;
+  if (!block || !(player instanceof Player) || !player.isValid) return;
 
   const essenceEntry = Object.entries(itemData.dragonEssenceDataEntityTypes)
     .find(([, entry]) => entry.dragon_item === itemStack?.typeId);
   const essenceDetails = getDragonEssenceDetails(itemStack);
   if (!essenceEntry || !essenceDetails) return;
-  if (essenceDetails.ownerIdentifier !== player.id) {
+  if (
+    essenceDetails.ownerIdentifier &&
+    essenceDetails.ownerIdentifier !== player.id
+  ) {
     player.sendMessage({
       rawtext: [
         { text: "§c" },
@@ -134,46 +140,93 @@ export function dragonEssenceUseOn(block, player, itemStack) {
   }
 
   const [dragonType, essenceData] = essenceEntry;
+  if (
+    block.dimension.id !== player.dimension.id ||
+    block.isLiquid ||
+    block.typeId === "minecraft:air"
+  ) return;
   const spawnLocation = {
     x: block.location.x + 0.5,
     y: block.location.y + 1,
     z: block.location.z + 0.5,
   };
-  const dragon = player.dimension.spawnEntity(dragonType, spawnLocation);
-  if (!dragon) return;
+  const spawnBlockLocation = {
+    x: Math.floor(spawnLocation.x),
+    y: Math.floor(spawnLocation.y),
+    z: Math.floor(spawnLocation.z),
+  };
+  const spawnBlock = player.dimension.getBlock(spawnBlockLocation);
+  const spawnHeadBlock = player.dimension.getBlock({
+    x: spawnBlockLocation.x,
+    y: spawnBlockLocation.y + 1,
+    z: spawnBlockLocation.z,
+  });
+  if (!spawnBlock?.isAir || !spawnHeadBlock?.isAir) {
+    player.sendMessage({
+      rawtext: [
+        { text: "§c" },
+        { translate: "tooltip.dragonmounts2:dragon_essence.blocked" },
+      ],
+    });
+    return;
+  }
 
-  if (essenceDetails.variantType && essenceDetails.variantType !== "default") {
-    try {
-      dragon.triggerEvent(`minecraft:become_${essenceDetails.variantType}`);
-    } catch {
-      dragon.setProperty(
-        essenceData.dragon_data.variant_property,
-        essenceDetails.variantType,
+  let dragon;
+  try {
+    dragon = player.dimension.spawnEntity(dragonType, spawnLocation);
+    if (!dragon?.isValid) throw new Error("Baby dragon could not spawn");
+    dragon.triggerEvent("minecraft:spawn_as_baby");
+    if (essenceDetails.variantType && essenceDetails.variantType !== "default") {
+      try {
+        dragon.triggerEvent(`minecraft:become_${essenceDetails.variantType}`);
+      } catch {
+        dragon.setProperty(
+          essenceData.dragon_data.variant_property,
+          essenceDetails.variantType,
+        );
+      }
+    }
+    const tameable = dragon.getComponent("minecraft:tameable");
+    if (!tameable?.tame(player)) {
+      throw new Error("Baby dragon could not be assigned to its owner");
+    }
+    dragon.setDynamicProperty("dragonmounts2:owner_identifier", player.id);
+    dragon.setDynamicProperty("dragonmounts2:owner_name", player.name);
+    if (essenceDetails.dragonIdentifier) {
+      dragon.setDynamicProperty(
+        "dragonmounts2:dragon_identifier",
+        essenceDetails.dragonIdentifier,
       );
     }
-  }
-  dragon.getComponent("minecraft:tameable")?.tame(player);
-  dragon.setDynamicProperty("dragonmounts2:owner_identifier", player.id);
-  dragon.setDynamicProperty("dragonmounts2:owner_name", player.name);
-  if (essenceDetails.dragonIdentifier) {
-    dragon.setDynamicProperty(
-      "dragonmounts2:dragon_identifier",
-      essenceDetails.dragonIdentifier,
-    );
-  }
-  dragon.nameTag =
-    essenceDetails.dragonName === "Unnamed"
-      ? ""
-      : essenceDetails.dragonName ?? "";
+    dragon.nameTag =
+      essenceDetails.dragonName === "Unnamed"
+        ? ""
+        : essenceDetails.dragonName ?? "";
 
-  if (player.getGameMode() !== GameMode.creative) {
-    const mainhand = player
-      .getComponent(EntityEquippableComponent.componentId)
-      ?.getEquipmentSlot(EquipmentSlot.Mainhand);
-    if (mainhand?.getItem()?.typeId === itemStack.typeId) {
-      mainhand.setItem(undefined);
+    if (player.getGameMode() !== GameMode.creative) {
+      const mainhand = player
+        .getComponent(EntityEquippableComponent.componentId)
+        ?.getEquipmentSlot(EquipmentSlot.Mainhand);
+      const heldItem = mainhand?.getItem();
+      if (heldItem?.typeId !== itemStack.typeId) {
+        throw new Error("Dragon essence is no longer held in the main hand");
+      }
+      mainhand.setItem(heldItem.amount > 1
+        ? new ItemStack(heldItem.typeId, heldItem.amount - 1)
+        : undefined);
     }
+  } catch (error) {
+    if (dragon?.isValid) {
+      try {
+        dragon.remove();
+      } catch (removeError) {
+        console.error(`[DragonMounts2] Failed to roll back essence dragon: ${removeError?.message ?? removeError}`);
+      }
+    }
+    console.warn(`[DragonMounts2] Dragon essence use failed: ${error?.message ?? error}`);
+    return;
   }
+
   player.dimension.playSound(
     "dragonmounts2:item.dragon_essence",
     spawnLocation,
@@ -232,13 +285,13 @@ function destroyEmptyDragonCore(block, dimension, params) {
       center,
       getSoundOptions({ volume: 1.2 }),
     );
-    dimension.spawnParticle("dragonmounts2:dragon_core_inner_cloud", center);
+    spawnParticle(dimension, "dragonmounts2:dragon_core_inner_cloud", center);
     currentBlock.setType(params.block_transforms_into);
-    dimension.spawnParticle("dragonmounts2:dragon_core_outer_cloud", center);
+    spawnParticle(dimension, "dragonmounts2:dragon_core_outer_cloud", center);
   }, 12);
 
   system.runTimeout(() => {
-    dimension.spawnParticle("dragonmounts2:dragon_core_outer_cloud", center);
+    spawnParticle(dimension, "dragonmounts2:dragon_core_outer_cloud", center);
   }, 32);
 }
 
@@ -330,14 +383,16 @@ function hatchDragonCore(block, dimension, player, params, itemStack) {
     setBlockEntityRotation(blockEntity, cardinalDirection);
     blockEntity.setProperty("dragonmounts2:core_state", "open");
 
-    dimension.spawnParticle(
+    spawnParticle(
+      dimension,
       "dragonmounts2:dragon_core_inner_cloud",
       block.center(),
     );
 
     system.runTimeout(() => {
       blockEntity.triggerEvent("minecraft:dragon_core_close");
-      dimension.spawnParticle(
+      spawnParticle(
+        dimension,
         "dragonmounts2:dragon_core_inner_cloud",
         block.center(),
       );
@@ -351,14 +406,16 @@ function hatchDragonCore(block, dimension, player, params, itemStack) {
         cardinalDirection,
       );
       blockEntity.triggerEvent("minecraft:dragon_core_destroyed");
-      dimension.spawnParticle(
+      spawnParticle(
+        dimension,
         "dragonmounts2:dragon_core_outer_cloud",
         block.center(),
       );
     }, 20);
 
     system.runTimeout(() => {
-      dimension.spawnParticle(
+      spawnParticle(
+        dimension,
         "dragonmounts2:dragon_core_outer_cloud",
         block.center(),
       );
@@ -506,7 +563,8 @@ export function dragonCorePlayerInteract(
 }
 
 export function dragonEggRandomTick(block, dimension, params) {
-  dimension.spawnParticle(
+  spawnParticle(
+    dimension,
     params.particles.random_tick_particle,
     block.center(),
   );
@@ -529,7 +587,13 @@ export function dragonEggPlayerInteract(block, dimension, player, params) {
     z: block.center().z,
   });
 
+  if (blockEntity?.isValid && player?.isValid) {
+    blockEntity.setDynamicProperty(
+      "dragonmounts2:hatch_owner_identifier",
+      player.id,
+    );
+  }
   setBlockEntityRotation(blockEntity, cardinalDirection);
 
-  dimension.spawnParticle(params.particles.interact_particle, block.center());
+  spawnParticle(dimension, params.particles.interact_particle, block.center());
 }

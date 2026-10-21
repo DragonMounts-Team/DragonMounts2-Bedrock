@@ -340,3 +340,12 @@ export const dragonEssenceDataEntityTypes = {
     },
   },
 };
+
+for (const [dragonEntity, entry] of Object.entries(dragonEssenceDataEntityTypes)) {
+  if (dragonEssenceDataItemTypes[entry.dragon_item]) continue;
+  dragonEssenceDataItemTypes[entry.dragon_item] = {
+    dragon_entity: dragonEntity,
+    dragon_hatch_variants: { default: "minecraft:entity_transformed" },
+    dragon_data: entry.dragon_data,
+  };
+}

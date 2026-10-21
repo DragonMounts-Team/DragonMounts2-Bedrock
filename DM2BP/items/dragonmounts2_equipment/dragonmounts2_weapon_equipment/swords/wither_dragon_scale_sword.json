@@ -5,10 +5,14 @@
       "identifier": "dragonmounts2:wither_dragon_scale_sword",
       "menu_category": {
         "category": "equipment",
+        "group": "dragonmounts2:itemGroup.name.dragon_scale_swords",
         "is_hidden_in_commands": false
       }
     },
     "components": {
+      "minecraft:can_destroy_in_creative": {
+        "value": false
+      },
       "minecraft:display_name": {
         "value": "item.dragonmounts2:wither_dragon_scale_sword.name"
       },

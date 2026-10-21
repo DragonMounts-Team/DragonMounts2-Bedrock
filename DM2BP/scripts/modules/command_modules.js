@@ -51,7 +51,10 @@ function say(origin, key, ...values) {
 
 function fail(origin, key) {
   say(origin, key);
-  return { status: CustomCommandStatus.Failure, message: key };
+  return {
+    status: CustomCommandStatus.Failure,
+    message: "Command failed. See chat for details.",
+  };
 }
 
 function tameEntities(targetEntities, ownerEntities) {
@@ -96,7 +99,7 @@ function registerBuiltInCommands(customCommandRegistry) {
   customCommandRegistry.registerCommand(
     {
       name: "dragonmounts2:tame",
-      description: "tooltip.dragonmounts2:command.tame.description",
+      description: "Tame selected entities and assign them to an owner.",
       permissionLevel: 1,
       cheatsRequired: true,
       mandatoryParameters: [
@@ -115,12 +118,12 @@ function registerBuiltInCommands(customCommandRegistry) {
       return { status: CustomCommandStatus.Success };
     },
   );
-  // Java /dragonmounts trust [targets] [true|false]: sets the break-in trust flag
-  // directly (saddle/control + V-Flight/catching are gated on it).
+                                                                                  
+                                                                   
   customCommandRegistry.registerCommand(
     {
       name: "dragonmounts2:trust",
-      description: "tooltip.dragonmounts2:command.trust.description",
+      description: "Set whether dragons skip the break-in ride.",
       permissionLevel: 1,
       cheatsRequired: true,
       mandatoryParameters: [
@@ -153,7 +156,7 @@ function registerBuiltInCommands(customCommandRegistry) {
   customCommandRegistry.registerCommand(
     {
       name: "dragonmounts2:debug",
-      description: "tooltip.dragonmounts2:command.debug.description",
+      description: "Toggle dragon flight speed debugging.",
       permissionLevel: 0,
       cheatsRequired: false,
     },

@@ -29,7 +29,7 @@
       "geometry": "Geometry.dragon_default",
       "textures": [ "Array.base[v.variant_type_index]", "Array.saddled[q.is_saddled]" ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.drowned", "Texture.husk", "Texture.zombie" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_saddled" ] }
+        "textures": { "Array.base": [ "Texture.drowned", "Texture.husk", "Texture.zombie" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_none" ] }
       },
       "part_visibility": [
         { "body.back": "!q.is_saddled" }

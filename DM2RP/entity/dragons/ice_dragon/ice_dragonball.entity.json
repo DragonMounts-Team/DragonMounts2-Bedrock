@@ -7,19 +7,21 @@
         "default": "entity_alphatest"
       },
       "textures": {
-        "default": "textures/items/snowball"
+        "default": "textures/particle/breath/breath_ice"
       },
       "geometry": {
-        "default": "geometry.dragonmounts2.elemental_projectile"
+        "default": "geometry.dragonmounts2.dragonball"
       },
       "animations": {
-        "rotations": "animation.dragonmounts2.waterball.rotations"
+        "spin": "animation.dragonmounts2.dragonball.spin"
       },
       "scripts": {
-        "animate": ["rotations"]
+        "animate": [
+          "spin"
+        ]
       },
       "render_controllers": [
-        "controller.render.dragonmounts2.elemental_projectile"
+        "controller.render.dragonmounts2.dragonball"
       ]
     }
   }

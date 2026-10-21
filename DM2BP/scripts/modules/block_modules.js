@@ -44,26 +44,6 @@ onScriptEvent((event) => {
     text_color_type: textColorType,
   } = entityEntry.dragon_data;
 
-  const dimension = entity.dimension;
-  const { x, y, z } = entity.location;
-  const blockLocation = dimension.getBlock({
-    x: Math.floor(x),
-    y: Math.floor(y),
-    z: Math.floor(z),
-  });
-  const spawnLocation = blockLocation.center();
-  const cardinalDirection = blockLocation.permutation.getState(
-    "minecraft:cardinal_direction",
-  );
-
-  dimension.playSound("break.amethyst_block", spawnLocation, getSoundOptions());
-  blockLocation.setType("dragonmounts2:dragon_core");
-  blockUtilities.restoreCardinalDirection(
-    blockLocation,
-    "minecraft:cardinal_direction",
-    cardinalDirection,
-  );
-
   const essenceItem = new ItemStack(entityEntry.dragon_item, 1);
   essenceItem.setLore([
     {
@@ -109,8 +89,19 @@ onScriptEvent((event) => {
     "dragonmounts2:dragon_identifier",
     dragonIdentifier,
   );
-  blockLocation.setPermutation(
-    blockLocation.permutation.withState("dragonmounts2:core_used", true),
-  );
-  blockLocation.getComponent("inventory")?.container?.setItem(0, essenceItem);
+  const location = {
+    x: entity.location.x,
+    y: entity.location.y + 0.3,
+    z: entity.location.z,
+  };
+  try {
+    entity.dimension.spawnItem(essenceItem, location);
+    entity.dimension.playSound(
+      "break.amethyst_block",
+      location,
+      getSoundOptions(),
+    );
+  } catch (error) {
+    console.error(`[DragonMounts2] Dragon essence drop failed: ${error?.message ?? error}`);
+  }
 });
