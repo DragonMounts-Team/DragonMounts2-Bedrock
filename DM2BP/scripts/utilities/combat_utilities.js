@@ -1259,11 +1259,16 @@ function emitNodeParticle(dragon, node, budget, definition) {
       spawnBreathParticle(dimension, "minecraft:dragon_breath_trail", at);
       break;
     case "water":
-      spawnBreathParticle(dimension, "minecraft:water_splash_particle", {
-        x: at.x + (Math.random() - 0.5) * renderDiameter,
-        y: at.y + 0.8,
-        z: at.z + (Math.random() - 0.5) * renderDiameter,
-      });
+      {
+        // The vanilla splash particle reads variable.direction (a vec3).
+        const splash = new MolangVariableMap();
+        splash.setVector3("variable.direction", { x: 0, y: 1, z: 0 });
+        spawnBreathParticle(dimension, "minecraft:water_splash_particle", {
+          x: at.x + (Math.random() - 0.5) * renderDiameter,
+          y: at.y + 0.8,
+          z: at.z + (Math.random() - 0.5) * renderDiameter,
+        }, splash);
+      }
       break;
     case "ice": {
       const small = new MolangVariableMap();

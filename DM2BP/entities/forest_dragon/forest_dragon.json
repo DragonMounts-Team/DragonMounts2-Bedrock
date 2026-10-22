@@ -1063,13 +1063,7 @@
         "remove": { "component_groups": [ "dragonmounts2:dragon_camera_controlled", "dragonmounts2:dragon_ground_controlled" ] }
       },
       "dragonmounts2:on_rider_exit": {
-        "remove": { "component_groups": [ "dragonmounts2:dragon_camera_controlled", "dragonmounts2:dragon_ground_controlled" ] },
-        "sequence": [{
-          "filters": { "all_of": [{ "test": "enum_property", "domain": "dragonmounts2:mob_state", "value": "sitting" }, { "test": "enum_property", "domain": "dragonmounts2:movement_state", "value": "flying" }] },
-          "remove": { "component_groups": [ "dragonmounts2:dragon_flying", "dragonmounts2:dragon_swimming" ] },
-          "add": { "component_groups": [ "dragonmounts2:dragon_grounded" ] },
-          "set_property": { "dragonmounts2:movement_state": "grounded" }
-        }]
+        "remove": { "component_groups": [ "dragonmounts2:dragon_camera_controlled", "dragonmounts2:dragon_ground_controlled" ] }
       },
       "minecraft:on_sit": {
         "remove": { "component_groups": [ "dragonmounts2:dragon_standing_components", "dragonmounts2:dragon_follow_owner" ] },

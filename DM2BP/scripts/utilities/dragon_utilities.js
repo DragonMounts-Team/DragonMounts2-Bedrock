@@ -626,6 +626,21 @@ const flightSystem = (() => {
     return property(dragon, `${FLIGHT}mob_state`) === "sitting";
   }
 
+  // Remember (persistently) that this dragon was sitting before the script stood it up,
+  // so it can sit down again once it has landed.
+  function setRestoreSitting(dragon, state, value) {
+    if (state.restoreSitting === value) return;
+    state.restoreSitting = value;
+    setDynamic(dragon, `${FLIGHT}restore_sitting`, value ? true : undefined);
+  }
+
+  // True when a dragon flagged as sitting is not actually supported by the ground
+  // (still flagged as flying, or clearly off the floor) and is not in water.
+  function isSittingInAir(dragon) {
+    if (dragon.isOnGround || dragon.isInWater) return false;
+    return property(dragon, `${FLIGHT}movement_state`) === "flying" || !isNearGround(dragon);
+  }
+
   function isTamed(dragon) {
     return safe(() => dragon.getComponent("minecraft:tameable")?.isTamed) === true;
   }
@@ -837,7 +852,7 @@ const flightSystem = (() => {
         roll: 0,
         rollSent: 0,
         motion: null,
-        restoreSitting: false,
+        restoreSitting: dynamic(dragon, `${FLIGHT}restore_sitting`) === true,
         landTarget: null,
         nextLandScan: 0,
         autonomousTarget: null,
@@ -1050,7 +1065,18 @@ const flightSystem = (() => {
     return mount?.isValid === true &&
       entityData.dragonTypeIds.has(mount.typeId) &&
       property(mount, `${FLIGHT}movement_state`) === "flying" &&
+      mount.isOnGround !== true &&
       isTamed(mount);
+  }
+
+  // True when solid ground is within `distance` blocks directly below the entity.
+  function groundWithin(entity, distance) {
+    const at = entity.location;
+    return Boolean(safe(() => entity.dimension.getBlockFromRay(
+      { x: at.x, y: at.y + 0.05, z: at.z },
+      { x: 0, y: -1, z: 0 },
+      { maxDistance: distance + 0.05, includeLiquidBlocks: false, includePassableBlocks: false },
+    )));
   }
 
                                                                                
@@ -1134,6 +1160,13 @@ const flightSystem = (() => {
       if (state.mountId && !onDragon) {
         state.dismount = { dragonId: state.mountId, tick: now };
         state.airSince = now;
+        // The saddle sits high above the ground, so stepping off onto the floor
+        // must not count as a fall (it made other dragons rush to "catch" the owner).
+        if (player.isOnGround || groundWithin(player, CATCH_MIN_FALL)) {
+          state.lastY = y;
+          state.distance = 0;
+          state.fallStart = null;
+        }
       }
       state.mountId = onDragon ? mount.id : null;
 
@@ -1177,7 +1210,7 @@ const flightSystem = (() => {
       let intent = "none";
       if (!state.grounded) {
         if (ownerIsFlying(player)) intent = "formation";
-        else if (state.distance > CATCH_MIN_FALL && !mount) intent = "catch";
+        else if (state.distance > CATCH_MIN_FALL && !mount && !player.isOnGround) intent = "catch";
       }
       if (intent === "catch") {
         if (!state.catchIntentSince) state.catchIntentSince = now;
@@ -1278,15 +1311,19 @@ const flightSystem = (() => {
     return Boolean(info) && system.currentTick - info.tick <= DISMOUNT_SNEAK_GRACE;
   }
 
-  function canUseFollow(dragon, owner, state) {
+  function canUseFollow(dragon, owner, state, allowSitting = false) {
     if (!owner?.isValid || owner.dimension.id !== dragon.dimension.id) return false;
     if (dragon.isLeashed === true) return false;
     if (ridersOf(dragon).length > 0 || !isVehicleless(dragon)) return false;
                                                                 
-    if (!isTamed(dragon) || !isTrusted(dragon) || isBaby(dragon) || isSitting(dragon)) return false;
+    if (!isTamed(dragon) || !isTrusted(dragon) || isBaby(dragon)) return false;
                                                                         
     const intent = followIntent(owner);
     if (intent === "none" || ownerGrounded(owner)) return false;
+    // Never chase an owner who is simply standing on the ground.
+    if (!ownerMount(owner) && owner.isOnGround) return false;
+    // Sitting dragons only join the V formation (never the mid-air catch).
+    if (isSitting(dragon) && !(allowSitting && intent === "formation")) return false;
     let wants = false;
     if (intent === "formation") {
       if (!isFormationFlightEnabled(owner)) return false;
@@ -1350,7 +1387,9 @@ const flightSystem = (() => {
                                                                          
     const gliding = !ownerMount(owner);
     const members = gliding
-      ? eligible.members.filter((member) => property(member, `${FLIGHT}movement_state`) === "flying")
+      ? eligible.members.filter((member) =>
+          property(member, `${FLIGHT}movement_state`) === "flying" ||
+          distanceBetween(member.location, owner.location) < entityData.OWNER_FOLLOW_RANGE)
       : eligible.members;
     const main = eligible.main && members.some((member) => member.id === eligible.main.id)
       ? eligible.main
@@ -1727,12 +1766,18 @@ const flightSystem = (() => {
         const angle = (i * Math.PI) / 4;
         const x = Math.floor(origin.x + Math.cos(angle) * radius);
         const z = Math.floor(origin.z + Math.sin(angle) * radius);
-        const top = safe(() => dragon.dimension.getTopmostBlock({ x, z }), null);
-        if (!top || top.isLiquid || top.isAir) continue;
-        const above = safe(() => top.above(), null);
-        if (!above || !above.isAir) continue;
-        const cost = Math.abs(x - origin.x) + Math.abs(top.y + 1 - origin.y) + Math.abs(z - origin.z);
-        if (!best || cost < best.cost) best = { cost, x: x + 0.5, y: top.y + 1, z: z + 0.5 };
+        // Every block read below can throw if the column is in an unloaded or
+        // non-ticking chunk, so the whole probe is guarded as one unit.
+        const topY = safe(() => {
+          const top = dragon.dimension.getTopmostBlock({ x, z });
+          if (!top || top.isLiquid || top.isAir) return null;
+          const above = top.above();
+          if (!above || !above.isAir) return null;
+          return top.y;
+        }, null);
+        if (topY === null) continue;
+        const cost = Math.abs(x - origin.x) + Math.abs(topY + 1 - origin.y) + Math.abs(z - origin.z);
+        if (!best || cost < best.cost) best = { cost, x: x + 0.5, y: topY + 1, z: z + 0.5 };
       }
       if (best) break;
     }
@@ -1954,6 +1999,13 @@ const flightSystem = (() => {
     if (riders.length > 0) {
       stopFollow(dragon, "rider");
       mode = FlightMode.RIDER;
+      // Remember that this dragon was sitting before the ride, treat it as a normal
+      // standing dragon while ridden, and sit it down again once it lands.
+      if (isSitting(dragon)) {
+        setRestoreSitting(dragon, state, true);
+        setProperty(dragon, `${FLIGHT}mob_state`, "standing");
+        safe(() => dragon.triggerEvent("minecraft:on_stand"));
+      }
       if (dragon.isInWater) {
         resetRiderInputState(dragon, state);
         setMovement(dragon, "swimming", "water");
@@ -1977,10 +2029,26 @@ const flightSystem = (() => {
     cleanupRiderAttackProxy(dragon);
     resetRiderInputState(dragon, state);
     state.momentum = 0;
+    // A "sitting" dragon that is in the air (e.g. its rider dismounted mid-flight,
+    // or it was told to sit while flying) must not be frozen in place. Treat it as
+    // standing so the normal idle-landing flight logic brings it down, then the
+    // restoreSitting hook below puts it back into the sitting state once landed.
+    if (isSitting(dragon) && isSittingInAir(dragon)) {
+      setRestoreSitting(dragon, state, true);
+      setProperty(dragon, `${FLIGHT}mob_state`, "standing");
+      safe(() => dragon.triggerEvent("minecraft:on_stand"));
+    }
+    // A sitting dragon is called into the owner's V formation: stand up, join the
+    // formation, and sit down again after landing.
+    if (isSitting(dragon) && !dragon.isInWater && canUseFollow(dragon, owner, state, true)) {
+      setRestoreSitting(dragon, state, true);
+      setProperty(dragon, `${FLIGHT}mob_state`, "standing");
+      safe(() => dragon.triggerEvent("minecraft:on_stand"));
+    }
     if (isSitting(dragon)) {
       stopFollow(dragon, "sitting");
       safe(() => dragon.triggerEvent("minecraft:on_wander"));
-      state.restoreSitting = false;
+      setRestoreSitting(dragon, state, false);
       state.combatIntent = null;
       state.autonomousTarget = null;
       state.autonomousLastPosition = null;
@@ -1990,19 +2058,22 @@ const flightSystem = (() => {
       if (property(dragon, `${FLIGHT}movement_state`) !== "grounded") {
         setMovement(dragon, "grounded", "sitting");
       }
-      safe(() => dragon.clearVelocity());
+      // Only pin the dragon in place while it is actually resting on something.
+      // Clearing velocity mid-air cancels gravity every tick and makes it hover.
+      if (dragon.isOnGround) safe(() => dragon.clearVelocity());
       noteModeChange(state, mode);
       return mode;
     }
                                                                              
-    if (state.restoreSitting && !state.followActive && dragon.isOnGround &&
+    const wantsFollow = canUseFollow(dragon, owner, state);
+    if (state.restoreSitting && !wantsFollow && !state.followActive && !state.combatIntent && dragon.isOnGround &&
         property(dragon, `${FLIGHT}movement_state`) !== "flying") {
-      state.restoreSitting = false;
+      setRestoreSitting(dragon, state, false);
       syncMobState(dragon, "sitting", true);
     }
     const intent = state.combatIntent;
 
-    if (canUseFollow(dragon, owner, state)) {
+    if (wantsFollow) {
       startFollow(dragon, state);
       tickFollow(dragon, owner, state);
       behaviorFlying = true;
