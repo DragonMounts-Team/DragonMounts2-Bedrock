@@ -1,6 +1,6 @@
 # ==== Pack Information ====
 pack.description=Dragon Mounts 2 - Resource Pack
-pack.name=Dragon Mounts 2: Bedrock Edition V2.3
+pack.name=Dragon Mounts 2: Bedrock Edition Alpha V2.0
 
 # ==== Client Settings ====
 setting.cape.toggle.name=Toggle Dragon Scale Cape
@@ -791,3 +791,23 @@ tooltip.dragonmounts2:unnamed=Unnamed
 tooltip.dragonmounts2:water=Water
 tooltip.dragonmounts2:wither=Wither
 tooltip.dragonmounts2:zombie=Zombie
+
+hud.dragonmounts2:name.fire=Fire Dragon
+hud.dragonmounts2:name.fire_blue=Blue Fire Dragon
+hud.dragonmounts2:name.ice=Ice Dragon
+hud.dragonmounts2:name.aether=Aether Dragon
+hud.dragonmounts2:name.dark=Dark Dragon
+hud.dragonmounts2:name.enchanted=Enchanted Dragon
+hud.dragonmounts2:name.ender=Ender Dragon
+hud.dragonmounts2:name.forest=Forest Dragon
+hud.dragonmounts2:name.light=Light Dragon
+hud.dragonmounts2:name.moonlight=Moonlight Dragon
+hud.dragonmounts2:name.nether=Nether Dragon
+hud.dragonmounts2:name.sculk=Sculk Dragon
+hud.dragonmounts2:name.skeleton=Skeleton Dragon
+hud.dragonmounts2:name.storm=Storm Dragon
+hud.dragonmounts2:name.sunlight=Sunlight Dragon
+hud.dragonmounts2:name.terra=Terra Dragon
+hud.dragonmounts2:name.water=Water Dragon
+hud.dragonmounts2:name.wither=Wither Dragon
+hud.dragonmounts2:name.zombie=Zombie Dragon

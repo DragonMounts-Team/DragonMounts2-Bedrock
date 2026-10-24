@@ -43,7 +43,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_aether",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -55,7 +63,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_aether",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -67,7 +83,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_aether",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -106,7 +130,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_dark",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.dark_hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -118,7 +150,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_dark",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.dark_hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -130,7 +170,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_dark",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.dark_hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -169,7 +217,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_hatchling",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -181,7 +237,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_juvenile",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -193,7 +257,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_enchanted_adult",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -232,7 +304,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_hatchling",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -244,7 +324,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_juvenile",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -256,7 +344,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_adult",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -295,7 +391,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_hatchling",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -307,7 +411,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_juvenile",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -319,7 +431,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_fire_adult",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -358,7 +478,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_forest",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -370,7 +498,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_forest",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -382,7 +518,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_forest",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -421,7 +565,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_ice",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ice",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -433,7 +585,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_ice",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ice",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -445,7 +605,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_ice",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ice",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_ice",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -484,7 +652,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_light",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -496,7 +672,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_light",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -508,7 +692,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_airflow",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_light",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_airflow",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -547,7 +739,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_moonlight",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -559,7 +759,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_moonlight",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -571,7 +779,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_moonlight",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -610,7 +826,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_hatchling",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -622,7 +846,15 @@
                 "tempt": "dragonmounts2:mob.dragon.nether_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_juvenile",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -634,7 +866,15 @@
                 "tempt": "dragonmounts2:mob.dragon.nether_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_nether_adult",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -673,7 +913,15 @@
                 "warn": "mob.warden.sonic_charge",
                 "shoot": "mob.warden.agitated",
                 "deactivate": "mob.warden.sonic_boom",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -685,7 +933,15 @@
                 "tempt": "dragonmounts2:mob.dragon.zombie_idle",
                 "warn": "mob.warden.sonic_charge",
                 "shoot": "mob.warden.agitated",
-                "deactivate": "mob.warden.sonic_boom"
+                "deactivate": "mob.warden.sonic_boom",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -697,7 +953,15 @@
                 "tempt": "dragonmounts2:mob.dragon.zombie_idle",
                 "warn": "mob.warden.sonic_charge",
                 "shoot": "mob.warden.agitated",
-                "deactivate": "mob.warden.sonic_boom"
+                "deactivate": "mob.warden.sonic_boom",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -736,7 +1000,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_hatchling",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -748,7 +1020,15 @@
                 "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_juvenile",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -760,7 +1040,15 @@
                 "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_skeleton_adult",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -799,7 +1087,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_storm",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -811,7 +1107,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_storm",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -823,7 +1127,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_storm",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -862,7 +1174,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_sunlight",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -874,7 +1194,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_sunlight",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -886,7 +1214,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_lightning",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_sunlight",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_lightning",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -925,7 +1261,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_hatchling",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -937,7 +1281,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_juvenile",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -949,7 +1301,15 @@
                 "tempt": "dragonmounts2:mob.dragon.idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_terra_adult",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -988,7 +1348,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_water",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_water",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -1000,7 +1368,15 @@
                 "tempt": "dragonmounts2:mob.dragon.water_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_water",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_water",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -1012,7 +1388,15 @@
                 "tempt": "dragonmounts2:mob.dragon.water_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_water",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_water",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_water",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -1051,7 +1435,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_hatchling",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_hatchling",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_hatchling",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -1063,7 +1455,15 @@
                 "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_juvenile",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_juvenile",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_juvenile",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -1075,7 +1475,15 @@
                 "tempt": "dragonmounts2:mob.dragon.skeleton_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_adult",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_adult",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_adult",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
@@ -1114,7 +1522,15 @@
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_zombie",
                 "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
-                "step": "dragonmounts2:mob.dragon.step"
+                "step": "dragonmounts2:mob.dragon.step",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "juvenile": {
@@ -1126,7 +1542,15 @@
                 "tempt": "dragonmounts2:mob.dragon.zombie_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_zombie",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             },
             "adult": {
@@ -1138,7 +1562,15 @@
                 "tempt": "dragonmounts2:mob.dragon.zombie_idle",
                 "warn": "dragonmounts2:mob.dragon.java_breath_start_forest",
                 "shoot": "dragonmounts2:mob.dragon.java_breath_loop_dragon_zombie",
-                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest"
+                "deactivate": "dragonmounts2:mob.dragon.java_breath_stop_forest",
+                "activate": "dragonmounts2:item.variation_orb",
+                "hurt": "dragonmounts2:mob.dragon.hit",
+                "attack": "dragonmounts2:mob.dragon.bite",
+                "eat": "dragonmounts2:mob.dragon.bite",
+                "attach": "armor.equip_netherite",
+                "detach": "armor.equip_iron",
+                "saddle": "armor.equip_chain",
+                "unsaddle": "armor.equip_chain"
               }
             }
           }
