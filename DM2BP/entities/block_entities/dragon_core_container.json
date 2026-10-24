@@ -1,0 +1,90 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:dragon_core_container",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "dragonmounts2:core_container_destroyed": {
+        "minecraft:instant_despawn": {}
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "inanimate",
+          "dragon_core_container"
+        ]
+      },
+      "minecraft:inventory": {
+        "inventory_size": 1,
+        "container_type": "container",
+        "private": false,
+        "restrict_to_owner": false,
+        "can_be_siphoned_from": false
+      },
+      "minecraft:collision_box": {
+        "width": 0,
+        "height": 0
+      },
+      "minecraft:custom_hit_test": {
+        "hitboxes": [
+          {
+            "width": 1.02,
+            "height": 1.02,
+            "pivot": [
+              0,
+              0.5,
+              0
+            ]
+          }
+        ]
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": {
+              "test": "in_block",
+              "operator": "!=",
+              "value": "dragonmounts2:dragon_core"
+            },
+            "event": "dragonmounts2:core_container_destroyed"
+          }
+        ]
+      },
+      "minecraft:fire_immune": {},
+      "minecraft:health": {
+        "value": 1,
+        "max": 1
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1.0
+      },
+      "minecraft:persistent": {},
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      }
+    },
+    "events": {
+      "dragonmounts2:core_container_destroyed": {
+        "add": {
+          "component_groups": [
+            "dragonmounts2:core_container_destroyed"
+          ]
+        }
+      }
+    }
+  }
+}

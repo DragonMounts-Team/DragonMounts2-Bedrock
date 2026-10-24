@@ -600,6 +600,69 @@
           "volume": 0.5
         }
       ]
+    },
+    "dragonmounts2:mob.dragon.growl.1": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/growl1"
+      ]
+    },
+    "dragonmounts2:mob.dragon.growl.2": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/growl2"
+      ]
+    },
+    "dragonmounts2:mob.dragon.growl.3": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/growl3"
+      ]
+    },
+    "dragonmounts2:mob.dragon.growl.4": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/growl4"
+      ]
+    },
+    "dragonmounts2:mob.dragon.baby.growl.1": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/baby_growl1"
+      ]
+    },
+    "dragonmounts2:mob.dragon.baby.growl.2": {
+      "category": "neutral",
+      "max_distance": 16.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/baby_growl2"
+      ]
+    },
+    "dragonmounts2:mob.dragon.water_growl.1": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/water_growl1"
+      ]
+    },
+    "dragonmounts2:mob.dragon.water_growl.2": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/water_growl2"
+      ]
+    },
+    "dragonmounts2:mob.dragon.water_growl.3": {
+      "category": "neutral",
+      "max_distance": 24.0,
+      "sounds": [
+        "sounds/entity/dragon/roar/water_growl3"
+      ]
     }
   }
 }

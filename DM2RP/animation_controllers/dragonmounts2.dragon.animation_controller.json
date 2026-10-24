@@ -5,27 +5,39 @@
       "initial_state": "on_ground",
       "states": {
         "on_ground": {
-          "animations": ["idle"],
+          "animations": [
+            "idle"
+          ],
           "transitions": [
             {
               "walk": "v.is_grounded&&q.modified_move_speed>0.25&&!q.is_in_water"
             },
-            { "hover": "v.is_flying&&q.modified_move_speed<=0.5" },
+            {
+              "hover": "v.is_flying&&q.modified_move_speed<=0.5"
+            },
             {
               "flying": "v.is_flying&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"
             },
             {
               "dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"
             },
-            { "sit": "v.is_sitting&&!q.has_rider" },
-            { "bite": "q.is_delayed_attacking==1" },
-            { "swim": "q.is_in_water&&q.modified_move_speed>0.2" }
+            {
+              "sit": "v.is_sitting&&!q.has_rider"
+            },
+            {
+              "bite": "q.is_delayed_attacking==1"
+            },
+            {
+              "swim": "q.is_in_water&&q.modified_move_speed>0.2"
+            }
           ],
           "blend_transition": 0.75,
           "blend_via_shortest_path": true
         },
         "flying": {
-          "animations": ["flying"],
+          "animations": [
+            "flying"
+          ],
           "transitions": [
             {
               "on_ground": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.2"
@@ -33,18 +45,26 @@
             {
               "walk": "v.is_grounded&&q.modified_move_speed>0.2&&!q.is_in_water"
             },
-            { "hover": "v.is_flying&&q.modified_move_speed<=0.5" },
+            {
+              "hover": "v.is_flying&&q.modified_move_speed<=0.5"
+            },
             {
               "dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"
             },
-            { "sit": "v.is_sitting&&v.is_grounded&&!q.has_rider" },
-            { "swim": "q.is_in_water&&q.modified_move_speed>0.2" }
+            {
+              "sit": "v.is_sitting&&v.is_grounded&&!q.has_rider"
+            },
+            {
+              "swim": "q.is_in_water&&q.modified_move_speed>0.2"
+            }
           ],
           "blend_transition": 0.75,
           "blend_via_shortest_path": true
         },
         "dive": {
-          "animations": ["dive"],
+          "animations": [
+            "dive"
+          ],
           "transitions": [
             {
               "on_ground": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.2"
@@ -61,13 +81,17 @@
             {
               "sit": "v.is_sitting&&v.is_grounded&&q.modified_move_speed>0.2&&!q.has_rider"
             },
-            { "swim": "q.is_in_water&&q.modified_move_speed>0.2" }
+            {
+              "swim": "q.is_in_water&&q.modified_move_speed>0.2"
+            }
           ],
           "blend_transition": 0.75,
           "blend_via_shortest_path": true
         },
         "hover": {
-          "animations": ["hover"],
+          "animations": [
+            "hover"
+          ],
           "transitions": [
             {
               "on_ground": "(v.is_standing||q.has_rider) &&v.is_grounded&&q.modified_move_speed<=0.2"
@@ -75,22 +99,30 @@
             {
               "walk": "v.is_grounded&&q.modified_move_speed>0.2&&!q.is_in_water"
             },
-            { "sit": "v.is_sitting &&v.is_grounded&& !q.has_rider" },
+            {
+              "sit": "v.is_sitting &&v.is_grounded&& !q.has_rider"
+            },
             {
               "flying": "v.is_flying&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"
             },
             {
               "dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"
             },
-            { "swim": "q.is_in_water&&q.modified_move_speed>0.2" }
+            {
+              "swim": "q.is_in_water&&q.modified_move_speed>0.2"
+            }
           ],
           "blend_transition": 0.75,
           "blend_via_shortest_path": true
         },
         "sit": {
-          "animations": ["sit"],
+          "animations": [
+            "sit"
+          ],
           "transitions": [
-            { "on_ground": "v.is_standing||q.has_rider" },
+            {
+              "on_ground": "v.is_standing||q.has_rider"
+            },
             {
               "walk": "v.is_grounded&&q.modified_move_speed>0.2&&!q.is_in_water"
             },
@@ -100,14 +132,20 @@
             {
               "dive": "v.is_flying&&q.target_x_rotation>0.2&&q.modified_move_speed>0.5"
             },
-            { "hover": "v.is_flying&&q.modified_move_speed<=0.5" },
-            { "swim": "q.is_in_water&&q.modified_move_speed>0.2" }
+            {
+              "hover": "v.is_flying&&q.modified_move_speed<=0.5"
+            },
+            {
+              "swim": "q.is_in_water&&q.modified_move_speed>0.2"
+            }
           ],
           "blend_transition": 0.25,
           "blend_via_shortest_path": true
         },
         "walk": {
-          "animations": ["walking"],
+          "animations": [
+            "walking"
+          ],
           "transitions": [
             {
               "flying": "v.is_flying&&q.anim_time>2&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"
@@ -115,19 +153,29 @@
             {
               "on_ground": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.25"
             },
-            { "bite": "q.is_delayed_attacking==1" },
-            { "dive": "v.is_flying" },
+            {
+              "bite": "q.is_delayed_attacking==1"
+            },
+            {
+              "dive": "v.is_flying"
+            },
             {
               "sit": "v.is_sitting&&v.is_grounded&&q.modified_move_speed<=0.25&&!q.has_rider"
             },
-            { "hover": "v.is_flying&&q.modified_move_speed<=0.5" },
-            { "swim": "q.is_in_water&&q.modified_move_speed>0.2" }
+            {
+              "hover": "v.is_flying&&q.modified_move_speed<=0.5"
+            },
+            {
+              "swim": "q.is_in_water&&q.modified_move_speed>0.2"
+            }
           ],
           "blend_transition": 0.75,
           "blend_via_shortest_path": true
         },
         "swim": {
-          "animations": ["swimming"],
+          "animations": [
+            "swimming"
+          ],
           "transitions": [
             {
               "flying": "v.is_flying&&q.anim_time>2&&q.target_x_rotation<=0.2&&q.modified_move_speed>0.5"
@@ -135,12 +183,18 @@
             {
               "on_ground": "(v.is_standing||q.has_rider)&&v.is_grounded&&q.modified_move_speed<=0.25"
             },
-            { "bite": "q.is_delayed_attacking==1" },
-            { "dive": "v.is_flying" },
+            {
+              "bite": "q.is_delayed_attacking==1"
+            },
+            {
+              "dive": "v.is_flying"
+            },
             {
               "sit": "v.is_sitting&&v.is_grounded&&q.modified_move_speed<=0.25&&!q.has_rider"
             },
-            { "hover": "v.is_flying&&q.modified_move_speed<=0.5" },
+            {
+              "hover": "v.is_flying&&q.modified_move_speed<=0.5"
+            },
             {
               "walk": "v.is_grounded&&q.modified_move_speed>0.2&& !q.is_in_water"
             }
@@ -149,10 +203,41 @@
           "blend_via_shortest_path": true
         },
         "bite": {
-          "animations": ["bite", "idle"],
-          "transitions": [{ "on_ground": "q.is_delayed_attacking==0" }],
+          "animations": [
+            "bite",
+            "idle"
+          ],
+          "transitions": [
+            {
+              "on_ground": "q.is_delayed_attacking==0"
+            }
+          ],
           "blend_transition": 0.75,
           "blend_via_shortest_path": true
+        }
+      }
+    },
+    "controller.animation.dragonmounts2.dragon.roar": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "roar": "v.is_roaring"
+            }
+          ],
+          "blend_transition": 0.1
+        },
+        "roar": {
+          "animations": [
+            "roar"
+          ],
+          "transitions": [
+            {
+              "default": "!v.is_roaring"
+            }
+          ],
+          "blend_transition": 0.1
         }
       }
     }

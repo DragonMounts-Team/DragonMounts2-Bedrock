@@ -319,10 +319,6 @@ export function dragonFluteUse(itemStack, source, params) {
 
   const rule = params;
 
-  if (source.isSneaking) {
-    return toggleFormationFlight(source);
-  }
-
   const binding = getDragonFluteBinding(itemStack);
   if (binding?.ownerIdentifier && binding.ownerIdentifier !== source.id) {
     return source.onScreenDisplay.setActionBar({
@@ -337,9 +333,13 @@ export function dragonFluteUse(itemStack, source, params) {
   showDragonFluteUI(source, itemStack, rule);
 }
 
-function toggleFormationFlight(source) {
+function toggleFormationFlight(source, itemStack = null) {
   const enabled = !dragonUtilities.isFormationFlightEnabled(source);
   dragonUtilities.setFormationFlightEnabled(source, enabled);
+  // Enabling from a scepter limits the V to the dragons bound to that scepter.
+  if (enabled && itemStack) {
+    dragonUtilities.setFormationRoster(source, getDragonScepterBinding(itemStack).dragonIds);
+  }
   announceVFlight(source, enabled);
 }
 
@@ -980,6 +980,10 @@ function showDragonScepterUI(source, itemStack, rule) {
     });
 
   const flightEnabled = dragonUtilities.isFormationFlightEnabled(source);
+  // Keep the active V roster in sync with the scepter being used.
+  if (flightEnabled) {
+    dragonUtilities.setFormationRoster(source, getDragonScepterBinding(itemStack).dragonIds);
+  }
   const scepterForm = new CustomForm(source, {
     translate: `${rule.translates.name}`,
   }).label({ rawtext: formationSummaryText(roster) });
@@ -988,7 +992,7 @@ function showDragonScepterUI(source, itemStack, rule) {
     "textures/ui/dragonmounts2/dragon_flute/v_formation",
     () => system.run(() => {
       if (!source?.isValid) return;
-      toggleFormationFlight(source);
+      toggleFormationFlight(source, itemStack);
       showDragonScepterUI(source, itemStack, rule);
     }),
   );

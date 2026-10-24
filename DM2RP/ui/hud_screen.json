@@ -1,0 +1,736 @@
+{
+  "namespace": "hud",
+  "dm2_hp_bar": {
+    "type": "panel",
+    "size": [182, 19],
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "$label|default": "",
+    "$name_color|default": [1, 1, 1],
+    "$bar_color|default": [1, 1, 1],
+    "controls": [
+      {
+        "name_label": {
+          "type": "label",
+          "text": "$label",
+          "localize": true,
+          "shadow": true,
+          "color": "$name_color",
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4
+        }
+      },
+      {
+        "fill": {
+          "type": "image",
+          "texture": "textures/ui/dm2_hp_fill",
+          "size": [180, 5],
+          "color": "$bar_color",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [0, -1],
+          "clip_direction": "left",
+          "clip_pixelperfect": false,
+          "layer": 3,
+          "property_bag": {
+            "#hundred": 100
+          },
+          "bindings": [
+            {
+              "binding_name": "#hud_title_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((#hud_title_text_string - 'dm2hp') * 1)",
+              "target_property_name": "#dm2_pct"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((#hundred - #dm2_pct) / #hundred)",
+              "target_property_name": "#clip_ratio"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "dm2_hp_display": {
+    "type": "panel",
+    "size": [182, 19],
+    "controls": [
+      {
+        "frame": {
+          "type": "image",
+          "texture": "textures/ui/dm2_hp_frame",
+          "size": [182, 7],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "layer": 1
+        }
+      },
+      {
+        "dm2_hp_fire@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.fire",
+          "$name_color": [1, 0.66, 0.51],
+          "$bar_color": [1, 0.38, 0.1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|fire|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_ice@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.ice",
+          "$name_color": [0.81, 0.95, 1],
+          "$bar_color": [0.66, 0.91, 1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|ice|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_aether@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.aether",
+          "$name_color": [0.73, 0.93, 1],
+          "$bar_color": [0.5, 0.88, 1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|aether|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_dark@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.dark",
+          "$name_color": [0.44, 0, 0],
+          "$bar_color": [0.48, 0, 0],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|dark|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_enchanted@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.enchanted",
+          "$name_color": [0.85, 0.61, 1],
+          "$bar_color": [0.72, 0.3, 1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|enchanted|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_ender@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.ender",
+          "$name_color": [0.89, 0.61, 0.92],
+          "$bar_color": [0.8, 0.3, 0.85],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|ender|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_forest@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.forest",
+          "$name_color": [0.59, 0.83, 0.59],
+          "$bar_color": [0.25, 0.7, 0.25],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|forest|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_light@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.light",
+          "$name_color": [1, 0.97, 0.81],
+          "$bar_color": [1, 0.95, 0.66],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|light|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_moonlight@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.moonlight",
+          "$name_color": [0.76, 0.81, 1],
+          "$bar_color": [0.56, 0.66, 1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|moonlight|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_nether@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.nether",
+          "$name_color": [0.82, 0.51, 0.51],
+          "$bar_color": [0.68, 0.1, 0.1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|nether|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_sculk@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.sculk",
+          "$name_color": [0.52, 0.76, 0.79],
+          "$bar_color": [0.12, 0.56, 0.62],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|sculk|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_skeleton@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.skeleton",
+          "$name_color": [0.92, 0.92, 0.88],
+          "$bar_color": [0.85, 0.85, 0.78],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|skeleton|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_storm@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.storm",
+          "$name_color": [0.68, 0.74, 0.85],
+          "$bar_color": [0.42, 0.52, 0.72],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|storm|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_sunlight@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.sunlight",
+          "$name_color": [1, 0.87, 0.51],
+          "$bar_color": [1, 0.76, 0.1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|sunlight|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_terra@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.terra",
+          "$name_color": [0.75, 0.66, 0.57],
+          "$bar_color": [0.55, 0.39, 0.22],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|terra|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_water@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.water",
+          "$name_color": [0.55, 0.73, 1],
+          "$bar_color": [0.18, 0.5, 1],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|water|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_wither@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.wither",
+          "$name_color": [0.61, 0.61, 0.63],
+          "$bar_color": [0.3, 0.3, 0.32],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|wither|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_zombie@hud.dm2_hp_bar": {
+          "$label": "hud.dragonmounts2:name.zombie",
+          "$name_color": [0.68, 0.76, 0.58],
+          "$bar_color": [0.42, 0.56, 0.23],
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|zombie|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "dm2_hp_stack": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "size": [
+      182,
+      "100%c"
+    ],
+    "layer": 10,
+    "controls": [
+      {
+        "display@hud.dm2_hp_display": {}
+      },
+      {
+        "gap_base": {
+          "type": "panel",
+          "size": "$dm2_gap_base"
+        }
+      },
+      {
+        "gap_creative": {
+          "type": "panel",
+          "size": "$dm2_gap_creative",
+          "bindings": [
+            {
+              "binding_name": "#show_survival_ui"
+            },
+            {
+              "binding_name": "#hud_visible_centered_gui_elements"
+            },
+            {
+              "binding_name": "#hud_visible_centered_touch"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not #show_survival_ui) and (#hud_visible_centered_gui_elements or #hud_visible_centered_touch))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "gap_hearts": {
+          "type": "panel",
+          "size": "$dm2_gap_hearts",
+          "bindings": [
+            {
+              "binding_name": "#show_survival_ui"
+            },
+            {
+              "binding_name": "#hud_visible_centered_gui_elements"
+            },
+            {
+              "binding_name": "#hud_visible_centered_touch"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#show_survival_ui and (#hud_visible_centered_gui_elements or #hud_visible_centered_touch))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "gap_armor": {
+          "type": "panel",
+          "size": "$dm2_gap_armor",
+          "bindings": [
+            {
+              "binding_name": "#show_survival_ui"
+            },
+            {
+              "binding_name": "#hud_visible_centered_gui_elements"
+            },
+            {
+              "binding_name": "#hud_visible_centered_touch"
+            },
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#show_survival_ui and (#hud_visible_centered_gui_elements or #hud_visible_centered_touch) and (not ((#hud_subtitle_text_string - '|a|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "gap_clear": {
+          "type": "panel",
+          "size": "$dm2_gap_clear"
+        }
+      },
+      {
+        "gap_mobile": {
+          "type": "panel",
+          "size": "$dm2_gap_mobile",
+          "bindings": [
+            {
+              "binding_name": "#hud_visible_centered_gui_elements"
+            },
+            {
+              "binding_name": "#hud_visible_centered_touch"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "#hud_visible_centered_touch",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "gap_creative_mobile": {
+          "type": "panel",
+          "size": "$dm2_gap_creative_mobile",
+          "bindings": [
+            {
+              "binding_name": "#show_survival_ui"
+            },
+            {
+              "binding_name": "#hud_visible_centered_touch"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not #show_survival_ui) and #hud_visible_centered_touch)",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "gap_pc_console": {
+          "type": "panel",
+          "size": "$dm2_gap_pc",
+          "bindings": [
+            {
+              "binding_name": "#hud_visible_centered_gui_elements"
+            },
+            {
+              "binding_name": "#hud_visible_centered_touch"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_visible_centered_gui_elements and (not #hud_visible_centered_touch))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "gap_pocket": {
+          "type": "panel",
+          "size": "$dm2_gap_pocket",
+          "bindings": [
+            {
+              "binding_name": "#hud_visible_centered_gui_elements"
+            },
+            {
+              "binding_name": "#hud_visible_centered_touch"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not #hud_visible_centered_gui_elements) and (not #hud_visible_centered_touch))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#hud_title_text_string"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not ((#hud_title_text_string - 'dm2hp') = #hud_title_text_string))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "$dm2_gap_base|default": [182, 0],
+    "$dm2_gap_creative|default": [182, 15],
+    "$dm2_gap_hearts|default": [182, 26],
+    "$dm2_gap_armor|default": [182, 10],
+    "$dm2_gap_clear|default": [182, 0],
+    "$dm2_gap_mobile|default": [182, 34],
+    "$dm2_gap_creative_mobile|default": [182, 6],
+    "$dm2_gap_pc|default": [182, 15],
+    "$dm2_gap_pocket|default": [182, 30]
+  },
+  "dm2_horse_hearts_creative": {
+    "type": "panel",
+    "size": [1, 1],
+    "offset": "$offset",
+    "anchor_from": "bottom_left",
+    "anchor_to": "bottom_left",
+    "$offset|default": [0, 0],
+    "bindings": [
+      {
+        "binding_name": "#hud_title_text_string"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#hud_title_text_string - 'dm2hp') = #hud_title_text_string)",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "hearts@hud.horse_heart_renderer": {
+          "bindings": [
+            {
+              "binding_name": "#creative_horse_hearts",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "dm2_horse_hearts_survival": {
+    "type": "panel",
+    "size": [1, 1],
+    "offset": "$offset",
+    "anchor_from": "bottom_left",
+    "anchor_to": "bottom_left",
+    "$offset|default": [0, 0],
+    "bindings": [
+      {
+        "binding_name": "#hud_title_text_string"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#hud_title_text_string - 'dm2hp') = #hud_title_text_string)",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "hearts@hud.horse_heart_renderer": {
+          "bindings": [
+            {
+              "binding_name": "#survival_horse_hearts",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "root_panel": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": [
+          {
+            "dm2_hp_stack@hud.dm2_hp_stack": {}
+          }
+        ]
+      }
+    ]
+  },
+  "hud_title_text": {
+    "bindings": [
+      {
+        "binding_name": "#hud_title_text_string"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(((#hud_title_text_string - 'dm2hp') = #hud_title_text_string) and ((#hud_title_text_string - 'dm2off') = #hud_title_text_string))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "centered_gui_elements_at_bottom_middle": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "replace",
+        "control_name": "horse_heart_rend_0",
+        "value": {
+          "horse_heart_rend_0@hud.dm2_horse_hearts_creative": {
+            "$offset": [180, -56]
+          }
+        }
+      },
+      {
+        "array_name": "controls",
+        "operation": "replace",
+        "control_name": "horse_heart_rend_1",
+        "value": {
+          "horse_heart_rend_1@hud.dm2_horse_hearts_survival": {
+            "$offset": [180, -50]
+          }
+        }
+      }
+    ]
+  },
+  "centered_gui_elements_at_bottom_middle_touch": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "replace",
+        "control_name": "horse_heart_rend_0",
+        "value": {
+          "horse_heart_rend_0@hud.dm2_horse_hearts_creative": {
+            "$offset": [200, -56]
+          }
+        }
+      },
+      {
+        "array_name": "controls",
+        "operation": "replace",
+        "control_name": "horse_heart_rend_1",
+        "value": {
+          "horse_heart_rend_1@hud.dm2_horse_hearts_survival": {
+            "$offset": [200, -50]
+          }
+        }
+      }
+    ]
+  },
+  "not_centered_gui_elements": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "replace",
+        "control_name": "horse_heart_rend",
+        "value": {
+          "horse_heart_rend@hud.horse_heart_renderer": {
+            "offset": [-2, 2],
+            "anchor_from": "top_right",
+            "anchor_to": "top_right",
+            "layer": 1,
+            "bindings": [
+              {
+                "binding_name": "#horse_hearts_touch"
+              },
+              {
+                "binding_name": "#hud_title_text_string"
+              },
+              {
+                "binding_type": "view",
+                "source_property_name": "(#horse_hearts_touch and ((#hud_title_text_string - 'dm2hp') = #hud_title_text_string))",
+                "target_property_name": "#visible"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -30,10 +30,10 @@
         ]
       },
       "minecraft:material_instances": { "*": { "texture": "dragonmounts2:forest_dragon_head_warm", "render_method": "alpha_test" } },
-      "minecraft:geometry": { "identifier": "geometry.dragonmounts2.head_block.winged_horns", "n_way_visual_rotation": { "y": "minecraft:sixteen_way_rotation" } }
+      "minecraft:geometry": { "identifier": "geometry.dragonmounts2.head_block.horned_antlers", "n_way_visual_rotation": { "y": "minecraft:sixteen_way_rotation" } }
     },
     "permutations": [
-      { "condition": "q.block_state('minecraft:block_face') != 'up'", "components": { "minecraft:geometry": "geometry.dragonmounts2.head_block.winged_horns" } },
+      { "condition": "q.block_state('minecraft:block_face') != 'up'", "components": { "minecraft:geometry": "geometry.dragonmounts2.head_block.horned_antlers" } },
       {
         "condition": "q.block_state('minecraft:block_face') == 'north'",
         "components": {

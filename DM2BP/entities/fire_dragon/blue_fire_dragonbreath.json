@@ -15,7 +15,10 @@
       "minecraft:projectile": {
         "on_hit": {
           "impact_damage": {
-            "damage": { "min": 30, "max": 30 },
+            "damage": {
+              "min": 30,
+              "max": 30
+            },
             "knockback": true,
             "destroy_on_hit": false
           },
@@ -34,7 +37,11 @@
         "gravity": 0.05,
         "inertia": 1,
         "anchor": "middle",
-        "offset": [0.0, 2.5, 3.0],
+        "offset": [
+          0.0,
+          2.5,
+          3.0
+        ],
         "isolated_physics": false
       },
       "minecraft:physics": {},
@@ -61,7 +68,10 @@
           },
           {
             "add": {
-              "component_groups": ["exploding", "despawn"]
+              "component_groups": [
+                "exploding",
+                "despawn"
+              ]
             }
           }
         ]

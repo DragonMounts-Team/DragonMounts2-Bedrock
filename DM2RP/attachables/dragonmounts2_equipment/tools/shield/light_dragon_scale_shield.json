@@ -18,7 +18,6 @@
         "wield": "controller.animation.dragonmounts2.shield.wield",
         "wield_main_hand_first_person": "animation.dragonmounts2.shield.wield_main_hand_first_person",
         "wield_off_hand_first_person": "animation.dragonmounts2.shield.wield_off_hand_first_person",
-        "wield_first_person_block": "animation.dragonmounts2.shield.wield_first_person_blocking",
         "wield_main_hand_first_person_block": "animation.dragonmounts2.shield.wield_main_hand_first_person_blocking",
         "wield_off_hand_first_person_block": "animation.dragonmounts2.shield.wield_off_hand_first_person_blocking",
         "wield_third_person": "animation.dragonmounts2.shield.wield_third_person"

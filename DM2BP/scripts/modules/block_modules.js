@@ -1,15 +1,21 @@
-import { ItemStack } from "@minecraft/server";
 import * as blockUtilities from "../utilities/block_utilities.js";
 import * as itemData from "../data/item_data.js";
 import { getSoundOptions } from "../data/settings.js";
 import { onScriptEvent } from "../core/script_events.js";
 import { onWorldEvent } from "../core/world_events.js";
+import { registerIntervalTask } from "../core/scheduler.js";
 
-onWorldEvent(
-  "afterEvents",
-  "blockContainerClosed",
-  blockUtilities.dragonCoreContainerClosed,
-);
+// true: a dead tamed dragon leaves a Dragon Core block on the floor with its
+// essence inside (Java DM2). false: the bare essence gem is dropped instead.
+// If no core can be placed, the essence gem is dropped as a fallback.
+const SPAWN_CORE_ON_DEATH = true;
+
+onWorldEvent("afterEvents", "playerBreakBlock", blockUtilities.dragonCoreBroken);
+onWorldEvent("afterEvents", "blockExplode", blockUtilities.dragonCoreBroken);
+onWorldEvent("afterEvents", "entityHitEntity", blockUtilities.dragonCoreContainerHit);
+onWorldEvent("afterEvents", "entityContainerOpened", blockUtilities.dragonCoreContainerOpened);
+onWorldEvent("afterEvents", "entityContainerClosed", blockUtilities.dragonCoreContainerClosed);
+registerIntervalTask("dragon_core_containers", 4, blockUtilities.tickDragonCores);
 
 onScriptEvent((event) => {
   const entity = event.sourceEntity;
@@ -44,58 +50,36 @@ onScriptEvent((event) => {
     text_color_type: textColorType,
   } = entityEntry.dragon_data;
 
-  const essenceItem = new ItemStack(entityEntry.dragon_item, 1);
-  essenceItem.setLore([
-    {
-      rawtext: [
-        { text: `${textColorType}` },
-        { translate: `${textTranslateType}` },
-      ],
-    },
-    {
-      rawtext: [
-        { text: "§r§7" },
-        { translate: "tooltip.dragonmounts2:dragon_owner_name" },
-        { text: ":" },
-      ],
-    },
-    `§r§9 ${ownerName}`,
-    `§r§8 ${ownerIdentifier}`,
-    {
-      rawtext: [
-        { text: "§r§7" },
-        { translate: "tooltip.dragonmounts2:dragon_variant_type" },
-        { text: ":" },
-      ],
-    },
-    `§r§9 ${variantProperty}`,
-    {
-      rawtext: [
-        { text: "§r§7" },
-        { translate: "tooltip.dragonmounts2:dragon_name" },
-        { text: ":" },
-      ],
-    },
-    `§r§9 ${dragonName}`,
-    `§r§8 ${dragonIdentifier}`,
-  ]);
-  essenceItem.setDynamicProperty(
-    "dragonmounts2:owner_identifier",
+  const essenceData = {
+    dragon_item: entityEntry.dragon_item,
+    ownerName,
     ownerIdentifier,
-  );
-  essenceItem.setDynamicProperty("dragonmounts2:variant_type", variantProperty);
-  essenceItem.setDynamicProperty("dragonmounts2:dragon_name", dragonName);
-  essenceItem.setDynamicProperty(
-    "dragonmounts2:dragon_identifier",
+    variantType: variantProperty,
+    dragonName,
     dragonIdentifier,
-  );
+    textTranslateType,
+    textColorType,
+  };
+
   const location = {
     x: entity.location.x,
     y: entity.location.y + 0.3,
     z: entity.location.z,
   };
+
+  if (
+    SPAWN_CORE_ON_DEATH &&
+    blockUtilities.spawnDragonCoreWithEssence(
+      entity.dimension,
+      entity.location,
+      essenceData,
+    )
+  ) {
+    return;
+  }
+
   try {
-    entity.dimension.spawnItem(essenceItem, location);
+    entity.dimension.spawnItem(blockUtilities.createDragonEssenceItem(essenceData), location);
     entity.dimension.playSound(
       "break.amethyst_block",
       location,

@@ -167,12 +167,7 @@ export const dragonAmuletDataBlockTypes = {
 export const dragonEssenceDataItemTypes = {
   "dragonmounts2:fire_dragon_essence": {
     dragon_entity: "dragonmounts2:fire_dragon",
-    dragon_hatch_variants: {
-      default: "minecraft:entity_transformed",
-      flame: "minecraft:on_hatch_fire_dragon_flame",
-      blaze: "minecraft:on_hatch_fire_dragon_blaze",
-      blue_fire: "minecraft:on_hatch_fire_dragon_blue_fire",
-    },
+    dragon_hatch_variants: { default: "minecraft:entity_transformed" },
     dragon_data: {
       variant_property: "dragonmounts2:variant_type",
       text_translate_type: "tooltip.dragonmounts2:fire",
@@ -181,12 +176,7 @@ export const dragonEssenceDataItemTypes = {
   },
   "dragonmounts2:ice_dragon_essence": {
     dragon_entity: "dragonmounts2:ice_dragon",
-    dragon_hatch_variants: {
-      default: "minecraft:entity_transformed",
-      alpine: "minecraft:on_hatch_ice_dragon_alpine",
-      frost: "minecraft:on_hatch_ice_dragon_frost",
-      iceberg: "minecraft:on_hatch_ice_dragon_iceberg",
-    },
+    dragon_hatch_variants: { default: "minecraft:entity_transformed" },
     dragon_data: {
       variant_property: "dragonmounts2:variant_type",
       text_translate_type: "tooltip.dragonmounts2:ice",

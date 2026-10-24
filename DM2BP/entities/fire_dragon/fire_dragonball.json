@@ -56,7 +56,11 @@
             "knockback": false
           }
         },
-        "offset": [0, 0, 0],
+        "offset": [
+          0,
+          0,
+          0
+        ],
         "power": 1.6,
         "reflect_on_hurt": true,
         "uncertainty_base": 0,
@@ -98,7 +102,11 @@
               "domain": "dragonmounts2:environmental_effects_enabled",
               "value": true
             },
-            "add": { "component_groups": ["minecraft:exploding"] }
+            "add": {
+              "component_groups": [
+                "minecraft:exploding"
+              ]
+            }
           },
           {
             "filters": {
@@ -107,7 +115,11 @@
               "domain": "dragonmounts2:environmental_effects_enabled",
               "value": false
             },
-            "add": { "component_groups": ["dragonmounts2:exploding_no_environmental_effects"] }
+            "add": {
+              "component_groups": [
+                "dragonmounts2:exploding_no_environmental_effects"
+              ]
+            }
           }
         ]
       }

@@ -3,6 +3,7 @@ import { world } from "@minecraft/server";
 const startUseHandlers = [];
 const stopUseHandlers = [];
 const releaseUseHandlers = [];
+const completeUseHandlers = [];
 let initialized = false;
 
 export function onItemStartUse(handler) {
@@ -11,6 +12,10 @@ export function onItemStartUse(handler) {
 
 export function onItemStopUse(handler) {
   stopUseHandlers.push(handler);
+}
+
+export function onItemCompleteUse(handler) {
+  completeUseHandlers.push(handler);
 }
 
 export function onItemReleaseUse(handler) {
@@ -40,5 +45,8 @@ export function initializeItemEvents() {
   });
   world.afterEvents.itemReleaseUse.subscribe((event) => {
     dispatch(releaseUseHandlers, event, "Item release-use");
+  });
+  world.afterEvents.itemCompleteUse.subscribe((event) => {
+    dispatch(completeUseHandlers, event, "Item complete-use");
   });
 }

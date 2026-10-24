@@ -1,8 +1,11 @@
 import * as blockUtilities from "../utilities/block_utilities.js";
 
 const DragonCoreComponent = {
-  onPlayerInteract({ block, dimension, player }, { params }) {
-    blockUtilities.dragonCorePlayerInteract(block, dimension, player, params);
+  onPlace({ block, dimension }) {
+    blockUtilities.dragonCorePlaced(block, dimension);
+  },
+  onPlayerInteract({ block, dimension, player }) {
+    blockUtilities.dragonCorePlayerInteract(block, dimension, player);
   },
 };
 

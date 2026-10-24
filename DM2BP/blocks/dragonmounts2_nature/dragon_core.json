@@ -40,9 +40,6 @@
           "render_method": "alpha_test"
         }
       },
-      "minecraft:block_entity": {
-        "container": { "slot_count": 1 }
-      },
       "minecraft:selection_box": true,
       "dragonmounts2:dragon_core": {
         "block_entity": "dragonmounts2:dragon_core",

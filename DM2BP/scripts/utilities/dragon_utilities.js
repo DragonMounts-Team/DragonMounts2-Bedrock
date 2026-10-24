@@ -1279,6 +1279,32 @@ const flightSystem = (() => {
     return true;
   }
 
+  // Scepter-scoped V formation: the persistent ids of the dragons bound to the
+  // scepter that last enabled/refreshed the formation. When set, only those
+  // dragons are recruited into the V (fall rescue is unaffected).
+  const ROSTER_PROPERTY = `${FLIGHT}formation_roster`;
+
+  function readRoster(owner) {
+    const raw = dynamic(owner, ROSTER_PROPERTY);
+    if (typeof raw !== "string" || !raw) return null;
+    try {
+      const list = JSON.parse(raw);
+      const pids = Array.isArray(list) ? list.filter((pid) => typeof pid === "string" && pid) : [];
+      return pids.length ? new Set(pids) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function setFormationRoster(owner, pids) {
+    if (!owner?.isValid) return false;
+    const list = [...new Set((pids ?? []).filter((pid) => typeof pid === "string" && pid))];
+    const raw = list.length ? JSON.stringify(list) : undefined;
+    if (dynamic(owner, ROSTER_PROPERTY) !== raw) setDynamic(owner, ROSTER_PROPERTY, raw);
+    FLOCK_CACHE.clear();
+    return true;
+  }
+
   function isFormationFlightEnabled(owner) {
     return dynamic(owner, `${FLIGHT}formation_flight_enabled`) === true;
   }
@@ -1386,11 +1412,15 @@ const flightSystem = (() => {
                                                                             
                                                                          
     const gliding = !ownerMount(owner);
+    const roster = readRoster(owner);
+    const pool = roster
+      ? eligible.members.filter((member) => roster.has(pidOf(member)))
+      : eligible.members;
     const members = gliding
-      ? eligible.members.filter((member) =>
+      ? pool.filter((member) =>
           property(member, `${FLIGHT}movement_state`) === "flying" ||
           distanceBetween(member.location, owner.location) < entityData.OWNER_FOLLOW_RANGE)
-      : eligible.members;
+      : pool;
     const main = eligible.main && members.some((member) => member.id === eligible.main.id)
       ? eligible.main
       : null;
@@ -2160,6 +2190,7 @@ const flightSystem = (() => {
     rankOfPid,
     placeRank,
     cycleRank,
+    setFormationRoster,
     forgetDragon,
     isVFlightEnabled,
     setVFlightEnabled,
@@ -2282,6 +2313,10 @@ export function isVFlightEnabled(dragon) {
 
 export function setVFlightEnabled(dragon, enabled) {
   return flightSystem.setVFlightEnabled(dragon, enabled === true);
+}
+
+export function setFormationRoster(owner, pids) {
+  return flightSystem.setFormationRoster(owner, pids);
 }
 
 export function isFormationFlightEnabled(owner) {

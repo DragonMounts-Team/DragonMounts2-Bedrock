@@ -21,6 +21,7 @@ import {
   onItemStartUse,
   onItemStopUse,
   onItemReleaseUse,
+  onItemCompleteUse,
 } from "../core/item_events.js";
 import { onWorldEvent } from "../core/world_events.js";
 import { registerIntervalTask } from "../core/scheduler.js";
@@ -332,6 +333,13 @@ onItemStopUse((data) => {
 });
 
 onItemReleaseUse((data) => {
+  if (!data.source?.id) return;
+  delete usingItem[data.source.id];
+});
+
+// Completing a use (scepter, flute, food...) does not fire stop/release, which
+// left usingItem stuck on and silently disabled shield blocking.
+onItemCompleteUse((data) => {
   if (!data.source?.id) return;
   delete usingItem[data.source.id];
 });

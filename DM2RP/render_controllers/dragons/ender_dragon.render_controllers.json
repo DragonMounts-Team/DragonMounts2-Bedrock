@@ -2,57 +2,146 @@
   "format_version": "1.26.50",
   "render_controllers": {
     "controller.render.dragonmounts2.ender_dragon.death_pre_pass": {
-      "geometry": "Geometry.dragon_default",
+      "geometry": "Array.geo[v.use_baby_model?1:0]",
       "materials": [
-        { "*": "Material.dissolve_0" }
+        {
+          "*": "Material.dissolve_0"
+        }
       ],
-      "textures": [ "Texture.exploding" ],
+      "textures": [
+        "Texture.exploding"
+      ],
       "part_visibility": [
-        { "*": "v.death_ticks!=0.00" }
+        {
+          "*": "v.death_ticks!=0.00"
+        }
       ],
-      "overlay_color": { "r": "v.death_ticks != 0.00 ? v.death_alpha : 1", "g": "v.death_ticks != 0.00 ? v.death_alpha : 1", "b": "v.death_ticks != 0.00 ? v.death_alpha : 1", "a": "v.death_ticks != 0.00 ? v.death_alpha : 1" }
+      "overlay_color": {
+        "r": "v.death_ticks != 0.00 ? v.death_alpha : 1",
+        "g": "v.death_ticks != 0.00 ? v.death_alpha : 1",
+        "b": "v.death_ticks != 0.00 ? v.death_alpha : 1",
+        "a": "v.death_ticks != 0.00 ? v.death_alpha : 1"
+      },
+      "arrays": {
+        "geometries": {
+          "Array.geo": [
+            "Geometry.dragon_default",
+            "Geometry.dragon_baby"
+          ]
+        }
+      }
     },
     "controller.render.dragonmounts2.ender_dragon.death_main_pass": {
-      "geometry": "Geometry.dragon_default",
+      "geometry": "Array.geo[v.use_baby_model?1:0]",
       "materials": [
-        { "*": "Material.dissolve_1" }
+        {
+          "*": "Material.dissolve_1"
+        }
       ],
-      "textures": [ "Array.base[v.variant_type_index]" ],
+      "textures": [
+        "Array.base[v.variant_type_index+(v.use_baby_model?3:0)]"
+      ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.jean", "Texture.john", "Texture.shadow" ] }
+        "textures": {
+          "Array.base": [
+            "Texture.jean",
+            "Texture.john",
+            "Texture.shadow",
+            "Texture.jean_baby",
+            "Texture.john_baby",
+            "Texture.shadow_baby"
+          ]
+        },
+        "geometries": {
+          "Array.geo": [
+            "Geometry.dragon_default",
+            "Geometry.dragon_baby"
+          ]
+        }
       }
     },
     "controller.render.dragonmounts2.ender_dragon.base": {
       "materials": [
-        { "*": "Material.dragon_default" }
+        {
+          "*": "Material.dragon_default"
+        }
       ],
-      "geometry": "Geometry.dragon_default",
-      "textures": [ "Array.base[v.variant_type_index]", "Array.saddled[q.is_saddled]" ],
+      "geometry": "Array.geo[v.use_baby_model?1:0]",
+      "textures": [
+        "Array.base[v.variant_type_index+(v.use_baby_model?3:0)]",
+        "Array.saddled[q.is_saddled]"
+      ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.jean", "Texture.john", "Texture.shadow" ], "Array.saddled": [ "Texture.dragon_none", "Texture.dragon_none" ] }
+        "textures": {
+          "Array.base": [
+            "Texture.jean",
+            "Texture.john",
+            "Texture.shadow",
+            "Texture.jean_baby",
+            "Texture.john_baby",
+            "Texture.shadow_baby"
+          ],
+          "Array.saddled": [
+            "Texture.dragon_none",
+            "Texture.dragon_none"
+          ]
+        },
+        "geometries": {
+          "Array.geo": [
+            "Geometry.dragon_default",
+            "Geometry.dragon_baby"
+          ]
+        }
       },
       "part_visibility": [
-        { "body.back": "!q.is_saddled" }
+        {
+          "body.back": "!q.is_saddled"
+        }
       ]
     },
     "controller.render.dragonmounts2.dragon_collar": {
       "geometry": "Geometry.dragon_default",
       "materials": [
-        { "*": "Material.collar" }
+        {
+          "*": "Material.collar"
+        }
       ],
-      "textures": [ "Texture.collar" ]
+      "textures": [
+        "Texture.collar"
+      ]
     },
     "controller.render.dragonmounts2.ender_dragon.glow": {
-      "geometry": "Geometry.glow",
+      "geometry": "Array.geo[v.use_baby_model?1:0]",
       "materials": [
-        { "*": "Material.dragon" }
+        {
+          "*": "Material.dragon"
+        }
       ],
       "part_visibility": [
-        { "body.back": "!q.is_saddled" }
+        {
+          "body.back": "!q.is_saddled"
+        }
       ],
-      "textures": [ "Array.base[v.variant_type_index]" ],
+      "textures": [
+        "Array.base[v.variant_type_index+(v.use_baby_model?3:0)]"
+      ],
       "arrays": {
-        "textures": { "Array.base": [ "Texture.jean_glow", "Texture.john_glow", "Texture.shadow_glow" ] }
+        "textures": {
+          "Array.base": [
+            "Texture.jean_glow",
+            "Texture.john_glow",
+            "Texture.shadow_glow",
+            "Texture.jean_glow_baby",
+            "Texture.john_glow_baby",
+            "Texture.shadow_glow_baby"
+          ]
+        },
+        "geometries": {
+          "Array.geo": [
+            "Geometry.glow",
+            "Geometry.glow_baby"
+          ]
+        }
       },
       "light_color_multiplier": 1.2,
       "ignore_lighting": true
@@ -60,17 +149,30 @@
     "controller.render.ender_dragon_egg": {
       "geometry": "Geometry.dragon_egg",
       "materials": [
-        { "*": "Material.dragon_egg" }
+        {
+          "*": "Material.dragon_egg"
+        }
       ],
-      "textures": [ "Texture.dragon_egg" ],
-      "is_hurt_color": { "r": 1, "g": 1, "b": 1, "a": 0.1 }
+      "textures": [
+        "Texture.dragon_egg"
+      ],
+      "is_hurt_color": {
+        "r": 1,
+        "g": 1,
+        "b": 1,
+        "a": 0.1
+      }
     },
     "controller.render.ender_dragon_egg_death": {
       "geometry": "Geometry.dragon_egg",
       "materials": [
-        { "*": "Material.death" }
+        {
+          "*": "Material.death"
+        }
       ],
-      "textures": [ "Texture.dragon_egg" ]
+      "textures": [
+        "Texture.dragon_egg"
+      ]
     }
   }
 }
