@@ -24,6 +24,13 @@
           "deals_damage": "no"
         }
       },
+      "minecraft:pushable_by_entity": {
+        "presets": [
+          {
+            "push_mode": "none"
+          }
+        ]
+      },
       "minecraft:interact": {
         "interactions": [
           {

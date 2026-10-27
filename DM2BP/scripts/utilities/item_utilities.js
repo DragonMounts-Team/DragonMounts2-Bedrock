@@ -58,6 +58,27 @@ class CustomForm {
 
 const TELEPORT_AIR_TYPES = new Set(entityArrays.teleportAirTypes);
 
+function runCaptureCommand(entity, command) {
+  const result = entity.runCommand(command);
+  if (result && result.successCount === 0) {
+    throw new Error(`command failed: ${command.split(" ")[0]}`);
+  }
+}
+
+function dismountRiders(dragon) {
+  try {
+    for (const player of dragon.dimension.getPlayers({
+      location: dragon.location,
+      maxDistance: 16,
+    })) {
+      try {
+        const mount = player.getComponent("minecraft:riding")?.entityRidingOn;
+        if (mount?.id === dragon.id) player.runCommand("ride @s stop_riding");
+      } catch {}
+    }
+  } catch {}
+}
+
 function getMainhandSlot(player) {
   return player
     ?.getComponent(EntityEquippableComponent.componentId)
@@ -1790,11 +1811,26 @@ export function dragonAmuletHitEntity(
   system.run(() => {
     if (!hitEntity.isValid) return;
 
-    hitEntity.runCommand(`ride @a[r=3.1] stop_riding`);
-    hitEntity.runCommand(`tp ${saveX} ${saveY} ${saveZ}`);
-    hitEntity.runCommand(
-      `structure save "${pid}" ${saveX} ${saveY} ${saveZ} ${saveX} ${saveY} ${saveZ} true disk false`,
-    );
+    // Only dismount players that are actually riding THIS dragon (the old
+    // `@a[r=3.1]` selector also kicked bystanders off horses, boats, etc.).
+    dismountRiders(hitEntity);
+    const originalLocation = { x, y, z };
+    try {
+      runCaptureCommand(hitEntity, `tp ${saveX} ${saveY} ${saveZ}`);
+      runCaptureCommand(
+        hitEntity,
+        `structure save "${pid}" ${saveX} ${saveY} ${saveZ} ${saveX} ${saveY} ${saveZ} true disk false`,
+      );
+    } catch (error) {
+      // Never strand or lose the dragon if the save fails: put it back.
+      try {
+        if (hitEntity.isValid) hitEntity.teleport(originalLocation);
+      } catch {}
+      console.warn(
+        `[DragonMounts2] Amulet capture aborted: ${error?.message ?? error}`,
+      );
+      return;
+    }
     hitEntity.remove();
 
     const equippable = attackingEntity.getComponent("minecraft:equippable");
@@ -1840,13 +1876,14 @@ export function dragonAmuletUseOn(source, block, blockFace, itemStack, params) {
   }
 
   const pos = block.location;
+  const releaseY = pos.y + 1;
   const directions = {
-    North: { x: pos.x + 0.5, y: pos.y, z: pos.z - 0.5 },
-    South: { x: pos.x + 0.5, y: pos.y, z: pos.z + 1.5 },
-    East: { x: pos.x + 1.5, y: pos.y, z: pos.z + 0.5 },
-    West: { x: pos.x - 0.5, y: pos.y, z: pos.z + 0.5 },
-    Up: { x: pos.x + 0.5, y: pos.y, z: pos.z + 0.5 },
-    Down: { x: pos.x + 0.5, y: pos.y, z: pos.z + 0.5 },
+    North: { x: pos.x + 0.5, y: releaseY, z: pos.z - 0.5 },
+    South: { x: pos.x + 0.5, y: releaseY, z: pos.z + 1.5 },
+    East: { x: pos.x + 1.5, y: releaseY, z: pos.z + 0.5 },
+    West: { x: pos.x - 0.5, y: releaseY, z: pos.z + 0.5 },
+    Up: { x: pos.x + 0.5, y: releaseY, z: pos.z + 0.5 },
+    Down: { x: pos.x + 0.5, y: releaseY, z: pos.z + 0.5 },
   };
 
   const { x, y, z } = directions[blockFace] ?? directions["Up"];

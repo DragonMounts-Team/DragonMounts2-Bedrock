@@ -25,7 +25,7 @@ export const BREATH_KINDS = Object.freeze({
   nether: { drag: 0, exposeAir: false, exposeLiquid: false },
   ice: { drag: 0.075, exposeAir: false, exposeLiquid: true },
   water: { drag: 0.05, exposeAir: true, exposeLiquid: true },
-  storm: { drag: 0.05, exposeAir: true, exposeLiquid: true },
+  storm: { drag: 0, exposeAir: true, exposeLiquid: true },
   aether: { drag: 0.1, exposeAir: false, exposeLiquid: false },
   forest: { drag: 0, exposeAir: false, exposeLiquid: false },
   zombie: { drag: 0, exposeAir: false, exposeLiquid: false },
@@ -33,8 +33,8 @@ export const BREATH_KINDS = Object.freeze({
   dark: { drag: 0, exposeAir: false, exposeLiquid: false },
   wither: { drag: 0, exposeAir: false, exposeLiquid: false },
   sculk: { drag: 0.05, exposeAir: false, exposeLiquid: false },
-  moonlight: { drag: 0.05, exposeAir: false, exposeLiquid: false },
-  sunlight: { drag: 0.05, exposeAir: false, exposeLiquid: false },
+  moonlight: { drag: 0, exposeAir: false, exposeLiquid: false },
+  sunlight: { drag: 0, exposeAir: false, exposeLiquid: false },
 });
 
                                                                                   
@@ -42,9 +42,9 @@ export const LIGHTNING_KINDS = Object.freeze(new Set(["storm", "moonlight", "sun
 
                                                                        
 export const LIGHTNING_PROFILES = Object.freeze({
-  storm: { igniteSeconds: 5, wetDamageMultiplier: 1.5, particle: "dragonmounts2:lightning_white" },
-  moonlight: { igniteSeconds: 5, wetDamageMultiplier: 1.5, particle: "dragonmounts2:lightning_blue" },
-  sunlight: { igniteSeconds: 5, wetDamageMultiplier: 1.5, particle: "dragonmounts2:lightning_orange" },
+  storm: { igniteSeconds: 5, wetDamageMultiplier: 1.5, color: { red: 1, green: 1, blue: 1 } },
+  moonlight: { igniteSeconds: 5, wetDamageMultiplier: 1.5, color: { red: 0.35, green: 0.7, blue: 1 } },
+  sunlight: { igniteSeconds: 5, wetDamageMultiplier: 1.5, color: { red: 1, green: 0.48, blue: 0.16 } },
 });
 
                                                               
@@ -89,9 +89,12 @@ export const BREATH_PARTICLE_STYLES = Object.freeze({
   "dragonmounts2:ender_dragon": { sprite: "acid", style: "ender" },
   "dragonmounts2:forest_dragon": { sprite: "poison", style: "plain" },
   "dragonmounts2:ice_dragon": { sprite: "ice", style: "ice" },
+  "dragonmounts2:moonlight_dragon": { sprite: "lightning_blue", style: "plain" },
   "dragonmounts2:nether_dragon": { sprite: "nether", style: "nether" },
   "dragonmounts2:sculk_dragon": { sprite: "dark", style: "plain" },
   "dragonmounts2:skeleton_dragon": { sprite: "soul", style: "plain" },
+  "dragonmounts2:storm_dragon": { sprite: "lightning_white", style: "plain" },
+  "dragonmounts2:sunlight_dragon": { sprite: "lightning_orange", style: "plain" },
   "dragonmounts2:water_dragon": { sprite: "hydro", style: "water" },
   "dragonmounts2:wither_dragon": { sprite: "wither", style: "plain" },
   "dragonmounts2:zombie_dragon": { sprite: "poison", style: "plain" },

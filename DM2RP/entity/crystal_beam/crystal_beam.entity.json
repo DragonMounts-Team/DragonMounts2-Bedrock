@@ -1,0 +1,43 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:crystal_beam",
+      "materials": {
+        "default": "crystal_beam"
+      },
+      "textures": {
+        "default": "textures/entity/endercrystal/endercrystal_beam"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.crystal_beam"
+      },
+      "animations": {
+        "aim": "animation.dragonmounts2.crystal_beam.aim"
+      },
+      "scripts": {
+        "animate": [
+          "aim"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.dragonmounts2.crystal_beam_00",
+        "controller.render.dragonmounts2.crystal_beam_01",
+        "controller.render.dragonmounts2.crystal_beam_02",
+        "controller.render.dragonmounts2.crystal_beam_03",
+        "controller.render.dragonmounts2.crystal_beam_04",
+        "controller.render.dragonmounts2.crystal_beam_05",
+        "controller.render.dragonmounts2.crystal_beam_06",
+        "controller.render.dragonmounts2.crystal_beam_07",
+        "controller.render.dragonmounts2.crystal_beam_08",
+        "controller.render.dragonmounts2.crystal_beam_09",
+        "controller.render.dragonmounts2.crystal_beam_10",
+        "controller.render.dragonmounts2.crystal_beam_11",
+        "controller.render.dragonmounts2.crystal_beam_12",
+        "controller.render.dragonmounts2.crystal_beam_13",
+        "controller.render.dragonmounts2.crystal_beam_14",
+        "controller.render.dragonmounts2.crystal_beam_15"
+      ]
+    }
+  }
+}

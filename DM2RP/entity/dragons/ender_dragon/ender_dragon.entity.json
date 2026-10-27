@@ -171,7 +171,7 @@
         "breath_loop_baby": "dragonmounts2:mob.dragon.java_breath_loop_dragon_ender_hatchling"
       },
       "particle_effects": {
-        "death_cloud": "dragonmounts2:ender_dragon_death_cloud"
+        "death_cloud": "dragonmounts2:ender_dragon_death_cloud", "breath_muzzle": "dragonmounts2:breath_acid"
       },
       "render_controllers": [
         "controller.render.dragonmounts2.dragon.is_saddled",

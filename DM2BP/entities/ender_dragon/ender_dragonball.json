@@ -27,6 +27,7 @@
       "minecraft:dimension_bound": {},
       "minecraft:physics": {},
       "minecraft:projectile": {
+        "ignored_entities": ["dragonmounts2:attack_interaction"],
         "anchor": "middle",
         "gravity": 0.0,
         "catch_fire": false,

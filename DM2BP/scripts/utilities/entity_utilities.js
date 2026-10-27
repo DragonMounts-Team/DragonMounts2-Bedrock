@@ -321,8 +321,7 @@ function checkLocations(eggDim, eggLoc, method) {
       y: eggLoc.y + method.y_location,
       z: eggLoc.z + dxz.z,
     });
-    if (!requiredBlock || !method.blocks.includes(requiredBlock.typeId))
-      return false;
+    if (!matchesBlockRequirement(requiredBlock, method)) return false;
   }
   return true;
 }
@@ -336,8 +335,7 @@ function checkRadiusArea(eggDim, eggLoc, method) {
         y: eggLoc.y + method.y_location,
         z: eggLoc.z + z,
       });
-      if (!requiredBlock || !method.blocks.includes(requiredBlock.typeId))
-        return false;
+      if (!matchesBlockRequirement(requiredBlock, method)) return false;
     }
   }
   return true;
@@ -350,7 +348,13 @@ function checkSingleLocation(eggDim, eggLoc, method) {
     y: eggLoc.y + location.y,
     z: eggLoc.z + location.z,
   });
-  return requiredBlock ? method.blocks.includes(requiredBlock.typeId) : false;
+  return matchesBlockRequirement(requiredBlock, method);
+}
+
+function matchesBlockRequirement(block, method) {
+  if (!block) return false;
+  if (method.blocks?.includes(block.typeId)) return true;
+  return method.tags?.some((tag) => block.hasTag(tag)) ?? false;
 }
 
 function convertDragonEgg(dragonEgg, newTypeId) {
@@ -361,11 +365,25 @@ function convertDragonEgg(dragonEgg, newTypeId) {
 }
 
 export function tryActivateEggNestBlock(dragonEgg, eggNestingBlock) {
-  if (eggNestingBlock === true || !dragonEgg?.isValid) return;
-  dragonEgg.setProperty("dragonmounts2:egg_nesting_block", true);
+  if (!dragonEgg?.isValid) return;
+  const eggState = dragonEgg.getProperty("dragonmounts2:egg_state");
+  if (eggState === "hatched" || eggState === "transformed") return;
+  if (eggNestingBlock !== true) {
+    dragonEgg.setProperty("dragonmounts2:egg_nesting_block", true);
+  }
+  if (eggState !== "hatching") {
+    dragonEgg.triggerEvent("minecraft:dragon_egg_hatching");
+  }
 }
 
 export function tryDeactivateEggNestBlock(dragonEgg, eggNestingBlock) {
-  if (eggNestingBlock === false || !dragonEgg?.isValid) return;
-  dragonEgg.setProperty("dragonmounts2:egg_nesting_block", false);
+  if (!dragonEgg?.isValid) return;
+  const eggState = dragonEgg.getProperty("dragonmounts2:egg_state");
+  if (eggState === "hatched" || eggState === "transformed") return;
+  if (eggNestingBlock !== false) {
+    dragonEgg.setProperty("dragonmounts2:egg_nesting_block", false);
+  }
+  if (eggState !== "transforming") {
+    dragonEgg.triggerEvent("minecraft:dragon_egg_transforming");
+  }
 }

@@ -172,11 +172,29 @@
       "minecraft:can_climb": {},
       "minecraft:can_power_jump": {},
       "minecraft:collision_box": {
-        "width": 1.4,
-        "height": 2.75
+        "width": 3,
+        "height": 2.5
       },
+        "minecraft:pushable_by_entity": {
+          "presets": [
+            { "push_mode": "none" }
+          ]
+        },
       "minecraft:damage_sensor": {
         "triggers": [
+          {
+  "cause": "all",
+  "deals_damage": "no",
+  "on_damage": {
+    "filters": {
+      "any_of": [
+        { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_scepter" },
+        { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_amulet" },
+        { "test": "has_equipment_tag", "subject": "other", "domain": "main_hand", "value": "dragonmounts2:is_dragon_flute" }
+      ]
+    }
+  }
+},
           {
             "deals_damage": "no",
             "cause": "all",
@@ -789,7 +807,8 @@
         ]
       },
       "minecraft:health": {
-        "value": 180
+        "value": 180,
+        "max": 180
       },
       "minecraft:horse.jump_strength": {
         "value": 0
@@ -1429,8 +1448,8 @@
           "breathes_water": true
         },
         "minecraft:collision_box": {
-          "width": 1.4,
-          "height": 2.75
+          "width": 3,
+          "height": 2.5
         },
         "minecraft:jump.static": {},
         "minecraft:pushable_by_block": {},

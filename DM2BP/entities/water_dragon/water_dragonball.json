@@ -16,6 +16,7 @@
       "minecraft:fire_immune": {},
       "minecraft:physics": {},
       "minecraft:projectile": {
+        "ignored_entities": ["dragonmounts2:attack_interaction"],
         "on_hit": {
           "impact_damage": {
             "damage": { "min": 0, "max": 0 },

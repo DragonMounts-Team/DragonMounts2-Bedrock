@@ -1,42 +1,148 @@
 {
   "namespace": "hud",
-  "dm2_hp_bar": {
+  "dm2_rb_0": {
+    "anim_type": "color",
+    "easing": "linear",
+    "duration": 0.5,
+    "from": [
+      1,
+      0.2,
+      0.2
+    ],
+    "to": [
+      1,
+      0.6,
+      0.1
+    ],
+    "next": "@hud.dm2_rb_1"
+  },
+  "dm2_rb_1": {
+    "anim_type": "color",
+    "easing": "linear",
+    "duration": 0.5,
+    "from": [
+      1,
+      0.6,
+      0.1
+    ],
+    "to": [
+      1,
+      1,
+      0.2
+    ],
+    "next": "@hud.dm2_rb_2"
+  },
+  "dm2_rb_2": {
+    "anim_type": "color",
+    "easing": "linear",
+    "duration": 0.5,
+    "from": [
+      1,
+      1,
+      0.2
+    ],
+    "to": [
+      0.2,
+      1,
+      0.3
+    ],
+    "next": "@hud.dm2_rb_3"
+  },
+  "dm2_rb_3": {
+    "anim_type": "color",
+    "easing": "linear",
+    "duration": 0.5,
+    "from": [
+      0.2,
+      1,
+      0.3
+    ],
+    "to": [
+      0.2,
+      0.9,
+      1
+    ],
+    "next": "@hud.dm2_rb_4"
+  },
+  "dm2_rb_4": {
+    "anim_type": "color",
+    "easing": "linear",
+    "duration": 0.5,
+    "from": [
+      0.2,
+      0.9,
+      1
+    ],
+    "to": [
+      0.3,
+      0.4,
+      1
+    ],
+    "next": "@hud.dm2_rb_5"
+  },
+  "dm2_rb_5": {
+    "anim_type": "color",
+    "easing": "linear",
+    "duration": 0.5,
+    "from": [
+      0.3,
+      0.4,
+      1
+    ],
+    "to": [
+      0.8,
+      0.3,
+      1
+    ],
+    "next": "@hud.dm2_rb_6"
+  },
+  "dm2_rb_6": {
+    "anim_type": "color",
+    "easing": "linear",
+    "duration": 0.5,
+    "from": [
+      0.8,
+      0.3,
+      1
+    ],
+    "to": [
+      1,
+      0.2,
+      0.2
+    ],
+    "next": "@hud.dm2_rb_0"
+  },
+  "dm2_hp_bar_jeb": {
     "type": "panel",
-    "size": [182, 19],
+    "size": [
+      182,
+      19
+    ],
     "anchor_from": "bottom_middle",
     "anchor_to": "bottom_middle",
-    "$label|default": "",
-    "$name_color|default": [1, 1, 1],
-    "$bar_color|default": [1, 1, 1],
     "controls": [
-      {
-        "name_label": {
-          "type": "label",
-          "text": "$label",
-          "localize": true,
-          "shadow": true,
-          "color": "$name_color",
-          "font_size": "normal",
-          "anchor_from": "top_middle",
-          "anchor_to": "top_middle",
-          "layer": 4
-        }
-      },
       {
         "fill": {
           "type": "image",
           "texture": "textures/ui/dm2_hp_fill",
-          "size": [180, 5],
-          "color": "$bar_color",
+          "size": [
+            180,
+            5
+          ],
+          "color": [
+            1,
+            0.2,
+            0.2
+          ],
           "anchor_from": "bottom_middle",
           "anchor_to": "bottom_middle",
-          "offset": [0, -1],
+          "offset": [
+            0,
+            -1
+          ],
           "clip_direction": "left",
           "clip_pixelperfect": false,
           "layer": 3,
-          "property_bag": {
-            "#hundred": 100
-          },
           "bindings": [
             {
               "binding_name": "#hud_title_text_string"
@@ -51,20 +157,115 @@
               "source_property_name": "((#hundred - #dm2_pct) / #hundred)",
               "target_property_name": "#clip_ratio"
             }
+          ],
+          "anims": [
+            "@hud.dm2_rb_0"
+          ],
+          "property_bag": {
+            "#hundred": 100.0
+          }
+        }
+      }
+    ]
+  },
+  "dm2_hp_bar": {
+    "type": "panel",
+    "size": [
+      182,
+      19
+    ],
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "$label|default": "",
+    "$name_color|default": [
+      1,
+      1,
+      1
+    ],
+    "$bar_color|default": [
+      1,
+      1,
+      1
+    ],
+    "controls": [
+      {
+        "name_label": {
+          "type": "label",
+          "text": "$label",
+          "localize": true,
+          "shadow": true,
+          "color": "$name_color",
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)",
+              "target_property_name": "#visible"
+            }
           ]
+        }
+      },
+      {
+        "fill": {
+          "type": "image",
+          "texture": "textures/ui/dm2_hp_fill",
+          "size": [
+            180,
+            5
+          ],
+          "color": "$bar_color",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -1
+          ],
+          "clip_direction": "left",
+          "clip_pixelperfect": false,
+          "layer": 3,
+          "bindings": [
+            {
+              "binding_name": "#hud_title_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((#hud_title_text_string - 'dm2hp') * 1)",
+              "target_property_name": "#dm2_pct"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((#hundred - #dm2_pct) / #hundred)",
+              "target_property_name": "#clip_ratio"
+            }
+          ],
+          "property_bag": {
+            "#hundred": 100.0
+          }
         }
       }
     ]
   },
   "dm2_hp_display": {
     "type": "panel",
-    "size": [182, 19],
+    "size": [
+      182,
+      19
+    ],
     "controls": [
       {
         "frame": {
           "type": "image",
           "texture": "textures/ui/dm2_hp_frame",
-          "size": [182, 7],
+          "size": [
+            182,
+            7
+          ],
           "anchor_from": "bottom_middle",
           "anchor_to": "bottom_middle",
           "layer": 1
@@ -73,8 +274,16 @@
       {
         "dm2_hp_fire@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.fire",
-          "$name_color": [1, 0.66, 0.51],
-          "$bar_color": [1, 0.38, 0.1],
+          "$name_color": [
+            1,
+            0.66,
+            0.51
+          ],
+          "$bar_color": [
+            1,
+            0.38,
+            0.1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -90,8 +299,16 @@
       {
         "dm2_hp_ice@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.ice",
-          "$name_color": [0.81, 0.95, 1],
-          "$bar_color": [0.66, 0.91, 1],
+          "$name_color": [
+            0.81,
+            0.95,
+            1
+          ],
+          "$bar_color": [
+            0.66,
+            0.91,
+            1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -107,8 +324,16 @@
       {
         "dm2_hp_aether@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.aether",
-          "$name_color": [0.73, 0.93, 1],
-          "$bar_color": [0.5, 0.88, 1],
+          "$name_color": [
+            0.73,
+            0.93,
+            1
+          ],
+          "$bar_color": [
+            0.5,
+            0.88,
+            1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -124,8 +349,16 @@
       {
         "dm2_hp_dark@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.dark",
-          "$name_color": [0.44, 0, 0],
-          "$bar_color": [0.48, 0, 0],
+          "$name_color": [
+            0.44,
+            0,
+            0
+          ],
+          "$bar_color": [
+            0.48,
+            0,
+            0
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -141,8 +374,16 @@
       {
         "dm2_hp_enchanted@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.enchanted",
-          "$name_color": [0.85, 0.61, 1],
-          "$bar_color": [0.72, 0.3, 1],
+          "$name_color": [
+            0.85,
+            0.61,
+            1
+          ],
+          "$bar_color": [
+            0.72,
+            0.3,
+            1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -158,8 +399,16 @@
       {
         "dm2_hp_ender@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.ender",
-          "$name_color": [0.89, 0.61, 0.92],
-          "$bar_color": [0.8, 0.3, 0.85],
+          "$name_color": [
+            0.89,
+            0.61,
+            0.92
+          ],
+          "$bar_color": [
+            0.8,
+            0.3,
+            0.85
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -175,8 +424,16 @@
       {
         "dm2_hp_forest@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.forest",
-          "$name_color": [0.59, 0.83, 0.59],
-          "$bar_color": [0.25, 0.7, 0.25],
+          "$name_color": [
+            0.59,
+            0.83,
+            0.59
+          ],
+          "$bar_color": [
+            0.25,
+            0.7,
+            0.25
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -192,8 +449,16 @@
       {
         "dm2_hp_light@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.light",
-          "$name_color": [1, 0.97, 0.81],
-          "$bar_color": [1, 0.95, 0.66],
+          "$name_color": [
+            1,
+            0.97,
+            0.81
+          ],
+          "$bar_color": [
+            1,
+            0.95,
+            0.66
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -209,8 +474,16 @@
       {
         "dm2_hp_moonlight@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.moonlight",
-          "$name_color": [0.76, 0.81, 1],
-          "$bar_color": [0.56, 0.66, 1],
+          "$name_color": [
+            0.76,
+            0.81,
+            1
+          ],
+          "$bar_color": [
+            0.56,
+            0.66,
+            1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -226,8 +499,16 @@
       {
         "dm2_hp_nether@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.nether",
-          "$name_color": [0.82, 0.51, 0.51],
-          "$bar_color": [0.68, 0.1, 0.1],
+          "$name_color": [
+            0.82,
+            0.51,
+            0.51
+          ],
+          "$bar_color": [
+            0.68,
+            0.1,
+            0.1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -243,8 +524,16 @@
       {
         "dm2_hp_sculk@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.sculk",
-          "$name_color": [0.52, 0.76, 0.79],
-          "$bar_color": [0.12, 0.56, 0.62],
+          "$name_color": [
+            0.52,
+            0.76,
+            0.79
+          ],
+          "$bar_color": [
+            0.12,
+            0.56,
+            0.62
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -260,8 +549,16 @@
       {
         "dm2_hp_skeleton@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.skeleton",
-          "$name_color": [0.92, 0.92, 0.88],
-          "$bar_color": [0.85, 0.85, 0.78],
+          "$name_color": [
+            0.92,
+            0.92,
+            0.88
+          ],
+          "$bar_color": [
+            0.85,
+            0.85,
+            0.78
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -277,8 +574,16 @@
       {
         "dm2_hp_storm@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.storm",
-          "$name_color": [0.68, 0.74, 0.85],
-          "$bar_color": [0.42, 0.52, 0.72],
+          "$name_color": [
+            0.68,
+            0.74,
+            0.85
+          ],
+          "$bar_color": [
+            0.42,
+            0.52,
+            0.72
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -294,8 +599,16 @@
       {
         "dm2_hp_sunlight@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.sunlight",
-          "$name_color": [1, 0.87, 0.51],
-          "$bar_color": [1, 0.76, 0.1],
+          "$name_color": [
+            1,
+            0.87,
+            0.51
+          ],
+          "$bar_color": [
+            1,
+            0.76,
+            0.1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -311,8 +624,16 @@
       {
         "dm2_hp_terra@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.terra",
-          "$name_color": [0.75, 0.66, 0.57],
-          "$bar_color": [0.55, 0.39, 0.22],
+          "$name_color": [
+            0.75,
+            0.66,
+            0.57
+          ],
+          "$bar_color": [
+            0.55,
+            0.39,
+            0.22
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -328,8 +649,16 @@
       {
         "dm2_hp_water@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.water",
-          "$name_color": [0.55, 0.73, 1],
-          "$bar_color": [0.18, 0.5, 1],
+          "$name_color": [
+            0.55,
+            0.73,
+            1
+          ],
+          "$bar_color": [
+            0.18,
+            0.5,
+            1
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -345,8 +674,16 @@
       {
         "dm2_hp_wither@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.wither",
-          "$name_color": [0.61, 0.61, 0.63],
-          "$bar_color": [0.3, 0.3, 0.32],
+          "$name_color": [
+            0.61,
+            0.61,
+            0.63
+          ],
+          "$bar_color": [
+            0.3,
+            0.3,
+            0.32
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -362,8 +699,16 @@
       {
         "dm2_hp_zombie@hud.dm2_hp_bar": {
           "$label": "hud.dragonmounts2:name.zombie",
-          "$name_color": [0.68, 0.76, 0.58],
-          "$bar_color": [0.42, 0.56, 0.23],
+          "$name_color": [
+            0.68,
+            0.76,
+            0.58
+          ],
+          "$bar_color": [
+            0.42,
+            0.56,
+            0.23
+          ],
           "bindings": [
             {
               "binding_name": "#hud_subtitle_text_string"
@@ -372,6 +717,818 @@
               "binding_type": "view",
               "source_property_name": "(not ((#hud_subtitle_text_string - '|zombie|') = #hud_subtitle_text_string))",
               "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_fire": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            1,
+            0.66,
+            0.51
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|fire|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|fire|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_ice": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.81,
+            0.95,
+            1
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|ice|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|ice|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_aether": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.73,
+            0.93,
+            1
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|aether|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|aether|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_dark": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.44,
+            0,
+            0
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|dark|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|dark|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_enchanted": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.85,
+            0.61,
+            1
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|enchanted|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|enchanted|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_ender": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.89,
+            0.61,
+            0.92
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|ender|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|ender|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_forest": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.59,
+            0.83,
+            0.59
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|forest|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|forest|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_light": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            1,
+            0.97,
+            0.81
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|light|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|light|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_moonlight": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.76,
+            0.81,
+            1
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|moonlight|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|moonlight|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_nether": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.82,
+            0.51,
+            0.51
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|nether|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|nether|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_sculk": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.52,
+            0.76,
+            0.79
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|sculk|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|sculk|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_skeleton": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.92,
+            0.92,
+            0.88
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|skeleton|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|skeleton|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_storm": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.68,
+            0.74,
+            0.85
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|storm|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|storm|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_sunlight": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            1,
+            0.87,
+            0.51
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|sunlight|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|sunlight|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_terra": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.75,
+            0.66,
+            0.57
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|terra|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|terra|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_water": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.55,
+            0.73,
+            1
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|water|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|water|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_wither": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.61,
+            0.61,
+            0.63
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|wither|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|wither|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_zombie": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            0.68,
+            0.76,
+            0.58
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((not ((#hud_subtitle_text_string - '|zombie|') = #hud_subtitle_text_string)) and (not ((#hud_subtitle_text_string - '|n|') = #hud_subtitle_text_string)))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|zombie|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_hp_jeb@hud.dm2_hp_bar_jeb": {
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|jeb|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "dm2_name_jeb": {
+          "type": "label",
+          "text": "#text",
+          "localize": false,
+          "shadow": true,
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#hud_subtitle_text_string"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#hud_subtitle_text_string - '|jeb|') = #hud_subtitle_text_string))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#hud_subtitle_text_string - '|jeb|')",
+              "target_property_name": "#dm2_s1"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s1 - '|a|')",
+              "target_property_name": "#dm2_s2"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#dm2_s2 - '|n|')",
+              "target_property_name": "#text"
             }
           ]
         }
@@ -560,23 +1717,56 @@
         "target_property_name": "#visible"
       }
     ],
-    "$dm2_gap_base|default": [182, 0],
-    "$dm2_gap_creative|default": [182, 15],
-    "$dm2_gap_hearts|default": [182, 26],
-    "$dm2_gap_armor|default": [182, 10],
-    "$dm2_gap_clear|default": [182, 0],
-    "$dm2_gap_mobile|default": [182, 34],
-    "$dm2_gap_creative_mobile|default": [182, 6],
-    "$dm2_gap_pc|default": [182, 15],
-    "$dm2_gap_pocket|default": [182, 30]
+    "$dm2_gap_base|default": [
+      182,
+      0
+    ],
+    "$dm2_gap_creative|default": [
+      182,
+      15
+    ],
+    "$dm2_gap_hearts|default": [
+      182,
+      26
+    ],
+    "$dm2_gap_armor|default": [
+      182,
+      10
+    ],
+    "$dm2_gap_clear|default": [
+      182,
+      0
+    ],
+    "$dm2_gap_mobile|default": [
+      182,
+      34
+    ],
+    "$dm2_gap_creative_mobile|default": [
+      182,
+      6
+    ],
+    "$dm2_gap_pc|default": [
+      182,
+      15
+    ],
+    "$dm2_gap_pocket|default": [
+      182,
+      30
+    ]
   },
   "dm2_horse_hearts_creative": {
     "type": "panel",
-    "size": [1, 1],
+    "size": [
+      1,
+      1
+    ],
     "offset": "$offset",
     "anchor_from": "bottom_left",
     "anchor_to": "bottom_left",
-    "$offset|default": [0, 0],
+    "$offset|default": [
+      0,
+      0
+    ],
     "bindings": [
       {
         "binding_name": "#hud_title_text_string"
@@ -602,11 +1792,17 @@
   },
   "dm2_horse_hearts_survival": {
     "type": "panel",
-    "size": [1, 1],
+    "size": [
+      1,
+      1
+    ],
     "offset": "$offset",
     "anchor_from": "bottom_left",
     "anchor_to": "bottom_left",
-    "$offset|default": [0, 0],
+    "$offset|default": [
+      0,
+      0
+    ],
     "bindings": [
       {
         "binding_name": "#hud_title_text_string"
@@ -663,7 +1859,10 @@
         "control_name": "horse_heart_rend_0",
         "value": {
           "horse_heart_rend_0@hud.dm2_horse_hearts_creative": {
-            "$offset": [180, -56]
+            "$offset": [
+              180,
+              -56
+            ]
           }
         }
       },
@@ -673,7 +1872,10 @@
         "control_name": "horse_heart_rend_1",
         "value": {
           "horse_heart_rend_1@hud.dm2_horse_hearts_survival": {
-            "$offset": [180, -50]
+            "$offset": [
+              180,
+              -50
+            ]
           }
         }
       }
@@ -687,7 +1889,10 @@
         "control_name": "horse_heart_rend_0",
         "value": {
           "horse_heart_rend_0@hud.dm2_horse_hearts_creative": {
-            "$offset": [200, -56]
+            "$offset": [
+              200,
+              -56
+            ]
           }
         }
       },
@@ -697,7 +1902,10 @@
         "control_name": "horse_heart_rend_1",
         "value": {
           "horse_heart_rend_1@hud.dm2_horse_hearts_survival": {
-            "$offset": [200, -50]
+            "$offset": [
+              200,
+              -50
+            ]
           }
         }
       }
@@ -711,7 +1919,10 @@
         "control_name": "horse_heart_rend",
         "value": {
           "horse_heart_rend@hud.horse_heart_renderer": {
-            "offset": [-2, 2],
+            "offset": [
+              -2,
+              2
+            ],
             "anchor_from": "top_right",
             "anchor_to": "top_right",
             "layer": 1,

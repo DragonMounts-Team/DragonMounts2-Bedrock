@@ -490,21 +490,10 @@ export function spawnDragonCoreWithEssence(dimension, location, essenceData) {
   let placed;
   try {
     const x = Math.floor(location.x);
+    const y = Math.floor(location.y);
     const z = Math.floor(location.z);
-    const startY = Math.floor(location.y);
-    const minY = dimension.heightRange.min;
-
-    let target;
-    for (let y = startY; y > minY; y--) {
-      const current = dimension.getBlock({ x, y, z });
-      if (!current) return false;
-      if (current.isAir || current.isLiquid) {
-        target = current;
-        continue;
-      }
-      break;
-    }
-    if (!target || !(target.isAir || target.isLiquid)) return false;
+    const target = dimension.getBlock({ x, y, z });
+    if (!target || (!target.isAir && !target.isLiquid)) return false;
 
     target.setType(DRAGON_CORE_ID);
     placed = target;

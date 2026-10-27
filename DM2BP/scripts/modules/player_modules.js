@@ -364,14 +364,13 @@ function tryTriggerStormLightningProc(player, target) {
   const now = system.currentTick;
   const cooldownExpiry = stormLightningCooldowns.get(player.id) || 0;
   if (cooldownExpiry > now) return false;
-  stormLightningCooldowns.set(player.id, now + 160 * 20);
-
   const targetLoc = target.location;
-  if (target.dimension.getSkyLightLevel(targetLoc) <= 0) return true;
+  if (target.dimension.getSkyLightLevel(targetLoc) <= 0) return false;
   const spawnLoc = { x: targetLoc.x, y: targetLoc.y, z: targetLoc.z };
 
   try {
     target.dimension.spawnEntity("minecraft:lightning_bolt", spawnLoc);
+    stormLightningCooldowns.set(player.id, now + 160 * 20);
     return true;
   } catch {
     return false;

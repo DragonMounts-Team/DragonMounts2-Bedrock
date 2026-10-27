@@ -26,7 +26,7 @@
         "scale": "v.is_adult&&q.is_in_ui?0.45:v.is_juvenile&&q.is_in_ui?0.55:1.0"
       },
       "sound_effects": { "wings_flap": "dragonmounts2:mob.dragon.wings", "wings_subduction": "dragonmounts2:mob.dragon.subduction", "breath_loop": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_adult", "breath_loop_juvenile": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_juvenile", "breath_loop_baby": "dragonmounts2:mob.dragon.java_breath_loop_dragon_wither_hatchling" },
-      "particle_effects": { "death_cloud": "dragonmounts2:wither_dragon_death_cloud" },
+      "particle_effects": { "death_cloud": "dragonmounts2:wither_dragon_death_cloud", "breath_muzzle": "dragonmounts2:breath_wither" },
       "render_controllers": [
         "controller.render.dragonmounts2.dragon.is_saddled",
         "controller.render.dragonmounts2.dragon.is_chested",

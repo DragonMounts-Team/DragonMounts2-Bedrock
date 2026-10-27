@@ -1,0 +1,51 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:crystal_beam",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "properties": {
+        "dragonmounts2:beam_length": {
+          "type": "float",
+          "range": [0.0, 64.0],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:beam_yaw": {
+          "type": "float",
+          "range": [-180.0, 180.0],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:beam_pitch": {
+          "type": "float",
+          "range": [-90.0, 90.0],
+          "default": 0.0,
+          "client_sync": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["dragonmounts2_crystal_beam"]
+      },
+      "minecraft:collision_box": {
+        "width": 0.1,
+        "height": 0.1
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      }
+    }
+  }
+}

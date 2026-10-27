@@ -391,23 +391,6 @@ function affectWaterBlock(ctx, record) {
 }
 
                                                                                    
-const STRIKE_INTERVAL = 20;
-const STRIKE_CHANCE = 0.06;
-const MIN_STRIKE_DISTANCE_SQ = 25;
-function tryStrike(ctx, block) {
-  const memo = ctx.memo;
-  if (ctx.now < (memo.nextStrikeAt ?? 0) || Math.random() >= STRIKE_CHANCE) return;
-  const { x, y, z } = block.location;
-  const at = { x: x + 0.5, y: y + 1, z: z + 0.5 };
-  const dragon = ctx.dragon.location;
-  const dx = dragon.x - at.x;
-  const dy = dragon.y - at.y;
-  const dz = dragon.z - at.z;
-                                                                    
-  if (dx * dx + dy * dy + dz * dz < MIN_STRIKE_DISTANCE_SQ) return;
-  memo.nextStrikeAt = ctx.now + STRIKE_INTERVAL;
-  ctx.dimension.spawnEntity("minecraft:lightning_bolt", at);
-}
 
                                                                                 
 const FAN_THRESHOLD = 0.3;
@@ -567,9 +550,7 @@ export function affectBlock(def, ctx, record, isSculkReplaceable) {
     case "nether": return affectFireBlock(ctx, record, true);
     case "ice": return affectIceBlock(ctx, record);
     case "water": return affectWaterBlock(ctx, record);
-    case "storm":
-      tryStrike(ctx, record.block);
-      return affectWaterBlock(ctx, record);
+    case "storm": return affectWaterBlock(ctx, record);
     case "aether": return affectAetherBlock(ctx, record);
     case "forest":
     case "zombie":

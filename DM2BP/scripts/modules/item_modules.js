@@ -164,14 +164,11 @@ onBeforeEntityHurt((data) => {
   if (
     !player.isSneaking ||
     delays[player.id] !== undefined ||
+    cooldownUntil[player.id] > currentTick ||
     usingItem[player.id]
   )
     return;
-  const shield = shieldUtilities.getHeldShield(
-    player,
-    true,
-    cooldownUntil[player.id],
-  );
+  const shield = shieldUtilities.getHeldShield(player, false);
   if (!shield) return;
 
   const playerLoc = player.location;
@@ -292,7 +289,11 @@ onBeforeEntityHurt((data) => {
         player.location,
         getSoundOptions(),
       );
-    if (comp.command) player.runCommand(comp.command);
+    if (comp.command) {
+      try {
+        player.runCommand(comp.command);
+      } catch {}
+    }
     if (cooldown !== undefined && disableShield) {
       cooldown.startCooldown(player);
       cooldownUntil[id] = system.currentTick + (cooldown.cooldownTicks ?? 100);

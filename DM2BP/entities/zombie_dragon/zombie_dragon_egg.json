@@ -102,7 +102,8 @@
             "filters": {
               "test": "bool_property",
               "domain": "dragonmounts2:egg_nesting_block",
-              "operator": "=="
+              "operator": "==",
+              "value": true
             },
             "event": "minecraft:dragon_egg_hatching"
           },
@@ -112,7 +113,8 @@
                 {
                   "test": "bool_property",
                   "domain": "dragonmounts2:egg_nesting_block",
-                  "operator": "!="
+                  "operator": "!=",
+                  "value": false
                 },
                 {
                   "test": "has_component",

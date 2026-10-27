@@ -987,6 +987,7 @@
 		},
 		"animation.dragonmounts2.dragon.breath": {
 			"loop": true,
+			"animation_length": 0.18,
 			"bones": {
 				"world": {
 					"rotation": [0, "q.target_y_rotation", 0]
@@ -995,6 +996,11 @@
 					"rotation": [30, 0, 0],
 					"position": [0, 0.00736, -0.43726]
 				}
+			},
+			"particle_effects": {
+				"0.02": { "effect": "breath_muzzle", "locator": "muzzle" },
+				"0.09": { "effect": "breath_muzzle", "locator": "muzzle" },
+				"0.16": { "effect": "breath_muzzle", "locator": "muzzle" }
 			}
 		},
 		"animation.dragonmounts2.dragon.breath_loop.adult": {

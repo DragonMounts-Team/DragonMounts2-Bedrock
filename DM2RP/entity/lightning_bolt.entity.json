@@ -1,0 +1,30 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "dragonmounts2:lightning_bolt",
+      "materials": {
+        "default": "lightning_beam"
+      },
+      "textures": {
+        "default": "textures/entity/lightning_bolt"
+      },
+      "geometry": {
+        "default": "geometry.dragonmounts2.lightning_bolt"
+      },
+      "animations": {
+        "aim": "animation.dragonmounts2.lightning_bolt.aim",
+        "flicker": "animation.dragonmounts2.lightning_bolt.flicker"
+      },
+      "scripts": {
+        "animate": [
+          "aim",
+          "flicker"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.dragonmounts2.lightning_bolt"
+      ]
+    }
+  }
+}

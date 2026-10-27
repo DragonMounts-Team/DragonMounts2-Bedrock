@@ -1,0 +1,565 @@
+{
+  "format_version": "1.26.50",
+  "render_controllers": {
+    "controller.render.dragonmounts2.crystal_beam_00": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_00": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0312
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_01": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_01": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0938
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_02": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_02": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.1562
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_03": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_03": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.2188
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_04": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_04": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.2812
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_05": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_05": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.3438
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_06": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_06": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.4062
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_07": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_07": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.4688
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_08": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_08": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.5312
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_09": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_09": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.5938
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_10": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_10": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.6562
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_11": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_11": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.7188
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_12": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_12": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.7812
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_13": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_13": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.8438
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_14": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_14": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.9062
+      }
+    },
+    "controller.render.dragonmounts2.crystal_beam_15": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        {
+          "*": false
+        },
+        {
+          "seg_15": true
+        }
+      ],
+      "uv_anim": {
+        "offset": [
+          0,
+          "-q.life_time * 0.2"
+        ],
+        "scale": [
+          1,
+          "q.property('dragonmounts2:beam_length') / 32"
+        ]
+      },
+      "overlay_color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.9688
+      }
+    }
+  }
+}

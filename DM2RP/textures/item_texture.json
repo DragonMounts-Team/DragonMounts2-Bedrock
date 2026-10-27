@@ -1284,19 +1284,19 @@
       "textures": "textures/items/dragonmounts2_equipment/tools/shields/skeleton_dragon_bone_shield"
     },
     "dragonmounts2:skeleton_dragon_bone_bow": {
-      "textures": "textures/items/dragonmounts2_equipment/tools/bows/skeleton_dragon_bone_bow"
+      "textures": "textures/items/dragonmounts2_equipment/tools/bows/skeleton_dragon_bone_bow_standby"
     },
     "dragonmounts2:skeleton_dragon_bone_helmet": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_scale_equipment/skeleton_dragon_bone_helmet"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_bone_equipment/skeleton_dragon_bone_helmet"
     },
     "dragonmounts2:skeleton_dragon_bone_chestplate": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_scale_equipment/skeleton_dragon_bone_chestplate"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_bone_equipment/skeleton_dragon_bone_chestplate"
     },
     "dragonmounts2:skeleton_dragon_bone_leggings": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_scale_equipment/skeleton_dragon_bone_leggings"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_bone_equipment/skeleton_dragon_bone_leggings"
     },
     "dragonmounts2:skeleton_dragon_bone_boots": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_scale_equipment/skeleton_dragon_bone_boots"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/skeleton_dragon_bone_equipment/skeleton_dragon_bone_boots"
     },
     "dragonmounts2:storm_dragon_sword": {
       "textures": "textures/items/dragonmounts2_equipment/tools/swords/storm_dragon_scale_sword"
@@ -1431,16 +1431,16 @@
       "textures": "textures/items/dragonmounts2_equipment/tools/bows/wither_dragon_bone_bow_standby"
     },
     "dragonmounts2:wither_dragon_scale_helmet": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_scale_equipment/wither_dragon_bone_helmet"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_bone_equipment/wither_dragon_bone_helmet"
     },
     "dragonmounts2:wither_dragon_scale_chestplate": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_scale_equipment/wither_dragon_bone_chestplate"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_bone_equipment/wither_dragon_bone_chestplate"
     },
     "dragonmounts2:wither_dragon_scale_leggings": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_scale_equipment/wither_dragon_bone_leggings"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_bone_equipment/wither_dragon_bone_leggings"
     },
     "dragonmounts2:wither_dragon_scale_boots": {
-      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_scale_equipment/wither_dragon_bone_boots"
+      "textures": "textures/items/dragonmounts2_equipment/armors/player/wither_dragon_bone_equipment/wither_dragon_bone_boots"
     },
     "dragonmounts2:zombie_dragon_sword": {
       "textures": "textures/items/dragonmounts2_equipment/tools/swords/zombie_dragon_scale_sword"

@@ -1,0 +1,23 @@
+{
+  "format_version": "1.26.50",
+  "render_controllers": {
+    "controller.render.dragonmounts2.lightning_bolt": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {
+          "*": "Material.default"
+        }
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "color": {
+        "r": "query.property('dragonmounts2:lightning_red')",
+        "g": "query.property('dragonmounts2:lightning_green')",
+        "b": "query.property('dragonmounts2:lightning_blue')",
+        "a": 0.72
+      },
+      "ignore_lighting": true
+    }
+  }
+}

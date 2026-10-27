@@ -1829,6 +1829,9 @@
           "name": "head.jaw",
           "parent": "head",
           "pivot": [0, 47, -27],
+            "locators": {
+              "muzzle": [0, 0, -8]
+            },
           "cubes": [
             {
               "origin": [-6, 39, -43],

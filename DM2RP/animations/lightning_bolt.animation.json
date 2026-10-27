@@ -1,0 +1,113 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.dragonmounts2.lightning_bolt.aim": {
+      "loop": true,
+      "bones": {
+        "aim": {
+          "rotation": [
+            "q.property('dragonmounts2:beam_pitch')",
+            "q.property('dragonmounts2:beam_yaw')",
+            0
+          ]
+        },
+        "bolt": {
+          "scale": [
+            0.4,
+            0.4,
+            "q.property('dragonmounts2:beam_length') / 16"
+          ]
+        }
+      }
+    },
+    "animation.dragonmounts2.lightning_bolt.flicker": {
+      "loop": true,
+      "bones": {
+        "bolt_01": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 0 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 0 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 0 ? 1 : 0"
+          ]
+        },
+        "bolt_02": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 1 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 1 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 1 ? 1 : 0"
+          ]
+        },
+        "bolt_03": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 2 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 2 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 2 ? 1 : 0"
+          ]
+        },
+        "bolt_04": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 3 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 3 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 3 ? 1 : 0"
+          ]
+        },
+        "bolt_05": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 4 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 4 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 4 ? 1 : 0"
+          ]
+        },
+        "bolt_06": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 5 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 5 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 5 ? 1 : 0"
+          ]
+        },
+        "bolt_07": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 6 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 6 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 6 ? 1 : 0"
+          ]
+        },
+        "bolt_08": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 7 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 7 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 7 ? 1 : 0"
+          ]
+        },
+        "bolt_09": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 8 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 8 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 8 ? 1 : 0"
+          ]
+        },
+        "bolt_10": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 9 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 9 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 9 ? 1 : 0"
+          ]
+        },
+        "bolt_11": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 10 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 10 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 10 ? 1 : 0"
+          ]
+        },
+        "bolt_12": {
+          "scale": [
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 11 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 11 ? 1 : 0",
+            "math.mod(math.floor(q.life_time * 24) * 5, 12) == 11 ? 1 : 0"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -17,6 +17,12 @@ import {
 } from "./entity_utilities.js";
 import * as formationOrder from "./formation_order.js";
 import { spawnParticle } from "./particle_utilities.js";
+import {
+  claimCrystalTarget,
+  removeCrystalBeam,
+  releaseCrystalTarget,
+  updateCrystalBeam,
+} from "./crystal_beam_utilities.js";
 
 const flightSystem = (() => {
   const FlightMode = entityData.FLIGHT_MODES;
@@ -125,6 +131,7 @@ const flightSystem = (() => {
   }
 
   function updateCrystalHealing(dragon, state) {
+    const previousCrystal = state.crystal;
     const crystalIsUnavailable = state.crystal &&
       (!state.crystal.isValid ||
         state.crystal.dimension.id !== dragon.dimension.id ||
@@ -148,24 +155,42 @@ const flightSystem = (() => {
           ? crystal
           : nearest
       , null);
+      if (previousCrystal?.id !== state.crystal?.id) {
+        releaseCrystalTarget(previousCrystal, dragon);
+        removeCrystalBeam(state);
+        state.crystalTicks = 0;
+      }
       state.nextCrystalScanTick = system.currentTick + 20;
     }
     if (!state.crystal?.isValid) {
+      releaseCrystalTarget(state.crystal, dragon);
       state.crystalTicks = 0;
+      removeCrystalBeam(state);
       return;
     }
 
-    state.crystalTicks += 1;
     const health = safe(() => dragon.getComponent("minecraft:health"), null);
     const currentHealth = Number(health?.currentValue);
     const maximumHealth = Number(health?.effectiveMax ?? health?.defaultValue);
+    const injured =
+      Number.isFinite(currentHealth) &&
+      Number.isFinite(maximumHealth) &&
+      currentHealth < maximumHealth;
+    if (!claimCrystalTarget(state.crystal, dragon, state, injured)) {
+      state.crystalTicks = 0;
+      removeCrystalBeam(state);
+      return;
+    }
+
+    updateCrystalBeam(dragon, state);
+    state.crystalTicks += 1;
     if (
       state.crystalTicks > 0 &&
       Number.isFinite(currentHealth) &&
       Number.isFinite(maximumHealth) &&
       currentHealth < maximumHealth
     ) {
-      state.crystalTicks = -10;
+      state.crystalTicks = -9;
       safe(() => health.setCurrentValue(Math.min(maximumHealth, currentHealth + 1)));
       safe(() => dragon.addEffect("strength", 300, {
         amplifier: 0,
@@ -835,6 +860,8 @@ const flightSystem = (() => {
         ageTicks: 0,
         crystal: null,
         crystalTicks: 0,
+        beam: null,
+        beamAim: null,
         nextCrystalScanTick: 0,
         reconciled: false,
         nextReconcileTick: 0,
@@ -2209,6 +2236,7 @@ const flightSystem = (() => {
 })();
 
 export const dragonTypes = entityData.dragonTypes;
+export const dragonTypeIds = entityData.dragonTypeIds;
 export function sweepOrphanedAttackProxies() {
   flightSystem.sweepOrphanedAttackProxies();
 }

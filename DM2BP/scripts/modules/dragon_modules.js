@@ -2,6 +2,7 @@ import { system } from "@minecraft/server";
 import * as dragonUtilities from "../utilities/dragon_utilities.js";
 import { getAddonDimensions, runSafely } from "../lib/runtime.js";
 import { registerIntervalTask } from "../core/scheduler.js";
+import { sweepOrphanedCrystalBeams } from "../utilities/crystal_beam_utilities.js";
 
 const reportedFlightErrors = new WeakMap();
 const activeDragons = new Set();
@@ -25,7 +26,9 @@ registerIntervalTask("dragon-discovery", 10, () => {
     runSafely("Dragon flight dimension update failed", () => {
       const entities = dimension.getEntities(dragonUtilities.dragonTypes);
       for (const dragon of entities) {
-        if (dragon?.isValid) activeDragons.add(dragon);
+        if (dragon?.isValid && dragonUtilities.dragonTypeIds.has(dragon.typeId)) {
+          activeDragons.add(dragon);
+        }
       }
     });
   }
@@ -55,5 +58,11 @@ registerIntervalTask("dragon-flight", 1, () => {
 registerIntervalTask("dragon-attack-proxy-sweep", 60, () => {
   runSafely("Dragon attack proxy sweep failed", () => {
     dragonUtilities.sweepOrphanedAttackProxies();
+  });
+});
+
+registerIntervalTask("dragon-crystal-beam-sweep", 20, () => {
+  runSafely("Crystal beam sweep failed", () => {
+    sweepOrphanedCrystalBeams();
   });
 });

@@ -1,0 +1,132 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "dragonmounts2:lightning_bolt",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "dragonmounts2:beam_length": {
+          "type": "float",
+          "range": [
+            0.0,
+            32.0
+          ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:beam_yaw": {
+          "type": "float",
+          "range": [
+            -180.0,
+            180.0
+          ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:beam_pitch": {
+          "type": "float",
+          "range": [
+            -90.0,
+            90.0
+          ],
+          "default": 0.0,
+          "client_sync": true
+        },
+        "dragonmounts2:lightning_red": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ],
+          "default": 1.0,
+          "client_sync": true
+        },
+        "dragonmounts2:lightning_green": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ],
+          "default": 1.0,
+          "client_sync": true
+        },
+        "dragonmounts2:lightning_blue": {
+          "type": "float",
+          "range": [
+            0.0,
+            1.0
+          ],
+          "default": 1.0,
+          "client_sync": true
+        }
+      }
+    },
+    "component_groups": {
+      "dragonmounts2:despawn": {
+        "minecraft:instant_despawn": {}
+      },
+      "dragonmounts2:timeout": {
+        "minecraft:timer": {
+          "time": 0.6,
+          "looping": false,
+          "time_down_event": {
+            "event": "dragonmounts2:despawn"
+          }
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "dragonmounts2_lightning_beam"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.1,
+        "height": 0.1
+      },
+      "minecraft:physics": {
+        "has_gravity": false,
+        "has_collision": false
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "all",
+            "deals_damage": "no"
+          }
+        ]
+      },
+      "minecraft:fire_immune": {}
+    },
+    "events": {
+      "dragonmounts2:refresh_timeout": {
+        "sequence": [
+          {
+            "remove": {
+              "component_groups": [
+                "dragonmounts2:timeout"
+              ]
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "dragonmounts2:timeout"
+              ]
+            }
+          }
+        ]
+      },
+      "dragonmounts2:despawn": {
+        "add": {
+          "component_groups": [
+            "dragonmounts2:despawn"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,8 @@
-import { EntityDamageCause, MolangVariableMap, system } from "@minecraft/server";
+import {
+  EntityDamageCause,
+  MolangVariableMap,
+  system,
+} from "@minecraft/server";
 import * as entityData from "../data/entity_data.js";
 import { getSafeVelocity } from "./entity_utilities.js";
 import { onAfterEntityHurt, onBeforeEntityHurt } from "../core/combat_events.js";
@@ -23,6 +27,27 @@ const COMBAT_RANGE = 40;
 const BREATH_RANGE = 32;
 const BREATH_DURATION = 40;
 const BREATH_COOLDOWN = 40;
+const BREATH_MUZZLE_OFFSET = 1.25;
+const BREATH_JAW_OFFSETS = Object.freeze({
+  adult: 1.5,
+  juvenile: 0.75,
+  baby: 0.3,
+});
+const DRAGON_PROJECTILE_MUZZLE_OFFSET = 3;
+const LIGHTNING_BOLT_ENTITY = "dragonmounts2:lightning_bolt";
+const LIGHTNING_BEAM_TIMEOUT_EVENT = "dragonmounts2:refresh_timeout";
+const LIGHTNING_BEAM_TIMEOUT_REFRESH_TICKS = 5;
+const LIGHTNING_BEAM_MAX_LENGTH = BREATH_RANGE;
+const STORM_STRIKE_INTERVAL = 10;
+const STORM_STRIKE_CHANCE = 0.25;
+const STORM_STRIKE_MIN_DISTANCE_SQ = 25;
+const LIGHTNING_BEAM_AIM_SMOOTHING = 0.55;
+const LIGHTNING_BEAM_AIM_EPSILON = 0.1;
+const DRAGON_HARMLESS_ITEM_TAGS = Object.freeze([
+  "dragonmounts2:is_dragon_scepter",
+  "dragonmounts2:is_dragon_amulet",
+]);
+const RAD_TO_DEG = 180 / Math.PI;
 const LONG_FIGHT_TICKS = 200;
 const BREATH_LOOP_SOUND_PROFILES = Object.freeze({
   aether: "airflow",
@@ -45,6 +70,7 @@ const BREATH_LOOP_SOUND_PROFILES = Object.freeze({
   zombie: "forest",
 });
 const breathStopWarnings = new Set();
+const reportedLightningRaycastErrors = new Set();
 const MELEE_COOLDOWN = 40;
 const RIDDEN_BITE_COOLDOWN = 15;
 const RIDDEN_BITE_REACH = 2;
@@ -191,6 +217,7 @@ const ELEMENTAL_PROJECTILE_IMPACTS = Object.freeze({
 });
                                                                                                
 const breathDefinitions = new Map();
+const reportedLightningBoltErrors = new Set();
 function breathFor(typeId) {
   let definition = breathDefinitions.get(typeId);
   if (definition === undefined) {
@@ -202,15 +229,13 @@ function breathFor(typeId) {
 
                                                                                             
 const IMPACT_EFFECT_BY_KIND = Object.freeze({
-  fire: "fire", nether: "nether", ice: "ice", water: "water", storm: "water",
+  fire: "fire", nether: "nether", ice: "ice", water: "water", storm: "lightning",
   aether: "airflow", sculk: "sculk", wither: "poison", moonlight: "lightning", sunlight: "lightning",
 });
 const IMPACT_PARTICLE_BY_KIND = Object.freeze({
   fire: "minecraft:basic_flame_particle", nether: "minecraft:basic_flame_particle",
   ice: "minecraft:snowflake_particle", water: "minecraft:splash_particle",
   forest: "minecraft:happy_villager_particle",
-  moonlight: "dragonmounts2:lightning_blue",
-  sunlight: "dragonmounts2:lightning_orange",
 });
 const BREATH_PROJECTILE_IMPACTS = (() => {
   const impacts = {};
@@ -220,7 +245,7 @@ const BREATH_PROJECTILE_IMPACTS = (() => {
       particle: IMPACT_PARTICLE_BY_KIND[definition.kind] ?? "minecraft:basic_smoke_particle",
       particleCount: 24,
       sound: "dragonmounts2:mob.dragon.dragonbreath",
-      lightningStrike: definition.kind === "storm" ? true : undefined,
+      lightningKind: LIGHTNING_KINDS.has(definition.kind) ? definition.kind : null,
       breathCloud: definition.cloud ?? undefined,
     });
   };
@@ -289,6 +314,10 @@ function stateFor(dragon) {
       lastRiddenBiteAt: -Infinity,
       cooldowns: new Map(),
       nextLightningAt: 0,
+      lightningBeam: null,
+      lightningBeamAim: null,
+      lightningBeamSent: null,
+      lightningBeamLastRefreshTick: 0,
       breathNodes: [],
       breathBreathingTicks: 0,
       nodesTickedAt: -1,
@@ -462,7 +491,7 @@ function tryAIMeleeAttack(dragon, target, state) {
 function getAttackDirection(
   dragon,
   target,
-  origin = dragon.getHeadLocation(),
+  origin = breathMouthLocation(dragon),
 ) {
   const speed = breathNodeProfile(dragon).speed;
   const velocity = getSafeVelocity(target);
@@ -493,7 +522,11 @@ function dragonOwnerId(dragon) {
 }
 
 function isFriendly(dragon, target) {
-  if (!valid(target) || target.id === dragon.id) return true;
+  if (
+    !valid(target) ||
+    target.id === dragon.id ||
+    target.typeId === "dragonmounts2:attack_interaction"
+  ) return true;
   if (ridersOf(dragon).some((rider) => rider.id === target.id)) return true;
   const ownerId = dragonOwnerId(dragon);
   if (ownerId && target.id === ownerId) return true;
@@ -669,6 +702,7 @@ function endAIBreath(dragon, state) {
     state.breathStartedAt = -1;
     return;
   }
+  removeLightningBreathBeam(state);
   dragon.setProperty("dragonmounts2:ai_breath_active", false);
   dragon.setProperty("dragonmounts2:is_breathing", false);
   setBreathReady(dragon, false);
@@ -1045,10 +1079,18 @@ function candidateNearBreathNode(candidate, start, end, radius) {
 }
 
 function sampleBreathNode(dragon, node, candidates, affectedBlocks, entityExposure, definition, now) {
+  const lightning = LIGHTNING_KINDS.has(definition.kind);
   node.age += 1;
   const start = node.position;
   node.lastStart = { x: start.x, y: start.y, z: start.z };
-  const collision = slideNode(dragon, start, node);
+  const collision = lightning
+    ? {
+        position: addVector(start, node.velocity),
+        collisions: [],
+        collided: false,
+        extinguished: false,
+      }
+    : slideNode(dragon, start, node);
   const end = collision.position;
   const movement = {
     x: end.x - start.x,
@@ -1077,7 +1119,7 @@ function sampleBreathNode(dragon, node, candidates, affectedBlocks, entityExposu
     if (lineBlocked(dragon.dimension, point.cx, point.cy, point.cz, point.x, point.y, point.z)) {
       const own = cachedBlock(dragon.dimension, Math.floor(point.x), Math.floor(point.y), Math.floor(point.z));
                                                                              
-      if (own && own.solid) {
+      if (!lightning && own && own.solid) {
         addBlockExposure(
           affectedBlocks, own, sampleDensity,
           breathEffects.intersectedFace(point.cx, point.cy, point.cz, point.x, point.y, point.z),
@@ -1086,19 +1128,21 @@ function sampleBreathNode(dragon, node, candidates, affectedBlocks, entityExposu
       }
       continue;
     }
-    addBlockExposure(
-      affectedBlocks,
-      cachedBlock(
-        dragon.dimension,
-        Math.floor(point.x),
-        Math.floor(point.y),
-        Math.floor(point.z),
-      ),
-      sampleDensity,
-      breathEffects.intersectedFace(point.cx, point.cy, point.cz, point.x, point.y, point.z),
-      definition,
-      now,
-    );
+    if (!lightning) {
+      addBlockExposure(
+        affectedBlocks,
+        cachedBlock(
+          dragon.dimension,
+          Math.floor(point.x),
+          Math.floor(point.y),
+          Math.floor(point.z),
+        ),
+        sampleDensity,
+        breathEffects.intersectedFace(point.cx, point.cy, point.cz, point.x, point.y, point.z),
+        definition,
+        now,
+      );
+    }
     for (const candidate of nearbyCandidates) {
       if (
         Math.abs(point.x - candidate.x) <= candidate.width / 2 &&
@@ -1187,23 +1231,272 @@ function coneSize(fullSize, travelled) {
 }
                                                                                           
                                                                                         
-function emitLightningNode(dragon, node, kind, budget) {
-  const at = node.position;
-  const spread = breathNodeRadius(node) * 0.375;
-  spawnBreathParticle(dragon.dimension, LIGHTNING_PROFILES[kind].particle, {
-    x: at.x + (Math.random() - 0.5) * spread,
-    y: at.y + (Math.random() - 0.5) * spread,
-    z: at.z + (Math.random() - 0.5) * spread,
-  });
-  budget.left -= 1;
+function updateLightningBreathBeam(dragon, state, target, direction, kind) {
+  const aim = normalizeDirection(direction ?? { x: 0, y: 0, z: 1 });
+  const head = offsetAlongDirection(
+    breathMouthLocation(dragon),
+    aim,
+    BREATH_MUZZLE_OFFSET,
+  );
+  let length = LIGHTNING_BEAM_MAX_LENGTH;
+  if (valid(target)) {
+    const dx = target.location.x - head.x;
+    const dy = target.location.y - head.y;
+    const dz = target.location.z - head.z;
+    length = Math.max(0.1, Math.min(
+      LIGHTNING_BEAM_MAX_LENGTH,
+      dx * aim.x + dy * aim.y + dz * aim.z,
+    ));
+  }
+  try {
+    const hit = dragon.dimension.getBlockFromRay(head, aim, {
+      maxDistance: length,
+      includeLiquidBlocks: false,
+      includePassableBlocks: false,
+    });
+    if (hit) {
+      const base = hit.block.location;
+      const face = hit.faceLocation;
+      const hitLocation = {
+        x: base.x + face.x,
+        y: base.y + face.y,
+        z: base.z + face.z,
+      };
+      const hitDistance = Math.hypot(
+        hitLocation.x - head.x,
+        hitLocation.y - head.y,
+        hitLocation.z - head.z,
+      );
+      length = Math.max(0.1, Math.min(length, hitDistance - 0.1));
+      if (kind === "storm") {
+        tryStormBreathStrike(dragon, state, hit.block);
+      }
+    }
+  } catch (error) {
+    if (!reportedLightningRaycastErrors.has(dragon.typeId)) {
+      reportedLightningRaycastErrors.add(dragon.typeId);
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(
+        `[DragonMounts2] Lightning breath block raycast failed for ${dragon.typeId}: ${message}`,
+      );
+    }
+  }
+  const { sprite } = breathParticleStyle(dragon);
+  for (let index = 0; index < 4; index += 1) {
+    const distance = Math.random() * length;
+    spawnBreathParticle(dragon.dimension, `dragonmounts2:${sprite}`, {
+      x: head.x + aim.x * distance,
+      y: head.y + aim.y * distance,
+      z: head.z + aim.z * distance,
+    });
+  }
+  updateLightningBolt(
+    dragon.dimension,
+    state,
+    head,
+    direction,
+    Math.max(0.1, length),
+    kind,
+  );
+}
+
+function tryStormBreathStrike(dragon, state, block) {
+  const memo = state.breathMemo;
+  if (
+    system.currentTick < (memo.nextStrikeAt ?? 0) ||
+    Math.random() >= STORM_STRIKE_CHANCE
+  ) return;
+  const { x, y, z } = block.location;
+  const location = { x: x + 0.5, y: y + 1, z: z + 0.5 };
+  if (distanceSquared(dragon.location, location) < STORM_STRIKE_MIN_DISTANCE_SQ) return;
+  memo.nextStrikeAt = system.currentTick + STORM_STRIKE_INTERVAL;
+  try {
+    dragon.dimension.spawnEntity("minecraft:lightning_bolt", location);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[DragonMounts2] Storm breath lightning strike failed: ${message}`);
+  }
+}
+
+function clampNumber(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+// The aim animation assumes the bolt entity itself faces yaw 0 / pitch 0; any
+// body rotation on the entity is added on top of beam_yaw on the client
+// (same rule crystal_beam_utilities.js enforces for the crystal beam).
+function lockLightningBeamRotation(bolt) {
+  try {
+    const rotation = bolt.getRotation();
+    if (Math.abs(rotation.x) > 0.01 || Math.abs(rotation.y) > 0.01) {
+      bolt.setRotation({ x: 0, y: 0 });
+    }
+  } catch {
+    // Entity may have just been removed; the caller handles invalid beams.
+  }
+}
+
+function smoothLightningValue(current, target) {
+  const difference = target - current;
+  return Math.abs(difference) <= LIGHTNING_BEAM_AIM_EPSILON
+    ? target
+    : current + difference * LIGHTNING_BEAM_AIM_SMOOTHING;
+}
+
+function smoothLightningAngle(current, target) {
+  const difference = signedAngleDifference(current, target);
+  return Math.abs(difference) <= LIGHTNING_BEAM_AIM_EPSILON
+    ? target
+    : normalizeAngle(current + difference * LIGHTNING_BEAM_AIM_SMOOTHING);
+}
+
+function updateLightningBolt(dimension, state, location, direction, length, kind) {
+  const profile = LIGHTNING_PROFILES[kind];
+  if (!profile) return false;
+  const normalized = normalizeDirection(direction ?? { x: 0, y: 0, z: 1 });
+  let bolt;
+  let created = false;
+  try {
+    bolt = state?.lightningBeam;
+    if (!valid(bolt) || bolt.dimension.id !== dimension.id) {
+      removeLightningBreathBeam(state);
+      bolt = dimension.spawnEntity(LIGHTNING_BOLT_ENTITY, location);
+      created = true;
+      if (state) {
+        state.lightningBeam = bolt;
+        state.lightningBeamAim = null;
+        state.lightningBeamSent = null;
+      }
+      bolt.setProperty("dragonmounts2:lightning_red", profile.color.red);
+      bolt.setProperty("dragonmounts2:lightning_green", profile.color.green);
+      bolt.setProperty("dragonmounts2:lightning_blue", profile.color.blue);
+    } else {
+      const current = bolt.location;
+      if (
+        Math.hypot(
+          current.x - location.x,
+          current.y - location.y,
+          current.z - location.z,
+        ) > 0.025
+      ) {
+        bolt.teleport(location);
+      }
+    }
+    lockLightningBeamRotation(bolt);
+
+    const aim = {
+      length: clampNumber(length, 0, LIGHTNING_BEAM_MAX_LENGTH),
+      yaw: normalizeAngle(Math.atan2(-normalized.x, normalized.z) * RAD_TO_DEG),
+      pitch: clampNumber(
+        -Math.asin(clampNumber(normalized.y, -1, 1)) * RAD_TO_DEG,
+        -90,
+        90,
+      ),
+    };
+    const previous = state?.lightningBeamAim ?? null;
+    const nextAim = previous
+      ? {
+          length: clampNumber(
+            smoothLightningValue(previous.length, aim.length),
+            0,
+            LIGHTNING_BEAM_MAX_LENGTH,
+          ),
+          yaw: smoothLightningAngle(previous.yaw, aim.yaw),
+          pitch: clampNumber(
+            smoothLightningValue(previous.pitch, aim.pitch),
+            -90,
+            90,
+          ),
+        }
+      : aim;
+
+    // Compare against what the client was last told, not against the previous
+    // smoothed value; otherwise slow turns never cross the epsilon and the
+    // beam visibly lags behind and then snaps.
+    const sent = state?.lightningBeamSent ?? null;
+    const sendLength =
+      !sent || Math.abs(sent.length - nextAim.length) > LIGHTNING_BEAM_AIM_EPSILON;
+    const sendYaw =
+      !sent ||
+      Math.abs(signedAngleDifference(sent.yaw, nextAim.yaw)) >
+        LIGHTNING_BEAM_AIM_EPSILON;
+    const sendPitch =
+      !sent || Math.abs(sent.pitch - nextAim.pitch) > LIGHTNING_BEAM_AIM_EPSILON;
+    if (sendLength) bolt.setProperty("dragonmounts2:beam_length", nextAim.length);
+    if (sendYaw) bolt.setProperty("dragonmounts2:beam_yaw", nextAim.yaw);
+    if (sendPitch) bolt.setProperty("dragonmounts2:beam_pitch", nextAim.pitch);
+    if (state) {
+      state.lightningBeamAim = nextAim;
+      state.lightningBeamSent = {
+        length: sendLength ? nextAim.length : sent.length,
+        yaw: sendYaw ? nextAim.yaw : sent.yaw,
+        pitch: sendPitch ? nextAim.pitch : sent.pitch,
+      };
+    }
+
+    if (
+      !state ||
+      created ||
+      state.lightningBeamLastRefreshTick === undefined ||
+      system.currentTick - state.lightningBeamLastRefreshTick >=
+        LIGHTNING_BEAM_TIMEOUT_REFRESH_TICKS
+    ) {
+      bolt.triggerEvent(LIGHTNING_BEAM_TIMEOUT_EVENT);
+      if (state) state.lightningBeamLastRefreshTick = system.currentTick;
+    }
+    return true;
+  } catch (error) {
+    if (valid(bolt)) {
+      try {
+        bolt.remove();
+      } catch {
+        // Already gone.
+      }
+    }
+    if (state) {
+      state.lightningBeam = null;
+      state.lightningBeamAim = null;
+      state.lightningBeamSent = null;
+      state.lightningBeamLastRefreshTick = 0;
+    }
+    if (!reportedLightningBoltErrors.has(kind)) {
+      reportedLightningBoltErrors.add(kind);
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[DragonMounts2] Lightning breath effect failed for ${kind}: ${message}`);
+    }
+    return false;
+  }
+}
+
+function removeLightningBreathBeam(state) {
+  const beam = state?.lightningBeam;
+  if (beam?.isValid) {
+    try {
+      beam.remove();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[DragonMounts2] Failed to remove lightning breath beam: ${message}`);
+    }
+  }
+  if (state) {
+    state.lightningBeam = null;
+    state.lightningBeamAim = null;
+    state.lightningBeamSent = null;
+    state.lightningBeamLastRefreshTick = 0;
+  }
+}
+
+function signedAngleDifference(from, to) {
+  return ((to - from + 540) % 360) - 180;
+}
+
+function normalizeAngle(angle) {
+  return ((angle + 180) % 360 + 360) % 360 - 180;
 }
 
 function emitNodeParticle(dragon, node, budget, definition) {
+  if (LIGHTNING_KINDS.has(definition.kind)) return;
   if (budget.left <= 0) return;
-  if (LIGHTNING_KINDS.has(definition.kind)) {
-    emitLightningNode(dragon, node, definition.kind, budget);
-    return;
-  }
   const { sprite, style } = breathParticleStyle(dragon);
   const fullSize = node.profile.radius * 2 * 0.375 / 2;                                      
   const renderDiameter = breathNodeRadius(node) * 2 * 0.375;
@@ -1468,8 +1761,11 @@ export function launchDragonProjectile(dragon, direction, chargePower = 0) {
   };
                                                                                             
                                                                        
-  const mouth = breathMouthLocation(dragon);
-  const head = { x: mouth.x + aim.x * 0.8, y: mouth.y + aim.y * 0.8, z: mouth.z + aim.z * 0.8 };
+  const head = offsetAlongDirection(
+    breathMouthLocation(dragon),
+    aim,
+    DRAGON_PROJECTILE_MUZZLE_OFFSET,
+  );
   const speed = 1 + Math.max(0, Math.min(1, chargePower));
   const ability = getDragonProjectileAbility(dragon);
   let projectileEntity;
@@ -1588,7 +1884,20 @@ function normalizeDirection(direction) {
                                                                              
   
 function breathMouthLocation(dragon) {
-  return dragon.getHeadLocation();
+  const head = dragon.getHeadLocation();
+  const direction = normalizeDirection(dragon.getViewDirection());
+  const jawOffset =
+    BREATH_JAW_OFFSETS[dragon.getProperty("dragonmounts2:age_variant")] ?? 1.5;
+  return offsetAlongDirection(head, direction, jawOffset);
+}
+
+function offsetAlongDirection(location, direction, distance) {
+  const aim = normalizeDirection(direction);
+  return {
+    x: location.x + aim.x * distance,
+    y: location.y + aim.y * distance,
+    z: location.z + aim.z * distance,
+  };
 }
 
 function positionDragonBreathProjectile(event) {
@@ -1619,7 +1928,18 @@ function positionDragonBreathProjectile(event) {
   }
 
   if (dragon) {
-    projectile.teleport(breathMouthLocation(dragon), { keepVelocity: true });
+    const velocity = getSafeVelocity(projectile);
+    const direction = Math.hypot(velocity.x, velocity.y, velocity.z) > 0.001
+      ? velocity
+      : dragon.getViewDirection();
+    projectile.teleport(
+      offsetAlongDirection(
+        breathMouthLocation(dragon),
+        direction,
+        BREATH_MUZZLE_OFFSET,
+      ),
+      { keepVelocity: true },
+    );
   }
 }
 
@@ -1671,9 +1991,10 @@ function tickBreathNodes(
     direction = aimedDirection
       ? normalizeDirection(aimedDirection)
       : getAttackDirection(dragon, target, head);
+    const muzzle = offsetAlongDirection(head, direction, BREATH_MUZZLE_OFFSET);
     state.lastAim = direction;
     state.breathNodes.push({
-      position: { x: head.x, y: head.y, z: head.z },
+      position: muzzle,
       velocity: {
         x: (direction.x + truncatedGaussian(NODE_SPEED_VARIATION_ABS)) * profile.speed,
         y: (direction.y + truncatedGaussian(NODE_SPEED_VARIATION_ABS)) * profile.speed,
@@ -1681,7 +2002,7 @@ function tickBreathNodes(
       },
       profile,
       age: 0,
-      origin: { x: head.x, y: head.y, z: head.z },
+      origin: { x: muzzle.x, y: muzzle.y, z: muzzle.z },
     });
   } else {
     direction = state.lastAim ?? { x: 0, y: 0, z: 1 };
@@ -1735,11 +2056,16 @@ function tickBreathNodes(
     );
     emitNodeParticle(dragon, node, particleBudget, breath);
   }
+  if (spawn && LIGHTNING_KINDS.has(breath.kind)) {
+    updateLightningBreathBeam(dragon, state, target, state.lastAim, breath.kind);
+  }
   state.breathNodes = state.breathNodes.filter(
     (node) => node.age < node.profile.lifespan,
   );
 
-  applyBreathToBlocks(dragon, state, breath, affectedBlocks, now);
+  if (!LIGHTNING_KINDS.has(breath.kind)) {
+    applyBreathToBlocks(dragon, state, breath, affectedBlocks, now);
+  }
 
                                                                                 
                                                                         
@@ -2107,13 +2433,24 @@ function applyElementalProjectileImpact(event, impact) {
     return;
   }
 
-  spawnParticleBurst(
-    dimension,
-    impact.particle,
-    location,
-    impact.particleCount ?? 1,
-    { x: 0.8, y: 0.5, z: 0.8 },
-  );
+  if (impact.lightningKind) {
+    updateLightningBolt(
+      dimension,
+      null,
+      location,
+      getSafeVelocity(event.projectile),
+      2,
+      impact.lightningKind,
+    );
+  } else {
+    spawnParticleBurst(
+      dimension,
+      impact.particle,
+      location,
+      impact.particleCount ?? 1,
+      { x: 0.8, y: 0.5, z: 0.8 },
+    );
+  }
   if (impact.secondaryParticle) {
     spawnParticleBurst(
       dimension,
@@ -2162,15 +2499,6 @@ function applyElementalProjectileImpact(event, impact) {
     );
   }
 
-  if (
-    impact.lightningStrike === true &&
-    getWorldEnvironmentalEffectsEnabled() &&
-    !hitEntity &&
-    (!valid(owner) || distanceSquared(owner.location, location) >= 25)
-  ) {
-    dimension.spawnEntity("minecraft:lightning_bolt", location);
-  }
-
   for (const target of dimension.getEntities({
     location,
     maxDistance: 3,
@@ -2196,7 +2524,6 @@ function applyElementalProjectileImpact(event, impact) {
         break;
       case "lightning":
         target.setOnFire(5, true);
-        applyImpactKnockback(owner, target, 0.05);
         break;
       case "airflow":
         if (isEntityOnFire(target)) target.setOnFire(5, true);
@@ -2390,7 +2717,10 @@ function rememberOwnedDragonTarget(owner, target, targetKind) {
 
 onAfterEntityHurt(rememberDragonCombatHurt);
 onWorldEvent("afterEvents", "entityDie", ({ deadEntity }) => {
-  if (deadEntity?.id) runtimeByDragon.delete(deadEntity.id);
+  if (deadEntity?.id) {
+    removeLightningBreathBeam(runtimeByDragon.get(deadEntity.id));
+    runtimeByDragon.delete(deadEntity.id);
+  }
 });
 
 export function tickDragonCombat(dragon) {
@@ -2418,6 +2748,7 @@ export function tickDragonCombat(dragon) {
     state.breathBreathingTicks = 0;
     state.breathNodes.length = 0;
     state.lastBreath = null;
+    removeLightningBreathBeam(state);
     state.nodesTickedAt = system.currentTick;
     return null;
   }
@@ -2445,13 +2776,17 @@ export function tickDragonCombat(dragon) {
 function tickDragonCombatInner(dragon) {
   if (!dragon || !entityData.dragonTypeIds.has(dragon.typeId)) return null;
   if (!valid(dragon) || dragon.isDead) {
+    removeLightningBreathBeam(runtimeByDragon.get(dragon.id));
     runtimeByDragon.delete(dragon.id);
     return null;
   }
   if (system.currentTick - lastCleanupTick >= 200) {
     lastCleanupTick = system.currentTick;
     for (const [id, state] of runtimeByDragon) {
-      if (!valid(state.dragon)) runtimeByDragon.delete(id);
+      if (!valid(state.dragon)) {
+        removeLightningBreathBeam(state);
+        runtimeByDragon.delete(id);
+      }
     }
   }
 
@@ -2491,6 +2826,7 @@ function tickDragonCombatInner(dragon) {
       state.breathBreathingTicks = 0;
       state.riderBreathing = false;
       setBreathReady(dragon, false);
+      removeLightningBreathBeam(state);
     }
     tryRiddenBite(dragon, state, riders);
     return null;
@@ -2498,6 +2834,7 @@ function tickDragonCombatInner(dragon) {
   if (state.riderBreathing) {
     dragon.setProperty("dragonmounts2:is_breathing", false);
     stopDragonBreathAudio(dragon);
+    removeLightningBreathBeam(state);
   }
   state.riderBreathing = false;
   if (dragon.getProperty("dragonmounts2:rider_attack_mode") !== "breath") {
