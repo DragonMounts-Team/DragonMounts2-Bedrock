@@ -143,6 +143,40 @@
         }
       ]
     },
+		"crystal_beam_dm:entity_nocull": {
+			"+defines": [
+				"ALPHA_TEST",
+				"USE_UV_ANIM"
+			],
+			"+samplerStates": [
+				{
+					"samplerIndex": 0,
+					"textureWrap": "Repeat"
+				}
+			],
+			"msaaSupport": "Both"
+		},
+		"lightning_beam_dm:entity_nocull": {
+			"+defines": [
+				"USE_UV_ANIM"
+			],
+			"+states": [
+				"Blending",
+				"DisableCulling",
+				"DisableDepthWrite"
+			],
+			"blendSrc": "SourceAlpha",
+			"blendDst": "OneMinusSrcAlpha",
+			"+samplerStates": [
+				{
+					"samplerIndex": 0,
+					"textureWrap": "Repeat"
+				}
+			],
+			"msaaSupport": "Both"
+		},
+		"crystal_beam:crystal_beam_dm": {},
+		"lightning_beam:lightning_beam_dm": {},
 		"dragon:entity_dragon": {},
 		"dragon_default:entity_dragon_default": {},
 		"dragon_dissolve:entity_dissolve": {},
